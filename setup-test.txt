@@ -1,0 +1,1 @@
+XIV AI local VS Code connection is working.
