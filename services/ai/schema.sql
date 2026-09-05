@@ -1,0 +1,7 @@
+-- Optional schema-only pointer. Canonical SQL lives in:
+-- supabase/migrations/20260904180000_ai_agent_governance.sql
+-- Apply that file in the hosted Supabase SQL editor, then:
+--   NOTIFY pgrst, 'reload schema';
+-- RLS stays enabled. Do not apply from the mobile app.
+-- Client writes fail closed until matching owner-only policies exist for auth.uid().
+-- The AI service must not receive a service-role key.

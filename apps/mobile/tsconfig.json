@@ -1,0 +1,31 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/assets/*": [
+        "./assets/*"
+      ],
+      "@xiv/ai": [
+        "../../services/ai/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "../../services/ai/**/*.ts"
+  ],
+  "exclude": [
+    "../../services/ai/server.ts",
+    "../../services/ai/gemini-provider.ts",
+    "../../services/ai/auth.ts",
+    "../../services/ai/audit.ts",
+    "../../services/ai/executive-turn.ts"
+  ]
+}

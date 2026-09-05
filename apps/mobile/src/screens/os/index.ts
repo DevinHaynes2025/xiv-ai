@@ -1,0 +1,11 @@
+export { CustomerIntelligence } from '@/screens/os/customer-intelligence';
+export { DocumentsDesk } from '@/screens/os/documents-desk';
+export { FinanceDesk, MarketingDesk, ProjectsDesk, SecurityDesk } from '@/screens/os/light-desks';
+export { InventoryHealth } from '@/screens/os/inventory-health';
+export { MoreDesk } from '@/screens/os/more-desk';
+export { PeopleDesk } from '@/screens/os/people-desk';
+export { OperationsTower } from '@/screens/os/operations-tower';
+export { SalesDesk } from '@/screens/os/sales-desk';
+export { SupplyChainTower } from '@/screens/os/supply-chain-tower';
+export { SystemsNavigator } from '@/screens/os/systems-navigator';
+export { WarehouseTower } from '@/screens/os/warehouse-tower';
