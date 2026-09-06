@@ -245,3 +245,15 @@ export function canViewUniverseRoster(input: {
 export function userCannotJoinArbitraryOrganization(): TenantDecision {
   return deny('User cannot join an arbitrary organization by insert: DENY');
 }
+
+export function userCannotJoinArbitraryUniverse(): TenantDecision {
+  return deny('User cannot join an arbitrary Universe by insert: DENY');
+}
+
+export function userRolesDoNotGrantTenantAccess(): TenantDecision {
+  return deny('user_roles experience role does not grant tenant access: DENY');
+}
+
+export function profileCompanyDoesNotGrantTenantAccess(): TenantDecision {
+  return deny('profiles.company is personal identity and does not grant tenant access: DENY');
+}

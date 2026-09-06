@@ -4,6 +4,8 @@ import type { DataDomainCapability, DataProvenance, LiveSourceStatus } from './c
 import type { BusinessDataAdapter } from './context/adapters/types';
 import { adapterIsReadOnly, provenanceIsComplete } from './context/adapters/types';
 import { canAgentAccessClassification } from './security/classification';
+import { authorizePersistedTenantContext } from './tenant/context';
+import type { Organization, OrganizationMembership, Universe, UniverseMembership } from './tenant/types';
 import type { DataClassification } from './universe/types';
 
 const AGENT_DATA_DOMAINS: Record<XivAgentId, readonly (keyof DataDomainCapability)[]> = {
@@ -23,6 +25,12 @@ export type CompanyDataRequest = {
   ownerId?: string | null;
   organizationId?: string | null;
   universeId?: string | null;
+  organization?: Pick<Organization, 'id'> | null;
+  universe?: Pick<Universe, 'id' | 'organizationId'> | null;
+  organizationMembership?: OrganizationMembership | null;
+  universeMembership?: UniverseMembership | null;
+  experienceRole?: string | null;
+  profileCompany?: string | null;
   toolId: string;
   capability: 'connection_health' | 'metrics' | 'records';
   domain?: keyof DataDomainCapability;
@@ -118,6 +126,23 @@ export function createCompanyDataGateway(adapter: BusinessDataAdapter) {
         provenance: dataset.provenance,
       });
       if (!scoped.allowed) return deny(scoped.reason);
+
+      if (dataset.provenance.scope === 'organization' || dataset.provenance.scope === 'universe') {
+        const tenant = authorizePersistedTenantContext({
+          actorUserId: request.ownerId,
+          selectorOrganizationId: request.organizationId,
+          selectorUniverseId: request.universeId,
+          organization: request.organization,
+          universe: request.universe,
+          organizationMembership: request.organizationMembership,
+          universeMembership: request.universeMembership,
+          experienceRole: request.experienceRole,
+          profileCompany: request.profileCompany,
+          agentId: request.agentId,
+          scope: dataset.provenance.scope,
+        });
+        if (!tenant.allowed) return deny(tenant.reason);
+      }
 
       if (dataset.provenance.scope === 'personal') {
         const foreign = dataset.records.some((item) => {

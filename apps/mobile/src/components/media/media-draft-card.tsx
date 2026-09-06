@@ -19,6 +19,10 @@ export function MediaDraftCard({
   onChange,
   visibility,
   onVisibility,
+  organizationId,
+  universeId,
+  universeName,
+  universeStatus,
 }: {
   ownerId: string;
   source: 'client' | 'company';
@@ -26,15 +30,20 @@ export function MediaDraftCard({
   onChange: (draft: MediaDraft | null, reason?: string) => void;
   visibility?: UniverseVisibility;
   onVisibility?: (value: UniverseVisibility) => void;
+  organizationId?: string;
+  universeId?: string;
+  universeName?: string;
+  universeStatus?: string;
 }) {
   const [reason, setReason] = useState<string | undefined>();
   const selectedVisibility = visibility ?? (source === 'company' ? 'organization' : 'private');
+  const persistedUniverse = Boolean(organizationId && universeId && universeName);
 
   const pick = (kind: 'image' | 'video') => {
     void selectLocalMedia(kind, ownerId, source, {
       visibility: selectedVisibility,
-      universeId: '',
-      organizationId: '',
+      universeId: persistedUniverse ? universeId : '',
+      organizationId: persistedUniverse ? organizationId : '',
     }).then((next) => {
       setReason(next.reason);
       onChange(next.draft, next.reason);
@@ -48,8 +57,9 @@ export function MediaDraftCard({
       </XivText>
       {source === 'company' ? (
         <XivText variant="caption" dim>
-          Universe not provisioned. Private company media stays denied until a Universe exists. Production publishing
-          writes remain disabled.
+          {persistedUniverse
+            ? `${universeName} · ${universeStatus}. Cloud upload is still not configured. Scan remains unavailable.`
+            : 'Universe not provisioned. Private company media stays denied until a persisted Universe exists. Production publishing writes remain disabled.'}
         </XivText>
       ) : null}
       <View style={styles.row}>

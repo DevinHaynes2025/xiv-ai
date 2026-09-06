@@ -9,9 +9,27 @@ export {
   canViewUniverse,
   canViewUniverseRoster,
   clientSelectorIsNotAuthority,
+  profileCompanyDoesNotGrantTenantAccess,
   userCannotJoinArbitraryOrganization,
+  userCannotJoinArbitraryUniverse,
+  userRolesDoNotGrantTenantAccess,
 } from './authorize';
 export type { TenantDecision } from './authorize';
+export {
+  authorizePersistedTenantContext,
+  canBootstrapUniverseFromContext,
+  emptyTenantContext,
+  selectActiveTenant,
+  slugFromName,
+} from './context';
+export type {
+  ActiveTenantContext,
+  BootstrapStatus,
+  PersistenceStatus,
+  PersistedTenantRequest,
+} from './context';
+export { recordTenantAudit, TENANT_AUDIT_EVENTS } from './audit';
+export type { TenantAuditEvent } from './audit';
 export {
   DATA_CLASSIFICATIONS,
   MEMBERSHIP_STATUSES,

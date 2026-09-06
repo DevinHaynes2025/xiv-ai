@@ -1,15 +1,16 @@
-# RLS Security Model (Phase 2F-A)
+# RLS Security Model (Phase 2F)
 
-Persisted Universes are **not live** until Phase 2F-B migration execution.
+Persisted tenant RLS is **not LIVE**. Phase 2F-B found a hosted `organizations` collision and did not apply the authored migration.
 
 ## Status
 
 | Piece | Maturity |
 | --- | --- |
 | Owner-only agent + profile RLS (existing) | IMPLEMENTED IN CODE (already applied separately) |
-| Organization / Universe RLS SQL | MIGRATION AUTHORED — NOT APPLIED |
+| Organization / Universe RLS SQL | MIGRATION AUTHORED — NOT APPLIED (collision) |
 | TypeScript policy helpers | IMPLEMENTED IN CODE (defense in depth only) |
 | Live tenant RLS | NOT CONFIGURED |
+| Hosted pre-existing `organizations` SELECT (anon) | LIVE (different schema; not Phase 2F) |
 
 ## Authority source
 

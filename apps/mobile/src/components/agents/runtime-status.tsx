@@ -11,6 +11,8 @@ import { PrototypeNotice } from '@/components/xiv/prototype-notice';
 import { SystemStatus, type SystemStatusKind } from '@/components/xiv/system-status';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
+import { TenantDesk } from '@/components/tenant/tenant-desk';
+import { useTenant } from '@/context/tenant';
 import { useGovernedRuntime } from '@/hooks/use-governed-runtime';
 import { AUTHORITY_LABEL, listXivAgents, type XivAgentDefinition } from '@/lib/ai';
 
@@ -22,6 +24,7 @@ function agentSurfaceStatus(agent: XivAgentDefinition): SystemStatusKind {
 
 export function AgentRuntimeStatus() {
   const agents = listXivAgents();
+  const { tenant } = useTenant();
   const {
     busy,
     report,
@@ -49,6 +52,16 @@ export function AgentRuntimeStatus() {
         <SystemStatus status="CONFIGURED" />
       </View>
       <XivText variant="subtitle">Governed read-only context</XivText>
+      <XivText variant="caption" muted>
+        {tenant.activeOrganization
+          ? `Active organization: ${tenant.activeOrganization.name} · ${tenant.organizationRole ?? 'member'}`
+          : 'No persisted organization is active. Agents do not invent tenant identity.'}
+      </XivText>
+      <XivText variant="caption" muted>
+        {tenant.activeUniverse
+          ? `Active Universe: ${tenant.activeUniverse.name} · ${tenant.activeUniverse.status}`
+          : 'Universe not provisioned'}
+      </XivText>
       <DataStatusMark
         status={
           lastResult?.brief
@@ -160,7 +173,8 @@ export function AgentRuntimeStatus() {
 
       <GovernedAuditTrail actions={actions} />
 
-      <PrototypeNotice text="Phase 2E. Prototype buttons stay sample. Live buttons use authorized session records and never invent ERP data. No production action is executed. Upload is not configured." />
+      <TenantDesk />
+      <PrototypeNotice text="Phase 2F-B. Prototype buttons stay sample. Live buttons use authorized session records and never invent ERP data. Tenant ids are selectors only. No production action is executed. Upload is not configured." />
     </Card>
   );
 }

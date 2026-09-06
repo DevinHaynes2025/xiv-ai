@@ -1,6 +1,6 @@
 # XIV Universe
 
-Phase 2E in-memory isolation plus Phase 2F-A persistence **design**. Persisted Universes are **not live** until Phase 2F-B migration execution.
+Phase 2E in-memory isolation plus Phase 2F persistence **design**. Persisted Universes are **not LIVE**.
 
 ## Status
 
@@ -8,8 +8,9 @@ Phase 2E in-memory isolation plus Phase 2F-A persistence **design**. Persisted U
 | --- | --- |
 | Universe / membership / resource types | IMPLEMENTED IN CODE (in-memory domain) |
 | Deterministic isolation helpers | IMPLEMENTED IN CODE |
-| Company media Universe check | IMPLEMENTED IN CODE (deny when missing) |
-| Persistence SQL + tenant helpers | MIGRATION AUTHORED — NOT APPLIED |
+| Company media Universe check | IMPLEMENTED IN CODE (deny when missing; real IDs only when a persisted row exists) |
+| Persistence SQL + tenant helpers | MIGRATION AUTHORED — NOT APPLIED (collision) |
+| Mobile tenant selection / bootstrap UX | IMPLEMENTED IN CODE |
 | Persisted Universes (hosted) | NOT CONFIGURED |
 | Cross-Universe relationships | PLANNED |
 

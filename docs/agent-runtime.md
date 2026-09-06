@@ -1,12 +1,12 @@
-# XIV Agent Runtime — Phase 2E
+# XIV Agent Runtime — Phase 2F-B
 
 Governed Agent Runtime with Universe isolation, a Company Data Gateway, authorized session records, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 Governed Runtime ≠ Live Gemini Executive turn path.
 
-See also [xiv-universe.md](./xiv-universe.md), [persistent-universe-design.md](./persistent-universe-design.md), [rls-security-model.md](./rls-security-model.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md).
+See also [xiv-universe.md](./xiv-universe.md), [persistent-universe-design.md](./persistent-universe-design.md), [rls-security-model.md](./rls-security-model.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md), [phase2f-b-validation.md](./phase2f-b-validation.md).
 
-Persisted Universes are **not live** until Phase 2F-B. Agents remain non-principals on the database.
+Persisted Universes are **not LIVE**. Phase 2F-B stopped before migration apply because hosted `organizations` already exists. Agents remain non-principals on the database. Executive and Technology agents may display authorized tenant selectors; they cannot bypass membership. Guardian still has no tenant-data access. Security Agent has no RLS bypass.
 
 ## Intelligence loops
 
@@ -187,7 +187,7 @@ From `services/ai`:
 
 `npm run test:runtime`
 
-Covers Phase 2A–2E: Universe isolation, media validation, quotas, no storage credentials, required provenance, no silent live→prototype fallback, domain capabilities, stale labeling, Company Data Gateway, Guardian cannot read confidential company data, production writes denied, approval does not override policy, L4 disabled, Guardian check-ID and no raw shell.
+Covers Phase 2A–2F-B: Universe isolation, media validation, quotas, no storage credentials, required provenance, no silent live→prototype fallback, domain capabilities, stale labeling, Company Data Gateway membership verification, Guardian cannot read confidential company data, production writes denied, approval does not override policy, L4 disabled, Guardian check-ID and no raw shell.
 
 Host validation (optional, trusted machine only):
 

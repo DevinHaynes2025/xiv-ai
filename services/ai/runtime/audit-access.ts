@@ -9,7 +9,8 @@ export type AccessAuditCategory =
   | 'agent_data'
   | 'policy'
   | 'approval'
-  | 'source';
+  | 'source'
+  | 'tenant';
 
 export type AccessAuditInput = {
   category: AccessAuditCategory;

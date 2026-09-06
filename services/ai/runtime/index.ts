@@ -83,6 +83,7 @@ export type { DataAvailabilityStatus, ExecutiveBrief } from './brief';
 export { createCompanyDataGateway } from './company-data';
 export type { CompanyDataGateway, CompanyDataRequest, CompanyDataResult } from './company-data';
 export {
+  authorizePersistedTenantContext,
   canCreateUniverse,
   canManageOrganization,
   canManageOrganizationMembership,
@@ -91,11 +92,20 @@ export {
   canViewOrganization,
   canViewUniverse,
   clientSelectorIsNotAuthority,
+  emptyTenantContext,
+  profileCompanyDoesNotGrantTenantAccess,
+  selectActiveTenant,
+  slugFromName,
+  userCannotJoinArbitraryOrganization,
+  userCannotJoinArbitraryUniverse,
+  userRolesDoNotGrantTenantAccess,
 } from './tenant';
 export type {
+  ActiveTenantContext,
   Organization,
   OrganizationMembership,
   OrganizationRole,
+  PersistenceStatus,
   Universe as PersistedUniverse,
   UniverseMembership as PersistedUniverseMembership,
   UniverseRole as PersistedUniverseRole,

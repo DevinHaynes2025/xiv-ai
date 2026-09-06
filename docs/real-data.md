@@ -70,7 +70,9 @@ Provenance is not optional. Incomplete provenance is rejected.
 
 Session profile/activity records are `personal` unless a real organization/Universe relationship is present. Profile company/title fields are user-declared identity, not organization-authoritative business records.
 
-Persisted organizations/Universes are **MIGRATION AUTHORED — NOT APPLIED**. Personal identity is not auto-migrated into organization scope.
+Persisted organizations/Universes remain **MIGRATION AUTHORED — NOT APPLIED** after Phase 2F-B because hosted `organizations` already exists with a different shape. Personal identity is not auto-migrated into organization scope.
+
+Organization and Universe company-data reads now require persisted membership verification in the Company Data Gateway. A client `organizationId` or `universeId` alone grants nothing. `user_roles` and `profiles.company` are not tenant authority.
 
 ## Freshness
 

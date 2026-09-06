@@ -1,7 +1,7 @@
 /**
- * Persistence-aligned tenant model for Phase 2F-A.
+ * Persistence-aligned tenant model for Phase 2F.
  * Matches supabase/migrations/20260906220000_persistent_organizations_and_universes.sql
- * MIGRATION AUTHORED — NOT APPLIED. Mobile must not hydrate these yet.
+ * Hydrate only from authorized persisted rows. Never synthesize ids or memberships.
  */
 
 export const ORGANIZATION_ROLES = [

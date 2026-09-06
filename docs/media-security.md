@@ -12,7 +12,8 @@ Phase 2E media architecture. **Production uploads are not enabled.**
 | Consumer vs company read policy | IMPLEMENTED |
 | Storage abstraction + quotas | IMPLEMENTED (no cloud SDK) |
 | Signed upload grant shape | IMPLEMENTED (`uploadEnabled: false`) |
-| Persistent Universe IDs for object prefixes | MIGRATION AUTHORED — NOT APPLIED |
+| Persistent Universe IDs for object prefixes | MIGRATION AUTHORED — NOT APPLIED (collision) |
+| Media draft uses persisted Universe when membership exists | IMPLEMENTED IN CODE |
 | Cloud signed upload | NOT CONFIGURED |
 | Malware scanning | NOT CONFIGURED (`unavailable`, never `safe`) |
 | Media intelligence (image/video/transcript) | PROTOTYPE interface only — not operational |

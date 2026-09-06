@@ -557,10 +557,20 @@ await test('S5 organization-scoped technology record requires organization', asy
   });
   assert.equal(missing.allowed, false);
   assert.match(missing.reason, /organization/i);
+  const membership = {
+    id: 'om_a',
+    organizationId: 'org_a',
+    userId: 'user_a',
+    role: 'member' as const,
+    status: 'active' as const,
+    createdAt: '2026-09-06T00:00:00.000Z',
+    updatedAt: '2026-09-06T00:00:00.000Z',
+  };
   const ok = await createCompanyDataGateway(adapter).read({
     agentId: 'technology',
     ownerId: 'user_a',
     organizationId: 'org_a',
+    organizationMembership: membership,
     toolId: 'company_data_reader',
     capability: 'records',
     mode: 'read',
@@ -596,11 +606,31 @@ await test('S6 Universe-scoped technology record requires organization + Univers
   });
   assert.equal(missing.allowed, false);
   assert.match(missing.reason, /universe/i);
+  const organizationMembership = {
+    id: 'om_a',
+    organizationId: 'org_a',
+    userId: 'user_a',
+    role: 'owner' as const,
+    status: 'active' as const,
+    createdAt: '2026-09-06T00:00:00.000Z',
+    updatedAt: '2026-09-06T00:00:00.000Z',
+  };
+  const universeMembership = {
+    id: 'um_a',
+    universeId: 'uni_a',
+    userId: 'user_a',
+    role: 'owner' as const,
+    status: 'active' as const,
+    createdAt: '2026-09-06T00:00:00.000Z',
+    updatedAt: '2026-09-06T00:00:00.000Z',
+  };
   const ok = await createCompanyDataGateway(adapter).read({
     agentId: 'executive',
     ownerId: 'user_a',
     organizationId: 'org_a',
     universeId: 'uni_a',
+    organizationMembership,
+    universeMembership,
     toolId: 'company_data_reader',
     capability: 'records',
     mode: 'read',
