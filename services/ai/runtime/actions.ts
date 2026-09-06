@@ -1,16 +1,31 @@
 import type { AuthorityLevel } from './authority';
+import type { DiagnosticStory } from './context/types';
 import type { PolicyVerdict } from './policy';
+import type { ToolRiskLevel } from './tools';
 
 export type GovernedActionStatus =
   | 'proposed'
   | 'awaiting_approval'
   | 'approved'
   | 'denied'
+  | 'expired'
+  | 'cancelled'
   | 'running'
   | 'completed'
   | 'failed';
 
-export type GovernedApprovalStatus = 'not_required' | 'pending' | 'approved' | 'denied';
+export type GovernedApprovalStatus = 'not_required' | 'pending' | 'approved' | 'denied' | 'expired' | 'cancelled';
+
+export type ApprovalDecision = 'approved' | 'denied' | 'expired' | 'cancelled';
+
+export type ApprovalRecord = {
+  actionId: string;
+  requestedAt: string;
+  reviewedAt: string | null;
+  reviewedBy: string | null;
+  decision: ApprovalDecision | 'pending';
+  reason: string;
+};
 
 export type GovernedAction = {
   actionId: string;
@@ -19,6 +34,7 @@ export type GovernedAction = {
   authorityLevel: AuthorityLevel;
   intent: string;
   toolId: string;
+  riskLevel: ToolRiskLevel;
   status: GovernedActionStatus;
   approvalStatus: GovernedApprovalStatus;
   reason: string;
@@ -26,6 +42,7 @@ export type GovernedAction = {
   outputSummary: string;
   error: string | null;
   durationMs: number;
+  approval?: ApprovalRecord;
 };
 
 export type GovernedAuditEvent = {
@@ -36,6 +53,7 @@ export type GovernedAuditEvent = {
   verdict: PolicyVerdict | 'recorded';
   toolId: string;
   note: string;
+  status?: GovernedActionStatus;
 };
 
 export type GovernedResult = {
@@ -44,6 +62,7 @@ export type GovernedResult = {
   verdict: PolicyVerdict;
   action: GovernedAction;
   output: Record<string, unknown> | null;
+  story: DiagnosticStory | null;
   recommendedActions: string[];
 };
 

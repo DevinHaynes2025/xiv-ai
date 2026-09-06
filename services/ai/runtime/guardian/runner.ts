@@ -38,10 +38,16 @@ function configurationPresence(): Pick<GuardianCheckResult, 'status' | 'message'
 }
 
 function prototypeResult(check: GuardianCheckDefinition): Pick<GuardianCheckResult, 'status' | 'message'> {
-  if (check.id === 'repository-health') {
+  if (check.id === 'repository-health' || check.id === 'runtime-health') {
     return {
       status: 'healthy',
-      message: 'Phase 2A Guardian check registry and agent runtime modules are registered.',
+      message: 'Agent registry, tool registry, policy engine, and Guardian checks are registered. Not continuous monitoring.',
+    };
+  }
+  if (check.id === 'validation-status') {
+    return {
+      status: 'unknown',
+      message: 'Host TypeScript, lint, and Expo Doctor execution is not wired. This is a placeholder.',
     };
   }
   return {

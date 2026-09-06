@@ -103,7 +103,7 @@ export function evaluatePolicy(input: PolicyInput, registries: PolicyRegistries 
       return deny(
         input,
         environment,
-        'Approval was recorded, but Phase 2A still refuses execution of consequential tools.',
+        'Human approval does not override policy. Phase 2B still refuses consequential production writes.',
         authority,
       );
     }

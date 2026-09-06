@@ -3,9 +3,13 @@ import type { XivAgentId } from './agents';
 
 export type RuntimeToolId =
   | 'business_context_reader'
-  | 'health_status_reader'
+  | 'business_health_analyzer'
+  | 'operations_signal_reader'
+  | 'risk_summarizer'
   | 'recommendation_generator'
   | 'diagnostic_summarizer'
+  | 'diagnostic_story_builder'
+  | 'health_status_reader'
   | 'development_health_checker'
   | 'propose_operational_change'
   | 'human_only_production_change';
@@ -36,11 +40,22 @@ const DOMAIN_READERS: readonly XivAgentId[] = [
   'innovation',
 ];
 
+export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
+  'business_context_reader',
+  'business_health_analyzer',
+  'operations_signal_reader',
+  'risk_summarizer',
+  'recommendation_generator',
+  'diagnostic_summarizer',
+  'diagnostic_story_builder',
+  'health_status_reader',
+];
+
 export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
   {
     id: 'business_context_reader',
     name: 'Business context reader',
-    description: 'Reads prototype business context. No live system is queried.',
+    description: 'Reads the replaceable business-context provider. No live system is queried.',
     riskLevel: 'low',
     readOnly: true,
     reversible: true,
@@ -50,16 +65,40 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     allowedAgentIds: DOMAIN_READERS,
   },
   {
-    id: 'health_status_reader',
-    name: 'Health / status reader',
-    description: 'Reads registered health signals. Does not monitor continuously.',
+    id: 'business_health_analyzer',
+    name: 'Business health analyzer',
+    description: 'Summarizes prototype business-health score, risks, and opportunities.',
     riskLevel: 'low',
     readOnly: true,
     reversible: true,
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'operations_signal_reader',
+    name: 'Operations signal reader',
+    description: 'Reads inventory, supplier, warehouse, fulfillment, and CX sample signals.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'risk_summarizer',
+    name: 'Risk summarizer',
+    description: 'Restates labeled sample risks. Does not assert live causal certainty.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L1_Recommend,
+    allowedAgentIds: DOMAIN_READERS,
   },
   {
     id: 'recommendation_generator',
@@ -76,7 +115,31 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
   {
     id: 'diagnostic_summarizer',
     name: 'Diagnostic summarizer',
-    description: 'Summarizes prototype diagnostic context for Sense → Understand.',
+    description: 'Short Sense → Understand summary from the context provider.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+  },
+  {
+    id: 'diagnostic_story_builder',
+    name: 'Diagnostic story builder',
+    description: 'Builds a labeled what/why/impact story with a sample causal chain.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'health_status_reader',
+    name: 'Health / status reader',
+    description: 'Reads registered health signals. Does not monitor continuously.',
     riskLevel: 'low',
     readOnly: true,
     reversible: true,

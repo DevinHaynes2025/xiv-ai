@@ -80,4 +80,23 @@ test('L1 agent cannot propose executable changes', () => {
   assert.equal(decision.verdict, 'denied');
 });
 
+test('production high-risk write is denied', () => {
+  const decision = evaluatePolicy({
+    agentId: 'executive',
+    toolId: 'propose_operational_change',
+    environment: 'production',
+  });
+  assert.equal(decision.verdict, 'denied');
+});
+
+test('approval does not bypass consequential policy', () => {
+  const decision = evaluatePolicy({
+    agentId: 'executive',
+    toolId: 'propose_operational_change',
+    approved: true,
+  });
+  assert.equal(decision.verdict, 'denied');
+  assert.match(decision.reason, /does not override policy/i);
+});
+
 console.log('All Phase 2A policy cases passed.');

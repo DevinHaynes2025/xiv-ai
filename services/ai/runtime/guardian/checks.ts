@@ -4,7 +4,9 @@ export type GuardianCheckId =
   | 'expo-doctor'
   | 'ai-service-health'
   | 'configuration-health'
-  | 'repository-health';
+  | 'repository-health'
+  | 'runtime-health'
+  | 'validation-status';
 
 export type GuardianCheckCategory =
   | 'quality'
@@ -102,6 +104,28 @@ export const GUARDIAN_CHECK_REGISTRY: readonly GuardianCheckDefinition[] = [
     severity: 'low',
     handler: 'prototype',
     safeToRun: true,
+    timeoutMs: 1_000,
+    enabled: true,
+  },
+  {
+    id: 'runtime-health',
+    name: 'Runtime health',
+    description: 'Confirms the agent registry, tool registry, and policy function are loaded.',
+    category: 'service',
+    severity: 'medium',
+    handler: 'prototype',
+    safeToRun: true,
+    timeoutMs: 1_000,
+    enabled: true,
+  },
+  {
+    id: 'validation-status',
+    name: 'Validation status',
+    description: 'Placeholder for host TypeScript/lint/expo-doctor results. Not executed from the runtime.',
+    category: 'quality',
+    severity: 'medium',
+    handler: 'prototype',
+    safeToRun: false,
     timeoutMs: 1_000,
     enabled: true,
   },

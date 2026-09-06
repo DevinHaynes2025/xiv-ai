@@ -1,138 +1,137 @@
-# XIV Agent Runtime — Phase 2A
+# XIV Agent Runtime — Phase 2B
 
-Governed foundation for specialized AI agents. This layer does **not** replace the existing Gemini Executive/Business turn path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`). Those remain the live, approval-bound assistants. Phase 2A adds the authority model, registries, deterministic policy, Guardian, and a prototype runtime beside them.
+Governed read-only business context and human approval on top of the Phase 2A foundation. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 ## Intelligence loops
 
-XIV intelligence loop:
-
 Sense → Understand → Predict → Decide → Execute → Measure → Learn
-
-Business Hospital loop:
 
 Diagnose → Treat → Monitor → Learn → Optimize
 
-Phase 2A implements Sense / Understand / Diagnose only. Execute, Treat, and production writes stay human-controlled.
+Phase 2B implements Sense / Understand / Diagnose plus a **proposal** step. Treat, Execute, and production writes stay human-controlled and are still refused by policy after approval.
 
 ## Architecture
 
 ```
-XIV Mobile
+Request
     ↓
-Agent Runtime
+Agent
     ↓
-Agent Registry
+Context Provider
     ↓
-Policy Engine
+Policy
     ↓
-Tool Gateway
+Tool
     ↓
-Approved Tools / Business Context
+Diagnostic Result
     ↓
-Result
+Proposed Action
+    ↓
+Human Approval
+    ↓
+Policy Re-check
+    ↓
+Allowed execution OR denial
     ↓
 Audit Event
-    ↓
-Measure / Learn
 ```
 
-LLM reasoning is **not** the security boundary. Policy is deterministic TypeScript. A model cannot invent a tool id, raise its own authority, or skip approval.
+LLM reasoning is **not** the security boundary. Human approval does **not** override policy.
 
-## Authority model
+## Context Provider
 
-| Level | Name | Meaning in Phase 2A |
-| --- | --- | --- |
-| L0 | Observe | Inspect permitted context |
-| L1 | Recommend | Generate recommendations |
-| L2 | Draft | Prepare an artifact; cannot execute |
-| L3 | Human Approval | Propose an executable action; human must approve |
-| L4 | Bounded Autonomy | Reserved. Never auto-executes in this phase |
-| L5 | Human Only | Agent cannot execute |
+`BusinessContextProvider` is a replaceable read-only port:
 
-New agents default to **L0**. Domain recommenders use **L1**. Executive is **L3** so it can propose, not execute. Guardian is **L0**.
+- `getBusinessContext()`
+- `getOperationalSignals()`
+- `getSystemContext()`
 
-## Agent Registry
+Phase 2B ships `createPrototypeContextProvider()`. It returns labeled sample context for Northstar Logistics. No ERP, WMS, TMS, or CRM is connected. People data is aggregate only — no individual employee monitoring.
 
-Registered agents: Executive, Supply Chain, Operations, Finance, Security, Customer Experience, Technology, Innovation, Guardian.
+Agents must not hardcode context. Tools read through the provider.
 
-Statuses:
+## Read-only governed tools
 
-- `registered` — defined, not operational
-- `prototype` — callable through the Phase 2A runtime with prototype tools only
-- `available` — unused in this phase; reserved for a later live agent
-- `future` — cannot invoke tools
-
-Do not treat `prototype` as a production workforce.
-
-## Tool Registry / Gateway
-
-Safe Phase 2A tools:
+All tools still pass `evaluatePolicy()`:
 
 - business context reader
-- health / status reader
+- business health analyzer
+- operations signal reader
+- risk summarizer
 - recommendation generator
 - diagnostic summarizer
-- development health checker
+- diagnostic story builder
+- health / status reader
+- development health checker (Guardian)
 
-Consequential tools exist only so policy can refuse them:
+Consequential tools remain gated:
 
-- propose operational change → `requires_approval`
-- human-only production change → `denied`
+- propose operational change → `requires_approval`, then policy still refuses execution
+- human-only production change → `denied` (L5)
 
-The gateway invokes a handler only after policy returns `allowed`. There is no generic “run this tool” escape hatch.
+## Business Health / Story Engine
 
-## Policy Engine
+`buildDiagnosticStory()` returns:
 
-`evaluatePolicy()` is a pure function. It checks, in order:
+- What happened
+- Why it matters
+- Likely causes
+- Business impact
+- Recommended next action
+- Confidence / evidence quality
+- Source labels
+- Sample causal chain: Supplier variability → safety stock increase → warehouse congestion → fulfillment delay → customer complaints
 
-1. Agent identity
-2. Tool identity
-3. Agent status
-4. Human-only / L5
-5. Agent allowlist
-6. Tool allowlist
-7. Minimum authority
-8. Environment (production blocks high-risk writes)
-9. Read/write, risk, and approval flags
+Confidence is **low**. Evidence quality is **sample**. The disclaimer states that the chain is illustrative, not certain.
 
-Results: `allowed` | `denied` | `requires_approval`, plus a human-readable reason.
+## Human approval flow
+
+1. A consequential tool receives `requires_approval` and enters `awaiting_approval`.
+2. Only tools with `requiresApproval: true` can enter that state.
+3. A human records `approved`, `denied`, `expired`, or `cancelled`.
+4. `attemptExecution()` runs only after `approved`.
+5. Policy is evaluated again with `approved: true`.
+6. Phase 2B still denies consequential production writes.
+
+Approval metadata: `actionId`, `requestedAt`, `reviewedAt`, `reviewedBy`, `decision`, `reason`.
+
+In-memory only. No new tables.
+
+## Approval re-evaluation
+
+Human approval is necessary but not sufficient.
+
+- Denied / expired / cancelled actions cannot run.
+- Approved actions are re-checked.
+- Production high-risk writes are denied even after approval.
+- L4 remains disabled.
+
+## Audit timeline
+
+`GovernedAction` and `GovernedAuditEvent` stay in the session store. The mobile trail shows agent, tool, status, timestamp, and reason, labeled as prototype/session history.
 
 ## Guardian
 
-Guardian is the development / reliability agent. It observes and diagnoses. It does **not**:
+Read-only. Reports configuration presence, optional AI `/health` probe, registry health, runtime health, and validation placeholders. Does not run arbitrary commands and does not monitor continuously.
 
-- run arbitrary shell
-- auto-fix production
-- monitor continuously
+## Prototype vs live
 
-Checks are hardcoded in `GUARDIAN_CHECK_REGISTRY`. Command metadata is documentation for a trusted developer host. Phase 2A does not execute those commands from the runtime. Safe in-process handlers may check configuration **name presence** or accept an injected `/health` probe. Values and secrets are never returned.
+| Live (unchanged) | Phase 2B prototype |
+| --- | --- |
+| Gemini Executive/Business workspace | Context provider + story engine |
+| Existing Gemini approval cards | Governed approval card on Agent Command |
+| Supabase agent action history | In-memory session audit |
 
-## Human approval
+`canAutoExecute()` remains false on the live path.
 
-Consequential actions become `awaiting_approval`. Phase 2A still refuses to execute them after approval. Approval is recorded so persistence can be added later.
+## Authority model
 
-## Audit model
+L0 Observe · L1 Recommend · L2 Draft · L3 Human Approval · L4 reserved · L5 Human Only
 
-`GovernedAction` and `GovernedAuditEvent` live in memory (`createMemoryAuditStore`). Shapes are persistence-ready. No new database tables in this phase.
+## Tests
 
-## Existing architecture (preserved)
-
-The Gemini path already has its own tools, allowlists, `authorizeTool()`, and approval cards. That path is unchanged. Conflicts are additive, not replacements:
-
-- Live Gemini: `AgentType` (`executive_agent`, …) and `AgentToolId`
-- Phase 2A: `XivAgentId` and `RuntimeToolId`
-
-Both require human approval for consequential work. `canAutoExecute()` remains false on the live path.
-
-## Policy test cases
-
-Run from `services/ai`:
+From `services/ai`:
 
 `npm run test:runtime`
 
-1. Unauthorized agent + tool → denied
-2. Read-only permitted tool + sufficient authority → allowed
-3. Consequential tool → requires approval
-4. L5 human-only action → denied
-5. Unknown tool → denied
-6. Unknown agent → denied
+Covers unknown agent/tool, future agent, read-only allow, consequential approval, re-evaluation, denied/expired never run, production write deny, and story source labels.

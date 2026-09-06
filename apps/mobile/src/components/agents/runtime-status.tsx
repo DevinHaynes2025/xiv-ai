@@ -1,22 +1,15 @@
-import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { GovernedApprovalCard } from '@/components/agents/governed-approval-card';
+import { GovernedAuditTrail } from '@/components/agents/governed-audit-trail';
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
 import { PrototypeNotice } from '@/components/xiv/prototype-notice';
 import { SystemStatus, type SystemStatusKind } from '@/components/xiv/system-status';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
-import {
-  AUTHORITY_LABEL,
-  analyzeBusinessHealth,
-  listXivAgents,
-  runGuardianSnapshot,
-  type GovernedResult,
-  type GuardianHealthReport,
-  type XivAgentDefinition,
-} from '@/lib/ai';
-import { probeAiService } from '@/lib/xiv-ai-api';
+import { useGovernedRuntime } from '@/hooks/use-governed-runtime';
+import { AUTHORITY_LABEL, listXivAgents, type GuardianHealthReport, type XivAgentDefinition } from '@/lib/ai';
 
 function agentSurfaceStatus(agent: XivAgentDefinition): SystemStatusKind {
   if (agent.status === 'available') return 'ACTIVE';
@@ -32,29 +25,8 @@ function overallSurface(status: GuardianHealthReport['overallStatus']): SystemSt
 
 export function AgentRuntimeStatus() {
   const agents = listXivAgents();
-  const [report, setReport] = useState<GuardianHealthReport | null>(null);
-  const [analysis, setAnalysis] = useState<GovernedResult | null>(null);
-  const [busy, setBusy] = useState(false);
-
-  const snapshot = async () => {
-    if (busy) return;
-    setBusy(true);
-    try {
-      const next = await runGuardianSnapshot({
-        handlers: {
-          'ai-service-health': async () => {
-            const probe = await probeAiService();
-            return probe.reachable
-              ? { status: 'healthy', message: 'AI service /health responded. This is a one-time probe, not continuous monitoring.' }
-              : { status: 'warning', message: 'AI service /health was not reachable. Guardian is not watching in the background.' };
-          },
-        },
-      });
-      setReport(next);
-    } finally {
-      setBusy(false);
-    }
-  };
+  const { busy, report, lastResult, pending, actions, runAnalyze, runPropose, decide, snapshot } =
+    useGovernedRuntime();
 
   return (
     <Card variant="elevated" style={styles.card}>
@@ -64,10 +36,10 @@ export function AgentRuntimeStatus() {
         </XivText>
         <SystemStatus status="CONFIGURED" />
       </View>
-      <XivText variant="subtitle">Governed foundation · prototype</XivText>
+      <XivText variant="subtitle">Governed read-only context · prototype</XivText>
       <XivText variant="body" muted>
-        Authority L0–L5 is enforced by application policy, not by the language model. No agent has production write
-        authority in this phase.
+        Context comes from a replaceable provider. Policy still decides every tool. Human approval does not override
+        policy.
       </XivText>
 
       <View style={styles.block}>
@@ -78,7 +50,7 @@ export function AgentRuntimeStatus() {
           <SystemStatus status={report ? overallSurface(report.overallStatus) : 'CONFIGURED'} />
         </View>
         <XivText variant="caption" muted>
-          Observation and diagnosis only. Guardian is not continuously monitoring
+          Configuration, AI service, registry, and runtime checks only. Guardian is not continuously monitoring
           {report ? `. Last snapshot: ${report.overallStatus}.` : '.'}
         </XivText>
       </View>
@@ -91,7 +63,10 @@ export function AgentRuntimeStatus() {
                 {agent.name}
               </XivText>
               <XivText variant="label" color={Palette.textDim}>
-                {agent.defaultAuthority} · {AUTHORITY_LABEL[agent.defaultAuthority]} · {agent.status}
+                {agent.domain} · {agent.defaultAuthority} {AUTHORITY_LABEL[agent.defaultAuthority]} · {agent.status}
+              </XivText>
+              <XivText variant="caption" dim>
+                {agent.allowedTools.length} tools · approval required for consequential actions
               </XivText>
             </View>
             <SystemStatus status={agentSurfaceStatus(agent)} />
@@ -107,12 +82,17 @@ export function AgentRuntimeStatus() {
           void snapshot();
         }}
       />
-      <Button
-        label="Analyze business health (prototype)"
-        variant="subtle"
-        disabled={busy}
-        onPress={() => setAnalysis(analyzeBusinessHealth())}
-      />
+      <Button label="Analyze business health (prototype)" variant="subtle" disabled={busy} onPress={runAnalyze} />
+      <Button label="Propose recovery window (needs approval)" variant="subtle" disabled={busy} onPress={runPropose} />
+
+      {pending.map((action) => (
+        <GovernedApprovalCard
+          key={action.actionId}
+          action={action}
+          onApprove={() => decide(action.actionId, 'approved')}
+          onDeny={() => decide(action.actionId, 'denied')}
+        />
+      ))}
 
       {report ? (
         <View style={styles.block}>
@@ -127,18 +107,35 @@ export function AgentRuntimeStatus() {
         </View>
       ) : null}
 
-      {analysis ? (
+      {lastResult?.story ? (
         <View style={styles.block}>
           <XivText variant="label" color={Palette.accent}>
-            {analysis.verdict}
+            Diagnostic story · {lastResult.story.evidenceQuality}
           </XivText>
           <XivText variant="caption" muted>
-            {analysis.action.outputSummary || analysis.action.reason}
+            {lastResult.story.whatHappened}
+          </XivText>
+          <XivText variant="caption" dim>
+            {lastResult.story.causalChain.map((step) => step.label).join(' → ')}
+          </XivText>
+          <XivText variant="caption" dim>
+            {lastResult.story.disclaimer}
+          </XivText>
+        </View>
+      ) : lastResult ? (
+        <View style={styles.block}>
+          <XivText variant="label" color={Palette.accent}>
+            {lastResult.verdict} · {lastResult.action.status}
+          </XivText>
+          <XivText variant="caption" muted>
+            {lastResult.action.outputSummary || lastResult.action.reason}
           </XivText>
         </View>
       ) : null}
 
-      <PrototypeNotice text="This surface is the Phase 2A runtime foundation. It does not replace the live Gemini workspace and cannot execute production actions." />
+      <GovernedAuditTrail actions={actions} />
+
+      <PrototypeNotice text="Phase 2B prototype. Read-only context and human approval are session-local. No ERP, WMS, or TMS is connected, and no production action is executed." />
     </Card>
   );
 }

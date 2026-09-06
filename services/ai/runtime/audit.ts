@@ -1,19 +1,21 @@
-import type { GovernedAction, GovernedAuditEvent } from './actions';
+import type { ApprovalRecord, GovernedAction, GovernedAuditEvent } from './actions';
 
 export type AuditStore = {
   record(event: GovernedAuditEvent): void;
   recordAction(action: GovernedAction): void;
+  recordApproval(record: ApprovalRecord): void;
+  getAction(actionId: string): GovernedAction | undefined;
+  getApproval(actionId: string): ApprovalRecord | undefined;
   listEvents(): GovernedAuditEvent[];
   listActions(): GovernedAction[];
+  listApprovals(): ApprovalRecord[];
+  listPending(): GovernedAction[];
 };
 
-/**
- * In-memory prototype store. Persistence can replace this later
- * without changing the runtime call sites.
- */
 export function createMemoryAuditStore(): AuditStore {
   const events: GovernedAuditEvent[] = [];
   const actions: GovernedAction[] = [];
+  const approvals = new Map<string, ApprovalRecord>();
 
   return {
     record(event) {
@@ -27,11 +29,26 @@ export function createMemoryAuditStore(): AuditStore {
       }
       actions.unshift(action);
     },
+    recordApproval(record) {
+      approvals.set(record.actionId, record);
+    },
+    getAction(actionId) {
+      return actions.find((item) => item.actionId === actionId);
+    },
+    getApproval(actionId) {
+      return approvals.get(actionId);
+    },
     listEvents() {
       return [...events];
     },
     listActions() {
       return [...actions];
+    },
+    listApprovals() {
+      return [...approvals.values()];
+    },
+    listPending() {
+      return actions.filter((item) => item.status === 'awaiting_approval' && item.approvalStatus === 'pending');
     },
   };
 }

@@ -9,7 +9,7 @@
     "start": "tsx server.ts",
     "dev": "tsx watch server.ts",
     "typecheck": "tsc --noEmit",
-    "test:runtime": "tsx runtime/policy.test.ts"
+    "test:runtime": "tsx runtime/policy.test.ts && tsx runtime/phase2b.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

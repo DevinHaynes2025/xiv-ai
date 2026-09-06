@@ -25,6 +25,7 @@ export type {
 } from './agents';
 
 export {
+  READ_ONLY_CONTEXT_TOOLS,
   XIV_TOOL_REGISTRY,
   getRuntimeTool,
   isRuntimeToolId,
@@ -37,6 +38,8 @@ export type { PolicyEvaluation, PolicyInput, PolicyRegistries, PolicyVerdict, Ru
 
 export { createId, nowIso, statusForVerdict } from './actions';
 export type {
+  ApprovalDecision,
+  ApprovalRecord,
   GovernedAction,
   GovernedActionStatus,
   GovernedApprovalStatus,
@@ -49,6 +52,22 @@ export type { AuditStore } from './audit';
 
 export { invokeApprovedTool } from './gateway';
 export type { ToolHandler, ToolInvokeInput, ToolInvokeResult } from './gateway';
+
+export type { BusinessContextProvider } from './context/provider';
+export { createPrototypeContextProvider, getPrototypeBusinessContext } from './context/prototype';
+export { buildDiagnosticStory, storyHasPrototypeLabels } from './context/story';
+export type {
+  BusinessContext,
+  BusinessHealthSlice,
+  CausalChainStep,
+  ContextSourceLabel,
+  DiagnosticStory,
+  OperationalSignals,
+  SystemContextSlice,
+} from './context/types';
+
+export { createApprovalService } from './approval';
+export type { ApprovalDecisionInput, ApprovalService } from './approval';
 
 export {
   GUARDIAN_CHECK_REGISTRY,
@@ -74,5 +93,11 @@ export type {
 export { runGuardianSnapshot } from './guardian/runner';
 export type { GuardianCheckHandler, GuardianRunnerOptions } from './guardian/runner';
 
-export { analyzeBusinessHealth, createAgentRuntime, runGovernedRequest } from './runtime';
-export type { AgentRuntime, GovernedRequest } from './runtime';
+export {
+  analyzeBusinessHealth,
+  createAgentRuntime,
+  getDefaultAgentRuntime,
+  proposeOperationalChange,
+  runGovernedRequest,
+} from './runtime';
+export type { AgentRuntime, AgentRuntimeOptions, GovernedRequest } from './runtime';
