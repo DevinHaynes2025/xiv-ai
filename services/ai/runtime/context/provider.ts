@@ -1,3 +1,4 @@
+import type { BusinessHealthReport } from './report';
 import type { BusinessContext, OperationalSignals, SystemContextSlice } from './types';
 
 /**
@@ -8,4 +9,5 @@ export type BusinessContextProvider = {
   getBusinessContext(): BusinessContext;
   getOperationalSignals(): OperationalSignals;
   getSystemContext(): SystemContextSlice;
+  getBusinessHealthReport(): BusinessHealthReport;
 };

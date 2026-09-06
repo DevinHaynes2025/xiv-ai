@@ -9,6 +9,7 @@ export type RuntimeToolId =
   | 'recommendation_generator'
   | 'diagnostic_summarizer'
   | 'diagnostic_story_builder'
+  | 'business_health_report'
   | 'health_status_reader'
   | 'development_health_checker'
   | 'propose_operational_change'
@@ -48,6 +49,7 @@ export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
   'recommendation_generator',
   'diagnostic_summarizer',
   'diagnostic_story_builder',
+  'business_health_report',
   'health_status_reader',
 ];
 
@@ -128,6 +130,18 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     id: 'diagnostic_story_builder',
     name: 'Diagnostic story builder',
     description: 'Builds a labeled what/why/impact story with a sample causal chain.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'business_health_report',
+    name: 'Business health report',
+    description: 'Returns the typed multi-domain health report from the context provider.',
     riskLevel: 'low',
     readOnly: true,
     reversible: true,

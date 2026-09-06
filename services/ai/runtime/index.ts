@@ -55,7 +55,12 @@ export type { ToolHandler, ToolInvokeInput, ToolInvokeResult } from './gateway';
 
 export type { BusinessContextProvider } from './context/provider';
 export { createPrototypeContextProvider, getPrototypeBusinessContext } from './context/prototype';
-export { buildDiagnosticStory, storyHasPrototypeLabels } from './context/story';
+export { buildBusinessHealthReport, findingsForDomain, toStructuredHealthResult } from './context/report';
+export type { BusinessHealthReport } from './context/report';
+export { findingHasPrototypeLabels } from './context/findings';
+export type { BusinessHealthFinding, HealthDomain, StoryBeat, StoryStance } from './context/findings';
+export { buildDiagnosticStory, buildNarrative, hypothesisIsMarked, storyHasPrototypeLabels } from './context/story';
+export type { BusinessNarrative } from './context/story';
 export type {
   BusinessContext,
   BusinessHealthSlice,
@@ -72,32 +77,41 @@ export type { ApprovalDecisionInput, ApprovalService } from './approval';
 export {
   GUARDIAN_CHECK_REGISTRY,
   getGuardianCheck,
+  isGuardianCheckId,
   listGuardianChecks,
 } from './guardian/checks';
 export type {
-  AllowlistedCommand,
   GuardianCheckCategory,
   GuardianCheckDefinition,
   GuardianCheckId,
   GuardianCheckSeverity,
+  GuardianExecutionType,
+  StaticCommand,
 } from './guardian/checks';
 
-export { rollupOverall, summarizeReport } from './guardian/health';
+export { countChecks, rollupOverall, summarizeReport } from './guardian/health';
 export type {
   GuardianCheckResult,
   GuardianCheckStatus,
+  GuardianCounts,
+  GuardianExecutionMode,
   GuardianHealthReport,
   GuardianOverallStatus,
 } from './guardian/health';
 
-export { runGuardianSnapshot } from './guardian/runner';
-export type { GuardianCheckHandler, GuardianRunnerOptions } from './guardian/runner';
+export { parseHostResult, sanitizeOutput, truncateOutput } from './guardian/parse';
+
+export { runGuardianCheck, runGuardianSnapshot, runGuardianValidationSuite } from './guardian/runner';
+export type { GuardianCheckHandler, GuardianHostAdapter, GuardianRunnerOptions } from './guardian/runner';
 
 export {
   analyzeBusinessHealth,
+  analyzeOperations,
+  analyzeSupplyChain,
   createAgentRuntime,
   getDefaultAgentRuntime,
   proposeOperationalChange,
   runGovernedRequest,
+  summarizeExecutiveHealth,
 } from './runtime';
 export type { AgentRuntime, AgentRuntimeOptions, GovernedRequest } from './runtime';

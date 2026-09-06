@@ -26,6 +26,7 @@ function blocked(action: GovernedAction, reason: string): GovernedResult {
     action: { ...action, reason, error: reason },
     output: null,
     story: null,
+    healthReport: null,
     recommendedActions: ['This action cannot run. Human approval never bypasses policy.'],
   };
 }
@@ -104,6 +105,7 @@ export function createApprovalService(store: AuditStore): ApprovalService {
       action: next,
       output: null,
       story: null,
+      healthReport: null,
       recommendedActions:
         decision === 'approved'
           ? ['Approval is recorded. Policy must be re-evaluated before any execution attempt.']
@@ -185,6 +187,7 @@ export function createApprovalService(store: AuditStore): ApprovalService {
         action: next,
         output: { executed: false, policyReevaluated: true },
         story: null,
+        healthReport: null,
         recommendedActions: ['Human approval does not override policy. Consequential writes remain blocked.'],
       };
     },

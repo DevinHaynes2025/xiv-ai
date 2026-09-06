@@ -1,6 +1,8 @@
 import type { BusinessContextProvider } from './context/provider';
 import { createPrototypeContextProvider } from './context/prototype';
-import { buildDiagnosticStory } from './context/story';
+import { findingsForDomain } from './context/report';
+import type { BusinessHealthReport } from './context/report';
+import { buildDiagnosticStory, buildNarrative } from './context/story';
 import type { DiagnosticStory } from './context/types';
 import type { RuntimeToolId } from './tools';
 
@@ -16,6 +18,7 @@ export type ToolInvokeResult = {
   output: Record<string, unknown>;
   summary: string;
   story: DiagnosticStory | null;
+  healthReport: BusinessHealthReport | null;
 };
 
 export type ToolHandler = (input: ToolInvokeInput, provider: BusinessContextProvider) => ToolInvokeResult;
@@ -28,17 +31,21 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       toolId: input.toolId,
       summary: `Read prototype context for ${context.organization.name}. Sources: ${context.system.sourceLabels.join(', ')}.`,
       story: null,
+      healthReport: null,
       output: { context },
     };
   },
   business_health_analyzer: (input, provider) => {
-    const health = provider.getBusinessContext().businessHealth;
+    const report = provider.getBusinessHealthReport();
+    const domain = input.agentId === 'supply_chain' ? 'supply_chain' : undefined;
+    const findings = domain ? findingsForDomain(report, domain) : report.findings;
     return {
       prototype: true,
       toolId: input.toolId,
-      summary: `Sample business health is ${health.status} (${health.score}). ${health.summary}`,
+      summary: report.narrativeSummary,
       story: null,
-      output: { health, source: 'prototype_sample' },
+      healthReport: report,
+      output: { report, findings, source: 'prototype_sample' },
     };
   },
   operations_signal_reader: (input, provider) => {
@@ -48,17 +55,19 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       toolId: input.toolId,
       summary: 'Read sample operations signals. No ERP, WMS, or TMS is connected.',
       story: null,
+      healthReport: null,
       output: { operations, source: 'prototype_sample' },
     };
   },
   risk_summarizer: (input, provider) => {
-    const health = provider.getBusinessContext().businessHealth;
+    const report = provider.getBusinessHealthReport();
     return {
       prototype: true,
       toolId: input.toolId,
-      summary: `Sample risks: ${health.risks.join(' ')} Confidence is low; evidence is prototype.`,
+      summary: `Sample risks: ${report.topRisks.join(' ')} Confidence is low; evidence is prototype.`,
       story: null,
-      output: { risks: health.risks, evidenceQuality: 'sample' },
+      healthReport: report,
+      output: { risks: report.topRisks, evidenceQuality: 'sample' },
     };
   },
   recommendation_generator: (input, provider) => {
@@ -68,6 +77,7 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       toolId: input.toolId,
       summary: `Prototype recommendation: ${next} Nothing was executed.`,
       story: null,
+      healthReport: null,
       output: { recommendation: next, executable: false },
     };
   },
@@ -78,6 +88,7 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       toolId: input.toolId,
       summary: `Prototype diagnostic for ${context.organization.name}: ${context.businessHealth.summary}`,
       story: null,
+      healthReport: null,
       output: {
         intent: input.intent,
         hospitalLoop: ['diagnose'],
@@ -87,13 +98,28 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
     };
   },
   diagnostic_story_builder: (input, provider) => {
-    const story = buildDiagnosticStory(provider.getBusinessContext());
+    const context = provider.getBusinessContext();
+    const report = provider.getBusinessHealthReport();
+    const finding = report.findings.find((item) => item.domain === 'operations') ?? report.findings[0];
+    const story = buildDiagnosticStory(context, finding);
     return {
       prototype: true,
       toolId: input.toolId,
       summary: story.whatHappened,
       story,
-      output: { story },
+      healthReport: report,
+      output: { story, narrative: buildNarrative(finding) },
+    };
+  },
+  business_health_report: (input, provider) => {
+    const report = provider.getBusinessHealthReport();
+    return {
+      prototype: true,
+      toolId: input.toolId,
+      summary: report.narrativeSummary,
+      story: null,
+      healthReport: report,
+      output: { report, source: 'prototype_sample' },
     };
   },
   health_status_reader: (input, provider) => {
@@ -103,21 +129,24 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       toolId: input.toolId,
       summary: 'Registered health signals were read. Guardian is not continuously monitoring.',
       story: null,
+      healthReport: null,
       output: { system, continuousMonitoring: false },
     };
   },
   development_health_checker: (input) => ({
     prototype: true,
     toolId: input.toolId,
-    summary: 'Guardian check registry is available. Allowlisted commands were not executed.',
+    summary: 'Guardian accepts registered check IDs only. The agent cannot pass a raw command.',
     story: null,
-    output: { executed: false, reason: 'Host TypeScript/lint/expo-doctor execution is not wired.' },
+    healthReport: null,
+    output: { executed: false, reason: 'Trusted host runner is not invoked from the agent gateway.' },
   }),
   propose_operational_change: (input) => ({
     prototype: true,
     toolId: input.toolId,
     summary: 'Gateway refused to execute a consequential tool.',
     story: null,
+    healthReport: null,
     output: { executed: false, intent: input.intent },
   }),
   human_only_production_change: (input) => ({
@@ -125,6 +154,7 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
     toolId: input.toolId,
     summary: 'Gateway refused a human-only tool.',
     story: null,
+    healthReport: null,
     output: { executed: false, intent: input.intent },
   }),
 };

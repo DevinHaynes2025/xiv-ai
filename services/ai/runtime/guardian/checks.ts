@@ -1,12 +1,14 @@
 export type GuardianCheckId =
-  | 'typescript'
-  | 'lint'
+  | 'mobile-typescript'
+  | 'mobile-lint'
   | 'expo-doctor'
+  | 'ai-typescript'
+  | 'runtime-tests'
+  | 'repository-status'
+  | 'repository-diff-check'
   | 'ai-service-health'
   | 'configuration-health'
-  | 'repository-health'
-  | 'runtime-health'
-  | 'validation-status';
+  | 'runtime-health';
 
 export type GuardianCheckCategory =
   | 'quality'
@@ -18,10 +20,26 @@ export type GuardianCheckCategory =
 
 export type GuardianCheckSeverity = 'info' | 'low' | 'medium' | 'high' | 'critical';
 
-export type AllowlistedCommand = {
-  kind: 'allowlisted';
-  cwd: 'apps/mobile' | 'services/ai' | 'repository';
-  argv: readonly string[];
+export type GuardianExecutionType = 'host_process' | 'in_process' | 'injected';
+
+export type GuardianExecutableToken = 'npx' | 'npm' | 'git';
+
+export type GuardianCwdToken = 'apps/mobile' | 'services/ai' | 'repository';
+
+export type GuardianOutputParser =
+  | 'typescript'
+  | 'lint'
+  | 'expo-doctor'
+  | 'runtime-tests'
+  | 'git-status'
+  | 'git-diff'
+  | 'health'
+  | 'in-process';
+
+export type StaticCommand = {
+  executable: GuardianExecutableToken;
+  args: readonly string[];
+  cwd: GuardianCwdToken;
 };
 
 export type GuardianCheckDefinition = {
@@ -30,60 +48,125 @@ export type GuardianCheckDefinition = {
   description: string;
   category: GuardianCheckCategory;
   severity: GuardianCheckSeverity;
-  command?: AllowlistedCommand;
-  handler: 'prototype' | 'configuration_presence' | 'injected';
-  safeToRun: boolean;
+  executionType: GuardianExecutionType;
+  command?: StaticCommand;
+  workingDirectory?: GuardianCwdToken;
   timeoutMs: number;
+  safeToRun: boolean;
   enabled: boolean;
+  outputParser: GuardianOutputParser;
 };
 
 export const GUARDIAN_CHECK_REGISTRY: readonly GuardianCheckDefinition[] = [
   {
-    id: 'typescript',
-    name: 'TypeScript health',
-    description: 'Allowlisted `npx tsc --noEmit` for the mobile app. Not executed from the agent runtime in Phase 2A.',
+    id: 'mobile-typescript',
+    name: 'Mobile TypeScript',
+    description: 'Allowlisted TypeScript check for apps/mobile. Host runner only.',
     category: 'quality',
     severity: 'high',
-    command: { kind: 'allowlisted', cwd: 'apps/mobile', argv: ['npx', 'tsc', '--noEmit'] },
-    handler: 'prototype',
-    safeToRun: false,
-    timeoutMs: 120_000,
+    executionType: 'host_process',
+    command: { executable: 'npx', args: ['tsc', '--noEmit'], cwd: 'apps/mobile' },
+    workingDirectory: 'apps/mobile',
+    timeoutMs: 180_000,
+    safeToRun: true,
     enabled: true,
+    outputParser: 'typescript',
   },
   {
-    id: 'lint',
-    name: 'ESLint health',
-    description: 'Allowlisted `npm run lint` for the mobile app. Not executed from the agent runtime in Phase 2A.',
+    id: 'mobile-lint',
+    name: 'Mobile lint',
+    description: 'Allowlisted ESLint check for apps/mobile. Host runner only.',
     category: 'quality',
     severity: 'medium',
-    command: { kind: 'allowlisted', cwd: 'apps/mobile', argv: ['npm', 'run', 'lint'] },
-    handler: 'prototype',
-    safeToRun: false,
-    timeoutMs: 120_000,
+    executionType: 'host_process',
+    command: { executable: 'npm', args: ['run', 'lint'], cwd: 'apps/mobile' },
+    workingDirectory: 'apps/mobile',
+    timeoutMs: 180_000,
+    safeToRun: true,
     enabled: true,
+    outputParser: 'lint',
   },
   {
     id: 'expo-doctor',
-    name: 'Expo Doctor health',
-    description: 'Allowlisted `npx expo-doctor`. Not executed from the agent runtime in Phase 2A.',
+    name: 'Expo Doctor',
+    description: 'Allowlisted Expo Doctor check. Host runner only.',
     category: 'mobile_build',
     severity: 'medium',
-    command: { kind: 'allowlisted', cwd: 'apps/mobile', argv: ['npx', 'expo-doctor'] },
-    handler: 'prototype',
-    safeToRun: false,
-    timeoutMs: 120_000,
+    executionType: 'host_process',
+    command: { executable: 'npx', args: ['expo-doctor'], cwd: 'apps/mobile' },
+    workingDirectory: 'apps/mobile',
+    timeoutMs: 180_000,
+    safeToRun: true,
     enabled: true,
+    outputParser: 'expo-doctor',
+  },
+  {
+    id: 'ai-typescript',
+    name: 'AI service TypeScript',
+    description: 'Allowlisted TypeScript check for services/ai. Host runner only.',
+    category: 'quality',
+    severity: 'high',
+    executionType: 'host_process',
+    command: { executable: 'npx', args: ['tsc', '--noEmit'], cwd: 'services/ai' },
+    workingDirectory: 'services/ai',
+    timeoutMs: 120_000,
+    safeToRun: true,
+    enabled: true,
+    outputParser: 'typescript',
+  },
+  {
+    id: 'runtime-tests',
+    name: 'Runtime tests',
+    description: 'Allowlisted governed runtime tests. Host runner only.',
+    category: 'quality',
+    severity: 'high',
+    executionType: 'host_process',
+    command: { executable: 'npm', args: ['run', 'test:runtime'], cwd: 'services/ai' },
+    workingDirectory: 'services/ai',
+    timeoutMs: 120_000,
+    safeToRun: true,
+    enabled: true,
+    outputParser: 'runtime-tests',
+  },
+  {
+    id: 'repository-status',
+    name: 'Repository status',
+    description: 'Allowlisted git status --short. Host runner only. No remotes are fetched.',
+    category: 'repository',
+    severity: 'low',
+    executionType: 'host_process',
+    command: { executable: 'git', args: ['status', '--short'], cwd: 'repository' },
+    workingDirectory: 'repository',
+    timeoutMs: 15_000,
+    safeToRun: true,
+    enabled: true,
+    outputParser: 'git-status',
+  },
+  {
+    id: 'repository-diff-check',
+    name: 'Repository diff check',
+    description: 'Allowlisted git diff --check. Host runner only.',
+    category: 'repository',
+    severity: 'medium',
+    executionType: 'host_process',
+    command: { executable: 'git', args: ['diff', '--check'], cwd: 'repository' },
+    workingDirectory: 'repository',
+    timeoutMs: 15_000,
+    safeToRun: true,
+    enabled: true,
+    outputParser: 'git-diff',
   },
   {
     id: 'ai-service-health',
     name: 'AI service health',
-    description: 'Optional injected probe of the existing `/health` route. No secrets are sent.',
+    description: 'Optional injected probe of /health. No secrets are sent.',
     category: 'service',
     severity: 'high',
-    handler: 'injected',
-    safeToRun: true,
+    executionType: 'injected',
     timeoutMs: 4_000,
+    safeToRun: true,
     enabled: true,
+    outputParser: 'health',
   },
   {
     id: 'configuration-health',
@@ -91,47 +174,31 @@ export const GUARDIAN_CHECK_REGISTRY: readonly GuardianCheckDefinition[] = [
     description: 'Checks whether required public configuration names are present. Values are never returned.',
     category: 'configuration',
     severity: 'high',
-    handler: 'configuration_presence',
-    safeToRun: true,
+    executionType: 'in_process',
     timeoutMs: 1_000,
-    enabled: true,
-  },
-  {
-    id: 'repository-health',
-    name: 'Repository health',
-    description: 'Confirms the Phase 2A runtime modules are registered. Does not inspect git history or remotes.',
-    category: 'repository',
-    severity: 'low',
-    handler: 'prototype',
     safeToRun: true,
-    timeoutMs: 1_000,
     enabled: true,
+    outputParser: 'in-process',
   },
   {
     id: 'runtime-health',
     name: 'Runtime health',
-    description: 'Confirms the agent registry, tool registry, and policy function are loaded.',
+    description: 'Confirms registries and policy are loaded. Not continuous monitoring.',
     category: 'service',
     severity: 'medium',
-    handler: 'prototype',
+    executionType: 'in_process',
+    timeoutMs: 1_000,
     safeToRun: true,
-    timeoutMs: 1_000,
     enabled: true,
-  },
-  {
-    id: 'validation-status',
-    name: 'Validation status',
-    description: 'Placeholder for host TypeScript/lint/expo-doctor results. Not executed from the runtime.',
-    category: 'quality',
-    severity: 'medium',
-    handler: 'prototype',
-    safeToRun: false,
-    timeoutMs: 1_000,
-    enabled: true,
+    outputParser: 'in-process',
   },
 ] as const;
 
 const BY_ID = new Map(GUARDIAN_CHECK_REGISTRY.map((check) => [check.id, check]));
+
+export function isGuardianCheckId(id: string): id is GuardianCheckId {
+  return BY_ID.has(id as GuardianCheckId);
+}
 
 export function getGuardianCheck(id: string): GuardianCheckDefinition | undefined {
   return BY_ID.get(id as GuardianCheckId);
@@ -139,4 +206,8 @@ export function getGuardianCheck(id: string): GuardianCheckDefinition | undefine
 
 export function listGuardianChecks(): readonly GuardianCheckDefinition[] {
   return GUARDIAN_CHECK_REGISTRY;
+}
+
+export function listHostGuardianChecks(): readonly GuardianCheckDefinition[] {
+  return GUARDIAN_CHECK_REGISTRY.filter((check) => check.executionType === 'host_process' && check.enabled);
 }

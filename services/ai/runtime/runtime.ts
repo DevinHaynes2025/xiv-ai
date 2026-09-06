@@ -50,6 +50,7 @@ function emptyResult(action: GovernedAction, verdict: GovernedResult['verdict'],
     action,
     output: null,
     story: null,
+    healthReport: null,
     recommendedActions,
   };
 }
@@ -113,6 +114,7 @@ export function createAgentRuntime(options: AgentRuntimeOptions = {}): AgentRunt
           action,
           output: null,
           story: null,
+          healthReport: null,
           recommendedActions: ['A human must approve. Approval will be re-checked by policy and still cannot execute a production write.'],
         };
       }
@@ -150,6 +152,7 @@ export function createAgentRuntime(options: AgentRuntimeOptions = {}): AgentRunt
         action,
         output: invoked.output,
         story: invoked.story,
+        healthReport: invoked.healthReport,
         recommendedActions: ['Use this result as observation only. Do not treat it as a production instruction.'],
       };
     },
@@ -180,6 +183,33 @@ export function proposeOperationalChange(): GovernedResult {
     agentId: 'executive',
     toolId: 'propose_operational_change',
     intent: 'Propose a six-hour recovery window for the two sample warehouses off SLA.',
+    environment: 'prototype',
+  });
+}
+
+export function analyzeSupplyChain(): GovernedResult {
+  return runGovernedRequest({
+    agentId: 'supply_chain',
+    toolId: 'business_health_analyzer',
+    intent: 'Read supply chain findings',
+    environment: 'prototype',
+  });
+}
+
+export function analyzeOperations(): GovernedResult {
+  return runGovernedRequest({
+    agentId: 'operations',
+    toolId: 'diagnostic_story_builder',
+    intent: 'Build an operations diagnostic story',
+    environment: 'prototype',
+  });
+}
+
+export function summarizeExecutiveHealth(): GovernedResult {
+  return runGovernedRequest({
+    agentId: 'executive',
+    toolId: 'business_health_report',
+    intent: 'Summarize business health across domains',
     environment: 'prototype',
   });
 }

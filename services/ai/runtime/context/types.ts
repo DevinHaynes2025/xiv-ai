@@ -59,6 +59,8 @@ export type BusinessContext = {
 export type CausalChainStep = {
   label: string;
   prototype: true;
+  stance?: 'observed' | 'inferred' | 'hypothesized' | 'recommended';
+  step?: number;
 };
 
 export type DiagnosticStory = {

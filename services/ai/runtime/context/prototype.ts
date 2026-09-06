@@ -1,4 +1,5 @@
 import type { BusinessContextProvider } from './provider';
+import { buildBusinessHealthReport } from './report';
 import type { BusinessContext } from './types';
 
 const PROTOTYPE_CONTEXT: BusinessContext = {
@@ -58,5 +59,6 @@ export function createPrototypeContextProvider(): BusinessContextProvider {
     getBusinessContext: () => PROTOTYPE_CONTEXT,
     getOperationalSignals: () => PROTOTYPE_CONTEXT.operations,
     getSystemContext: () => PROTOTYPE_CONTEXT.system,
+    getBusinessHealthReport: () => buildBusinessHealthReport(PROTOTYPE_CONTEXT),
   };
 }

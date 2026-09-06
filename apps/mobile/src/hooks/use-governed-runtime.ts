@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { useSession } from '@/hooks/use-session';
 import {
   analyzeBusinessHealth,
+  analyzeSupplyChain,
   getDefaultAgentRuntime,
   proposeOperationalChange,
   runGuardianSnapshot,
+  summarizeExecutiveHealth,
   type GovernedResult,
   type GuardianHealthReport,
 } from '@/lib/ai';
@@ -24,6 +26,14 @@ export function useGovernedRuntime() {
 
   const runAnalyze = () => {
     setLastResult(analyzeBusinessHealth());
+  };
+
+  const runSupplyChain = () => {
+    setLastResult(analyzeSupplyChain());
+  };
+
+  const runExecutiveSummary = () => {
+    setLastResult(summarizeExecutiveHealth());
   };
 
   const runPropose = () => {
@@ -73,6 +83,8 @@ export function useGovernedRuntime() {
     actions,
     events,
     runAnalyze,
+    runSupplyChain,
+    runExecutiveSummary,
     runPropose,
     decide,
     snapshot,
