@@ -1,8 +1,10 @@
-# XIV Agent Runtime — Phase 2C
+# XIV Agent Runtime — Phase 2D
 
-Governed Agent Runtime with a trusted Guardian validation runner and reusable Business Health intelligence. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
+Governed Agent Runtime with Universe isolation, a Company Data Gateway, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 Governed Runtime ≠ Live Gemini Executive turn path.
+
+See also [xiv-universe.md](./xiv-universe.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md).
 
 ## Intelligence loops
 
@@ -19,13 +21,15 @@ Request
     ↓
 Agent Registry
     ↓
-Context Provider
-    ↓
 Policy Engine
     ↓
 Tool Gateway
     ↓
-Diagnostic Result / Health Report
+Company Data Gateway (live reads only)
+    ↓
+BusinessDataAdapter / Context Provider
+    ↓
+Diagnostic Result / Health Report / Executive Brief
     ↓
 Proposed Action
     ↓
@@ -71,6 +75,8 @@ All tools still pass `evaluatePolicy()`:
 - diagnostic summarizer
 - diagnostic story builder
 - business health report
+- company data reader (Company Data Gateway only)
+- executive brief builder
 - health / status reader
 - development health checker (Guardian — does not invoke the host runner)
 
@@ -178,7 +184,7 @@ From `services/ai`:
 
 `npm run test:runtime`
 
-Covers Phase 2A/2B policy cases plus Phase 2C: valid/unknown/raw Guardian IDs, parser exit codes, timeout, truncation, no env leakage, prototype labels, hypothesized stance, executive summary cannot write production, and L4 disabled.
+Covers Phase 2A/2B/2C plus Phase 2D: Universe isolation, media validation, quotas, no storage credentials, read-only adapter, required provenance, no silent live→prototype fallback, Company Data Gateway, Guardian cannot read private business data, Executive brief/read still allowed, production writes denied, approval does not override policy, L4 disabled, Guardian check-ID and no raw shell.
 
 Host validation (optional, trusted machine only):
 

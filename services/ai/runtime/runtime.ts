@@ -2,6 +2,9 @@ import { createId, nowIso, statusForVerdict, type GovernedAction, type GovernedR
 import { createApprovalService, type ApprovalService } from './approval';
 import { getXivAgent } from './agents';
 import { getPrototypeAuditStore, type AuditStore } from './audit';
+import { readAuthorizedCompanyData } from './context/adapters/authorized-read';
+import { createLiveContextProvider } from './context/adapters/live-provider';
+import type { LiveSourceStatus } from './context/adapters/types';
 import type { BusinessContextProvider } from './context/provider';
 import { createPrototypeContextProvider } from './context/prototype';
 import { invokeApprovedTool } from './gateway';
@@ -51,6 +54,7 @@ function emptyResult(action: GovernedAction, verdict: GovernedResult['verdict'],
     output: null,
     story: null,
     healthReport: null,
+    brief: null,
     recommendedActions,
   };
 }
@@ -115,6 +119,7 @@ export function createAgentRuntime(options: AgentRuntimeOptions = {}): AgentRunt
           output: null,
           story: null,
           healthReport: null,
+          brief: null,
           recommendedActions: ['A human must approve. Approval will be re-checked by policy and still cannot execute a production write.'],
         };
       }
@@ -153,6 +158,7 @@ export function createAgentRuntime(options: AgentRuntimeOptions = {}): AgentRunt
         output: invoked.output,
         story: invoked.story,
         healthReport: invoked.healthReport,
+        brief: invoked.brief,
         recommendedActions: ['Use this result as observation only. Do not treat it as a production instruction.'],
       };
     },
@@ -211,5 +217,55 @@ export function summarizeExecutiveHealth(): GovernedResult {
     toolId: 'business_health_report',
     intent: 'Summarize business health across domains',
     environment: 'prototype',
+  });
+}
+
+export function summarizeExecutiveBrief(): GovernedResult {
+  return runGovernedRequest({
+    agentId: 'executive',
+    toolId: 'executive_brief_builder',
+    intent: 'Generate Executive Intelligence Brief',
+    environment: 'prototype',
+  });
+}
+
+export function readCompanyDataContext(): GovernedResult {
+  return runGovernedRequest({
+    agentId: 'executive',
+    toolId: 'company_data_reader',
+    intent: 'Read authorized company data through the Company Data Gateway',
+    environment: 'prototype',
+  });
+}
+
+/**
+ * Probes the real HTTP health adapter through the Company Data Gateway.
+ * Never substitutes prototype findings when the live source is down.
+ */
+export async function probeLiveCompanySource(): Promise<GovernedResult> {
+  const live = await readAuthorizedCompanyData({
+    agentId: 'executive',
+    toolId: 'company_data_reader',
+    capability: 'connection_health',
+    mode: 'read',
+    classification: 'public',
+  });
+  const status: LiveSourceStatus =
+    live.status === 'live' || live.status === 'unavailable' || live.status === 'not_configured' || live.status === 'stale'
+      ? live.status
+      : 'unavailable';
+  const provider = createLiveContextProvider({
+    status,
+    provenance: live.provenance,
+  });
+  return createAgentRuntime({
+    store: defaultRuntime.store,
+    context: provider,
+    approval: defaultRuntime.approval,
+  }).request({
+    agentId: 'executive',
+    toolId: 'company_data_reader',
+    intent: 'Probe live company source',
+    environment: 'development',
   });
 }

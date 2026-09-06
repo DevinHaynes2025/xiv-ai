@@ -1,0 +1,66 @@
+# XIV Media Security
+
+Phase 2D media architecture. **Production uploads are not enabled.**
+
+## Status
+
+| Piece | Maturity |
+| --- | --- |
+| MediaAsset types + validation | IMPLEMENTED |
+| Consumer vs company read policy | IMPLEMENTED |
+| Storage abstraction + quotas | IMPLEMENTED (no cloud SDK) |
+| Signed upload / quarantine / scan / transcode | PLANNED |
+| Malware scanning | PLANNED |
+| Media intelligence (image/video/transcript) | PROTOTYPE interface only — not operational |
+
+## Pipeline (target)
+
+```
+Client
+  → Upload authorization
+  → Signed upload
+  → Quarantine
+  → MIME / signature validation
+  → Malware scan
+  → Content processing
+  → Metadata processing
+  → Approval state
+  → Object storage
+  → CDN / signed delivery
+```
+
+Phase 2D implements authorization, validation, and opaque storage references only. `uploadEnabled` is false. Deletion is governed and disabled.
+
+## Validation (deterministic)
+
+Do not trust filename extension.
+
+Denied when:
+
+- executable or script MIME
+- unsupported MIME
+- oversized
+- missing owner
+- missing checksum
+- missing Universe for private company media
+
+## Storage
+
+Provider-neutral `StorageProvider`:
+
+- createUploadAuthorization
+- completeUpload (disabled)
+- getSignedDownload (opaque reference)
+- getMetadata
+- deleteObject (governed / disabled)
+- checkQuota
+
+Namespaces: consumer, organizations, universes, documents, images, video, avatars, agent-artifacts, business-data.
+
+Compatible later with AWS S3, GCS, and other approved providers. **No cloud credentials are returned to mobile.**
+
+Quotas are finite. Tiers: consumer, professional, business, enterprise, sovereign.
+
+## Intelligence
+
+`MediaIntelligenceProvider` exists as an interface. `createUnavailableMediaIntelligence()` returns `operational: false`. Do not claim image/video understanding is live.

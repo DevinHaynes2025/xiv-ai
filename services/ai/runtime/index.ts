@@ -53,10 +53,38 @@ export type { AuditStore } from './audit';
 export { invokeApprovedTool } from './gateway';
 export type { ToolHandler, ToolInvokeInput, ToolInvokeResult } from './gateway';
 
-export type { BusinessContextProvider } from './context/provider';
+export type { BusinessContextProvider, DataAvailability } from './context/provider';
 export { createPrototypeContextProvider, getPrototypeBusinessContext } from './context/prototype';
 export { buildBusinessHealthReport, findingsForDomain, toStructuredHealthResult } from './context/report';
 export type { BusinessHealthReport } from './context/report';
+export { buildUnavailableHealthReport } from './context/live-report';
+export {
+  adapterIsReadOnly,
+  createHttpHealthAdapter,
+  createLiveContextProvider,
+  provenanceIsComplete,
+  readAuthorizedCompanyData,
+  resolveConfiguredHealthUrl,
+} from './context/adapters';
+export type { BusinessDataAdapter, DataProvenance, LiveSourceStatus } from './context/adapters';
+export { buildExecutiveBrief } from './brief';
+export type { DataAvailabilityStatus, ExecutiveBrief } from './brief';
+export { createCompanyDataGateway } from './company-data';
+export type { CompanyDataGateway, CompanyDataRequest, CompanyDataResult } from './company-data';
+export {
+  canAgentAccessUniverseResource,
+  canPublishUniverseResource,
+  canReadUniverseResource,
+} from './universe';
+export type { Universe, UniverseMembership, UniverseResource, UniverseRole, UniverseVisibility } from './universe';
+export { canConsumerReadMedia, canReadMedia, validateMediaAsset, MAX_MEDIA_BYTES } from './media';
+export type { MediaAsset } from './media';
+export { authorizationHasCredentials, canReserveStorage, createAbstractStorageProvider, STORAGE_TIERS } from './storage';
+export { consumerCanReadContent } from './content';
+export { canAuthorizePublication, publishingWritesEnabled } from './publishing';
+export { recordAccessEvent, sanitizeAuditText } from './audit-access';
+export { canAgentAccessClassification, consumerMayAccessClassification } from './security/classification';
+export { SECURITY_CONTROLS } from './security/layers';
 export { findingHasPrototypeLabels } from './context/findings';
 export type { BusinessHealthFinding, HealthDomain, StoryBeat, StoryStance } from './context/findings';
 export { buildDiagnosticStory, buildNarrative, hypothesisIsMarked, storyHasPrototypeLabels } from './context/story';
@@ -110,8 +138,11 @@ export {
   analyzeSupplyChain,
   createAgentRuntime,
   getDefaultAgentRuntime,
+  probeLiveCompanySource,
   proposeOperationalChange,
+  readCompanyDataContext,
   runGovernedRequest,
+  summarizeExecutiveBrief,
   summarizeExecutiveHealth,
 } from './runtime';
 export type { AgentRuntime, AgentRuntimeOptions, GovernedRequest } from './runtime';

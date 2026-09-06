@@ -76,7 +76,12 @@ export function createHostExecutor(): GuardianHostAdapter {
       return new Promise((resolveResult) => {
         const command = check.command;
         if (!command) {
-          reject(new Error('Host adapter received a check without static command metadata.'));
+          resolveResult({
+            exitCode: 1,
+            stdout: '',
+            stderr: 'Host adapter received a check without static command metadata.',
+            timedOut: false,
+          });
           return;
         }
 

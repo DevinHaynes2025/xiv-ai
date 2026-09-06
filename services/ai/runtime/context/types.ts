@@ -42,13 +42,14 @@ export type PeopleAggregateSlice = {
 export type SystemContextSlice = {
   environment: RuntimeEnvironment;
   serviceHealth: 'unknown' | 'reachable' | 'unreachable';
-  dataFreshness: 'sample';
+  dataFreshness: 'sample' | 'live' | 'unknown' | 'unavailable';
   sourceLabels: readonly ContextSourceLabel[];
   continuousMonitoring: false;
+  dataStatus?: 'live' | 'unavailable' | 'not_configured' | 'stale' | 'prototype';
 };
 
 export type BusinessContext = {
-  prototype: true;
+  prototype: boolean;
   organization: OrganizationContextSlice;
   businessHealth: BusinessHealthSlice;
   operations: OperationalSignals;

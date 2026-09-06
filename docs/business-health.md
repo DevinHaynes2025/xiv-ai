@@ -1,19 +1,27 @@
 # XIV Business Health Intelligence
 
-Reusable typed findings and narratives for the governed runtime. This is **prototype sample context**. It is not live enterprise data.
+Reusable typed findings and narratives for the governed runtime.
+
+Prototype sample context remains for development, testing, CI, offline, and demonstration. It is **not** live company data.
+
+Live adapter output is accepted only through the Company Data Gateway. If the live source is unavailable, the report says **Live source unavailable**. It does not silently substitute sample findings.
 
 ## Pipeline
 
 ```
+Real Adapter or Prototype Provider
+    ↓
+Company Data Gateway (live path)
+    ↓
 Context Provider
     ↓
 Domain signals
     ↓
-Findings
+Findings (provenance required for live)
     ↓
 Story Engine
     ↓
-Business Health Report
+Business Health Report / Executive Brief
     ↓
 Agent recommendation
     ↓

@@ -1,4 +1,5 @@
 import type { AuthorityLevel } from './authority';
+import type { ExecutiveBrief } from './brief';
 import type { BusinessHealthReport } from './context/report';
 import type { DiagnosticStory } from './context/types';
 import type { PolicyVerdict } from './policy';
@@ -65,6 +66,7 @@ export type GovernedResult = {
   output: Record<string, unknown> | null;
   story: DiagnosticStory | null;
   healthReport: BusinessHealthReport | null;
+  brief: ExecutiveBrief | null;
   recommendedActions: string[];
 };
 

@@ -1,3 +1,4 @@
+import type { DataProvenance, LiveSourceStatus } from './adapters/types';
 import type { BusinessHealthFinding, HealthDomain } from './findings';
 import { buildCausalChain } from './story';
 import type { BusinessContext, ContextSourceLabel, OrganizationContextSlice } from './types';
@@ -12,7 +13,10 @@ export type BusinessHealthReport = {
   narrativeSummary: string;
   sourceSummary: readonly ContextSourceLabel[];
   generatedAt: string;
-  prototype: true;
+  prototype: boolean;
+  dataStatus?: LiveSourceStatus | 'prototype';
+  provenance?: DataProvenance | null;
+  usedPrototypeFallback?: false;
 };
 
 function finding(
@@ -171,6 +175,9 @@ export function buildBusinessHealthReport(context: BusinessContext): BusinessHea
     sourceSummary: labels,
     generatedAt: new Date().toISOString(),
     prototype: true,
+    dataStatus: 'prototype',
+    provenance: null,
+    usedPrototypeFallback: false,
   };
 }
 

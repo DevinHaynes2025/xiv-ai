@@ -1,3 +1,4 @@
+import type { DataProvenance } from './adapters/types';
 import type { ContextSourceLabel } from './types';
 
 export type HealthDomain =
@@ -39,6 +40,7 @@ export type BusinessHealthFinding = {
   causalChain: readonly StoryBeat[];
   detectedAt: string;
   prototype: true;
+  provenance?: DataProvenance | null;
 };
 
 export function findingHasPrototypeLabels(finding: BusinessHealthFinding) {

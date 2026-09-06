@@ -5,8 +5,10 @@ import {
   analyzeBusinessHealth,
   analyzeSupplyChain,
   getDefaultAgentRuntime,
+  probeLiveCompanySource,
   proposeOperationalChange,
   runGuardianSnapshot,
+  summarizeExecutiveBrief,
   summarizeExecutiveHealth,
   type GovernedResult,
   type GuardianHealthReport,
@@ -34,6 +36,22 @@ export function useGovernedRuntime() {
 
   const runExecutiveSummary = () => {
     setLastResult(summarizeExecutiveHealth());
+  };
+
+  const runExecutiveBrief = () => {
+    setLastResult(summarizeExecutiveBrief());
+  };
+
+  const runLiveSource = () => {
+    if (busy) return;
+    setBusy(true);
+    void probeLiveCompanySource()
+      .then((next) => {
+        setLastResult(next);
+      })
+      .finally(() => {
+        setBusy(false);
+      });
   };
 
   const runPropose = () => {
@@ -85,6 +103,8 @@ export function useGovernedRuntime() {
     runAnalyze,
     runSupplyChain,
     runExecutiveSummary,
+    runExecutiveBrief,
+    runLiveSource,
     runPropose,
     decide,
     snapshot,

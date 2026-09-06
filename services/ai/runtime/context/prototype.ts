@@ -1,3 +1,4 @@
+import { buildExecutiveBrief } from '../brief';
 import type { BusinessContextProvider } from './provider';
 import { buildBusinessHealthReport } from './report';
 import type { BusinessContext } from './types';
@@ -47,6 +48,7 @@ const PROTOTYPE_CONTEXT: BusinessContext = {
       'aggregate_people_signal',
     ],
     continuousMonitoring: false,
+    dataStatus: 'prototype',
   },
 };
 
@@ -60,5 +62,15 @@ export function createPrototypeContextProvider(): BusinessContextProvider {
     getOperationalSignals: () => PROTOTYPE_CONTEXT.operations,
     getSystemContext: () => PROTOTYPE_CONTEXT.system,
     getBusinessHealthReport: () => buildBusinessHealthReport(PROTOTYPE_CONTEXT),
+    getDataAvailability: () => ({
+      status: 'prototype' as const,
+      message: 'Prototype / sample environment',
+      prototype: true,
+    }),
+    getExecutiveBrief: () =>
+      buildExecutiveBrief({
+        report: buildBusinessHealthReport(PROTOTYPE_CONTEXT),
+        liveStatus: 'prototype',
+      }),
   };
 }

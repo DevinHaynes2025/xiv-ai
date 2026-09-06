@@ -10,6 +10,8 @@ export type RuntimeToolId =
   | 'diagnostic_summarizer'
   | 'diagnostic_story_builder'
   | 'business_health_report'
+  | 'company_data_reader'
+  | 'executive_brief_builder'
   | 'health_status_reader'
   | 'development_health_checker'
   | 'propose_operational_change'
@@ -50,6 +52,8 @@ export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
   'diagnostic_summarizer',
   'diagnostic_story_builder',
   'business_health_report',
+  'company_data_reader',
+  'executive_brief_builder',
   'health_status_reader',
 ];
 
@@ -149,6 +153,30 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
     allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'company_data_reader',
+    name: 'Company data reader',
+    description: 'Reads authorized company data through the Company Data Gateway only. Read-only.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'executive_brief_builder',
+    name: 'Executive brief builder',
+    description: 'Builds an Executive Intelligence Brief from authorized context. No production action.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L1_Recommend,
+    allowedAgentIds: ['executive'],
   },
   {
     id: 'health_status_reader',

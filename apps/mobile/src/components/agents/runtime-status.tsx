@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
+import { briefStatus, DataStatusMark } from '@/components/agents/data-status';
 import { GovernedApprovalCard } from '@/components/agents/governed-approval-card';
 import { GovernedAuditTrail } from '@/components/agents/governed-audit-trail';
 import { GovernedHealthResult } from '@/components/agents/governed-health-result';
@@ -30,6 +31,8 @@ export function AgentRuntimeStatus() {
     runAnalyze,
     runSupplyChain,
     runExecutiveSummary,
+    runExecutiveBrief,
+    runLiveSource,
     runPropose,
     decide,
     snapshot,
@@ -43,7 +46,10 @@ export function AgentRuntimeStatus() {
         </XivText>
         <SystemStatus status="CONFIGURED" />
       </View>
-      <XivText variant="subtitle">Governed read-only context · prototype</XivText>
+      <XivText variant="subtitle">Governed read-only context</XivText>
+      <DataStatusMark
+        status={lastResult?.brief ? briefStatus(lastResult.brief) : lastResult?.healthReport ? 'prototype' : 'prototype'}
+      />
       <XivText variant="body" muted>
         Context comes from a replaceable provider. Policy still decides every tool. Human approval does not override
         policy.
@@ -79,6 +85,8 @@ export function AgentRuntimeStatus() {
       <Button label="Analyze operations (prototype)" variant="subtle" disabled={busy} onPress={runAnalyze} />
       <Button label="Read supply chain findings" variant="subtle" disabled={busy} onPress={runSupplyChain} />
       <Button label="Executive health summary" variant="subtle" disabled={busy} onPress={runExecutiveSummary} />
+      <Button label="Executive Intelligence Brief" variant="subtle" disabled={busy} onPress={runExecutiveBrief} />
+      <Button label="Check live source" variant="subtle" disabled={busy} onPress={runLiveSource} />
       <Button label="Propose recovery window (needs approval)" variant="subtle" disabled={busy} onPress={runPropose} />
 
       {pending.map((action) => (
@@ -89,6 +97,23 @@ export function AgentRuntimeStatus() {
           onDeny={() => decide(action.actionId, 'denied')}
         />
       ))}
+
+      {lastResult?.brief ? (
+        <View style={styles.block}>
+          <DataStatusMark
+            status={briefStatus(lastResult.brief)}
+            source={lastResult.brief.sources[0]}
+            freshness={lastResult.brief.freshness}
+            retrievedAt={lastResult.brief.generatedAt}
+          />
+          <XivText variant="label" color={Palette.accent}>
+            Executive Intelligence Brief
+          </XivText>
+          <XivText variant="caption" muted>
+            {lastResult.brief.criticalChanges[0] ?? lastResult.brief.recommendedPriorities[0] ?? lastResult.brief.dataStatus}
+          </XivText>
+        </View>
+      ) : null}
 
       {lastResult?.healthReport ? <GovernedHealthResult report={lastResult.healthReport} /> : null}
 
@@ -122,7 +147,7 @@ export function AgentRuntimeStatus() {
 
       <GovernedAuditTrail actions={actions} />
 
-      <PrototypeNotice text="Phase 2C prototype. Guardian validation is on-demand. Business Health is sample context. No production action is executed." />
+      <PrototypeNotice text="Phase 2D. Prototype sample and live source status are labeled separately. No production action is executed. No storage credentials are shown." />
     </Card>
   );
 }
