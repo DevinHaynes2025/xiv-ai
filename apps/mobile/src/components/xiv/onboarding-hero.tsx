@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 import { Palette, Spacing } from '@/constants/theme';
+import { useCompactLayout } from '@/hooks/use-compact-layout';
 
 import { BrandMark } from './brand-mark';
 import { XivText } from './text';
@@ -22,16 +23,15 @@ export function OnboardingHero({
   showMark = true,
   markSize = 44,
 }: Props) {
+  const { compact } = useCompactLayout();
   const centered = align === 'center';
+  const resolvedMark = compact ? Math.min(markSize, 36) : markSize;
 
   return (
-    <View style={[styles.wrap, centered && styles.center]}>
+    <View style={[styles.wrap, compact && styles.wrapCompact, centered && styles.center]}>
       {showMark ? (
-        <View
-          accessible
-          accessibilityRole="image"
-          accessibilityLabel="XIV AI">
-          <BrandMark size={markSize} />
+        <View accessible accessibilityRole="image" accessibilityLabel="XIV AI">
+          <BrandMark size={resolvedMark} />
         </View>
       ) : null}
       {kicker ? (
@@ -39,7 +39,10 @@ export function OnboardingHero({
           {kicker}
         </XivText>
       ) : null}
-      <XivText variant="display" style={centered ? styles.centerText : undefined}>
+      <XivText
+        variant="display"
+        maxFontSizeMultiplier={1.15}
+        style={[compact ? styles.titleCompact : styles.title, centered && styles.centerText]}>
         {title}
       </XivText>
       {support ? (
@@ -53,6 +56,10 @@ export function OnboardingHero({
 
 const styles = StyleSheet.create({
   wrap: {
+    gap: Spacing.three,
+    paddingBottom: Spacing.two,
+  },
+  wrapCompact: {
     gap: Spacing.two,
     paddingBottom: Spacing.one,
   },
@@ -61,5 +68,13 @@ const styles = StyleSheet.create({
   },
   centerText: {
     textAlign: 'center',
+  },
+  title: {
+    fontSize: 30,
+    lineHeight: 36,
+  },
+  titleCompact: {
+    fontSize: 26,
+    lineHeight: 32,
   },
 });

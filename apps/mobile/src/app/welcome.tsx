@@ -10,6 +10,7 @@ import { Screen } from '@/components/xiv/screen';
 import { XivText } from '@/components/xiv/text';
 import { TrustStrip } from '@/components/xiv/trust-strip';
 import { Palette, Radius, Spacing } from '@/constants/theme';
+import { useCompactLayout } from '@/hooks/use-compact-layout';
 
 const THEMES = [
   {
@@ -37,10 +38,12 @@ const THEMES = [
 
 export default function Welcome() {
   const router = useRouter();
+  const { compact, short, narrow } = useCompactLayout();
 
   return (
     <Screen
       atmosphere="cinematic"
+      distribute={!short}
       footer={
         <>
           <Button
@@ -54,9 +57,9 @@ export default function Welcome() {
           />
         </>
       }>
-      <Animated.View entering={FadeIn.duration(480)} style={styles.brand}>
+      <Animated.View entering={FadeIn.duration(480)} style={[styles.brand, compact && styles.brandCompact]}>
         <View accessible accessibilityRole="image" accessibilityLabel="XIV AI">
-          <BrandMark size={52} />
+          <BrandMark size={compact ? 44 : 52} />
         </View>
         <XivText variant="label" color={Palette.accent}>
           XIV AI
@@ -66,8 +69,14 @@ export default function Welcome() {
         </XivText>
       </Animated.View>
 
-      <Animated.View entering={FadeInUp.duration(540).delay(80)} style={styles.hero}>
-        <XivText variant="display" style={styles.heroTitle}>
+      <Animated.View entering={FadeInUp.duration(540).delay(80)} style={[styles.hero, compact && styles.heroCompact]}>
+        <XivText
+          variant="display"
+          maxFontSizeMultiplier={1.15}
+          style={[
+            styles.heroTitle,
+            { fontSize: narrow ? 26 : compact ? 28 : 32, lineHeight: narrow ? 32 : compact ? 34 : 38 },
+          ]}>
           One World. One Platform. Infinite Opportunities.
         </XivText>
         <XivText variant="body" muted style={styles.centerText}>
@@ -79,11 +88,11 @@ export default function Welcome() {
       </Animated.View>
 
       <Animated.View entering={FadeInUp.duration(520).delay(160)}>
-        <Card variant="elevated" style={styles.themes}>
+        <Card variant="elevated" style={[styles.themes, compact && styles.themesCompact]}>
           {THEMES.map((theme, index) => (
             <View key={theme.key}>
               {index > 0 ? <View style={styles.divider} /> : null}
-              <View style={styles.theme}>
+              <View style={[styles.theme, compact && styles.themeCompact]}>
                 <View style={styles.themeIcon}>
                   <Icon
                     name={{ ios: theme.ios, android: theme.android, web: theme.android }}
@@ -115,16 +124,23 @@ const styles = StyleSheet.create({
   brand: {
     alignItems: 'center',
     gap: Spacing.two,
-    paddingTop: Spacing.two,
+    paddingTop: Spacing.three,
+  },
+  brandCompact: {
+    paddingTop: Spacing.one,
   },
   network: {
     letterSpacing: 1.5,
     textAlign: 'center',
   },
   hero: {
-    gap: Spacing.two,
+    gap: Spacing.three,
     alignItems: 'center',
-    paddingBottom: Spacing.one,
+    paddingVertical: Spacing.two,
+  },
+  heroCompact: {
+    gap: Spacing.two,
+    paddingVertical: Spacing.one,
   },
   heroTitle: {
     textAlign: 'center',
@@ -134,12 +150,18 @@ const styles = StyleSheet.create({
   },
   themes: {
     gap: 0,
+    paddingVertical: Spacing.three,
+  },
+  themesCompact: {
     paddingVertical: Spacing.two,
   },
   theme: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: Spacing.three,
+    paddingVertical: Spacing.three,
+  },
+  themeCompact: {
     paddingVertical: Spacing.two,
   },
   themeIcon: {

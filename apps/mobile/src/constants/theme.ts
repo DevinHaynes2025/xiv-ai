@@ -145,6 +145,9 @@ export const Layout = {
   cardGap: Spacing.three,
   minTapTarget: 44,
   headerHeight: 58,
+  compactWidth: 360,
+  compactHeight: 800,
+  shortHeight: 720,
 } as const;
 
 export const Borders = {

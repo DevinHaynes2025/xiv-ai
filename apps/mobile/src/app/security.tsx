@@ -15,14 +15,19 @@ import { Palette, Radius, Spacing } from '@/constants/theme';
 import { dataPermissions, privacyControls, securitySteps } from '@/data/mock';
 import { useSession } from '@/hooks/use-session';
 
-const TRUST_LAYERS = [
+const XIV_TWELVE = [
   'Identity',
   'Access',
   'Isolation',
   'Encryption',
+  'Device Trust',
+  'Session Integrity',
+  'Privacy',
+  'Data Boundaries',
   'Agent Authority',
   'Auditability',
   'Recovery',
+  'Monitoring',
 ] as const;
 
 function stepStatus(id: string) {
@@ -83,17 +88,13 @@ export default function Security() {
         markSize={40}
         kicker="XIV Security"
         title="Your environment starts with trust."
-        support="Review how XIV protects access, privacy, permissions, and organizational intelligence."
+        support="This walkthrough explains the designed XIV trust model and the preview controls available today."
       />
-
-      <XivText variant="label" color={Palette.accent}>
-        Step {index + 1} of {total}
-      </XivText>
 
       <View style={styles.progress}>
         <ProgressDots count={total} index={index} />
         <XivText variant="caption" muted>
-          {index + 1} / {total} · {step.title}
+          Step {index + 1} of {total} · {step.title}
         </XivText>
       </View>
 
@@ -150,25 +151,40 @@ export default function Security() {
             <XivText variant="caption" color={i === index ? Palette.text : i < index ? Palette.textMuted : Palette.textDim}>
               {item.title}
             </XivText>
+            <XivText variant="label" color={Palette.textFaint} style={styles.rowStatus}>
+              {stepStatus(item.id)}
+            </XivText>
           </View>
         ))}
       </View>
 
       <Card style={styles.layers}>
         <XivText variant="label" color={Palette.accent}>
-          XIV Trust Architecture
+          The XIV Twelve
         </XivText>
+        <XivText variant="subtitle">Designed security architecture</XivText>
         <XivText variant="caption" muted>
-          Designed security layers — not fully deployed in this preview.
+          Twelve intended trust layers. They describe the product model, not controls active in this preview.
         </XivText>
         <View style={styles.layerWrap}>
-          {TRUST_LAYERS.map((layer) => (
+          {XIV_TWELVE.map((layer, i) => (
             <View key={layer} style={styles.layer}>
-              <XivText variant="caption" color={Palette.textMuted}>
+              <XivText variant="label" color={Palette.accent}>
+                {String(i + 1).padStart(2, '0')}
+              </XivText>
+              <XivText variant="caption" color={Palette.textMuted} style={styles.layerLabel}>
                 {layer}
               </XivText>
             </View>
           ))}
+        </View>
+        <View style={styles.implemented}>
+          <XivText variant="label" color={Palette.success}>
+            Active in this preview
+          </XivText>
+          <XivText variant="caption" muted>
+            Encrypted connection · Email credentials · Local privacy and permission selections
+          </XivText>
         </View>
       </Card>
 
@@ -233,7 +249,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
-    minHeight: 28,
+    minHeight: 32,
+  },
+  rowStatus: {
+    marginLeft: 'auto',
   },
   pip: {
     width: 8,
@@ -257,12 +276,28 @@ const styles = StyleSheet.create({
     marginTop: Spacing.one,
   },
   layer: {
+    flexGrow: 1,
+    flexBasis: '46%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    minHeight: 40,
     paddingHorizontal: Spacing.three,
-    paddingVertical: 8,
-    borderRadius: Radius.pill,
+    paddingVertical: Spacing.two,
+    borderRadius: Radius.sm,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Palette.line,
     backgroundColor: Palette.surfaceSoft,
+  },
+  layerLabel: {
+    flex: 1,
+  },
+  implemented: {
+    gap: 4,
+    marginTop: Spacing.one,
+    paddingTop: Spacing.three,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: Palette.line,
   },
   errorBody: {
     marginTop: Spacing.one,

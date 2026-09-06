@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: Spacing.two,
     paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
+    paddingVertical: Spacing.three,
     borderRadius: Radius.md,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Palette.line,
+    borderColor: 'rgba(44, 230, 183, 0.22)',
     backgroundColor: Palette.successSoft,
   },
   dot: {
@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
   },
   copy: {
     flex: 1,
-    gap: 2,
+    gap: 4,
   },
 });

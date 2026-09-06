@@ -76,9 +76,14 @@ export default function Auth() {
     }
   };
 
-  const toggleMode = () => {
+  const setMode = (next: AuthMode) => {
+    if (next === mode) return;
     setError(null);
-    router.setParams({ mode: mode === 'create' ? 'signin' : 'create' });
+    router.setParams({ mode: next });
+  };
+
+  const toggleMode = () => {
+    setMode(mode === 'create' ? 'signin' : 'create');
   };
 
   return (
@@ -119,11 +124,43 @@ export default function Auth() {
         }
       />
 
+      <View style={styles.switcher} accessibilityRole="tablist">
+        <Pressable
+          accessibilityRole="tab"
+          accessibilityState={{ selected: mode === 'create' }}
+          onPress={() => setMode('create')}
+          style={[styles.switchTab, mode === 'create' && styles.switchTabOn]}>
+          <XivText variant="caption" color={mode === 'create' ? Palette.white : Palette.textMuted}>
+            Create Account
+          </XivText>
+        </Pressable>
+        <Pressable
+          accessibilityRole="tab"
+          accessibilityState={{ selected: mode === 'signin' }}
+          onPress={() => setMode('signin')}
+          style={[styles.switchTab, mode === 'signin' && styles.switchTabOn]}>
+          <XivText variant="caption" color={mode === 'signin' ? Palette.white : Palette.textMuted}>
+            Sign In
+          </XivText>
+        </Pressable>
+      </View>
+
       <Animated.View entering={FadeIn.duration(360)}>
         <Card variant="elevated" style={styles.authCard}>
+          <XivText variant="label" color={Palette.accent}>
+            {mode === 'create' ? 'New credentials' : 'XIV credentials'}
+          </XivText>
           <View style={styles.fields}>
             {mode === 'create' ? (
-              <Field label="Full name" value={name} onChangeText={setName} autoCapitalize="words" />
+              <Field
+                label="Full name"
+                value={name}
+                onChangeText={setName}
+                autoCapitalize="words"
+                autoComplete="name"
+                textContentType="name"
+                editable={!busy}
+              />
             ) : null}
             <Field
               label="Email"
@@ -131,6 +168,9 @@ export default function Auth() {
               onChangeText={setEmail}
               autoCapitalize="none"
               keyboardType="email-address"
+              autoComplete="email"
+              textContentType="emailAddress"
+              editable={!busy}
             />
             <Field
               label="Password"
@@ -138,6 +178,9 @@ export default function Auth() {
               onChangeText={setPassword}
               secureTextEntry
               autoCapitalize="none"
+              autoComplete={mode === 'create' ? 'new-password' : 'password'}
+              textContentType={mode === 'create' ? 'newPassword' : 'password'}
+              editable={!busy}
             />
             {mode === 'create' ? (
               <Field
@@ -146,6 +189,9 @@ export default function Auth() {
                 onChangeText={setConfirm}
                 secureTextEntry
                 autoCapitalize="none"
+                autoComplete="new-password"
+                textContentType="newPassword"
+                editable={!busy}
               />
             ) : null}
             {mode === 'create' && password.length > 0 && !passwordsMatch ? (
@@ -186,7 +232,10 @@ export default function Auth() {
         </Card>
       </Animated.View>
 
-      <SecurityBadge />
+      <SecurityBadge
+        label="Encrypted access"
+        detail="Email and password credentials • Encrypted connection • Private identity"
+      />
 
       {error ? (
         <Card variant="risk" accessibilityRole="alert">
@@ -203,6 +252,26 @@ export default function Auth() {
 }
 
 const styles = StyleSheet.create({
+  switcher: {
+    flexDirection: 'row',
+    padding: 4,
+    borderRadius: Radius.md,
+    backgroundColor: Palette.surfaceSoft,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.line,
+  },
+  switchTab: {
+    flex: 1,
+    minHeight: Layout.minTapTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: Radius.sm,
+  },
+  switchTabOn: {
+    backgroundColor: Palette.accentMuted,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.lineStrong,
+  },
   authCard: {
     gap: Spacing.four,
   },

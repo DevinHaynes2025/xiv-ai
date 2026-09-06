@@ -27,6 +27,7 @@ type Props = {
   onBack?: () => void;
   tabbed?: boolean;
   scroll?: boolean;
+  distribute?: boolean;
   atmosphere?: Atmosphere;
 };
 
@@ -36,6 +37,7 @@ export function Screen({
   onBack,
   tabbed,
   scroll = true,
+  distribute = false,
   atmosphere = 'restrained',
 }: Props) {
   const insets = useSafeAreaInsets();
@@ -80,6 +82,7 @@ export function Screen({
           <ScrollView
             contentContainerStyle={[
               styles.content,
+              distribute && styles.distribute,
               {
                 paddingBottom: footer
                   ? Spacing.four
@@ -88,6 +91,7 @@ export function Screen({
             ]}
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode="on-drag"
+            automaticallyAdjustKeyboardInsets
             showsVerticalScrollIndicator={false}
           >
             {children}
@@ -146,6 +150,11 @@ const styles = StyleSheet.create({
     maxWidth: Layout.maxContentWidth,
     width: '100%',
     alignSelf: 'center',
+  },
+
+  distribute: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
   },
 
   fill: {

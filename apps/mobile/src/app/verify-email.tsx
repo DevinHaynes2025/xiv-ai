@@ -9,11 +9,14 @@ import { Screen } from '@/components/xiv/screen';
 import { SecurityBadge } from '@/components/xiv/security-badge';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Shadows, Spacing } from '@/constants/theme';
+import { useCompactLayout } from '@/hooks/use-compact-layout';
 
 export default function VerifyEmail() {
   const router = useRouter();
   const params = useLocalSearchParams<{ email?: string }>();
   const email = params.email ?? 'your email';
+  const { compact } = useCompactLayout();
+  const ring = compact ? 72 : 88;
 
   return (
     <Screen
@@ -32,8 +35,8 @@ export default function VerifyEmail() {
       />
 
       <View style={styles.iconSlot} accessible accessibilityLabel="Email verification">
-        <View style={styles.iconRing}>
-          <Icon name={{ ios: 'envelope.fill', android: 'mail', web: 'mail' }} size={36} />
+        <View style={[styles.iconRing, { width: ring, height: ring, borderRadius: ring / 2 }]}>
+          <Icon name={{ ios: 'envelope.fill', android: 'mail', web: 'mail' }} size={compact ? 28 : 36} />
         </View>
       </View>
 
@@ -41,7 +44,9 @@ export default function VerifyEmail() {
         <XivText variant="caption" color={Palette.accent}>
           Confirmation sent
         </XivText>
-        <XivText variant="subtitle">{email}</XivText>
+        <XivText variant="subtitle" style={styles.email}>
+          {email}
+        </XivText>
         <XivText variant="body" muted style={styles.gap}>
           Check your inbox and spam folder. After you verify, sign in with the same email and
           password.
@@ -62,9 +67,6 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.two,
   },
   iconRing: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Palette.accentSoft,
@@ -73,9 +75,12 @@ const styles = StyleSheet.create({
     ...Shadows.glow,
   },
   card: {
-    gap: Spacing.one,
+    gap: Spacing.two,
+  },
+  email: {
+    flexShrink: 1,
   },
   gap: {
-    marginTop: Spacing.two,
+    marginTop: Spacing.one,
   },
 });

@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { Palette, Spacing } from '@/constants/theme';
+import { Palette, Radius, Spacing } from '@/constants/theme';
 
 import { XivText } from './text';
 
@@ -11,7 +11,7 @@ export function TrustStrip() {
     <View
       accessibilityRole="text"
       accessibilityLabel={ITEMS.join('. ')}
-      style={styles.row}>
+      style={styles.bar}>
       {ITEMS.map((item, index) => (
         <View key={item} style={styles.item}>
           {index > 0 ? <View style={styles.dot} /> : null}
@@ -25,13 +25,18 @@ export function TrustStrip() {
 }
 
 const styles = StyleSheet.create({
-  row: {
+  bar: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     gap: Spacing.two,
-    paddingVertical: Spacing.two,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.three,
+    borderRadius: Radius.md,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.line,
+    backgroundColor: Palette.surfaceSoft,
   },
   item: {
     flexDirection: 'row',

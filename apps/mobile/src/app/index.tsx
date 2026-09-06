@@ -17,6 +17,7 @@ import { BrandMark } from '@/components/xiv/brand-mark';
 import { CinematicBackdrop } from '@/components/xiv/cinematic-backdrop';
 import { XivText } from '@/components/xiv/text';
 import { Layout, Palette, Shadows, Spacing } from '@/constants/theme';
+import { useCompactLayout } from '@/hooks/use-compact-layout';
 import { useSession } from '@/hooks/use-session';
 
 SplashScreen.preventAutoHideAsync();
@@ -57,6 +58,7 @@ function IntelligencePulse() {
 export default function Splash() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { compact, short } = useCompactLayout();
   const { ready, destination } = useSession();
   const routed = useRef(false);
 
@@ -81,10 +83,10 @@ export default function Splash() {
       ]}>
       <CinematicBackdrop atmosphere="cinematic" />
 
-      <View style={styles.center}>
+      <View style={[styles.center, short && styles.centerShort]}>
         <Animated.View entering={FadeIn.duration(480)} style={styles.brand}>
           <View accessible accessibilityRole="image" accessibilityLabel="XIV AI">
-            <BrandMark size={48} />
+            <BrandMark size={compact ? 40 : 48} />
           </View>
           <XivText variant="label" color={Palette.accent}>
             XIV AI
@@ -95,10 +97,16 @@ export default function Splash() {
         </Animated.View>
 
         <Animated.View entering={FadeInUp.duration(560).delay(90)} style={styles.hero}>
-          <XivText variant="hero" style={styles.heroLine}>
+          <XivText
+            variant="hero"
+            maxFontSizeMultiplier={1.1}
+            style={[styles.heroLine, compact && styles.heroLineCompact]}>
             One World.
           </XivText>
-          <XivText variant="hero" style={styles.heroLine}>
+          <XivText
+            variant="hero"
+            maxFontSizeMultiplier={1.1}
+            style={[styles.heroLine, compact && styles.heroLineCompact]}>
             One Platform.
           </XivText>
           <XivText variant="title" color={Palette.accent} style={styles.accent}>
@@ -135,6 +143,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: Spacing.six,
+  },
+  centerShort: {
+    gap: Spacing.four,
+  },
+  heroLineCompact: {
+    fontSize: 34,
+    lineHeight: 38,
   },
   brand: {
     alignItems: 'center',

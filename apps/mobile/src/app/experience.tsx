@@ -1,11 +1,12 @@
 import { type Href, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
 import { Icon } from '@/components/xiv/icon';
 import { OnboardingHero } from '@/components/xiv/onboarding-hero';
+import { PressScale } from '@/components/xiv/press-scale';
 import { Screen } from '@/components/xiv/screen';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Radius, Shadows, Spacing } from '@/constants/theme';
@@ -89,7 +90,7 @@ export default function ChooseExperience() {
           const copy = EXPERIENCE_COPY[item.id];
           const selected = pending === item.id;
           return (
-            <Pressable
+            <PressScale
               key={item.id}
               disabled={busy}
               onPress={() => void choose(item.id)}
@@ -98,14 +99,26 @@ export default function ChooseExperience() {
               accessibilityState={{ selected, disabled: busy }}>
               <Card variant={selected ? 'hero' : 'accent'} style={[styles.card, selected && styles.cardOn]}>
                 <View style={[styles.icon, selected && styles.iconOn]}>
-                  <Icon name={{ ios: item.ios, android: item.android, web: item.android }} size={26} />
+                  <Icon name={{ ios: item.ios, android: item.android, web: item.android }} size={22} />
                 </View>
-                <XivText variant="title">{copy.name}</XivText>
-                <XivText variant="body" muted>
-                  {copy.description}
-                </XivText>
+                <View style={styles.copy}>
+                  <XivText variant="subtitle">{copy.name}</XivText>
+                  <XivText variant="caption" muted>
+                    {copy.description}
+                  </XivText>
+                  {selected ? (
+                    <XivText variant="label" color={Palette.accent}>
+                      Opening…
+                    </XivText>
+                  ) : null}
+                </View>
+                <Icon
+                  name={{ ios: 'chevron.right', android: 'chevron_right', web: 'chevron_right' }}
+                  size={16}
+                  color={selected ? Palette.accentBright : Palette.textDim}
+                />
               </Card>
-            </Pressable>
+            </PressScale>
           );
         })}
       </View>
@@ -125,27 +138,33 @@ export default function ChooseExperience() {
 
 const styles = StyleSheet.create({
   list: {
-    gap: Spacing.three,
+    gap: Spacing.two,
   },
   card: {
-    gap: Spacing.two,
-    minHeight: 132,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
+    minHeight: 96,
+    paddingVertical: Spacing.three,
   },
   cardOn: {
     ...Shadows.intelligence,
   },
   icon: {
-    width: 48,
-    height: 48,
-    borderRadius: Radius.md,
+    width: 44,
+    height: 44,
+    borderRadius: Radius.sm,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Palette.accentMuted,
-    marginBottom: Spacing.one,
   },
   iconOn: {
     backgroundColor: Palette.intelligenceSoft,
+  },
+  copy: {
+    flex: 1,
+    gap: 4,
+    minWidth: 0,
   },
   errorBody: {
     marginTop: Spacing.one,

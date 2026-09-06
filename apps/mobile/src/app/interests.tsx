@@ -102,6 +102,10 @@ export default function Interests() {
         support="Choose the subjects, industries, and opportunities you want your XIV environment to prioritize."
       />
 
+      <XivText variant="caption" muted>
+        {selected.length} selected
+      </XivText>
+
       {groups.map((group) => (
         <View key={group.title} style={styles.group}>
           <XivText variant="label" color={Palette.textDim}>
@@ -136,7 +140,7 @@ export default function Interests() {
 
 const styles = StyleSheet.create({
   group: {
-    gap: Spacing.two,
+    gap: Spacing.three,
   },
   wrap: {
     flexDirection: 'row',
