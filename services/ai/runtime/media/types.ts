@@ -11,8 +11,20 @@ export type MediaKind =
   | 'review'
   | 'idea';
 
-export type MediaUploadStatus = 'pending' | 'authorized' | 'quarantined' | 'rejected' | 'complete' | 'failed';
-export type MediaScanStatus = 'pending' | 'scanning' | 'safe' | 'rejected' | 'failed';
+export type MediaPipelineStatus =
+  | 'selected'
+  | 'authorized'
+  | 'uploading'
+  | 'quarantined'
+  | 'validating'
+  | 'scanning'
+  | 'processing'
+  | 'ready'
+  | 'rejected'
+  | 'failed';
+
+export type MediaUploadStatus = MediaPipelineStatus | 'pending' | 'complete';
+export type MediaScanStatus = 'pending' | 'scanning' | 'safe' | 'rejected' | 'failed' | 'unavailable';
 export type MediaProcessingStatus = 'pending' | 'processing' | 'ready' | 'failed';
 
 export type MediaAsset = {
@@ -36,6 +48,8 @@ export type MediaAsset = {
   createdAt: string;
   source: 'client' | 'company' | 'agent_artifact';
   prototype: boolean;
+  pipelineStatus?: MediaPipelineStatus;
+  publicUrl?: string | null;
 };
 
 export type MediaScanResult = {

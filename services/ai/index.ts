@@ -50,6 +50,7 @@ export {
   XIV_AGENT_REGISTRY,
   XIV_TOOL_REGISTRY,
   analyzeBusinessHealth,
+  analyzeLiveBusinessHealth,
   analyzeOperations,
   analyzeSupplyChain,
   createAgentRuntime,
@@ -68,6 +69,7 @@ export {
   runGuardianCheck,
   runGuardianSnapshot,
   summarizeExecutiveBrief,
+  summarizeLiveExecutiveBrief,
   summarizeExecutiveHealth,
   toStructuredHealthResult,
 } from './runtime';

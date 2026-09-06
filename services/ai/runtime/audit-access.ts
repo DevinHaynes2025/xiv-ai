@@ -22,7 +22,7 @@ export type AccessAuditInput = {
   decision: 'allowed' | 'denied' | 'requires_approval';
 };
 
-const SECRET = /(password|token|api[_-]?key|secret|private[_-]?key)/i;
+const SECRET = /(password|token|api[_-]?key|secret|private[_-]?key|X-Amz-|signature=|sig=)/i;
 
 export function sanitizeAuditText(value: string) {
   return value
@@ -31,6 +31,12 @@ export function sanitizeAuditText(value: string) {
     .join(' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+export function stripSignedUrlSecrets(value: string) {
+  return value
+    .replace(/[?&](X-Amz-[^=]+|signature|sig|token|api[_-]?key)=[^&\s]+/gi, '')
+    .replace(/https?:\/\/[^\s]+/gi, (url) => url.split('?')[0] ?? url);
 }
 
 export function recordAccessEvent(store: AuditStore, input: AccessAuditInput) {
@@ -42,7 +48,9 @@ export function recordAccessEvent(store: AuditStore, input: AccessAuditInput) {
     verdict: input.decision === 'requires_approval' ? 'requires_approval' : input.decision === 'allowed' ? 'allowed' : 'denied',
     toolId: input.toolId,
     note: sanitizeAuditText(
-      `${input.category} ${input.decision} universe=${input.universeId ?? 'none'} org=${input.organizationId ?? 'none'} resource=${input.resourceId ?? 'none'} reason=${input.reason}`,
+      stripSignedUrlSecrets(
+        `${input.category} ${input.decision} universe=${input.universeId ?? 'none'} org=${input.organizationId ?? 'none'} resource=${input.resourceId ?? 'none'} reason=${input.reason}`,
+      ),
     ),
     status: input.decision === 'denied' ? 'denied' : input.decision === 'requires_approval' ? 'awaiting_approval' : 'completed',
   });

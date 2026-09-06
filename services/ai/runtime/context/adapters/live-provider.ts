@@ -1,8 +1,10 @@
 import { buildExecutiveBrief } from '../../brief';
 import type { BusinessContextProvider, DataAvailability } from '../provider';
 import type { BusinessContext } from '../types';
+import { buildLiveHealthFromRecords } from '../live-findings';
 import { buildUnavailableHealthReport } from '../live-report';
-import type { DataProvenance, LiveSourceStatus } from './types';
+import { emptyDomainCapabilities } from './session-records';
+import type { DataDomainCapability, DataProvenance, LiveSourceStatus } from './types';
 
 /**
  * Live-aware provider. Never copies prototype sample findings into a live/unavailable result.
@@ -11,13 +13,24 @@ export function createLiveContextProvider(input: {
   status: LiveSourceStatus;
   provenance: DataProvenance | null;
   organizationName?: string;
+  records?: readonly Record<string, unknown>[];
+  domains?: DataDomainCapability;
 }): BusinessContextProvider {
   const availability: DataAvailability = {
     status: input.status,
     message: input.status === 'live' ? 'LIVE DATA' : 'Live source unavailable',
     prototype: false,
   };
-  const report = buildUnavailableHealthReport(input);
+  const report =
+    input.status === 'unavailable' || input.status === 'not_configured'
+      ? buildUnavailableHealthReport(input)
+      : buildLiveHealthFromRecords({
+          records: input.records ?? [],
+          provenance: input.provenance,
+          status: input.status,
+          domains: input.domains ?? emptyDomainCapabilities(),
+          organizationName: input.organizationName,
+        });
   const context: BusinessContext = {
     prototype: false,
     organization: report.organization,

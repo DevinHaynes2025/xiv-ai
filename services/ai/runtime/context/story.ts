@@ -11,7 +11,7 @@ export type BusinessNarrative = {
   expectedOutcome: StoryBeat;
   evidence: {
     confidence: 'low' | 'medium' | 'high';
-    quality: 'sample' | 'prototype';
+    quality: 'sample' | 'prototype' | 'live';
     sourceLabels: readonly string[];
   };
   disclaimer: string;

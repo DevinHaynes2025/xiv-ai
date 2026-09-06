@@ -21,11 +21,15 @@ function provenance(
     sourceRecordId: null,
     organizationId: options.organizationId ?? null,
     universeId: options.universeId ?? null,
+    ownerId: null,
+    scope: 'public',
     retrievedAt,
-    freshness: status === 'live' ? 'live' : status === 'stale' ? 'stale' : 'unknown',
+    freshness: status === 'live' ? 'fresh' : status === 'stale' ? 'stale' : 'unknown',
+    freshnessStatus: status === 'live' ? 'fresh' : status === 'stale' ? 'stale' : 'unknown',
     live: status === 'live',
     prototype: false,
     confidence: status === 'live' ? 'medium' : 'low',
+    dataClassification: 'public',
   };
 }
 
@@ -72,7 +76,22 @@ export function createHttpHealthAdapter(options: HttpHealthAdapterOptions = {}):
 
   return {
     getCapabilities() {
-      return { read: true, write: false, metrics: false, records: false, connectionHealth: true };
+      return {
+        read: true,
+        write: false,
+        metrics: false,
+        records: false,
+        connectionHealth: true,
+        domains: {
+          operations: false,
+          inventory: false,
+          supply_chain: false,
+          warehouse: false,
+          customer: false,
+          finance: false,
+          technology: false,
+        },
+      };
     },
     getSourceMetadata(): SourceMetadata {
       return {
@@ -88,7 +107,7 @@ export function createHttpHealthAdapter(options: HttpHealthAdapterOptions = {}):
     },
     async getFreshness() {
       const status = await probe();
-      return status === 'live' ? 'live' : 'unknown';
+      return status === 'live' ? 'fresh' : 'unknown';
     },
     async fetchMetrics() {
       const status = await probe();

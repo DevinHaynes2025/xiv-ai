@@ -59,13 +59,13 @@ export type BusinessContext = {
 
 export type CausalChainStep = {
   label: string;
-  prototype: true;
+  prototype: boolean;
   stance?: 'observed' | 'inferred' | 'hypothesized' | 'recommended';
   step?: number;
 };
 
 export type DiagnosticStory = {
-  prototype: true;
+  prototype: boolean;
   whatHappened: string;
   whyItMatters: string;
   likelyCauses: readonly string[];

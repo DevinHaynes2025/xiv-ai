@@ -5,8 +5,8 @@ export function createUnavailableScanner(): MediaScanner {
     async scan(asset: MediaAsset): Promise<MediaScanResult> {
       return {
         mediaId: asset.mediaId,
-        status: 'pending',
-        engine: 'not_implemented',
+        status: 'unavailable',
+        engine: 'unavailable',
         prototype: true,
       };
     },

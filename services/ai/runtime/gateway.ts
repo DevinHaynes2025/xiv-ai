@@ -5,6 +5,7 @@ import { findingsForDomain } from './context/report';
 import type { BusinessHealthReport } from './context/report';
 import { buildDiagnosticStory, buildNarrative } from './context/story';
 import type { DiagnosticStory } from './context/types';
+import { createUnavailableMediaIntelligence } from './media/intelligence';
 import type { RuntimeToolId } from './tools';
 
 export type ToolInvokeInput = {
@@ -108,7 +109,18 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
   diagnostic_story_builder: (input, provider) => {
     const context = provider.getBusinessContext();
     const report = provider.getBusinessHealthReport();
-    const finding = report.findings.find((item) => item.domain === 'operations') ?? report.findings[0];
+    const preferred =
+      input.agentId === 'operations'
+        ? 'operations'
+        : input.agentId === 'supply_chain'
+          ? 'supply_chain'
+          : input.agentId === 'technology'
+            ? 'technology'
+            : undefined;
+    const finding =
+      (preferred ? report.findings.find((item) => item.domain === preferred) : undefined) ??
+      report.findings.find((item) => item.domain === 'operations') ??
+      report.findings[0];
     const story = buildDiagnosticStory(context, finding);
     return {
       prototype: true,
@@ -161,6 +173,26 @@ const PROTOTYPE_HANDLERS: Record<RuntimeToolId, ToolHandler> = {
       healthReport: report,
       brief,
       output: { brief, financialImpactClaimed: false },
+    };
+  },
+  media_intelligence_reader: (input) => {
+    const intelligence = createUnavailableMediaIntelligence();
+    return {
+      prototype: true,
+      toolId: input.toolId,
+      summary: 'Media intelligence is not operational. Agents cannot open arbitrary user files.',
+      story: null,
+      healthReport: null,
+      brief: null,
+      output: {
+        live: false,
+        operational: false,
+        configured: false,
+        via: 'governed_media_tool',
+        directFileAccess: false,
+        result: null,
+        note: intelligence ? 'Scanner and media intelligence remain unavailable.' : 'Unavailable.',
+      },
     };
   },
   health_status_reader: (input, provider) => {

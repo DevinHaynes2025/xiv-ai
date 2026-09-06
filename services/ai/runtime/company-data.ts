@@ -1,16 +1,32 @@
-import { getXivAgent } from './agents';
-import type { DataProvenance, LiveSourceStatus } from './context/adapters/types';
+import { getXivAgent, type XivAgentId } from './agents';
+import { authorizeDataScope, type DataScope } from './context/adapters/scope';
+import type { DataDomainCapability, DataProvenance, LiveSourceStatus } from './context/adapters/types';
 import type { BusinessDataAdapter } from './context/adapters/types';
 import { adapterIsReadOnly, provenanceIsComplete } from './context/adapters/types';
 import { canAgentAccessClassification } from './security/classification';
 import type { DataClassification } from './universe/types';
 
+const AGENT_DATA_DOMAINS: Record<XivAgentId, readonly (keyof DataDomainCapability)[]> = {
+  executive: ['operations', 'inventory', 'supply_chain', 'warehouse', 'customer', 'finance', 'technology'],
+  supply_chain: ['supply_chain'],
+  operations: ['operations'],
+  finance: ['finance'],
+  security: ['technology'],
+  customer_experience: ['customer'],
+  technology: ['technology'],
+  innovation: [],
+  guardian: [],
+};
+
 export type CompanyDataRequest = {
   agentId: string;
+  ownerId?: string | null;
   organizationId?: string | null;
   universeId?: string | null;
   toolId: string;
   capability: 'connection_health' | 'metrics' | 'records';
+  domain?: keyof DataDomainCapability;
+  scope?: DataScope;
   mode: 'read' | 'write';
   classification?: DataClassification;
 };
@@ -23,11 +39,13 @@ export type CompanyDataResult = {
   provenance: DataProvenance | null;
   message: string;
   usedPrototypeFallback: false;
+  unsupportedDomain?: boolean;
+  freshnessStatus?: 'fresh' | 'aging' | 'stale' | 'unknown';
 };
 
 /**
  * Agents must not call adapters directly. All company data reads go through this gateway.
- * Phase 2D is read-only. No mutation methods exist.
+ * Technology domain is not a tenant-scope bypass. Scope is required.
  */
 export function createCompanyDataGateway(adapter: BusinessDataAdapter) {
   if (!adapterIsReadOnly(adapter)) {
@@ -42,15 +60,42 @@ export function createCompanyDataGateway(adapter: BusinessDataAdapter) {
       const agent = getXivAgent(request.agentId);
       if (!agent) return deny('Unknown agent: DENY');
       if (agent.status === 'future') return deny('Future agent cannot read company data.');
-      if (!request.organizationId && request.classification && request.classification !== 'public') {
-        return deny('Missing organization: DENY');
+
+      const classification = request.classification;
+      if (agent.id === 'guardian' && classification && classification !== 'public') {
+        return deny(
+          classification === 'internal'
+            ? 'Guardian cannot read personal session records.'
+            : 'Guardian cannot read organization or Universe business data.',
+        );
       }
-      const classification = request.classification ?? 'internal';
-      if (!canAgentAccessClassification(agent.id, classification)) {
+      if (classification && !canAgentAccessClassification(agent.id, classification)) {
         return deny(`${agent.name} cannot read ${classification} company data.`);
       }
-      if (agent.id === 'guardian' && classification !== 'public') {
-        return deny('Guardian cannot read private business data.');
+      if (request.domain && !AGENT_DATA_DOMAINS[agent.id]?.includes(request.domain)) {
+        return {
+          allowed: false,
+          reason: `${agent.name} is not allowlisted for domain ${request.domain}.`,
+          status: 'denied',
+          records: [],
+          provenance: null,
+          message: `${agent.name} is not allowlisted for domain ${request.domain}.`,
+          usedPrototypeFallback: false,
+          unsupportedDomain: true,
+        };
+      }
+      const capabilities = adapter.getCapabilities();
+      if (request.domain && !capabilities.domains[request.domain]) {
+        return {
+          allowed: false,
+          reason: `Unsupported domain ${request.domain}: unavailable.`,
+          status: 'denied',
+          records: [],
+          provenance: null,
+          message: `Unsupported domain ${request.domain}: unavailable.`,
+          usedPrototypeFallback: false,
+          unsupportedDomain: true,
+        };
       }
 
       const status = await adapter.getConnectionStatus();
@@ -59,6 +104,29 @@ export function createCompanyDataGateway(adapter: BusinessDataAdapter) {
       if (!provenanceIsComplete(dataset.provenance)) {
         return deny('Provenance is required. Dataset rejected.');
       }
+
+      const scoped = authorizeDataScope({
+        agentId: agent.id,
+        request: {
+          agentId: agent.id,
+          ownerId: request.ownerId,
+          organizationId: request.organizationId,
+          universeId: request.universeId,
+          classification,
+          scope: request.scope,
+        },
+        provenance: dataset.provenance,
+      });
+      if (!scoped.allowed) return deny(scoped.reason);
+
+      if (dataset.provenance.scope === 'personal') {
+        const foreign = dataset.records.some((item) => {
+          const owner = typeof item.ownerId === 'string' ? item.ownerId : null;
+          return Boolean(owner && owner !== request.ownerId);
+        });
+        if (foreign) return deny('Personal record owner mismatch: DENY');
+      }
+
       if (status !== 'live') {
         return {
           allowed: true,
@@ -68,16 +136,21 @@ export function createCompanyDataGateway(adapter: BusinessDataAdapter) {
           provenance: dataset.provenance,
           message: 'Live source unavailable',
           usedPrototypeFallback: false,
+          freshnessStatus: dataset.provenance.freshnessStatus ?? 'unknown',
         };
       }
       return {
         allowed: true,
         reason: 'Read through Company Data Gateway.',
-        status,
+        status: dataset.provenance.freshnessStatus === 'stale' ? 'stale' : status,
         records: dataset.records,
         provenance: dataset.provenance,
-        message: dataset.message,
+        message:
+          dataset.provenance.freshnessStatus === 'stale'
+            ? 'STALE DATA. Do not treat as current.'
+            : dataset.message,
         usedPrototypeFallback: false,
+        freshnessStatus: dataset.provenance.freshnessStatus ?? 'unknown',
       };
     },
   };

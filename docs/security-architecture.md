@@ -19,7 +19,9 @@ A compromise of one user, device, Universe, organization, service, storage parti
 | Organization isolation | PROTOTYPE |
 | Data classification | PROTOTYPE |
 | Least privilege | IMPLEMENTED |
-| Signed media access | PROTOTYPE |
+| Signed media access | NOT CONFIGURED (grant shape only) |
+| Media quarantine | IMPLEMENTED (local / conceptual) |
+| Malware scanning | NOT CONFIGURED |
 | Encryption in transit | IMPLEMENTED |
 | Encryption at rest | PLANNED |
 | Key-management abstraction | PROTOTYPE |
@@ -48,7 +50,7 @@ A compromise of one user, device, Universe, organization, service, storage parti
 
 Access records identify who, what, Universe, organization, resource, reason, decision, timestamp.
 
-Never log passwords, tokens, API keys, private encryption keys, or raw secrets.
+Never log passwords, tokens, API keys, signed URL query strings, private encryption keys, or raw secrets. `stripSignedUrlSecrets()` and `sanitizeAuditText()` enforce this on access events.
 
 ## Human approval
 

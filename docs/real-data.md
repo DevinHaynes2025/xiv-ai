@@ -1,6 +1,6 @@
 # XIV Real Data
 
-Phase 2D adds a replaceable **real** read-only adapter beside the prototype Context Provider.
+Phase 2E adds the first meaningful **real** read-only business-data path beside the prototype Context Provider.
 
 ## Status
 
@@ -10,6 +10,9 @@ Phase 2D adds a replaceable **real** read-only adapter beside the prototype Cont
 | BusinessDataAdapter + provenance | IMPLEMENTED |
 | Company Data Gateway (read-only) | IMPLEMENTED |
 | HTTP `/health` connection adapter | IMPLEMENTED (real probe, no invented records) |
+| Authorized session records adapter | IMPLEMENTED (profile identity + agent activity only) |
+| Domain capability map | IMPLEMENTED |
+| Deterministic freshness | IMPLEMENTED |
 | ERP / WMS / TMS adapters | PLANNED |
 | Silent fallback from live → sample | FORBIDDEN |
 
@@ -29,29 +32,54 @@ Agents must not call adapters directly. Agents must not receive database or obje
 
 ## First real source
 
-Existing Supabase tables do **not** hold enterprise business metrics. Phase 2D does not invent those records and does not change schema or RLS.
+Existing Supabase tables do **not** hold enterprise KPIs. Phase 2E does not invent those records and does not change schema or RLS.
 
-The first real adapter is `createHttpHealthAdapter()`:
+The first real record source is `createSessionRecordAdapter()`:
 
-- Probes the existing XIV AI `GET /health` URL when configured
-- Returns `live` | `unavailable` | `not_configured` | `stale`
-- Returns **zero** business metric records
-- Always includes provenance
+- Reads owner-scoped **profile identity** and **governed agent activity** already available under existing RLS
+- Source system: `supabase_owner_rls`
+- Domain capability: `technology: true` only when a reader is configured
+- `operations`, `inventory`, `supply_chain`, `warehouse`, `customer`, `finance` remain `false`
 - Write capability is `false`
 
-If the live source is down or unconfigured, the UI/runtime shows **Live source unavailable**. It does **not** substitute Northstar sample findings.
+The HTTP `/health` adapter remains a **connection-health** probe. It still returns **zero** ERP/WMS/TMS records.
+
+If a live source is down or unconfigured, the runtime shows **SOURCE UNAVAILABLE** or **NOT CONFIGURED**. It does **not** substitute Northstar sample findings.
 
 ## Provenance (required)
 
-Every dataset includes:
+Every live dataset includes:
 
 - sourceId, sourceSystem, sourceType
 - sourceRecordId (nullable)
+- ownerId, scope (`public` | `personal` | `organization` | `universe`)
 - organizationId, universeId
-- retrievedAt, freshness
+- retrievedAt, sourceUpdatedAt when known
+- freshness / freshnessStatus
 - live, prototype, confidence
+- dataClassification
 
 Provenance is not optional. Incomplete provenance is rejected.
+
+`technology` is a domain, not a tenant scope. It does not bypass owner, organization, or Universe checks.
+
+- `scope=personal` → ownerId required and must match the caller
+- `scope=organization` → organizationId required
+- `scope=universe` → organizationId + universeId required
+- `scope=public` → explicit `dataClassification: public` on the dataset and the request. Public is never inferred from missing metadata.
+
+Session profile/activity records are `personal` unless a real organization/Universe relationship is present. Profile company/title fields are user-declared identity, not organization-authoritative business records.
+
+## Freshness
+
+`classifyFreshness()` is timestamp-based, not LLM judgment:
+
+- fresh ≤ 15 minutes
+- aging ≤ 6 hours
+- otherwise stale
+- unknown when no usable timestamp
+
+Agents must not present stale information as current.
 
 ## Labels
 
@@ -59,5 +87,6 @@ Provenance is not optional. Incomplete provenance is rejected.
 - PROTOTYPE DATA
 - STALE DATA
 - SOURCE UNAVAILABLE
+- NOT CONFIGURED
 
 Prototype remains for development, testing, CI, offline, and demonstration only. Never present it as live company data.

@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { useSession } from '@/hooks/use-session';
 import {
   analyzeBusinessHealth,
+  analyzeLiveBusinessHealth,
   analyzeSupplyChain,
   getDefaultAgentRuntime,
   probeLiveCompanySource,
   proposeOperationalChange,
   runGuardianSnapshot,
   summarizeExecutiveBrief,
+  summarizeLiveExecutiveBrief,
   summarizeExecutiveHealth,
   type GovernedResult,
   type GuardianHealthReport,
 } from '@/lib/ai';
+import { loadAuthorizedSessionRecords } from '@/lib/session-records';
 import { probeAiService } from '@/lib/xiv-ai-api';
 
 export function useGovernedRuntime() {
@@ -42,16 +45,33 @@ export function useGovernedRuntime() {
     setLastResult(summarizeExecutiveBrief());
   };
 
-  const runLiveSource = () => {
+  const withSessionRecords = async (
+    run: (
+      sessionRecords: Awaited<ReturnType<typeof loadAuthorizedSessionRecords>> | undefined,
+      ownerId: string | null,
+    ) => Promise<GovernedResult>,
+  ) => {
     if (busy) return;
     setBusy(true);
-    void probeLiveCompanySource()
-      .then((next) => {
-        setLastResult(next);
-      })
-      .finally(() => {
-        setBusy(false);
-      });
+    try {
+      const ownerId = session.userId || null;
+      const sessionRecords = ownerId ? await loadAuthorizedSessionRecords(session) : undefined;
+      setLastResult(await run(sessionRecords, ownerId));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const runLiveSource = () => {
+    void withSessionRecords((sessionRecords, ownerId) => probeLiveCompanySource({ sessionRecords, ownerId }));
+  };
+
+  const runLiveHealth = () => {
+    void withSessionRecords((sessionRecords, ownerId) => analyzeLiveBusinessHealth({ sessionRecords, ownerId }));
+  };
+
+  const runLiveBrief = () => {
+    void withSessionRecords((sessionRecords, ownerId) => summarizeLiveExecutiveBrief({ sessionRecords, ownerId }));
   };
 
   const runPropose = () => {
@@ -105,6 +125,8 @@ export function useGovernedRuntime() {
     runExecutiveSummary,
     runExecutiveBrief,
     runLiveSource,
+    runLiveHealth,
+    runLiveBrief,
     runPropose,
     decide,
     snapshot,

@@ -1,6 +1,6 @@
-# XIV Agent Runtime — Phase 2D
+# XIV Agent Runtime — Phase 2E
 
-Governed Agent Runtime with Universe isolation, a Company Data Gateway, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
+Governed Agent Runtime with Universe isolation, a Company Data Gateway, authorized session records, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 Governed Runtime ≠ Live Gemini Executive turn path.
 
@@ -77,6 +77,7 @@ All tools still pass `evaluatePolicy()`:
 - business health report
 - company data reader (Company Data Gateway only)
 - executive brief builder
+- media intelligence reader (not operational; no direct file access)
 - health / status reader
 - development health checker (Guardian — does not invoke the host runner)
 
@@ -184,7 +185,7 @@ From `services/ai`:
 
 `npm run test:runtime`
 
-Covers Phase 2A/2B/2C plus Phase 2D: Universe isolation, media validation, quotas, no storage credentials, read-only adapter, required provenance, no silent live→prototype fallback, Company Data Gateway, Guardian cannot read private business data, Executive brief/read still allowed, production writes denied, approval does not override policy, L4 disabled, Guardian check-ID and no raw shell.
+Covers Phase 2A–2E: Universe isolation, media validation, quotas, no storage credentials, required provenance, no silent live→prototype fallback, domain capabilities, stale labeling, Company Data Gateway, Guardian cannot read confidential company data, production writes denied, approval does not override policy, L4 disabled, Guardian check-ID and no raw shell.
 
 Host validation (optional, trusted machine only):
 

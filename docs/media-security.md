@@ -1,16 +1,19 @@
 # XIV Media Security
 
-Phase 2D media architecture. **Production uploads are not enabled.**
+Phase 2E media architecture. **Production uploads are not enabled.**
 
 ## Status
 
 | Piece | Maturity |
 | --- | --- |
 | MediaAsset types + validation | IMPLEMENTED |
+| Local photo / video selection | IMPLEMENTED |
+| Quarantine after select | IMPLEMENTED |
 | Consumer vs company read policy | IMPLEMENTED |
 | Storage abstraction + quotas | IMPLEMENTED (no cloud SDK) |
-| Signed upload / quarantine / scan / transcode | PLANNED |
-| Malware scanning | PLANNED |
+| Signed upload grant shape | IMPLEMENTED (`uploadEnabled: false`) |
+| Cloud signed upload | NOT CONFIGURED |
+| Malware scanning | NOT CONFIGURED (`unavailable`, never `safe`) |
 | Media intelligence (image/video/transcript) | PROTOTYPE interface only — not operational |
 
 ## Pipeline (target)
@@ -29,7 +32,7 @@ Client
   → CDN / signed delivery
 ```
 
-Phase 2D implements authorization, validation, and opaque storage references only. `uploadEnabled` is false. Deletion is governed and disabled.
+Phase 2E implements local selection, validation, quarantine labeling, and honest upload denial. `uploadEnabled` is false. Deletion is governed and disabled. See [media-pipeline.md](./media-pipeline.md).
 
 ## Validation (deterministic)
 

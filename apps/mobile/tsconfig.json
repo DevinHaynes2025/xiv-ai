@@ -31,6 +31,8 @@
     "../../services/ai/runtime/phase2b.test.ts",
     "../../services/ai/runtime/phase2c.test.ts",
     "../../services/ai/runtime/phase2d.test.ts",
+    "../../services/ai/runtime/phase2e.test.ts",
+    "../../services/ai/business-api.ts",
     "../../services/ai/runtime/guardian/host.ts",
     "../../services/ai/runtime/guardian/validate.ts"
   ]

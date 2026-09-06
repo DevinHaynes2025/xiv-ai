@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { briefStatus, DataStatusMark } from '@/components/agents/data-status';
+import { briefStatus, DataStatusMark, statusFromReport } from '@/components/agents/data-status';
 import { GovernedApprovalCard } from '@/components/agents/governed-approval-card';
 import { GovernedAuditTrail } from '@/components/agents/governed-audit-trail';
 import { GovernedHealthResult } from '@/components/agents/governed-health-result';
@@ -33,6 +33,8 @@ export function AgentRuntimeStatus() {
     runExecutiveSummary,
     runExecutiveBrief,
     runLiveSource,
+    runLiveHealth,
+    runLiveBrief,
     runPropose,
     decide,
     snapshot,
@@ -48,7 +50,16 @@ export function AgentRuntimeStatus() {
       </View>
       <XivText variant="subtitle">Governed read-only context</XivText>
       <DataStatusMark
-        status={lastResult?.brief ? briefStatus(lastResult.brief) : lastResult?.healthReport ? 'prototype' : 'prototype'}
+        status={
+          lastResult?.brief
+            ? briefStatus(lastResult.brief)
+            : lastResult?.healthReport
+              ? statusFromReport(lastResult.healthReport)
+              : 'prototype'
+        }
+        source={lastResult?.brief?.sources[0] ?? lastResult?.healthReport?.provenance?.sourceSystem}
+        freshness={lastResult?.brief?.freshness ?? lastResult?.healthReport?.freshnessStatus}
+        retrievedAt={lastResult?.brief?.generatedAt ?? lastResult?.healthReport?.generatedAt}
       />
       <XivText variant="body" muted>
         Context comes from a replaceable provider. Policy still decides every tool. Human approval does not override
@@ -87,6 +98,8 @@ export function AgentRuntimeStatus() {
       <Button label="Executive health summary" variant="subtle" disabled={busy} onPress={runExecutiveSummary} />
       <Button label="Executive Intelligence Brief" variant="subtle" disabled={busy} onPress={runExecutiveBrief} />
       <Button label="Check live source" variant="subtle" disabled={busy} onPress={runLiveSource} />
+      <Button label="Live Business Health" variant="subtle" disabled={busy} onPress={runLiveHealth} />
+      <Button label="Live Executive Brief" variant="subtle" disabled={busy} onPress={runLiveBrief} />
       <Button label="Propose recovery window (needs approval)" variant="subtle" disabled={busy} onPress={runPropose} />
 
       {pending.map((action) => (
@@ -147,7 +160,7 @@ export function AgentRuntimeStatus() {
 
       <GovernedAuditTrail actions={actions} />
 
-      <PrototypeNotice text="Phase 2D. Prototype sample and live source status are labeled separately. No production action is executed. No storage credentials are shown." />
+      <PrototypeNotice text="Phase 2E. Prototype buttons stay sample. Live buttons use authorized session records and never invent ERP data. No production action is executed. Upload is not configured." />
     </Card>
   );
 }

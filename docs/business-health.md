@@ -89,7 +89,9 @@ Stances:
 - `generatedAt`
 - `prototype: true`
 
-The prototype Context Provider (`getBusinessHealthReport()`) is the only current source. No ERP, WMS, TMS, or CRM is connected. People findings are aggregate only.
+Live reports use `buildLiveHealthFromRecords()` when authorized session records are present. Operational domains stay unsupported until a real source exists. Prototype findings never appear in a live report. Financial impact is labeled unavailable.
+
+The prototype Context Provider remains the default for demo buttons. No ERP, WMS, TMS, or CRM is connected. People findings are aggregate only.
 
 `toStructuredHealthResult()` maps a report into the existing structured-result card shape for **presentation**. It does not merge the governed runtime with Gemini.
 
@@ -102,7 +104,9 @@ All access still goes Agent Registry → Policy Engine → Tool Gateway.
 | Supply Chain | supply-chain findings | reallocate suppliers |
 | Operations | operations findings / diagnostic story | change production systems |
 | Executive | cross-domain report | execute production actions |
-| Guardian | system/validation health only | read business context or run host checks |
+| Technology | approved system/technology context | change production software |
+| Security | security / health signals per policy | rotate secrets |
+| Guardian | system/validation health only | read confidential company datasets or run arbitrary shell |
 
 `business_health_report` is a read-only L0 tool. Guardian is not allowlisted for it.
 

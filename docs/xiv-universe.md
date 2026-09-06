@@ -1,6 +1,6 @@
 # XIV Universe
 
-Phase 2D domain and isolation model. **No database migration.** This does not replace existing auth, RLS, or session provisioning.
+Phase 2E domain and isolation model. **No database migration.** This does not replace existing auth, RLS, or session provisioning.
 
 ## Status
 
@@ -8,6 +8,7 @@ Phase 2D domain and isolation model. **No database migration.** This does not re
 | --- | --- |
 | Universe / membership / resource types | IMPLEMENTED (in-memory domain) |
 | Deterministic isolation helpers | IMPLEMENTED |
+| Company media Universe check | IMPLEMENTED (deny when missing) |
 | Persisted Universes | PLANNED |
 | Cross-Universe relationships | PLANNED |
 

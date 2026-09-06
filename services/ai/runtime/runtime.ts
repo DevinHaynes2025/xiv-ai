@@ -3,7 +3,10 @@ import { createApprovalService, type ApprovalService } from './approval';
 import { getXivAgent } from './agents';
 import { getPrototypeAuditStore, type AuditStore } from './audit';
 import { readAuthorizedCompanyData } from './context/adapters/authorized-read';
+import { createCompositeBusinessAdapter } from './context/adapters/composite';
+import { createHttpHealthAdapter, resolveConfiguredHealthUrl } from './context/adapters/http-health';
 import { createLiveContextProvider } from './context/adapters/live-provider';
+import { createSessionRecordAdapter, type AuthorizedSessionRecord } from './context/adapters/session-records';
 import type { LiveSourceStatus } from './context/adapters/types';
 import type { BusinessContextProvider } from './context/provider';
 import { createPrototypeContextProvider } from './context/prototype';
@@ -238,18 +241,29 @@ export function readCompanyDataContext(): GovernedResult {
   });
 }
 
-/**
- * Probes the real HTTP health adapter through the Company Data Gateway.
- * Never substitutes prototype findings when the live source is down.
- */
-export async function probeLiveCompanySource(): Promise<GovernedResult> {
-  const live = await readAuthorizedCompanyData({
-    agentId: 'executive',
-    toolId: 'company_data_reader',
-    capability: 'connection_health',
-    mode: 'read',
-    classification: 'public',
-  });
+async function createLiveGovernedRuntime(options?: {
+  sessionRecords?: readonly AuthorizedSessionRecord[];
+  ownerId?: string | null;
+}) {
+  const health = createHttpHealthAdapter({ healthUrl: resolveConfiguredHealthUrl() });
+  const ownerId = options?.ownerId ?? options?.sessionRecords?.[0]?.ownerId ?? null;
+  const records = ownerId && options?.sessionRecords
+    ? createSessionRecordAdapter({ reader: () => [...options.sessionRecords!], ownerId })
+    : undefined;
+  const adapter = createCompositeBusinessAdapter({ health, records });
+  const live = await readAuthorizedCompanyData(
+    {
+      agentId: 'executive',
+      toolId: 'company_data_reader',
+      capability: records ? 'records' : 'connection_health',
+      mode: 'read',
+      classification: records ? 'internal' : 'public',
+      domain: records ? 'technology' : undefined,
+      scope: records ? 'personal' : 'public',
+      ownerId,
+    },
+    adapter,
+  );
   const status: LiveSourceStatus =
     live.status === 'live' || live.status === 'unavailable' || live.status === 'not_configured' || live.status === 'stale'
       ? live.status
@@ -257,15 +271,55 @@ export async function probeLiveCompanySource(): Promise<GovernedResult> {
   const provider = createLiveContextProvider({
     status,
     provenance: live.provenance,
+    records: live.records,
+    domains: adapter.getCapabilities().domains,
   });
   return createAgentRuntime({
     store: defaultRuntime.store,
     context: provider,
     approval: defaultRuntime.approval,
-  }).request({
+  });
+}
+
+/**
+ * Probes authorized live sources through the Company Data Gateway.
+ * Never substitutes prototype findings when a live source is down.
+ */
+export async function probeLiveCompanySource(options?: {
+  sessionRecords?: readonly AuthorizedSessionRecord[];
+  ownerId?: string | null;
+}): Promise<GovernedResult> {
+  const runtime = await createLiveGovernedRuntime(options);
+  return runtime.request({
     agentId: 'executive',
     toolId: 'company_data_reader',
     intent: 'Probe live company source',
+    environment: 'development',
+  });
+}
+
+export async function analyzeLiveBusinessHealth(options?: {
+  sessionRecords?: readonly AuthorizedSessionRecord[];
+  ownerId?: string | null;
+}): Promise<GovernedResult> {
+  const runtime = await createLiveGovernedRuntime(options);
+  return runtime.request({
+    agentId: 'executive',
+    toolId: 'business_health_report',
+    intent: 'Analyze live Business Health from authorized sources',
+    environment: 'development',
+  });
+}
+
+export async function summarizeLiveExecutiveBrief(options?: {
+  sessionRecords?: readonly AuthorizedSessionRecord[];
+  ownerId?: string | null;
+}): Promise<GovernedResult> {
+  const runtime = await createLiveGovernedRuntime(options);
+  return runtime.request({
+    agentId: 'executive',
+    toolId: 'executive_brief_builder',
+    intent: 'Generate live Executive Intelligence Brief',
     environment: 'development',
   });
 }

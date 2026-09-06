@@ -17,6 +17,8 @@ export type BusinessHealthReport = {
   dataStatus?: LiveSourceStatus | 'prototype';
   provenance?: DataProvenance | null;
   usedPrototypeFallback?: false;
+  unsupportedDomains?: readonly string[];
+  freshnessStatus?: 'fresh' | 'aging' | 'stale' | 'unknown';
 };
 
 function finding(

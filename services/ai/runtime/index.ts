@@ -60,13 +60,24 @@ export type { BusinessHealthReport } from './context/report';
 export { buildUnavailableHealthReport } from './context/live-report';
 export {
   adapterIsReadOnly,
+  classifyFreshness,
+  createCompositeBusinessAdapter,
   createHttpHealthAdapter,
   createLiveContextProvider,
+  authorizeDataScope,
+  createSessionRecordAdapter,
   provenanceIsComplete,
   readAuthorizedCompanyData,
   resolveConfiguredHealthUrl,
 } from './context/adapters';
-export type { BusinessDataAdapter, DataProvenance, LiveSourceStatus } from './context/adapters';
+export type {
+  AuthorizedSessionRecord,
+  BusinessDataAdapter,
+  DataDomainCapability,
+  DataProvenance,
+  DataScope,
+  LiveSourceStatus,
+} from './context/adapters';
 export { buildExecutiveBrief } from './brief';
 export type { DataAvailabilityStatus, ExecutiveBrief } from './brief';
 export { createCompanyDataGateway } from './company-data';
@@ -77,12 +88,29 @@ export {
   canReadUniverseResource,
 } from './universe';
 export type { Universe, UniverseMembership, UniverseResource, UniverseRole, UniverseVisibility } from './universe';
-export { canConsumerReadMedia, canReadMedia, validateMediaAsset, MAX_MEDIA_BYTES } from './media';
-export type { MediaAsset } from './media';
+export {
+  authorizationExpired,
+  canConsumerReadMedia,
+  canReadMedia,
+  checkMediaQuota,
+  createSignedUploadGrant,
+  createUnavailableMediaIntelligence,
+  createUnavailableScanner,
+  mediaIsTrusted,
+  prepareSelectedMedia,
+  privateMediaPublicUrl,
+  quarantineMedia,
+  scanSelectedMedia,
+  signedDownloadFor,
+  validateMediaAsset,
+  MAX_MEDIA_BYTES,
+  MEDIA_SIZE_LIMITS,
+} from './media';
+export type { MediaAsset, MediaDraft } from './media';
 export { authorizationHasCredentials, canReserveStorage, createAbstractStorageProvider, STORAGE_TIERS } from './storage';
 export { consumerCanReadContent } from './content';
 export { canAuthorizePublication, publishingWritesEnabled } from './publishing';
-export { recordAccessEvent, sanitizeAuditText } from './audit-access';
+export { recordAccessEvent, sanitizeAuditText, stripSignedUrlSecrets } from './audit-access';
 export { canAgentAccessClassification, consumerMayAccessClassification } from './security/classification';
 export { SECURITY_CONTROLS } from './security/layers';
 export { findingHasPrototypeLabels } from './context/findings';
@@ -134,6 +162,7 @@ export type { GuardianCheckHandler, GuardianHostAdapter, GuardianRunnerOptions }
 
 export {
   analyzeBusinessHealth,
+  analyzeLiveBusinessHealth,
   analyzeOperations,
   analyzeSupplyChain,
   createAgentRuntime,
@@ -143,6 +172,7 @@ export {
   readCompanyDataContext,
   runGovernedRequest,
   summarizeExecutiveBrief,
+  summarizeLiveExecutiveBrief,
   summarizeExecutiveHealth,
 } from './runtime';
 export type { AgentRuntime, AgentRuntimeOptions, GovernedRequest } from './runtime';

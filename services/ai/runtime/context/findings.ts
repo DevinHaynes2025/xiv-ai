@@ -20,7 +20,7 @@ export type StoryBeat = {
   step: number;
   label: string;
   stance: StoryStance;
-  prototype: true;
+  prototype: boolean;
 };
 
 export type BusinessHealthFinding = {
@@ -35,11 +35,11 @@ export type BusinessHealthFinding = {
   businessImpact: string;
   recommendedActions: readonly string[];
   confidence: 'low' | 'medium' | 'high';
-  evidenceQuality: 'sample' | 'prototype';
+  evidenceQuality: 'sample' | 'prototype' | 'live';
   sourceLabels: readonly ContextSourceLabel[];
   causalChain: readonly StoryBeat[];
   detectedAt: string;
-  prototype: true;
+  prototype: boolean;
   provenance?: DataProvenance | null;
 };
 

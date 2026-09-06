@@ -19,7 +19,7 @@ const LABEL: Record<DataStatusKind, string> = {
   prototype: 'PROTOTYPE DATA',
   stale: 'STALE DATA',
   unavailable: 'SOURCE UNAVAILABLE',
-  not_configured: 'SOURCE UNAVAILABLE',
+  not_configured: 'NOT CONFIGURED',
 };
 
 const DETAIL: Record<DataStatusKind, string> = {
@@ -27,7 +27,7 @@ const DETAIL: Record<DataStatusKind, string> = {
   prototype: 'Prototype / sample environment',
   stale: 'Live source responded with stale data. Do not treat this as current.',
   unavailable: 'Live source unavailable',
-  not_configured: 'Live source unavailable',
+  not_configured: 'Not configured. No live source is wired for this request.',
 };
 
 export function DataStatusMark({

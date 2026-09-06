@@ -15,7 +15,8 @@ export type RuntimeToolId =
   | 'health_status_reader'
   | 'development_health_checker'
   | 'propose_operational_change'
-  | 'human_only_production_change';
+  | 'human_only_production_change'
+  | 'media_intelligence_reader';
 
 export type ToolRiskLevel = 'low' | 'medium' | 'high' | 'critical';
 
@@ -55,6 +56,7 @@ export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
   'company_data_reader',
   'executive_brief_builder',
   'health_status_reader',
+  'media_intelligence_reader',
 ];
 
 export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
@@ -177,6 +179,18 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L1_Recommend,
     allowedAgentIds: ['executive'],
+  },
+  {
+    id: 'media_intelligence_reader',
+    name: 'Media intelligence reader',
+    description: 'Reads authorized derived media intelligence only. No direct file access. Not operational.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: ['executive', 'operations', 'technology', 'security', 'supply_chain'],
   },
   {
     id: 'health_status_reader',
