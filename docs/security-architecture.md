@@ -15,8 +15,8 @@ A compromise of one user, device, Universe, organization, service, storage parti
 | Device / session trust | PROTOTYPE |
 | RBAC | PROTOTYPE |
 | ABAC | PROTOTYPE |
-| Universe isolation | PROTOTYPE |
-| Organization isolation | PROTOTYPE |
+| Universe isolation | PROTOTYPE (in-memory) / MIGRATION AUTHORED — NOT APPLIED |
+| Organization isolation | MIGRATION AUTHORED — NOT APPLIED |
 | Data classification | PROTOTYPE |
 | Least privilege | IMPLEMENTED |
 | Signed media access | NOT CONFIGURED (grant shape only) |

@@ -83,6 +83,24 @@ export type { DataAvailabilityStatus, ExecutiveBrief } from './brief';
 export { createCompanyDataGateway } from './company-data';
 export type { CompanyDataGateway, CompanyDataRequest, CompanyDataResult } from './company-data';
 export {
+  canCreateUniverse,
+  canManageOrganization,
+  canManageOrganizationMembership,
+  canManageUniverse,
+  canManageUniverseMembership,
+  canViewOrganization,
+  canViewUniverse,
+  clientSelectorIsNotAuthority,
+} from './tenant';
+export type {
+  Organization,
+  OrganizationMembership,
+  OrganizationRole,
+  Universe as PersistedUniverse,
+  UniverseMembership as PersistedUniverseMembership,
+  UniverseRole as PersistedUniverseRole,
+} from './tenant';
+export {
   canAgentAccessUniverseResource,
   canPublishUniverseResource,
   canReadUniverseResource,

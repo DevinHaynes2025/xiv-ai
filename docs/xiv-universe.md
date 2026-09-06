@@ -1,15 +1,16 @@
 # XIV Universe
 
-Phase 2E domain and isolation model. **No database migration.** This does not replace existing auth, RLS, or session provisioning.
+Phase 2E in-memory isolation plus Phase 2F-A persistence **design**. Persisted Universes are **not live** until Phase 2F-B migration execution.
 
 ## Status
 
 | Piece | Maturity |
 | --- | --- |
-| Universe / membership / resource types | IMPLEMENTED (in-memory domain) |
-| Deterministic isolation helpers | IMPLEMENTED |
-| Company media Universe check | IMPLEMENTED (deny when missing) |
-| Persisted Universes | PLANNED |
+| Universe / membership / resource types | IMPLEMENTED IN CODE (in-memory domain) |
+| Deterministic isolation helpers | IMPLEMENTED IN CODE |
+| Company media Universe check | IMPLEMENTED IN CODE (deny when missing) |
+| Persistence SQL + tenant helpers | MIGRATION AUTHORED — NOT APPLIED |
+| Persisted Universes (hosted) | NOT CONFIGURED |
 | Cross-Universe relationships | PLANNED |
 
 ## Model

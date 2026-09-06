@@ -1,5 +1,7 @@
 -- Optional schema-only pointer. Canonical SQL lives in:
 -- supabase/migrations/20260904180000_ai_agent_governance.sql
+-- supabase/migrations/20260906220000_persistent_organizations_and_universes.sql
+--   (MIGRATION AUTHORED — NOT APPLIED. Do not run in Phase 2F-A.)
 -- Apply that file in the hosted Supabase SQL editor, then:
 --   NOTIFY pgrst, 'reload schema';
 -- RLS stays enabled. Do not apply from the mobile app.

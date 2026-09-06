@@ -1,3 +1,8 @@
+/**
+ * In-memory isolation types (Phase 2D/2E).
+ * Persistence-aligned tenant types live in ../tenant/types.ts and match
+ * the unapplied 2F-A migration. Do not treat this file as the hosted schema.
+ */
 export type UniverseStatus = 'active' | 'suspended' | 'archived' | 'prototype';
 
 export type UniverseRole =

@@ -70,6 +70,8 @@ Provenance is not optional. Incomplete provenance is rejected.
 
 Session profile/activity records are `personal` unless a real organization/Universe relationship is present. Profile company/title fields are user-declared identity, not organization-authoritative business records.
 
+Persisted organizations/Universes are **MIGRATION AUTHORED — NOT APPLIED**. Personal identity is not auto-migrated into organization scope.
+
 ## Freshness
 
 `classifyFreshness()` is timestamp-based, not LLM judgment:

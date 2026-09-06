@@ -4,7 +4,9 @@ Governed Agent Runtime with Universe isolation, a Company Data Gateway, authoriz
 
 Governed Runtime ≠ Live Gemini Executive turn path.
 
-See also [xiv-universe.md](./xiv-universe.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md).
+See also [xiv-universe.md](./xiv-universe.md), [persistent-universe-design.md](./persistent-universe-design.md), [rls-security-model.md](./rls-security-model.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md).
+
+Persisted Universes are **not live** until Phase 2F-B. Agents remain non-principals on the database.
 
 ## Intelligence loops
 
