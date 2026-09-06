@@ -11,6 +11,7 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.xivai.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#021D30",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

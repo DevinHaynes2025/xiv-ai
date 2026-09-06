@@ -1,16 +1,21 @@
 import { type Href, useLocalSearchParams, useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { Button } from '@/components/xiv/button';
+import { Card } from '@/components/xiv/card';
 import { CheckRow } from '@/components/xiv/check-row';
+import { Chip } from '@/components/xiv/chip';
 import { Field } from '@/components/xiv/field';
+import { OnboardingHero } from '@/components/xiv/onboarding-hero';
 import { Screen } from '@/components/xiv/screen';
+import { SecurityBadge } from '@/components/xiv/security-badge';
 import { XivText } from '@/components/xiv/text';
-import { useAuth } from '@/hooks/use-auth';
-import { Palette, Radius, Spacing } from '@/constants/theme';
-import { resolveDestination } from '@/lib/onboarding';
+import { Layout, Palette, Radius, Spacing } from '@/constants/theme';
 import { regions } from '@/data/mock';
+import { useAuth } from '@/hooks/use-auth';
+import { resolveDestination } from '@/lib/onboarding';
 import type { AuthMode } from '@/types/session';
 
 export default function Auth() {
@@ -71,121 +76,164 @@ export default function Auth() {
     }
   };
 
+  const toggleMode = () => {
+    setError(null);
+    router.setParams({ mode: mode === 'create' ? 'signin' : 'create' });
+  };
+
   return (
     <Screen
+      atmosphere="restrained"
       onBack={() => router.back()}
       footer={
-        <Button
-          label={busy ? 'Please wait…' : mode === 'create' ? 'Create account' : 'Sign in'}
-          disabled={!canContinue}
-          onPress={() => {
-            void submit();
-          }}
-        />
-      }>
-      <XivText variant="label" color={Palette.accent}>
-        {mode === 'create' ? 'Create account' : 'Sign in'}
-      </XivText>
-      <XivText variant="display">
-        {mode === 'create' ? 'Open a XIV workspace.' : 'Return to XIV.'}
-      </XivText>
-      <XivText variant="body" muted>
-        {mode === 'create'
-          ? 'Your account is created with Supabase Auth. XIV does not create an organization at this step.'
-          : 'Sign in with your XIV email and password. Your session stays on this device.'}
-      </XivText>
-
-      <View style={styles.fields}>
-        {mode === 'create' ? (
-          <Field label="Full name" value={name} onChangeText={setName} autoCapitalize="words" />
-        ) : null}
-        <Field
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-          keyboardType="email-address"
-        />
-        <Field
-          label="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          autoCapitalize="none"
-        />
-        {mode === 'create' ? (
-          <Field
-            label="Confirm password"
-            value={confirm}
-            onChangeText={setConfirm}
-            secureTextEntry
-            autoCapitalize="none"
-          />
-        ) : null}
-        {mode === 'create' && password.length > 0 && !passwordsMatch ? (
-          <XivText variant="caption" color={Palette.warning}>
-            Passwords must match.
-          </XivText>
-        ) : null}
-      </View>
-
-      {mode === 'create' ? (
         <>
-          <XivText variant="caption" muted>
-            Country / region
-          </XivText>
-          <View style={styles.regions}>
-            {regions.map((item) => {
-              const selected = item === country;
-              return (
-                <Pressable
-                  key={item}
-                  onPress={() => setCountry(item)}
-                  style={[styles.region, selected && styles.regionOn]}>
-                  <XivText variant="caption" color={selected ? Palette.white : Palette.textMuted}>
-                    {item}
-                  </XivText>
-                </Pressable>
-              );
-            })}
-          </View>
-          <CheckRow
-            label="I acknowledge the preview terms"
-            detail="This acknowledgement is stored only as a local confirmation before signup."
-            selected={terms}
-            onPress={() => setTerms((value) => !value)}
+          <Button
+            label={busy ? 'Please wait…' : mode === 'create' ? 'Create Account' : 'Sign In'}
+            disabled={!canContinue}
+            onPress={() => {
+              void submit();
+            }}
           />
+          <Pressable
+            onPress={toggleMode}
+            accessibilityRole="button"
+            accessibilityLabel={
+              mode === 'create' ? 'Switch to sign in' : 'Switch to create account'
+            }
+            style={styles.modeToggle}>
+            <XivText variant="caption" muted style={styles.modeText}>
+              {mode === 'create' ? 'Already have an account? Sign In' : 'Need an account? Create Account'}
+            </XivText>
+          </Pressable>
         </>
-      ) : null}
+      }>
+      <OnboardingHero
+        showMark
+        markSize={40}
+        kicker="XIV AI · Secure Access"
+        title={mode === 'create' ? 'Create your XIV identity.' : 'Welcome back.'}
+        support={
+          mode === 'create'
+            ? 'One secure account connects your XIV experiences while keeping organization and personal permissions separate.'
+            : 'Enter your XIV credentials to continue into your intelligence environment.'
+        }
+      />
+
+      <Animated.View entering={FadeIn.duration(360)}>
+        <Card variant="elevated" style={styles.authCard}>
+          <View style={styles.fields}>
+            {mode === 'create' ? (
+              <Field label="Full name" value={name} onChangeText={setName} autoCapitalize="words" />
+            ) : null}
+            <Field
+              label="Email"
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
+              keyboardType="email-address"
+            />
+            <Field
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+              autoCapitalize="none"
+            />
+            {mode === 'create' ? (
+              <Field
+                label="Confirm password"
+                value={confirm}
+                onChangeText={setConfirm}
+                secureTextEntry
+                autoCapitalize="none"
+              />
+            ) : null}
+            {mode === 'create' && password.length > 0 && !passwordsMatch ? (
+              <View style={styles.warn} accessibilityRole="alert">
+                <XivText variant="caption" color={Palette.warning}>
+                  Passwords must match.
+                </XivText>
+              </View>
+            ) : null}
+          </View>
+
+          {mode === 'create' ? (
+            <View style={styles.regionBlock}>
+              <XivText variant="caption" muted>
+                Country / region
+              </XivText>
+              <View style={styles.regions}>
+                {regions.map((item) => {
+                  const selected = item === country;
+                  return (
+                    <Chip
+                      key={item}
+                      label={item}
+                      selected={selected}
+                      onPress={() => setCountry(item)}
+                    />
+                  );
+                })}
+              </View>
+              <CheckRow
+                label="I acknowledge the preview terms"
+                detail="This acknowledgement is stored only as a local confirmation before signup."
+                selected={terms}
+                onPress={() => setTerms((value) => !value)}
+              />
+            </View>
+          ) : null}
+        </Card>
+      </Animated.View>
+
+      <SecurityBadge />
 
       {error ? (
-        <XivText variant="body" color={Palette.danger}>
-          {error}
-        </XivText>
+        <Card variant="risk" accessibilityRole="alert">
+          <XivText variant="label" color={Palette.danger}>
+            Unable to continue
+          </XivText>
+          <XivText variant="body" style={styles.errorBody}>
+            {error}
+          </XivText>
+        </Card>
       ) : null}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  authCard: {
+    gap: Spacing.four,
+  },
   fields: {
     gap: Spacing.three,
+  },
+  regionBlock: {
+    gap: Spacing.two,
   },
   regions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: Spacing.two,
   },
-  region: {
-    borderRadius: Radius.pill,
-    borderWidth: 1,
-    borderColor: Palette.line,
-    backgroundColor: Palette.navyElevated,
+  warn: {
     paddingHorizontal: Spacing.three,
-    paddingVertical: 10,
+    paddingVertical: Spacing.two,
+    borderRadius: Radius.md,
+    backgroundColor: Palette.warningSoft,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(244, 201, 93, 0.28)',
   },
-  regionOn: {
-    borderColor: Palette.accent,
-    backgroundColor: Palette.accentMuted,
+  errorBody: {
+    marginTop: Spacing.one,
+  },
+  modeToggle: {
+    minHeight: Layout.minTapTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeText: {
+    textAlign: 'center',
   },
 });
