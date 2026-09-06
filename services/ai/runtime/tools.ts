@@ -1,0 +1,138 @@
+import { AuthorityLevel, type AuthorityLevel as Authority } from './authority';
+import type { XivAgentId } from './agents';
+
+export type RuntimeToolId =
+  | 'business_context_reader'
+  | 'health_status_reader'
+  | 'recommendation_generator'
+  | 'diagnostic_summarizer'
+  | 'development_health_checker'
+  | 'propose_operational_change'
+  | 'human_only_production_change';
+
+export type ToolRiskLevel = 'low' | 'medium' | 'high' | 'critical';
+
+export type RuntimeToolDefinition = {
+  id: RuntimeToolId;
+  name: string;
+  description: string;
+  riskLevel: ToolRiskLevel;
+  readOnly: boolean;
+  reversible: boolean;
+  requiresApproval: boolean;
+  humanOnly: boolean;
+  requiredAuthority: Authority;
+  allowedAgentIds: readonly XivAgentId[];
+};
+
+const DOMAIN_READERS: readonly XivAgentId[] = [
+  'executive',
+  'supply_chain',
+  'operations',
+  'finance',
+  'security',
+  'customer_experience',
+  'technology',
+  'innovation',
+];
+
+export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
+  {
+    id: 'business_context_reader',
+    name: 'Business context reader',
+    description: 'Reads prototype business context. No live system is queried.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'health_status_reader',
+    name: 'Health / status reader',
+    description: 'Reads registered health signals. Does not monitor continuously.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+  },
+  {
+    id: 'recommendation_generator',
+    name: 'Recommendation generator',
+    description: 'Produces a prototype recommendation. Nothing is executed.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L1_Recommend,
+    allowedAgentIds: DOMAIN_READERS,
+  },
+  {
+    id: 'diagnostic_summarizer',
+    name: 'Diagnostic summarizer',
+    description: 'Summarizes prototype diagnostic context for Sense → Understand.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+  },
+  {
+    id: 'development_health_checker',
+    name: 'Development health checker',
+    description: 'Runs allowlisted Guardian checks only. Never accepts arbitrary shell input.',
+    riskLevel: 'low',
+    readOnly: true,
+    reversible: true,
+    requiresApproval: false,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L0_Observe,
+    allowedAgentIds: ['guardian'],
+  },
+  {
+    id: 'propose_operational_change',
+    name: 'Propose operational change',
+    description: 'Drafts a consequential operational change. Execution is never automatic.',
+    riskLevel: 'high',
+    readOnly: false,
+    reversible: false,
+    requiresApproval: true,
+    humanOnly: false,
+    requiredAuthority: AuthorityLevel.L3_HumanApproval,
+    allowedAgentIds: ['executive', 'operations'],
+  },
+  {
+    id: 'human_only_production_change',
+    name: 'Human-only production change',
+    description: 'Critical production mutation. Agents cannot invoke this tool.',
+    riskLevel: 'critical',
+    readOnly: false,
+    reversible: false,
+    requiresApproval: true,
+    humanOnly: true,
+    requiredAuthority: AuthorityLevel.L5_HumanOnly,
+    allowedAgentIds: [],
+  },
+] as const;
+
+const BY_ID = new Map(XIV_TOOL_REGISTRY.map((tool) => [tool.id, tool]));
+
+export function getRuntimeTool(id: string): RuntimeToolDefinition | undefined {
+  return BY_ID.get(id as RuntimeToolId);
+}
+
+export function listRuntimeTools(): readonly RuntimeToolDefinition[] {
+  return XIV_TOOL_REGISTRY;
+}
+
+export function isRuntimeToolId(id: string): id is RuntimeToolId {
+  return BY_ID.has(id as RuntimeToolId);
+}

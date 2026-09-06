@@ -43,3 +43,29 @@ export type {
   PersistedAgentActionStatus,
   StructuredAgentOutput,
 } from './types';
+export {
+  AUTHORITY_LABEL,
+  AuthorityLevel,
+  GUARDIAN_CHECK_REGISTRY,
+  XIV_AGENT_REGISTRY,
+  XIV_TOOL_REGISTRY,
+  analyzeBusinessHealth,
+  evaluatePolicy,
+  getXivAgent,
+  listGuardianChecks,
+  listXivAgents,
+  runGovernedRequest,
+  runGuardianSnapshot,
+} from './runtime';
+export type {
+  AuthorityLevel as AuthorityLevelId,
+  GovernedAction,
+  GovernedResult,
+  GuardianHealthReport,
+  PolicyEvaluation,
+  PolicyVerdict,
+  RuntimeEnvironment,
+  XivAgentDefinition,
+  XivAgentId,
+  XivAgentStatus,
+} from './runtime';

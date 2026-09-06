@@ -26,6 +26,7 @@
     "../../services/ai/gemini-provider.ts",
     "../../services/ai/auth.ts",
     "../../services/ai/audit.ts",
-    "../../services/ai/executive-turn.ts"
+    "../../services/ai/executive-turn.ts",
+    "../../services/ai/runtime/policy.test.ts"
   ]
 }
