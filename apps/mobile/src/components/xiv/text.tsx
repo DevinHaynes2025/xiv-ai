@@ -6,9 +6,14 @@ type Variant =
   | 'hero'
   | 'display'
   | 'title'
+  | 'pageTitle'
+  | 'section'
+  | 'card'
   | 'subtitle'
   | 'body'
   | 'caption'
+  | 'metadata'
+  | 'micro'
   | 'label'
   | 'mono';
 

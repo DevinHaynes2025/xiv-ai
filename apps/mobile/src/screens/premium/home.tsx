@@ -1,21 +1,10 @@
 import { type Href, useRouter } from 'expo-router';
 
-import {
-  CardRow,
-  SponsoredCard,
-  XivAgentCard,
-  XivEventCard,
-  XivIntelligenceCard,
-  XivMeetingCard,
-  XivMetricCard,
-  XivNetworkCard,
-  XivPremiumButton,
-  XivSearchCommandBar,
-  XivSectionHeader,
-  XivStoryCard,
-} from '@/components/premium';
+import { CardRow, SponsoredCard, XivAgentCard, XivMeetingCard, XivMetricCard, XivPremiumButton, XivSearchCommandBar, XivSectionHeader } from '@/components/premium';
+import { IntelligenceStoryCard, RiskOpportunityPanel, XivListRow } from '@/components/v4';
 import { useSession } from '@/context/session';
 import { premiumAd, premiumHome } from '@/data/premium-demo';
+import { EXPERIENCE_STORY, HEALTH_DOMAINS } from '@/data/premium-experience';
 import { dayGreeting } from '@/lib/greeting';
 import { osHome } from '@/lib/os-routes';
 
@@ -28,57 +17,47 @@ export function PremiumHome() {
   const go = (path: string) => router.navigate(`${home}/${path}` as Href);
 
   return (
-    <PremiumDesk title={dayGreeting(session.displayName)} subtitle="Executive home. Premium, not a feed.">
-      <XivSearchCommandBar placeholder="Ask XIV or jump to a desk" />
-      <XivSectionHeader kicker="Today" title="Morning Executive Brief" />
-      <XivIntelligenceCard
-        title="Brief"
-        body={premiumHome.brief}
-        source="No live operator source"
-        connected={false}
-        confidence="unknown"
+    <PremiumDesk title={dayGreeting(session.displayName)} subtitle="What needs attention — without fake live ops.">
+      <XivSearchCommandBar placeholder="Jump to Intelligence, Network, Meetings, AI" />
+
+      <XivSectionHeader kicker="A" title="Executive Brief" action="Intel" onAction={() => go('intelligence')} />
+      <IntelligenceStoryCard {...EXPERIENCE_STORY} />
+      <RiskOpportunityPanel
+        risk="No authorized Company Brain feed is connected. Missing values are not invented."
+        opportunity="Public World Bank and SEC adapters can inform historical context when opened from Intelligence."
       />
-      <XivSectionHeader kicker="Health" title="Business Health" action="Open" onAction={() => go('health')} />
+
+      <XivSectionHeader kicker="B" title="Business Health" action="Health" onAction={() => go('health')} />
       <CardRow>
-        <XivMetricCard title={premiumHome.health.title} value={premiumHome.health.value} detail={premiumHome.health.detail} />
+        {HEALTH_DOMAINS.map((item) => (
+          <XivMetricCard key={item.id} title={item.title} value={item.value} detail={item.note} demo />
+        ))}
       </CardRow>
-      <XivSectionHeader kicker="Calendar" title="Today's Meetings" action="Meetings" onAction={() => go('meetings')} />
-      {premiumHome.meetings.map((item) => (
-        <XivMeetingCard key={item.title} {...item} />
-      ))}
-      <XivSectionHeader kicker="Network" title="Network Opportunities" action="Network" onAction={() => go('network')} />
-      {premiumHome.opportunities.map((item) => (
-        <XivNetworkCard key={item.name} {...item} />
-      ))}
-      <XivSectionHeader kicker="Agents" title="Agent Activity" action="AI" onAction={() => go('agents')} />
+
+      <XivSectionHeader kicker="C" title="Active Stories" action="Story" onAction={() => go('story')} />
+      <IntelligenceStoryCard {...EXPERIENCE_STORY} />
+
+      <XivSectionHeader kicker="D" title="Agent Activity" action="AI" onAction={() => go('agents')} />
       {premiumHome.agents.map((item) => (
         <XivAgentCard key={item.name} {...item} />
       ))}
-      <XivSectionHeader kicker="Markets" title="Market Intelligence" action="Intel" onAction={() => go('intelligence')} />
-      <XivIntelligenceCard {...premiumHome.market} />
-      <XivSectionHeader kicker="Company" title="Company Alerts" />
-      <XivIntelligenceCard
-        title="Alerts"
-        body={premiumHome.alerts}
-        source="Company Brain"
-        connected={false}
-        confidence="unknown"
-      />
-      <XivSectionHeader kicker="People" title="Recommended Connections" />
-      {premiumHome.opportunities.map((item) => (
-        <XivNetworkCard key={`rec-${item.name}`} {...item} />
+      <XivListRow title="Approvals" body="No pending consequential action. L4 disabled." meta="Denied actions stay denied." />
+
+      <XivSectionHeader kicker="E" title="Network Activity" action="Network" onAction={() => go('network')} />
+      <XivListRow title="Introductions" body="Recommended relationships require declared context." onPress={() => go('network')} />
+      <XivListRow title="Events & mixers" body="Business rooms only. No entertainment feed." onPress={() => go('events')} />
+
+      <XivSectionHeader kicker="F" title="Meetings" action="Open" onAction={() => go('meetings')} />
+      {premiumHome.meetings.map((item) => (
+        <XivMeetingCard key={item.title} {...item} />
       ))}
-      <XivSectionHeader kicker="Events" title="Upcoming Events" action="Events" onAction={() => go('events')} />
-      {premiumHome.events.map((item) => (
-        <XivEventCard key={item.title} {...item} />
-      ))}
-      <XivSectionHeader kicker="Stories" title="Opportunity Stories" action="Story" onAction={() => go('story')} />
-      <XivStoryCard {...premiumHome.story} />
-      <XivSectionHeader kicker="Advertising" title="Paid placement" />
+      <XivListRow title="Action items" body="Outstanding tasks stay local to this prototype." meta="Video transport NOT_CONFIGURED" />
+
+      <XivSectionHeader kicker="Paid" title="Sponsored" />
       <SponsoredCard {...premiumAd} />
-      <XivSectionHeader kicker="OS" title="More desks" action="More" onAction={() => go('more')} />
       <XivPremiumButton label="Messages" onPress={() => go('messages')} variant="ghost" />
-      <XivPremiumButton label="Marketplace" onPress={() => go('marketplace')} variant="ghost" />
+      <XivPremiumButton label="Sources" onPress={() => go('sources')} variant="ghost" />
+      <XivPremiumButton label="More desks" onPress={() => go('more')} variant="ghost" />
     </PremiumDesk>
   );
 }

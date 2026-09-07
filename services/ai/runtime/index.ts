@@ -215,8 +215,12 @@ export {
   consumerCannotAccessPrivateCompanyMeeting,
   cursorCloudAgentIsProductionAuthority,
   databaseCredentialsExposedClientSide,
+  globalDataFabricProductionLive,
+  l4RemainsDisabled,
+  messagesUiClaimsTransportLive,
   nvidiaInfrastructureLive,
   oracleDefaultsReadOnly,
+  resolvePremiumRoute,
   videoMeetingInfrastructureLive,
   videoProvider,
 } from './network-os';

@@ -60,6 +60,13 @@ export { GLOBAL_BRAIN_ALLOWED_CATEGORIES, GLOBAL_BRAIN_DENIED_CATEGORIES } from 
 import { DECLARED_BUSINESS_DATA_PROVIDERS } from './catalog';
 import { registerBusinessDataProvider } from './registry';
 
+export {
+  catalogSecurityIsSound,
+  catalogSecuritySnapshot,
+  secActivationDoesNotInvalidateWorldBankCatalog,
+  UNPROVEN_PUBLIC_PROVIDER_IDS,
+} from './catalog-truth';
+
 export function seedDeclaredBusinessDataProviders() {
   for (const descriptor of DECLARED_BUSINESS_DATA_PROVIDERS) {
     registerBusinessDataProvider(descriptor);

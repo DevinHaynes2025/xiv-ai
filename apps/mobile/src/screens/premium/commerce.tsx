@@ -1,6 +1,8 @@
 import { SponsoredCard, XivEmptyState, XivGlassPanel, XivSectionHeader, XivStatusPill } from '@/components/premium';
+import { CompanyProfileCard, ProfessionalProfileCard } from '@/components/v4';
 import { XivText } from '@/components/xiv/text';
 import { premiumAd } from '@/data/premium-demo';
+import { COMPANY_PROFILE, PROFESSIONAL_PROFILE } from '@/data/premium-experience';
 
 import { PremiumDesk } from './desk';
 
@@ -40,25 +42,20 @@ export function PremiumAds() {
 export function PremiumCompanyProfile() {
   return (
     <PremiumDesk title="Company Profile" subtitle="Public company surface. Private tenant data stays private.">
-      <XivGlassPanel>
-        <XivText variant="subtitle">Northwind Logistics</XivText>
-        <XivText variant="body" muted>
-          Follow, invite, and opportunity sharing are prototype actions. Company Brain does not auto-enter Global Brain.
-        </XivText>
-      </XivGlassPanel>
+      <CompanyProfileCard
+        legalName={COMPANY_PROFILE.legalName}
+        industry={COMPANY_PROFILE.industry}
+        note={COMPANY_PROFILE.note}
+        state={COMPANY_PROFILE.surface}
+      />
     </PremiumDesk>
   );
 }
 
 export function PremiumProfessionalProfile() {
   return (
-    <PremiumDesk title="Professional Profile" subtitle="Declared interests only.">
-      <XivGlassPanel>
-        <XivText variant="subtitle">Jordan Hale</XivText>
-        <XivText variant="body" muted>
-          Connect, message, and introduce require tenant rules. Sensitive traits are not inferred.
-        </XivText>
-      </XivGlassPanel>
+    <PremiumDesk title="Professional Profile" subtitle="Expertise, problems, contributions — not followers.">
+      <ProfessionalProfileCard {...PROFESSIONAL_PROFILE} />
     </PremiumDesk>
   );
 }

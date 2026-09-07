@@ -27,8 +27,8 @@ import { WORLD_BANK_PROVIDER_STATUS } from './providers/world-bank';
 import { publishingWritesEnabled } from './publishing/policy';
 import {
   adapterForProvider,
+  catalogSecurityIsSound,
   evaluateGlobalBrainIngestion,
-  providerStatusOf,
   recordWorldBankValidatedRetrieval,
   resetSourceRegistryForTests,
   resetWorldBankAdapterStatusForTests,
@@ -413,11 +413,7 @@ export async function runWorldBankRealDataProof() {
     companyDenied.allowed === false &&
     ledgerPersistsToHostedDatabase() === false &&
     WORLD_BANK_PROVIDER_STATUS === 'not_configured' &&
-    providerStatusOf('us_sec_edgar') === 'not_configured' &&
-    providerStatusOf('us_bls') === 'not_configured' &&
-    providerStatusOf('us_fred') === 'not_configured' &&
-    providerStatusOf('us_census') === 'not_configured' &&
-    worldBankGlobalFabricIsProductionLive() === false;
+    catalogSecurityIsSound();
   if (!securityOk) {
     fail('SECURITY REGRESSION', 'A 2H-C/2I control was weakened.');
   } else {

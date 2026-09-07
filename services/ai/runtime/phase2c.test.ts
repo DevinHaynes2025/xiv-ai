@@ -3,12 +3,15 @@
  */
 import assert from 'node:assert/strict';
 
+import { existsSync } from 'node:fs';
+
 import { createMemoryAuditStore } from './audit';
 import { getPrototypeBusinessContext } from './context/prototype';
 import { findingHasPrototypeLabels } from './context/findings';
 import { buildBusinessHealthReport } from './context/report';
 import { buildNarrative, hypothesisIsMarked } from './context/story';
 import { getGuardianCheck } from './guardian/checks';
+import { resolveGuardianSpawn } from './guardian/host';
 import { containsEnvValues, parseHostResult, sanitizeOutput, truncateOutput } from './guardian/parse';
 import * as trusted from './guardian/trusted';
 import { evaluatePolicy } from './policy';
@@ -132,6 +135,23 @@ await test('host adapter receives static check metadata, not a command string', 
   assert.equal(seenId, 'mobile-typescript');
   assert.equal(result.status, 'healthy');
   assert.equal(result.executionMode, 'trusted_host');
+});
+
+await test('trusted host resolves npm and npx without assuming npm lives next to node.exe', () => {
+  const npm = resolveGuardianSpawn('npm');
+  const npx = resolveGuardianSpawn('npx');
+  const git = resolveGuardianSpawn('git');
+  assert.equal(npm.ok, true);
+  assert.equal(npx.ok, true);
+  assert.equal(git.ok, true);
+  if (npm.ok) {
+    assert.equal(existsSync(npm.executable), true);
+    for (const arg of npm.prefixArgs) assert.equal(existsSync(arg), true);
+  }
+  if (npx.ok) {
+    assert.equal(existsSync(npx.executable), true);
+    for (const arg of npx.prefixArgs) assert.equal(existsSync(arg), true);
+  }
 });
 
 await test('Business Health finding preserves source and prototype labels', () => {

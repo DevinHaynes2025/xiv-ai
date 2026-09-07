@@ -3,14 +3,14 @@ import '@/global.css';
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 /**
- * XIV AI Design System V3
+ * XIV AI Design System V4
  *
- * Premium executive software:
- * - Dark navy / deep charcoal
- * - Clean white surfaces used sparingly for contrast
- * - Soft glass, fine borders, strong hierarchy
- * - Electric blue reserved for intelligence/action
- * - No cheap SaaS chrome, no social-feed clone
+ * Elite mobile-first executive OS:
+ * - Deep navy / near-black
+ * - Bright readable type
+ * - Restrained glass
+ * - Storytelling over dashboard clutter
+ * - Distinct XIV identity (not a SaaS clone)
  */
 
 export const Palette = {
@@ -241,6 +241,26 @@ export const TypeScale: Record<string, TextStyle> = {
     letterSpacing: -0.35,
   },
 
+  pageTitle: {
+    fontSize: 26,
+    lineHeight: 32,
+    fontWeight: '700',
+    letterSpacing: -0.5,
+  },
+
+  section: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '600',
+    letterSpacing: -0.2,
+  },
+
+  card: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '600',
+  },
+
   subtitle: {
     fontSize: 17,
     lineHeight: 23,
@@ -257,6 +277,20 @@ export const TypeScale: Record<string, TextStyle> = {
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '500',
+  },
+
+  metadata: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '500',
+    letterSpacing: 0.2,
+  },
+
+  micro: {
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: '600',
+    letterSpacing: 0.4,
   },
 
   label: {

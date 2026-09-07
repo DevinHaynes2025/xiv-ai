@@ -248,3 +248,47 @@ export type {
 
 export { fakeLiveSignalsEnabled, realtimeSignalCard } from './realtime-ux';
 export type { RealtimeSignalCard, RealtimeSignalKind } from './realtime-ux';
+
+export {
+  DATA_SURFACE_STATES,
+  cardRequiresSourcePath,
+  demoSurfaceMustBeLabeled,
+  forecastIsNotAFact,
+  inferenceIsNotAFact,
+  isDataSurfaceState,
+  liveDemoInferenceForecastSeparated,
+  surfaceMayBePresentedAsFact,
+} from './surface-state';
+export type { DataSurfaceState, SurfaceProvenance } from './surface-state';
+
+export {
+  EXPERIENCE_AGENTS,
+  PREMIUM_PRIMARY_NAV,
+  PREMIUM_ROUTE_MAP,
+  agentAuthorityLabel,
+  connectorCatalog,
+  consequentialActionRequiresHumanApproval,
+  createDemoExperienceRecord,
+  demoDataIsIdentifiable,
+  globalDataFabricProductionLive,
+  l4RemainsDisabled,
+  meetingRoomFoundation,
+  meetingsUiClaimsTransportLive,
+  messagesUiClaimsTransportLive,
+  providerStateTruthful,
+  resolvePremiumRoute,
+  sourceProvenanceRequired,
+  uiCannotTakeCrossOrgAction,
+  uiTenantSelectorIsNotAuthority,
+  unprovenConnectorMustNotBeLive,
+} from './experience';
+export type {
+  CompanyProfileView,
+  ConnectorCatalogEntry,
+  ExperienceMessage,
+  ExperienceMessageKind,
+  MeetingRoomFoundation,
+  PremiumPrimaryNav,
+  PremiumRouteKey,
+  ProfessionalProfileView,
+} from './experience';

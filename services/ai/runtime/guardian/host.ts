@@ -1,5 +1,11 @@
+/**
+ * Node-only Guardian host adapter.
+ * Executable, args, and cwd come from the static registry.
+ * Never accepts a raw command string. Never uses a shell for npm/npx/git.
+ */
 import { spawn } from 'node:child_process';
-import { dirname, join, resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { dirname, delimiter, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import type { GuardianCheckDefinition, GuardianCwdToken, GuardianExecutableToken } from './checks';
@@ -8,15 +14,16 @@ import type { GuardianHostAdapter } from './trusted';
 
 const OUTPUT_CAP = 8_000;
 
-const NODE_BIN = dirname(process.execPath);
-const NPX_CLI = join(NODE_BIN, 'node_modules', 'npm', 'bin', 'npx-cli.js');
-const NPM_CLI = join(NODE_BIN, 'node_modules', 'npm', 'bin', 'npm-cli.js');
+export type GuardianSpawnPlan = {
+  ok: true;
+  executable: string;
+  prefixArgs: readonly string[];
+};
 
-function resolveSpawn(token: GuardianExecutableToken): { executable: string; prefixArgs: readonly string[] } {
-  if (token === 'git') return { executable: 'git', prefixArgs: [] };
-  if (token === 'npx') return { executable: process.execPath, prefixArgs: [NPX_CLI] };
-  return { executable: process.execPath, prefixArgs: [NPM_CLI] };
-}
+export type GuardianSpawnDenied = {
+  ok: false;
+  reason: string;
+};
 
 const ENV_ALLOW = [
   'PATH',
@@ -40,16 +47,87 @@ const ENV_ALLOW = [
   'PROCESSOR_ARCHITECTURE',
   'NODE_PATH',
   'ComSpec',
+  'LANG',
+  'LC_ALL',
 ] as const;
 
+function firstExisting(paths: readonly string[]) {
+  return paths.find((item) => existsSync(item)) ?? null;
+}
+
+function npmCliCandidates() {
+  const execDir = dirname(process.execPath);
+  return [
+    join(execDir, 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(execDir, 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(execDir, '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+    join(execDir, '..', 'lib64', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+  ];
+}
+
+function npxCliCandidates() {
+  const execDir = dirname(process.execPath);
+  return [
+    join(execDir, 'node_modules', 'npm', 'bin', 'npx-cli.js'),
+    join(execDir, 'lib', 'node_modules', 'npm', 'bin', 'npx-cli.js'),
+    join(execDir, '..', 'lib', 'node_modules', 'npm', 'bin', 'npx-cli.js'),
+    join(execDir, '..', 'lib64', 'node_modules', 'npm', 'bin', 'npx-cli.js'),
+  ];
+}
+
+function pathEntries() {
+  return (process.env.PATH ?? '').split(delimiter).filter(Boolean);
+}
+
+function windowsExecutableNames(token: 'npm' | 'npx') {
+  const ext = (process.env.PATHEXT ?? '.EXE;.CMD;.BAT;.COM').split(';').filter(Boolean);
+  return [token, ...ext.map((item) => `${token}${item.toLowerCase()}`), ...ext.map((item) => `${token}${item}`)];
+}
+
+function findOnPath(token: 'npm' | 'npx' | 'git') {
+  const names =
+    process.platform === 'win32' && token !== 'git' ? windowsExecutableNames(token) : token === 'git' && process.platform === 'win32' ? ['git.exe', 'git'] : [token];
+  for (const dir of pathEntries()) {
+    for (const name of names) {
+      const candidate = join(dir, name);
+      if (existsSync(candidate)) return candidate;
+    }
+  }
+  return null;
+}
+
+/**
+ * Resolve git/npm/npx without a shell and without concatenating untrusted strings.
+ * Prefers node + npm-cli.js next to the running Node prefix (Windows-safe).
+ * Falls back to PATH binaries when the prefix layout is nonstandard.
+ */
+export function resolveGuardianSpawn(token: GuardianExecutableToken): GuardianSpawnPlan | GuardianSpawnDenied {
+  if (token === 'git') {
+    const git = findOnPath('git');
+    if (!git) return { ok: false, reason: 'git executable was not found on PATH.' };
+    return { ok: true, executable: git, prefixArgs: [] };
+  }
+
+  const cli = firstExisting(token === 'npx' ? npxCliCandidates() : npmCliCandidates());
+  if (cli) {
+    return { ok: true, executable: process.execPath, prefixArgs: [cli] };
+  }
+
+  const fromPath = findOnPath(token);
+  if (!fromPath) {
+    return { ok: false, reason: `${token} executable was not found next to Node or on PATH.` };
+  }
+  return { ok: true, executable: fromPath, prefixArgs: [] };
+}
+
 function repoRoot() {
-  return resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+  return join(dirname(fileURLToPath(import.meta.url)), '../../../..');
 }
 
 function resolveCwd(token: GuardianCwdToken) {
   const root = repoRoot();
-  if (token === 'apps/mobile') return resolve(root, 'apps/mobile');
-  if (token === 'services/ai') return resolve(root, 'services/ai');
+  if (token === 'apps/mobile') return join(root, 'apps/mobile');
+  if (token === 'services/ai') return join(root, 'services/ai');
   return root;
 }
 
@@ -66,10 +144,6 @@ function cap(text: string) {
   return text.length > OUTPUT_CAP ? `${text.slice(0, OUTPUT_CAP)}…` : text;
 }
 
-/**
- * Node-only adapter. Executable, args, and cwd come from the static registry.
- * Never accepts a raw command string.
- */
 export function createHostExecutor(): GuardianHostAdapter {
   return {
     execute(check: GuardianCheckDefinition) {
@@ -85,9 +159,19 @@ export function createHostExecutor(): GuardianHostAdapter {
           return;
         }
 
-        const { executable, prefixArgs } = resolveSpawn(command.executable);
+        const plan = resolveGuardianSpawn(command.executable);
+        if (!plan.ok) {
+          resolveResult({
+            exitCode: 1,
+            stdout: '',
+            stderr: `Host process failed to start. ${plan.reason}`,
+            timedOut: false,
+          });
+          return;
+        }
+
         const cwd = resolveCwd(command.cwd);
-        const child = spawn(executable, [...prefixArgs, ...command.args], {
+        const child = spawn(plan.executable, [...plan.prefixArgs, ...command.args], {
           cwd,
           shell: false,
           windowsHide: true,
@@ -97,6 +181,13 @@ export function createHostExecutor(): GuardianHostAdapter {
         let stdout = '';
         let stderr = '';
         let timedOut = false;
+        let settled = false;
+        const finish = (result: HostExecutionResult) => {
+          if (settled) return;
+          settled = true;
+          resolveResult(result);
+        };
+
         const timer = setTimeout(() => {
           timedOut = true;
           child.kill();
@@ -110,7 +201,7 @@ export function createHostExecutor(): GuardianHostAdapter {
         });
         child.on('error', () => {
           clearTimeout(timer);
-          resolveResult({
+          finish({
             exitCode: 1,
             stdout: '',
             stderr: 'Host process failed to start. Executable metadata is static; the path is not returned.',
@@ -119,13 +210,12 @@ export function createHostExecutor(): GuardianHostAdapter {
         });
         child.on('close', (code) => {
           clearTimeout(timer);
-          const result: HostExecutionResult = {
+          finish({
             exitCode: code,
             stdout: cap(stdout),
             stderr: cap(stderr),
             timedOut,
-          };
-          resolveResult(result);
+          });
         });
       });
     },
