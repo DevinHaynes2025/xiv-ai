@@ -116,7 +116,13 @@ export type OsPath =
   | 'assembly'
   | 'algorithm-foundry'
   | 'brains'
-  | 'philosophy';
+  | 'philosophy'
+  | 'founder-twin'
+  | 'voice'
+  | 'night-shift'
+  | 'sovereign'
+  | 'ai-marketing'
+  | 'universe-fabric';
 
 export type OsEmphasis = 'operator' | 'chair';
 

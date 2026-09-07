@@ -103,6 +103,12 @@ export const PREMIUM_ROUTE_MAP = {
   'algorithm-foundry': 'algorithm-foundry',
   brains: 'brains',
   philosophy: 'philosophy',
+  'founder-twin': 'founder-twin',
+  voice: 'voice',
+  'night-shift': 'night-shift',
+  sovereign: 'sovereign',
+  'ai-marketing': 'ai-marketing',
+  'universe-fabric': 'universe-fabric',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

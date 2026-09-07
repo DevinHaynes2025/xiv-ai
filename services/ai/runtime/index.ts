@@ -295,6 +295,12 @@ export {
   proposeAlgorithm,
 } from './society';
 export {
+  FOUNDER_TWIN_LABEL,
+  DEFAULT_VOICE_MODE,
+  openFounderTwin,
+  quantumSecurityClaimedWithoutProof,
+} from './sovereign';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

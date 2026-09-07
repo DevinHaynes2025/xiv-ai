@@ -784,6 +784,57 @@ export function WorkspacePhilosophy() {
   );
 }
 
+export function WorkspaceFounderTwin() {
+  return (
+    <PremiumDesk title="Founder Twin" subtitle="XIV Founder Twin — AI representation of Devin Xavier Haynes">
+      <XivListRow title="Not the actual Devin" body="The real CEO stays above the simulation. Twin cannot disable Guardian or grant itself permissions." />
+      <XivStatusPill label="Ephemeral instances only" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceVoice() {
+  return (
+    <PremiumDesk title="Voice Brain" subtitle="VOICE_OFF by default. Never always-record-everything.">
+      <XivListRow title="Consent stack" body="Microphone permission, visible recording state, purpose, classification, retention, deletion." />
+      <XivListRow title="Memory" body="Personal voice stays Personal Brain unless explicitly moved." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceNightShift() {
+  return (
+    <PremiumDesk title="Night Shift" subtitle="Bounded overnight research. Recommendations only. No autonomous deploy.">
+      <XivListRow title="Morning brief" body="Security, platform, intelligence, and proposals for human review." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSovereign() {
+  return (
+    <PremiumDesk title="Sovereign Security" subtitle="Crypto agility. Post-quantum readiness is NOT_PROVEN.">
+      <XivListRow title="Founder Authority" body="Passkey + trusted device + step-up + human confirmation + audit. Not an unrestricted superuser." />
+      <XivStatusPill label="No fictional quantum encryption" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceMarketing() {
+  return (
+    <PremiumDesk title="Marketing Agents" subtitle="AI_DRAFT → evidence → brand → rights → approval → published.">
+      <XivListRow title="No spam network" body="Agents cannot fabricate evidence or mass-spam users." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceUniverseFabric() {
+  return (
+    <PremiumDesk title="Universe Fabric" subtitle="Logical intelligence boundary above cloud. Not space-based servers.">
+      <XivListRow title="Company and Personal" body="Remain private. Universe cannot bypass tenant isolation." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

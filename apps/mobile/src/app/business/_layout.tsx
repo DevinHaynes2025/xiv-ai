@@ -121,6 +121,12 @@ const hidden = [
   'algorithm-foundry',
   'brains',
   'philosophy',
+  'founder-twin',
+  'voice',
+  'night-shift',
+  'sovereign',
+  'ai-marketing',
+  'universe-fabric',
 ];
 
 export default function BusinessLayout() {

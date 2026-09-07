@@ -143,6 +143,12 @@ export function MoreDesk() {
       <Chip label="Algorithm Foundry" onPress={() => go('algorithm-foundry')} />
       <Chip label="Brain Network" onPress={() => go('brains')} />
       <Chip label="Human Thought" onPress={() => go('philosophy')} />
+      <Chip label="Founder Twin" onPress={() => go('founder-twin')} />
+      <Chip label="Voice Brain" onPress={() => go('voice')} />
+      <Chip label="Night Shift" onPress={() => go('night-shift')} />
+      <Chip label="Sovereign Security" onPress={() => go('sovereign')} />
+      <Chip label="Marketing Agents" onPress={() => go('ai-marketing')} />
+      <Chip label="Universe Fabric" onPress={() => go('universe-fabric')} />
     </ExperienceScreen>
   );
 }
