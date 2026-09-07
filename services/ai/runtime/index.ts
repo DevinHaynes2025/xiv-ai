@@ -276,6 +276,12 @@ export {
   unconfiguredEnterpriseVendorRemainsNotConfigured,
 } from './pocket';
 export {
+  DATA_AGENT_ROLES,
+  defaultFollowPreference,
+  evaluateDataAccess,
+  v5PrimaryNavUnchanged,
+} from './premium';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

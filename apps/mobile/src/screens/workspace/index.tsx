@@ -34,6 +34,7 @@ import { DAILY_CHANNELS, DISCOVERY_ROWS, SHEET_ROWS } from '@/data/workspace-dem
 import { EXPERIENCE_STORY } from '@/data/premium-experience';
 import { osHome } from '@/lib/os-routes';
 import { XivText } from '@/components/xiv/text';
+import { XivV5AnswerPanel, XivV5CommunityCard, XivV5PlaceCard } from '@/components/v5';
 import { PremiumDesk } from '../premium/desk';
 
 export function WorkspaceOfflineCenter() {
@@ -568,6 +569,73 @@ export function WorkspacePocketSecurity() {
       <XivStatusPill label="Secrets never written to client config" tone="warning" />
       <XivListRow title="Enclave layer" body="Uses Android security. Does not claim to replace hardware TEE." />
       <XivListRow title="Audit" body="Location, offline queue, and agent permissions stay distinguishable: LIVE / NOT_CONFIGURED / UNKNOWN." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCommunities() {
+  return (
+    <PremiumDesk title="Communities" subtitle="Subjects, not follower contests. Membership is not tenant access.">
+      <XivStatusPill label="Follower ranking: off" tone="warning" />
+      <XivV5CommunityCard title="Supply Chain" body="INDUSTRY. Community posts are not verified facts." />
+      <XivV5CommunityCard title="Dallas Business" body="LOCAL. GPS discovery still requires permission." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceGroups() {
+  return (
+    <PremiumDesk title="Groups" subtitle="Community Mode by default. Follow Mode is optional and private.">
+      <XivListRow title="followMode" body="DISABLED by default. ENABLED never changes evidence quality." />
+      <XivListRow title="showFollowerCount" body="false. No fame score. No popularity-based authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePlaces() {
+  return (
+    <PremiumDesk title="XIV Places" subtitle="Local business intelligence. No hidden tracking.">
+      <XivV5PlaceCard title="Nearby suppliers" body="Requires OS permission, XIV purpose, tenant, and agent scope." />
+      <XivText variant="metadata" muted>
+        Private precise location is not exposed to community discovery.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAnswers() {
+  return (
+    <PremiumDesk title="XIV Answers" subtitle="Evidence-backed business answers. Not a generic web chatbot.">
+      <XivV5AnswerPanel question="Why are transportation costs changing?" />
+      <XivListRow title="Company vs public" body="Streams stay separate. Numbers appear only from connected evidence." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceReviews() {
+  return (
+    <PremiumDesk title="Reviews" subtitle="USER_REVIEW · VERIFIED_TRANSACTION · COMPANY_RESPONSE · XIV_RESEARCH">
+      <XivListRow title="AI summary" body="Cannot invent sentiment from empty or unlabeled reviews." />
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceLiveRooms() {
+  return (
+    <PremiumDesk title="Live Rooms" subtitle="XIV Live V2 contracts. Video and transcription are not live.">
+      <XivStatusPill label="Transcription: NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="Companion agents" body="Notes and evidence stay drafts. AI summaries are not automatic facts." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDataAgents() {
+  return (
+    <PremiumDesk title="Data Agent Department" subtitle="Gateway required. No raw database secrets.">
+      <XivListRow title="Schema Agent" body="Cannot run destructive production migrations." />
+      <XivListRow title="Access path" body="Agent → Guardian → Data Access Gateway → tenant → classification." />
+      <XivStatusPill label="L4 disabled" tone="warning" />
     </PremiumDesk>
   );
 }

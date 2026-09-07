@@ -120,6 +120,13 @@ export function MoreDesk() {
       <Chip label="Supplier Connect" onPress={() => go('supplier-connect')} />
       <Chip label="Device Trust" onPress={() => go('device-trust')} />
       <Chip label="Mobile Security" onPress={() => go('pocket-security')} />
+      <Chip label="Communities" onPress={() => go('communities')} />
+      <Chip label="Groups" onPress={() => go('groups')} />
+      <Chip label="XIV Places" onPress={() => go('places')} />
+      <Chip label="XIV Answers" onPress={() => go('answers')} />
+      <Chip label="Reviews" onPress={() => go('reviews')} />
+      <Chip label="Live Rooms" onPress={() => go('live-rooms')} />
+      <Chip label="Data Agents" onPress={() => go('data-agents')} />
     </ExperienceScreen>
   );
 }

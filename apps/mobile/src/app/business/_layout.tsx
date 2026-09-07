@@ -98,6 +98,13 @@ const hidden = [
   'supplier-connect',
   'device-trust',
   'pocket-security',
+  'communities',
+  'groups',
+  'places',
+  'answers',
+  'reviews',
+  'live-rooms',
+  'data-agents',
 ];
 
 export default function BusinessLayout() {

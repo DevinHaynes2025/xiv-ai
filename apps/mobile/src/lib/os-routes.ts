@@ -93,7 +93,14 @@ export type OsPath =
   | 'pocket-tms'
   | 'supplier-connect'
   | 'device-trust'
-  | 'pocket-security';
+  | 'pocket-security'
+  | 'communities'
+  | 'groups'
+  | 'places'
+  | 'answers'
+  | 'reviews'
+  | 'live-rooms'
+  | 'data-agents';
 
 export type OsEmphasis = 'operator' | 'chair';
 

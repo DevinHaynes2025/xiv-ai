@@ -80,6 +80,13 @@ export const PREMIUM_ROUTE_MAP = {
   'supplier-connect': 'supplier-connect',
   'device-trust': 'device-trust',
   'pocket-security': 'pocket-security',
+  communities: 'communities',
+  groups: 'groups',
+  places: 'places',
+  answers: 'answers',
+  reviews: 'reviews',
+  'live-rooms': 'live-rooms',
+  'data-agents': 'data-agents',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;
