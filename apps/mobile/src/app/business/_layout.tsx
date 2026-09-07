@@ -49,6 +49,16 @@ const hidden = [
   'professional',
   'meeting-room',
   'agent-room',
+  'offline',
+  'discover',
+  'watchlist',
+  'research',
+  'sheets',
+  'charts',
+  'originals',
+  'daily',
+  'idea-room',
+  'privacy',
 ];
 
 export default function BusinessLayout() {

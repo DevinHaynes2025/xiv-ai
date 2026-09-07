@@ -71,6 +71,16 @@ export function MoreDesk() {
       <Chip label="Command" onPress={() => go('sales')} />
       <Chip label="Profile" onPress={() => go('profile')} />
       <Chip label="Health" onPress={() => go('health')} />
+      <Chip label="Offline Center" onPress={() => go('offline')} />
+      <Chip label="Global Discover" onPress={() => go('discover')} />
+      <Chip label="Watchlist" onPress={() => go('watchlist')} />
+      <Chip label="Research Packet" onPress={() => go('research')} />
+      <Chip label="XIV Sheets" onPress={() => go('sheets')} />
+      <Chip label="XIV Charts" onPress={() => go('charts')} />
+      <Chip label="XIV Stories" onPress={() => go('originals')} />
+      <Chip label="XIV Daily" onPress={() => go('daily')} />
+      <Chip label="Idea Room" onPress={() => go('idea-room')} />
+      <Chip label="Privacy Center" onPress={() => go('privacy')} />
     </ExperienceScreen>
   );
 }

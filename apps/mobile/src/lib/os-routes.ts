@@ -44,7 +44,17 @@ export type OsPath =
   | 'company'
   | 'professional'
   | 'meeting-room'
-  | 'agent-room';
+  | 'agent-room'
+  | 'offline'
+  | 'discover'
+  | 'watchlist'
+  | 'research'
+  | 'sheets'
+  | 'charts'
+  | 'originals'
+  | 'daily'
+  | 'idea-room'
+  | 'privacy';
 
 export type OsEmphasis = 'operator' | 'chair';
 

@@ -225,6 +225,13 @@ export {
   videoProvider,
 } from './network-os';
 export {
+  enqueueOfflineMutation,
+  ideaRoomGuaranteesSuccess,
+  offlineSyncEngineProductionLive,
+  privateDataEntersGlobalBrainAutomatically,
+  requestZoneTransition,
+} from './workspace';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

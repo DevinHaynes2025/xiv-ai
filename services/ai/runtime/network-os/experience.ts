@@ -31,6 +31,16 @@ export const PREMIUM_ROUTE_MAP = {
   company: 'company',
   professional: 'professional',
   'meeting-room': 'meeting-room',
+  offline: 'offline',
+  discover: 'discover',
+  watchlist: 'watchlist',
+  research: 'research',
+  sheets: 'sheets',
+  charts: 'charts',
+  originals: 'originals',
+  daily: 'daily',
+  'idea-room': 'idea-room',
+  privacy: 'privacy',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;
