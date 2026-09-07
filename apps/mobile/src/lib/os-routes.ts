@@ -80,7 +80,14 @@ export type OsPath =
   | 'parcel'
   | 'commerce'
   | 'agent-foundry'
-  | 'boards';
+  | 'boards'
+  | 'temporal'
+  | 'civilizations'
+  | 'thinkers'
+  | 'foresight'
+  | 'time-machine'
+  | 'atlas'
+  | 'archives';
 
 export type OsEmphasis = 'operator' | 'chair';
 

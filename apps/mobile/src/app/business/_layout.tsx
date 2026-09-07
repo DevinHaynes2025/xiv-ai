@@ -85,6 +85,13 @@ const hidden = [
   'commerce',
   'agent-foundry',
   'boards',
+  'temporal',
+  'civilizations',
+  'thinkers',
+  'foresight',
+  'time-machine',
+  'atlas',
+  'archives',
 ];
 
 export default function BusinessLayout() {

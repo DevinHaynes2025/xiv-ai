@@ -448,6 +448,71 @@ export function WorkspaceBoards() {
   );
 }
 
+export function WorkspaceTemporal() {
+  return (
+    <PremiumDesk title="Temporal Intelligence" subtitle="The further back or forward, the more explicit the uncertainty.">
+      <XivStatusPill label="Not knowledge since the beginning of time" tone="warning" />
+      <XivListRow title="Evidence classes" body="DIRECT_PRIMARY_SOURCE · ARCHAEOLOGICAL · LATER_ACCOUNT · DISPUTED · UNKNOWN" />
+      <XivListRow title="Rule" body="Legend, reconstruction, and documented history are never treated as equivalent." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCivilizations() {
+  return (
+    <PremiumDesk title="Civilization Graph" subtitle="Commerce beyond modern corporations. Provenance required.">
+      <XivListRow title="Entities" body="Empire, port, guild, workshop, commodity, tax system, technology." />
+      <XivListRow title="Comparison" body="Roman trade fragility vs modern concentration is a research question, not a fact." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceThinkers() {
+  return (
+    <PremiumDesk title="Global Thinkers" subtitle="Worldwide coverage. No ranking by race, nationality, or civilization.">
+      <XivListRow title="Regions" body="Africa, Asia, Europe, Middle East, Oceania, Americas, Indigenous societies, diasporas." />
+      <XivListRow title="Ideas" body="Each claim keeps a source. Machine translation is not a verified interpretation." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceForesight() {
+  return (
+    <PremiumDesk title="Foresight Laboratory" subtitle="Scenarios and probabilities — never certainty.">
+      <XivStatusPill label="Quantum: NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="FACT / INFERENCE / SCENARIO / FORECAST / SPECULATION" body="Stay separate. Invented percentages are denied." />
+      <XivListRow title="Simulations" body="Monte Carlo and disruption models output scenarios, not facts." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceTimeMachine() {
+  return (
+    <PremiumDesk title="Business Time Machine" subtitle="Analogues with similarities, differences, and evidence.">
+      <XivListRow title="Historical analogue" body="Does not become a forecast fact." />
+      <XivListRow title="Company overwrites" body="1890 independent and 2026 successor both remain queryable." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAtlas() {
+  return (
+    <PremiumDesk title="Historical Business Atlas" subtitle="World → country → county → city → site, time-aware.">
+      <XivListRow title="Dallas 1850–2026" body="Unanswerable until a proven archive is connected." />
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceArchives() {
+  return (
+    <PremiumDesk title="Libraries & Archives" subtitle="Federated registry. Unconnected sources stay NOT_CONFIGURED.">
+      <XivListRow title="Library of Congress" body="Adapter architecture only. No live retrieval." />
+      <XivListRow title="Scale" body="Capacity objective, not a claim that trillions of documents are indexed." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

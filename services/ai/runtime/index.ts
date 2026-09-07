@@ -264,6 +264,12 @@ export {
   unprovenSearchProviderRemainsNotConfigured,
 } from './knowledge';
 export {
+  HISTORICAL_RESEARCH_AGENTS,
+  TEMPORAL_SCALE_LAYERS,
+  libraryProviderRemainsNotConfigured,
+  quantumForecastProviderStatus,
+} from './temporal';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

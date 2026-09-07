@@ -67,6 +67,13 @@ export const PREMIUM_ROUTE_MAP = {
   commerce: 'commerce',
   'agent-foundry': 'agent-foundry',
   boards: 'boards',
+  temporal: 'temporal',
+  civilizations: 'civilizations',
+  thinkers: 'thinkers',
+  foresight: 'foresight',
+  'time-machine': 'time-machine',
+  atlas: 'atlas',
+  archives: 'archives',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;
