@@ -9,7 +9,7 @@
     "start": "tsx server.ts",
     "dev": "tsx watch server.ts",
     "typecheck": "tsc --noEmit",
-    "test:runtime": "tsx runtime/policy.test.ts && tsx runtime/phase2b.test.ts && tsx runtime/phase2c.test.ts && tsx runtime/phase2d.test.ts && tsx runtime/phase2e.test.ts && tsx runtime/phase2fa.test.ts && tsx runtime/phase2fb.test.ts",
+    "test:runtime": "tsx runtime/policy.test.ts && tsx runtime/phase2b.test.ts && tsx runtime/phase2c.test.ts && tsx runtime/phase2d.test.ts && tsx runtime/phase2e.test.ts && tsx runtime/phase2fa.test.ts && tsx runtime/phase2fb.test.ts && tsx runtime/phase2ga.test.ts",
     "guardian:validate": "tsx runtime/guardian/validate.ts"
   },
   "dependencies": {

@@ -23,7 +23,8 @@ export type OsPath =
   | 'assistant'
   | 'agents'
   | 'team'
-  | 'workforce';
+  | 'workforce'
+  | 'live';
 
 export type OsEmphasis = 'operator' | 'chair';
 

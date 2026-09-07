@@ -9,7 +9,12 @@ export type XivAgentId =
   | 'customer_experience'
   | 'technology'
   | 'innovation'
-  | 'guardian';
+  | 'guardian'
+  | 'risk'
+  | 'compliance'
+  | 'data_quality'
+  | 'communications'
+  | 'moderation';
 
 export type XivAgentDomain =
   | 'executive'
@@ -20,7 +25,12 @@ export type XivAgentDomain =
   | 'customer'
   | 'technology'
   | 'innovation'
-  | 'reliability';
+  | 'reliability'
+  | 'risk'
+  | 'compliance'
+  | 'quality'
+  | 'communications'
+  | 'trust';
 
 export type XivAgentStatus = 'registered' | 'prototype' | 'available' | 'future';
 
@@ -224,6 +234,67 @@ export const XIV_AGENT_REGISTRY: readonly XivAgentDefinition[] = [
     allowedTools: ['business_context_reader', 'recommendation_generator', 'diagnostic_summarizer'],
     requiresApprovalFor: ['production_change'],
     status: 'future',
+  },
+  {
+    id: 'risk',
+    name: 'Risk Agent',
+    description: 'Synthesizes operational and strategic risk from authorized evidence. Does not invent financial impact or change production systems.',
+    domain: 'risk',
+    capabilities: ['observe_context', 'recommend', 'diagnose', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: [
+      'risk_summarizer',
+      'recommendation_generator',
+      'diagnostic_summarizer',
+      'business_health_report',
+      'company_data_reader',
+    ],
+    requiresApprovalFor: ['production_change', 'external_send'],
+    status: 'prototype',
+  },
+  {
+    id: 'compliance',
+    name: 'Compliance Agent',
+    description: 'Maps authorized evidence to controls. Makes no legal claims unless a sourced record exists.',
+    domain: 'compliance',
+    capabilities: ['observe_context', 'recommend', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator', 'company_data_reader'],
+    requiresApprovalFor: ['production_change', 'external_send'],
+    status: 'prototype',
+  },
+  {
+    id: 'data_quality',
+    name: 'Data Quality Agent',
+    description: 'Scores freshness, completeness, and provenance of authorized records. Does not convert sparse identity data into operational insight.',
+    domain: 'quality',
+    capabilities: ['observe_context', 'diagnose', 'summarize'],
+    defaultAuthority: AuthorityLevel.L0_Observe,
+    allowedTools: ['company_data_reader', 'health_status_reader', 'diagnostic_summarizer'],
+    requiresApprovalFor: ['production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'communications',
+    name: 'Communications Agent',
+    description: 'Drafts business updates and livestream summaries from authorized inputs. Does not publish or send outbound messages.',
+    domain: 'communications',
+    capabilities: ['observe_context', 'recommend', 'draft', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['recommendation_generator', 'diagnostic_summarizer'],
+    requiresApprovalFor: ['external_send', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'moderation',
+    name: 'Moderation / Trust Agent',
+    description: 'Recommends business-livestream content-policy actions. Cannot silently terminate streams or auto-ban hosts.',
+    domain: 'trust',
+    capabilities: ['observe_context', 'recommend', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['recommendation_generator', 'diagnostic_summarizer'],
+    requiresApprovalFor: ['permission_change', 'production_change'],
+    status: 'prototype',
   },
   {
     id: 'guardian',

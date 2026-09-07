@@ -30,6 +30,8 @@ export type {
 } from './context';
 export { recordTenantAudit, TENANT_AUDIT_EVENTS } from './audit';
 export type { TenantAuditEvent } from './audit';
+export { describeTenantPersistenceBlock, tenantPersistenceIsLive } from './collision';
+export type { TenantPersistenceInvestigation } from './collision';
 export {
   DATA_CLASSIFICATIONS,
   MEMBERSHIP_STATUSES,

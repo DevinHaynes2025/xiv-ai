@@ -99,6 +99,8 @@ export {
   userCannotJoinArbitraryOrganization,
   userCannotJoinArbitraryUniverse,
   userRolesDoNotGrantTenantAccess,
+  describeTenantPersistenceBlock,
+  tenantPersistenceIsLive,
 } from './tenant';
 export type {
   ActiveTenantContext,
@@ -141,6 +143,36 @@ export { canAuthorizePublication, publishingWritesEnabled } from './publishing';
 export { recordAccessEvent, sanitizeAuditText, stripSignedUrlSecrets } from './audit-access';
 export { canAgentAccessClassification, consumerMayAccessClassification } from './security/classification';
 export { SECURITY_CONTROLS } from './security/layers';
+export { evaluateSecurityDecision } from './security/decision';
+export type { SecurityDecision, SecurityDecisionInput, SecurityDecisionVerdict } from './security/decision';
+export { defaultDenyUnknownHandoff, evaluateAgentFirewall } from './security/firewall';
+export {
+  createCollaborationSession,
+  directAgentCallDenied,
+  evaluateCollaboration,
+  evaluateLoopGuard,
+  orchestrateConsultation,
+  routeHandoff,
+} from './collaboration';
+export type { AgentHandoff, CollaborationResult, CollaborationSession, HandoffType } from './collaboration';
+export { createOutcomeRecord, evaluateOutcome, feedbackDoesNotRetrain, recordLesson } from './feedback';
+export type { OutcomeRecord } from './feedback';
+export { hypothesizedRemainsHypothesized, projectScenario, stanceIsNotFact } from './foresight';
+export type { Scenario } from './foresight';
+export {
+  authorizeLiveAccess,
+  createUnavailableDlpProvider,
+  createUnavailableLiveStreamProvider,
+  createUnavailableRecordingProvider,
+  createUnavailableTranscriptProvider,
+  liveInfrastructureLabel,
+  publicLiveCannotExposeRestricted,
+  recommendModeration,
+  PROTOTYPE_LIVE_ROOMS,
+} from './live';
+export type { LiveRoom } from './live';
+export { createCorrelationId, recordTrace } from './observability';
+export { scoreAuthorizedRecords } from './quality';
 export { findingHasPrototypeLabels } from './context/findings';
 export type { BusinessHealthFinding, HealthDomain, StoryBeat, StoryStance } from './context/findings';
 export { buildDiagnosticStory, buildNarrative, hypothesisIsMarked, storyHasPrototypeLabels } from './context/story';

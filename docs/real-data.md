@@ -13,6 +13,7 @@ Phase 2E adds the first meaningful **real** read-only business-data path beside 
 | Authorized session records adapter | IMPLEMENTED (profile identity + agent activity only) |
 | Domain capability map | IMPLEMENTED |
 | Deterministic freshness | IMPLEMENTED |
+| Data Quality scoring of authorized session records | PROTOTYPE (no operational invention) |
 | ERP / WMS / TMS adapters | PLANNED |
 | Silent fallback from live → sample | FORBIDDEN |
 

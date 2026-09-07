@@ -23,6 +23,13 @@ export function DiscoverNetwork() {
   return (
     <ExperienceScreen title="Discover" subtitle="Companies, products, and people entering the map.">
       <PrototypeNotice text="Discover is a catalog preview. Follow and Explore are local UI only. No graph, follow table, or company record is written. Industry hubs below are DEMO architecture." />
+      <SectionHeader kicker="Live" title="Business Live" />
+      <ModuleCard
+        tag="NOT CONFIGURED"
+        title="Business livestreams"
+        body="CEO updates, training, and product demos. Live infrastructure is not configured. No video is playing."
+        onPress={() => router.navigate('/consumer/live' as Href)}
+      />
       <SectionHeader kicker="Verticals" title="Industry hubs" />
       {industryHubs.map((hub) => (
         <ModuleCard

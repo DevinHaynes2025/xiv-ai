@@ -37,6 +37,10 @@ A compromise of one user, device, Universe, organization, service, storage parti
 | Dependency security | PLANNED |
 | Secure SDLC | PROTOTYPE |
 | Agent policy enforcement | IMPLEMENTED |
+| Agent Firewall / mesh boundary | PROTOTYPE |
+| Security decision engine | PROTOTYPE (step-up is PLANNED) |
+| Live DLP | NOT CONFIGURED |
+| Collaboration budgets | PROTOTYPE |
 
 ## Classification
 

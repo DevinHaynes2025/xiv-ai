@@ -13,6 +13,7 @@ Phase 2E in-memory isolation plus Phase 2F persistence **design**. Persisted Uni
 | Mobile tenant selection / bootstrap UX | IMPLEMENTED IN CODE |
 | Persisted Universes (hosted) | NOT CONFIGURED |
 | Cross-Universe relationships | PLANNED |
+| Cross-Universe agent data sharing | FORBIDDEN (no inferred sharing) |
 
 ## Model
 

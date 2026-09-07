@@ -1,12 +1,12 @@
-# XIV Agent Runtime — Phase 2F-B
+# XIV Agent Runtime — Phase 2G-A
 
 Governed Agent Runtime with Universe isolation, a Company Data Gateway, authorized session records, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 Governed Runtime ≠ Live Gemini Executive turn path.
 
-See also [xiv-universe.md](./xiv-universe.md), [persistent-universe-design.md](./persistent-universe-design.md), [rls-security-model.md](./rls-security-model.md), [real-data.md](./real-data.md), [media-security.md](./media-security.md), [security-architecture.md](./security-architecture.md), [scale-architecture.md](./scale-architecture.md), [phase2f-b-validation.md](./phase2f-b-validation.md).
+See also [agent-mesh.md](./agent-mesh.md), [agent-firewall.md](./agent-firewall.md), [agent-feedback-loops.md](./agent-feedback-loops.md), [foresight-engine.md](./foresight-engine.md), [business-live.md](./business-live.md), [runtime-observability.md](./runtime-observability.md), [phase2g-a-review.md](./phase2g-a-review.md), [phase2f-b-validation.md](./phase2f-b-validation.md).
 
-Persisted Universes are **not LIVE**. Phase 2F-B stopped before migration apply because hosted `organizations` already exists. Agents remain non-principals on the database. Executive and Technology agents may display authorized tenant selectors; they cannot bypass membership. Guardian still has no tenant-data access. Security Agent has no RLS bypass.
+Persisted Universes are **not LIVE** (schema collision). Agents remain non-principals. The Agent Mesh lets Executive coordinate bounded consultations. Guardian cannot join the tenant mesh. L4 remains disabled.
 
 ## Intelligence loops
 

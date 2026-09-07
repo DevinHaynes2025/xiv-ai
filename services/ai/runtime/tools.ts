@@ -44,6 +44,14 @@ const DOMAIN_READERS: readonly XivAgentId[] = [
   'innovation',
 ];
 
+const SPECIALIST_READERS: readonly XivAgentId[] = [
+  'risk',
+  'compliance',
+  'data_quality',
+  'communications',
+  'moderation',
+];
+
 export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
   'business_context_reader',
   'business_health_analyzer',
@@ -106,7 +114,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L1_Recommend,
-    allowedAgentIds: DOMAIN_READERS,
+    allowedAgentIds: [...DOMAIN_READERS, 'risk'],
   },
   {
     id: 'recommendation_generator',
@@ -118,7 +126,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L1_Recommend,
-    allowedAgentIds: DOMAIN_READERS,
+    allowedAgentIds: [...DOMAIN_READERS, 'risk', 'compliance', 'communications', 'moderation'],
   },
   {
     id: 'diagnostic_summarizer',
@@ -130,7 +138,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+    allowedAgentIds: [...DOMAIN_READERS, 'guardian', ...SPECIALIST_READERS],
   },
   {
     id: 'diagnostic_story_builder',
@@ -154,7 +162,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: DOMAIN_READERS,
+    allowedAgentIds: [...DOMAIN_READERS, 'risk'],
   },
   {
     id: 'company_data_reader',
@@ -166,7 +174,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: DOMAIN_READERS,
+    allowedAgentIds: [...DOMAIN_READERS, 'risk', 'compliance', 'data_quality'],
   },
   {
     id: 'executive_brief_builder',
@@ -202,7 +210,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: [...DOMAIN_READERS, 'guardian'],
+    allowedAgentIds: [...DOMAIN_READERS, 'guardian', 'data_quality'],
   },
   {
     id: 'development_health_checker',

@@ -12,7 +12,7 @@ export default function ConsumerLayout() {
   return (
     <ExperienceTabs
       tabs={tabs}
-      hidden={['assistant', 'agents', 'opportunities', 'inbox', 'activity', 'hubs', 'article']}
+      hidden={['assistant', 'agents', 'opportunities', 'inbox', 'activity', 'hubs', 'article', 'live']}
     />
   );
 }

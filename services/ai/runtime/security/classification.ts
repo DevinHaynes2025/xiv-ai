@@ -13,7 +13,9 @@ export function classificationRank(value: DataClassification) {
 }
 
 export function canAgentAccessClassification(agentId: XivAgentId, classification: DataClassification) {
-  if (agentId === 'guardian' || agentId === 'innovation') return classification === 'public';
+  if (agentId === 'guardian' || agentId === 'innovation' || agentId === 'moderation') {
+    return classification === 'public';
+  }
   if (classification === 'restricted' && agentId !== 'executive' && agentId !== 'security') return false;
   return true;
 }

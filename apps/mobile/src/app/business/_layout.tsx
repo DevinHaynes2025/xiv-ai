@@ -32,6 +32,7 @@ export default function BusinessLayout() {
         'finance',
         'projects',
         'security',
+        'live',
       ]}
     />
   );

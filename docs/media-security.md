@@ -17,6 +17,7 @@ Phase 2E media architecture. **Production uploads are not enabled.**
 | Cloud signed upload | NOT CONFIGURED |
 | Malware scanning | NOT CONFIGURED (`unavailable`, never `safe`) |
 | Media intelligence (image/video/transcript) | PROTOTYPE interface only — not operational |
+| Live recording / transcript providers | NOT CONFIGURED |
 
 ## Pipeline (target)
 

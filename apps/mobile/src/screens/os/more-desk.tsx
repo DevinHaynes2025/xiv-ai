@@ -54,6 +54,7 @@ export function MoreDesk() {
           onPress={() => go(item.id as OsPath)}
         />
       ))}
+      <Chip label="Business Live" onPress={() => go('live')} />
       <Chip label="Profile" onPress={() => go('profile')} />
       <Chip label="Health" onPress={() => go('health')} />
     </ExperienceScreen>

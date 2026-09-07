@@ -28,6 +28,7 @@ export default function ExecutiveLayout() {
         'projects',
         'security',
         'systems',
+        'live',
       ]}
     />
   );
