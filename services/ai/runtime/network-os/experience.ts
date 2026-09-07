@@ -74,6 +74,12 @@ export const PREMIUM_ROUTE_MAP = {
   'time-machine': 'time-machine',
   atlas: 'atlas',
   archives: 'archives',
+  pocket: 'pocket',
+  'pocket-wms': 'pocket-wms',
+  'pocket-tms': 'pocket-tms',
+  'supplier-connect': 'supplier-connect',
+  'device-trust': 'device-trust',
+  'pocket-security': 'pocket-security',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

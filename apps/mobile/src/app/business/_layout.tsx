@@ -92,6 +92,12 @@ const hidden = [
   'time-machine',
   'atlas',
   'archives',
+  'pocket',
+  'pocket-wms',
+  'pocket-tms',
+  'supplier-connect',
+  'device-trust',
+  'pocket-security',
 ];
 
 export default function BusinessLayout() {

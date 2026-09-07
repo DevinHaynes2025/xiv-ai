@@ -513,6 +513,65 @@ export function WorkspaceArchives() {
   );
 }
 
+export function WorkspacePocket() {
+  return (
+    <PremiumDesk title="Pocket Brain" subtitle="Scoped, encrypted cache. Not a copy of Global Brain.">
+      <XivStatusPill label="CLOUD_ONLY cannot be cached" tone="warning" />
+      <XivListRow title="What may live here" body="Assigned tasks, approved documents, warehouse work, recent conversations." />
+      <XivListRow title="Triple boundary" body="Device → Identity → Universe. A compromised phone is not a compromised company." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePocketWms() {
+  return (
+    <PremiumDesk title="Pocket WMS" subtitle="Receive · putaway · pick · pack · count. Scans need evidence.">
+      <XivListRow title="Scan pallet" body="Barcode creates an evidence-backed event. Inventory is not invented." />
+      <XivListRow title="Human confirm" body="Dock / zone / bin recommendations stay L3. L4 disabled." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePocketTms() {
+  return (
+    <PremiumDesk title="Pocket TMS" subtitle="Shipment visibility contracts. No fake GPS, ETA, or tracking.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Carrier status" body="Requires an authorized connector. Connectivity is not identity." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSupplierConnect() {
+  return (
+    <PremiumDesk title="Supplier Connect" subtitle="RFQ and conversation. Self-report is not verification.">
+      <XivListRow title="Verification" body="SELF_REPORTED · DOCUMENT_VERIFIED · REGISTRY_VERIFIED · UNKNOWN" />
+      <XivListRow title="Agents" body="May draft. Cannot secretly finalize binding commercial terms." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDeviceTrust() {
+  return (
+    <PremiumDesk title="Device Trust" subtitle="Android enrollment. Client trust is not tenant authority.">
+      <XivListRow title="UNKNOWN" body="Cannot become TRUSTED automatically." />
+      <XivListRow title="REVOKED" body="Session denied. Account can remain intact." />
+      <XivText variant="metadata" muted>
+        XIV does not replace Android. Google Play targets modern supported devices, not every phone ever made.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePocketSecurity() {
+  return (
+    <PremiumDesk title="Mobile Security" subtitle="Keystore-backed secrets when supported. Guardian stays above agents.">
+      <XivStatusPill label="Secrets never written to client config" tone="warning" />
+      <XivListRow title="Enclave layer" body="Uses Android security. Does not claim to replace hardware TEE." />
+      <XivListRow title="Audit" body="Location, offline queue, and agent permissions stay distinguishable: LIVE / NOT_CONFIGURED / UNKNOWN." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

@@ -114,6 +114,12 @@ export function MoreDesk() {
       <Chip label="Time Machine" onPress={() => go('time-machine')} />
       <Chip label="Business Atlas" onPress={() => go('atlas')} />
       <Chip label="Archives" onPress={() => go('archives')} />
+      <Chip label="Pocket Brain" onPress={() => go('pocket')} />
+      <Chip label="Pocket WMS" onPress={() => go('pocket-wms')} />
+      <Chip label="Pocket TMS" onPress={() => go('pocket-tms')} />
+      <Chip label="Supplier Connect" onPress={() => go('supplier-connect')} />
+      <Chip label="Device Trust" onPress={() => go('device-trust')} />
+      <Chip label="Mobile Security" onPress={() => go('pocket-security')} />
     </ExperienceScreen>
   );
 }

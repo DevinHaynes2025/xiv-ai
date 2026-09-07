@@ -87,7 +87,13 @@ export type OsPath =
   | 'foresight'
   | 'time-machine'
   | 'atlas'
-  | 'archives';
+  | 'archives'
+  | 'pocket'
+  | 'pocket-wms'
+  | 'pocket-tms'
+  | 'supplier-connect'
+  | 'device-trust'
+  | 'pocket-security';
 
 export type OsEmphasis = 'operator' | 'chair';
 

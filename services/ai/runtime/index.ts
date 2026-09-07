@@ -270,6 +270,12 @@ export {
   quantumForecastProviderStatus,
 } from './temporal';
 export {
+  TRIPLE_BOUNDARY,
+  androidReplacesHostOs,
+  secretsWrittenToClientConfig,
+  unconfiguredEnterpriseVendorRemainsNotConfigured,
+} from './pocket';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
