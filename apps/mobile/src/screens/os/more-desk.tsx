@@ -170,6 +170,11 @@ export function MoreDesk() {
       <Chip label="Device Fleet" onPress={() => go('device-fleet')} />
       <Chip label="Release Pipeline" onPress={() => go('release-pipeline')} />
       <Chip label="Media Fabric" onPress={() => go('media-fabric')} />
+      <Chip label="Compute Fabric" onPress={() => go('compute-fabric')} />
+      <Chip label="Data Fabric" onPress={() => go('data-fabric')} />
+      <Chip label="Trust Roots" onPress={() => go('trust-roots')} />
+      <Chip label="Model Registry" onPress={() => go('model-registry')} />
+      <Chip label="Software Supply Chain" onPress={() => go('software-supply-chain')} />
     </ExperienceScreen>
   );
 }

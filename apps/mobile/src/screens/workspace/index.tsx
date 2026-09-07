@@ -1012,6 +1012,49 @@ export function WorkspaceMediaFabric() {
   );
 }
 
+export function WorkspaceComputeFabric() {
+  return (
+    <PremiumDesk title="Compute Fabric" subtitle="CPU fallback, NVIDIA when present, other GPU/NPU compatible. Not NVIDIA-dependent.">
+      <XivStatusPill label="Unavailable GPU stays unavailable. Workloads still require Guardian." tone="warning" />
+      <XivListRow title="Mobile" body="iPhone and Android call the same governed APIs. The client does not require NVIDIA graphics." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDataFabric() {
+  return (
+    <PremiumDesk title="Data Fabric" subtitle="Relational, graph, vector, search, object, stream, time-series, cache, lakehouse, archive.">
+      <XivListRow title="Gateway" body="Agents never receive database credentials. Guardian and the Data Access Gateway stay in the path." />
+      <XivListRow title="Purpose" body="Each store has a reason. Cross-database joins cannot bypass authorization." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceTrustRoots() {
+  return (
+    <PremiumDesk title="Trust Roots" subtitle="Identity, device, data, and authority roots. Device cannot impersonate identity.">
+      <XivListRow title="Decision graph" body="Every important action can point to identity, device, evidence, policy, approval, and outcome." />
+      <XivListRow title="Audit" body="The audit root cannot be disabled. Unknown dependency trust is not trusted." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceModelRegistry() {
+  return (
+    <PremiumDesk title="Model Registry" subtitle="Versions, evaluations, risk, deployment, and rollback. A model is never its own authority.">
+      <XivListRow title="AI path" body="Agent → Guardian → AI Gateway → model policy → compute → result validation → audit." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSoftwareSupplyChain() {
+  return (
+    <PremiumDesk title="Software Supply Chain" subtitle="Signed commits, scans, SBOM, artifact signatures, release approval, runtime attestation.">
+      <XivListRow title="Unsigned artifacts" body="An artifact without a valid signature is denied. Runtime attestation is claimed only when the host provides it." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

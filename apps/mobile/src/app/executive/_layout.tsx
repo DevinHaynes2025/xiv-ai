@@ -144,6 +144,11 @@ const hidden = [
   'device-fleet',
   'release-pipeline',
   'media-fabric',
+  'compute-fabric',
+  'data-fabric',
+  'trust-roots',
+  'model-registry',
+  'software-supply-chain',
 ];
 
 export default function ExecutiveLayout() {

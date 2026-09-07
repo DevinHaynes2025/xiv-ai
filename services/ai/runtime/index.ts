@@ -318,6 +318,11 @@ export {
   xivSupportsEveryPhone,
 } from './opsbrain';
 export {
+  moreComputeMeansMorePrivilege,
+  routeComputeWorkload,
+  routeDataQuery,
+} from './foundations';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

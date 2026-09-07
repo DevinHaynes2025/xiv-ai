@@ -143,7 +143,12 @@ export type OsPath =
   | 'agent-divisions'
   | 'device-fleet'
   | 'release-pipeline'
-  | 'media-fabric';
+  | 'media-fabric'
+  | 'compute-fabric'
+  | 'data-fabric'
+  | 'trust-roots'
+  | 'model-registry'
+  | 'software-supply-chain';
 
 export type OsEmphasis = 'operator' | 'chair';
 

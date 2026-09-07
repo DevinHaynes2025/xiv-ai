@@ -130,6 +130,11 @@ export const PREMIUM_ROUTE_MAP = {
   'device-fleet': 'device-fleet',
   'release-pipeline': 'release-pipeline',
   'media-fabric': 'media-fabric',
+  'compute-fabric': 'compute-fabric',
+  'data-fabric': 'data-fabric',
+  'trust-roots': 'trust-roots',
+  'model-registry': 'model-registry',
+  'software-supply-chain': 'software-supply-chain',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;
