@@ -5,6 +5,7 @@ import { IntelligenceStoryCard, RiskOpportunityPanel, XivListRow } from '@/compo
 import { useSession } from '@/context/session';
 import { premiumAd, premiumHome } from '@/data/premium-demo';
 import { EXPERIENCE_STORY, HEALTH_DOMAINS } from '@/data/premium-experience';
+import { useAdaptiveSurface } from '@/lib/adaptive-surface';
 import { dayGreeting } from '@/lib/greeting';
 import { osHome } from '@/lib/os-routes';
 
@@ -13,12 +14,29 @@ import { PremiumDesk } from './desk';
 export function PremiumHome() {
   const router = useRouter();
   const { session } = useSession();
+  const { tablet, surface } = useAdaptiveSurface();
   const home = osHome(session.experience);
   const go = (path: string) => router.navigate(`${home}/${path}` as Href);
 
   return (
-    <PremiumDesk title={dayGreeting(session.displayName)} subtitle="What needs attention — without fake live ops.">
+    <PremiumDesk
+      title={dayGreeting(session.displayName)}
+      subtitle={
+        tablet
+          ? 'Tablet workspace: command, documents, and multi-agent rooms — still a window into XIV.'
+          : 'Phone window: alerts, approvals, agents, and meetings — without fake live ops.'
+      }>
       <XivSearchCommandBar placeholder="Jump to Intelligence, Network, Meetings, AI" />
+      <XivListRow
+        title={tablet ? 'Expanded surface' : 'Pocket surface'}
+        body={
+          tablet
+            ? 'Warehouse, maps, charts, and command centers are one tap closer on this width.'
+            : 'The phone is the secure window. The governed intelligence network stays behind it.'
+        }
+        meta={surface}
+        onPress={() => go('install')}
+      />
 
       <XivSectionHeader kicker="A" title="Executive Brief" action="Intel" onAction={() => go('intelligence')} />
       <IntelligenceStoryCard {...EXPERIENCE_STORY} />
@@ -55,6 +73,20 @@ export function PremiumHome() {
 
       <XivSectionHeader kicker="Paid" title="Sponsored" />
       <SponsoredCard {...premiumAd} />
+      {tablet ? (
+        <>
+          <XivSectionHeader kicker="Tablet" title="Expanded operations" />
+          <XivPremiumButton label="Warehouse" onPress={() => go('warehouse')} />
+          <XivPremiumButton label="Command Center" onPress={() => go('command-center')} variant="ghost" />
+          <XivPremiumButton label="Operations Brain" onPress={() => go('ops-brain')} variant="ghost" />
+          <XivPremiumButton label="Device Fleet" onPress={() => go('device-fleet')} variant="ghost" />
+        </>
+      ) : (
+        <>
+          <XivPremiumButton label="Get XIV on this phone" onPress={() => go('install')} />
+          <XivPremiumButton label="Approvals" onPress={() => go('agents')} variant="ghost" />
+        </>
+      )}
       <XivPremiumButton label="Messages" onPress={() => go('messages')} variant="ghost" />
       <XivPremiumButton label="Sources" onPress={() => go('sources')} variant="ghost" />
       <XivPremiumButton label="More desks" onPress={() => go('more')} variant="ghost" />

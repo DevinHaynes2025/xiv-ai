@@ -137,7 +137,13 @@ export type OsPath =
   | 'device-manager'
   | 'enterprise-catalog'
   | 'sdk-docs'
-  | 'oem';
+  | 'oem'
+  | 'install'
+  | 'ops-brain'
+  | 'agent-divisions'
+  | 'device-fleet'
+  | 'release-pipeline'
+  | 'media-fabric';
 
 export type OsEmphasis = 'operator' | 'chair';
 

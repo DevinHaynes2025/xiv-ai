@@ -955,6 +955,63 @@ export function WorkspaceOem() {
   );
 }
 
+export function WorkspaceInstall() {
+  return (
+    <PremiumDesk title="Get XIV" subtitle="App Store, Google Play, enterprise-managed, and web/PWA fallback foundations.">
+      <XivStatusPill label="Store listings are not live. This is distribution readiness, not a published app." tone="warning" />
+      <XivListRow title="iPhone and iPad" body="Prepare TestFlight and the Apple App Store. Does not replace iOS." />
+      <XivListRow title="Android phone and tablet" body="Prepare internal, closed, and production Play tracks. Does not replace Android." />
+      <XivListRow title="Rugged warehouse devices" body="Barcode, NFC, camera, and offline workflows when the host provides them." />
+      <XivListRow title="Web fallback" body="PWA/web remains a fallback window into XIV, not every-device support." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceOpsBrain() {
+  return (
+    <PremiumDesk title="Operations Brain" subtitle="Assemble only the agents a disruption needs. Human approval stays required.">
+      <XivListRow title="Supplier delay" body="Supplier, inventory, warehouse, transportation, finance, and legal research — then a recommended response." />
+      <XivListRow title="Not always on" body="Division agents do not run constantly. A task force grants no new authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAgentDivisions() {
+  return (
+    <PremiumDesk title="Agent Divisions" subtitle="Executive, operations, supply chain, finance, legal, security, people, media, data, platform.">
+      <XivStatusPill label="Primary nav remains Home · Intelligence · Network · Meetings · AI" tone="warning" />
+      <XivListRow title="Capability catalog" body="These are assembled into task forces. They do not enlarge the 11 experience agents." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDeviceFleet() {
+  return (
+    <PremiumDesk title="Device Fleet" subtitle="Managed-device trust, versions, and revocation for company-issued hardware.">
+      <XivListRow title="Org scoped" body="A warehouse can see trusted, update-needed, at-risk, and revoked devices. Not personal-device surveillance." />
+      <XivListRow title="Signals" body="IP and device security signals stay restricted security data, not public profile fields." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceReleasePipeline() {
+  return (
+    <PremiumDesk title="Release Pipeline" subtitle="Development → tests → security → beta → staged rollout → production → health → rollback.">
+      <XivListRow title="Remote configuration" body="Feature flags may target audience, platform, version, region, tenant, and Universe." />
+      <XivListRow title="Kill switch" body="High-risk security behavior cannot be changed casually through configuration." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceMediaFabric() {
+  return (
+    <PremiumDesk title="Media Fabric" subtitle="Metadata in the database. Encrypted objects in object storage. Not Postgres blobs.">
+      <XivListRow title="Analysis" body="Authorized posts can be understood by topic, claim, rights, and Universe — without becoming a permanent identity profile." />
+      <XivListRow title="Scale" body="Trillions of objects remain a future benchmark, not a current claim." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

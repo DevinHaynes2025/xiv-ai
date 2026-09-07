@@ -164,6 +164,12 @@ export function MoreDesk() {
       <Chip label="Enterprise Catalog" onPress={() => go('enterprise-catalog')} />
       <Chip label="SDK Docs" onPress={() => go('sdk-docs')} />
       <Chip label="OEM Foundation" onPress={() => go('oem')} />
+      <Chip label="Get XIV" onPress={() => go('install')} />
+      <Chip label="Operations Brain" onPress={() => go('ops-brain')} />
+      <Chip label="Agent Divisions" onPress={() => go('agent-divisions')} />
+      <Chip label="Device Fleet" onPress={() => go('device-fleet')} />
+      <Chip label="Release Pipeline" onPress={() => go('release-pipeline')} />
+      <Chip label="Media Fabric" onPress={() => go('media-fabric')} />
     </ExperienceScreen>
   );
 }

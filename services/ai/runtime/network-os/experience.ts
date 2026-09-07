@@ -124,6 +124,12 @@ export const PREMIUM_ROUTE_MAP = {
   'enterprise-catalog': 'enterprise-catalog',
   'sdk-docs': 'sdk-docs',
   oem: 'oem',
+  install: 'install',
+  'ops-brain': 'ops-brain',
+  'agent-divisions': 'agent-divisions',
+  'device-fleet': 'device-fleet',
+  'release-pipeline': 'release-pipeline',
+  'media-fabric': 'media-fabric',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

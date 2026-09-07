@@ -142,6 +142,8 @@ export const IconSize = {
 
 export const Layout = {
   maxContentWidth: 600,
+  tabletMaxContentWidth: 980,
+  tabletWidth: 768,
   screenGutter: Spacing.four,
   cardGap: Spacing.three,
   minTapTarget: 44,

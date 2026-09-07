@@ -142,6 +142,12 @@ const hidden = [
   'enterprise-catalog',
   'sdk-docs',
   'oem',
+  'install',
+  'ops-brain',
+  'agent-divisions',
+  'device-fleet',
+  'release-pipeline',
+  'media-fabric',
 ];
 
 export default function BusinessLayout() {

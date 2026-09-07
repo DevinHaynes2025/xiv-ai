@@ -312,6 +312,12 @@ export {
   runtimeCannotBypassGuardian,
 } from './platform';
 export {
+  assembleOperationsTaskForce,
+  classifyMobileSurface,
+  phoneContainsEntireXiv,
+  xivSupportsEveryPhone,
+} from './opsbrain';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
