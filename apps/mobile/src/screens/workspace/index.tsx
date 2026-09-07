@@ -256,6 +256,109 @@ export function WorkspacePrivacy() {
   );
 }
 
+export function WorkspaceDevices() {
+  return (
+    <PremiumDesk title="Devices" subtitle="XIV Device Fabric. Client device state is not tenant authority.">
+      <XivStatusPill label="Native desktop packaging: NOT_IMPLEMENTED" tone="warning" />
+      <XivListRow title="PHONE · iOS / Android" body="TRUSTED is a device posture, not organization membership." />
+      <XivListRow title="TABLET" body="Operational workspace contract. Not a stretched phone." />
+      <XivListRow title="DESKTOP / WEB" body="Adaptive layouts only. No production installer claim." />
+      <XivText variant="metadata" muted>
+        GPS, camera, and endpoint protection stay UNKNOWN or NOT_CONFIGURED until a real device path is proven.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDeviceDetail() {
+  return (
+    <PremiumDesk title="Device Detail" subtitle="Independent trust. A revoked device cannot authorize a session.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="deviceTrustState" body="UNKNOWN until enrollment is proven on a real client." />
+      <XivListRow title="Revocation" body="Compromised device can be revoked without disabling the account." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceLocation() {
+  return (
+    <PremiumDesk title="Location" subtitle="Permissioned GPS. No hidden tracking. Not live.">
+      <XivStatusPill label="GPS path: not live" tone="warning" />
+      <XivListRow title="Deny by default" body="User permission, purpose, tenant policy, and agent scope are all required." />
+      <XivListRow title="Approximate vs precise" body="Approximate grants do not expose precise coordinates." />
+      <XivText variant="metadata" muted>
+        A device LOCATION capability does not grant every agent location access. No employee surveillance architecture.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSecurityAgents() {
+  return (
+    <PremiumDesk title="Security Agents" subtitle="Cyber Defense Department. No agent is sovereign.">
+      <XivListRow title="Security Director" body="Coordinates. Cannot override Guardian or self-promote." />
+      <XivListRow title="SOC / Threat / Identity / Device" body="Research and alert contracts. Telemetry NOT_CONFIGURED." />
+      <XivListRow title="Agent Security" body="Watches other AI. Text cannot redefine permissions." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSecurityIncidents() {
+  return (
+    <PremiumDesk title="Incidents" subtitle="High-impact containment stays human-approved.">
+      <XivStatusPill label="No fabricated telemetry" tone="warning" />
+      <XivListRow title="Stages" body="DETECTED → TRIAGE → INVESTIGATION → CONTAINMENT → ERADICATION → RECOVERY → POST_INCIDENT" />
+      <XivListRow title="L4" body="Bounded autonomy remains disabled." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceIdentitySecurity() {
+  return (
+    <PremiumDesk title="Identity Security" subtitle="Unusual login and session research. No production detection claim.">
+      <XivListRow title="Signals" body="New device, failed MFA, role escalation, stale privileges — contracts only." />
+      <XivListRow title="Authority" body="Client-reported device or location is not tenant membership." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAccessSecurity() {
+  return (
+    <PremiumDesk title="Access Governance" subtitle="Excessive permissions stay reviewable. Changes need approval.">
+      <XivListRow title="Checks" body="Stale memberships, admin concentration, cross-Universe requests." />
+      <XivListRow title="No self-grant" body="Agents cannot add their own tools or raise authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAgentSecurity() {
+  return (
+    <PremiumDesk title="Agent Security" subtitle="AI that watches other AI. Guardian stays above every agent.">
+      <XivListRow title="Watches" body="Scope violations, prompt injection, classification leaks, approval bypass." />
+      <XivListRow title="Rule" body="An agent cannot say it is the CFO and receive finance access." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAudit() {
+  return (
+    <PremiumDesk title="Audit" subtitle="Device, session, location, and agent decisions. Secrets are redacted.">
+      <XivListRow title="Location" body="Grants and denials are audited. Precise GPS is not logged by default." />
+      <XivListRow title="Secrets Guardian" body="API keys, tokens, and service_role patterns are redacted." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCrossDevice() {
+  return (
+    <PremiumDesk title="Cross-Device" subtitle="One XIV identity. Independent device trust. MFA cannot be bypassed.">
+      <XivListRow title="PHONE_COMPACT" body="Alerts, approvals, AI, scan." />
+      <XivListRow title="TABLET_EXPANDED" body="Operations, Sheets, field dashboards." />
+      <XivListRow title="DESKTOP_WORKSPACE / WEB_RESPONSIVE" body="Multi-panel research and security command. Installers NOT_IMPLEMENTED." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

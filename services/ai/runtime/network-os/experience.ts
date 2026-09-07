@@ -48,6 +48,16 @@ export const PREMIUM_ROUTE_MAP = {
   'company-comparison': 'company-comparison',
   documentary: 'documentary',
   'company-profile': 'company-profile',
+  devices: 'devices',
+  'device-detail': 'device-detail',
+  location: 'location',
+  'security-agents': 'security-agents',
+  'security-incidents': 'security-incidents',
+  'identity-security': 'identity-security',
+  'access-security': 'access-security',
+  'agent-security': 'agent-security',
+  audit: 'audit',
+  'cross-device': 'cross-device',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

@@ -243,6 +243,19 @@ export {
   unprovenInternationalFilingProvidersRemainNotConfigured,
 } from './market';
 export {
+  XIV_AGENT_DIRECTORY,
+  XIV_CYBER_DEFENSE_ROLES,
+  authorizeDeviceSession,
+  cloudProviderStatus,
+  createDeviceIdentity,
+  locationServiceLive,
+  nativeDesktopPackagingState,
+  notificationTransportProductionLive,
+  requestLocation,
+  supportedDeviceSurfaces,
+  threatIntelSourceStatus,
+} from './everywhere';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

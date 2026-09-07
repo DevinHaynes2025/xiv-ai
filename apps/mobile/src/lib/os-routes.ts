@@ -61,7 +61,17 @@ export type OsPath =
   | 'research-room'
   | 'company-comparison'
   | 'documentary'
-  | 'company-profile';
+  | 'company-profile'
+  | 'devices'
+  | 'device-detail'
+  | 'location'
+  | 'security-agents'
+  | 'security-incidents'
+  | 'identity-security'
+  | 'access-security'
+  | 'agent-security'
+  | 'audit'
+  | 'cross-device';
 
 export type OsEmphasis = 'operator' | 'chair';
 

@@ -66,6 +66,16 @@ const hidden = [
   'company-comparison',
   'documentary',
   'company-profile',
+  'devices',
+  'device-detail',
+  'location',
+  'security-agents',
+  'security-incidents',
+  'identity-security',
+  'access-security',
+  'agent-security',
+  'audit',
+  'cross-device',
 ];
 
 export default function BusinessLayout() {
