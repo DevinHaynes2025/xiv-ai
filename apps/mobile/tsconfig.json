@@ -50,6 +50,7 @@
     "../../services/ai/runtime/phase2ig.test.ts",
     "../../services/ai/runtime/phase2ih.test.ts",
     "../../services/ai/runtime/phase2ih.gleif.proof.ts",
+    "../../services/ai/runtime/phase2ii.test.ts",
     "../../services/ai/runtime/tenant-hardening.test.ts",
     "../../services/ai/runtime/hosted-isolation-proof.ts",
     "../../services/ai/runtime/hosted-isolation-harness.test.ts",

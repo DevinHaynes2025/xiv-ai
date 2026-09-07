@@ -56,7 +56,12 @@ export type OsPath =
   | 'idea-room'
   | 'privacy'
   | 'company-research'
-  | 'company-timeline';
+  | 'company-timeline'
+  | 'startups'
+  | 'research-room'
+  | 'company-comparison'
+  | 'documentary'
+  | 'company-profile';
 
 export type OsEmphasis = 'operator' | 'chair';
 

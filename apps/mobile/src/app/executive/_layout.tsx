@@ -57,6 +57,11 @@ const hidden = [
   'privacy',
   'company-research',
   'company-timeline',
+  'startups',
+  'research-room',
+  'company-comparison',
+  'documentary',
+  'company-profile',
 ];
 
 export default function ExecutiveLayout() {

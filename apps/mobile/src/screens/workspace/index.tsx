@@ -165,10 +165,64 @@ export function WorkspaceOriginals() {
 
 export function WorkspaceDaily() {
   return (
-    <PremiumDesk title="XIV Daily" subtitle="AI drafts require human review. No fabricated breaking news.">
+    <PremiumDesk title="XIV Daily Global" subtitle="AI_GENERATED_DRAFT requires human review. No fabricated breaking news.">
       {DAILY_CHANNELS.map((channel) => (
         <XivListRow key={channel} title={channel} body="HUMAN_REVIEW_REQUIRED before PUBLISHED." />
       ))}
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceStartups() {
+  return (
+    <PremiumDesk title="Startup Discover" subtitle="Funding and valuation claims require evidence. No fake rounds.">
+      <XivStatusPill label="Stage UNKNOWN until evidenced" tone="warning" />
+      <XivListRow title="DEMO founder pitch" body="FOUNDER_CLAIM. Not independently verified." />
+      <XivText variant="metadata" muted>
+        Capital availability, investor names, and valuations stay NOT_CONFIGURED unless a proven source is attached.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceResearchRoom() {
+  return (
+    <PremiumDesk title="Research Room" subtitle="Agent disagreement stays visible. No silent majority vote.">
+      <XivStatusPill label="Contradiction Agent" />
+      <XivListRow title="Filings Agent" body="FACT when SEC provenance exists." />
+      <XivListRow title="Story Agent" body="INFERENCE cannot become FACT automatically." />
+      <ContradictionPanel text="Disagreement is preserved. Consensus is not automatic fact promotion." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCompanyComparison() {
+  return (
+    <PremiumDesk title="Company Comparison" subtitle="No silent currency, period, or unit conversion.">
+      <XivListRow title="UNILEVER PLC" body="GB · GLEIF identity may be LIVE · filings NOT_CONFIGURED" />
+      <XivListRow title="Apple Inc." body="US · SEC filings may be LIVE · not a market-price row" />
+      <EvidenceCellIndicator source="Comparison cells keep provider + retrievedAt" state="HISTORICAL" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDocumentary() {
+  return (
+    <PremiumDesk title="Documentary Research" subtitle="Research packet only. Video and transcription are not live.">
+      <XivStatusPill label="Video NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="FOUNDER_CLAIM" body="Preserved separately from FACT." />
+      <XivListRow title="Research gap" body="Interview questions stay unanswered until evidenced." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCompanyProfile() {
+  return (
+    <PremiumDesk title="Company Profile" subtitle="Official, public-source, XIV research, and community stay separate.">
+      <XivListRow title="OFFICIAL_COMPANY_CONTENT" body="Claimed only after verification." />
+      <XivListRow title="PUBLIC_SOURCE_CONTENT" body="GLEIF / SEC / World Bank when proven." />
+      <XivListRow title="XIV_RESEARCH" body="Labeled research. Not a live ticker." />
+      <XivListRow title="COMMUNITY_CONTENT" body="Never mixed silently into official facts." />
     </PremiumDesk>
   );
 }
