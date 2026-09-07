@@ -25,6 +25,10 @@ export type BusinessCase = {
   outcomes: readonly string[];
   lessons: readonly string[];
   sources: readonly string[];
+  knownFacts?: readonly string[];
+  unknowns?: readonly string[];
+  possibleImplications?: readonly string[];
+  decisionQuestions?: readonly string[];
   status: BusinessCaseStatus;
 };
 

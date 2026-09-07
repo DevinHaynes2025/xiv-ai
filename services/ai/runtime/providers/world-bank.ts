@@ -6,6 +6,7 @@ export type SourceCadence = 'live' | 'near_real_time' | 'periodic' | 'historical
 export type WorldBankObservation = {
   sourceId: 'world_bank_open_data';
   sourceSystem: 'world_bank';
+  sourceUrl: string;
   sourceRecordId: string;
   countryCode: string;
   indicatorId: string;
@@ -20,7 +21,9 @@ export type WorldBankObservation = {
   license: LicenseUseStatus;
   confidence: 'low' | 'medium' | 'high' | 'not_measured';
   attributionRequired: true;
-  connected: false;
+  connected: boolean;
+  live: false;
+  prototype: boolean;
 };
 
 export const WORLD_BANK_LICENSE: LicenseUseStatus = {
@@ -31,6 +34,12 @@ export const WORLD_BANK_LICENSE: LicenseUseStatus = {
 };
 
 export const WORLD_BANK_PROVIDER_STATUS = 'not_configured' as const;
+
+let lastFetchConnected = false;
+
+export function markWorldBankFetchConnected(connected: boolean) {
+  lastFetchConnected = connected;
+}
 
 export function worldBankAttribution() {
   return 'World Bank Open Data. CC BY 4.0. Attribution required. Not XIV-originated statistics.';
@@ -48,9 +57,11 @@ export function mapWorldBankRecord(input: {
   if (!countryCode || !indicatorId || !input.date) {
     return { allowed: false, reason: 'World Bank observation requires country, indicator, and period provenance: DENY' };
   }
+  const sourceUrl = `https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicatorId}?format=json`;
   return {
     sourceId: 'world_bank_open_data',
     sourceSystem: 'world_bank',
+    sourceUrl,
     sourceRecordId: `${countryCode}:${indicatorId}:${input.date}`,
     countryCode,
     indicatorId,
@@ -66,7 +77,54 @@ export function mapWorldBankRecord(input: {
     confidence: typeof input.value === 'number' ? 'medium' : 'not_measured',
     attributionRequired: true,
     connected: false,
+    live: false,
+    prototype: true,
   };
+}
+
+export async function fetchWorldBankObservation(input: {
+  countryCode: string;
+  indicatorId?: string;
+}): Promise<WorldBankObservation | { allowed: false; reason: string; cadence: 'unavailable' }> {
+  const indicatorId = input.indicatorId ?? 'NY.GDP.MKTP.CD';
+  const sourceUrl = `https://api.worldbank.org/v2/country/${encodeURIComponent(input.countryCode)}/indicator/${encodeURIComponent(indicatorId)}?format=json&per_page=5`;
+  try {
+    const response = await fetch(sourceUrl, { headers: { Accept: 'application/json' } });
+    if (!response.ok) {
+      return { allowed: false, reason: `World Bank HTTP ${response.status}`, cadence: 'unavailable' };
+    }
+    const body = (await response.json()) as unknown;
+    const rows = Array.isArray(body) && Array.isArray(body[1]) ? body[1] : [];
+    const row = rows.find((item) => item && typeof item === 'object' && item !== null) as
+      | {
+          country?: { id?: string; value?: string };
+          indicator?: { id?: string; value?: string };
+          date?: string;
+          value?: number | null;
+        }
+      | undefined;
+    if (!row) {
+      return { allowed: false, reason: 'World Bank returned no observation rows.', cadence: 'unavailable' };
+    }
+    const mapped = mapWorldBankRecord(row);
+    if ('allowed' in mapped) return { ...mapped, cadence: 'unavailable' };
+    markWorldBankFetchConnected(true);
+    return {
+      ...mapped,
+      sourceUrl,
+      connected: true,
+      live: false,
+      prototype: false,
+      cadence: 'historical',
+      freshness: mapped.value === null ? 'unknown' : 'aging',
+    };
+  } catch (error) {
+    return {
+      allowed: false,
+      reason: error instanceof Error ? error.message : 'World Bank fetch failed.',
+      cadence: 'unavailable',
+    };
+  }
 }
 
 export function worldBankIsRealtime() {
@@ -74,5 +132,5 @@ export function worldBankIsRealtime() {
 }
 
 export function worldBankProviderConnected() {
-  return false;
+  return lastFetchConnected;
 }

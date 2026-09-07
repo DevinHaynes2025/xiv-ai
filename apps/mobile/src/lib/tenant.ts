@@ -65,6 +65,7 @@ type OrganizationMembershipRow = {
   user_id: string;
   role: OrganizationMembership['role'];
   status: OrganizationMembership['status'];
+  role_version?: number;
   created_at: string;
   updated_at: string;
 };
@@ -75,6 +76,7 @@ type UniverseMembershipRow = {
   user_id: string;
   role: UniverseMembership['role'];
   status: UniverseMembership['status'];
+  role_version?: number;
   created_at: string;
   updated_at: string;
 };
@@ -133,6 +135,7 @@ function mapOrganizationMembership(row: OrganizationMembershipRow): Organization
     userId: row.user_id,
     role: row.role,
     status: row.status,
+    roleVersion: row.role_version,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -145,6 +148,7 @@ function mapUniverseMembership(row: UniverseMembershipRow): UniverseMembership {
     userId: row.user_id,
     role: row.role,
     status: row.status,
+    roleVersion: row.role_version,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -173,20 +177,20 @@ export function clearTenantSelection(userId: string) {
 }
 
 export async function detectPersistenceStatus(): Promise<PersistenceStatus> {
-  const memberships = await supabase.from('organization_memberships').select('id').limit(1);
-  if (!memberships.error) {
+  const xivMemberships = await supabase.from('xiv_organization_memberships').select('id').limit(1);
+  if (!xivMemberships.error) {
     const orgs = await supabase
-      .from('organizations')
+      .from('xiv_organizations')
       .select('id,name,slug,status,created_by,industry,region_preference,created_at,updated_at')
       .limit(1);
-    if (isMissingColumn(orgs.error)) return 'schema_collision';
+    if (isMissingColumn(orgs.error)) return 'unavailable';
     if (isMissingRelation(orgs.error)) return 'not_applied';
     if (orgs.error) return 'unavailable';
     return 'ready';
   }
-  if (isMissingRelation(memberships.error)) {
-    const orgs = await supabase.from('organizations').select('id,status').limit(1);
-    if (!orgs.error || isMissingColumn(orgs.error)) return 'schema_collision';
+  if (isMissingRelation(xivMemberships.error)) {
+    const legacy = await supabase.from('organizations').select('id,status').limit(1);
+    if (!legacy.error || isMissingColumn(legacy.error)) return 'schema_collision';
     return 'not_applied';
   }
   return 'unavailable';
@@ -214,9 +218,9 @@ export async function loadPersistedTenant(
         loading: false,
         error:
           persistenceStatus === 'schema_collision'
-            ? 'A hosted organizations table already exists and is not the Phase 2F schema. Migration was not applied.'
+            ? 'Hosted public.organizations still collides. XIV tenant tables (xiv_*) are not readable yet. Persistence is not LIVE until isolation is proven.'
             : persistenceStatus === 'not_applied'
-              ? 'Persistent organization and Universe tables are not applied on this project.'
+              ? 'XIV tenant tables are not applied on this project.'
               : 'Tenant persistence could not be reached.',
       },
       denied: null,
@@ -225,13 +229,13 @@ export async function loadPersistedTenant(
 
   const [membershipsResult, universeMembershipsResult] = await Promise.all([
     supabase
-      .from('organization_memberships')
-      .select('id,organization_id,user_id,role,status,created_at,updated_at')
+      .from('xiv_organization_memberships')
+      .select('id,organization_id,user_id,role,status,role_version,created_at,updated_at')
       .eq('user_id', userId)
       .eq('status', 'active'),
     supabase
-      .from('universe_memberships')
-      .select('id,universe_id,user_id,role,status,created_at,updated_at')
+      .from('xiv_universe_memberships')
+      .select('id,universe_id,user_id,role,status,role_version,created_at,updated_at')
       .eq('user_id', userId)
       .eq('status', 'active'),
   ]);
@@ -261,13 +265,13 @@ export async function loadPersistedTenant(
   const organizationsResult =
     organizationIds.length > 0
       ? await supabase
-          .from('organizations')
+          .from('xiv_organizations')
           .select('id,name,slug,status,created_by,industry,region_preference,created_at,updated_at')
           .in('id', organizationIds)
       : { data: [] as OrganizationRow[], error: null };
 
   const universesResult = await supabase
-    .from('universes')
+    .from('xiv_universes')
     .select(
       'id,organization_id,name,slug,status,classification,storage_tier,region_preference,created_by,created_at,updated_at',
     );
@@ -329,7 +333,7 @@ function mutationFailure(error: { message?: string; code?: string } | null): Ten
     return { status: 'denied', message };
   }
   if (isMissingRelation(error) || isMissingColumn(error)) {
-    return { status: 'failed', message: 'Persistence schema is not applied or does not match Phase 2F.' };
+    return { status: 'failed', message: 'XIV tenant schema is not applied or not readable.' };
   }
   return { status: 'failed', message };
 }
@@ -419,8 +423,8 @@ export async function bootstrapUniverse(input: {
 export function persistenceLabel(status: PersistenceStatus) {
   if (status === 'ready') return 'Persisted memberships are readable.';
   if (status === 'schema_collision') {
-    return 'Hosted organizations exists and is not the Phase 2F schema. Migration was not applied.';
+    return 'Hosted public.organizations remains unrelated. XIV xiv_* tables are not LIVE until isolation is proven.';
   }
-  if (status === 'not_applied') return 'Persistent organizations and Universes are not applied.';
+  if (status === 'not_applied') return 'XIV tenant tables are not applied.';
   return 'Tenant persistence is unavailable.';
 }

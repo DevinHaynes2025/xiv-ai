@@ -37,6 +37,7 @@
     "../../services/ai/runtime/phase2ga.test.ts",
     "../../services/ai/runtime/phase2gb.test.ts",
     "../../services/ai/runtime/phase2ha.test.ts",
+    "../../services/ai/runtime/phase2hb.test.ts",
     "../../services/ai/runtime/tenant/migration-review.ts",
     "../../services/ai/runtime/tenant/reconciliation-review.ts",
     "../../services/ai/business-api.ts",

@@ -28,4 +28,6 @@ XIV authored `create table public.organizations` in commit `a8dfa95` (Phase 2F-A
 
 Mobile reads `organizations` only to detect collision. It does not treat rows as XIV tenants. Agents do not query it.
 
+Phase 2H-B REST still sees `/organizations` as HTTP 200. `xiv_*` tables are absent (`PGRST205`). PostgREST also hinted at `public.organization_members`. Unused status for every external client is **not** proven. No remediation migration was authored.
+
 Do not rename, drop, or auto-alter the hosted table.

@@ -100,11 +100,15 @@ export {
   userCannotJoinArbitraryUniverse,
   userRolesDoNotGrantTenantAccess,
   describeTenantPersistenceBlock,
-  tenantPersistenceIsLive,
+  evaluateLiveIsolationPlan,
   hostedOrganizationsAudit,
   hostedTableIsNeverAutoDropped,
   preferredReconciliation,
   reconciliationRenamesHostedTable,
+  recordHostedApplyEvidence,
+  recordHostedIsolationEvidence,
+  resetHostedProofForTests,
+  tenantPersistenceIsLive,
 } from './tenant';
 export type {
   ActiveTenantContext,
@@ -217,9 +221,11 @@ export {
   xivIsDeployedInChina,
 } from './global';
 export {
+  FUTURE_PUBLIC_PROVIDERS,
   createBusinessEvent,
   createUnavailableRealtimeAdapter,
   eventRequiresProvenance,
+  futureProviderConnected,
   labelStaleEvent,
   scrapingIsEnabled,
   webDataMayBeRepublishedCommercially,
@@ -249,12 +255,26 @@ export {
 } from './scale';
 export {
   WORLD_BANK_PROVIDER_STATUS,
+  africaCountryAvailability,
   businessEventFromWorldBank,
+  fetchWorldBankObservation,
   mapWorldBankRecord,
+  missingCountryValueIsFabricated,
   recordedWorldBankFixture,
   worldBankIsRealtime,
   worldBankProviderConnected,
 } from './providers';
+export {
+  INSURANCE_PACK,
+  REAL_ESTATE_PACK,
+  consumerInstallDenied,
+  insuranceUnderwritingDecision,
+  modulePermissionDefault,
+  realEstateFabricatesProperty,
+  requestModulePermissions,
+  scoreLead,
+  wmsInventoriesStock,
+} from './modules';
 export {
   escalateGuardianResult,
   guardianDebuggerLoopCannotPatch,

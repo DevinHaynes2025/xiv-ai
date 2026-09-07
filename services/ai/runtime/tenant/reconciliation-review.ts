@@ -32,6 +32,21 @@ export function reviewPhase2HaReconciliation(sql = loadPhase2HaMigrationSql()) {
   if (/create table public\.organizations\s*\(/i.test(sql)) {
     findings.push('Reconciliation must not create public.organizations.');
   }
+  if (!/alter table public\.xiv_organizations\s+public\.organizations/i.test(sql) && /alter table\s+public\.organizations\b/i.test(uncommented)) {
+    findings.push('Must not ALTER hosted organizations.');
+  }
+  if (!/role_version/i.test(sql)) findings.push('role_version missing.');
+  if (!/xiv_organizations_slug_unique/i.test(sql)) findings.push('organization slug uniqueness missing.');
+  if (!/references public\.xiv_organizations \(id\) on delete restrict/i.test(sql)) {
+    findings.push('Universe → xiv_organizations FK ON DELETE RESTRICT missing.');
+  }
+  if (!/xiv_organization_memberships_user_org_unique/i.test(sql)) findings.push('org membership uniqueness missing.');
+  if (!/create index xiv_organizations_status_idx/i.test(sql)) findings.push('organization status index missing.');
+  if ((sql.match(/enable row level security/gi) ?? []).length < 4) findings.push('RLS enablement incomplete.');
+  if ((sql.match(/force row level security/gi) ?? []).length < 4) findings.push('FORCE RLS incomplete.');
+  if (!/revoke all on function public\.xiv_create_organization/i.test(sql)) {
+    findings.push('PUBLIC execute not revoked for bootstrap.');
+  }
   return {
     ok: findings.length === 0,
     findings,

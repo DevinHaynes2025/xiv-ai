@@ -1,6 +1,6 @@
 # RLS Security Model (Phase 2F)
 
-Persisted tenant RLS is **not LIVE**. Phase 2H-A prefers isolated `xiv_*` tables. Hosted `public.organizations` stays untouched. See [persistence-reconciliation.md](./persistence-reconciliation.md).
+Persisted tenant RLS is **not LIVE**. Phase 2H-B still prefers isolated `xiv_*` tables and still has not applied them on hosted Supabase. Hosted `public.organizations` stays untouched. See [persistence-reconciliation.md](./persistence-reconciliation.md) and [phase2h-b-live-isolation.md](./phase2h-b-live-isolation.md).
 
 ## Status
 
@@ -20,14 +20,14 @@ Not: client says `organizationId` → grant.
 
 ## Recursion
 
-Policies on `organizations` / `universes` call `xiv_is_org_member` / `xiv_can_view_universe`.
+Policies on `xiv_organizations` / `xiv_universes` call `xiv_is_org_member` / `xiv_can_view_universe` (reconciliation file). The older Phase 2F names must not be applied.
 
 Those helpers are `SECURITY DEFINER` with `set search_path = public` and read membership tables **without** going back through RLS.
 
 That is why the cycle
 
 ```
-organizations policy → memberships → memberships policy → organizations
+xiv_organizations policy → memberships → memberships policy → xiv_organizations
 ```
 
 does not recurse.

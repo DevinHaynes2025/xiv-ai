@@ -125,8 +125,12 @@ export function createCaseFromPublicEvent(input: {
     options: [],
     recommendations: [],
     outcomes: [],
-    lessons: [],
+    lessons: ['Public-source cases stay educational until company-authorized evidence exists.'],
     sources: input.evidence,
+    knownFacts: [`Sourced event ${input.eventId} exists.`, `Country ${input.country}.`],
+    unknowns: ['Company-level impact is unknown.', 'Outcome is unmeasured.'],
+    possibleImplications: ['May inform country-level business context only if the sourced value is present.'],
+    decisionQuestions: ['What additional licensed sources are required before a recommendation?'],
     status: 'public_source',
   });
 }

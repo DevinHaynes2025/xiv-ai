@@ -32,8 +32,16 @@ export { recordTenantAudit, TENANT_AUDIT_EVENTS } from './audit';
 export type { TenantAuditEvent } from './audit';
 export { describeTenantPersistenceBlock, tenantPersistenceIsLive } from './collision';
 export type { TenantPersistenceInvestigation } from './collision';
+export {
+  hostedApplyEvidence,
+  hostedIsolationEvidence,
+  recordHostedApplyEvidence,
+  recordHostedIsolationEvidence,
+  resetHostedProofForTests,
+} from './hosted-proof';
 export { hostedOrganizationsAudit, hostedTableOriginAnalysis } from './hosted-audit';
 export {
+  PHASE2FA_MIGRATION_DO_NOT_APPLY,
   PHASE2HA_MIGRATION,
   PREFERRED_RECONCILIATION,
   RECONCILIATION_OPTIONS,

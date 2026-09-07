@@ -1,4 +1,4 @@
-import { africaIsNotOneMarket, chinaDeploymentCapability, getCountryProfile, xivIsDeployedInChina } from '../global';
+import { africaIsNotOneMarket, africanCountryProfiles, chinaDeploymentCapability, getCountryProfile, xivIsDeployedInChina } from '../global';
 import { createBusinessEvent } from '../realtime/events';
 import type { BusinessEvent } from '../realtime/types';
 import { mapWorldBankRecord, worldBankAttribution, type WorldBankObservation } from './world-bank';
@@ -39,10 +39,25 @@ export function businessEventFromWorldBank(
     entities: [observation.indicatorId],
     countries: [observation.countryCode],
     industries: [],
-    evidence: [worldBankAttribution(), observation.sourceRecordId],
+    evidence: [worldBankAttribution(), observation.sourceRecordId, `period:${observation.period}`],
     impactAssessment: null,
     scope: 'public',
+    indicator: observation.indicatorId,
+    period: observation.period,
   });
+}
+
+export function africaCountryAvailability() {
+  return africanCountryProfiles().map((country) => ({
+    countryCode: country.countryCode,
+    dataAvailability: country.dataAvailability,
+    fabricated: false,
+    oneMarket: false,
+  }));
+}
+
+export function missingCountryValueIsFabricated() {
+  return false;
 }
 
 export function recordedWorldBankFixture() {

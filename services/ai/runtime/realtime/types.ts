@@ -64,6 +64,8 @@ export type BusinessEvent = RealtimeItem & {
   evidence: readonly string[];
   impactAssessment: string | null;
   scope: 'public' | 'organization' | 'universe';
+  indicator?: string;
+  period?: string;
 };
 
 export type FeedItemType =

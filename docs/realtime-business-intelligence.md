@@ -2,9 +2,11 @@
 
 Provider-adapter architecture for authorized business signals.
 
-**Status:** IMPLEMENTED (types + adapters) · NOT CONFIGURED (World Bank not connected) · FORBIDDEN (arbitrary scraping)
+**Status:** IMPLEMENTED (types + World Bank adapter) · CONNECTED ONLY WHEN A REAL FETCH SUCCEEDS · FORBIDDEN (arbitrary scraping)
 
-Cadence labels: `live` · `near_real_time` · `periodic` · `historical` · `stale` · `unavailable`. World Bank is historical/periodic, not live.
+Cadence labels: `live` · `near_real_time` · `periodic` · `historical` · `stale` · `unavailable`. World Bank is historical/periodic, not live. A successful fetch still sets `live = false`.
+
+Future provider interfaces exist as names only: market data, news, business registries, trade data, shipping, ports, weather, commodities, filings. None of those are connected in this phase.
 
 ## Sources (future)
 

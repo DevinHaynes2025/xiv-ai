@@ -10,7 +10,7 @@ Only business accounts / authorized business representatives can host.
 
 Path: authenticated user → organization membership → authorized host role → business verification → stream policy → moderation/security → stream.
 
-Because tenant persistence is blocked (`schema_collision`), real private hosting remains NOT CONFIGURED. Authorization is not faked.
+Because tenant persistence is still blocked (`schema_collision`, `tenantPersistence != live`), real private hosting remains NOT CONFIGURED. Authorization is not faked. Business Live remains business-host only.
 
 Phase 2H-A adds a verification model (`unverified` → `verified`) and deterministic Live readiness checks. Verification is **not operational**. Stream provider remains NOT CONFIGURED. Consumers still cannot host.
 

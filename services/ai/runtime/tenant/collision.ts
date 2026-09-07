@@ -27,6 +27,4 @@ export function describeTenantPersistenceBlock(): TenantPersistenceInvestigation
   };
 }
 
-export function tenantPersistenceIsLive() {
-  return false;
-}
+export { tenantPersistenceIsLive } from './hosted-proof';

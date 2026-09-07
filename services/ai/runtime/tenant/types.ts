@@ -70,6 +70,7 @@ export type OrganizationMembership = {
   userId: string;
   role: OrganizationRole;
   status: MembershipStatus;
+  roleVersion?: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -80,6 +81,7 @@ export type UniverseMembership = {
   userId: string;
   role: UniverseRole;
   status: MembershipStatus;
+  roleVersion?: number;
   createdAt: string;
   updatedAt: string;
 };

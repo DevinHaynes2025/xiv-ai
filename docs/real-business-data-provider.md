@@ -1,6 +1,6 @@
 # Real business data provider
 
-**Status:** NOT CONFIGURED (no live World Bank session in this phase)
+**Status:** ADAPTER IMPLEMENTED · a real HTTP read is performed when `fetchWorldBankObservation()` runs · not a live/realtime feed
 
 First sourced adapter class: World Bank Open Data (government / economic API). No HTML scraping.
 
