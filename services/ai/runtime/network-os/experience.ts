@@ -41,6 +41,8 @@ export const PREMIUM_ROUTE_MAP = {
   daily: 'daily',
   'idea-room': 'idea-room',
   privacy: 'privacy',
+  'company-research': 'company-research',
+  'company-timeline': 'company-timeline',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

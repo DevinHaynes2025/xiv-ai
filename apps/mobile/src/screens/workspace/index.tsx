@@ -9,6 +9,19 @@ import {
   XivStatusIndicator,
 } from '@/components/v4';
 import {
+  CompanyHeader,
+  CompanyStoryCard,
+  ContradictionPanel,
+  DataQualityCard,
+  FilingTimeline,
+  FinancialFactCard,
+  JurisdictionBadge,
+  MacroContextCard,
+  RegistryBadge,
+  SourceProvenancePanel,
+  WatchStateBadge,
+} from '@/components/workspace/company';
+import {
   ConflictNotice,
   EvidenceCellIndicator,
   OfflineAvailabilityBadge,
@@ -46,8 +59,10 @@ export function WorkspaceDiscover() {
       {DISCOVERY_ROWS.map((row) => (
         <ConnectionCard key={row.name} name={row.name} expertise={`${row.country} · ${row.signal}`} context={row.note} state={row.state} />
       ))}
+      <RegistryBadge registry="GLEIF" live={false} />
+      <RegistryBadge registry="UK Companies House" live={false} />
       <XivText variant="metadata" muted>
-        World Bank and SEC adapters may be LIVE. UK registries, patents, procurement, and licensed news are NOT_CONFIGURED.
+        World Bank and SEC adapters may be LIVE. GLEIF may be LIVE after proof. UK Companies House, patents, procurement, and licensed news are NOT_CONFIGURED.
       </XivText>
     </PremiumDesk>
   );
@@ -56,6 +71,7 @@ export function WorkspaceDiscover() {
 export function WorkspaceWatchlist() {
   return (
     <PremiumDesk title="Research Watchlist" subtitle="WATCH · EMERGING · REQUIRES_REVIEW. No BUY/SELL.">
+      <WatchStateBadge label="REQUIRES_REVIEW" />
       {SHEET_ROWS.map((row) => (
         <XivListRow key={row.company} title={row.company} body={`${row.signal} · ${row.risk}`} meta={row.evidence} />
       ))}
@@ -67,9 +83,8 @@ export function WorkspaceResearch() {
   return (
     <PremiumDesk title="Research Packet" subtitle="Discovery → Filings → Contradiction → Human.">
       <XivStatusPill label="Contradiction Agent" />
-      <XivText variant="body">
-        If a press release disagrees with a filing, XIV surfaces the contradiction instead of choosing the exciting narrative.
-      </XivText>
+      <ContradictionPanel text="If a press release disagrees with a filing, XIV surfaces the contradiction instead of choosing the exciting narrative." />
+      <MacroContextCard text="World Bank macro context is a separate provenance stream. Definitions are not silently compared to company filings." />
       <IntelligenceStoryCard {...EXPERIENCE_STORY} />
     </PremiumDesk>
   );
@@ -87,7 +102,7 @@ export function WorkspaceSheets() {
           meta={row.evidence}
         />
       ))}
-      <EvidenceCellIndicator source="demo_sheet · not SEC streaming" state="DEMO" />
+      <EvidenceCellIndicator source="demo_sheet · not SEC streaming · GLEIF bindings keep provider + retrievedAt" state="DEMO" />
       <XivText variant="micro" dim>
         Formulas: SUM AVERAGE MIN MAX COUNT CHANGE PERCENT_CHANGE. Arbitrary code is denied.
       </XivText>
@@ -99,7 +114,40 @@ export function WorkspaceCharts() {
   return (
     <PremiumDesk title="XIV Charts" subtitle="LINE · BAR · COMPARISON · KPI. No fake live feed.">
       <XivStatusIndicator state="DEMO" />
-      <XivEmptyState title="Chart foundation" body="Series carry source, period, unit, freshness, and fact/inference/forecast stance." />
+      <XivEmptyState title="Chart foundation" body="Series carry source, period, unit, freshness, and fact/inference/forecast stance. Fake market prices are not shown." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCompanyResearch() {
+  return (
+    <PremiumDesk title="Company Research" subtitle="Jurisdiction-aware identity. Name-only merge is denied.">
+      <CompanyHeader name="UNILEVER PLC" country="GB" />
+      <JurisdictionBadge country="GB" />
+      <RegistryBadge registry="GLEIF" live={false} />
+      <RegistryBadge registry="UK Companies House" live={false} />
+      <CompanyStoryCard
+        heading="WHAT THE COMPANY IS"
+        body="Public LEI identity may be retrieved from GLEIF. This screen does not claim Companies House is live."
+        stance="FACT"
+      />
+      <FinancialFactCard label="Financial facts" value="Not invented from LEI identity" source="SEC remains the proven filing adapter" />
+      <DataQualityCard text="Quality is explainable by coverage and provenance. Not a universal trust number." />
+      <SourceProvenancePanel source="gleif_lei · public LEI reference" state="HISTORICAL" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCompanyTimeline() {
+  return (
+    <PremiumDesk title="Company Timeline" subtitle="Sourced events only. No invented milestones.">
+      <FilingTimeline
+        items={[
+          'GLEIF registration event requires LEI + retrievedAt + jurisdiction.',
+          'SEC filings remain facts when the SEC adapter is proven.',
+          'UK Companies House filing history is NOT_CONFIGURED.',
+        ]}
+      />
     </PremiumDesk>
   );
 }

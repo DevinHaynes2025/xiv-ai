@@ -54,7 +54,9 @@ export type OsPath =
   | 'originals'
   | 'daily'
   | 'idea-room'
-  | 'privacy';
+  | 'privacy'
+  | 'company-research'
+  | 'company-timeline';
 
 export type OsEmphasis = 'operator' | 'chair';
 

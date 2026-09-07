@@ -73,6 +73,8 @@ export function MoreDesk() {
       <Chip label="Health" onPress={() => go('health')} />
       <Chip label="Offline Center" onPress={() => go('offline')} />
       <Chip label="Global Discover" onPress={() => go('discover')} />
+      <Chip label="Company Research" onPress={() => go('company-research')} />
+      <Chip label="Company Timeline" onPress={() => go('company-timeline')} />
       <Chip label="Watchlist" onPress={() => go('watchlist')} />
       <Chip label="Research Packet" onPress={() => go('research')} />
       <Chip label="XIV Sheets" onPress={() => go('sheets')} />

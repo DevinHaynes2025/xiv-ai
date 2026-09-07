@@ -1,7 +1,7 @@
 import type { DataSurfaceState } from '@/lib/surface-state';
 
 export const WORKSPACE_NOTICE =
-  'WORKSPACE FOUNDATION. Offline sync, international registries, video documentaries, and translation providers are NOT_CONFIGURED.';
+  'WORKSPACE FOUNDATION. Offline sync, UK Companies House, video documentaries, and translation providers are NOT_CONFIGURED. GLEIF identity may be LIVE after proof.';
 
 export const DISCOVERY_ROWS = [
   {
@@ -17,6 +17,13 @@ export const DISCOVERY_ROWS = [
     signal: 'WATCH',
     state: 'HISTORICAL' as DataSurfaceState,
     note: 'SEC adapter may be LIVE. This card is not a live ticker.',
+  },
+  {
+    name: 'UNILEVER PLC identity card',
+    country: 'GB',
+    signal: 'REQUIRES_REVIEW',
+    state: 'HISTORICAL' as DataSurfaceState,
+    note: 'GLEIF adapter may be LIVE. This card is not a live ticker or Companies House feed.',
   },
 ];
 

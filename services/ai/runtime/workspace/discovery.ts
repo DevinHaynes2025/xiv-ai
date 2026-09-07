@@ -2,6 +2,7 @@
  * Global company discovery + source registry foundations.
  * World Bank and SEC remain independently proven. New jurisdictions stay NOT_CONFIGURED.
  */
+import { gleifAdapterCapabilityStatus, gleifGlobalFabricIsProductionLive } from '../international/status';
 import { connectorCatalog } from '../network-os/experience';
 import { secAdapterCapabilityStatus, secGlobalFabricIsProductionLive } from '../sources/sec-status';
 import { worldBankAdapterCapabilityStatus, worldBankGlobalFabricIsProductionLive } from '../sources/world-bank-status';
@@ -106,9 +107,12 @@ export type SourceVerificationPolicy = { independentProofRequired: true };
 export type SourceFreshnessPolicy = { agingIsNotLive: true };
 export type SourceAvailabilityState = DataSurfaceState;
 
+const PROVEN_GLOBAL_SOURCE_IDS = ['world_bank_open_data', 'us_sec_edgar', 'gleif_lei'] as const;
+
 export function globalSourceRegistry(): readonly GlobalSourceDescriptor[] {
   const worldBankLive = worldBankAdapterCapabilityStatus() === 'LIVE';
   const secLive = secAdapterCapabilityStatus() === 'LIVE';
+  const gleifLive = gleifAdapterCapabilityStatus() === 'LIVE';
   const us: JurisdictionDescriptor = {
     country: 'US',
     region: null,
@@ -134,6 +138,14 @@ export function globalSourceRegistry(): readonly GlobalSourceDescriptor[] {
       jurisdiction: us,
       surface: secLive ? 'LIVE' : 'CONNECTED',
       provenLive: secLive,
+    },
+    {
+      sourceId: 'gleif_lei',
+      name: 'GLEIF Legal Entity Identifier',
+      category: 'CORPORATE_REGISTRY',
+      jurisdiction: { country: 'GLOBAL', region: null, regulator: 'GLEIF', exchange: null, language: 'en', currency: 'USD', timezone: 'UTC' },
+      surface: gleifLive ? 'LIVE' : 'NOT_CONFIGURED',
+      provenLive: gleifLive,
     },
     {
       sourceId: 'uk_companies_house',
@@ -172,7 +184,7 @@ export function globalSourceRegistry(): readonly GlobalSourceDescriptor[] {
 
 export function unsupportedGlobalProvidersRemainNotConfigured() {
   return globalSourceRegistry()
-    .filter((item) => item.sourceId !== 'world_bank_open_data' && item.sourceId !== 'us_sec_edgar')
+    .filter((item) => !(PROVEN_GLOBAL_SOURCE_IDS as readonly string[]).includes(item.sourceId))
     .every((item) => item.surface === 'NOT_CONFIGURED' && item.provenLive === false);
 }
 
@@ -209,7 +221,7 @@ export function workspaceProviderTruth() {
   return {
     worldBank: worldBankAdapterCapabilityStatus(),
     sec: secAdapterCapabilityStatus(),
-    fabric: worldBankGlobalFabricIsProductionLive() || secGlobalFabricIsProductionLive(),
+    fabric: worldBankGlobalFabricIsProductionLive() || secGlobalFabricIsProductionLive() || gleifGlobalFabricIsProductionLive(),
     unprovenConnectors: connectorCatalog().filter((item) => !item.provenLive).every((item) => item.surface === 'NOT_CONFIGURED'),
   };
 }

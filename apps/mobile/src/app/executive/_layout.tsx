@@ -55,6 +55,8 @@ const hidden = [
   'daily',
   'idea-room',
   'privacy',
+  'company-research',
+  'company-timeline',
 ];
 
 export default function ExecutiveLayout() {
