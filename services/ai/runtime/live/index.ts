@@ -11,6 +11,13 @@ export {
 } from './host';
 export { draftLiveIntelligenceBrief, publishLiveIntelligenceBrief } from './intelligence';
 export {
+  businessVerificationIsOperational,
+  createBusinessVerification,
+  evaluateLiveReadiness,
+  issueLiveHostGrant,
+} from './verification';
+export type { BusinessVerification, BusinessVerificationStatus, LiveReadiness } from './verification';
+export {
   createUnavailableDlpProvider,
   createUnavailableLiveStreamProvider,
   createUnavailableLiveSummaryProvider,

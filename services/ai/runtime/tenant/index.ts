@@ -32,6 +32,17 @@ export { recordTenantAudit, TENANT_AUDIT_EVENTS } from './audit';
 export type { TenantAuditEvent } from './audit';
 export { describeTenantPersistenceBlock, tenantPersistenceIsLive } from './collision';
 export type { TenantPersistenceInvestigation } from './collision';
+export { hostedOrganizationsAudit, hostedTableOriginAnalysis } from './hosted-audit';
+export {
+  PHASE2HA_MIGRATION,
+  PREFERRED_RECONCILIATION,
+  RECONCILIATION_OPTIONS,
+  XIV_TENANT_TABLES,
+  hostedTableIsNeverAutoDropped,
+  preferredReconciliation,
+  reconciliationRenamesHostedTable,
+} from './reconciliation';
+export { evaluateLiveIsolationPlan, isolationProofRequired } from './isolation-plan';
 export {
   DATA_CLASSIFICATIONS,
   MEMBERSHIP_STATUSES,

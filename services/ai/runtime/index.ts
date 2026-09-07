@@ -101,6 +101,10 @@ export {
   userRolesDoNotGrantTenantAccess,
   describeTenantPersistenceBlock,
   tenantPersistenceIsLive,
+  hostedOrganizationsAudit,
+  hostedTableIsNeverAutoDropped,
+  preferredReconciliation,
+  reconciliationRenamesHostedTable,
 } from './tenant';
 export type {
   ActiveTenantContext,
@@ -223,8 +227,10 @@ export {
 export { createInMemoryGraph } from './graph';
 export {
   PROTOTYPE_BUSINESS_CASES,
+  caseHasUnsupportedFinancialImpact,
   caseRemainsHypothetical,
   createBusinessCase,
+  createCaseFromPublicEvent,
   presentCaseAsReal,
   runBusinessCaseEngine,
 } from './cases';
@@ -234,11 +240,30 @@ export {
   buildCacheKey,
   createEventBus,
   createRateLimitRule,
+  loadTestPlan,
   protectCriticalSecurityWork,
   routeTenantShard,
+  scaleReadinessScorecard,
   shardingIsEnabled,
   unlimitedRateLimitAllowed,
 } from './scale';
+export {
+  WORLD_BANK_PROVIDER_STATUS,
+  businessEventFromWorldBank,
+  mapWorldBankRecord,
+  recordedWorldBankFixture,
+  worldBankIsRealtime,
+  worldBankProviderConnected,
+} from './providers';
+export {
+  escalateGuardianResult,
+  guardianDebuggerLoopCannotPatch,
+  guardianMay,
+  runScheduledCheck,
+  scheduledGuardianMutatesCode,
+} from './guardian/schedule';
+export { authorizationIsFresh, cachedRoleIsTrustedForever, requireFreshAuthorization } from './security/freshness';
+export { evaluateHardeningCheck } from './security/hardening';
 export { SECURITY_DOMAINS, certifiedSecurityLayerCount } from './security/domains';
 export { evaluateContinuousAuthorization } from './security/continuous-auth';
 export { applySecurityPolicyEditFromEvent, recordSecurityEvent, securityAiMaySelfEditPolicy } from './security/feedback';

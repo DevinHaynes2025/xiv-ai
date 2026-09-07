@@ -1,4 +1,6 @@
 export { billionUserClaim, billionUserReady, SCALE_CAPABILITIES } from './horizon';
+export { scaleEvidenceNumericScore, scaleReadinessScorecard } from './scorecard';
+export { loadTestPlan, loadTestsHavePassed } from './load-test';
 export type { ScaleCapability, ScaleHorizon } from './horizon';
 export { routeTenantShard, shardingIsEnabled } from './sharding';
 export { createEventBus, eventHasCorrelationId } from './event-bus';

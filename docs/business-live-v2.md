@@ -12,6 +12,8 @@ Path: authenticated user → organization membership → authorized host role �
 
 Because tenant persistence is blocked (`schema_collision`), real private hosting remains NOT CONFIGURED. Authorization is not faked.
 
+Phase 2H-A adds a verification model (`unverified` → `verified`) and deterministic Live readiness checks. Verification is **not operational**. Stream provider remains NOT CONFIGURED. Consumers still cannot host.
+
 ## Live Intelligence
 
 May later caption, summarize, extract topics, identify actions/questions, translate, flag sensitive exposure, and draft a post-stream brief. It cannot automatically publish private content.

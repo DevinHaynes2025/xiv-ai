@@ -2,7 +2,9 @@
 
 Provider-adapter architecture for authorized business signals.
 
-**Status:** IMPLEMENTED (types + adapters) · NOT CONFIGURED (providers) · FORBIDDEN (arbitrary scraping)
+**Status:** IMPLEMENTED (types + adapters) · NOT CONFIGURED (World Bank not connected) · FORBIDDEN (arbitrary scraping)
+
+Cadence labels: `live` · `near_real_time` · `periodic` · `historical` · `stale` · `unavailable`. World Bank is historical/periodic, not live.
 
 ## Sources (future)
 

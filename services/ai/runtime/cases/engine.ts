@@ -98,6 +98,43 @@ export const PROTOTYPE_BUSINESS_CASES: readonly BusinessCase[] = [
   },
 ];
 
+export function createCaseFromPublicEvent(input: {
+  eventId: string;
+  title: string;
+  country: string;
+  evidence: readonly string[];
+  context: string;
+}): ReturnType<typeof createBusinessCase> {
+  if (!input.eventId || input.evidence.length === 0) {
+    return { allowed: false, reason: 'Public-source case requires a sourced event and evidence: DENY' };
+  }
+  return createBusinessCase({
+    title: input.title,
+    companyName: null,
+    anonymizedCompany: true,
+    industry: null,
+    countries: [input.country],
+    challenge: input.title,
+    context: input.context,
+    evidence: input.evidence,
+    timeline: [],
+    constraints: ['No invented financial impact', 'No invented outcome'],
+    businessHealthDomains: [],
+    rootCauses: [],
+    decisions: [],
+    options: [],
+    recommendations: [],
+    outcomes: [],
+    lessons: [],
+    sources: input.evidence,
+    status: 'public_source',
+  });
+}
+
+export function caseHasUnsupportedFinancialImpact(item: BusinessCase) {
+  return item.outcomes.some((row) => /\$|usd|revenue|profit/i.test(row));
+}
+
 export function searchCases(
   cases: readonly BusinessCase[],
   facet: { industry?: string; country?: string; status?: BusinessCaseStatus },

@@ -1,6 +1,6 @@
 # Persistent Universe + Organization Design
 
-Persisted Universes are **not LIVE**. Phase 2F-B did not apply the migration because hosted `public.organizations` already exists and is a different shape.
+Persisted Universes are **not LIVE**. Phase 2H-A authors `20260906230000_xiv_tenant_reconciliation.sql` (`xiv_*` tables) and does **not** apply it. Hosted `public.organizations` is not renamed or dropped. See [persistence-reconciliation.md](./persistence-reconciliation.md).
 
 ## Status
 

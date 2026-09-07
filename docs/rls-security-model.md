@@ -1,6 +1,6 @@
 # RLS Security Model (Phase 2F)
 
-Persisted tenant RLS is **not LIVE**. Phase 2F-B found a hosted `organizations` collision and did not apply the authored migration.
+Persisted tenant RLS is **not LIVE**. Phase 2H-A prefers isolated `xiv_*` tables. Hosted `public.organizations` stays untouched. See [persistence-reconciliation.md](./persistence-reconciliation.md).
 
 ## Status
 

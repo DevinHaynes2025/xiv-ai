@@ -6,6 +6,7 @@ export type TenantPersistenceInvestigation = {
   mayApplyMigration: false;
   mayRenameHostedTable: false;
   mayDropHostedTable: false;
+  mayAutoDropHostedTable: false;
   reason: string;
   hostedOrganizationsShape: readonly string[];
   authoredOrganizationsExtraColumns: readonly string[];
@@ -18,6 +19,7 @@ export function describeTenantPersistenceBlock(): TenantPersistenceInvestigation
     mayApplyMigration: false,
     mayRenameHostedTable: false,
     mayDropHostedTable: false,
+    mayAutoDropHostedTable: false,
     reason:
       'Hosted public.organizations already exists with id, name, slug, created_by, created_at. It is not the Phase 2F schema. Persistence remains NOT LIVE.',
     hostedOrganizationsShape: ['id', 'name', 'slug', 'created_by', 'created_at'],

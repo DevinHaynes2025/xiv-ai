@@ -10,7 +10,7 @@ Production readiness must be proven through load, capacity, chaos, security, reg
 
 Stateless APIs, regional gateways, CDN, edge cache, distributed rate limiting, queues, event streaming, workers, read replicas, partitioning, object storage, search, vector storage, multi-region failover, tenant partitioning, pooling, async workflows, idempotency, backpressure, load shedding, circuit breakers.
 
-`billionUserReady()` returns false.
+`billionUserReady()` returns false. Scale evidence scorecard items stay `not_tested`. Load tests are planned, not run. See [load-test-plan.md](./load-test-plan.md).
 
 ## Sharding
 

@@ -14,6 +14,8 @@ Authenticate → authorize → observe → re-evaluate → step-up / deny / expi
 
 Step-up authentication remains PLANNED.
 
+Phase 2H-A adds authorization freshness and architectural hardening checks (session fixation, selector tampering, stale membership, provenance tampering). No fake detections. See [authorization-freshness.md](./authorization-freshness.md).
+
 ## Feedback
 
 SecurityEvent → classify → correlate → score risk → policy response → containment → investigation → recovery → lesson.
