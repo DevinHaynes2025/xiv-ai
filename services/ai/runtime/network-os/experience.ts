@@ -87,6 +87,16 @@ export const PREMIUM_ROUTE_MAP = {
   reviews: 'reviews',
   'live-rooms': 'live-rooms',
   'data-agents': 'data-agents',
+  'supply-graph': 'supply-graph',
+  'warehouse-twin': 'warehouse-twin',
+  earth: 'earth',
+  pipelines: 'pipelines',
+  'defense-mesh': 'defense-mesh',
+  'location-fabric': 'location-fabric',
+  universes: 'universes',
+  transport: 'transport',
+  ports: 'ports',
+  geospatial: 'geospatial',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

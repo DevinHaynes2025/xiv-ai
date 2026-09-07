@@ -100,7 +100,17 @@ export type OsPath =
   | 'answers'
   | 'reviews'
   | 'live-rooms'
-  | 'data-agents';
+  | 'data-agents'
+  | 'supply-graph'
+  | 'warehouse-twin'
+  | 'earth'
+  | 'pipelines'
+  | 'defense-mesh'
+  | 'location-fabric'
+  | 'universes'
+  | 'transport'
+  | 'ports'
+  | 'geospatial';
 
 export type OsEmphasis = 'operator' | 'chair';
 

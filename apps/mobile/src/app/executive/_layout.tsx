@@ -101,6 +101,16 @@ const hidden = [
   'reviews',
   'live-rooms',
   'data-agents',
+  'supply-graph',
+  'warehouse-twin',
+  'earth',
+  'pipelines',
+  'defense-mesh',
+  'location-fabric',
+  'universes',
+  'transport',
+  'ports',
+  'geospatial',
 ];
 
 export default function ExecutiveLayout() {

@@ -640,6 +640,97 @@ export function WorkspaceDataAgents() {
   );
 }
 
+export function WorkspaceSupplyGraph() {
+  return (
+    <PremiumDesk title="Supply Chain Nervous System" subtitle="Evidence-backed events. Knowledge Vaults, not black holes.">
+      <XivListRow title="SOURCE → FACTORY → PORT → LAST MILE → RETURN" body="Every hop needs source, retrievedAt, and reference." />
+      <XivStatusPill label="No global product tracking claimed" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceWarehouseTwin() {
+  return (
+    <PremiumDesk title="Warehouse Twin" subtitle="OBSERVED · CALCULATED · INFERRED · FORECAST · RECOMMENDED">
+      <XivListRow title="Recommendation" body="Not a fact. No fake telemetry." />
+      <XivListRow title="Phone as sensor" body="A pallet scan may enter Company Brain. Unrelated movement does not." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceEarth() {
+  return (
+    <PremiumDesk title="Earth Intelligence" subtitle="Open-science adapters. No NASA partnership claim.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Observation != forecast" body="Earth Twin scenarios stay simulations." />
+      <XivListRow title="Connectivity" body="Starlink / AT&T / Verizon are transport, not location authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePipelines() {
+  return (
+    <PremiumDesk title="Pipeline Foundry" subtitle="Propose → sandbox → review → human approval. No autonomous ingest.">
+      <XivListRow title="Hot → Warm → Cold → Archive → Source reference" body="Storage is elastic and tiered. Not infinite." />
+      <XivListRow title="Connector Foundry" body="Cannot mint production credentials." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDefenseMesh() {
+  return (
+    <PremiumDesk title="Autonomous Defense Mesh" subtitle="AI-vs-AI monitoring. Guardian stays above the mesh.">
+      <XivListRow title="States" body="NORMAL → SUSPICIOUS → RESTRICTED → HUMAN_REVIEW" />
+      <XivListRow title="Quarantine" body="High-impact restriction needs human review. No destructive retaliation." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceLocationFabric() {
+  return (
+    <PremiumDesk title="Location Intelligence Fabric" subtitle="Device GPS · Places · Carrier telematics. Guardian last.">
+      <XivListRow title="Permission stack" body="OS + XIV + purpose + tenant + Universe + agent + precision + retention + audit." />
+      <XivStatusPill label="No global real-time GPS claimed" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceUniverses() {
+  return (
+    <PremiumDesk title="Data Universes" subtitle="Knowledge Vaults. Not black holes. Tenant isolation stays intact.">
+      <XivListRow title="Tiers" body="HOT → WARM → COLD → ARCHIVE → SOURCE REFERENCE. Not infinite storage." />
+      <XivListRow title="Private company Universe" body="Cannot become public automatically." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceTransport() {
+  return (
+    <PremiumDesk title="Transportation Intelligence" subtitle="Parcel · Freight · Cargo. Evidence required. No fabricated tracking.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Telematics" body="Carrier connectivity is not location authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePorts() {
+  return (
+    <PremiumDesk title="Port and Trade Intelligence" subtitle="Ports, customs, and trade compliance remain unproven adapters.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Every carrier connected" body="Not claimed." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceGeospatial() {
+  return (
+    <PremiumDesk title="Geospatial and Earth Agents" subtitle="Observation is not forecast. Scenario is not fact.">
+      <XivListRow title="NASA-compatible" body="Open-science adapter architecture. No NASA partnership." />
+      <XivStatusPill label="L4 disabled" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

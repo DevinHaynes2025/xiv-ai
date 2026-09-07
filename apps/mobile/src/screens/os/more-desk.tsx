@@ -127,6 +127,16 @@ export function MoreDesk() {
       <Chip label="Reviews" onPress={() => go('reviews')} />
       <Chip label="Live Rooms" onPress={() => go('live-rooms')} />
       <Chip label="Data Agents" onPress={() => go('data-agents')} />
+      <Chip label="Supply Graph" onPress={() => go('supply-graph')} />
+      <Chip label="Warehouse Twin" onPress={() => go('warehouse-twin')} />
+      <Chip label="Earth Intelligence" onPress={() => go('earth')} />
+      <Chip label="Pipeline Foundry" onPress={() => go('pipelines')} />
+      <Chip label="Defense Mesh" onPress={() => go('defense-mesh')} />
+      <Chip label="Location Fabric" onPress={() => go('location-fabric')} />
+      <Chip label="Data Universes" onPress={() => go('universes')} />
+      <Chip label="Transport Intel" onPress={() => go('transport')} />
+      <Chip label="Ports & Trade" onPress={() => go('ports')} />
+      <Chip label="Geospatial Agents" onPress={() => go('geospatial')} />
     </ExperienceScreen>
   );
 }

@@ -282,6 +282,13 @@ export {
   v5PrimaryNavUnchanged,
 } from './premium';
 export {
+  DATA_UNIVERSES,
+  SUPPLY_CHAIN_AGENTS_V2,
+  pipelineAgentProductionDeploy,
+  scienceProviderStatus,
+  storageLabeledInfinite,
+} from './planetary';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
