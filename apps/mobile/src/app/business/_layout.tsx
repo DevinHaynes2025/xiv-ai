@@ -76,6 +76,15 @@ const hidden = [
   'agent-security',
   'audit',
   'cross-device',
+  'knowledge',
+  'articles',
+  'history',
+  'product-passport',
+  'suppliers',
+  'parcel',
+  'commerce',
+  'agent-foundry',
+  'boards',
 ];
 
 export default function BusinessLayout() {

@@ -58,6 +58,15 @@ export const PREMIUM_ROUTE_MAP = {
   'agent-security': 'agent-security',
   audit: 'audit',
   'cross-device': 'cross-device',
+  knowledge: 'knowledge',
+  articles: 'articles',
+  history: 'history',
+  'product-passport': 'product-passport',
+  suppliers: 'suppliers',
+  parcel: 'parcel',
+  commerce: 'commerce',
+  'agent-foundry': 'agent-foundry',
+  boards: 'boards',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

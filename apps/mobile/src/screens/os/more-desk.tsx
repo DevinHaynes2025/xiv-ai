@@ -98,6 +98,15 @@ export function MoreDesk() {
       <Chip label="Agent Security" onPress={() => go('agent-security')} />
       <Chip label="Audit" onPress={() => go('audit')} />
       <Chip label="Cross-Device" onPress={() => go('cross-device')} />
+      <Chip label="Research Mesh" onPress={() => go('knowledge')} />
+      <Chip label="Articles" onPress={() => go('articles')} />
+      <Chip label="Historical Library" onPress={() => go('history')} />
+      <Chip label="Product Passport" onPress={() => go('product-passport')} />
+      <Chip label="Suppliers" onPress={() => go('suppliers')} />
+      <Chip label="XIV Parcel" onPress={() => go('parcel')} />
+      <Chip label="Commerce Graph" onPress={() => go('commerce')} />
+      <Chip label="Agent Foundry" onPress={() => go('agent-foundry')} />
+      <Chip label="AI Boards" onPress={() => go('boards')} />
     </ExperienceScreen>
   );
 }

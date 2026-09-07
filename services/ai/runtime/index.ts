@@ -256,6 +256,14 @@ export {
   threatIntelSourceStatus,
 } from './everywhere';
 export {
+  AI_BOARD_IDS,
+  KNOWLEDGE_INTELLIGENCE_LOOP,
+  RESEARCH_PROVIDER_REGISTRY,
+  externalIntegrationsRemainNotConfigured,
+  foundrySelfDeploy,
+  unprovenSearchProviderRemainsNotConfigured,
+} from './knowledge';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

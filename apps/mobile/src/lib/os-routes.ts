@@ -71,7 +71,16 @@ export type OsPath =
   | 'access-security'
   | 'agent-security'
   | 'audit'
-  | 'cross-device';
+  | 'cross-device'
+  | 'knowledge'
+  | 'articles'
+  | 'history'
+  | 'product-passport'
+  | 'suppliers'
+  | 'parcel'
+  | 'commerce'
+  | 'agent-foundry'
+  | 'boards';
 
 export type OsEmphasis = 'operator' | 'chair';
 

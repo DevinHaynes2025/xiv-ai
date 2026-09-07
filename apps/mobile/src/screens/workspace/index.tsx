@@ -359,6 +359,95 @@ export function WorkspaceCrossDevice() {
   );
 }
 
+export function WorkspaceKnowledge() {
+  return (
+    <PremiumDesk title="Global Research Mesh" subtitle="Federated discovery. Not every search engine. No scraping.">
+      <XivStatusPill label="Unproven search providers: NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="Approved classes" body="Official APIs, publisher feeds, licensed indexes, direct public sources." />
+      <XivListRow title="Wikipedia / libraries / news" body="Adapter architecture only. Status remains NOT_CONFIGURED." />
+      <XivText variant="metadata" muted>
+        XIV does not claim trillions of documents are indexed. Proven LIVE sources remain World Bank, SEC, and GLEIF identity.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceArticles() {
+  return (
+    <PremiumDesk title="Article Intelligence" subtitle="AI_GENERATED_DRAFT requires editorial review. No wholesale republication.">
+      <XivListRow title="WHAT HAPPENED" body="Sourced event only." />
+      <XivListRow title="WHY / WHO / IMPACT" body="Supply-chain, market, and local impact stay UNKNOWN without evidence." />
+      <XivStatusPill label="PUBLISHED is never automatic" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceHistory() {
+  return (
+    <PremiumDesk title="Historical Business Library" subtitle="Independent archives. Provenance required. Not all libraries.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Dallas County 1950–today" body="Unanswerable until a licensed or public archive adapter is proven." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceProductPassport() {
+  return (
+    <PremiumDesk title="Product Passport" subtitle="Origin is not invented. Evidence classes stay visible.">
+      <XivListRow title="VERIFIED" body="Only with source + retrievedAt + reference." />
+      <XivListRow title="SUPPLIER_REPORTED / CARRIER_REPORTED" body="Not manufacturer fact. Not silently upgraded." />
+      <XivListRow title="UNKNOWN" body="Default when a factory or material is not evidenced." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSuppliers() {
+  return (
+    <PremiumDesk title="Supplier Universe" subtitle="Onboarding without assuming verification. Evidence, not rankings.">
+      <XivListRow title="Self-report" body="SUPPLIER_REPORTED. Not a verified capability." />
+      <XivListRow title="Procurement query" body="Returns evidence packets. No fake capacity or certifications." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceParcel() {
+  return (
+    <PremiumDesk title="XIV Logistics" subtitle="Parcel · Freight · Cargo · Last Mile · Fulfillment · Trade">
+      <XivStatusPill label="Carrier integrations: NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="Amazon / Uber / UPS / FedEx / Maersk" body="Potential connectors. Not built-in access." />
+      <XivListRow title="Tracking" body="Events require evidence. Fabricated locations are denied." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCommerce() {
+  return (
+    <PremiumDesk title="Commerce Graph" subtitle="Merchant intelligence. Customer records stay tenant-private.">
+      <XivListRow title="Allowed" body="Aggregated demand, authorized sales, public prices, reviews." />
+      <XivListRow title="Denied" body="Hidden individual tracking and automatic Global Brain promotion." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAgentFoundry() {
+  return (
+    <PremiumDesk title="Agent Foundry" subtitle="Specify → review → sandbox → human approval. No self-deploy.">
+      <XivListRow title="Lifecycle" body="PROPOSED through RETIRED. DEPLOYED requires human approval." />
+      <XivListRow title="Firewall" body="New agents cannot grant themselves tools or permissions." />
+      <XivStatusPill label="L4 disabled" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceBoards() {
+  return (
+    <PremiumDesk title="Digital AI Boards" subtitle="Contradiction keeps a seat. Disagreement stays visible.">
+      <XivListRow title="Supply Chain Board" body="Synthesis is a packet, not a silent vote." />
+      <XivListRow title="Financial Intelligence" body="FACT / SIGNAL / FORECAST remain separate. No BUY/SELL." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();
