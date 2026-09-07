@@ -835,6 +835,62 @@ export function WorkspaceUniverseFabric() {
   );
 }
 
+export function WorkspaceLegalNetwork() {
+  return (
+    <PremiumDesk title="Legal Network" subtitle="Legal information and workflow assistance. Not licensed attorney advice.">
+      <XivListRow title="Counsel" body="Company selects verified lawyers. XIV does not impersonate an attorney." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCapital() {
+  return (
+    <PremiumDesk title="XIV Capital" subtitle="Evidence-backed research room. Investor decisions stay human.">
+      <XivListRow title="No guaranteed winner" body="No BUY/SELL. No certain-winner labels." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCommandCenter() {
+  return (
+    <PremiumDesk title="Company Command Center" subtitle="Phone pocket command. Desktop operating room. Plugs into host OS.">
+      <XivStatusPill label="Does not replace iOS / Android / Windows / macOS" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceTaskForce() {
+  return (
+    <PremiumDesk title="Agentic Task Force" subtitle="Reusable specialist teams. Shared evidence room. Not one chatbot.">
+      <XivListRow title="Permissions" body="Joining a task force does not grant new authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceProductJourney() {
+  return (
+    <PremiumDesk title="Product Journey" subtitle="Farm-to-shelf and component journeys. Images keep evidence class.">
+      <XivListRow title="Image classes" body="VERIFIED_SOURCE · SUPPLIER_PROVIDED · PUBLIC · USER_UPLOADED · ILLUSTRATIVE_AI" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceRootGraph() {
+  return (
+    <PremiumDesk title="Root Graph" subtitle="Durable IDs and historical relationships. Guardian protects the trunk.">
+      <XivListRow title="Distributed data" body="Not every company database is copied into one XIV database." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePlugins() {
+  return (
+    <PremiumDesk title="Industry Packs" subtitle="Signed, scanned, permissioned, company-approved, Universe-bound.">
+      <XivListRow title="No unrestricted plugin access" body="Hardware and OEM remain future foundations. Not live." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

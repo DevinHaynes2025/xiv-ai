@@ -109,6 +109,13 @@ export const PREMIUM_ROUTE_MAP = {
   sovereign: 'sovereign',
   'ai-marketing': 'ai-marketing',
   'universe-fabric': 'universe-fabric',
+  'legal-network': 'legal-network',
+  capital: 'capital',
+  'command-center': 'command-center',
+  'task-force': 'task-force',
+  'product-journey': 'product-journey',
+  'root-graph': 'root-graph',
+  plugins: 'plugins',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

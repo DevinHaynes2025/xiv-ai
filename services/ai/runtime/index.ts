@@ -301,6 +301,11 @@ export {
   quantumSecurityClaimedWithoutProof,
 } from './sovereign';
 export {
+  legalAgentIsLicensedAttorney,
+  xivReplacesHostOperatingSystem,
+  conveneTaskForce,
+} from './ecosystem';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

@@ -123,6 +123,13 @@ const hidden = [
   'sovereign',
   'ai-marketing',
   'universe-fabric',
+  'legal-network',
+  'capital',
+  'command-center',
+  'task-force',
+  'product-journey',
+  'root-graph',
+  'plugins',
 ];
 
 export default function ExecutiveLayout() {

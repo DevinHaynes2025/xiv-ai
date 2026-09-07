@@ -59,6 +59,7 @@
     "../../services/ai/runtime/phase2io.test.ts",
     "../../services/ai/runtime/phase2ip.test.ts",
     "../../services/ai/runtime/phase2iq.test.ts",
+    "../../services/ai/runtime/phase2ir.test.ts",
     "../../services/ai/runtime/tenant-hardening.test.ts",
     "../../services/ai/runtime/hosted-isolation-proof.ts",
     "../../services/ai/runtime/hosted-isolation-harness.test.ts",

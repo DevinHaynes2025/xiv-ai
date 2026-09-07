@@ -122,7 +122,14 @@ export type OsPath =
   | 'night-shift'
   | 'sovereign'
   | 'ai-marketing'
-  | 'universe-fabric';
+  | 'universe-fabric'
+  | 'legal-network'
+  | 'capital'
+  | 'command-center'
+  | 'task-force'
+  | 'product-journey'
+  | 'root-graph'
+  | 'plugins';
 
 export type OsEmphasis = 'operator' | 'chair';
 

@@ -149,6 +149,13 @@ export function MoreDesk() {
       <Chip label="Sovereign Security" onPress={() => go('sovereign')} />
       <Chip label="Marketing Agents" onPress={() => go('ai-marketing')} />
       <Chip label="Universe Fabric" onPress={() => go('universe-fabric')} />
+      <Chip label="Legal Network" onPress={() => go('legal-network')} />
+      <Chip label="XIV Capital" onPress={() => go('capital')} />
+      <Chip label="Command Center" onPress={() => go('command-center')} />
+      <Chip label="Task Forces" onPress={() => go('task-force')} />
+      <Chip label="Product Journey" onPress={() => go('product-journey')} />
+      <Chip label="Root Graph" onPress={() => go('root-graph')} />
+      <Chip label="Industry Packs" onPress={() => go('plugins')} />
     </ExperienceScreen>
   );
 }
