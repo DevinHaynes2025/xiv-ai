@@ -134,6 +134,14 @@ const hidden = [
   'product-journey',
   'root-graph',
   'plugins',
+  'developer-console',
+  'plugin-manager',
+  'plugin-marketplace',
+  'runtime-health',
+  'device-manager',
+  'enterprise-catalog',
+  'sdk-docs',
+  'oem',
 ];
 
 export default function BusinessLayout() {

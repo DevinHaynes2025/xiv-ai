@@ -116,6 +116,14 @@ export const PREMIUM_ROUTE_MAP = {
   'product-journey': 'product-journey',
   'root-graph': 'root-graph',
   plugins: 'plugins',
+  'developer-console': 'developer-console',
+  'plugin-manager': 'plugin-manager',
+  'plugin-marketplace': 'plugin-marketplace',
+  'runtime-health': 'runtime-health',
+  'device-manager': 'device-manager',
+  'enterprise-catalog': 'enterprise-catalog',
+  'sdk-docs': 'sdk-docs',
+  oem: 'oem',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

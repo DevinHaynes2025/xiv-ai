@@ -129,7 +129,15 @@ export type OsPath =
   | 'task-force'
   | 'product-journey'
   | 'root-graph'
-  | 'plugins';
+  | 'plugins'
+  | 'developer-console'
+  | 'plugin-manager'
+  | 'plugin-marketplace'
+  | 'runtime-health'
+  | 'device-manager'
+  | 'enterprise-catalog'
+  | 'sdk-docs'
+  | 'oem';
 
 export type OsEmphasis = 'operator' | 'chair';
 

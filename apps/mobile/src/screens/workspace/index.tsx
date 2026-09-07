@@ -891,6 +891,70 @@ export function WorkspacePlugins() {
   );
 }
 
+export function WorkspaceDeveloperConsole() {
+  return (
+    <PremiumDesk title="Developer Console" subtitle="Governed SDK projects. No raw production secrets in source.">
+      <XivListRow title="Capability, not authority" body="Developers can build functionality. Guardian governs access." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePluginManager() {
+  return (
+    <PremiumDesk title="Plugin Manager" subtitle="Manifest V2, signed packages, sandbox install. Default deny.">
+      <XivListRow title="Lifecycle" body="A plugin cannot promote itself from DRAFT to PUBLISHED or ACTIVE." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePluginMarketplace() {
+  return (
+    <PremiumDesk title="Plugin Marketplace" subtitle="Listings are not installed access. Reviews do not create verification.">
+      <XivListRow title="Trust" body="Follower count cannot affect security or evidence authority." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceRuntimeHealth() {
+  return (
+    <PremiumDesk title="Runtime Health" subtitle="HEALTHY · DEGRADED · LIMITED · UNAVAILABLE · QUARANTINED · UNKNOWN.">
+      <XivStatusPill label="UNKNOWN is not treated as HEALTHY" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDeviceManager() {
+  return (
+    <PremiumDesk title="Device Manager" subtitle="Managed-device foundations. Binding stays Universe-scoped per request.">
+      <XivListRow title="Revocation" body="A revoked device cannot authorize a runtime session." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceEnterpriseCatalog() {
+  return (
+    <PremiumDesk title="Enterprise Catalog" subtitle="Private plugin catalogs stay tenant-scoped. Policy packs restrict.">
+      <XivListRow title="Policy" body="Plugins cannot override enterprise policy. Licenses cannot override authorization." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceSdkDocs() {
+  return (
+    <PremiumDesk title="SDK Docs" subtitle="Architecture contracts only. Sensitive capabilities require permission.">
+      <XivListRow title="Extension APIs" body="Identity, Universe, data, workflow, and device APIs honor tenant and classification." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceOem() {
+  return (
+    <PremiumDesk title="OEM Foundation" subtitle="Contracts and reference profiles only. Not manufactured hardware.">
+      <XivStatusPill label="XIV does not replace iOS / Android / Windows / macOS / Linux" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

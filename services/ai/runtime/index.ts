@@ -306,6 +306,12 @@ export {
   conveneTaskForce,
 } from './ecosystem';
 export {
+  createPlatformRuntime,
+  evaluatePluginInstall,
+  invokeExtensionApi,
+  runtimeCannotBypassGuardian,
+} from './platform';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
