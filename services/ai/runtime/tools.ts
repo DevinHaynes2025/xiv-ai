@@ -50,6 +50,13 @@ const SPECIALIST_READERS: readonly XivAgentId[] = [
   'data_quality',
   'communications',
   'moderation',
+  'market',
+  'international',
+  'strategy',
+  'business_case',
+  'research',
+  'live_intelligence',
+  'localization',
 ];
 
 export const READ_ONLY_CONTEXT_TOOLS: readonly RuntimeToolId[] = [
@@ -126,7 +133,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L1_Recommend,
-    allowedAgentIds: [...DOMAIN_READERS, 'risk', 'compliance', 'communications', 'moderation'],
+    allowedAgentIds: [...DOMAIN_READERS, ...SPECIALIST_READERS.filter((id) => id !== 'data_quality' && id !== 'research')],
   },
   {
     id: 'diagnostic_summarizer',
@@ -150,7 +157,7 @@ export const XIV_TOOL_REGISTRY: readonly RuntimeToolDefinition[] = [
     requiresApproval: false,
     humanOnly: false,
     requiredAuthority: AuthorityLevel.L0_Observe,
-    allowedAgentIds: DOMAIN_READERS,
+    allowedAgentIds: [...DOMAIN_READERS, 'business_case'],
   },
   {
     id: 'business_health_report',

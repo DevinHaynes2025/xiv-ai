@@ -13,6 +13,8 @@ Governed agent-to-agent collaboration. Agents do not freely control each other.
 | Free-form agent bus | FORBIDDEN |
 | Persistent collaboration table | PLANNED |
 | Persistent Universes | BLOCKED BY SCHEMA COLLISION |
+| Phase 2G-B specialists (market, international, strategy, business case, research, live intelligence, localization) | PROTOTYPE |
+| AgentDebugger / circuit breakers | IMPLEMENTED (inspect / isolate only) |
 
 ## Path
 

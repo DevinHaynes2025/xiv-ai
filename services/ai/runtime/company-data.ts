@@ -23,6 +23,13 @@ const AGENT_DATA_DOMAINS: Record<XivAgentId, readonly (keyof DataDomainCapabilit
   data_quality: ['technology'],
   communications: [],
   moderation: [],
+  market: [],
+  international: [],
+  strategy: [],
+  business_case: [],
+  research: [],
+  live_intelligence: [],
+  localization: [],
 };
 
 export type CompanyDataRequest = {

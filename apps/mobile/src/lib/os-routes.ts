@@ -24,7 +24,11 @@ export type OsPath =
   | 'agents'
   | 'team'
   | 'workforce'
-  | 'live';
+  | 'live'
+  | 'cases'
+  | 'africa'
+  | 'global'
+  | 'ops';
 
 export type OsEmphasis = 'operator' | 'chair';
 

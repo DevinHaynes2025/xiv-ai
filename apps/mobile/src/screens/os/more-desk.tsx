@@ -55,6 +55,10 @@ export function MoreDesk() {
         />
       ))}
       <Chip label="Business Live" onPress={() => go('live')} />
+      <Chip label="Business Cases" onPress={() => go('cases')} />
+      <Chip label="Africa Business" onPress={() => go('africa')} />
+      <Chip label="Global Business" onPress={() => go('global')} />
+      <Chip label="Operations Center" onPress={() => go('ops')} />
       <Chip label="Profile" onPress={() => go('profile')} />
       <Chip label="Health" onPress={() => go('health')} />
     </ExperienceScreen>

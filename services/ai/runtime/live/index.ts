@@ -1,6 +1,16 @@
 export { LIVE_SURFACES, PROTOTYPE_LIVE_ROOMS, liveInfrastructureLabel } from './catalog';
 export { authorizeLiveAccess, publicLiveCannotExposeRestricted } from './policy';
 export {
+  authorizedBusinessHostModelExists,
+  canHostBusinessLive,
+  consumerCanHostBusinessLive,
+  dlpUnavailableClaimsScanSuccess,
+  liveIntelligenceMayAutoPublishPrivate,
+  liveSecurityInfrastructureStatus,
+  LIVE_SECURITY_CONTROLS,
+} from './host';
+export { draftLiveIntelligenceBrief, publishLiveIntelligenceBrief } from './intelligence';
+export {
   createUnavailableDlpProvider,
   createUnavailableLiveStreamProvider,
   createUnavailableLiveSummaryProvider,

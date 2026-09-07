@@ -1,16 +1,16 @@
-# XIV Agent Runtime — Phase 2G-A
+# XIV Agent Runtime — Phase 2G-B
 
 Governed Agent Runtime with Universe isolation, a Company Data Gateway, authorized session records, and an honest live-source probe. This layer does **not** replace the live Gemini Executive/Business path (`services/ai/agent-router.ts`, `POST /v1/executive/turn`).
 
 Governed Runtime ≠ Live Gemini Executive turn path.
 
-See also [agent-mesh.md](./agent-mesh.md), [agent-firewall.md](./agent-firewall.md), [agent-feedback-loops.md](./agent-feedback-loops.md), [foresight-engine.md](./foresight-engine.md), [business-live.md](./business-live.md), [runtime-observability.md](./runtime-observability.md), [phase2g-a-review.md](./phase2g-a-review.md), [phase2f-b-validation.md](./phase2f-b-validation.md).
+See also [continuous-intelligence.md](./continuous-intelligence.md), [continuous-learning.md](./continuous-learning.md), [agent-debugging.md](./agent-debugging.md), [agent-mesh.md](./agent-mesh.md), [agent-firewall.md](./agent-firewall.md), [agent-feedback-loops.md](./agent-feedback-loops.md), [foresight-engine.md](./foresight-engine.md), [business-live-v2.md](./business-live-v2.md), [runtime-observability.md](./runtime-observability.md), [phase2g-b-review.md](./phase2g-b-review.md), [phase2g-a-review.md](./phase2g-a-review.md).
 
 Persisted Universes are **not LIVE** (schema collision). Agents remain non-principals. The Agent Mesh lets Executive coordinate bounded consultations. Guardian cannot join the tenant mesh. L4 remains disabled.
 
 ## Intelligence loops
 
-Sense → Understand → Predict → Decide → Execute → Measure → Learn
+Sense → Understand → Predict → Decide → Act → Measure → Learn
 
 Diagnose → Treat → Monitor → Learn → Optimize
 

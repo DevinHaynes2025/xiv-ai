@@ -15,6 +15,8 @@ Phase 2E adds the first meaningful **real** read-only business-data path beside 
 | Deterministic freshness | IMPLEMENTED |
 | Data Quality scoring of authorized session records | PROTOTYPE (no operational invention) |
 | ERP / WMS / TMS adapters | PLANNED |
+| Real-time BI adapters | NOT CONFIGURED (no scraping) |
+| Business event provenance | IMPLEMENTED (types) |
 | Silent fallback from live → sample | FORBIDDEN |
 
 ## Pipeline
@@ -85,6 +87,8 @@ Organization and Universe company-data reads now require persisted membership ve
 - unknown when no usable timestamp
 
 Agents must not present stale information as current.
+
+Phase 2G-B real-time events also require provenance and label stale items `stale`. See [realtime-business-intelligence.md](./realtime-business-intelligence.md). Arbitrary scraping is forbidden.
 
 ## Labels
 

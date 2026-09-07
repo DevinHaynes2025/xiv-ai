@@ -14,6 +14,7 @@ Phase 2E in-memory isolation plus Phase 2F persistence **design**. Persisted Uni
 | Persisted Universes (hosted) | NOT CONFIGURED |
 | Cross-Universe relationships | PLANNED |
 | Cross-Universe agent data sharing | FORBIDDEN (no inferred sharing) |
+| Global country / residency architecture | IMPLEMENTED (config) / PLANNED (enforcement) |
 
 ## Model
 

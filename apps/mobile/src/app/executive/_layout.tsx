@@ -29,6 +29,10 @@ export default function ExecutiveLayout() {
         'security',
         'systems',
         'live',
+        'cases',
+        'africa',
+        'global',
+        'ops',
       ]}
     />
   );

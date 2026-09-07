@@ -14,7 +14,14 @@ export type XivAgentId =
   | 'compliance'
   | 'data_quality'
   | 'communications'
-  | 'moderation';
+  | 'moderation'
+  | 'market'
+  | 'international'
+  | 'strategy'
+  | 'business_case'
+  | 'research'
+  | 'live_intelligence'
+  | 'localization';
 
 export type XivAgentDomain =
   | 'executive'
@@ -30,7 +37,14 @@ export type XivAgentDomain =
   | 'compliance'
   | 'quality'
   | 'communications'
-  | 'trust';
+  | 'trust'
+  | 'market'
+  | 'international'
+  | 'strategy'
+  | 'cases'
+  | 'research'
+  | 'live'
+  | 'localization';
 
 export type XivAgentStatus = 'registered' | 'prototype' | 'available' | 'future';
 
@@ -294,6 +308,83 @@ export const XIV_AGENT_REGISTRY: readonly XivAgentDefinition[] = [
     defaultAuthority: AuthorityLevel.L1_Recommend,
     allowedTools: ['recommendation_generator', 'diagnostic_summarizer'],
     requiresApprovalFor: ['permission_change', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'market',
+    name: 'Market Intelligence Agent',
+    description: 'Reads authorized public market context. Does not invent prices, filings, or competitor facts.',
+    domain: 'market',
+    capabilities: ['observe_context', 'recommend', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator'],
+    requiresApprovalFor: ['external_send', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'international',
+    name: 'International Business Agent',
+    description: 'Supports cross-border expansion research. Distinguishes analysis from legal/tax certainty. Does not give unsupported regulatory conclusions.',
+    domain: 'international',
+    capabilities: ['observe_context', 'recommend', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator'],
+    requiresApprovalFor: ['external_send', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'strategy',
+    name: 'Strategy Agent',
+    description: 'Frames strategic options from authorized evidence. Does not execute strategy or invent financial outcomes.',
+    domain: 'strategy',
+    capabilities: ['observe_context', 'recommend', 'draft', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator'],
+    requiresApprovalFor: ['production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'business_case',
+    name: 'Business Case Agent',
+    description: 'Structures business cases and lessons. Hypothetical cases stay labeled hypothetical.',
+    domain: 'cases',
+    capabilities: ['observe_context', 'recommend', 'draft', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator', 'diagnostic_story_builder'],
+    requiresApprovalFor: ['production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'research',
+    name: 'Research Agent',
+    description: 'Assembles sourced research packs. Does not scrape arbitrary web sources or invent citations.',
+    domain: 'research',
+    capabilities: ['observe_context', 'summarize'],
+    defaultAuthority: AuthorityLevel.L0_Observe,
+    allowedTools: ['diagnostic_summarizer'],
+    requiresApprovalFor: ['external_send', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'live_intelligence',
+    name: 'Live Intelligence Agent',
+    description: 'May later summarize authorized business streams. Cannot automatically publish private content.',
+    domain: 'live',
+    capabilities: ['observe_context', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator'],
+    requiresApprovalFor: ['external_send', 'production_change'],
+    status: 'prototype',
+  },
+  {
+    id: 'localization',
+    name: 'Localization Agent',
+    description: 'Prepares translation requests through provider-neutral interfaces. Machine translation is never certified legal translation.',
+    domain: 'localization',
+    capabilities: ['observe_context', 'draft', 'summarize'],
+    defaultAuthority: AuthorityLevel.L1_Recommend,
+    allowedTools: ['diagnostic_summarizer', 'recommendation_generator'],
+    requiresApprovalFor: ['external_send'],
     status: 'prototype',
   },
   {

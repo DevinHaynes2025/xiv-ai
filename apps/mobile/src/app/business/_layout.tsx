@@ -33,6 +33,10 @@ export default function BusinessLayout() {
         'projects',
         'security',
         'live',
+        'cases',
+        'africa',
+        'global',
+        'ops',
       ]}
     />
   );

@@ -35,6 +35,7 @@
     "../../services/ai/runtime/phase2fa.test.ts",
     "../../services/ai/runtime/phase2fb.test.ts",
     "../../services/ai/runtime/phase2ga.test.ts",
+    "../../services/ai/runtime/phase2gb.test.ts",
     "../../services/ai/runtime/tenant/migration-review.ts",
     "../../services/ai/business-api.ts",
     "../../services/ai/runtime/guardian/host.ts",

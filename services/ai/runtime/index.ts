@@ -168,11 +168,91 @@ export {
   liveInfrastructureLabel,
   publicLiveCannotExposeRestricted,
   recommendModeration,
+  authorizedBusinessHostModelExists,
+  canHostBusinessLive,
+  consumerCanHostBusinessLive,
+  draftLiveIntelligenceBrief,
+  liveIntelligenceMayAutoPublishPrivate,
+  publishLiveIntelligenceBrief,
   PROTOTYPE_LIVE_ROOMS,
 } from './live';
 export type { LiveRoom } from './live';
-export { createCorrelationId, recordTrace } from './observability';
+export { createCorrelationId, createDistributedTrace, recordTrace, unmeasuredMetrics } from './observability';
 export { scoreAuthorizedRecords } from './quality';
+export { CONTINUOUS_INTELLIGENCE_LOOP, predictionIsNotFact } from './intelligence';
+export {
+  continuousLearningMutatesModels,
+  learningStateFromOutcome,
+  neverFabricateSuccess,
+  recordFailedOutcome,
+  runContinuousLearningCycle,
+} from './learning';
+export {
+  AGENT_DEBUGGER_PROHIBITED,
+  agentDebuggerCanDeploy,
+  agentDebuggerCanExecuteShell,
+  circuitIsOpen,
+  evaluateCircuitBreaker,
+  guardianIsNotCodeWriter,
+  guardianOpsLayers,
+  inspectAgentFailure,
+  requestDebuggerAction,
+  unmeasuredHealthScore,
+} from './diagnostics';
+export { SPECIALIST_CHARTERS, charterFor } from './agent-charters';
+export {
+  africaIsNotOneMarket,
+  africanCountryProfiles,
+  chinaDeploymentCapability,
+  classifyInternationalClaim,
+  getCountryProfile,
+  machineTranslationIsCertifiedLegal,
+  markUnsupportedLegalClaim,
+  regionalFailoverIsPlanned,
+  unavailableCountryData,
+  xivIsDeployedInChina,
+} from './global';
+export {
+  createBusinessEvent,
+  createUnavailableRealtimeAdapter,
+  eventRequiresProvenance,
+  labelStaleEvent,
+  scrapingIsEnabled,
+  webDataMayBeRepublishedCommercially,
+} from './realtime';
+export { createInMemoryGraph } from './graph';
+export {
+  PROTOTYPE_BUSINESS_CASES,
+  caseRemainsHypothetical,
+  createBusinessCase,
+  presentCaseAsReal,
+  runBusinessCaseEngine,
+} from './cases';
+export {
+  billionUserClaim,
+  billionUserReady,
+  buildCacheKey,
+  createEventBus,
+  createRateLimitRule,
+  protectCriticalSecurityWork,
+  routeTenantShard,
+  shardingIsEnabled,
+  unlimitedRateLimitAllowed,
+} from './scale';
+export { SECURITY_DOMAINS, certifiedSecurityLayerCount } from './security/domains';
+export { evaluateContinuousAuthorization } from './security/continuous-auth';
+export { applySecurityPolicyEditFromEvent, recordSecurityEvent, securityAiMaySelfEditPolicy } from './security/feedback';
+export { forecastAttack } from './security/forecast';
+export { isolateAgentInput, retrievedContentIsSystemInstruction, treatAsSystemAuthority } from './security/injection';
+export {
+  OPS_CENTER_SECTIONS,
+  autonomousDeployEnabled,
+  consumerMayOpenOperationsCenter,
+  createIncident,
+  mayAutoRemediate,
+  operationsCenterSnapshot,
+} from './operations';
+export { globalPrivacyAssumption } from './residency';
 export { findingHasPrototypeLabels } from './context/findings';
 export type { BusinessHealthFinding, HealthDomain, StoryBeat, StoryStance } from './context/findings';
 export { buildDiagnosticStory, buildNarrative, hypothesisIsMarked, storyHasPrototypeLabels } from './context/story';

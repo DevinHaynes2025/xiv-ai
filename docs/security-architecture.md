@@ -38,6 +38,10 @@ A compromise of one user, device, Universe, organization, service, storage parti
 | Secure SDLC | PROTOTYPE |
 | Agent policy enforcement | IMPLEMENTED |
 | Agent Firewall / mesh boundary | PROTOTYPE |
+| Continuous authorization | PROTOTYPE (step-up PLANNED) |
+| Prompt / retrieved-content isolation | PROTOTYPE |
+| Security lesson / no policy self-edit | IMPLEMENTED |
+| Architectural security domains | IMPLEMENTED (not certified layers) |
 | Security decision engine | PROTOTYPE (step-up is PLANNED) |
 | Live DLP | NOT CONFIGURED |
 | Collaboration budgets | PROTOTYPE |
@@ -59,3 +63,5 @@ Never log passwords, tokens, API keys, signed URL query strings, private encrypt
 ## Human approval
 
 Necessary but not sufficient. Policy may still deny an approved action. L4 remains disabled. Production writes remain denied.
+
+See [global-security-architecture.md](./global-security-architecture.md) for Phase 2G-B domains, continuous authorization, injection isolation, and security lessons.

@@ -16,3 +16,5 @@ Product learning loop. Agents do not retrain themselves.
 Observe → Analyze → Recommend → Human decision → Execute if authorized → Measure → Compare → Record lesson → improve future recommendation context.
 
 `recordLesson()` sets `retrainsModel: false` and `mutatesAgentCode: false`.
+
+Phase 2G-B adds `ContinuousLearningEngine` in `services/ai/runtime/learning/`. It improves future recommendation context only. It does not retrain models. See [continuous-learning.md](./continuous-learning.md).

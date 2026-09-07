@@ -13,6 +13,13 @@ export const MESH_PARTICIPANTS: readonly XivAgentId[] = [
   'data_quality',
   'communications',
   'moderation',
+  'market',
+  'international',
+  'strategy',
+  'business_case',
+  'research',
+  'live_intelligence',
+  'localization',
 ];
 
 export type AllowedHandoffEdge = {
@@ -61,6 +68,61 @@ export const ALLOWED_HANDOFF_EDGES: readonly AllowedHandoffEdge[] = [
     source: 'executive',
     target: 'communications',
     types: ['delegation'],
+  },
+  {
+    source: 'executive',
+    target: 'market',
+    types: ['consultation'],
+  },
+  {
+    source: 'executive',
+    target: 'international',
+    types: ['consultation', 'delegation'],
+  },
+  {
+    source: 'executive',
+    target: 'strategy',
+    types: ['consultation', 'review'],
+  },
+  {
+    source: 'executive',
+    target: 'business_case',
+    types: ['delegation'],
+  },
+  {
+    source: 'executive',
+    target: 'research',
+    types: ['consultation', 'verification'],
+  },
+  {
+    source: 'executive',
+    target: 'live_intelligence',
+    types: ['delegation'],
+  },
+  {
+    source: 'executive',
+    target: 'localization',
+    types: ['delegation'],
+  },
+  {
+    source: 'international',
+    target: 'risk',
+    types: ['consultation'],
+  },
+  {
+    source: 'international',
+    target: 'compliance',
+    types: ['consultation', 'review'],
+  },
+  {
+    source: 'live_intelligence',
+    target: 'moderation',
+    types: ['review'],
+  },
+  {
+    source: 'business_case',
+    target: 'executive',
+    types: ['escalation'],
   },
   {
     source: 'operations',

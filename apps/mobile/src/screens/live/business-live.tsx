@@ -14,6 +14,8 @@ import { useTenant } from '@/context/tenant';
 import {
   LIVE_SURFACES,
   PROTOTYPE_LIVE_ROOMS,
+  canHostBusinessLive,
+  consumerCanHostBusinessLive,
   liveInfrastructureLabel,
   type LiveSurface,
 } from '../../../../../services/ai/runtime/live';
@@ -28,6 +30,11 @@ export function BusinessLiveScreen({
   const { session } = useSession();
   const { tenant } = useTenant();
   const [surface, setSurface] = useState<LiveSurface>('live');
+  const hosting = canHostBusinessLive({
+    experienceRole: session.experience,
+    persistenceStatus: tenant.persistenceStatus,
+  });
+  const showHost = hostMode && !consumerCanHostBusinessLive() && session.experience !== 'consumer';
   const rooms = PROTOTYPE_LIVE_ROOMS.filter((room) => {
     if (surface === 'learning') return room.category === 'training' || room.category === 'education';
     if (surface === 'innovation') return room.category === 'innovation' || room.category === 'product_demo';
@@ -63,20 +70,24 @@ export function BusinessLiveScreen({
           </XivText>
         </Card>
       ))}
-      {hostMode ? (
+      {showHost ? (
         <Card style={styles.card}>
           <XivText variant="label" color={Palette.accent}>
             Host
           </XivText>
           <XivText variant="subtitle">{session.experience === 'executive' ? 'Start a chair broadcast' : 'Schedule a company update'}</XivText>
           <XivText variant="caption" muted>
-            Start and schedule controls stay disabled until a streaming provider is configured. This card does not open a
-            camera or create a stream.
+            {hosting.reason} Consumers never receive a Go Live control. Start and schedule stay disabled.
           </XivText>
           <Button label="Start broadcast" variant="subtle" disabled />
           <Button label="Schedule update" variant="subtle" disabled />
         </Card>
-      ) : null}
+      ) : (
+        <XivText variant="caption" dim>
+          Watch-only on this surface. Only authorized business representatives can host, and hosting remains NOT
+          CONFIGURED.
+        </XivText>
+      )}
     </ExperienceScreen>
   );
 }
