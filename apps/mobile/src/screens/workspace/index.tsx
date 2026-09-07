@@ -731,6 +731,59 @@ export function WorkspaceGeospatial() {
   );
 }
 
+export function WorkspaceLegacy() {
+  return (
+    <PremiumDesk title="Legacy Intelligence" subtitle="Evidence-grounded historical AI personas. Not the actual person.">
+      <XivListRow
+        title="Simulation label"
+        body="AI historical simulation based on available evidence. This is not the actual person and may not represent views they would hold today."
+      />
+      <XivListRow title="Obituary" body="May support identity. Not enough to reconstruct a complete Legacy Brain." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCouncil() {
+  return (
+    <PremiumDesk title="Council of Minds" subtitle="Historical simulations and XIV agents stay distinguishable.">
+      <XivListRow title="Agreement · Disagreement · Unknown" body="Disagreement stays visible. Majority cannot create verified fact." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAssembly() {
+  return (
+    <PremiumDesk title="Agent Assembly" subtitle="Virtual meeting primitive. Participation does not grant permissions.">
+      <XivListRow title="Pocket Team" body="Bounded offline agents. Local report → signed queue → Guardian → Company Brain." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceAlgorithmFoundry() {
+  return (
+    <PremiumDesk title="Algorithm Foundry" subtitle="Sandbox → benchmark → measured bias → human approval → canary.">
+      <XivListRow title="Zero bias" body="Not claimed. Bias and uncertainty are measured and documented." />
+      <XivStatusPill label="No production self-rewrite" tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceBrains() {
+  return (
+    <PremiumDesk title="Global Brain Network" subtitle="Logical knowledge domains. Not nested physical databases.">
+      <XivListRow title="Permissioned mesh" body="Public, licensed, and tenant-authorized systems only. No interception or secret listening." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePhilosophy() {
+  return (
+    <PremiumDesk title="Human Thought & Philosophy" subtitle="Ethics, leadership, meaning, epistemology. Description is not endorsement.">
+      <XivListRow title="Religion" body="Historical documents may appear as sources. XIV does not promote a religion." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

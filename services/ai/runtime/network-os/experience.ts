@@ -97,6 +97,12 @@ export const PREMIUM_ROUTE_MAP = {
   transport: 'transport',
   ports: 'ports',
   geospatial: 'geospatial',
+  legacy: 'legacy',
+  council: 'council',
+  assembly: 'assembly',
+  'algorithm-foundry': 'algorithm-foundry',
+  brains: 'brains',
+  philosophy: 'philosophy',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

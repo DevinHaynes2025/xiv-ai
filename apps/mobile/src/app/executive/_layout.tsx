@@ -111,6 +111,12 @@ const hidden = [
   'transport',
   'ports',
   'geospatial',
+  'legacy',
+  'council',
+  'assembly',
+  'algorithm-foundry',
+  'brains',
+  'philosophy',
 ];
 
 export default function ExecutiveLayout() {

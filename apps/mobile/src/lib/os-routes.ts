@@ -110,7 +110,13 @@ export type OsPath =
   | 'universes'
   | 'transport'
   | 'ports'
-  | 'geospatial';
+  | 'geospatial'
+  | 'legacy'
+  | 'council'
+  | 'assembly'
+  | 'algorithm-foundry'
+  | 'brains'
+  | 'philosophy';
 
 export type OsEmphasis = 'operator' | 'chair';
 

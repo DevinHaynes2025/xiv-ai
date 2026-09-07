@@ -289,6 +289,12 @@ export {
   storageLabeledInfinite,
 } from './planetary';
 export {
+  LEGACY_DISCLAIMER,
+  GLOBAL_BRAIN_NETWORK,
+  openCouncilOfMinds,
+  proposeAlgorithm,
+} from './society';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
