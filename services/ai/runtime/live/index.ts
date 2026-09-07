@@ -1,3 +1,4 @@
+export { tenantAuthorizationStatus } from '../tenant/activation-gate';
 export { LIVE_SURFACES, PROTOTYPE_LIVE_ROOMS, liveInfrastructureLabel } from './catalog';
 export { authorizeLiveAccess, publicLiveCannotExposeRestricted } from './policy';
 export {
@@ -41,3 +42,23 @@ export type {
   LiveSummaryProvider,
   LiveTranscriptProvider,
 } from './providers';
+export {
+  BUSINESS_LIVE_CONTENT_EXAMPLES,
+  businessLiveHostingEnabled,
+  businessLiveProviderStatus,
+  evaluateBusinessLivePolicy,
+  privateArchiveEntersGlobalBrain,
+} from './business-live';
+export type {
+  BusinessLiveArchivePolicy,
+  BusinessLiveAudience,
+  BusinessLiveContentClassification,
+  BusinessLiveHost,
+  BusinessLiveIdentityRequirement,
+  BusinessLiveModerationDecision,
+  BusinessLivePolicyOutcome,
+  BusinessLiveSession,
+  BusinessLiveStreamPolicy,
+  BusinessLiveTranscriptEvent,
+  BusinessLiveVerificationState,
+} from './business-live';

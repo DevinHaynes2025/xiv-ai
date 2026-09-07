@@ -59,6 +59,16 @@ export function MoreDesk() {
       <Chip label="Africa Business" onPress={() => go('africa')} />
       <Chip label="Global Business" onPress={() => go('global')} />
       <Chip label="Operations Center" onPress={() => go('ops')} />
+      <Chip label="Messages" onPress={() => go('messages')} />
+      <Chip label="Events" onPress={() => go('events')} />
+      <Chip label="Mixers" onPress={() => go('mixer')} />
+      <Chip label="Marketplace" onPress={() => go('marketplace')} />
+      <Chip label="Promote" onPress={() => go('promote')} />
+      <Chip label="Business Ads" onPress={() => go('ads')} />
+      <Chip label="Story Engine" onPress={() => go('story')} />
+      <Chip label="Data Sources" onPress={() => go('sources')} />
+      <Chip label="Agent Room" onPress={() => go('agent-room')} />
+      <Chip label="Command" onPress={() => go('sales')} />
       <Chip label="Profile" onPress={() => go('profile')} />
       <Chip label="Health" onPress={() => go('health')} />
     </ExperienceScreen>

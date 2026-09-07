@@ -1,9 +1,11 @@
 import { getDefaultAgentRuntime } from '@/lib/ai';
 import { supabase } from '@/lib/supabase';
 import {
+  authoritativeXivHydrationEnabled,
   recordTenantAudit,
   selectActiveTenant,
   slugFromName,
+  tenantPersistenceStatus,
   type ActiveTenantContext,
   type Organization,
   type OrganizationMembership,
@@ -186,6 +188,7 @@ export async function detectPersistenceStatus(): Promise<PersistenceStatus> {
     if (isMissingColumn(orgs.error)) return 'unavailable';
     if (isMissingRelation(orgs.error)) return 'not_applied';
     if (orgs.error) return 'unavailable';
+    if (!authoritativeXivHydrationEnabled()) return 'schema_collision';
     return 'ready';
   }
   if (isMissingRelation(xivMemberships.error)) {
@@ -421,10 +424,11 @@ export async function bootstrapUniverse(input: {
 }
 
 export function persistenceLabel(status: PersistenceStatus) {
-  if (status === 'ready') return 'Persisted memberships are readable.';
+  const gate = tenantPersistenceStatus();
+  if (status === 'ready' && gate === 'live') return 'TENANT PERSISTENCE LIVE. Memberships are readable. UI is not authorization.';
   if (status === 'schema_collision') {
-    return 'Hosted public.organizations remains unrelated. XIV xiv_* tables are not LIVE until isolation is proven.';
+    return 'TENANT PERSISTENCE BLOCKED. Hosted public.organizations remains unrelated. xiv_* hydration is not authoritative until hosted isolation is proven.';
   }
-  if (status === 'not_applied') return 'XIV tenant tables are not applied.';
-  return 'Tenant persistence is unavailable.';
+  if (status === 'not_applied') return 'TENANT PERSISTENCE BLOCKED. XIV tenant tables are not applied.';
+  return 'TENANT PERSISTENCE BLOCKED. Tenant persistence is unavailable.';
 }

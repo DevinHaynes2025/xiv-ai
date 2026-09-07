@@ -13,6 +13,7 @@ import {
   ORG_ROSTER_ROLES,
   UNIVERSE_MANAGE_ROLES,
   UNIVERSE_ROSTER_ROLES,
+  type MembershipStatus,
   type Organization,
   type OrganizationMembership,
   type OrganizationRole,
@@ -106,7 +107,7 @@ export function canCreateUniverse(input: {
   if (!role || !ORG_CREATE_UNIVERSE_ROLES.includes(role)) {
     return deny('Role cannot create a Universe: DENY');
   }
-  return allow('Organization owner, admin, or executive may create a Universe.');
+  return allow('Organization owner or admin may create a Universe.');
 }
 
 export function canViewUniverse(input: {
@@ -167,7 +168,14 @@ export function canManageOrganizationMembership(input: {
   organization?: Pick<Organization, 'id'> | null;
   membership?: OrganizationMembership | null;
   targetUserId?: string | null;
+  targetCurrentRole?: OrganizationRole | null;
+  targetCurrentStatus?: MembershipStatus | null;
   nextRole?: OrganizationRole | null;
+  nextStatus?: MembershipStatus | null;
+  nextOrganizationId?: string | null;
+  nextUserId?: string | null;
+  action?: 'insert' | 'update' | 'delete';
+  activeOwnerCount?: number;
   agentId?: XivAgentId | string | null;
 }): TenantDecision {
   const manage = canManageOrganization(input);
@@ -175,8 +183,37 @@ export function canManageOrganizationMembership(input: {
   if (present(input.targetUserId) && input.targetUserId === input.actorUserId) {
     return deny('Member cannot self-promote or alter their own membership: DENY');
   }
-  if (input.nextRole === 'owner' && input.membership?.role !== 'owner') {
+  if (
+    present(input.nextOrganizationId) &&
+    input.organization?.id &&
+    input.nextOrganizationId !== input.organization.id
+  ) {
+    return deny('Organization membership organization_id cannot be retargeted: DENY');
+  }
+  if (present(input.nextUserId) && present(input.targetUserId) && input.nextUserId !== input.targetUserId) {
+    return deny('Organization membership user_id cannot be retargeted: DENY');
+  }
+  const actorRole = input.membership?.role;
+  const targetIsOwner = input.targetCurrentRole === 'owner';
+  const makingOwner = input.nextRole === 'owner';
+  const ownerAffect =
+    targetIsOwner ||
+    makingOwner ||
+    (input.action === 'delete' && targetIsOwner);
+  if (actorRole === 'admin' && ownerAffect) {
+    return deny('Admin cannot demote, suspend, revoke, delete, change, or create an OWNER: DENY');
+  }
+  if (input.nextRole === 'owner' && actorRole !== 'owner') {
     return deny('Only an owner may grant owner: DENY');
+  }
+  const removingActiveOwner =
+    targetIsOwner &&
+    (input.targetCurrentStatus ?? 'active') === 'active' &&
+    (input.action === 'delete' ||
+      (input.nextRole != null && input.nextRole !== 'owner') ||
+      (input.nextStatus != null && input.nextStatus !== 'active'));
+  if (removingActiveOwner && (input.activeOwnerCount ?? 1) <= 1) {
+    return deny('Cannot remove the final active OWNER: DENY');
   }
   return allow('Authorized owner/admin may manage another member.');
 }
@@ -189,7 +226,10 @@ export function canManageUniverseMembership(input: {
   universeMembership?: UniverseMembership | null;
   targetUserId?: string | null;
   targetIsOrgMember?: boolean;
+  targetCurrentRole?: UniverseRole | null;
   nextRole?: UniverseRole | null;
+  nextUniverseId?: string | null;
+  nextUserId?: string | null;
   agentId?: XivAgentId | string | null;
 }): TenantDecision {
   const manage = canManageUniverse(input);
@@ -197,15 +237,37 @@ export function canManageUniverseMembership(input: {
   if (present(input.targetUserId) && input.targetUserId === input.actorUserId) {
     return deny('Member cannot self-promote or alter their own Universe membership: DENY');
   }
+  if (present(input.nextUniverseId) && input.universe?.id && input.nextUniverseId !== input.universe.id) {
+    return deny('Universe membership universe_id cannot be retargeted: DENY');
+  }
+  if (present(input.nextUserId) && present(input.targetUserId) && input.nextUserId !== input.targetUserId) {
+    return deny('Universe membership user_id cannot be retargeted: DENY');
+  }
   if (input.targetIsOrgMember === false) {
     return deny('Universe membership requires an active organization membership: DENY');
   }
-  if (input.nextRole === 'owner') {
-    const orgOwner = input.organizationMembership?.role === 'owner';
-    const universeOwner = input.universeMembership?.role === 'owner';
-    if (!orgOwner && !universeOwner) return deny('Only an owner may grant Universe owner: DENY');
+  const orgOwner = input.organizationMembership?.role === 'owner';
+  const universeOwner = input.universeMembership?.role === 'owner';
+  const actorIsOwner = orgOwner || universeOwner;
+  if (input.nextRole === 'owner' && !actorIsOwner) {
+    return deny('Only an owner may grant Universe owner: DENY');
+  }
+  if (
+    input.organizationMembership?.role === 'admin' &&
+    !orgOwner &&
+    (input.targetCurrentRole === 'owner' || input.nextRole === 'owner')
+  ) {
+    return deny('Admin cannot demote, suspend, revoke, delete, change, or create a Universe OWNER: DENY');
   }
   return allow('Authorized admin may manage another Universe member.');
+}
+
+export function canRetargetUniverseOrganization(): TenantDecision {
+  return deny('Universe organization_id cannot be retargeted: DENY');
+}
+
+export function internalPolicyHelperIsNotPublicRpc(): TenantDecision {
+  return deny('Internal policy helper is not a public application RPC: DENY');
 }
 
 export function canViewOrganizationRoster(input: {

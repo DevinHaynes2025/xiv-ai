@@ -89,10 +89,12 @@ export {
   canManageOrganizationMembership,
   canManageUniverse,
   canManageUniverseMembership,
+  canRetargetUniverseOrganization,
   canViewOrganization,
   canViewUniverse,
   clientSelectorIsNotAuthority,
   emptyTenantContext,
+  internalPolicyHelperIsNotPublicRpc,
   profileCompanyDoesNotGrantTenantAccess,
   selectActiveTenant,
   slugFromName,
@@ -109,6 +111,11 @@ export {
   recordHostedIsolationEvidence,
   resetHostedProofForTests,
   tenantPersistenceIsLive,
+  authoritativeXivHydrationEnabled,
+  businessModulesTenantReady,
+  evaluateTenantActivation,
+  tenantAuthorizationStatus,
+  tenantPersistenceStatus,
 } from './tenant';
 export type {
   ActiveTenantContext,
@@ -165,7 +172,7 @@ export {
 export type { AgentHandoff, CollaborationResult, CollaborationSession, HandoffType } from './collaboration';
 export { createOutcomeRecord, evaluateOutcome, feedbackDoesNotRetrain, recordLesson } from './feedback';
 export type { OutcomeRecord } from './feedback';
-export { hypothesizedRemainsHypothesized, projectScenario, stanceIsNotFact } from './foresight';
+export { hypothesizedRemainsHypothesized, projectScenario, stanceIsNotFact, forecastRequiresEvidence, productionForesightEnabled } from './foresight';
 export type { Scenario } from './foresight';
 export {
   authorizeLiveAccess,
@@ -183,6 +190,8 @@ export {
   liveIntelligenceMayAutoPublishPrivate,
   publishLiveIntelligenceBrief,
   PROTOTYPE_LIVE_ROOMS,
+  businessLiveProviderStatus,
+  evaluateBusinessLivePolicy,
 } from './live';
 export type { LiveRoom } from './live';
 export { createCorrelationId, createDistributedTrace, recordTrace, unmeasuredMetrics } from './observability';
@@ -190,11 +199,27 @@ export { scoreAuthorizedRecords } from './quality';
 export { CONTINUOUS_INTELLIGENCE_LOOP, predictionIsNotFact } from './intelligence';
 export {
   continuousLearningMutatesModels,
+  learningMayMutateAgentAuthority,
   learningStateFromOutcome,
   neverFabricateSuccess,
   recordFailedOutcome,
   runContinuousLearningCycle,
 } from './learning';
+export { companyEntersGlobalBrainAutomatically, evaluateBrainTransfer, globalBrainAllowsProvenance } from './fabric';
+export { identityStoresRawBiometrics } from './identity';
+export { createOpportunityHypothesis, foundryTreatsHypothesisAsFact } from './foundry';
+export { createOptimizationProvider, quantumProcessingActive } from './compute';
+export {
+  adIsVisiblySponsored,
+  articlesAutoPublish,
+  consumerCannotAccessPrivateCompanyMeeting,
+  cursorCloudAgentIsProductionAuthority,
+  databaseCredentialsExposedClientSide,
+  nvidiaInfrastructureLive,
+  oracleDefaultsReadOnly,
+  videoMeetingInfrastructureLive,
+  videoProvider,
+} from './network-os';
 export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
@@ -265,14 +290,27 @@ export {
   worldBankProviderConnected,
 } from './providers';
 export {
+  canIngestFromProvider,
+  providerRegistryDefault,
+  seedDeclaredBusinessDataProviders,
+  sourcesUseServiceRole,
+} from './sources';
+export {
+  historicalSimilarityIsDestiny,
+  ledgerPersistsToHostedDatabase,
+  trillionEventCapacityIsLive,
+} from './historical';
+export {
   INSURANCE_PACK,
   REAL_ESTATE_PACK,
   consumerInstallDenied,
+  evaluateModulePolicy,
   insuranceUnderwritingDecision,
   modulePermissionDefault,
-  realEstateFabricatesProperty,
   requestModulePermissions,
   scoreLead,
+  seedFirstPartyBusinessPacks,
+  realEstateFabricatesProperty,
   wmsInventoriesStock,
 } from './modules';
 export {
@@ -289,6 +327,7 @@ export { evaluateContinuousAuthorization } from './security/continuous-auth';
 export { applySecurityPolicyEditFromEvent, recordSecurityEvent, securityAiMaySelfEditPolicy } from './security/feedback';
 export { forecastAttack } from './security/forecast';
 export { isolateAgentInput, retrievedContentIsSystemInstruction, treatAsSystemAuthority } from './security/injection';
+export { agentMayReceiveUnrestricted, denyUnrestrictedAgentCapability } from './security/fabric';
 export {
   OPS_CENTER_SECTIONS,
   autonomousDeployEnabled,

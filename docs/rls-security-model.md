@@ -1,6 +1,8 @@
 # RLS Security Model (Phase 2F)
 
-Persisted tenant RLS is **not LIVE**. Phase 2H-B still prefers isolated `xiv_*` tables and still has not applied them on hosted Supabase. Hosted `public.organizations` stays untouched. See [persistence-reconciliation.md](./persistence-reconciliation.md) and [phase2h-b-live-isolation.md](./phase2h-b-live-isolation.md).
+**TENANT PERSISTENCE BLOCKED**
+
+Phase 2H-C could not apply or prove hosted RLS (no privileged database connection). Isolated `xiv_*` SQL remains authored only. Hosted `public.organizations` stays untouched. See [tenant-activation-gate.md](./tenant-activation-gate.md) and [phase2h-c-hosted-tenant-proof.md](./phase2h-c-hosted-tenant-proof.md).
 
 ## Status
 
@@ -22,7 +24,7 @@ Not: client says `organizationId` → grant.
 
 Policies on `xiv_organizations` / `xiv_universes` call `xiv_is_org_member` / `xiv_can_view_universe` (reconciliation file). The older Phase 2F names must not be applied.
 
-Those helpers are `SECURITY DEFINER` with `set search_path = public` and read membership tables **without** going back through RLS.
+Those helpers are `SECURITY DEFINER` with `set search_path = pg_catalog, public` and read membership tables **without** going back through RLS.
 
 That is why the cycle
 
@@ -32,7 +34,9 @@ xiv_organizations policy → memberships → memberships policy → xiv_organiza
 
 does not recurse.
 
-Helpers take `auth.uid()` (except `xiv_user_is_org_member(org, user)`, used only to stop Universe membership for non-org users). No dynamic SQL. `PUBLIC` execute is revoked; `authenticated` may execute.
+Internal policy helpers `xiv_user_is_org_member`, `xiv_universe_org_id`, and `xiv_universe_belongs_to_org` live in schema `xiv_internal`. Do **not** add `xiv_internal` to PostgREST `db-schemas` / extra search path. `authenticated` receives schema USAGE plus EXECUTE on those helpers so RLS policy expressions can resolve them; that is not public RPC exposure. Trigger functions are revoked from `authenticated`. Bootstrap RPCs stay in `public`. No dynamic SQL. `PUBLIC` / `anon` execute is revoked.
+
+Final-owner removal locks the parent organization/Universe row and all active owner memberships `FOR UPDATE` before counting, so two concurrent owner removals cannot both observe a remaining owner.
 
 ## Organization RLS (authored)
 
@@ -48,8 +52,8 @@ Helpers take `auth.uid()` (except `xiv_user_is_org_member(org, user)`, used only
 | Command | Policy |
 | --- | --- |
 | SELECT | org member **and** (Universe member or org owner/admin/executive) |
-| INSERT | none — `xiv_create_universe` only |
-| UPDATE | Universe owner/admin or org owner/admin; org id cannot be retargeted to another org |
+| INSERT | none — `xiv_create_universe` only (org **owner or admin**; executive cannot create) |
+| UPDATE | Universe owner/admin or org owner/admin; `organization_id` is immutable (trigger + column privilege) |
 | DELETE | none — disabled in MVP |
 
 Universe membership alone is insufficient if organization membership is missing or invalid.
@@ -58,7 +62,7 @@ Universe membership alone is insufficient if organization membership is missing 
 
 Users may read their own row. Roster read for owner/admin/executive/manager (org) or equivalent Universe/org admin roles.
 
-Insert/update/delete: authorized admins only, **never self**. Owner grant requires an existing owner actor. Universe inserts require the target user to already be an active org member.
+Insert/update/delete: authorized admins only, **never self**. ADMIN cannot demote, suspend, revoke, delete, change, or create OWNER. OWNER is required for any operation affecting an OWNER. The last active OWNER cannot be removed (organization or Universe). Membership `organization_id` / `user_id` / Universe `universe_id` / `user_id` are immutable. `role_version` increments in a trigger on role or status change.
 
 ## Classification vs authorization
 

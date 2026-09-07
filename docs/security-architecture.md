@@ -2,7 +2,7 @@
 
 Engineering target: defense in depth, zero trust, least privilege, compartmentalization, tenant isolation, resilience, continuous verification, auditable access.
 
-Do **not** describe XIV as hack-proof or unhackable.
+**TENANT PERSISTENCE BLOCKED.** Hosted organization/Universe RLS is not proven. Do **not** describe XIV as hack-proof or unhackable.
 
 A compromise of one user, device, Universe, organization, service, storage partition, or region must not automatically compromise another. There is no global superuser mechanism for agents.
 
@@ -15,8 +15,8 @@ A compromise of one user, device, Universe, organization, service, storage parti
 | Device / session trust | PROTOTYPE |
 | RBAC | PROTOTYPE |
 | ABAC | PROTOTYPE |
-| Universe isolation | PROTOTYPE (in-memory) / MIGRATION AUTHORED — NOT APPLIED (collision) |
-| Organization isolation | MIGRATION AUTHORED — NOT APPLIED (collision) |
+| Universe isolation | PROTOTYPE (in-memory) / TENANT PERSISTENCE BLOCKED |
+| Organization isolation | TENANT PERSISTENCE BLOCKED |
 | Data classification | PROTOTYPE |
 | Least privilege | IMPLEMENTED |
 | Signed media access | NOT CONFIGURED (grant shape only) |

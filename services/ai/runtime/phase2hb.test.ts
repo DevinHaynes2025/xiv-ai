@@ -219,7 +219,7 @@ await test('tenantPersistence remains blocked until isolation passes', () => {
   assert.equal(tenantPersistenceIsLive(), false);
 });
 
-await test('tenantPersistence becomes live only after all proofs', () => {
+await test('legacy apply+isolation flags do not activate without catalog and authenticated runtime provenance', () => {
   recordHostedApplyEvidence({
     applied: true,
     tablesVisible: true,
@@ -235,7 +235,7 @@ await test('tenantPersistence becomes live only after all proofs', () => {
     twoUsers: true,
     reason: 'Test-only complete isolation evidence.',
   });
-  assert.equal(tenantPersistenceIsLive(), true);
+  assert.equal(tenantPersistenceIsLive(), false);
   resetHostedProofForTests();
   assert.equal(tenantPersistenceIsLive(), false);
 });

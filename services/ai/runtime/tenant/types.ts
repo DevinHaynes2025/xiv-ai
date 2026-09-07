@@ -87,7 +87,7 @@ export type UniverseMembership = {
 };
 
 export const ORG_MANAGE_ROLES: readonly OrganizationRole[] = ['owner', 'admin'];
-export const ORG_CREATE_UNIVERSE_ROLES: readonly OrganizationRole[] = ['owner', 'admin', 'executive'];
+export const ORG_CREATE_UNIVERSE_ROLES: readonly OrganizationRole[] = ['owner', 'admin'];
 export const ORG_ROSTER_ROLES: readonly OrganizationRole[] = ['owner', 'admin', 'executive', 'manager'];
 export const UNIVERSE_MANAGE_ROLES: readonly UniverseRole[] = ['owner', 'admin'];
 export const UNIVERSE_ROSTER_ROLES: readonly UniverseRole[] = ['owner', 'admin', 'executive'];

@@ -1,6 +1,8 @@
 # Persistent Universe + Organization Design
 
-Persisted Universes are **not LIVE**. Phase 2H-A authors `20260906230000_xiv_tenant_reconciliation.sql` (`xiv_*` tables) and does **not** apply it. Hosted `public.organizations` is not renamed or dropped. See [persistence-reconciliation.md](./persistence-reconciliation.md).
+**TENANT PERSISTENCE BLOCKED**
+
+Persisted Universes remain not live. `20260906230000_xiv_tenant_reconciliation.sql` is authored and was not applied in 2H-C. Hosted `public.organizations` is not renamed or dropped. See [persistence-reconciliation.md](./persistence-reconciliation.md).
 
 ## Status
 
@@ -45,7 +47,7 @@ Client-supplied `organizationId` / `universeId` are selectors only. They never e
 ## Bootstrap
 
 - `xiv_create_organization` inserts the org and an **owner** membership for `auth.uid()`.
-- `xiv_create_universe` requires org role `owner|admin|executive`, then inserts the Universe and a Universe **owner** membership for the creator.
+- `xiv_create_universe` requires org role `owner|admin` (not executive), then inserts the Universe and a Universe **owner** membership for the creator.
 
 Creation does not imply a platform bypass. Owner is a tenant role.
 

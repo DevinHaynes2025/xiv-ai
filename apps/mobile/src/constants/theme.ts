@@ -3,21 +3,22 @@ import '@/global.css';
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 /**
- * XIV AI Design System V2
+ * XIV AI Design System V3
  *
- * Philosophy:
- * - Intelligence over decoration
- * - Deep-space executive aesthetic
- * - High contrast and legibility
- * - Restrained glass
+ * Premium executive software:
+ * - Dark navy / deep charcoal
+ * - Clean white surfaces used sparingly for contrast
+ * - Soft glass, fine borders, strong hierarchy
  * - Electric blue reserved for intelligence/action
- * - Security/status colors carry semantic meaning
+ * - No cheap SaaS chrome, no social-feed clone
  */
 
 export const Palette = {
   // Core space
   void: '#020812',
   black: '#00040A',
+  charcoal: '#0B1016',
+  whiteSurface: '#F4F7FB',
   navy: '#04101F',
   navyDeep: '#020A14',
   navyMid: '#071A2D',

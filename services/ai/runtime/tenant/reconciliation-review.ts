@@ -20,11 +20,14 @@ export function reviewPhase2HaReconciliation(sql = loadPhase2HaMigrationSql()) {
     .join('\n');
   if (/using\s*\(\s*true\s*\)/i.test(uncommented)) findings.push('USING (true) is forbidden.');
   if (/with check\s*\(\s*true\s*\)/i.test(uncommented)) findings.push('WITH CHECK (true) is forbidden.');
-  if (/service_role/i.test(sql)) findings.push('service_role must not appear.');
+  if (/service_role/i.test(uncommented)) findings.push('service_role must not appear.');
   if (!/create table public\.xiv_organizations/i.test(sql)) findings.push('xiv_organizations missing.');
   if (!/create table public\.xiv_universes/i.test(sql)) findings.push('xiv_universes missing.');
   if (!/force row level security/i.test(sql)) findings.push('FORCE RLS missing.');
-  if (!/set search_path = public/i.test(sql)) findings.push('SECURITY DEFINER search_path missing.');
+  if (!/set search_path = pg_catalog, public/i.test(sql)) findings.push('SECURITY DEFINER search_path must include pg_catalog.');
+  if (/set search_path = public\s*$/m.test(sql.split('\n').filter((line) => !line.trim().startsWith('--')).join('\n'))) {
+    findings.push('Unhardened search_path = public is forbidden.');
+  }
   if (!/user_id <> auth\.uid\(\)/i.test(sql)) findings.push('Self-promotion guard missing.');
   if (!/revoke all on table public\.xiv_organizations from public, anon/i.test(sql)) {
     findings.push('xiv_organizations anon revoke missing.');
@@ -47,6 +50,36 @@ export function reviewPhase2HaReconciliation(sql = loadPhase2HaMigrationSql()) {
   if (!/revoke all on function public\.xiv_create_organization/i.test(sql)) {
     findings.push('PUBLIC execute not revoked for bootstrap.');
   }
+  if (/xiv_has_org_role\(p_organization_id, array\['owner', 'admin', 'executive'\]\)/i.test(sql)) {
+    findings.push('xiv_create_universe must not allow executive.');
+  }
+  if (!/xiv_has_org_role\(p_organization_id, array\['owner', 'admin'\]\)/i.test(sql)) {
+    findings.push('xiv_create_universe must require owner or admin.');
+  }
+  if (!/create schema if not exists xiv_internal/i.test(sql)) findings.push('xiv_internal schema missing.');
+  if (/grant execute on function public\.xiv_user_is_org_member/i.test(sql)) {
+    findings.push('xiv_user_is_org_member must not be a public RPC.');
+  }
+  if (/grant execute on function public\.xiv_universe_org_id/i.test(sql)) {
+    findings.push('xiv_universe_org_id must not be a public RPC.');
+  }
+  if (/grant execute on function public\.xiv_universe_belongs_to_org/i.test(sql)) {
+    findings.push('xiv_universe_belongs_to_org must not be a public RPC.');
+  }
+  if (!/role_version := old\.role_version \+ 1/i.test(sql)) findings.push('role_version increment trigger missing.');
+  if (!/cannot remove final active owner/i.test(sql)) findings.push('Final owner protection missing.');
+  if (!/for update/i.test(sql)) findings.push('Final-owner serialization (FOR UPDATE) missing.');
+  if (!/one PostgreSQL transaction/i.test(sql)) findings.push('Apply-time atomicity contract missing.');
+  if (!/Do NOT add xiv_internal to db-schemas/i.test(sql)) {
+    findings.push('PostgREST non-exposure contract for xiv_internal missing.');
+  }
+  if (!/organization membership relationship is immutable/i.test(sql)) {
+    findings.push('Immutable organization membership guard missing.');
+  }
+  if (!/Universe organization_id cannot be retargeted/i.test(sql)) {
+    findings.push('Universe organization_id immutability missing.');
+  }
+  if (!/intentionally one-time and atomic/i.test(sql)) findings.push('Rerun class A statement missing.');
   return {
     ok: findings.length === 0,
     findings,

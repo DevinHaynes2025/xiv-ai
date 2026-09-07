@@ -1,6 +1,6 @@
 # XIV Business Modules
 
-**Status:** ARCHITECTURE ONLY · marketplace persistence is not implemented
+**TENANT PERSISTENCE BLOCKED** · `businessModulesTenantReady = false` · marketplace persistence is not implemented
 
 Upcoming Modular Business OS work (WMS, Insurance, Real Estate, Lead Engine) binds to tenant context:
 

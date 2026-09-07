@@ -1,8 +1,8 @@
 # Persistence Reconciliation
 
-**Status:** BLOCKED. Phase 2H-B reviewed the isolated migration again and attempted hosted apply. Apply did not run (no privileged database credential / not linked). Two-user hosted isolation is therefore unproven.
+**TENANT PERSISTENCE BLOCKED**
 
-`tenantPersistence = schema_collision`. Persistence is **not LIVE**. TypeScript helpers are not a substitute for hosted RLS.
+Phase 2H-C: APPLY BLOCKED — PRIVILEGED DATABASE CONNECTION REQUIRED. The isolated reconciliation SQL was not applied. Hosted RLS and two-user isolation are unproven. TypeScript helpers are not hosted RLS.
 
 ## Preferred option
 
@@ -10,7 +10,11 @@
 
 Do not rename or drop hosted `public.organizations`. Do not apply `20260906220000_persistent_organizations_and_universes.sql`.
 
-Authored file: `supabase/migrations/20260906230000_xiv_tenant_reconciliation.sql` — **NOT APPLIED** in 2H-B.
+Authored file: `supabase/migrations/20260906230000_xiv_tenant_reconciliation.sql` — **NOT APPLIED**. Do not apply in this hardening pass.
+
+Rerun class: **A — intentionally one-time and atomic.** `CREATE TABLE` / `CREATE POLICY` / `CREATE TRIGGER` are not idempotent. A failed apply must roll back the whole file.
+
+Hardening in the authored SQL: Universe create is owner/admin only; ADMIN cannot affect OWNER; final OWNER cannot be removed; membership and Universe `organization_id` relationships are immutable; `role_version` increments on role/status change via trigger; internal helpers live in `xiv_internal`.
 
 Mobile hydrates `xiv_*` only when those tables are readable. Until they exist, detection stays `schema_collision`. `tenantPersistenceIsLive()` remains false until apply + isolation evidence are recorded.
 

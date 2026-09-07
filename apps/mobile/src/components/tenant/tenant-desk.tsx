@@ -9,7 +9,7 @@ import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
 import { useSession } from '@/context/session';
 import { useTenant } from '@/context/tenant';
-import type { PersistedClassification } from '../../../../../services/ai/runtime/tenant';
+import { tenantPersistenceStatus, type PersistedClassification } from '../../../../../services/ai/runtime/tenant';
 
 const CLASSIFICATIONS: readonly PersistedClassification[] = ['internal', 'confidential', 'restricted', 'public'];
 
@@ -48,6 +48,14 @@ export function TenantDesk() {
     <Card style={styles.card}>
       <XivText variant="label" color={Palette.accent}>
         Tenant context
+      </XivText>
+      <XivText variant="caption" dim>
+        Tenant status: {tenantPersistenceStatus() === 'live' ? 'TENANT PERSISTENCE LIVE' : 'TENANT PERSISTENCE BLOCKED'}.
+        {tenant.activeOrganization
+          ? ` Organization: ${tenant.activeOrganization.name}. Role: ${tenant.organizationRole ?? 'unknown'}.`
+          : ' No active organization.'}
+        {tenant.activeUniverse ? ` Universe: ${tenant.activeUniverse.name}.` : ' No active Universe.'} UI state is not
+        authorization. Server/RLS stays authoritative.
       </XivText>
       <XivText variant="caption" dim>
         {persistenceLabel} Experience role ({session.experience || 'none'}) is not organization authorization.
@@ -172,7 +180,7 @@ export function TenantDesk() {
       />
       {!canCreateUniverse && tenant.activeOrganization ? (
         <XivText variant="caption" dim>
-          Universe create requires organization owner, admin, or executive membership.
+          Universe create requires organization owner or admin membership.
         </XivText>
       ) : null}
       {universeMessage ? (

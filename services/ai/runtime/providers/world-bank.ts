@@ -3,6 +3,45 @@ import type { LicenseUseStatus } from '../realtime/types';
 
 export type SourceCadence = 'live' | 'near_real_time' | 'periodic' | 'historical' | 'stale' | 'unavailable';
 
+export type WorldBankDeniedResult = {
+  allowed: false;
+  reason: string;
+  cadence: 'unavailable';
+};
+
+export type WorldBankSeriesResult = {
+  allowed: true;
+  fabricated: false;
+  observations: readonly WorldBankObservation[];
+};
+
+const MAX_WORLD_BANK_ROWS = 8;
+
+type WorldBankApiRow = {
+  country?: { id?: string; value?: string };
+  indicator?: { id?: string; value?: string };
+  date?: string;
+  value?: number | null;
+};
+
+export function isWorldBankDenied(result: object): result is { allowed: false; reason: string } {
+  return 'allowed' in result && (result as { allowed: unknown }).allowed === false;
+}
+
+export function isWorldBankObservation(result: object): result is WorldBankObservation {
+  if (isWorldBankDenied(result)) return false;
+  const candidate = result as Partial<WorldBankObservation>;
+  return (
+    candidate.sourceId === 'world_bank_open_data' &&
+    typeof candidate.sourceRecordId === 'string' &&
+    candidate.sourceRecordId.length > 0 &&
+    typeof candidate.retrievedAt === 'string' &&
+    candidate.retrievedAt.length > 0 &&
+    typeof candidate.freshness === 'string' &&
+    candidate.freshness.length > 0
+  );
+}
+
 export type WorldBankObservation = {
   sourceId: 'world_bank_open_data';
   sourceSystem: 'world_bank';
@@ -82,49 +121,91 @@ export function mapWorldBankRecord(input: {
   };
 }
 
-export async function fetchWorldBankObservation(input: {
+function denyWorldBank(reason: string): WorldBankDeniedResult {
+  return { allowed: false, reason, cadence: 'unavailable' };
+}
+
+function worldBankSourceUrl(input: {
   countryCode: string;
-  indicatorId?: string;
-}): Promise<WorldBankObservation | { allowed: false; reason: string; cadence: 'unavailable' }> {
-  const indicatorId = input.indicatorId ?? 'NY.GDP.MKTP.CD';
-  const sourceUrl = `https://api.worldbank.org/v2/country/${encodeURIComponent(input.countryCode)}/indicator/${encodeURIComponent(indicatorId)}?format=json&per_page=5`;
+  indicatorId: string;
+  perPage: number;
+  dateStart?: string;
+  dateEnd?: string;
+}) {
+  const params = new URLSearchParams({ format: 'json', per_page: String(input.perPage) });
+  if (input.dateStart && input.dateEnd) {
+    params.set('date', `${input.dateStart}:${input.dateEnd}`);
+  }
+  return `https://api.worldbank.org/v2/country/${encodeURIComponent(input.countryCode)}/indicator/${encodeURIComponent(input.indicatorId)}?${params.toString()}`;
+}
+
+function finalizeFetchedObservation(mapped: WorldBankObservation, sourceUrl: string): WorldBankObservation {
+  return {
+    ...mapped,
+    sourceUrl,
+    connected: true,
+    live: false,
+    prototype: false,
+    cadence: 'historical',
+    freshness: mapped.value === null ? 'unknown' : 'aging',
+  };
+}
+
+export async function fetchWorldBankObservations(input: {
+  countryCode: string;
+  indicatorId: string;
+  dateStart?: string;
+  dateEnd?: string;
+  perPage?: number;
+}): Promise<WorldBankSeriesResult | WorldBankDeniedResult> {
+  const perPage = Math.min(Math.max(input.perPage ?? 5, 1), MAX_WORLD_BANK_ROWS);
+  const sourceUrl = worldBankSourceUrl({
+    countryCode: input.countryCode,
+    indicatorId: input.indicatorId,
+    perPage,
+    dateStart: input.dateStart,
+    dateEnd: input.dateEnd,
+  });
   try {
     const response = await fetch(sourceUrl, { headers: { Accept: 'application/json' } });
     if (!response.ok) {
-      return { allowed: false, reason: `World Bank HTTP ${response.status}`, cadence: 'unavailable' };
+      return denyWorldBank(`World Bank HTTP ${response.status}`);
     }
     const body = (await response.json()) as unknown;
     const rows = Array.isArray(body) && Array.isArray(body[1]) ? body[1] : [];
-    const row = rows.find((item) => item && typeof item === 'object' && item !== null) as
-      | {
-          country?: { id?: string; value?: string };
-          indicator?: { id?: string; value?: string };
-          date?: string;
-          value?: number | null;
-        }
-      | undefined;
-    if (!row) {
-      return { allowed: false, reason: 'World Bank returned no observation rows.', cadence: 'unavailable' };
+    const observations: WorldBankObservation[] = [];
+    for (const item of rows) {
+      if (!item || typeof item !== 'object') continue;
+      const mapped = mapWorldBankRecord(item as WorldBankApiRow);
+      if (isWorldBankDenied(mapped)) continue;
+      if (!isWorldBankObservation(mapped)) continue;
+      observations.push(finalizeFetchedObservation(mapped, sourceUrl));
     }
-    const mapped = mapWorldBankRecord(row);
-    if ('allowed' in mapped) return { ...mapped, cadence: 'unavailable' };
+    if (observations.length === 0) {
+      return denyWorldBank('World Bank returned no observation rows.');
+    }
     markWorldBankFetchConnected(true);
-    return {
-      ...mapped,
-      sourceUrl,
-      connected: true,
-      live: false,
-      prototype: false,
-      cadence: 'historical',
-      freshness: mapped.value === null ? 'unknown' : 'aging',
-    };
+    return { allowed: true, fabricated: false, observations };
   } catch (error) {
-    return {
-      allowed: false,
-      reason: error instanceof Error ? error.message : 'World Bank fetch failed.',
-      cadence: 'unavailable',
-    };
+    return denyWorldBank(error instanceof Error ? error.message : 'World Bank fetch failed.');
   }
+}
+
+export async function fetchWorldBankObservation(input: {
+  countryCode: string;
+  indicatorId?: string;
+}): Promise<WorldBankObservation | WorldBankDeniedResult> {
+  const series = await fetchWorldBankObservations({
+    countryCode: input.countryCode,
+    indicatorId: input.indicatorId ?? 'NY.GDP.MKTP.CD',
+    perPage: 5,
+  });
+  if (isWorldBankDenied(series)) return series;
+  const first = series.observations[0];
+  if (!first || !isWorldBankObservation(first)) {
+    return denyWorldBank('World Bank returned no observation rows.');
+  }
+  return first;
 }
 
 export function worldBankIsRealtime() {

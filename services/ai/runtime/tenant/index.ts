@@ -8,7 +8,9 @@ export {
   canViewOrganizationRoster,
   canViewUniverse,
   canViewUniverseRoster,
+  canRetargetUniverseOrganization,
   clientSelectorIsNotAuthority,
+  internalPolicyHelperIsNotPublicRpc,
   profileCompanyDoesNotGrantTenantAccess,
   userCannotJoinArbitraryOrganization,
   userCannotJoinArbitraryUniverse,
@@ -31,6 +33,23 @@ export type {
 export { recordTenantAudit, TENANT_AUDIT_EVENTS } from './audit';
 export type { TenantAuditEvent } from './audit';
 export { describeTenantPersistenceBlock, tenantPersistenceIsLive } from './collision';
+export {
+  authoritativeXivHydrationEnabled,
+  businessModulesTenantReady,
+  evaluateTenantActivation,
+  recordTenantActivationProofs,
+  resetTenantActivationProofs,
+  tenantActivationProofs,
+  tenantAuthorizationStatus,
+  tenantPersistenceStatus,
+  TENANT_ACTIVATION_PROOF_KEYS,
+} from './activation-gate';
+export type {
+  CatalogEvidenceKind,
+  IsolationEvidenceKind,
+  TenantActivationProofs,
+  TenantPersistenceGateStatus,
+} from './activation-gate';
 export type { TenantPersistenceInvestigation } from './collision';
 export {
   hostedApplyEvidence,
@@ -39,6 +58,15 @@ export {
   recordHostedIsolationEvidence,
   resetHostedProofForTests,
 } from './hosted-proof';
+export {
+  PHASE2HC_HUMAN_VERIFIED_HOSTED_CATALOG,
+  HUMAN_VERIFIED_HOSTED_CATALOG,
+  hostedCatalogRecord,
+  recordHumanVerifiedHostedCatalog,
+  resetHostedCatalogRecord,
+  validateHostedCatalogObservation,
+} from './hosted-catalog-evidence';
+export { applyHostedIsolationRun } from './hosted-activation';
 export { hostedOrganizationsAudit, hostedTableOriginAnalysis } from './hosted-audit';
 export {
   PHASE2FA_MIGRATION_DO_NOT_APPLY,

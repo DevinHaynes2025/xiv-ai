@@ -28,7 +28,23 @@ export type OsPath =
   | 'cases'
   | 'africa'
   | 'global'
-  | 'ops';
+  | 'ops'
+  | 'intelligence'
+  | 'network'
+  | 'meetings'
+  | 'messages'
+  | 'conversation'
+  | 'events'
+  | 'mixer'
+  | 'marketplace'
+  | 'promote'
+  | 'ads'
+  | 'story'
+  | 'sources'
+  | 'company'
+  | 'professional'
+  | 'meeting-room'
+  | 'agent-room';
 
 export type OsEmphasis = 'operator' | 'chair';
 
