@@ -135,6 +135,12 @@ export const PREMIUM_ROUTE_MAP = {
   'trust-roots': 'trust-roots',
   'model-registry': 'model-registry',
   'software-supply-chain': 'software-supply-chain',
+  'event-fabric': 'event-fabric',
+  'operational-twins': 'operational-twins',
+  'scenario-lab': 'scenario-lab',
+  'information-logistics': 'information-logistics',
+  'incident-engine': 'incident-engine',
+  'executive-briefs': 'executive-briefs',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

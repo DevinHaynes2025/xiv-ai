@@ -153,6 +153,12 @@ const hidden = [
   'trust-roots',
   'model-registry',
   'software-supply-chain',
+  'event-fabric',
+  'operational-twins',
+  'scenario-lab',
+  'information-logistics',
+  'incident-engine',
+  'executive-briefs',
 ];
 
 export default function BusinessLayout() {

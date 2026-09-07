@@ -1055,6 +1055,54 @@ export function WorkspaceSoftwareSupplyChain() {
   );
 }
 
+export function WorkspaceEventFabric() {
+  return (
+    <PremiumDesk title="Event Fabric" subtitle="Shipment delays, shortages, and incidents stay tenant and Universe scoped.">
+      <XivListRow title="Consumers" body="An event consumer cannot cross tenant. Routing honors Universe." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceOperationalTwins() {
+  return (
+    <PremiumDesk title="Operational Twins" subtitle="Company, warehouse, supply-chain, supplier, facility, logistics, and process twins.">
+      <XivStatusPill label="Simulated is not observed. Inferred is not fact." tone="warning" />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceScenarioLab() {
+  return (
+    <PremiumDesk title="Scenario Lab" subtitle="Supplier failure, route disruption, demand spike. Output is not prediction certainty.">
+      <XivListRow title="Assumptions" body="Scenarios keep constraints visible. They do not become forecasts of fact." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceInformationLogistics() {
+  return (
+    <PremiumDesk title="Information Logistics" subtitle="What exists, where it lives, who owns it, who may use it, why, freshness, lineage.">
+      <XivListRow title="Metadata" body="Knowing an asset exists does not grant content access." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceIncidentEngine() {
+  return (
+    <PremiumDesk title="Incident Engine" subtitle="INFO through CRITICAL. Critical still cannot bypass Guardian or approval.">
+      <XivListRow title="Command" body="Task-force membership does not grant new permissions." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceExecutiveBriefs() {
+  return (
+    <PremiumDesk title="Executive Briefs" subtitle="What happened, why it matters, impact, evidence, options, risks, decision needed.">
+      <XivListRow title="Evidence" body="A recommendation without evidence is denied. UNKNOWN health is not HEALTHY." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

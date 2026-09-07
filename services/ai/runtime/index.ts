@@ -323,6 +323,11 @@ export {
   routeDataQuery,
 } from './foundations';
 export {
+  conveneGovernedTaskForce,
+  openGlobalOperationsBrain,
+  openOperationsCommandCenter,
+} from './opsbrain';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,

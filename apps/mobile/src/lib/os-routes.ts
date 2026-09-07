@@ -148,7 +148,13 @@ export type OsPath =
   | 'data-fabric'
   | 'trust-roots'
   | 'model-registry'
-  | 'software-supply-chain';
+  | 'software-supply-chain'
+  | 'event-fabric'
+  | 'operational-twins'
+  | 'scenario-lab'
+  | 'information-logistics'
+  | 'incident-engine'
+  | 'executive-briefs';
 
 export type OsEmphasis = 'operator' | 'chair';
 
