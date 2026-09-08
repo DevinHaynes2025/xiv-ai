@@ -44,7 +44,7 @@ Pointer stubs (do not duplicate content):
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
 | **2I-LA-04…45** | Multi-Brain + LA-05…33 docs queued + **LA-35 Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200** (after LA-34; supplier/procurement retained) + **LA-34** QUEUE ONLY / **LA-36…45** next titles | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **Deployment Gate Hardening** | Deployment / readiness gate | **CURRENT (active elsewhere)** — **DO NOT INTERRUPT / DO NOT OVERRIDE** |
-| **2I-AI-62\*** | Agent Civilization & Distributed Intelligence series (62A foundation → 62H Galaxy Federation) | **QUEUED ARCHITECTURE** — **NEXT after Deployment Gate**; **62A PARKED**; **62C PARKED (after 62B)**; tip-landed=NO |
+| **2I-AI-62\*** | Agent Civilization & Distributed Intelligence series (62A foundation → 62H Galaxy Federation) | **QUEUED ARCHITECTURE** — **NEXT after Deployment Gate**; **62A PARKED**; **62C PARKED (after 62B)**; **62D PARKED (after 62C)**; tip-landed=NO |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -7280,7 +7280,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **CURRENT (active elsewhere):** **Deployment Gate Hardening** — **DO NOT INTERRUPT / DO NOT OVERRIDE.**  
 **Series label:** **`2I-AI-62*`** — Agent Civilization & Distributed Intelligence.  
-**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 2I-AI-62A (PARKED) → 62B Meetings+Human Bridge (in-flight/park) → 62C Historical/Cultural/Multilingual (PARK NOW) → 62D Distributed Device/Chip/Edge Runtime → 62E Massive Scheduler+Task Forces → 62F Universe Federation+Constellations → 62G Beyond-Cloud/Space Interface → FUTURE 62H Galaxy Federation**.  
+**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 2I-AI-62A (PARKED) → 62B Meetings+Human Bridge (park ~`56da288`) → 62C Historical/Cultural/Multilingual (PARKED) → 62D Distributed Device/Chip/Edge Runtime Fabric (PARK NOW) → 62E Massive Agent Scheduler & Task Force Fabric → 62F Universe Federation+Constellations → 62G Beyond-Cloud/Space Interface → FUTURE 62H Galaxy Federation**.  
 **Does not override** the deployment-readiness gate. **L4_AUTONOMY_ENABLED=FALSE**. Satellites **UNCONFIGURED**; **no satellite commands authorized**. Logical agent scale ≠ live process scale. Guardian **above** agent civilization. Prefer isolated worktree; selective docs `git add`; **tip-landed=NO**.
 
 ### 2I-AI-62A — XIV Agent Civilization & Distributed Intelligence Foundation
@@ -7312,9 +7312,27 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **Cross-links (compose, do not clobber):** 62A park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` ~`2c3c7f2`; 62B park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` / `bc-48f82be6`; LA-61\* additive only.
 
-**L4 DISABLED**. **HARD STOP — no 2I-AI-62C runtime.** Do not start 62D. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**. **tip-landed=NO**.
+**L4 DISABLED**. **HARD STOP — no 2I-AI-62C runtime.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**. **tip-landed=NO**.
 
-**NEXT after 2I-AI-62C:** **2I-AI-62D** Distributed Device / Chip / Edge Runtime → **62E** Massive Scheduler+Task Forces → **62F** Universe Federation+Constellations → **62G** Beyond-Cloud/Space Interface → **FUTURE 62H** Galaxy Federation.
+**NEXT after 2I-AI-62C:** **2I-AI-62D** Distributed Device / Chip / Edge Runtime Fabric (**QUEUED DOCS** — this series continuation) → **62E** Massive Agent Scheduler & Task Force Fabric → **62F** Universe Federation+Constellations → **62G** Beyond-Cloud/Space Interface → **FUTURE 62H** Galaxy Federation.
 
-- [x] **2I-AI-62C** Historical, Cultural & Multilingual Intelligence Network queued (full §§1–28 + Security Boundary + Civilization Intelligence Principle + Queue 62A–62H; docs only; **AFTER 62B**); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; **PARKED WAITING**; **tip-landed=NO**; series **`2I-AI-62*`**; MORE KNOWLEDGE≠MORE AUTHORITY; HISTORICAL BELIEF≠MODERN FACT; TRANSLATION≠INTERPRETATION; CULTURE≠STEREOTYPE; no copyrighted dump; L4 DISABLED; all AUTO_*=FALSE; unique 62C paths; 62A/62B/LA-61\* untouched; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 2I-AI-62C runtime**; **DO NOT IMPLEMENT until 62B PASS**; do not start 62D; park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059`
-- [x] **NEXT after 2I-AI-62C:** 62D Distributed Device/Chip/Edge Runtime → 62E Massive Scheduler+Task Forces → 62F Universe Federation+Constellations → 62G Beyond-Cloud/Space Interface → FUTURE 62H Galaxy Federation (title only)
+- [x] **2I-AI-62C** Historical, Cultural & Multilingual Intelligence Network queued (full §§1–28 + Security Boundary + Civilization Intelligence Principle + Queue 62A–62H; docs only; **AFTER 62B**); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; **PARKED WAITING**; **tip-landed=NO**; series **`2I-AI-62*`**; MORE KNOWLEDGE≠MORE AUTHORITY; HISTORICAL BELIEF≠MODERN FACT; TRANSLATION≠INTERPRETATION; CULTURE≠STEREOTYPE; no copyrighted dump; L4 DISABLED; all AUTO_*=FALSE; unique 62C paths; 62A/62B/LA-61\* untouched; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 2I-AI-62C runtime**; **DO NOT IMPLEMENT until 62B PASS**; park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059`
+- [x] **NEXT after 2I-AI-62C:** 62D Distributed Device/Chip/Edge Runtime Fabric → 62E Massive Agent Scheduler & Task Force Fabric → 62F…FUTURE 62H
+
+### 2I-AI-62D — XIV Distributed Device, Chip & Edge Runtime Fabric V1
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / **DEPLOYMENT_STATE=QUEUED** / **tip-landed=NO**  
+**DO NOT IMPLEMENT** until **2I-AI-62C PASS** + **2I-AI-62B PASS** + **2I-AI-62A PASS** + **Deployment Gate Hardening PASS** (and applicable LA-61\* / Guardian / identity / RLS / device-trust predecessors). **Never invent PASS.** Queue **AFTER 62C**. Park `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059` — never force-push / never `main`. **PARK ONLY** — no tip-land; no device enrollment; no compute purchase; no satellite; no production agents; do **not** interrupt Deployment Gate Hardening; do **not** overwrite 62A (~`2c3c7f2`) / 62B (~`56da288`) / 62C (`bc-323959d4`) / LA-61\* park files.
+
+**Canonical:** [`xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md`](./xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md) · queue [`../queue/2I-AI-62D-distributed-device-edge-runtime.md`](../queue/2I-AI-62D-distributed-device-edge-runtime.md)
+
+**Includes (document only):** XUR Universal Runtime diagram; XHAL capability records + vendors; iOS/Android/Laptop runtimes; NVIDIA/CPU layers; XCR Compute Router (**security overrides performance**); Runtime Node Identity; XIV EDGE; Offline XIV + Offline Agent Meetings; XDN Device Network; Capability Registry; Agent Mobility; Attestation states; Resource Governor; Compute Economics; Thermal/Energy; Model Runtime Registry + routing; Mobile↔Cloud Continuity; Information Logistics across compute; Cross-Tenant Compute Isolation; Kill Switch; Failure Recovery; Initial Schema Slice (**no migration authorized**); Service Contracts; Required Tests T01–T18; Definition of Done; Space Boundary (satellites **UNCONFIGURED**); Security Lock; Queue Advancement; **NEXT 62E** Massive Agent Scheduler & Task Force Fabric preview; **XIV Principle** (compute follows capability, security, and honest attestation); DETECTED≠SUPPORTED≠OPTIMIZED≠AVAILABLE; vendor support proven individually before AVAILABLE; feature flags FALSE; all AUTO_*=FALSE; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN.
+
+**Cross-links (compose, do not clobber):** 62A park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` ~`2c3c7f2`; 62B park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` ~`56da288`; 62C park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059` / `bc-323959d4`; LA-28 / LA-32A / LA-51 / LA-59 / LA-60S / LA-61I additive only; **do not clobber LA-61\***.
+
+**L4 DISABLED**. **HARD STOP — no 2I-AI-62D runtime.** Do not start 62E. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**. **tip-landed=NO**.
+
+**NEXT after 2I-AI-62D:** **2I-AI-62E** Massive Agent Scheduler & Task Force Fabric → **62F** Universe Federation+Constellations → **62G** Beyond-Cloud/Space Interface → **FUTURE 62H** Galaxy Federation.
+
+- [x] **2I-AI-62D** Distributed Device, Chip & Edge Runtime Fabric V1 queued (full §§1–32 + Queue + Principle; docs only; **AFTER 62C**); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; **PARKED WAITING**; **tip-landed=NO**; series **`2I-AI-62*`**; SECURITY>PERFORMANCE; CAPABILITY≠VENDOR; ENROLLMENT≠AUTHORITY; OFFLINE≠AUTHORIZED; satellites UNCONFIGURED; no device enrollment / compute purchase / satellite / production agents; L4 DISABLED; all AUTO_*=FALSE; unique 62D paths; 62A/62B/62C/LA-61\* untouched; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 2I-AI-62D runtime**; **DO NOT IMPLEMENT until 62C PASS**; do not start 62E; park `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`
+- [x] **NEXT after 2I-AI-62D:** 62E Massive Agent Scheduler & Task Force Fabric → 62F Universe Federation+Constellations → 62G Beyond-Cloud/Space Interface → FUTURE 62H Galaxy Federation (title only)
