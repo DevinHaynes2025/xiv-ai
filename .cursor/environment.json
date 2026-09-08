@@ -1,0 +1,15 @@
+{
+  "name": "XIV AI",
+  "install": "cd services/ai && npm ci && cd ../../apps/mobile && npm ci",
+  "terminals": [
+    {
+      "name": "ai-service",
+      "command": "cd services/ai && npm start"
+    },
+    {
+      "name": "mobile-web",
+      "command": "cd apps/mobile && EXPO_PUBLIC_SUPABASE_URL=\"${EXPO_PUBLIC_SUPABASE_URL:-https://placeholder.supabase.co}\" EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=\"${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:-sb_publishable_placeholder_key}\" EXPO_PUBLIC_XIV_AI_URL=\"${EXPO_PUBLIC_XIV_AI_URL:-http://localhost:8787}\" npx expo start --web --port 8081"
+    }
+  ],
+  "ports": [8081, 8787]
+}
