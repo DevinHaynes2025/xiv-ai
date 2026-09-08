@@ -534,8 +534,8 @@ Separate commits for: vault isolation, RLS, disclosure+regulated gate, pricing e
 | ID | Title |
 |----|-------|
 | **2I-LA-17** | **Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine** |
-| **2I-LA-18** | Age Assurance + Identity + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |

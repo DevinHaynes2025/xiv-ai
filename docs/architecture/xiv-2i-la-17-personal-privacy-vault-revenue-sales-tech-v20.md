@@ -22,7 +22,7 @@
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine | Prior (docs) |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **Must PASS before LA-17 code** |
 | **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine | **This document** |
-| **2I-LA-18** | Age Assurance + Identity + Community Trust | **NEXT** after LA-17 |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 | **NEXT** after LA-17 |
 
 **Ordering lock:** **LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Identity + Community Trust**.
 
@@ -492,7 +492,7 @@ Report honestly when gated:
 | ID | Title |
 |----|-------|
 | **2I-LA-18** | **Age Assurance + Identity + Community Trust** |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) |
 | **2I-LA-20** | Content Rights + Media Provenance (creator economy depth) |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |

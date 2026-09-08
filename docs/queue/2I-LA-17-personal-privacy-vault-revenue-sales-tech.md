@@ -61,7 +61,7 @@ As the XIV AI Founder, I want XIV to run a Personal Privacy Vault + Private Sear
 
 ## Next queue
 
-- **2I-LA-18** Age Assurance + Identity + Community Trust
+- **2I-LA-18** 18+ Age Assurance + Global Identity + Community Trust OS V20
 - Then **LA-19…LA-30** per master queue titles
 
 ## Docs-only gate
