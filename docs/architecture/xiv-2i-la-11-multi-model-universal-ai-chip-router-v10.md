@@ -384,10 +384,10 @@ All fields require evidence. **Never infer PASS.**
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 |
 | **2I-LA-17** | Personal Privacy Vault + Private Search |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
-| **2I-LA-20** | Content Rights + Media Provenance |
-| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
+| **2I-LA-20** | Creator + Influencer Business OS V20 |
+| **2I-LA-21** | Product Passport + Authenticity Network |
 | **2I-LA-22** | Global Database Federation |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
