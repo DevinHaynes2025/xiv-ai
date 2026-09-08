@@ -355,7 +355,7 @@ After LA-10:
 - 2I-LA-18 Age Assurance + Community Trust
 - 2I-LA-19 18+ Cultural/Naturist Business Universe
 - 2I-LA-20 Creator Safety + Media Rights
-- 2I-LA-21 Retail Product Passport + Authenticity
+- 2I-LA-21 Product Passport + Authenticity Network
 - 2I-LA-22 Global Database Federation
 - 2I-LA-23 Autonomous QA + Red/Blue Team Factory
 - 2I-LA-24 Supply Chain Digital Twin
