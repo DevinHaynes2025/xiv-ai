@@ -1,7 +1,8 @@
 import { LocalCheckpointStore } from './checkpoint-store';
 import { completeWithLocalModel, localModelStatus } from './local-model';
+import { evaluateOfflineTask } from './offline-policy';
 import { LocalTaskQueue } from './task-queue';
-import type { LocalBrainStatus, LocalTask } from './types';
+import type { LocalBrainStatus, LocalTask, LocalTaskRequirement } from './types';
 
 const store = new LocalCheckpointStore();
 const queue = new LocalTaskQueue(store);
@@ -10,6 +11,15 @@ let stopped = false;
 function now() {
   return new Date().toISOString();
 }
+
+const DEFAULT_REQUIREMENTS: LocalTaskRequirement = {
+  needsInternet: false,
+  needsCloudProvider: false,
+  needsExternalFreshness: false,
+  needsProductionWrite: false,
+  needsPermissionChange: false,
+  classification: 'internal',
+};
 
 export async function localBrainStatus(): Promise<LocalBrainStatus> {
   const counts = await queue.counts();
@@ -25,9 +35,22 @@ export async function localBrainStatus(): Promise<LocalBrainStatus> {
   };
 }
 
-export async function enqueueLocalTask(kind: LocalTask['kind'], prompt: string) {
+export async function enqueueLocalTask(kind: LocalTask['kind'], prompt: string, requirements?: LocalTaskRequirement) {
   if (!prompt.trim()) throw new Error('local_task_prompt_required');
-  return queue.enqueue({ kind, prompt: prompt.trim() });
+  return queue.enqueue({ kind, prompt: prompt.trim(), requirements });
+}
+
+async function checkpointPolicyStop(task: LocalTask, state: 'waiting_data' | 'unavailable' | 'denied', summary: string) {
+  task.state = state;
+  await queue.save(task);
+  await store.checkpoint({
+    taskId: task.id,
+    at: now(),
+    state: task.state,
+    attempt: task.attempts,
+    summary,
+    nextAction: state === 'waiting_data' ? 'Resume when approved fresh data is available.' : 'Human review or an approved capability change is required.',
+  });
 }
 
 async function runOne(task: LocalTask) {
@@ -43,6 +66,15 @@ async function runOne(task: LocalTask) {
       nextAction: 'Human review required.',
     });
     return;
+  }
+
+  if (process.env.XIV_LOCAL_ONLY === 'true') {
+    const decision = evaluateOfflineTask(task.requirements ?? DEFAULT_REQUIREMENTS);
+    if (!decision.allowed) {
+      const state = decision.state === 'WAITING_DATA' ? 'waiting_data' : decision.state === 'UNAVAILABLE' ? 'unavailable' : 'denied';
+      await checkpointPolicyStop(task, state, decision.reason);
+      return;
+    }
   }
 
   const status = await localModelStatus();
