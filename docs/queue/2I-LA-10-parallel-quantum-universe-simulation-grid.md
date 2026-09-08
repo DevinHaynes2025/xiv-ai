@@ -1,15 +1,15 @@
 # 2I-LA-10 — Parallel Quantum Universe Simulation Grid
 
-Status: QUEUED ARCHITECTURE — NOT IMPLEMENTED
+Status: **QUEUED** (architecture present) — **NOT IMPLEMENTED** / runtime **not started**
 Branch: xiv-v2
-
-
+HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-09 PASS**. Queue after LA-09; do not interrupt LA-01–03+ validated code. L4 disabled.
+Founder architecture checkpoint (must remain ancestor): `bf37d5d192c8b9e096681add88fc4fc7607973ec`
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-09 Temporal + Causal Intelligence V10** must inform this grid: temporal ordering, bitemporal history, and causal states (`CORRELATION_ONLY` → … `UNKNOWN`; never auto-promote). See `docs/architecture/xiv-2i-la-09-temporal-causal-intelligence-v10.md`. Simulation outputs are not causal proof. Ordering: LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → **LA-10 Simulation**.
+**2I-LA-09 Temporal + Causal Intelligence V10** must inform this grid: temporal ordering, bitemporal history, and causal states (`CORRELATION_ONLY` → … `UNKNOWN`; never auto-promote). See `docs/architecture/xiv-2i-la-09-temporal-causal-intelligence-v10.md`. Simulation outputs are not causal proof. Ordering: LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → **LA-10 Simulation** → LA-11 Chip Router.
 
-**Full contracts (architecture):** [`docs/architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`](../architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md).
+**Full contracts (architecture §§1–69 + permanent rules):** [`docs/architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`](../architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md).
 
 
 ## Founder user story
@@ -345,8 +345,8 @@ Never infer PASS.
 
 After LA-10:
 
-- 2I-LA-11 Multi-Model + AI Chip Intelligence Router
-- 2I-LA-12 Quantum/Hybrid Compute Lab
+- 2I-LA-11 Multi-Model + Universal AI Chip Intelligence Router V10 (`docs/architecture/xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**)
+- 2I-LA-12 Quantum/Hybrid Compute Lab (classical baseline required; must not block first release)
 - 2I-LA-13 Nested AI Tool Foundry
 - 2I-LA-14 Cybersecurity + Digital Forensics OS
 - 2I-LA-15 Global Contract + Legal Intelligence Brain

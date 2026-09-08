@@ -4,7 +4,7 @@
 
 → [`docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
 
-**Ordering lock:** **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation**. Older curiosity-at-LA-07 / temporal-at-LA-08 notes are superseded. Do not treat this stub as a second canonical.
+**Ordering lock:** **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip Router**. Older curiosity-at-LA-07 / temporal-at-LA-08 notes are superseded. Do not treat this stub as a second canonical.
 
 Dedicated expansions:
 - LA-07 Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`](./xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md)
@@ -12,6 +12,6 @@ Dedicated expansions:
 - LA-09 Temporal + Causal: [`xiv-2i-la-09-temporal-causal-intelligence-v10.md`](./xiv-2i-la-09-temporal-causal-intelligence-v10.md)
 - LA-10 Simulation Grid: [`xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`](./xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md) (+ founder summary [`../queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md`](../queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md))
 
-**DO NOT IMPLEMENT** LA-08 until LA-07 PASS; LA-09 until LA-08 PASS; LA-10 until LA-09 informs the grid. No PASS claims for unimplemented brains.
+**DO NOT IMPLEMENT** LA-08 until LA-07 PASS; LA-09 until LA-08 PASS; **LA-10 until LA-09 PASS** (architecture present; runtime not started). No PASS claims for unimplemented brains.
 
 **Sequencing note:** Architecture queue **2I-JV → 2I-KZ** follows **2I-JU** when present.
