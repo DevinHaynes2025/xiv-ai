@@ -23,7 +23,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62E PASS** + **2I-AI-62D PASS** + 
 - LA-22 / LA-52 / LA-60T / LA-61\* — additive links only; **do not clobber LA-61\***
 - RLS negative JWT / unauthorized-role tests — federation AuthZ foundation **by docs reference only**
 
-**Full contracts §§1–55 + Security Lock + Queue + NEXT + Principle:** [`../architecture/xiv-2i-ai-62f-universe-federation-constellation-inter-universe.md`](../architecture/xiv-2i-ai-62f-universe-federation-constellation-inter-universe.md).
+**Full contracts:** Compact Architecture Overview (after User Story/Status; before §§1+) + §§1–55 + Security Lock + Queue + NEXT + Principle — [`../architecture/xiv-2i-ai-62f-universe-federation-constellation-inter-universe.md`](../architecture/xiv-2i-ai-62f-universe-federation-constellation-inter-universe.md).
 
 ## Founder user story
 

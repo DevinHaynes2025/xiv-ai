@@ -119,6 +119,264 @@ As the XIV AI Founder, I want XIV to define a governed **Universe Federation, Co
 
 ---
 
+## Compact Architecture Overview
+
+> Engineering intent first. This overview is the compact control-plane map for **CONNECTED SOVEREIGN INTELLIGENCE**. Detailed contracts §§1–55 below remain authoritative for depth; nothing here invents LIVE capability, PASS, tip-land, or production federation.
+
+### Core model diagram
+
+```
+Human Authority
+      │
+      ▼
+  Guardian
+      │
+      ├──────────────┬──────────────┐
+      ▼              ▼              │
+ Universe A     Universe B          │
+ (sovereign)    (sovereign)         │
+      │              │              │
+      └──────┬───────┘              │
+             ▼                      │
+      Federation Layer (XFL)        │
+             │                      │
+             ▼                      │
+ Policy / Consent / Classification  │
+             │                      │
+             ▼                      │
+   Temporary Pathway (leased)       │
+             │                      │
+             ▼                      │
+   Federated Task Force (XFTF)      │
+             │                      │
+             ▼                      │
+          Evidence                  │
+             │                      │
+             ▼                      │
+     Human Decision ◄───────────────┘
+             │
+             ▼
+           Audit
+```
+
+**Reading rule:** questions and evidence move through the chain; sovereignty never collapses into a shared super-tenant. Human Authority and Guardian remain above the Federation Layer. Temporary Pathway and Federated Task Force are leased exceptions — not permanent overlays.
+
+### Architectural Layers 0–7
+
+No higher layer removes lower controls. Escalation may only tighten or refuse — never erase Guardian, consent, classification, or audit.
+
+| Layer | Name | Role |
+|-------|------|------|
+| **0** | Human Authority | Founder / designated human decision rights; cannot be automated away |
+| **1** | Guardian | Freeze, deny, emergency shutdown; above federation |
+| **2** | Sovereign Universe | Local identity, policy, RLS, data plane, revoke right |
+| **3** | Federation Layer (XFL) | Mutual auth, contracts, discovery metadata, budgets, revocation |
+| **4** | Policy / Consent / Classification | Dual-policy enforcement; consent; information class gates |
+| **5** | Temporary Pathway | Narrowly authorized leased route; TTL mandatory |
+| **6** | Federated Task Force / Execution | Bounded cross-Universe work under dual policy |
+| **7** | Evidence → Human Decision → Audit | Outcome packaging; human gate for consequential acts; durable audit |
+
+**Hard rule:** Layer *n+1* cannot disable Layer *n*. Unknown → deny-safe.
+
+### Core Components
+
+| Component | Meaning |
+|-----------|---------|
+| **Universe** | Sovereign tenant: identity, policy, agents, storage, budgets, revoke |
+| **Federation Layer (XFL)** | Control plane for requests/contracts/provenance — **not** a shared database |
+| **Constellation** | Organizational/coordination grouping of Universes — membership ≠ trust ≠ sessions |
+| **Federated Task Force (XFTF)** | Temporary dual-authorized team; dissolve/archive; no permanent residue |
+
+### Request Flow
+
+**Preferred posture: QUESTION MOVES / RESULT RETURNS.**
+
+```
+Home Universe question
+  → classify + consent + policy
+  → Federation Session (if authorized)
+  → Temporary Pathway
+  → Remote Universe evaluates under local policy (stricter wins)
+  → minimized RESULT returns with provenance
+  → Evidence + Audit
+  → Human Decision when consequential
+```
+
+**Anti-patterns (defect):** bulk remote dump; silent tenant merge; result without provenance; pathway without TTL; remote agent acting as home superuser.
+
+### Trust Model
+
+Default trust between Universes is **X (none / deny)**.
+
+```
+default X
+  → explicit mutual authorization
+  → narrowly authorized temporary pathway
+  → continuous re-justification until expiry or revoke
+```
+
+Constellation membership, reputation score, and discovery adjacency **never** mint ambient trust. Trust labels are advisory routing honesty — **not** permission grants.
+
+### Data Model Principle
+
+| Rule | Contract |
+|------|----------|
+| **FEDERATION ≠ DATABASE MERGE** | Contracts + queries + provenance; no shared super-database |
+| **CONSTELLATION ≠ TENANT COLLAPSE** | Grouping ≠ flattened RLS / ≠ merged identity plane |
+| **REMOTE AGENT ≠ LOCAL SUPERUSER** | Visitor rights only; home-admin powers never travel |
+
+Derived data inherits origin constraints. Promotion across class/trust boundaries requires explicit re-authorization.
+
+### Security Decision
+
+Every federated act evaluates:
+
+```
+WHO → WHAT → WHY → WHERE → WHEN → HOW MUCH → UNDER WHICH CONTRACT
+  → ALLOW / DENY / REDACT / AGGREGATE / ESCALATE
+```
+
+**Default: DENY.** Missing field, expired session, revoked consent, classification mismatch, or UNKNOWN evidence class → **DENY** (or REDACT/AGGREGATE only when policy explicitly allows minimized forms). ESCALATE never expands rights — it only requests higher human/Guardian review.
+
+### Federation Session (primary runtime security boundary)
+
+The **Federation Session** is the primary runtime security boundary for cross-Universe work (document fields — names ≠ LIVE API):
+
+| Field | Purpose |
+|-------|---------|
+| `federation_session_id` | unique leased session identity |
+| `federation_request_id` | originating mutual-auth request |
+| `home_universe_id` | sovereign origin |
+| `remote_universe_id` | sovereign peer |
+| `constellation_id` | optional coordination scope (≠ trust) |
+| `information_contract_id` | data-minimizing contract |
+| `allowed_capabilities[]` | ceiling; never expandable by agents |
+| `classification_ceiling` | max information class permitted |
+| `consent_refs[]` | binding consent evidence |
+| `delegation_chain` | hop list; max hops enforced |
+| `budget_id` / `quota_remaining` | federation budget binding |
+| `ttl` / `expires_at` | temporary-by-default |
+| `pathway_id` | narrowly authorized temporary pathway |
+| `guardian_hooks` | freeze/deny/shutdown bindings |
+| `status` | PENDING / ACTIVE / EXPIRED / REVOKED / FROZEN |
+| `audit_stream_id` | obligatory audit sink |
+
+No Federation Session → no Temporary Pathway → no Federated Task Force execution.
+
+### Constellation Model
+
+```
+                 ┌──────── Constellation C ────────┐
+                 │  membership directory only      │
+                 │  (≠ auto sessions ≠ full trust) │
+                 │                                 │
+     Universe A ─┤                                 ├─ Universe B
+     Universe D ─┤                                 ├─ Universe E
+                 └─────────────────────────────────┘
+```
+
+**Membership ≠ auto sessions.** Joining a Constellation does not open Federation Sessions, mint Temporary Pathways, grant capabilities, or collapse tenant databases. Sessions remain explicitly requested, dual-authorized, and TTL-bound.
+
+### Agent Model
+
+- Agents have **sovereign homes** (home Universe identity is obligatory).
+- Cross-Universe agents are **visitors** under Remote Agent Principle.
+- **No origin masking** — federated identity must carry home Universe, delegation chain, and session binding.
+- Reputation / specialization / pathway strength **≠** authority expansion.
+- Remote agent ≠ local superuser; lower schedulers cannot expand federation rights.
+
+### Information Logistics chain
+
+```
+source → classify → rights/consent → transport (Temporary Pathway)
+  → store(tier, sovereign) → consume (dual policy) → outcome
+  → lineage/provenance archive → audit
+```
+
+Digital Customs (XDCE) sit on this chain: classification, minimization, REDACT/AGGREGATE decisions, and provenance seals. Faster ≠ truer. Stale risk labeled. Cross-border awareness ≠ auto legal claim.
+
+### Revocation Architecture
+
+Revocation is first-class and immediate in intent:
+
+| Trigger | Effect |
+|---------|--------|
+| Either Universe revokes | Session → REVOKED; pathways cut |
+| Consent withdrawn | Classification/consent-gated work stops |
+| Guardian freeze | Federation plane frozen for scope |
+| TTL expiry | Equivalent to soft revoke; renewal must be explicit |
+| Budget exhaustion | New work denied; in-flight bounded drain or halt per policy |
+
+**NEW WORK AFTER REVOCATION = 0.**  
+No new Federation Sessions, Temporary Pathways, Federated Task Force spawns, capability expansions, or federated queries after revoke/freeze/expiry. In-flight work may only complete under pre-revoke ceilings or must halt — never widen.
+
+### Failure Boundary / blast radius
+
+| Boundary | Contract |
+|----------|----------|
+| Session | failure contained to `federation_session_id` |
+| Pathway | cut does not open alternate silent routes |
+| Task Force | dissolve/archive; no authority residue |
+| Universe | peer failure ≠ home policy bypass |
+| Constellation | membership outage ≠ ambient deny-override |
+
+Blast radius is **bounded**. No silent fan-out across Constellation members. Unknown peer state → DENY-safe. Kill / freeze hierarchy: Human → Guardian → Universe → Federation Session → Pathway → Task Force.
+
+### Scale Envelope (acceptance targets — not production claims)
+
+| Dimension | Envelope |
+|-----------|----------|
+| Orgs | **100** |
+| Universes | **500** |
+| Constellations | **20** |
+| Relationships | **1,000** |
+| Federated requests | **10,000** |
+| Concurrent Federation Sessions (harness) | **100** |
+
+Notation: **100 / 500 / 20 / 1k / 10k / 100**. These are **engineering acceptance targets**, not current capacity claims. **Never invent PASS.**
+
+### Minimum Security Invariants (all zeros)
+
+| Invariant | Required |
+|-----------|----------|
+| Unauthorized federation joins | **0** |
+| Cross-tenant violations | **0** |
+| Implicit-trust grants | **0** |
+| Shared super-database paths | **0** |
+| Policy bypasses | **0** |
+| Provenance-stripped accepts | **0** |
+| Reputation→permission grants | **0** |
+| Origin-masked agent acts | **0** |
+| New work after revocation | **0** |
+| AUTO_* true in park config | **0** |
+| L4 enabled | **0** |
+| Tip-lands / production federation from this park | **0** |
+
+Zero tables are **targets / locks**, not measured PASS evidence.
+
+### Relationship to Previous Stories 62A–62F
+
+| Story | Relationship |
+|-------|----------------|
+| **62A** | Foundation; Parallel Universe preview — **62F owns federation/constellation depth** |
+| **62B** | Federated Meetings compose on meeting rooms — do not rewrite 62B |
+| **62C** | Knowledge/cultural honesty at federation query time — do not own history |
+| **62D** | Attested runtime hosts federated work — do not overwrite 62D |
+| **62E** | Scheduler / XNPF / XTFE honesty consumed by federation — queue **AFTER 62E**; do not overwrite |
+| **62F (this)** | Compact overview + §§1–55 — CONNECTED SOVEREIGN INTELLIGENCE (docs park) |
+
+Compose LA-22 / LA-52 / LA-60T / LA-61\* additively; **do not clobber LA-61\***. Deployment Gate Hardening remains **CURRENT** elsewhere — do not interrupt.
+
+### Architecture Principle (closing)
+
+> **Federate without dissolving sovereignty.**  
+> Human Authority and Guardian stay above. Universes remain sovereign. The Federation Layer brokers temporary, dual-authorized, data-minimizing pathways — never database merges, never tenant collapse, never origin-masked superusers.  
+> **QUESTION MOVES / RESULT RETURNS.** **NEW WORK AFTER REVOCATION = 0.**  
+> **FEDERATION ≠ DATABASE MERGE. CONSTELLATION ≠ TENANT COLLAPSE. REMOTE AGENT ≠ LOCAL SUPERUSER.**  
+> Default DENY. Scale envelopes are acceptance targets — not production claims. Docs ≠ PASS. **L4 DISABLED. tip-landed=NO. NEVER INFER PASS.**
+
+---
+
 ## Architecture contracts (story §§1–55)
 
 ### 1. Mission — Connected Sovereign Intelligence
