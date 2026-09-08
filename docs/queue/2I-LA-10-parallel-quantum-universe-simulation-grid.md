@@ -9,6 +9,9 @@ Branch: xiv-v2
 
 **2I-LA-09 Temporal + Causal Intelligence V10** must inform this grid: temporal ordering, bitemporal history, and causal states (`CORRELATION_ONLY` → … `UNKNOWN`; never auto-promote). See `docs/architecture/xiv-2i-la-09-temporal-causal-intelligence-v10.md`. Simulation outputs are not causal proof. Ordering: LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → **LA-10 Simulation**.
 
+**Full contracts (architecture):** [`docs/architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`](../architecture/xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md).
+
+
 ## Founder user story
 
 As the XIV AI Founder, I want XIV to branch an authorized current business state into many isolated computational scenario universes, run governed AI-agent councils across those scenarios, compare classical, hybrid and future quantum-capable methods, and report evidence-backed outcomes so XIV can evaluate risk, cost, service, security, revenue, inventory, customer, supply-chain and operational tradeoffs before proposing actions.
