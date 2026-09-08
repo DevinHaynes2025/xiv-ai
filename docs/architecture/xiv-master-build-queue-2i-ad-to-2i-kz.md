@@ -1,8 +1,8 @@
 # XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30)
 
-**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** implementation in this commit.
+**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
-**Branch tip at authoring:** beyond `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
+**Branch tip at authoring:** beyond `86f04e2` (LA-05→KZ sync) / `0375e6f` (LA-06 queue) / `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
 **Sequencing dependency:** Architecture queue **2I-JV → 2I-KZ** follows **2I-JU** when present. **IX–JU was not yet landed** at authoring tip `2e025f3` — JV–KZ is appended after HB–HV / alongside the LA executable track with the explicit note that **JV follows JU**.
 
@@ -42,13 +42,13 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **IN PROGRESS / WAITING** — LA-01 foundation landing on tip; LA-02/03 not PASS; LA-04 code blocked |
-| **2I-LA-04…30** | Multi-Brain / Meta Brain + **LA-05 KG** + **LA-06 Memory/Learning/Quantum/Agentic OS** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain / Meta Brain + **LA-05 KG** + **LA-06 Memory/Learning/Quantum/Agentic OS** + **LA-07 Trust/Privacy/Legal/Commerce Control Plane** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
 1. Inspect actual 2I-AB and 2I-AC builds on `xiv-v2` (contracts, tests, invariants).
 2. **CEO authorization required before any 2I-AD implementation begins.**
-3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** requires LA-01+02+03 PASS. **LA-05 code** requires LA-01→LA-04 PASS. **LA-06 code** requires LA-01→LA-05 PASS. Queued workforce architecture ≠ proof agents are already running.
+3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** requires LA-01+02+03 PASS. **LA-05 code** requires LA-01→LA-04 PASS. **LA-06 code** requires LA-01→LA-05 PASS. **LA-07 code** requires LA-01→LA-06 PASS. Queued workforce architecture ≠ proof agents are already running.
 4. On gate fail: STOP, report, preserve last good tip. Never force-push. Keep `xiv-v2` (never `main` for foundation landings).
 
 ---
@@ -3129,7 +3129,7 @@ Every phase inherits and must preserve:
 
 ## EXECUTABLE FOUNDATION SERIES — 2I-LA (cloud workforce → Meta Brain)
 
-*Documentation queue for the **2I-LA** executable track. **QUEUED ONLY** for LA-04+ until prerequisites PASS. Do **not** implement 2I-LA-04 code until **2I-LA-01**, **2I-LA-02**, and **2I-LA-03** completion gates all PASS on tip. Do **not** implement LA-05 until LA-01→LA-04 PASS. Do **not** implement **LA-06** until **LA-01→LA-05** PASS. Do not jump ahead from this document.*
+*Documentation queue for the **2I-LA** executable track. **QUEUED ONLY** for LA-04+ until prerequisites PASS. Do **not** implement 2I-LA-04 code until **2I-LA-01**, **2I-LA-02**, and **2I-LA-03** completion gates all PASS on tip. Do **not** implement LA-05 until LA-01→LA-04 PASS. Do **not** implement **LA-06** until **LA-01→LA-05** PASS. Do **not** implement **LA-07** until **LA-01→LA-06** PASS. Do not jump ahead from this document.*
 
 ### Sequencing (hard)
 
@@ -3141,7 +3141,8 @@ Every phase inherits and must preserve:
 | **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | Docs queued; code only after LA-01+02+03 PASS |
 | **2I-LA-05** | Knowledge Graph + Evidence Nervous System | **Full CEO summary in this file** (from `5ef7412`); code only after LA-01→LA-04 PASS |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) | **This expansion — docs queue now; code only after LA-01→LA-05 PASS** |
-| **2I-LA-07…30** | Titles in §50 / LA-06 §83 | **QUEUE ONLY** — do not implement from this document |
+| **2I-LA-07** | Trust Kernel + Age/Consent/Waiver + Contract/Legal/Commerce Control Plane + 24/7 Safety Feedback | **This expansion — docs queue now; code only after LA-01→LA-06 PASS** |
+| **2I-LA-08…30** | Titles in §50 / LA-07 §73 (Curiosity now **LA-08**) | **QUEUE ONLY** — do not implement from this document |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3680,28 +3681,28 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 |----|-------|
 | **2I-LA-05** | Knowledge Graph + Evidence Nervous System — **full CEO summary in this file** (merged from `5ef7412`) |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) — **FULL STORY SUMMARY BELOW** (docs only) |
-| **2I-LA-07** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-06** (queue mention only; do not implement) |
-| **2I-LA-08** | Temporal + Causal Intelligence |
-| **2I-LA-09** | Parallel Universe Simulation Grid |
-| **2I-LA-10** | Multi-Model Arena + Model Evolution |
-| **2I-LA-11** | Quantum/Hybrid Compute Lab |
-| **2I-LA-12** | AI Sales Force V10 |
-| **2I-LA-13** | AI Marketing Organization V10 |
-| **2I-LA-14** | AI Customer Success Organization |
-| **2I-LA-15** | AI Finance + Revenue Organization |
-| **2I-LA-16** | AI Supply Chain Company |
-| **2I-LA-17** | Global Research Network |
-| **2I-LA-18** | Global Public/Government Data Fabric |
-| **2I-LA-19** | Technology + Partnership Intelligence |
-| **2I-LA-20** | Investor + Capital Intelligence |
-| **2I-LA-21** | Plugin + Connector Factory |
-| **2I-LA-22** | Windows / Mac / Linux Companion |
-| **2I-LA-23** | Android / iOS Pocket Brain |
-| **2I-LA-24** | Vehicle + Edge Experience |
-| **2I-LA-25** | Robotics Capability Gateway |
-| **2I-LA-26** | XR/Spatial Business OS |
-| **2I-LA-27** | Digital Twin Earth |
-| **2I-LA-28** | Global Business Simulation Network |
+| **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **FULL STORY SUMMARY BELOW** (docs only; **supersedes** older “Curiosity = LA-07” notes) |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** (queue mention only; do not implement) |
+| **2I-LA-09** | Temporal + Causal Intelligence |
+| **2I-LA-10** | Parallel Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-13** | AI Sales Force V10 |
+| **2I-LA-14** | AI Marketing Organization V10 |
+| **2I-LA-15** | AI Customer Success Organization |
+| **2I-LA-16** | AI Finance + Revenue Organization |
+| **2I-LA-17** | AI Supply Chain Company |
+| **2I-LA-18** | Global Research Network |
+| **2I-LA-19** | Global Public/Government Data Fabric |
+| **2I-LA-20** | Technology + Partnership Intelligence |
+| **2I-LA-21** | Investor + Capital Intelligence |
+| **2I-LA-22** | Plugin + Connector Factory |
+| **2I-LA-23** | Windows / Mac / Linux Companion |
+| **2I-LA-24** | Android / iOS Pocket Brain |
+| **2I-LA-25** | Vehicle + Edge Experience |
+| **2I-LA-26** | Robotics Capability Gateway |
+| **2I-LA-27** | XR/Spatial Business OS |
+| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
 | **2I-LA-29** | Business Hospital V10 |
 | **2I-LA-30** | Founder Mission Control V12 |
 
@@ -4404,40 +4405,42 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 - Replacing host OSes; inventing device telemetry
 - Sexual-services marketplace features
 
-### 35. §83 — Queue LA-07 → LA-30 (titles only)
+### 35. §83 — Queue LA-07 → LA-30 (titles only) — **SUPERSEDED numbering note**
 
 **QUEUE ONLY — do not implement from this LA-06 docs commit.**
 
+**Renumbering (LA-07 Trust expansion):** Older queue notes that placed **Curiosity + Question + Contradiction Brain V10** at **2I-LA-07** are **superseded**. Curiosity moves to **2I-LA-08**. **2I-LA-07** is now **Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback** (full story below).
+
 | ID | Title |
 |----|-------|
-| **2I-LA-07** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-06** |
-| **2I-LA-08** | Temporal + Causal Intelligence |
-| **2I-LA-09** | Parallel Universe Simulation Grid |
-| **2I-LA-10** | Multi-Model Arena + Model Evolution |
-| **2I-LA-11** | Quantum/Hybrid Compute Lab |
-| **2I-LA-12** | AI Sales Force V10 |
-| **2I-LA-13** | AI Marketing Organization V10 |
-| **2I-LA-14** | AI Customer Success Organization |
-| **2I-LA-15** | AI Finance + Revenue Organization |
-| **2I-LA-16** | AI Supply Chain Company |
-| **2I-LA-17** | Global Research Network |
-| **2I-LA-18** | Global Public/Government Data Fabric |
-| **2I-LA-19** | Technology + Partnership Intelligence |
-| **2I-LA-20** | Investor + Capital Intelligence |
-| **2I-LA-21** | Plugin + Connector Factory |
-| **2I-LA-22** | Windows / Mac / Linux Companion |
-| **2I-LA-23** | Android / iOS Pocket Brain |
-| **2I-LA-24** | Vehicle + Edge Experience |
-| **2I-LA-25** | Robotics Capability Gateway |
-| **2I-LA-26** | XR/Spatial Business OS |
-| **2I-LA-27** | Digital Twin Earth |
-| **2I-LA-28** | Global Business Simulation Network |
+| **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **NEXT after LA-06** / **FULL STORY BELOW** |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** |
+| **2I-LA-09** | Temporal + Causal Intelligence |
+| **2I-LA-10** | Parallel Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-13** | AI Sales Force V10 |
+| **2I-LA-14** | AI Marketing Organization V10 |
+| **2I-LA-15** | AI Customer Success Organization |
+| **2I-LA-16** | AI Finance + Revenue Organization |
+| **2I-LA-17** | AI Supply Chain Company |
+| **2I-LA-18** | Global Research Network |
+| **2I-LA-19** | Global Public/Government Data Fabric |
+| **2I-LA-20** | Technology + Partnership Intelligence |
+| **2I-LA-21** | Investor + Capital Intelligence |
+| **2I-LA-22** | Plugin + Connector Factory |
+| **2I-LA-23** | Windows / Mac / Linux Companion |
+| **2I-LA-24** | Android / iOS Pocket Brain |
+| **2I-LA-25** | Vehicle + Edge Experience |
+| **2I-LA-26** | Robotics Capability Gateway |
+| **2I-LA-27** | XR/Spatial Business OS |
+| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
 | **2I-LA-29** | Business Hospital V10 |
 | **2I-LA-30** | Founder Mission Control V12 |
 
 ### NEXT after LA-06 (queue mention only)
 
-**2I-LA-07 — Curiosity + Question + Contradiction Brain V10** (do **not** implement from this docs commit).
+**2I-LA-07 — Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback** (do **not** implement from the LA-06 docs commit; Curiosity is **LA-08**, not LA-07).
 
 ### Permanent rules (LA-06 / CEO)
 
@@ -4469,6 +4472,428 @@ Every LA-06 deliverable inherits Guardian, Tenant Isolation, Universe Isolation,
 
 ---
 
+## 2I-LA-07 — TRUST KERNEL + AGE / CONSENT / WAIVER + CONTRACT OS + LEGAL WORKFLOW + PRIVACY VAULT + CYBER SOC + PAYMENT / COMMERCE CONTROL PLANE + 24/7 SAFETY FEEDBACK LOOP
+
+**Status:** QUEUED (docs). Do **not** mark implemented until tested. Queue after LA-06. Do **not** interrupt active validated LA-01/02/03 work, LA-04/05/06 queues, cloud-worker merge WIP, or other active implementation. Do **not** implement LA-07 code until **LA-01 → LA-06** completion gates all **PASS**.
+
+**Supersedes prior queue note:** Curiosity + Question + Contradiction Brain V10 was previously listed as **2I-LA-07**. It is now **2I-LA-08**. Do not implement Curiosity from this LA-07 docs commit.
+
+### User story
+
+As the XIV AI Founder, I want XIV to operate a governed Trust Kernel spanning age eligibility, consent, waivers, contracts, legal workflow (with human counsel gates), privacy/training consent, cyber SOC + Red/Blue loops, payments/multi-currency/crypto/fraud/commerce policy/escrow/negotiation abstractions, compliance-as-evidence, continuous testing, and 24/7 safety feedback — so that XIV can scale commerce and collaboration without fake attorney claims, unverified partnerships, minor-access paths, appearance-based “criminality,” draft-as-executed theater, or payment/crypto certainty theater.
+
+### Architectural emphasis (CEO)
+
+| Principle | Contract |
+|-----------|----------|
+| **AI legal agents ≠ licensed attorneys** | Legal-workflow agents draft/organize/retrieve under policy; they are **not** licensed counsel unless an actual licensed lawyer provides the service and is labeled as such |
+| **Waiver / template governance** | Jurisdiction + version tracking required; **human/legal review** before production use |
+| **18+ platform eligibility** | No minor account path; honest limits on download-gate / client-only enforcement |
+| **Connectors honest** | OnlyFans and peer creator platforms remain potential connectors **`NOT_CONFIGURED`** until verified — never claim partnership |
+| **Security signal ≠ criminality** | SOC alerts, fraud scores, and trust signals are **not** proof of criminality |
+| **Draft ≠ executed** | Draft contract ≠ executed agreement; payment request ≠ confirmation; crypto ≠ guaranteed value |
+| **Compose, don’t fork** | Extend Guardian, DAG, Trust Center (LA-06), Privacy Vault, Evidence/Provenance, Payment stubs (EM–FG), Agent Firewall — do not invent a parallel authority plane |
+| **L4 DISABLED** | Trust/legal/payment loops never self-promote bounded→L4 or mint credentials |
+
+### Architecture adjustment notes (permanent)
+
+1. **Licensed counsel gate:** Any “legal advice” surface must distinguish **workflow assistance** from **licensed attorney service**. UI copy forbids implying XIV AI is a law firm by default.
+2. **Waiver/templates:** Every production waiver/template carries `jurisdiction`, `version`, `effective_at`, `reviewer`, `review_status`. Unreviewed = **DRAFT_ONLY** / non-production.
+3. **Age / eligibility:** Platform eligibility is **18+**. There is **no** supported minor account path. Download-gate / client attestation enforcement has **honest limits** — do not claim perfect device-side age omniscience.
+4. **Creator connectors:** OnlyFans/etc = potential connectors **`NOT_CONFIGURED`** until verified (credentials, ToS, evidence pack).
+5. **Trust ≠ guilt:** Security / fraud / trust signals never equal a criminal determination.
+6. **Commerce honesty:** Draft≠executed; request≠paid; quote≠FX guarantee; crypto≠guaranteed value.
+
+Founder Brief delivery when contacts/briefs mentioned: **`devinhaynes2025@gmail.com`** (never `@gmil.com`; Gmail LIVE `NOT_CONFIGURED` until proven).
+
+### Flow
+
+```
+ELIGIBILITY / AGE / CONSENT
+→ TRUST KERNEL (policy + evidence)
+→ WAIVER / CONTRACT (draft → review → execute)
+→ HUMAN COUNSEL GATE (when required)
+→ PRIVACY / TRAINING CONSENT
+→ COMMERCE / PAYMENT / ESCROW (when authorized)
+→ CYBER SOC + RED/BLUE + SAFETY FEEDBACK
+→ COMPLIANCE-AS-EVIDENCE → TRUST REPORT
+→ MEASURE → IMPROVE
+```
+
+---
+
+### 1. Preflight (implementation gate — later)
+
+Before any LA-07 code:
+
+1. Tip continuity: `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`; clean tree; **no force**; never `main`.
+2. **LA-01 → LA-06** completion gates all **PASS** (honest — never infer PASS).
+3. Inspect and **reuse**: Guardian, Tenant/Universe isolation, DAG, Evidence/Provenance, Trust Center / Trust Scorecard (LA-06), Privacy Vault / Private Search (LA-06), Payment/commerce stubs (2I-EM–FG), Agent Firewall, Audit, Human + Policy Authority.
+4. Do **not** claim attorney licensure, OnlyFans partnership, perfect age-gate enforcement, payment confirmation without processor evidence, or crypto value guarantees.
+
+### 2. Trust Kernel
+
+| Contract | Detail |
+|----------|--------|
+| **Purpose** | Central policy + evidence plane for eligibility, consent, risk labels, and trust decisions |
+| **Inputs** | Age/eligibility attestations, consent records, violation history, SOC signals, commerce events |
+| **Outputs** | Trust decisions with evidence refs, confidence, expiry, appeal path |
+| **Not** | Appearance-based scoring; automatic criminal labeling; ambient privilege growth |
+| **Compose** | LA-06 Trust Scorecard / Trust Center; Guardian |
+
+### 3. Age eligibility + consent
+
+| Rule | Contract |
+|------|----------|
+| **18+ only** | Platform eligibility requires adult eligibility; **no minor account path** |
+| **Consent** | Purpose-bound, revocable, versioned; recorded with timestamp + policy version |
+| **Honest enforcement limits** | Download-gate / client checks are probabilistic controls — UI must not claim perfect enforcement |
+| **Mature Universe** | 18+ spaces stay hard-separated from any minor-accessible surface (compose LA-06) |
+
+### 4. Waiver OS
+
+| Rule | Contract |
+|------|----------|
+| **Jurisdiction + version** | Required on every waiver object |
+| **Human/legal review** | Required before production presentation/signature capture |
+| **States** | `DRAFT` / `IN_REVIEW` / `APPROVED_TEMPLATE` / `ISSUED` / `SIGNED` / `REVOKED` / `SUPERSEDED` |
+| **Not** | Silent production of unverified templates; AI “approve” without counsel/policy gate |
+
+### 5. Contract OS
+
+| Rule | Contract |
+|------|----------|
+| **Lifecycle** | Intake → draft → redline → review → approve → execute → store → renew/terminate |
+| **Draft ≠ executed** | Explicit status; UI forbids “signed” without execution evidence |
+| **Parties / jurisdiction / version** | First-class fields; audit trail on every transition |
+| **Authority** | Execution requires human/policy authority — agents may prepare, not self-execute high-impact contracts by default |
+
+### 6. Legal workflow agents
+
+| Rule | Contract |
+|------|----------|
+| **Role** | Research, drafting aid, checklist, deadline tracking, evidence packaging |
+| **≠ attorney** | Unless an actual licensed lawyer is the service provider and clearly labeled |
+| **Disclaimers** | Mandatory on legal-workflow surfaces |
+| **Default permissions** | **NONE** ambient; DAG for legal data |
+
+### 7. Human counsel gate
+
+| Trigger examples | Gate |
+|------------------|------|
+| Production waiver/template publish | Human/legal review required |
+| High-impact contract execution | Human/policy authority required |
+| “Legal advice” claims | Licensed counsel path or hard refuse / relabel as workflow aid |
+| Cross-border regulated filings | Counsel/policy gate — agents propose only |
+
+### 8. Legal data gateway
+
+| Rule | Contract |
+|------|----------|
+| **Purpose** | Controlled access to contracts, waivers, counsel notes, litigation holds |
+| **Classification** | Legal data defaults highly restricted; tenant + need-to-know |
+| **Discovery ≠ access** | Catalog visibility without capability token |
+| **Compose** | Data Access Gateway — do not bypass for “efficiency” |
+
+### 9. Corporate protection
+
+| Pillar | Contract |
+|--------|----------|
+| **Entity hygiene** | Separate personal/founder vs company data planes where required |
+| **Authority ceilings** | Agents cannot bind the company beyond granted authority |
+| **Incident posture** | Preserve evidence; no silent log wipe; escalate via SOC + counsel gate when warranted |
+
+### 10. IP protection
+
+| Rule | Contract |
+|------|----------|
+| **Provenance** | Track creation, contributors, license, confidentiality |
+| **No silent training rights** | Purchase/upload ≠ unrestricted training rights without consent terms |
+| **Export control honesty** | Do not invent clearances; `NOT_CONFIGURED` / UNKNOWN when unknown |
+
+### 11. Privacy vault
+
+| Feature | Contract |
+|---------|----------|
+| **User-controlled sealed store** | Separate from company/global brain |
+| **Explicit export only** | No ambient agent browse |
+| **Compose** | LA-06 Personal Privacy Vault |
+
+### 12. Private search
+
+| Feature | Contract |
+|---------|----------|
+| **Private Search Mode** | Queries do not train global models by default |
+| **Minimized logs** | Purpose + retention limits |
+| **No cross-tenant leakage** | Fail closed |
+
+### 13. Training consent
+
+| Rule | Contract |
+|------|----------|
+| **Opt model** | Training use requires explicit consent class; private vault / private search excluded by default |
+| **Revocation** | Honored prospectively; honest limits on already-exported aggregates labeled |
+| **Evidence** | Consent version stored with training job manifests |
+
+### 14. Cyber SOC
+
+| Pillar | Contract |
+|--------|----------|
+| **24/7 detect → contain → report** | Inside boundaries; not uncontrolled offensive autonomy |
+| **Signal honesty** | Alert ≠ proof of criminality; severity labels with confidence |
+| **Fail closed** | Missing grant → DENIED + AUDITED |
+| **Compose** | LA-06 24/7 security + forensic chain |
+
+### 15. Red / Blue loops
+
+| Loop | Contract |
+|------|----------|
+| **Red** | Scheduled adversarial tests: privilege escalation, waiver bypass, age-gate spoof, payment spoof, counsel-gate skip |
+| **Blue** | Detection engineering, containment drills, evidence pack quality |
+| **Output** | Findings → Learning Engine candidates (gated) — not ambient new powers |
+
+### 16. Payment OS
+
+| Rule | Contract |
+|------|----------|
+| **States** | `REQUESTED` / `AUTHORIZED` / `CAPTURED` / `FAILED` / `REFUNDED` / `DISPUTED` — request ≠ confirmation |
+| **Providers** | Stripe and peers `NOT_CONFIGURED` until proven |
+| **Secrets** | Never in mobile client; server-side only |
+| **UI honesty** | No LIVE badge without processor evidence |
+
+### 17. Multi-currency
+
+| Rule | Contract |
+|------|----------|
+| **FX labels** | Quote time, rate source, confidence; quote ≠ guaranteed fill |
+| **Ledger** | Tenant-bound; audit immutable intents vs settlements |
+| **UNKNOWN valid** | Missing rate source → UNKNOWN, not fake precision |
+
+### 18. Crypto gateway
+
+| Rule | Contract |
+|------|----------|
+| **Status honesty** | Gateway `NOT_CONFIGURED` until verified |
+| **Crypto ≠ guaranteed value** | Volatility + settlement uncertainty disclosed |
+| **No investment-advice theater** | Agents do not auto-trade or promise returns |
+| **Chain evidence** | Tx refs when LIVE; never fabricate confirmations |
+
+### 19. Fraud
+
+| Rule | Contract |
+|------|----------|
+| **Signals** | Behavior, device, velocity, payment processor signals — evidence-backed |
+| **≠ criminality proof** | Fraud score ≠ criminal conviction |
+| **Actions** | Step-up auth, hold, review queue — human/policy for high-impact bans |
+
+### 20. Commerce policy
+
+| Rule | Contract |
+|------|----------|
+| **Allowed / restricted / forbidden** | Category policy with jurisdiction notes |
+| **Adult commerce** | Not a sexual-services brokerage; mature content rules compose LA-06 |
+| **Connector policy** | External marketplaces remain `NOT_CONFIGURED` until verified |
+
+### 21. Escrow abstraction
+
+| Rule | Contract |
+|------|----------|
+| **States** | `OPEN` / `FUNDED` / `RELEASE_PENDING` / `RELEASED` / `REFUNDED` / `DISPUTED` |
+| **Authority** | Release conditions explicit; agents cannot silently release |
+| **Provider** | Escrow rails `NOT_CONFIGURED` until proven |
+
+### 22. Negotiation
+
+| Rule | Contract |
+|------|----------|
+| **Assistive** | Term suggestions, redline diffs, BATNA notes with evidence |
+| **≠ binding** | Negotiation transcript ≠ executed contract |
+| **Authority** | Commitments require human/policy gate |
+
+### 23. DB expansion (propose only until gated)
+
+Evaluate/add only necessary schema (names illustrative): `trust_decisions`, `age_eligibility_attestations`, `consent_records`, `waiver_templates`, `waiver_instances`, `contracts`, `contract_versions`, `counsel_reviews`, `legal_holds`, `privacy_vault_objects`, `training_consents`, `soc_alerts`, `red_blue_findings`, `payment_intents`, `fx_quotes`, `crypto_tx_refs`, `fraud_cases`, `commerce_policy_rules`, `escrow_cases`, `negotiation_sessions`, `trust_reports`.
+
+Tenant-bound → **RLS REQUIRED**. Migration: PROPOSE → TEST → ISOLATION → BACKUP/ROLLBACK → APPLY WHEN AUTHORIZED → VERIFY.
+
+### 24. Continuous testing
+
+| Suite | Contract |
+|-------|----------|
+| **Isolation** | Legal/privacy/payment data cannot cross tenant/universe |
+| **Honesty** | Draft≠executed; request≠paid; counsel-gate cannot be skipped by agent role rename |
+| **Age** | Minor path attempts DENIED; download-gate overclaim tests |
+| **Connectors** | OnlyFans partnership claim surfaces blocked while `NOT_CONFIGURED` |
+
+### 25. Feedback loop
+
+```
+SIGNAL / INCIDENT / USER REPORT
+→ TRIAGE
+→ EVIDENCE PACK
+→ CONTAIN / POLICY ACTION
+→ COUNSEL GATE (if needed)
+→ LESSON CANDIDATE
+→ TRUST REPORT UPDATE
+→ IMPROVE CONTROLS
+```
+
+Feedback ≠ privilege inflation.
+
+### 26. Night shift (trust / safety)
+
+| Allowed | Forbidden |
+|---------|-----------|
+| Monitor SOC queues; draft trust reports; prepare counsel packets | Silent prod deploy; L4; credential self-grant; execute contracts; release escrow; mark waivers APPROVED without review |
+| Run scheduled Red/Blue drills in sandbox | Destructive prod migrations; fabricate payment/crypto confirmations |
+
+### 27. Trust report
+
+| Section | Content |
+|---------|---------|
+| **Period** | Shift/day/week |
+| **Incidents** | SOC/fraud/consent/waiver events with evidence refs |
+| **Commerce** | Payment/escrow anomalies — request vs confirmed counts |
+| **Counsel** | Items awaiting human/legal review |
+| **Honesty panel** | `NOT_CONFIGURED` connectors; known enforcement limits |
+| **Delivery** | Founder Brief to **`devinhaynes2025@gmail.com`** when severity warrants — Gmail LIVE `NOT_CONFIGURED` until proven |
+
+### 28. UI
+
+| Surface | Contract |
+|---------|----------|
+| **Trust Center** | Permissions, consents, connectors, LIVE vs NOT_CONFIGURED |
+| **Legal workflow** | Draft/review/execute statuses; attorney disclaimer |
+| **Payments** | Intent vs confirmation; no fake LIVE |
+| **Age gate** | 18+ eligibility; honest limit copy where applicable |
+| **No guilt UI** | Do not present security signals as criminal verdicts |
+
+### 29. API discovery
+
+| Rule | Contract |
+|------|----------|
+| **Discovery ≠ invoke** | Legal/payment/crypto APIs listed without capability tokens remain non-callable |
+| **Auth boundaries** | Composition preserves per-API auth |
+| **Status** | Each external API shows `NOT_CONFIGURED` until proven |
+
+### 30. Trusted plugin store
+
+| Rule | Contract |
+|------|----------|
+| **Review** | Security + privacy + legal policy review before trust label |
+| **Signed manifests** | Required for production invoke rights |
+| **Default** | Plugins get **NONE**; trust label ≠ root |
+| **Compose** | LA-06 Tool Foundry / LA-21 Plugin Factory titles |
+
+### 31. Compliance-as-evidence
+
+| Rule | Contract |
+|------|----------|
+| **Evidence packs** | Controls map to artifacts (logs, approvals, versions, test results) |
+| **Not theater** | Checklist without artifacts ≠ compliance claim |
+| **Export** | Auditor export is gated, minimized, audited |
+
+### 32. Checkpoint protocol
+
+At each future code checkpoint (when gated): TYPECHECK → TEST → SECURITY → SECRET SCAN → `git diff --check` → COMMIT → Dual-push GitHub+GitLab.
+
+**Phase gate:** `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`. **No force. No main. L4 off.**
+
+Suggested commit patterns (implementation time only):
+
+- `feat(xiv): add trust kernel eligibility consent`
+- `feat(xiv): add waiver and contract os states`
+- `feat(xiv): add human counsel legal gateway`
+- `feat(xiv): add payment escrow fraud abstractions`
+- `feat(xiv): add soc red blue safety feedback`
+- `test(xiv): harden la-07 trust privacy commerce gates`
+
+Docs-only commit for this queue: `docs(xiv): queue trust privacy legal commerce control plane 2I-LA-07`
+
+### 33. Completion evidence (when implemented later)
+
+Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / TRUST_KERNEL / AGE_ELIGIBILITY / CONSENT / WAIVER_REVIEW / CONTRACT_STATES / COUNSEL_GATE / LEGAL_DAG / PRIVACY_VAULT / TRAINING_CONSENT / SOC / RED_BLUE / PAYMENT_OS / MULTI_CURRENCY / CRYPTO_GATEWAY / FRAUD / COMMERCE_POLICY / ESCROW / NEGOTIATION / TRUST_REPORT / PLUGIN_TRUST / COMPLIANCE_EVIDENCE / TESTS / SECURITY.
+
+### 34. Out of scope for LA-07 implementation (when gated)
+
+- Implementing before LA-01→LA-06 PASS
+- Claiming AI agents are licensed attorneys by default
+- Production waivers/templates without jurisdiction/version + human/legal review
+- Minor account paths; claiming perfect download-gate enforcement
+- OnlyFans or creator-platform partnership claims while `NOT_CONFIGURED`
+- Treating security/fraud signals as proof of criminality
+- Marking draft contracts executed; payment requests as confirmations; crypto as guaranteed value
+- Silent escrow release / contract execution / L4 / credential self-grant from Night Shift
+- Blind training on privacy vault / private search without consent
+- Sexual-services marketplace features
+
+### 35. §73 — Queue LA-08 → LA-30 (titles only)
+
+**QUEUE ONLY — do not implement from this LA-07 docs commit.**
+
+**Curiosity renumber:** Curiosity + Question + Contradiction Brain V10 is **2I-LA-08** (no longer LA-07).
+
+| ID | Title |
+|----|-------|
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** |
+| **2I-LA-09** | Temporal + Causal Intelligence |
+| **2I-LA-10** | Parallel Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-13** | AI Sales Force V10 |
+| **2I-LA-14** | AI Marketing Organization V10 |
+| **2I-LA-15** | AI Customer Success Organization |
+| **2I-LA-16** | AI Finance + Revenue Organization |
+| **2I-LA-17** | AI Supply Chain Company |
+| **2I-LA-18** | Global Research Network |
+| **2I-LA-19** | Global Public/Government Data Fabric |
+| **2I-LA-20** | Technology + Partnership Intelligence |
+| **2I-LA-21** | Investor + Capital Intelligence |
+| **2I-LA-22** | Plugin + Connector Factory |
+| **2I-LA-23** | Windows / Mac / Linux Companion |
+| **2I-LA-24** | Android / iOS Pocket Brain |
+| **2I-LA-25** | Vehicle + Edge Experience |
+| **2I-LA-26** | Robotics Capability Gateway |
+| **2I-LA-27** | XR/Spatial Business OS |
+| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
+| **2I-LA-29** | Business Hospital V10 |
+| **2I-LA-30** | Founder Mission Control V12 |
+
+### NEXT after LA-07 (queue mention only)
+
+**2I-LA-08 — Curiosity + Question + Contradiction Brain V10** (do **not** implement from this docs commit).
+
+### Permanent rules (LA-07 / CEO)
+
+```
+AI LEGAL WORKFLOW ≠ LICENSED ATTORNEY (unless real counsel labeled)
+WAIVER/TEMPLATE = JURISDICTION + VERSION + HUMAN/LEGAL REVIEW BEFORE PROD
+18+ ONLY — NO MINOR ACCOUNT PATH — HONEST AGE-GATE LIMITS
+PROVIDER CONNECTORS NOT_CONFIGURED UNTIL PROVEN (incl. OnlyFans)
+SECURITY SIGNAL ≠ PROOF OF CRIMINALITY
+DRAFT CONTRACT ≠ EXECUTED
+PAYMENT REQUEST ≠ CONFIRMATION
+CRYPTO ≠ GUARANTEED VALUE
+TRAINING REQUIRES CONSENT — PRIVATE VAULT/SEARCH EXCLUDED BY DEFAULT
+DISCOVERY ≠ ACCESS — COUNSEL GATE FOR HIGH-IMPACT LEGAL ACTS
+L4 DISABLED
+```
+
+Additional permanent inheritance (all LA stories):
+
+- Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway
+- Evidence / Provenance, Audit, Human + Policy Authority
+- Providers `NOT_CONFIGURED` until proven; no force push; never `main` for foundation landings
+- Specialization ≠ authority; more agents ≠ better decisions; node/memory count ≠ intelligence
+- Founder Brief: `devinhaynes2025@gmail.com`
+- Curiosity / Contradiction Brain deferred to **LA-08** (not LA-07)
+
+### Inheritance (LA-07)
+
+Every LA-07 deliverable inherits Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway, Evidence/Provenance, Audit, Human + Policy Authority, providers `NOT_CONFIGURED` until proven, and **L4 DISABLED**.
+
+---
+
 ## RESIDUAL RESERVE PLACEHOLDERS (not in HB–HV / JV–KZ)
 
 Still **reserve only** (do not implement from this document) if not covered above:
@@ -4485,12 +4910,15 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Out of scope for this document
 
-- Implementing any AD–HV / JV–KZ / LA-04+ / **LA-06** runtime code, providers, or credentials
+- Implementing any AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** runtime code, providers, or credentials
 - Starting 2I-AD or any BG–BZ / CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / IX–JU / **JV–KZ** / **LA-04…30** coding from this queue alone
 - Claiming queued AI workforce departments prove agents are already running
 - Implementing Meta Brain / multi-brain router before LA-01+02+03 gates PASS
-- Implementing Knowledge Graph (LA-05) before LA-01→LA-04 PASS; implementing Memory/Learning/Quantum/Agentic OS (LA-06) before LA-01→LA-05 PASS
+- Implementing Knowledge Graph (LA-05) before LA-01→LA-04 PASS; implementing Memory/Learning/Quantum/Agentic OS (LA-06) before LA-01→LA-05 PASS; implementing Trust/Privacy/Legal/Commerce Control Plane (LA-07) before LA-01→LA-06 PASS
 - Claiming OnlyFans or other creator-platform partnerships; appearance-based criminality inference; mixing 18+ Universe with minors
+- Claiming AI agents are licensed attorneys by default; production waivers without jurisdiction/version + human/legal review
+- Treating draft contracts as executed; payment requests as confirmations; crypto as guaranteed value
+- Implementing Curiosity/Contradiction Brain as LA-07 (renumbered to **LA-08**)
 - Enabling L4, GDF production-live, or Gmail LIVE send
 - Claiming planetary scale, quantum advantage, or advertising trillions as proven
 - Merging Data Directory, Storage Fabric, and Brain into one confused subsystem
@@ -4535,7 +4963,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-05** and **LA-06** full stories). Do not fork a second canonical.
+- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-05**, **LA-06**, and **LA-07** full stories). Do not fork a second canonical.
 - Older AD–AT, AD–BF, AD–BZ, AD–CP, AD–DF, AD–DV, AD–EL, AD–FG, AD–GF, AD–HA, AD–HV, and AD–LA paths are **pointer stubs** to this document (when present).
 - If siblings are mid-write on IX–JU / LB–MF / post-KZ blocks: refine in place after wait-gate clean; **preserve** all prior sections (including JV–KZ + LA) when expanding.
 - **JV follows JU:** if IX–JU lands later, keep JV–KZ content; add pointer/dependency notes idempotently — do not delete workforce queue.
@@ -4545,7 +4973,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Confirmation checklist (docs agents)
 
-- [x] Queued-only documentation (no AD–HV / HB–HV / JV–KZ / LA-04+ / LA-06 implementation in the docs commit)
+- [x] Queued-only documentation (no AD–HV / HB–HV / JV–KZ / LA-04+ / LA-05/06/07 implementation in the docs commit)
 - [x] AD→BZ prior queue content preserved
 - [x] Brain Expansion Series **2I-BG → 2I-BZ** preserved
 - [x] Business OS continuation **2I-CA → 2I-CP** preserved
@@ -4566,9 +4994,13 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Executable Foundation **2I-LA-04** Multi-Brain Router + Meta Brain Runtime preserved (full CEO summary)
 - [x] **2I-LA-05** Knowledge Graph + Evidence Nervous System queued (full CEO summary merged from `5ef7412`; Postgres-first; MODEL_OUTPUT≠verification)
 - [x] **2I-LA-06** Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) queued (full CEO summary; docs only)
+- [x] **2I-LA-07** Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback queued (full CEO summary; docs only)
 - [x] Architecture adjustments encoded: OnlyFans connector NOT_CONFIGURED / no partnership claim; 18+ Mature/Naturist Universe separation; behavior-based safety ≠ appearance criminality
-- [x] **§83 / LA-07 → LA-30** titles queued; **NEXT after LA-06:** LA-07 Curiosity + Question + Contradiction Brain V10
+- [x] LA-07 critical rules encoded: AI legal≠attorney; waiver jurisdiction/version+review; 18+ only; security≠criminality; draft≠executed; payment request≠confirmation; crypto≠guaranteed value
+- [x] **Curiosity renumbered to LA-08** (older LA-07 curiosity notes superseded)
+- [x] **§83 / §73 / LA-08 → LA-30** titles queued; **NEXT after LA-07:** LA-08 Curiosity + Question + Contradiction Brain V10
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
+- [x] Permanent LA-07 CEO rules encoded (counsel gate; commerce honesty; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm
 - [x] Architectural correction encoded prominently (adapters/APIs/federation; CONNECTING ≠ COPYING ≠ UNDERSTANDING)
 - [x] NEW AGENT DEPARTMENTS (default NONE) + 24/7 CONNECTION WATCH + 24/7 BRAIN FEEDING recorded
@@ -4613,7 +5045,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Founder Brief email corrected to `devinhaynes2025@gmail.com` (never `gmil`)
 - [x] ONE phase at a time; L4 disabled; providers `NOT_CONFIGURED` until proven
 - [x] STOP for CEO before AD after AB→AC inspection — **still awaiting CEO; 2I-AD first when authorized**
-- [x] No CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / JV–KZ / AD–BZ / LA-04+ / LA-06 implementation started
+- [x] No CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / JV–KZ / AD–BZ / LA-04+ / LA-05/06/07 implementation started
 - [x] HARD STOP: LA-04 code blocked until LA-01+02+03 completion gates PASS on tip
-- [x] HARD STOP: LA-05 code blocked until LA-01→LA-04 PASS; LA-06 code blocked until LA-01→LA-05 PASS
-- [x] No LA-06 implementation in the docs-only queue commit
+- [x] HARD STOP: LA-05 code blocked until LA-01→LA-04 PASS; LA-06 code blocked until LA-01→LA-05 PASS; LA-07 code blocked until LA-01→LA-06 PASS
+- [x] No LA-05/06/07 implementation in the docs-only queue commit
