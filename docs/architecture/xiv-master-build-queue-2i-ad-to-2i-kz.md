@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…22 docs + **LA-16…22** queued + **LA-22B** + **LA-23 Autonomous QA + Defensive Red/Blue Security Factory V30** + **LA-24 Global Supply Chain Digital Twin V30** + **LA-25 Global Company Digital Twin + Business Hospital V40** + **LA-26 XIV Agent University + AI Workforce Academy V50** (queued; after LA-25 / before LA-27) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…50** | Multi-Brain + LA-05…26 docs + **LA-23/24/25/26** queued + LA-27…29 (may still land) + **LA-30 Founder Mission Control V130** (architecture queued; after LA-29) + **LA-31…50 titles only** | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3163,7 +3163,11 @@ Every phase inherits and must preserve:
 | **2I-LA-24** | Global Supply Chain Digital Twin V30 | **QUEUED DOCS** — `xiv-2i-la-24-global-supply-chain-digital-twin-v30.md`; **DO NOT IMPLEMENT until LA-23 PASS** |
 | **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 | **QUEUED DOCS** — `xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`; **DO NOT IMPLEMENT until LA-24 PASS** |
 | **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 | **QUEUED DOCS** — `xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`; **DO NOT IMPLEMENT until LA-25 PASS** |
-| **2I-LA-27…30** | Global AI Tool + Plugin Marketplace → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-26** is LA-27 |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace | **QUEUE ONLY** — after LA-26; may still be landing |
+| **2I-LA-28** | Universal Device + AI Chip Fabric | **QUEUE ONLY** — after LA-27; may still be landing |
+| **2I-LA-29** | Overnight AI Organization V20 / 24/7 AI Organization | **QUEUE ONLY** — after LA-28; **must PASS before LA-30 code**; may still be landing |
+| **2I-LA-30** | XIV Founder Mission Control V130 | **QUEUED DOCS** — `xiv-2i-la-30-founder-mission-control-v130.md`; **DO NOT IMPLEMENT until LA-29 PASS** |
+| **2I-LA-31…50** | Founder Mission Control prepared expansion (titles only) | **QUEUE TITLES ONLY** — **NOT IMPLEMENTED**; do not implement from LA-30 docs |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3509,7 +3513,54 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **L4 DISABLED**. **HARD STOP — no LA-26 runtime.**
 
-**NEXT after LA-26:** **2I-LA-27** Global AI Tool + Plugin Marketplace.
+**NEXT after LA-26:** **2I-LA-27** Global AI Tool + Plugin Marketplace → **LA-28** → **LA-29** → **LA-30** Founder Mission Control V130.
+
+---
+
+## 2I-LA-30 — XIV FOUNDER MISSION CONTROL V130 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–130 + permanent rules: [`xiv-2i-la-30-founder-mission-control-v130.md`](./xiv-2i-la-30-founder-mission-control-v130.md) (+ founder summary [`../queue/2I-LA-30-founder-mission-control.md`](../queue/2I-LA-30-founder-mission-control.md)).
+
+**DO NOT IMPLEMENT** until **LA-29 Overnight AI Organization PASS**. Ordering lock: **LA-29 Overnight AI Organization → LA-30 Founder Mission Control V130 → LA-31…LA-50 (prepared expansion titles only)**. Queue **AFTER LA-29**; do not interrupt LA-23…LA-29 mid-flight or validated / deployment-critical work. Tip may still be racing LA-23…LA-29; park on `cursor/queue-2i-la-30-*-4059` if needed; rebase onto tip including LA-29 when present; never force-push / never `main`.
+
+**Critical rules (permanent):** Founder control ≠ raw root; Founder Twin ≠ Devin; exact label `XIV Founder Twin — AI representation of Devin Xavier Haynes`; private ≠ public/training; personal finance ≠ corporate; payment request ≠ settlement; potential ≠ collected; signup ≠ equity/royalty; deal candidate ≠ deal; AI CFO/negotiator/council ≠ legal authority; 100 agents ≠ truth; simulation ≠ reality; correlation ≠ causation; quantum backend ≠ advantage; L4 DISABLED; UNKNOWN valid; CLOUD_WORKER_VERIFIED false until proven; QUEUED ≠ IMPLEMENTED ≠ TESTED ≠ DEPLOYED ≠ VERIFIED; never infer PASS.
+
+**Feature flags (default OFF — high-risk OFF):** `FOUNDER_MISSION_CONTROL_ENABLED`, `FOUNDER_PRIVATE_UNIVERSE_ENABLED`, `FOUNDER_TWIN_ENABLED`, `CEO_DECISION_CENTER_ENABLED`, `EXECUTIVE_COUNCIL_ENABLED`, `FOUNDER_TREASURY_COMMAND_ENABLED`, `DEAL_ROOM_ENABLED`, `OPPORTUNITY_RADAR_ENABLED`, `MOBILE_CEO_MODE_ENABLED`, `MASTER_CONTROL_ROOM_ENABLED`, `OVERNIGHT_LEARNING_BRIEF_ENABLED`, `FOUNDER_SIMULATION_PANEL_ENABLED`.
+
+**Release guard:** Founder Mission Control does **not** block first canary. Prioritize identity/control honesty, privacy shields, truth labels, Twin non-escalation. Advanced rooms/radar/mobile/master-room feature-gated.
+
+**Includes (document only):** Mission Control kernel; Founder Private Universe; identity/control plane; Founder Twin exact label + limits; CEO Decision Center; Executive Council; ownership/governance (signup≠equity); treasury/private finance/accounting (personal≠corporate); revenue truth states; contract/partnership/deal room; opportunity radar; workforce/security/database/compute/deployment commands; brain health; company health; business map; simulation (≠reality); morning/evening brief + overnight learning + truth labels; alerts; mobile CEO mode; master control room; privacy shields; security tests; DB/RLS; feature flags OFF; permanent rules; evidence placeholders NEVER INFER PASS; queue expansion LA-31…LA-50 titles.
+
+**LA-03 ≠ LA-30.** Experimental/high-risk features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-30 runtime.**
+
+**NEXT after LA-30:** **2I-LA-31…LA-50** prepared expansion titles only (not implemented):
+| ID | Title |
+|----|-------|
+| **2I-LA-31** | Founder Private Universe Deep Isolation Fabric V10 |
+| **2I-LA-32** | CEO Decision Center Evidence Runtime V10 |
+| **2I-LA-33** | Executive Council Multi-Company Governance V10 |
+| **2I-LA-34** | Ownership Cap-Table Truth Ledger V10 |
+| **2I-LA-35** | Personal↔Corporate Finance Firewall Runtime V10 |
+| **2I-LA-36** | Revenue Truth State Machine Runtime V10 |
+| **2I-LA-37** | Contract + Partnership Deal Room Execution V10 |
+| **2I-LA-38** | Global Opportunity Radar Network V10 |
+| **2I-LA-39** | Workforce Command Plane Runtime V10 |
+| **2I-LA-40** | Security Command Plane Runtime V10 |
+| **2I-LA-41** | Database Command Plane Runtime V10 |
+| **2I-LA-42** | Compute Fabric Command Plane Runtime V10 |
+| **2I-LA-43** | Deployment Command Plane + Canary Truth V10 |
+| **2I-LA-44** | Brain Health Observatory V20 |
+| **2I-LA-45** | Company Health Observatory V20 |
+| **2I-LA-46** | Living Business Map Runtime V10 |
+| **2I-LA-47** | Founder Simulation Sandbox Runtime V10 (≠ reality) |
+| **2I-LA-48** | Morning/Evening Brief + Overnight Learning Runtime V10 |
+| **2I-LA-49** | Mobile CEO Mode + Master Control Room Runtime V10 |
+| **2I-LA-50** | Founder Mission Control Verification + Continuous Assurance V10 |
+
+---
+
+
+
 
 ---
 
@@ -4069,7 +4120,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-30** | XIV Founder Mission Control V130 — **QUEUED DOCS** (`xiv-2i-la-30-founder-mission-control-v130.md`); **DO NOT IMPLEMENT until LA-29 PASS** |
 
 ### 51. Reserved future agent families
 
@@ -4805,7 +4856,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-30** | XIV Founder Mission Control V130 — **QUEUED DOCS** (`xiv-2i-la-30-founder-mission-control-v130.md`); **DO NOT IMPLEMENT until LA-29 PASS** |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -5522,7 +5573,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-30** | XIV Founder Mission Control V130 — **QUEUED DOCS** (`xiv-2i-la-30-founder-mission-control-v130.md`); **DO NOT IMPLEMENT until LA-29 PASS** |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -5767,6 +5818,10 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-25** Global Company Digital Twin + Business Hospital V40 queued (full §§1–130 + permanent rules; docs only; after LA-24); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; complete twin not first-canary blocker; **HARD STOP — no LA-25 runtime**; **DO NOT IMPLEMENT until LA-24 PASS**
 - [x] LA-25 critical rules encoded (twin≠company; Company A≠B≠Global Brain; Hospital≠medicine; no fake HEALTH=97%; Financial twin≠bank; Customer twin≠unrestricted profile; Org twin≠surveillance; AI Board≠directors; consensus≠truth; Founder Twin≠Devin / no ownership/money/Guardian override; Founder finance≠Company Brain; sim≠future/prod/authority; sim agent≠prod credentials; projected≠verified; trillion-savings=target≠claim; AFTER≠BECAUSE; ideas≠execution; more agents≠authority; executive offline≠authority)
 - [x] **NEXT after LA-25:** LA-26 XIV Agent University + AI Workforce Academy V50
+- [x] **2I-LA-30** XIV Founder Mission Control V130 queued (full §§1–130 + permanent rules; docs only; after LA-29); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; high-risk flags default OFF; CLOUD_WORKER_VERIFIED false until proven; **HARD STOP — no LA-30 runtime**; **DO NOT IMPLEMENT until LA-29 PASS**; do not interrupt LA-23…LA-29 mid-flight; rebase when LA-29 on tip
+- [x] **Ordering lock extended:** **LA-29 → LA-30 → LA-31…LA-50 (titles only)**
+- [x] **LA-31…LA-50** prepared expansion titles recorded (not implemented)
+- [x] **NEXT after LA-30:** LA-31 Founder Private Universe Deep Isolation Fabric V10 (title only)
 
 - [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 18+ Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS V20 → LA-21 Product Passport + Authenticity Network → LA-22 Global Database Federation**; rebase onto tip including LA-19/LA-22 when present; L4 off
 - [x] **2I-LA-18** 18+ Age Assurance + Global Identity + Community Trust OS V20 queued — full contracts §§1–99 + permanent rules in `xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md` (+ founder summary `docs/queue/2I-LA-18-age-assurance-global-identity-community-trust.md`); **DO NOT IMPLEMENT until LA-17 PASS**; HARD STOP no runtime; core identity/security RELEASE-CRITICAL (age/auth/tenant/Universe/RLS/recovery/audit); AgeAssuranceAdapter NOT_CONFIGURED until verified; FAILED age → no activation; Twin AI_REPRESENTATION never HUMAN_FOUNDER
