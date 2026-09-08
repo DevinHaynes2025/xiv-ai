@@ -4,9 +4,21 @@ export type LocalTaskState =
   | 'queued'
   | 'running'
   | 'waiting_local_model'
+  | 'waiting_data'
+  | 'unavailable'
+  | 'denied'
   | 'blocked'
   | 'completed'
   | 'failed';
+
+export type LocalTaskRequirement = {
+  needsInternet: boolean;
+  needsCloudProvider: boolean;
+  needsExternalFreshness: boolean;
+  needsProductionWrite: boolean;
+  needsPermissionChange: boolean;
+  classification: 'public' | 'internal' | 'confidential' | 'restricted';
+};
 
 export type LocalTask = {
   id: string;
@@ -21,6 +33,7 @@ export type LocalTask = {
     maxModelCalls: number;
     modelCallsUsed: number;
   };
+  requirements?: LocalTaskRequirement;
   metadata?: Record<string, string>;
 };
 
