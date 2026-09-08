@@ -440,6 +440,16 @@ export {
 } from './cloudworkforce';
 
 export {
+  openPhase2ilbGrounding,
+  openCloudAgentRuntime,
+  openAgentWorkforceManager,
+  deployMinimalCloudWorker,
+  runOfflineFounderTest,
+  collectCloudWorkerEvidence,
+} from './cloudworker';
+
+
+export {
   ciscoMayBypassNetworkControls,
   connectorState as globalConnectorState,
   evaluateConnectorAccess,
