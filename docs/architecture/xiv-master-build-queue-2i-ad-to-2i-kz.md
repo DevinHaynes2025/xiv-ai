@@ -3170,8 +3170,10 @@ Every phase inherits and must preserve:
 | **2I-LA-31** | XIV Global Identity + Business Trust Network V140 | **QUEUED DOCS** — `xiv-2i-la-31-global-identity-business-trust-network-v140.md`; **DO NOT IMPLEMENT until LA-30 PASS**; **must PASS before LA-32 code** |
 | **2I-LA-32** | Global Contract + Deal Network V150 | **QUEUED DOCS** — `xiv-2i-la-32-global-contract-deal-network-v150.md`; **DO NOT IMPLEMENT until LA-31 PASS**; **must PASS before LA-32A code** |
 | **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 | **QUEUED DOCS** — `xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`; **DO NOT IMPLEMENT until LA-32 PASS**; **must PASS before LA-33 code** |
-| **2I-LA-33** | Global Business Opportunity Exchange V170 | **QUEUED DOCS** — `xiv-2i-la-33-global-business-opportunity-exchange-v170.md`; **DO NOT IMPLEMENT until LA-32A PASS** |
-| **2I-LA-34…40** | Later titles | **QUEUE ONLY** — **NEXT after LA-33** |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 | **QUEUED DOCS** — `xiv-2i-la-33-global-business-opportunity-exchange-v170.md`; **DO NOT IMPLEMENT until LA-32A PASS**; **must PASS before LA-34 code** |
+| **2I-LA-34** | Business Capital + Funding Intelligence V180 | **QUEUED DOCS** — `xiv-2i-la-34-business-capital-funding-intelligence-v180.md`; **DO NOT IMPLEMENT until LA-33 PASS** |
+| **2I-LA-35** | Global Supplier + Procurement Exchange | **QUEUE ONLY** — **NEXT after LA-34** |
+| **2I-LA-36…42** | Commercial expansion titles | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3581,7 +3583,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **L4 DISABLED**. **HARD STOP — no LA-29 runtime.** Do **not** start LA-30 implementation from this commit.
 
-**NEXT after LA-29:** **2I-LA-30** Founder Mission Control V130.
+**NEXT after LA-29:** **2I-LA-30** Founder Mission Control V130 → … → **LA-32 → LA-32A → LA-33 → LA-34**.
 
 ---
 
@@ -3724,10 +3726,31 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **HARD STOP — no LA-33 runtime.**
 
-**NEXT after LA-33:** **2I-LA-34** Business Capital + Funding Intelligence.
+**NEXT after LA-33:** **2I-LA-34** Business Capital + Funding Intelligence V180 → **LA-35** Global Supplier + Procurement Exchange → **LA-36…42**.
 
 
 ---
+
+## 2I-LA-34 — BUSINESS CAPITAL + FUNDING INTELLIGENCE V180 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–120 + permanent rules: [`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`](./xiv-2i-la-34-business-capital-funding-intelligence-v180.md) (+ founder summary [`../queue/2I-LA-34-business-capital-funding-intelligence.md`](../queue/2I-LA-34-business-capital-funding-intelligence.md)).
+
+**DO NOT IMPLEMENT** until **LA-33 Global Business Opportunity Exchange PASS**. Ordering lock: **LA-32 Global Contract + Deal Network → LA-32A Universal AI Silicon (if present) → LA-33 Global Business Opportunity Exchange → LA-34 Business Capital + Funding Intelligence V180 → LA-35 Global Supplier + Procurement Exchange → LA-36…42**. Queue **AFTER LA-33**; do not interrupt LA-27…LA-33 / LA-32A mid-flight or validated / deployment-critical work. Tip may still race predecessors — park on `cursor/queue-2i-la-34-*-4059`; rebase onto tip when LA-33 present. Never force-push / never `main`.
+
+**Critical rules (permanent):** CAPITAL ≠ SOLUTION; research ≠ advice; MATCH ≠ eligibility ≠ approval; TERMSHEET ≠ funding; CONTRACT ≠ settlement; FORECAST ≠ cash; dilution/equity/debt/capital-structure sim ≠ legal cap table; FUNDING HELP ≠ equity; SIGNUP ≠ equity/royalty; customer ≠ XIV ≠ Founder money; personal ≠ corporate ≠ customer; AI CFO ≠ borrow/sign; AI ≠ broker; disclaimer ≠ compliance; DISCOVERED ≠ CONNECTED ≠ APPROVED ≠ OFFER; grant hit ≠ qual ≠ award; investor discovered ≠ solicitation/interest/sale; **`TRANSACTIONAL_FUNDING_ENABLED=FALSE`**; RegulatedActivityGate required; bank gateway via LA-16 with no raw credentials; connectors NOT_CONFIGURED; UNKNOWN valid; never infer PASS; L4 DISABLED.
+
+**Feature flags (default OFF / FALSE):** `CAPITAL_INTELLIGENCE_ENABLED`, `FUNDING_OPPORTUNITY_GRAPH_ENABLED`, `GRANT_RESEARCH_ENABLED`, `INVESTOR_DISCOVERY_ENABLED`, `PE_DISCOVERY_ENABLED`, `FUNDING_DATA_ROOM_ENABLED`, `CAPITAL_DEAL_ROOM_ENABLED`, `EQUITY_SIMULATOR_ENABLED`, `DILUTION_SIMULATOR_ENABLED`, `DEBT_SIMULATOR_ENABLED`, `CAPITAL_STRUCTURE_SIMULATOR_ENABLED`, `FUNDING_READINESS_ENABLED`, `FOUNDER_CAPITAL_COMMAND_ENABLED`, `CASH_RUNWAY_BRAIN_ENABLED`, `WORKING_CAPITAL_BRAIN_ENABLED`, `SUPPLY_CHAIN_CAPITAL_PLANNING_ENABLED`, `EQUIPMENT_CAPITAL_PLANNING_ENABLED`, `AI_INFRA_CAPITAL_PLANNING_ENABLED`, `FUNDING_NIGHT_SHIFT_ENABLED`, **`TRANSACTIONAL_FUNDING_ENABLED=FALSE`**.
+
+**Release / canary priority:** Do **not** block first canary on entire capital/funding plane. Prioritize honesty dictionary, provider identity ladder, money firewalls, RegulatedActivityGate stubs, flag defaults FALSE. LIVE bank draws / investor outreach automation / transactional funding remain feature-gated / FALSE.
+
+**Includes (document only):** CapitalIntelligenceBrain kernel; capital need types; Business Hospital capital diagnostic (CAPITAL≠SOLUTION); CashRunway/WorkingCapital brains; funding source types + provider identity ladder; Funding Opportunity Graph; grant research (no fabricated quals); investor/PE discovery honesty; Funding Data Room + Capital Deal Room → LA-32; TermSheet≠Funding; Equity/Dilution/Debt/Capital Structure simulators ≠ legal cap table; LA-16 bank gateway; FundingReadiness; AI CFO limits; Founder Capital Command (LA-30) firewalls; funding security/risk signals; RegulatedActivityGate; supply-chain/equipment/AI infra capital planning (LA-24/32A); integrations LA-24/31/32/32A/33; 24/7 research night shift limits; DB/RLS; tests; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-35…42.
+
+**LA-16 / LA-22B ≠ LA-34 V180 depth.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-34 runtime.**
+
+**NEXT after LA-34:** **2I-LA-35** Global Supplier + Procurement Exchange → **LA-36** Company-to-Company Agent Network V190 → **LA-37** Global Business Knowledge Exchange V200 → **LA-38** Business Simulation Supercomputer V210 → **LA-39** Global Economic + Trade Intelligence V220 → **LA-40** Self-Improving Business OS Evaluation System V230 → **LA-41…42** prepared expansion titles.
+
+---
+
 
 ---
 
@@ -4290,8 +4313,15 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-31** | XIV Global Identity + Business Trust Network V140 — **QUEUED DOCS** (`xiv-2i-la-31-global-identity-business-trust-network-v140.md`); **DO NOT IMPLEMENT until LA-30 PASS**; **Must PASS before LA-32 code** |
 | **2I-LA-32** | Global Contract + Deal Network V150 — **QUEUED DOCS** (`xiv-2i-la-32-global-contract-deal-network-v150.md`); **DO NOT IMPLEMENT until LA-31 PASS**; **Must PASS before LA-32A code** |
 | **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED DOCS** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); **DO NOT IMPLEMENT until LA-32 PASS**; **Must PASS before LA-33 code** |
-| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS** |
-| **2I-LA-34…40** | Later titles — **NEXT after LA-33** |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
+| **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS** |
+| **2I-LA-35** | Global Supplier + Procurement Exchange — **NEXT after LA-34** |
+| **2I-LA-36** | Company-to-Company Agent Network V190 *(title queued)* |
+| **2I-LA-37** | Global Business Knowledge Exchange V200 *(title queued)* |
+| **2I-LA-38** | Business Simulation Supercomputer V210 *(title queued)* |
+| **2I-LA-39** | Global Economic + Trade Intelligence V220 *(title queued)* |
+| **2I-LA-40** | Self-Improving Business OS Evaluation System V230 *(title queued)* |
+| **2I-LA-41…42** | Prepared expansion titles *(title queued)* |
 
 ### 51. Reserved future agent families
 
@@ -5031,8 +5061,15 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-31** | XIV Global Identity + Business Trust Network V140 — **QUEUED DOCS** (`xiv-2i-la-31-global-identity-business-trust-network-v140.md`); **DO NOT IMPLEMENT until LA-30 PASS**; **Must PASS before LA-32 code** |
 | **2I-LA-32** | Global Contract + Deal Network V150 — **QUEUED DOCS** (`xiv-2i-la-32-global-contract-deal-network-v150.md`); **DO NOT IMPLEMENT until LA-31 PASS**; **Must PASS before LA-32A code** |
 | **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED DOCS** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); **DO NOT IMPLEMENT until LA-32 PASS**; **Must PASS before LA-33 code** |
-| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS** |
-| **2I-LA-34…40** | Later titles — **NEXT after LA-33** |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
+| **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS** |
+| **2I-LA-35** | Global Supplier + Procurement Exchange — **NEXT after LA-34** |
+| **2I-LA-36** | Company-to-Company Agent Network V190 *(title queued)* |
+| **2I-LA-37** | Global Business Knowledge Exchange V200 *(title queued)* |
+| **2I-LA-38** | Business Simulation Supercomputer V210 *(title queued)* |
+| **2I-LA-39** | Global Economic + Trade Intelligence V220 *(title queued)* |
+| **2I-LA-40** | Self-Improving Business OS Evaluation System V230 *(title queued)* |
+| **2I-LA-41…42** | Prepared expansion titles *(title queued)* |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -5753,8 +5790,15 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-31** | XIV Global Identity + Business Trust Network V140 — **QUEUED DOCS** (`xiv-2i-la-31-global-identity-business-trust-network-v140.md`); **DO NOT IMPLEMENT until LA-30 PASS**; **Must PASS before LA-32 code** |
 | **2I-LA-32** | Global Contract + Deal Network V150 — **QUEUED DOCS** (`xiv-2i-la-32-global-contract-deal-network-v150.md`); **DO NOT IMPLEMENT until LA-31 PASS**; **Must PASS before LA-32A code** |
 | **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED DOCS** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); **DO NOT IMPLEMENT until LA-32 PASS**; **Must PASS before LA-33 code** |
-| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS** |
-| **2I-LA-34…40** | Later titles — **NEXT after LA-33** |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
+| **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS** |
+| **2I-LA-35** | Global Supplier + Procurement Exchange — **NEXT after LA-34** |
+| **2I-LA-36** | Company-to-Company Agent Network V190 *(title queued)* |
+| **2I-LA-37** | Global Business Knowledge Exchange V200 *(title queued)* |
+| **2I-LA-38** | Business Simulation Supercomputer V210 *(title queued)* |
+| **2I-LA-39** | Global Economic + Trade Intelligence V220 *(title queued)* |
+| **2I-LA-40** | Self-Improving Business OS Evaluation System V230 *(title queued)* |
+| **2I-LA-41…42** | Prepared expansion titles *(title queued)* |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -5945,6 +5989,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-29** XIV 24/7 AI Organization V120 queued (full §§1–120 + permanent rules; docs only; after LA-28); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; `AUTONOMOUS_DEPLOYMENT_ENABLED=FALSE`; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-29 runtime**; **DO NOT IMPLEMENT until LA-28 PASS**
 - [x] LA-29 critical rules encoded (24/7≠unlimited autonomy; AI org≠legal corp; AI executive≠legal officer; AI CFO≠bank signatory; AI negotiator≠signatory; AI manager≠permission admin; more agents/departments≠authority; task force≠permission union; Founder offline≠authority; Founder Twin exact label≠Devin; customer AI org≠XIV; Company A≠B; corporate≠Founder personal; recommendation≠spend; code≠production; research≠fact; consensus≠truth; CLOUD_WORKER_VERIFIED=FALSE until proven; L4 off; UNKNOWN valid; never infer PASS)
 - [x] **NEXT after LA-29:** LA-30 Founder Mission Control V130 (do not start LA-30 implementation from this commit)
+- [x] Ordering lock extended through commercial **LA-32 → LA-32A → LA-33 → LA-34 → LA-35…42** (preserve LA-32A when present); tip may still race LA-27…LA-33
+- [x] **2I-LA-34** Business Capital + Funding Intelligence V180 queued (full §§1–120 + permanent rules; docs only; after LA-33 / before LA-35); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; **`TRANSACTIONAL_FUNDING_ENABLED=FALSE`**; CAPITAL≠SOLUTION / MATCH≠eligibility≠approval / TERMSHEET≠funding / sim≠legal cap table / AI CFO≠borrow/sign / AI≠broker / money firewalls / RegulatedActivityGate; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-34 runtime**; **DO NOT IMPLEMENT until LA-33 PASS**
+- [x] **NEXT after LA-34:** LA-35 Global Supplier + Procurement Exchange → LA-36…42 titles
 - [x] Ordering lock extended: **LA-20 Creator + Influencer Business OS → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation + Data Control Tower V30**; rebase onto tip including LA-20 when present (LA-17–20 may still land); L4 off
 - [x] **2I-LA-21** Global Product Passport + Authenticity Network V20 queued — full contracts §§1–101 + permanent rules in `xiv-2i-la-21-global-product-passport-authenticity-network-v20.md` (+ founder summary `docs/queue/2I-LA-21-global-product-passport-authenticity-network.md`); **DO NOT IMPLEMENT until LA-20 PASS**; HARD STOP no runtime; `PRODUCT_PASSPORT_ENABLED = FALSE`; QUEUED ARCHITECTURE — NOT IMPLEMENTED; no fake LIVE connectors; core canary non-blocking unless explicitly selected release-critical
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
