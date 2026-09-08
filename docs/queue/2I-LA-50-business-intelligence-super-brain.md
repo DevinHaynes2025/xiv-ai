@@ -55,10 +55,12 @@ As the XIV AI Founder, I want XIV to run Business Intelligence Super Brain V600 
 
 ## Next queue
 
-- **2I-LA-51** Global Network + Edge Intelligence + Device Continuity Infrastructure V610
-- **2I-LA-52…60** prepared expansion titles (as listed in architecture §177)
+- **2I-LA-51** Global Network + Edge Intelligence + Device Continuity Infrastructure V610 *(queued docs — do not start runtime from LA-50 commit)*
+- **2I-LA-52** Multi-Cloud + Sovereign Universe + Global Data Fabric V620
+- **2I-LA-53…60** prepared expansion titles (as listed in architecture)
 
-**Do not start LA-51 from this commit.**
+**Do not start LA-51 runtime from this commit.**
+
 
 ## Docs-only gate
 
