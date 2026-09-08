@@ -429,6 +429,16 @@ export {
   openAgentRuntime,
   synchronizeAgentMesh,
 } from './agentmesh';
+
+export {
+  openPhase2ilaGrounding,
+  openDbBackedAgentMissionQueue,
+  createMission,
+  cloudWorkforceL4Enabled,
+  architectureExistsMeans247Live,
+  FOUNDER_BRIEF_EMAIL,
+} from './cloudworkforce';
+
 export {
   ciscoMayBypassNetworkControls,
   connectorState as globalConnectorState,
