@@ -454,6 +454,40 @@ export {
   supplierAdapterState,
 } from './supplygraph';
 export {
+  aiTrackingEveryMovementMeansAuthorizedLineage,
+  emitDataEvent,
+  openDataNervousGrounding,
+  openInformationLogisticsGraph,
+  traverseLineage,
+} from './datanervous';
+export {
+  FOUNDER_TWIN_DISCLOSURE as BRAIN_FOUNDER_TWIN_DISCLOSURE,
+  founderTwinDisclosure as brainFounderTwinDisclosure,
+  openFounderCouncil,
+  openMultimodalKnowledgeLibrary,
+  openXivBrainV4,
+  promoteKnowledgeQuality,
+} from './neuralbrain';
+export {
+  agentMaySilentConsequentialProdDeploy,
+  creativeCapabilityEqualsProductionAuthority,
+  evaluateProductionDeploy,
+  openAgentCreativeControl,
+  openCodeReviewChain,
+  openDevOpsRun,
+} from './agentdevops';
+export {
+  agentDeploymentState,
+  aggregateMorningFounderBrief,
+  l4RemainsDisabled as evolutionL4RemainsDisabled,
+  listNotConfiguredProviders,
+  openFeedbackLoopV4,
+  openNightShiftV3,
+  openPhase2iacInvariants,
+  productionCredentialsEnabledInPhase2iac,
+  stoppedBeforeNewProductionCredentials,
+} from './evolution';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,
