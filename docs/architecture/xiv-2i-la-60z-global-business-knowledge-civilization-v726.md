@@ -831,10 +831,12 @@ Evidence placeholders **QUEUED / FALSE / UNKNOWN**. **DEPLOYMENT_STATE=QUEUED**.
 **Entire V726 Knowledge Civilization plane does not block first canary.** Prioritize honesty bans, AUTO_* FALSE, L4 off, UNKNOWN valid, private→global blocked, no trillion rows, FounderKnowledgeCommand recommend-only.
 
 ## Next queue
-- **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727
-- LA-61 series continues (do not invent full 61A–61E docs from this commit)
+- **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727 (title only)
+- **2I-LA-61B…61H** reserved predecessor slots (titles not invented from 60Z or 61I)
+- **2I-LA-61I** Distributed Neural Infrastructure V735 (**QUEUED DOCS** — [`xiv-2i-la-61i-distributed-neural-infrastructure-v735.md`](./xiv-2i-la-61i-distributed-neural-infrastructure-v735.md))
+- **2I-LA-61J** Universal Data Civilization V736 (title only)
 
-**Do not start LA-61A from this commit.**
+**Do not start LA-61A or LA-61I implementation from this 60Z document.**
 
 ## Docs-only gate
 LOCAL = GITHUB = GITLAB (or GITLAB=BLOCKED honestly); TREE = CLEAN; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-60Z runtime.** Parking: `cursor/queue-2i-la-60z-global-business-knowledge-civilization-4059`; tip-land on `xiv-v2` after LA-60Y; rebase — never force-push.

@@ -49,11 +49,12 @@ As the XIV AI Founder, I want XIV to define a governed **Global Business Knowled
 
 ## Next queue
 
-- **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727
-- LA-61 series continues (pointer only; do not invent full 61A–61E docs)
-- **2I-LA-61…**
+- **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727 (title only)
+- **2I-LA-61B…61H** reserved predecessor slots (titles not invented here)
+- **2I-LA-61I** Distributed Neural Infrastructure V735 (**QUEUED DOCS**)
+- **2I-LA-61J** Universal Data Civilization V736 (title only)
 
-**Do not start LA-61A from this commit.**
+**Do not start LA-61A or LA-61I implementation from this commit.**
 
 ## Docs-only gate
 
