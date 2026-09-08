@@ -1,4 +1,4 @@
-# XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30 + LA-31…40 titles)
+# XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-40 + LA-32A)
 
 **Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-09** / **LA-10 Simulation Grid** runtime implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…28 docs + **LA-22B/23/24/25/26/27/28** queued + **LA-29 XIV 24/7 AI Organization V120** (queued after LA-28 / before LA-30) + **LA-30** Founder Mission Control V130 next + **LA-31…40** titles prepared | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…40** | Multi-Brain + LA-05…29 docs queued + **LA-30…31** (may still land) + **LA-32** Global Contract + Deal Network + **LA-32A** Universal AI Silicon + Device Compatibility Fabric V160 + **LA-33** Global Business Opportunity Exchange V170 + **LA-34** Business Capital + Funding Intelligence + **LA-35…40** titles | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3166,8 +3166,13 @@ Every phase inherits and must preserve:
 | **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 | **QUEUED DOCS** — `xiv-2i-la-27-global-agent-tool-plugin-workflow-marketplace-v60.md`; **DO NOT IMPLEMENT until LA-26 PASS**; **must PASS before LA-28 code** |
 | **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 | **QUEUED DOCS** — `xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`; **DO NOT IMPLEMENT until LA-27 PASS**; **must PASS before LA-29 code** |
 | **2I-LA-29** | XIV 24/7 AI Organization V120 | **QUEUED DOCS** — `xiv-2i-la-29-247-ai-organization-v120.md`; **DO NOT IMPLEMENT until LA-28 PASS** |
-| **2I-LA-30** | Founder Mission Control V130 | **QUEUE ONLY** — **NEXT after LA-29** |
-| **2I-LA-31…40** | Expand title queue (see §50 / LA-29 §110) | **TITLE QUEUE ONLY** |
+| **2I-LA-30** | Founder Mission Control V130 | **QUEUE ONLY** — **NEXT after LA-29** (may still land) |
+| **2I-LA-31** | Global Identity + Business Trust Network V140 | **QUEUE ONLY** — after LA-30 (may still land) |
+| **2I-LA-32** | Global Contract + Deal Network | **QUEUE ONLY** — after LA-31; Deal Rooms receive LA-33 handoffs |
+| **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 | **QUEUED ENHANCEMENT** — `xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`; **INSERT AFTER LA-32 / BEFORE LA-33**; **DO NOT IMPLEMENT until LA-32 PASS** |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 | **QUEUED DOCS** — `xiv-2i-la-33-global-business-opportunity-exchange-v170.md`; **DO NOT IMPLEMENT until LA-32A PASS** |
+| **2I-LA-34** | Business Capital + Funding Intelligence | **QUEUE ONLY** — **NEXT after LA-33** |
+| **2I-LA-35…40** | Title-queued expansions | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3575,7 +3580,46 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **L4 DISABLED**. **HARD STOP — no LA-29 runtime.** Do **not** start LA-30 implementation from this commit.
 
-**NEXT after LA-29:** **2I-LA-30** Founder Mission Control V130.
+**NEXT after LA-29:** **2I-LA-30** Founder Mission Control V130 → **LA-31** → **LA-32** → **LA-32A** → **LA-33** → **LA-34**.
+
+---
+
+## 2I-LA-32A — UNIVERSAL AI SILICON + DEVICE COMPATIBILITY FABRIC V160 (queued enhancement)
+
+**Status:** **QUEUED ENHANCEMENT — NOT IMPLEMENTED.** Full contracts §§1–160 + permanent rules: [`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`](./xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md) (+ founder summary [`../queue/2I-LA-32A-universal-ai-silicon-device-compatibility-fabric.md`](../queue/2I-LA-32A-universal-ai-silicon-device-compatibility-fabric.md)).
+
+**DO NOT IMPLEMENT** until **LA-32 Global Contract + Deal Network PASS**. Ordering lock: **… → LA-32 → LA-32A → LA-33 → LA-34 Business Capital + Funding Intelligence → LA-35…40**. **INSERT AFTER LA-32 / BEFORE LA-33.** Tip may still race LA-27…LA-32; rebase when LA-32 present. Never force-push / never `main`.
+
+**Critical honesty:** Architecture is **capability-compatible / provider-neutral** — **NOT** verified on every phone/desktop/OS. Do **not** mark hardware VERIFIED/SUPPORTED from marketing or this doc alone. Adapter architecture **targets** mobile/desktop/web/edge/cloud with **measured coverage**.
+
+**Critical rules (permanent):** NVIDIA≠XIV; DETECTED≠SUPPORTED; vendor benchmark≠XIV; NPU exists≠model compatible; cloud≠chip; more compute≠authority; Hardware≠permission; fallback≠lower security; no marketing-based support; TASK_CAPABILITY provider-neutral (not CUDA-only); L4 off.
+
+**Feature flags (default OFF):** `SILICON_FABRIC_ENABLED`, `HARDWARE_ROUTER_V160_ENABLED`, vendor adapters (NVIDIA/AMD/Intel/Apple/Qualcomm/ARM), `COMPATIBILITY_LAB_ENABLED`, `DEVICE_BRAIN_ENABLED`, `EDGE_BRAIN_ENABLED`, `COMPUTE_ECONOMICS_BRAIN_ENABLED`, `CONFIDENTIAL_COMPUTE_ENABLED`, `SILICON_RESEARCH_AGENTS_ENABLED`, `APPLE_FOUNDATION_MODELS_ADAPTER_ENABLED`.
+
+**Includes (document only):** Universal compute abstraction; extensible provider enum (…/UNKNOWN); NVIDIA (Blackwell/Vera Rubin/NVLink/BlueField — DETECTED≠SUPPORTED); AMD/ROCm/MI400/MI455X/Helios (not LIVE without evidence); Intel Xeon/Gaudi/oneAPI/OpenVINO; Apple adapter + iOS 26+ graceful detection + Foundation Models optional; thermal/mobile governors; HardwareRouter + ModelRouter co-routing (LA-11); privacy/authority fallbacks; HardwareRegistry + Compatibility Lab + matrices; provider-neutral TASK_CAPABILITY; precision abstraction; confidential compute; silicon research agents; DeviceBrain/EdgeBrain/offline sync; ComputeEconomicsBrain; Mission Control COMPUTE FABRIC; evidence QUEUED/FALSE/UNKNOWN; next LA-33.
+
+**LA-11 ≠ LA-28 ≠ LA-32A.** **HARD STOP — no LA-32A runtime.** Multi-vendor/device-class architecture ≠ verified universal device coverage.
+
+**NEXT after LA-32A:** **2I-LA-33** Global Business Opportunity Exchange V170.
+
+---
+
+## 2I-LA-33 — GLOBAL BUSINESS OPPORTUNITY EXCHANGE V170 (queued docs)
+
+**Status:** **QUEUED — NOT IMPLEMENTED.** Full contracts §§1–170 + permanent rules: [`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`](./xiv-2i-la-33-global-business-opportunity-exchange-v170.md) (+ founder summary [`../queue/2I-LA-33-global-business-opportunity-exchange.md`](../queue/2I-LA-33-global-business-opportunity-exchange.md)).
+
+**DO NOT IMPLEMENT** until **LA-32A PASS** (and LA-32 PASS). Ordering lock: **LA-32 → LA-32A → LA-33 → LA-34 Business Capital + Funding Intelligence → LA-35…40**. Queue **AFTER LA-32A**. Older “Planetary Connector + Partner Mesh” title superseded.
+
+**Critical rules (permanent):** MATCH≠ENDORSEMENT; discovery≠spam; no private scraping; value/evidence=ESTIMATE≠REVENUE; company profile≠private Company Brain; private vault≠Global Graph default; C2C match≠auto-contact; Deal candidate≠executed contract (handoff → LA-32 Deal Rooms); SIGNAL≠guilt; more matches≠authority; L4 off.
+
+**Feature flags (default OFF):** `OPPORTUNITY_EXCHANGE_ENABLED`, `OPPORTUNITY_GRAPH_ENABLED`, `AI_OPPORTUNITY_FORCE_ENABLED`, `OPPORTUNITY_DISCOVERY_24_7_ENABLED`, `MATCHING_BRAIN_ENABLED`, `FOUNDER_OPPORTUNITY_RADAR_ENABLED`, `C2C_MATCHING_ENABLED`, `PRIVATE_OPPORTUNITY_VAULT_ENABLED`, `OPPORTUNITY_DEAL_HANDOFF_ENABLED`, `OPPORTUNITY_SIMULATION_ENABLED`.
+
+**Includes (document only):** Opportunity Kernel/types/states; Global Opportunity Graph; AI Opportunity Force; 24/7 ethical discovery; Matching Brain; profiles vs private Company Brain; ESTIMATE≠REVENUE; Founder Opportunity Radar; C2C without auto-contact; Deal handoff → LA-32 Deal Rooms; security signals; private vaults; Hospital/supply/sales/finance/simulation integrations; DB/RLS; tests; checkpoints; next LA-34…40; permanent rules; evidence QUEUED/FALSE/UNKNOWN.
+
+**HARD STOP — no LA-33 runtime.**
+
+**NEXT after LA-33:** **2I-LA-34** Business Capital + Funding Intelligence.
+
 
 ---
 
@@ -4136,10 +4180,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS**; **Must PASS before LA-29 code** |
 | **2I-LA-29** | XIV 24/7 AI Organization V120 — **QUEUED DOCS** (`xiv-2i-la-29-247-ai-organization-v120.md`); **DO NOT IMPLEMENT until LA-28 PASS** |
 | **2I-LA-30** | Founder Mission Control V130 — **NEXT after LA-29** |
-| **2I-LA-31** | Global Multi-Tenant Brain Federation + Isolation Proof V10 *(title queued)* |
-| **2I-LA-32** | Continuous Evidence + Audit Mesh V10 *(title queued)* |
-| **2I-LA-33** | Planetary Connector + Partner Mesh V10 *(title queued)* |
-| **2I-LA-34** | Autonomous Research + Invention Factory V10 *(title queued)* |
+| **2I-LA-31** | Global Identity + Business Trust Network V140 *(queued / may still land)* |
+| **2I-LA-32** | Global Contract + Deal Network *(queued / may still land)* |
+| **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED ENHANCEMENT** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); after LA-32 / before LA-33 |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); after LA-32A |
+| **2I-LA-34** | Business Capital + Funding Intelligence — **NEXT after LA-33** *(title queued)* |
 | **2I-LA-35** | Global Customer Success + Value Proof OS V10 *(title queued)* |
 | **2I-LA-36** | Regulatory + Compliance Nervous System V10 *(title queued)* |
 | **2I-LA-37** | Physical World + Robotics Coordination Plane V10 *(title queued)* |
@@ -4882,10 +4927,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS**; **Must PASS before LA-29 code** |
 | **2I-LA-29** | XIV 24/7 AI Organization V120 — **QUEUED DOCS** (`xiv-2i-la-29-247-ai-organization-v120.md`); **DO NOT IMPLEMENT until LA-28 PASS** |
 | **2I-LA-30** | Founder Mission Control V130 — **NEXT after LA-29** |
-| **2I-LA-31** | Global Multi-Tenant Brain Federation + Isolation Proof V10 *(title queued)* |
-| **2I-LA-32** | Continuous Evidence + Audit Mesh V10 *(title queued)* |
-| **2I-LA-33** | Planetary Connector + Partner Mesh V10 *(title queued)* |
-| **2I-LA-34** | Autonomous Research + Invention Factory V10 *(title queued)* |
+| **2I-LA-31** | Global Identity + Business Trust Network V140 *(queued / may still land)* |
+| **2I-LA-32** | Global Contract + Deal Network *(queued / may still land)* |
+| **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED ENHANCEMENT** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); after LA-32 / before LA-33 |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); after LA-32A |
+| **2I-LA-34** | Business Capital + Funding Intelligence — **NEXT after LA-33** *(title queued)* |
 | **2I-LA-35** | Global Customer Success + Value Proof OS V10 *(title queued)* |
 | **2I-LA-36** | Regulatory + Compliance Nervous System V10 *(title queued)* |
 | **2I-LA-37** | Physical World + Robotics Coordination Plane V10 *(title queued)* |
@@ -5609,10 +5655,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS**; **Must PASS before LA-29 code** |
 | **2I-LA-29** | XIV 24/7 AI Organization V120 — **QUEUED DOCS** (`xiv-2i-la-29-247-ai-organization-v120.md`); **DO NOT IMPLEMENT until LA-28 PASS** |
 | **2I-LA-30** | Founder Mission Control V130 — **NEXT after LA-29** |
-| **2I-LA-31** | Global Multi-Tenant Brain Federation + Isolation Proof V10 *(title queued)* |
-| **2I-LA-32** | Continuous Evidence + Audit Mesh V10 *(title queued)* |
-| **2I-LA-33** | Planetary Connector + Partner Mesh V10 *(title queued)* |
-| **2I-LA-34** | Autonomous Research + Invention Factory V10 *(title queued)* |
+| **2I-LA-31** | Global Identity + Business Trust Network V140 *(queued / may still land)* |
+| **2I-LA-32** | Global Contract + Deal Network *(queued / may still land)* |
+| **2I-LA-32A** | Universal AI Silicon + Device Compatibility Fabric V160 — **QUEUED ENHANCEMENT** (`xiv-2i-la-32a-universal-ai-silicon-device-compatibility-fabric-v160.md`); after LA-32 / before LA-33 |
+| **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); after LA-32A |
+| **2I-LA-34** | Business Capital + Funding Intelligence — **NEXT after LA-33** *(title queued)* |
 | **2I-LA-35** | Global Customer Success + Value Proof OS V10 *(title queued)* |
 | **2I-LA-36** | Regulatory + Compliance Nervous System V10 *(title queued)* |
 | **2I-LA-37** | Physical World + Robotics Coordination Plane V10 *(title queued)* |
