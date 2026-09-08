@@ -45,7 +45,8 @@ As the XIV AI Founder, I want XIV to run Business Digital Civilization + Global 
 ## Next queue
 
 - **2I-LA-48** Global Product + Information + Technology Nervous System V580
-- **2I-LA-49…60** prepared expansion titles (as listed in architecture)
+- **2I-LA-49** Autonomous Business Research Lab V590
+- **2I-LA-50…60** prepared expansion titles (as listed in architecture)
 
 **Do not start LA-48 from this commit.**
 
