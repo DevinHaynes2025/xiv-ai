@@ -2,15 +2,15 @@
 
 Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / runtime **not started** / **DEPLOYMENT_STATE=QUEUED**
 Branch: xiv-v2 (tip-land on `xiv-v2` after LA-60V; park `cursor/queue-2i-la-60w-business-superintelligence-governance-4059`; never force-push; dual-push)
-HARD STOP: **DO NOT IMPLEMENT** until **LA-60V PASS** (and **LA-60U…60A / LA-59 PASS**). Queue **AFTER LA-60V**. Do not interrupt validated work or clobber unfinished tip-land WIP for LA-60L–60V. L4 disabled. All AUTO_* FALSE. **Do not start LA-60X.**
+HARD STOP: **DO NOT IMPLEMENT** until **LA-60V PASS** (and **LA-60U…60A / LA-59 PASS**). Queue **AFTER LA-60V**. Do not interrupt validated work or clobber unfinished tip-land WIP for LA-60L–60V. L4 disabled. All AUTO_* FALSE. **LA-60X Algorithm Foundry / Compute Fabric queued after this story; do not start LA-60Y.**
 
 **Feature flags (default OFF / FALSE):** see architecture §164; permanently FALSE: `AUTO_CONSTITUTION_CHANGE`, `AUTO_POLICY_ACTIVATION`, `AUTO_AUTHORITY_EXPANSION`, `AUTO_RIGHTS_EXPANSION`, `AUTO_HIGH_CONSEQUENCE_EXECUTION`, `AUTO_CONTRACT_SIGNING`, `AUTO_MONEY_MOVEMENT`, `AUTO_DATABASE_ADMIN`, `AUTO_CLOUD_ROOT`, `AUTO_PRODUCTION_DEPLOYMENT`, `AUTO_PRIVATE_DATA_GLOBAL_PROMOTION`, `AUTO_GUARDIAN_OVERRIDE`, `AUTO_AUDIT_DELETION`, `L4_AUTONOMY_ENABLED`.
 
 ## Prerequisite (queue ordering)
 
-Ordering: **… → LA-60U Global Industry Operating Systems V721 → LA-60V Global Business Interoperability Civilization V722 → LA-60W Business Superintelligence Governance V723 → LA-60X Global Economic Coordination + Business Opportunity Routing V724**.
+Ordering: **… → LA-60U Global Industry Operating Systems V721 → LA-60V Global Business Interoperability Civilization V722 → LA-60W Business Superintelligence Governance V723 → LA-60X Quantum-Agentic Compute Civilization + Algorithm Foundry + Computational Highway Network V724**.
 
-**Reconciliation:** Do **not** invent full 60X–61B docs now (title-only NEXT for 60X).
+**Reconciliation:** Do **not** invent full 60Y–61C docs now (title-only NEXT for 60Y).
 
 **Full contracts §§1–167:** [`docs/architecture/xiv-2i-la-60w-business-superintelligence-governance-v723.md`](../architecture/xiv-2i-la-60w-business-superintelligence-governance-v723.md).
 
@@ -49,11 +49,12 @@ As the XIV AI Founder, I want XIV to define a governed **Business Superintellige
 
 ## Next queue
 
-- **2I-LA-60X** Global Economic Coordination + Business Opportunity Routing V724
-- LA-60 series continues (pointer only; do not invent full 60X–61B docs)
+- **2I-LA-60X** Quantum-Agentic Compute Civilization + Algorithm Foundry + Computational Highway Network V724 (**QUEUED DOCS**)
+- **2I-LA-60Y** Universal Business Simulation + Planetary Enterprise Strategy Engine V725 (title only)
+- LA-60 series continues (pointer only; do not invent full 60Y–61C docs)
 - **2I-LA-61…**
 
-**Do not start LA-60X from this commit.**
+**Do not start LA-60Y from this commit.**
 
 ## Docs-only gate
 
