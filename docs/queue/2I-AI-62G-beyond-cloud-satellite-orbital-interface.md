@@ -17,9 +17,10 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62F PASS** + **2I-AI-62E PASS** + 
 **THEN:** **62H** Galaxy Federation (**NEXT** — title only)
 
 **Cross-links (do not clobber):**
-- Fuller canonical architecture §§1–62 + Security Lock + Queue + NEXT 62H + Closing Principle — [`../architecture/xiv-2i-ai-62g-beyond-cloud-satellite-gateway-orbital-interface.md`](../architecture/xiv-2i-ai-62g-beyond-cloud-satellite-gateway-orbital-interface.md)
+- Fuller canonical architecture §§1–62 + **Practical Terrestrial MVP Plan** (§§MVP 1–41) + Security Lock + Queue + NEXT 62H + Closing Principle — [`../architecture/xiv-2i-ai-62g-beyond-cloud-satellite-gateway-orbital-interface.md`](../architecture/xiv-2i-ai-62g-beyond-cloud-satellite-gateway-orbital-interface.md)
 - 62A–62F + LA-61\* — additive only; **do not overwrite**
 - Compact Architecture Overview diagram lives near top of architecture doc (after Status)
+- **Practical Terrestrial MVP Plan** inserts immediately after Compact Architecture Overview — bridge theory → demonstrable terrestrial product (**REAL control plane + SIMULATED space transport**); does **not** authorize runtime implementation or real satellite enrollment
 
 ## Founder user story
 
@@ -61,6 +62,15 @@ terrestrial default → classify → Space Workload Contract → XSG (provider-n
 - **62G CURRENT** (architecture park)
 - **62H NEXT** (Galaxy Federation — title only)
 
+
+## Practical Terrestrial MVP Plan (bridge — docs only)
+
+**Objective:** Prove Beyond-Cloud architecture on ordinary LOCAL / EDGE / CLOUD + `SIMULATED_ORBITAL` nodes before any satellite provider.
+
+**Honesty lock:** REAL XIV CONTROL PLANE + SIMULATED SPACE TRANSPORT · `simulated=true` · `XIV_SPACE_SIMULATION` does **not** authorize real providers · `REAL_SPACE_PROVIDER_AVAILABLE=FALSE` · BOUNDED_ANALYSIS only · all AUTO_* / L4 FALSE · **NEVER INFER PASS** · **do not implement** `src/xiv/runtime` from this park.
+
+**MVP §§1–41** (user story → Phase 1 stack → architecture diagram → 6 capabilities → runtime classes → constraints → DB slice → records → BOUNDED_ANALYSIS → flow → deterministic scheduler → routing example → simulation flag → digital twin / gateway / failure sim → integrity → Guardian → RLS → heartbeat → worker → agent/federation → API → dashboard / story / pathway → repo/test paths → scale 10/100/1k/100+5 → AC → perf → kill/offline/space demos → sprints 1–6 → founder demo → DoD → proves/does-not + bridge before 62H) live in the architecture doc after Compact Architecture Overview.
+
 ## Closing Principle
 
 Interface the beyond-cloud boundary; do not commandeer it. Digital twins and simulation before providers. No spacecraft command. No autonomous purchasing. SIMULATED ≠ PRODUCTION.
@@ -70,3 +80,4 @@ Interface the beyond-cloud boundary; do not commandeer it. Digital twins and sim
 - Park-only / after 62F / Deployment Gate current / tip-landed=NO
 - Unique 62G paths; coordinate with 62F `bc-8bfb2066` / `bc-54fcb9c3`
 - **No runtime code executed**; **no real satellite claims**; no provider enrollment; no VERIFY PASS
+- **Practical Terrestrial MVP Plan** parked as docs bridge only; detailed §§1–62 space architecture retained; runtime **NOT** started

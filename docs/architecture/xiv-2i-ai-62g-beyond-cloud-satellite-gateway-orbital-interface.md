@@ -71,6 +71,777 @@
 
 ---
 
+## Practical Terrestrial MVP Plan
+
+**Status remains:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED** · **PARK ONLY** · docs bridge only · **do NOT implement** `src/xiv/runtime` or `src/xiv/space` from this park · **no real satellite/provider enrollment** · **tip-landed=NO** · **L4_AUTONOMY_ENABLED=FALSE** · all `AUTO_*=FALSE` · **NEVER INFER PASS** · **simulated ≠ real**
+
+**Bridge role:** This section converts the long-range Beyond-Cloud / Satellite / Orbital architecture (§§1–62 below) into something XIV can **build and demonstrate now** on ordinary terrestrial infrastructure — while keeping detailed space architecture intact for later provider gates.
+
+### MVP Objective
+
+Build the first working **terrestrial** version of the XIV Beyond-Cloud architecture using ordinary laptops, mobile devices, local servers, edge nodes, cloud infrastructure, and **simulated** orbital nodes.
+
+The MVP proves the architecture **before** any satellite provider is required.
+
+```
+REAL DEVICES
+     ↓
+REAL XIV API
+     ↓
+REAL GUARDIAN
+     ↓
+REAL WORKLOAD ROUTER
+     ↓
+REAL EDGE / CLOUD
+     ↓
+SIMULATED SPACE GATEWAY
+     ↓
+SIMULATED ORBITAL NODE
+     ↓
+REAL RESULT
+     ↓
+REAL AUDIT + PROVENANCE
+```
+
+**Critical distinction (permanent for this MVP):**
+
+| Plane | Honesty |
+|-------|---------|
+| **REAL XIV CONTROL PLANE** | API, Guardian, scheduler, registry, RLS, audit — real product surface |
+| **SIMULATED SPACE TRANSPORT** | Gateway + orbital nodes are terrestrial containers under `XIV_SPACE_SIMULATION` — **not** satellites |
+
+This yields a practical product instead of waiting for orbital infrastructure. **SIMULATED ≠ PRODUCTION.** **Never invent PASS.**
+
+### 1. MVP User Story
+
+As an XIV administrator, I want to submit an AI workload from a mobile, desktop, or web client and have XIV securely determine whether it should execute on an authorized **local**, **edge**, **cloud**, or **simulated orbital** runtime so I can prove XIV's distributed intelligence architecture using infrastructure available today.
+
+### 2. What We Build Now (Phase 1)
+
+**Phase 1 stack (build):**
+
+- Web Application
+- Mobile Application
+- Laptop / Workstation
+- Local Edge Worker
+- Cloud Worker
+- PostgreSQL / Supabase
+- Agent Registry
+- Guardian
+- Workload Scheduler
+- Runtime Registry
+- Evidence System
+- Space Digital Twin
+
+**Do not wait for (out of scope for MVP proof):**
+
+- satellite ownership
+- ground stations
+- orbital servers
+- launches
+- spacecraft
+
+### 3. Terrestrial MVP Architecture
+
+```
+                    XIV MOBILE / WEB
+                           │
+                           ▼
+                     XIV API GATEWAY
+                           │
+                           ▼
+                        GUARDIAN
+                           │
+                           ▼
+                    WORKLOAD SERVICE
+                           │
+                           ▼
+                    XIV 62E SCHEDULER
+                           │
+          ┌────────────────┼─────────────────┐
+          │                │                 │
+          ▼                ▼                 ▼
+      LOCAL NODE        EDGE NODE        CLOUD NODE
+          │                │                 │
+          └────────────────┼─────────────────┘
+                           │
+                           ▼
+                    RUNTIME REGISTRY
+                           │
+                           ▼
+                 SPACE DIGITAL TWIN
+                           │
+                           ▼
+                 SIMULATED GATEWAY
+                           │
+                           ▼
+                 SIMULATED ORBITAL
+                        RUNTIME
+```
+
+Diagram ≠ LIVE ≠ PASS. Simulated path only when `XIV_SPACE_SIMULATION=true` in appropriate non-production environments.
+
+### 4. MVP Boundary (six capabilities)
+
+The first MVP should prove **exactly** these six:
+
+1. **REGISTER A RUNTIME**
+2. **SUBMIT A WORKLOAD**
+3. **AUTHORIZE IT**
+4. **ROUTE IT**
+5. **EXECUTE IT**
+6. **PROVE WHAT HAPPENED**
+
+Everything else builds on these six.
+
+### 5. Runtime Classes
+
+Start with four runtime classes:
+
+| Runtime | Description | `runtime_type` |
+|---------|-------------|----------------|
+| **A — Local** | Developer laptop/workstation | `LOCAL` |
+| **B — Edge** | Separate machine/container representing a business edge node | `EDGE` |
+| **C — Cloud** | Authorized cloud-hosted worker | `CLOUD` |
+| **D — Simulated Orbital** | Normal terrestrial container deliberately configured to behave like a constrained orbital node | `SIMULATED_ORBITAL` |
+
+Runtime D is **still physically terrestrial**. Label and record `simulated=true`.
+
+### 6. Simulated Orbital Constraints
+
+Make Runtime D behave differently (example profile — configurable, not universal constants):
+
+| Constraint | Example |
+|------------|---------|
+| `latency` | `800ms` |
+| `bandwidth` | `limited` |
+| `intermittent_connectivity` | `true` |
+| `compute_capacity` | `bounded` |
+| `storage_capacity` | `bounded` |
+| `cost_multiplier` | `simulated` |
+| `availability_window` | `simulated` |
+
+This tests whether the architecture handles constrained infrastructure — not real orbital physics claims.
+
+### 7. First Database Slice (minimal)
+
+Do **not** implement every 62G space table immediately. Start with:
+
+- `xiv_runtime_nodes`
+- `xiv_runtime_capabilities`
+- `xiv_runtime_attestations`
+- `xiv_workloads`
+- `xiv_workload_assignments`
+- `xiv_workload_results`
+- `xiv_resource_budgets`
+- `xiv_security_events`
+- `xiv_audit_events`
+
+Add space-specific tables (§40 schema slice) **after** this foundation works. Documentation here **does not authorize migration**.
+
+### 8. Runtime Node Record
+
+**Minimum fields:**
+
+- `runtime_id`
+- `organization_id` / `universe_id`
+- `runtime_type`
+- `name`
+- `capabilities`
+- `status`
+- `attestation_state`
+- `classification_ceiling`
+- `cpu_capacity` / `memory_capacity` / `gpu_capacity`
+- `region`
+- **`simulated`**
+- `created_at` / `last_seen_at` / `revoked_at`
+
+**Critical:** `simulated=true` for **every** simulated orbital runtime.
+
+### 9. Workload Record
+
+**Minimum fields:**
+
+- `workload_id`
+- `organization_id` / `universe_id`
+- `requester_id` / `agent_id`
+- `workload_type`
+- `required_capabilities`
+- `classification`
+- `priority`
+- `budget`
+- `status`
+- `created_at` / `expires_at`
+
+### 10. Assignment Record + storytelling differentiation
+
+Record **why** the scheduler selected a runtime:
+
+- `assignment_id`
+- `workload_id` / `runtime_id`
+- `scheduler_decision_id`
+- `security_decision`
+- `capability_score` / `resource_score` / `latency_score` / `cost_score`
+- `assigned_at`
+
+Instead of only “Task completed,” XIV can explain:
+
+> Task 841 was routed to Edge Node 04 because it satisfied the security classification, had sufficient compute capacity, and was estimated to complete 37% faster than the eligible cloud alternative.
+
+That storytelling is part of XIV differentiation.
+
+### 11. First Workload Type — `BOUNDED_ANALYSIS` only
+
+Do **not** begin with arbitrary autonomous tools.
+
+**Use:** `BOUNDED_ANALYSIS`
+
+| Aspect | Contract |
+|--------|----------|
+| INPUT | small approved dataset |
+| TASK | summarize / classify / analyze |
+| OUTPUT | structured JSON result |
+
+**Forbidden in MVP workloads:** external purchase, email sending, financial transaction, production mutation, account creation.
+
+### 12. Workload Flow
+
+```
+USER
+ ↓
+SUBMIT ANALYSIS
+ ↓
+AUTHENTICATE
+ ↓
+ORGANIZATION
+ ↓
+UNIVERSE
+ ↓
+CLASSIFICATION
+ ↓
+GUARDIAN
+ ↓
+RESOURCE BUDGET
+ ↓
+CAPABILITY DISCOVERY
+ ↓
+RUNTIME CANDIDATES
+ ↓
+SCHEDULER
+ ↓
+ASSIGNMENT
+ ↓
+EXECUTION
+ ↓
+RESULT VALIDATION
+ ↓
+AUDIT
+ ↓
+USER
+```
+
+### 13. Scheduler MVP (deterministic)
+
+The scheduler does **not** need advanced AI initially. Start **deterministic**:
+
+**FILTER (hard constraints):**
+
+- correct tenant
+- correct Universe
+- active runtime
+- valid attestation
+- classification permitted
+- capability available
+- budget available
+
+**THEN RANK:**
+
+- security
+- availability
+- latency
+- cost
+- load
+
+Security filters are hard constraints. Ranking happens **only after** eligibility.
+
+### 14. Example Routing
+
+**Registered:**
+
+| Node | Caps | Type |
+|------|------|------|
+| Laptop | CPU | `LOCAL` |
+| Edge-01 | CPU + GPU | `EDGE` |
+| Cloud-01 | CPU + GPU | `CLOUD` |
+| Orbit-Sim-01 | CPU | `SIMULATED_ORBITAL` |
+
+**Request:** `requires=CPU`, `classification=INTERNAL`, `max_latency=2s`
+
+XIV evaluates all four. Example outcome:
+
+- **SELECTED:** Edge-01
+- **REJECTED:** Laptop → overloaded; Cloud-01 → higher estimated cost; Orbit-Sim-01 → simulated latency exceeds target
+
+Immediately demonstrable. Example ≠ measured PASS.
+
+### 15. `XIV_SPACE_SIMULATION` flag
+
+Add: `XIV_SPACE_SIMULATION=true` — **only** in appropriate development/test environments.
+
+| Flag | Effect |
+|------|--------|
+| enabled | `SIMULATED_ORBITAL` nodes become eligible |
+| disabled | `SIMULATED_ORBITAL` nodes **cannot** receive workloads |
+
+This setting **does not** authorize real satellite providers. `REAL_SPACE_PROVIDER_AVAILABLE` remains **FALSE**.
+
+### 16. Digital Twin Service
+
+Create (conceptual / future path — **not implemented here**): `SpaceDigitalTwinService`
+
+**Responsibilities:** simulate latency, bandwidth, availability, packet loss, node failure, cost, orbital processing delay.
+
+**No physical satellite API.**
+
+### 17. Gateway Simulator
+
+Create (conceptual): `SimulatedSpaceGateway`
+
+```
+XIV WORKLOAD
+     ↓
+SERIALIZE
+     ↓
+SIGN
+     ↓
+SIMULATED UPLINK DELAY
+     ↓
+ORBITAL SIMULATOR
+     ↓
+PROCESS
+     ↓
+SIMULATED DOWNLINK DELAY
+     ↓
+VERIFY
+     ↓
+RESULT
+```
+
+### 18. Failure Simulation
+
+The demo should intentionally support:
+
+- `DROP LINK`
+- `DELAY LINK`
+- `FAIL NODE`
+- `REVOKE NODE`
+- `EXPIRE SESSION`
+- `EXHAUST BUDGET`
+- `CORRUPT RESULT`
+
+MVP demonstrates resilience, not merely happy-path execution.
+
+### 19. Result Integrity
+
+Every result contains:
+
+- `workload_id` / `runtime_id`
+- `result_hash`
+- `started_at` / `completed_at`
+- `runtime_type`
+- **`simulated`**
+- `resource_usage`
+- `status`
+
+XIV validates the result **before** accepting it.
+
+### 20. MVP Guardian Gate
+
+Before assignment:
+
+```
+GUARDIAN
+   ↓
+TENANT?
+   ↓
+UNIVERSE?
+   ↓
+CLASSIFICATION?
+   ↓
+RUNTIME TRUST?
+   ↓
+CAPABILITY?
+   ↓
+BUDGET?
+```
+
+Failure anywhere → **DENY**.
+
+### 21. RLS Requirements
+
+Every tenant-bearing MVP table receives RLS.
+
+**Required negative tests:**
+
+| Attempt | Expected |
+|---------|----------|
+| Tenant A → Tenant B runtime | DENY |
+| Universe A → Universe B workload | DENY |
+| anonymous → runtime registry | DENY |
+| revoked runtime → workload | DENY |
+| forged identity claims without DB grant | DENY |
+
+**Target:** unauthorized success = **0** (engineering target — not claimed PASS).
+
+### 22. Runtime Heartbeat
+
+Each runtime sends: `runtime_id`, `timestamp`, `status`, `available_cpu`, `available_memory`, `available_gpu`, `queue_depth`.
+
+Scheduler must **not** assign new work to stale runtimes.
+
+**Example policy:** heartbeat stale → `DEGRADED`; heartbeat expired → `UNAVAILABLE`.
+
+Exact timing is configured and tested — not hard-coded as a universal constant.
+
+### 23. Runtime Worker loop
+
+Each worker needs only a small execution loop:
+
+```
+REGISTER
+ ↓
+HEARTBEAT
+ ↓
+POLL / RECEIVE WORK
+ ↓
+VALIDATE
+ ↓
+EXECUTE BOUNDED TASK
+ ↓
+RETURN RESULT
+ ↓
+WAIT
+```
+
+This becomes the seed of XIV's distributed runtime network — **document path only** in this park.
+
+### 24. Agent Integration (intelligence ≠ infrastructure authority)
+
+62E agents must **not** directly control workers:
+
+```
+AGENT
+ ↓
+TASK
+ ↓
+SCHEDULER
+ ↓
+RUNTIME
+```
+
+Preserves separation between **INTELLIGENCE** and **INFRASTRUCTURE AUTHORITY**.
+
+### 25. Federation Integration preview
+
+62F can later request:
+
+```
+Universe A
+    ↓
+Federation
+    ↓
+Universe B workload
+    ↓
+Universe B scheduler
+    ↓
+Universe B runtime
+```
+
+Universe A **never** receives direct control over Universe B infrastructure.
+
+### 26. MVP API
+
+Initial contracts (names ≠ LIVE capabilities):
+
+- `POST /runtime/register`
+- `POST /runtime/heartbeat`
+- `GET /runtime/eligible`
+- `POST /workloads`
+- `GET /workloads/:id`
+- `POST /workloads/:id/cancel`
+- `GET /workloads/:id/result`
+- `GET /workloads/:id/lineage`
+
+Internal authorization remains below the route layer.
+
+### 27. Admin Dashboard — Runtime Command
+
+Build one practical infrastructure screen: **XIV RUNTIME COMMAND**
+
+Show measured counts only when measured:
+
+- ACTIVE RUNTIMES by class: LOCAL / EDGE / CLOUD / SIMULATED ORBITAL
+- QUEUED / ACTIVE / FAILED TASKS
+- AVERAGE LATENCY / COMPUTE UTILIZATION / ESTIMATED COST / SECURITY DENIALS
+
+Only **measured** values should be displayed. Never invent PASS metrics.
+
+### 28. Workload Story View
+
+Selecting a workload shows the journey, e.g.:
+
+```
+REQUESTED                 09:41:02
+GUARDIAN APPROVED         09:41:02
+4 RUNTIMES DISCOVERED
+2 ELIGIBLE
+EDGE-04 SELECTED
+EXECUTION STARTED         09:41:03
+EXECUTION COMPLETE        09:41:05
+RESULT VERIFIED
+TOTAL                     3.1 seconds
+```
+
+Supports XIV's “data tells a story” philosophy.
+
+### 29. Neural Pathway Visualization (`SIMULATION` label)
+
+Use the 62E visualization model:
+
+```
+HUMAN → AGENT → TASK → GUARDIAN → SCHEDULER → EDGE NODE → RESULT
+```
+
+For simulation:
+
+```
+SCHEDULER → SPACE GATEWAY → ORBIT-SIM-03
+```
+
+**Simulated nodes must visibly say `SIMULATION`.** Never present as real satellite infrastructure.
+
+### 30. Practical Repository Slice (paths only — do not implement in this park)
+
+Map into existing repository conventions (conceptual future layout):
+
+```
+src/xiv/runtime/
+  registry.ts
+  heartbeat.ts
+  router.ts
+  worker.ts
+  workload.ts
+  result-validator.ts
+  guardian-runtime-policy.ts
+
+src/xiv/space/simulation/
+  digital-twin.ts
+  simulated-gateway.ts
+  simulated-orbital-node.ts
+  network-profile.ts
+  failure-injection.ts
+```
+
+**This park does not create these files.** Paths are planning contracts only.
+
+### 31. Test Slice (paths only)
+
+```
+tests/xiv/runtime/
+  registry.test.ts
+  router.test.ts
+  heartbeat.test.ts
+  workload.test.ts
+  result-validator.test.ts
+  runtime-security.test.ts
+
+tests/xiv/space/
+  digital-twin.test.ts
+  simulated-gateway.test.ts
+  orbital-node.test.ts
+  space-failure.test.ts
+  space-security.test.ts
+```
+
+Not executed / not claimed PASS from this documentation park.
+
+### 32. First Practical Scale Target
+
+Do **not** start at 1,000 orbital nodes.
+
+**MVP target (engineering targets — not claims):**
+
+| Target | Value |
+|--------|-------|
+| runtime nodes | **10** |
+| logical agents | **100** |
+| bounded workload requests | **1,000** |
+| concurrent bounded tasks | **100** |
+| runtime classes | LOCAL + EDGE + CLOUD |
+| simulated orbital nodes | **+5** |
+
+Expand only after evidence.
+
+### 33. MVP Acceptance Criteria
+
+PASS **requires** (when later evidenced — **not claimed now**):
+
+| Criterion | Target |
+|-----------|--------|
+| runtime registration | 100% |
+| runtime identity attribution | 100% |
+| workload lineage | 100% |
+| budget attachment | 100% |
+| result integrity validation | 100% |
+| cross-tenant execution | **0** |
+| cross-Universe execution | **0** |
+| Guardian bypass | **0** |
+| revoked-runtime new work | **0** |
+| unattested protected work | **0** |
+| simulated node shown as real | **0** |
+
+### 34. Performance Baseline
+
+Initial **development targets** (not current measured capability):
+
+| Metric | Target |
+|--------|--------|
+| runtime discovery p95 | ≤ 250 ms |
+| routing decision p95 | ≤ 500 ms |
+| assignment p95 | ≤ 1 second |
+
+Execution/model latency remains separately measured.
+
+### 35. Kill-Switch Demonstration
+
+During live demo:
+
+```
+TASKS RUNNING
+      ↓
+ADMIN REVOKES EDGE-04
+      ↓
+EDGE-04 STOPS RECEIVING NEW WORK
+      ↓
+ELIGIBLE NEW TASKS ROUTE ELSEWHERE
+      ↓
+AUDIT RECORD CREATED
+```
+
+**Target:** protected new work after effective revocation = **0**.
+
+### 36. Offline Demonstration
+
+Disconnect an edge worker:
+
+```
+EDGE-02 AVAILABLE → HEARTBEAT LOST → DEGRADED → UNAVAILABLE
+```
+
+Scheduler stops assigning new work. Reconnect requires:
+
+```
+REAUTHENTICATE → ATTEST → AVAILABLE
+```
+
+No automatic trust restoration without required validation.
+
+### 37. Space Demonstration
+
+Select **SIMULATE ORBITAL ROUTING**. XIV shows:
+
+```
+TASK → SPACE ELIGIBILITY → GUARDIAN → SIMULATED GATEWAY
+  → 800ms UPLINK → ORBIT-SIM-01 → PROCESSING
+  → 800ms DOWNLINK → RESULT VERIFIED
+```
+
+Makes the future concept understandable **without** misrepresenting it as real satellite infrastructure. Always label **SIMULATION**.
+
+### 38. MVP Build Sequence (Sprint 1–6)
+
+| Sprint | Build | Result |
+|--------|-------|--------|
+| **1** | runtime schema, registry, identity, heartbeat, RLS | XIV knows which compute nodes exist |
+| **2** | workload contract, Guardian runtime policy, budgets, deterministic router | XIV can decide where work is allowed to run |
+| **3** | worker, assignment, execution, result validation, lineage | XIV can execute bounded distributed workloads |
+| **4** | dashboard, workload story, kill switch, failure handling | Humans can observe and control the network |
+| **5** | Space Digital Twin, simulated gateway, simulated orbital nodes, network conditions, failure injection | Beyond-cloud routing without real space infrastructure |
+| **6** | security suite, scale harness, 100 concurrent / 1,000 workload tests, evidence manifest | MVP becomes evidence-backed rather than demo-only |
+
+Sprints are **queued plan** — not started by this park commit.
+
+### 39. MVP Demonstration Story (founder demo)
+
+```
+FOUNDER LOGS INTO XIV
+        ↓
+OPENS RUNTIME COMMAND
+        ↓
+SEES LOCAL + EDGE + CLOUD + SIMULATED SPACE
+        ↓
+SUBMITS BUSINESS ANALYSIS TASK
+        ↓
+AGENT CREATES BOUNDED WORKLOAD
+        ↓
+GUARDIAN VALIDATES
+        ↓
+SCHEDULER COMPARES AVAILABLE INFRASTRUCTURE
+        ↓
+EDGE NODE WINS
+        ↓
+WORK EXECUTES → RESULT RETURNS
+        ↓
+XIV EXPLAINS WHY EDGE WAS SELECTED
+        ↓
+FOUNDER REVOKES EDGE → NEW TASK ROUTES TO CLOUD
+        ↓
+FOUNDER ENABLES SPACE SIMULATION
+        ↓
+NEXT ELIGIBLE TEST ROUTES THROUGH SIMULATED ORBITAL NODE
+        ↓
+XIV DISPLAYS COMPLETE INFORMATION JOURNEY
+```
+
+Tangible XIV product **today** — with honest simulation labels.
+
+### 40. MVP Definition of Done
+
+The terrestrial 62G MVP is complete when a user can:
+
+1. register governed compute nodes,
+2. see their real availability,
+3. submit bounded AI workloads,
+4. have Guardian authorize them,
+5. have XIV select an eligible runtime,
+6. execute work across local/edge/cloud infrastructure,
+7. simulate the same workload through an orbital topology,
+8. revoke infrastructure immediately,
+9. see failures and rerouting,
+10. reconstruct the complete journey from human request to result.
+
+**Not claimed by this documentation park.**
+
+### 41. What This MVP Proves (and does not) — bridge before 62H
+
+**It does NOT prove:**
+
+- XIV owns satellites
+- XIV operates orbital computers
+- XIV has satellite-provider access
+
+**It proves something more useful at this stage:**
+
+> XIV HAS A GOVERNED DISTRIBUTED INTELLIGENCE CONTROL PLANE
+
+capable of treating **LOCAL / EDGE / CLOUD / FUTURE SPACE** as runtime classes behind the same security, scheduling, provenance, and human-governance architecture.
+
+That is the terrestrial foundation from which a future real provider integration can be added without redesigning the XIV brain.
+
+**Bridge before 62H:** XIV should prove the control plane on terrestrial infrastructure first, then use the Space Digital Twin to prove the same architecture can tolerate future high-latency and intermittent runtime classes — **before** Galaxy Federation depth.
+
+---
+
 ## Sequencing (hard)
 
 | Story | Title | Role |
