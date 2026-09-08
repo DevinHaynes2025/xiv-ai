@@ -159,7 +159,11 @@ export type OsPath =
   | 'create-workspace'
   | 'neural-fabric'
   | 'experience-fabric'
-  | 'deployment-readiness';
+  | 'deployment-readiness'
+  | 'sync-engine'
+  | 'db-health'
+  | 'pocket-brain-v2'
+  | 'os-data-fabric';
 
 export type OsEmphasis = 'operator' | 'chair';
 

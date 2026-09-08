@@ -160,6 +160,10 @@ const hidden = [
   'neural-fabric',
   'experience-fabric',
   'deployment-readiness',
+  'sync-engine',
+  'db-health',
+  'pocket-brain-v2',
+  'os-data-fabric',
 ];
 
 export default function ExecutiveLayout() {

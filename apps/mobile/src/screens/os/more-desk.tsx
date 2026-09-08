@@ -186,6 +186,10 @@ export function MoreDesk() {
       <Chip label="Neural Fabric" onPress={() => go('neural-fabric')} />
       <Chip label="Experience Fabric" onPress={() => go('experience-fabric')} />
       <Chip label="Deployment Readiness" onPress={() => go('deployment-readiness')} />
+      <Chip label="Sync Engine" onPress={() => go('sync-engine')} />
+      <Chip label="Database Health" onPress={() => go('db-health')} />
+      <Chip label="Pocket Brain V2" onPress={() => go('pocket-brain-v2')} />
+      <Chip label="OS Data Fabric" onPress={() => go('os-data-fabric')} />
     </ExperienceScreen>
   );
 }

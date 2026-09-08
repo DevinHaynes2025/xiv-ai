@@ -1149,6 +1149,52 @@ export function WorkspaceDeploymentReadiness() {
   );
 }
 
+export function WorkspaceSyncEngine() {
+  return (
+    <PremiumDesk title="Sync Engine" subtitle="Offline queue foundation. Not a production sync engine.">
+      <SyncIndicator />
+      <PendingChangesBadge count={0} />
+      <XivStatusPill label="Conflicts cannot escalate privilege" tone="warning" />
+      <XivListRow title="Reconnect" body="Queued actions still require server authorization. Secrets are never queued." />
+      <XivListRow title="CLOUD_ONLY" body="CLOUD_ONLY records cannot enter the offline queue or Pocket Brain." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDbHealth() {
+  return (
+    <PremiumDesk title="Database Health" subtitle="Provider-neutral fabric. Adapter presence is not LIVE proof.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Access path" body="Agent → Guardian → Policy → Classification → Purpose → Adapter → Audit." />
+      <XivListRow title="Credentials" body="Agents never receive raw DB credentials. MongoDB stays NOT_CONFIGURED until proven." />
+      <XivText variant="micro" dim>
+        More connectivity does not mean more authority. Supabase capabilities stay NOT_CONFIGURED unless proven.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
+export function WorkspacePocketBrainV2() {
+  return (
+    <PremiumDesk title="Pocket Brain V2" subtitle="Scoped encrypted cache. Not a copy of Global Brain.">
+      <XivStatusPill label="CLOUD_ONLY never cached" tone="warning" />
+      <OfflineAvailabilityBadge policy="CLOUD_ONLY" />
+      <XivListRow title="Offline agents" body="Cannot read uncached private data or bypass server authority on reconnect." />
+      <XivListRow title="Knowledge" body="Private pocket knowledge never auto-enters Global Brain." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceOsDataFabric() {
+  return (
+    <PremiumDesk title="OS Data Fabric V2" subtitle="Federated adapters by purpose. Security Roots V4 stay bound.">
+      <XivStatusPill label="Production federation: not live" tone="warning" />
+      <XivListRow title="Providers" body="SUPABASE_POSTGRES · POSTGRES · MONGODB · GRAPH · VECTOR · SEARCH · OBJECT · STREAM · TIME_SERIES · CACHE · LAKEHOUSE · ARCHIVE" />
+      <XivListRow title="Roots" body="Identity, device, tenant, universe, data, purpose, classification, guardian, and audit. Connectivity is not authority." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

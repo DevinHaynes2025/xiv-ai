@@ -358,6 +358,18 @@ export {
   trillionsOfObjectsClaimed,
 } from './neural';
 export {
+  agentReceivesRawDbCredential as osfundAgentReceivesRawDbCredential,
+  moreConnectivityMeansMoreAuthority,
+  openAgentOrchestratorV4,
+  openConnectorFabric,
+  openDatabaseFabricV2,
+  openPocketBrainV2,
+  openSupabaseFabric,
+  openSyncEngine,
+  privateKnowledgeAutoEntersGlobal,
+  routeAgentDataAccess,
+} from './osfund';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,
