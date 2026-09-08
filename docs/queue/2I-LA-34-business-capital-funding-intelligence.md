@@ -8,9 +8,9 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-33 PASS**. Queue **AFTER LA-33**; 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-33** (Global Business Opportunity Exchange) must PASS before LA-34 code. Ordering: **LA-32 Global Contract + Deal Network → LA-32A Universal AI Silicon (if present) → LA-33 Global Business Opportunity Exchange → LA-34 Business Capital + Funding Intelligence V180 → LA-35 Global Supplier + Procurement Exchange → LA-36…42**.
+**2I-LA-33** (Global Business Opportunity Exchange) must PASS before LA-34 code. Ordering: **LA-32 Global Contract + Deal Network → LA-32A Universal AI Silicon (if present) → LA-33 Global Business Opportunity Exchange → LA-34 Business Capital + Funding Intelligence V180 → LA-35 Universal Business Fabric V200 → LA-35A → LA-36…47**.
 
-**Tip note:** Fetch tip first (LA-27…LA-33 / LA-32A may still land). Park on `cursor/queue-2i-la-34-*-4059` if needed; **rebase onto tip when LA-33 is present**. Never force-push / never `main`. Master queue: **LA-33 → LA-34 → LA-35 → LA-36…**.
+**Tip note:** Fetch tip first (LA-27…LA-33 / LA-32A may still land). Park on `cursor/queue-2i-la-34-*-4059` if needed; **rebase onto tip when LA-33 is present**. Never force-push / never `main`. Master queue: **LA-33 → LA-34 → LA-35 → LA-35A → LA-36…**.
 
 **Full contracts (architecture §§1–120 + permanent rules):** [`docs/architecture/xiv-2i-la-34-business-capital-funding-intelligence-v180.md`](../architecture/xiv-2i-la-34-business-capital-funding-intelligence-v180.md).
 
@@ -58,13 +58,11 @@ As the XIV AI Founder, I want XIV to run Business Capital + Funding Intelligence
 
 ## Next queue
 
-- **2I-LA-35** Global Supplier + Procurement Exchange
-- **2I-LA-36** Company-to-Company Agent Network V190
-- **2I-LA-37** Global Business Knowledge Exchange V200
-- **2I-LA-38** Business Simulation Supercomputer V210
-- **2I-LA-39** Global Economic + Trade Intelligence V220
-- **2I-LA-40** Self-Improving Business OS Evaluation System V230
-- **2I-LA-41…42** prepared expansion titles (refine when authored)
+- **2I-LA-35** Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 (supersedes/expands earlier supplier-only title; supplier/procurement retained)
+- **2I-LA-35A** Zero-Trust Security + Agent Defense Fabric V210
+- **2I-LA-36** Company-to-Company Agent Network V220
+- **2I-LA-37** Global Business Knowledge Exchange
+- **2I-LA-38…47** prepared expansion titles (refine when authored)
 
 ## Docs-only gate
 

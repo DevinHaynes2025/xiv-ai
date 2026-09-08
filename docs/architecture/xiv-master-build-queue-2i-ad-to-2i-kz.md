@@ -3617,8 +3617,9 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 | **2I-LA-33** | Global Business Opportunity Exchange V170 *(commercial; may still be mid-flight)* |
 | **2I-LA-34** | Business Capital + Funding Intelligence V180 — **must PASS before LA-35 code** |
 | **2I-LA-35** | **Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200** — **QUEUED DOCS** (supersedes/expands earlier supplier-only title; supplier/procurement retained) |
-| **2I-LA-36** | Company-to-Company Agent Network — **NEXT after LA-35** |
-| **2I-LA-37…45** | Prepared expansion titles (refine when authored) |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (insert after LA-35 / before LA-36) |
+| **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (after LA-35A) |
+| **2I-LA-37…47** | Prepared expansion titles (refine when authored) |
 
 Historical Founder MC title-only placeholders (superseded where commercial docs exist): Founder Private Universe Deep Isolation Fabric; CEO Decision Center Evidence Runtime; Executive Council Multi-Company Governance; Ownership Cap-Table Truth Ledger; Personal↔Corporate Finance Firewall Runtime; … through Founder Mission Control Verification + Continuous Assurance — retain as non-authoritative backlog ideas only.
 
@@ -3708,7 +3709,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **HARD STOP — no LA-33 runtime.**
 
-**NEXT after LA-33:** **2I-LA-34** Business Capital + Funding Intelligence V180 → **LA-35** Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 → **LA-36…45**.
+**NEXT after LA-33:** **2I-LA-34** Business Capital + Funding Intelligence V180 → **LA-35** Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 → **LA-35A** → **LA-36…47**.
 
 
 ---
@@ -3717,7 +3718,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–120 + permanent rules: [`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`](./xiv-2i-la-34-business-capital-funding-intelligence-v180.md) (+ founder summary [`../queue/2I-LA-34-business-capital-funding-intelligence.md`](../queue/2I-LA-34-business-capital-funding-intelligence.md)).
 
-**DO NOT IMPLEMENT** until **LA-33 Global Business Opportunity Exchange PASS**. Ordering lock: **LA-32 Global Contract + Deal Network → LA-32A Universal AI Silicon (if present) → LA-33 Global Business Opportunity Exchange → LA-34 Business Capital + Funding Intelligence V180 → LA-35 Global Supplier + Procurement Exchange → LA-36…42**. Queue **AFTER LA-33**; do not interrupt LA-27…LA-33 / LA-32A mid-flight or validated / deployment-critical work. Tip may still race predecessors — park on `cursor/queue-2i-la-34-*-4059`; rebase onto tip when LA-33 present. Never force-push / never `main`.
+**DO NOT IMPLEMENT** until **LA-33 Global Business Opportunity Exchange PASS**. Ordering lock: **LA-32 Global Contract + Deal Network → LA-32A Universal AI Silicon (if present) → LA-33 Global Business Opportunity Exchange → LA-34 Business Capital + Funding Intelligence V180 → LA-35 Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 → LA-35A Zero-Trust Security + Agent Defense Fabric V210 → LA-36 Company-to-Company Agent Network V220 → LA-37…47**. Queue **AFTER LA-33**; do not interrupt LA-27…LA-33 / LA-32A mid-flight or validated / deployment-critical work. Tip may still race predecessors — park on `cursor/queue-2i-la-34-*-4059`; rebase onto tip when LA-33 present. Never force-push / never `main`.
 
 **Critical rules (permanent):** CAPITAL ≠ SOLUTION; research ≠ advice; MATCH ≠ eligibility ≠ approval; TERMSHEET ≠ funding; CONTRACT ≠ settlement; FORECAST ≠ cash; dilution/equity/debt/capital-structure sim ≠ legal cap table; FUNDING HELP ≠ equity; SIGNUP ≠ equity/royalty; customer ≠ XIV ≠ Founder money; personal ≠ corporate ≠ customer; AI CFO ≠ borrow/sign; AI ≠ broker; disclaimer ≠ compliance; DISCOVERED ≠ CONNECTED ≠ APPROVED ≠ OFFER; grant hit ≠ qual ≠ award; investor discovered ≠ solicitation/interest/sale; **`TRANSACTIONAL_FUNDING_ENABLED=FALSE`**; RegulatedActivityGate required; bank gateway via LA-16 with no raw credentials; connectors NOT_CONFIGURED; UNKNOWN valid; never infer PASS; L4 DISABLED.
 
@@ -3729,7 +3730,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **LA-16 / LA-22B ≠ LA-34 V180 depth.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-34 runtime.**
 
-**NEXT after LA-34:** **2I-LA-35** Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 → **LA-36** Company-to-Company Agent Network → **LA-37…45**.
+**NEXT after LA-34:** **2I-LA-35** Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 → **LA-35A** Zero-Trust Security + Agent Defense Fabric V210 → **LA-36** Company-to-Company Agent Network V220 → **LA-37…47**.
 
 ---
 
@@ -3747,7 +3748,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Release guard:** Universal Fabric does **not** block first canary. **Do not block canary on 1M APIs / billion-record / universal warehouse / robotics coverage.** Prioritize honesty dictionary, Permission Ledger stubs, contradiction preservation, flag defaults FALSE, NOT_CONFIGURED connectors.
 
-**Includes (document only):** Business Solution Graph; Universal Solution Registry; API Registry + discovery agents (lawful sources only; no secret collection); Software/Plugin (LA-27); Tool Foundry; Bundle Factory (startup/SMB/enterprise/industry); Business Hospital; Data Federation (LA-22) + Control Tower + Client Permission Ledger + Data Rights; Data Story Engine; Visual Analytics + Vision Gateway (≠ surveillance); Article Factory; Agentic Problem Solver; Agent Meetings/Debate/Debug/QA (LA-23); Ethical Execution + Guardian; Warehouse Technology V10 + Digital Twin + mobile/edge + agents + inventory contradiction rules; Robotics/WMS/ERP/TMS NOT_CONFIGURED; Supplier Graph + Procurement Exchange (original scope preserved); Infrastructure Twin + compute (LA-32A); Innovation/Story Factory; Client Transparency Center; Founder Mission Control; DB/RLS; tests; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-36…45.
+**Includes (document only):** Business Solution Graph; Universal Solution Registry; API Registry + discovery agents (lawful sources only; no secret collection); Software/Plugin (LA-27); Tool Foundry; Bundle Factory (startup/SMB/enterprise/industry); Business Hospital; Data Federation (LA-22) + Control Tower + Client Permission Ledger + Data Rights; Data Story Engine; Visual Analytics + Vision Gateway (≠ surveillance); Article Factory; Agentic Problem Solver; Agent Meetings/Debate/Debug/QA (LA-23); Ethical Execution + Guardian; Warehouse Technology V10 + Digital Twin + mobile/edge + agents + inventory contradiction rules; Robotics/WMS/ERP/TMS NOT_CONFIGURED; Supplier Graph + Procurement Exchange (original scope preserved); Infrastructure Twin + compute (LA-32A); Innovation/Story Factory; Client Transparency Center; Founder Mission Control; DB/RLS; tests; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-35A → LA-36…47.
 
 **L4 DISABLED**. **HARD STOP — no LA-35 runtime.**
 
