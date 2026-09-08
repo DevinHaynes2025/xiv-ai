@@ -1,12 +1,12 @@
 # 2I-LA-28 — XIV Universal Device + Edge + AI Chip Compute Fabric V70
 
-**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-27** (Global AI Tool + Plugin Marketplace) completion gate **PASS** (and prior LA-01→LA-26 gates as applicable; LA-22B–27 may still be landing on tip).
-**Also blocked for code until:** LA-01 → LA-27 PASS (including LA-26 Agent University when present; LA-27 Marketplace).
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-27** (Global Agent + Tool + Plugin + Workflow Marketplace V60) completion gate **PASS** (and prior LA-01→LA-26 gates as applicable; LA-22B–27 may still be landing on tip).
+**Also blocked for code until:** LA-01 → LA-27 PASS (including LA-26 Agent University when present; LA-27 Marketplace V60).
 **Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push.
 **Canonical path:** `docs/architecture/xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`
 **Founder summary sibling:** [`../queue/2I-LA-28-universal-device-edge-ai-chip-compute-fabric.md`](../queue/2I-LA-28-universal-device-edge-ai-chip-compute-fabric.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
-**Compose with:** LA-04 Meta Brain, LA-11 Chip/Model Router, LA-12 Quantum+Hybrid, LA-14/23 Security, LA-18 Identity/Device Trust, LA-22 Federation/Residency, LA-22B Treasury (no autonomous contribution payouts), LA-24 Supply Chain edge, LA-25 Company Twin + Business Hospital, **LA-26 Agent University** (compute certs), **LA-27 Marketplace** (compute manifests), Guardian, Agent Firewall, Tenant/Universe Isolation, RLS, Secret plane.
+**Compose with:** LA-04 Meta Brain, LA-11 Chip/Model Router, LA-12 Quantum+Hybrid, LA-14/23 Security, LA-18 Identity/Device Trust, LA-22 Federation/Residency, LA-22B Treasury (no autonomous contribution payouts), LA-24 Supply Chain edge, LA-25 Company Twin + Business Hospital, **LA-26 Agent University** (compute certs), **LA-27 Marketplace V60** (compute manifests), Guardian, Agent Firewall, Tenant/Universe Isolation, RLS, Secret plane.
 **Feeds:** **2I-LA-29** 24/7 AI Organization → **2I-LA-30** Founder Mission Control.
 
 > Docs-only queue. **INSERT AFTER LA-27 AND BEFORE LA-29.** Do **not** interrupt active validated / deployment-critical work. Do **not** destabilize the 30-day deployment runway. **No compute fabric / local-AI / edge / offline-OS / NPU / contributed-compute / quantum runtime in this commit.** **L4 DISABLED**.
@@ -26,12 +26,12 @@
 | Story | Title | Role |
 |-------|-------|------|
 | **2I-LA-26** | Agent University + AI Workforce Academy V50 | Prior (must PASS before LA-27 code) |
-| **2I-LA-27** | Global AI Tool + Plugin Marketplace | **Must PASS before LA-28 code** |
+| **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 | **Must PASS before LA-28 code** |
 | **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 | **This document** |
 | **2I-LA-29** | 24/7 AI Organization | **NEXT** after LA-28 |
 | **2I-LA-30** | Founder Mission Control | After LA-29 |
 
-**Ordering lock:** **LA-26 Agent University → LA-27 Global AI Tool + Plugin Marketplace → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization → LA-30 Founder Mission Control**.
+**Ordering lock:** **LA-26 Agent University → LA-27 Global Agent + Tool + Plugin + Workflow Marketplace V60 → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization → LA-30 Founder Mission Control**.
 
 **LA-11 ≠ LA-28:** LA-11 = Multi-Model + Universal AI Chip Intelligence Router foundations. Full device/edge/offline/contribution/fabric depth, coverage honesty, and deployment guard belong **here**.
 
