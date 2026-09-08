@@ -3173,8 +3173,9 @@ Every phase inherits and must preserve:
 | **2I-LA-33** | Global Business Opportunity Exchange V170 | **QUEUED DOCS** — `xiv-2i-la-33-global-business-opportunity-exchange-v170.md`; **DO NOT IMPLEMENT until LA-32A PASS**; **must PASS before LA-34 code** |
 | **2I-LA-34** | Business Capital + Funding Intelligence V180 | **QUEUED DOCS** — `xiv-2i-la-34-business-capital-funding-intelligence-v180.md`; **DO NOT IMPLEMENT until LA-33 PASS**; **must PASS before LA-35 code** |
 | **2I-LA-35** | Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 | **QUEUED DOCS** — `xiv-2i-la-35-universal-business-tool-api-data-warehouse-intelligence-fabric-v200.md`; **supersedes/expands** earlier supplier-only LA-35 title (supplier/procurement retained); **DO NOT IMPLEMENT until LA-34 PASS**; **must PASS before LA-35A code** |
-| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 | **QUEUED DOCS** — `xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`; **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS** |
-| **2I-LA-36…47** | Company-to-Company Agent Network V220 → prepared expansions | **TITLE QUEUE ONLY** — **NEXT after LA-35A** = LA-36 |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 | **QUEUED DOCS** — `xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`; **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **must PASS before LA-36 code** |
+| **2I-LA-36** | Company-to-Company Agent Network V220 | **QUEUED DOCS** — `xiv-2i-la-36-company-to-company-agent-network-v220.md`; **DO NOT IMPLEMENT until LA-35A PASS** |
+| **2I-LA-37…47** | Global Business Knowledge Exchange → prepared expansions | **TITLE QUEUE ONLY** — **NEXT after LA-36** = LA-37 |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3770,7 +3771,27 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **L4 DISABLED**. **HARD STOP — no LA-35A runtime.** **NO FALSE PASS.**
 
-**NEXT after LA-35A:** **2I-LA-36** Company-to-Company Agent Network V220 → **LA-37…47**.
+**NEXT after LA-35A:** **2I-LA-36** Company-to-Company Agent Network V220 → **LA-37** Global Business Knowledge Exchange → **LA-38…47**.
+
+---
+
+## 2I-LA-36 — COMPANY-TO-COMPANY AGENT NETWORK V220 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–120 + permanent rules: [`xiv-2i-la-36-company-to-company-agent-network-v220.md`](./xiv-2i-la-36-company-to-company-agent-network-v220.md) (+ founder summary [`../queue/2I-LA-36-company-to-company-agent-network.md`](../queue/2I-LA-36-company-to-company-agent-network.md)).
+
+**DO NOT IMPLEMENT** until **LA-35A Zero-Trust Security + Agent Defense Fabric V210 PASS**. Ordering lock: **LA-35 → LA-35A → LA-36 Company-to-Company Agent Network V220 → LA-37 Global Business Knowledge Exchange → LA-38…47**. Queue **AFTER LA-35A**; do not interrupt LA-27…LA-35A mid-flight or validated / deployment-critical work. Tip may still race predecessors — rebase onto tip when LA-35A present. Never force-push / never `main`.
+
+**Critical rules (permanent):** agent ≠ company authority; QUOTE ≠ CONTRACT; binding needs human; translation ≠ contract interpretation; trust/reputation ≠ authority; no direct private tool calls (gateway mandatory; compose LA-35A); meetings ≠ agreement; external agents ≠ trusted; Founder aggregate ≠ private access; 24/7 ≠ extra authority; **`AUTONOMOUS_COMMERCIAL_EXECUTION_ENABLED=FALSE`**; UNKNOWN valid; never infer PASS; L4 DISABLED.
+
+**Feature flags (default OFF / FALSE):** include C2C/network flags from LA-36 architecture with **`AUTONOMOUS_COMMERCIAL_EXECUTION_ENABLED=FALSE`**.
+
+**Release guard:** C2C agent network does **not** block first canary. Prioritize honesty dictionary, human binding gates, deny direct private tools, DLP, external≠trusted, LA-35A SecurityContext on peer path, flag defaults FALSE.
+
+**Includes (document only):** Company Brain ↔ Guardian ↔ Agent ↔ Business Protocol Gateway ↔ Trust/Identity/Contract/Security ↔ peer; BusinessAgentDirectory; agent types; agent≠company authority; BusinessMessage+DLP; RFQ/Quote; negotiation; binding needs human; LA-32 deal flow; domain networks; multilingual; trust/reputation≠authority; CrossCompanyWorkflow; meetings≠agreement; BusinessProtocolGateway; external agents≠trusted; LA-33/35 discovery; security tests; Company Control Panel; Founder aggregate≠private access; network graph; 24/7≠extra authority; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-37…47.
+
+**L4 DISABLED**. **HARD STOP — no LA-36 runtime.**
+
+**NEXT after LA-36:** **2I-LA-37** Global Business Knowledge Exchange → **LA-38…47**.
 
 ---
 
@@ -4338,9 +4359,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
 | **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS**; **Must PASS before LA-35 code** |
 | **2I-LA-35** | Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 — **QUEUED DOCS** (`xiv-2i-la-35-universal-business-tool-api-data-warehouse-intelligence-fabric-v200.md`); **supersedes/expands** earlier supplier-only title (supplier/procurement retained); **DO NOT IMPLEMENT until LA-34 PASS**; **Must PASS before LA-35A code** |
-| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS** |
-| **2I-LA-36** | Company-to-Company Agent Network V220 — **NEXT after LA-35A** |
-| **2I-LA-37** | Global Business Knowledge Exchange *(title queued)* |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
+| **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
+| **2I-LA-37** | Global Business Knowledge Exchange — **NEXT after LA-36** |
 | **2I-LA-38** | Business Simulation Supercomputer *(title queued)* |
 | **2I-LA-39** | Global Economic + Trade Intelligence *(title queued)* |
 | **2I-LA-40** | Self-Improving Business OS Evaluation System *(title queued)* |
@@ -5087,9 +5108,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
 | **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS**; **Must PASS before LA-35 code** |
 | **2I-LA-35** | Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 — **QUEUED DOCS** (`xiv-2i-la-35-universal-business-tool-api-data-warehouse-intelligence-fabric-v200.md`); **supersedes/expands** earlier supplier-only title (supplier/procurement retained); **DO NOT IMPLEMENT until LA-34 PASS**; **Must PASS before LA-35A code** |
-| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS** |
-| **2I-LA-36** | Company-to-Company Agent Network V220 — **NEXT after LA-35A** |
-| **2I-LA-37** | Global Business Knowledge Exchange *(title queued)* |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
+| **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
+| **2I-LA-37** | Global Business Knowledge Exchange — **NEXT after LA-36** |
 | **2I-LA-38** | Business Simulation Supercomputer *(title queued)* |
 | **2I-LA-39** | Global Economic + Trade Intelligence *(title queued)* |
 | **2I-LA-40** | Self-Improving Business OS Evaluation System *(title queued)* |
@@ -5817,9 +5838,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-33** | Global Business Opportunity Exchange V170 — **QUEUED DOCS** (`xiv-2i-la-33-global-business-opportunity-exchange-v170.md`); **DO NOT IMPLEMENT until LA-32A PASS**; **Must PASS before LA-34 code** |
 | **2I-LA-34** | Business Capital + Funding Intelligence V180 — **QUEUED DOCS** (`xiv-2i-la-34-business-capital-funding-intelligence-v180.md`); **DO NOT IMPLEMENT until LA-33 PASS**; **Must PASS before LA-35 code** |
 | **2I-LA-35** | Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 — **QUEUED DOCS** (`xiv-2i-la-35-universal-business-tool-api-data-warehouse-intelligence-fabric-v200.md`); **supersedes/expands** earlier supplier-only title (supplier/procurement retained); **DO NOT IMPLEMENT until LA-34 PASS**; **Must PASS before LA-35A code** |
-| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS** |
-| **2I-LA-36** | Company-to-Company Agent Network V220 — **NEXT after LA-35A** |
-| **2I-LA-37** | Global Business Knowledge Exchange *(title queued)* |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
+| **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
+| **2I-LA-37** | Global Business Knowledge Exchange — **NEXT after LA-36** |
 | **2I-LA-38** | Business Simulation Supercomputer *(title queued)* |
 | **2I-LA-39** | Global Economic + Trade Intelligence *(title queued)* |
 | **2I-LA-40** | Self-Improving Business OS Evaluation System *(title queued)* |
