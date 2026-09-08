@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-36 PASS**. Queue **AFTER LA-36**. 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-36** (Company-to-Company Agent Network V220) must PASS before LA-37 code. Ordering: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 (title pending) → LA-39 → LA-40…50**.
+**2I-LA-36** (Company-to-Company Agent Network V220) must PASS before LA-37 code. Ordering: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 → LA-40…50**.
 
 **Tip note:** Fetch tip first (through LA-36 ~`9c07f03`). Prefer tip land; else `cursor/queue-2i-la-37-*-b993`. Never force-push / never `main`.
 
@@ -51,7 +51,7 @@ As the XIV AI Founder, I want XIV to run Universal Product + Information Digital
 - Warehouse V20; robotics FALSE
 - Security/tests; staged load 10K→100M+
 - Flags OFF; first safe slices; evidence QUEUED/FALSE/UNKNOWN
-- Next LA-38 (title pending) → LA-39…50
+- Next LA-38 V310 (QUEUED DOCS) → LA-39…50
 
 ## Next queue
 

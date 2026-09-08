@@ -3175,7 +3175,10 @@ Every phase inherits and must preserve:
 | **2I-LA-35** | Universal Business Tool + API + Data + Warehouse Intelligence Fabric V200 | **QUEUED DOCS** — `xiv-2i-la-35-universal-business-tool-api-data-warehouse-intelligence-fabric-v200.md`; **supersedes/expands** earlier supplier-only LA-35 title (supplier/procurement retained); **DO NOT IMPLEMENT until LA-34 PASS**; **must PASS before LA-35A code** |
 | **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 | **QUEUED DOCS** — `xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`; **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **must PASS before LA-36 code** |
 | **2I-LA-36** | Company-to-Company Agent Network V220 | **QUEUED DOCS** — `xiv-2i-la-36-company-to-company-agent-network-v220.md`; **DO NOT IMPLEMENT until LA-35A PASS** |
-| **2I-LA-37…50** | Universal Product Twin V300 → LA-38 title pending → Africa Brain V400 → Continuous Intelligence → prepared expansions | **QUEUED** — **NEXT after LA-36** = LA-37 V300 |
+| **2I-LA-37** | Universal Product + Information Digital Twin Network V300 | **QUEUED DOCS** — `xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`; **DO NOT IMPLEMENT until LA-36 PASS** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **QUEUED DOCS** — `xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`; **DO NOT IMPLEMENT until LA-37 PASS** |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) | **QUEUE ONLY / TITLE LOCK** — **NEXT after LA-38** |
+| **2I-LA-40…50** | Continuous Intelligence + Self-Evaluation → prepared expansions | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3772,7 +3775,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **L4 DISABLED**. **HARD STOP — no LA-35A runtime.** **NO FALSE PASS.**
 
-**NEXT after LA-35A:** **2I-LA-36** Company-to-Company Agent Network V220 → **LA-37** Universal Product + Information Digital Twin Network V300 → **LA-38** (title pending) → **LA-39…50**.
+**NEXT after LA-35A:** **2I-LA-36** Company-to-Company Agent Network V220 → **LA-37** Universal Product + Information Digital Twin Network V300 → **LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 → **LA-39…50**.
 
 ---
 
@@ -3780,7 +3783,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–120 + permanent rules: [`xiv-2i-la-36-company-to-company-agent-network-v220.md`](./xiv-2i-la-36-company-to-company-agent-network-v220.md) (+ founder summary [`../queue/2I-LA-36-company-to-company-agent-network.md`](../queue/2I-LA-36-company-to-company-agent-network.md)).
 
-**DO NOT IMPLEMENT** until **LA-35A Zero-Trust Security + Agent Defense Fabric V210 PASS**. Ordering lock: **LA-35 → LA-35A → LA-36 Company-to-Company Agent Network V220 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 (title pending) → LA-39…50**. Queue **AFTER LA-35A**; do not interrupt LA-27…LA-35A mid-flight or validated / deployment-critical work. Tip may still race predecessors — rebase onto tip when LA-35A present. Never force-push / never `main`.
+**DO NOT IMPLEMENT** until **LA-35A Zero-Trust Security + Agent Defense Fabric V210 PASS**. Ordering lock: **LA-35 → LA-35A → LA-36 Company-to-Company Agent Network V220 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39…50**. Queue **AFTER LA-35A**; do not interrupt LA-27…LA-35A mid-flight or validated / deployment-critical work. Tip may still race predecessors — rebase onto tip when LA-35A present. Never force-push / never `main`.
 
 **Critical rules (permanent):** agent ≠ company authority; QUOTE ≠ CONTRACT; binding needs human; translation ≠ contract interpretation; trust/reputation ≠ authority; no direct private tool calls (gateway mandatory; compose LA-35A); meetings ≠ agreement; external agents ≠ trusted; Founder aggregate ≠ private access; 24/7 ≠ extra authority; **`AUTONOMOUS_COMMERCIAL_EXECUTION_ENABLED=FALSE`**; UNKNOWN valid; never infer PASS; L4 DISABLED.
 
@@ -3792,7 +3795,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **L4 DISABLED**. **HARD STOP — no LA-36 runtime.**
 
-**NEXT after LA-36:** **2I-LA-37** Universal Product + Information Digital Twin Network V300 → **LA-38** (title pending) → **LA-39…50**.
+**NEXT after LA-36:** **2I-LA-37** Universal Product + Information Digital Twin Network V300 → **LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 → **LA-39…50**.
 
 ---
 
@@ -3803,7 +3806,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–200 + permanent rules: [`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`](./xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md) (+ founder summary [`../queue/2I-LA-37-universal-product-information-digital-twin-network.md`](../queue/2I-LA-37-universal-product-information-digital-twin-network.md)).
 
-**DO NOT IMPLEMENT** until **LA-36 Company-to-Company Agent Network V220 PASS**. Ordering lock: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED TITLE — FULL STORY PENDING) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**. Queue **AFTER LA-36**. Tip through LA-36 ~`9c07f03`; prefer tip land on `cursor/queue-2i-la-37-*-b993`. Never force-push / never `main`.
+**DO NOT IMPLEMENT** until **LA-36 Company-to-Company Agent Network V220 PASS**. Ordering lock: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**. Queue **AFTER LA-36**. Tip through LA-36 ~`9c07f03`; prefer tip land on `cursor/queue-2i-la-37-*-b993`. Never force-push / never `main`.
 
 **Title supersession:** Supersedes earlier LA-37 title-only placeholder **“Global Business Knowledge Exchange”**.
 
@@ -3813,21 +3816,27 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Release guard:** Entire V300 network does **not** block first canary. Prioritize honesty dictionary, immutability/bitemporal, passport/custody/location honesty, surveillance ban, LA-35A on external ingest, partition/RLS tests, flag defaults FALSE.
 
-**Includes (document only):** Universal Product + Information Digital Twin Network kernel; trillion-scale targets honesty; ONE XIV control plane; Universe≠DB; event nervous system; bitemporal immutable ledger; partitioning; multi-storage fabric (DB/stream/graph/object/search/cache/external); physical/digital/information twins; Passport≠authenticity; custody≠ownership; latest≠live; product location≠person; consumer journey≠surveillance; Warehouse V20; security/tests; staged load harness; flags; first safe slices; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-38 (title pending) → LA-39…50.
+**Includes (document only):** Universal Product + Information Digital Twin Network kernel; trillion-scale targets honesty; ONE XIV control plane; Universe≠DB; event nervous system; bitemporal immutable ledger; partitioning; multi-storage fabric (DB/stream/graph/object/search/cache/external); physical/digital/information twins; Passport≠authenticity; custody≠ownership; latest≠live; product location≠person; consumer journey≠surveillance; Warehouse V20; security/tests; staged load harness; flags; first safe slices; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39…50.
 
 **L4 DISABLED**. **HARD STOP — no LA-37 runtime.**
 
-**NEXT after LA-37:** **2I-LA-38** XIV Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED TITLE — FULL STORY PENDING** → **LA-39** → **LA-40…50**.
+**NEXT after LA-37:** **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS (V310 §§1–153)** → **LA-39** → **LA-40…50**.
 
 ---
 
-## 2I-LA-38 — PLANETARY BUSINESS SIMULATION + DIGITAL TWIN SUPERCOMPUTER V310 (title only)
+## 2I-LA-38 — PLANETARY BUSINESS SIMULATION + DIGITAL TWIN SUPERCOMPUTER V310 (queued docs)
 
-**Status:** **QUEUED TITLE — FULL STORY PENDING.** Optional stub: [`../queue/2I-LA-38-planetary-business-simulation-digital-twin-supercomputer.md`](../queue/2I-LA-38-planetary-business-simulation-digital-twin-supercomputer.md). Outline only from LA-37 §154 — **do not invent full architecture** until founder story is pasted.
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–153 + permanent rules: [`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`](./xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md) (+ founder summary [`../queue/2I-LA-38-planetary-business-simulation-digital-twin-supercomputer.md`](../queue/2I-LA-38-planetary-business-simulation-digital-twin-supercomputer.md)). Replaces LA-37 §154 / title-pending stub.
 
-**Ordering:** after LA-37; before LA-39. Simulation ≠ reality; simulation ≠ authority; non-blocking for first canary. Evidence NEVER INFER PASS. **HARD STOP — no LA-38 runtime.**
+**QUEUE AFTER LA-37.** **DO NOT IMPLEMENT** until **LA-37 PASS**. Ordering lock: **LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) → LA-40 Continuous Intelligence + Self-Evaluation**. Park on `cursor/queue-2i-la-38-planetary-simulation-4059` until LA-37 on tip; rebase after LA-37; never force-push / never `main`.
 
-**NEXT after LA-38 title gate:** **2I-LA-39** Global Africa Intelligence Brain V400 → **LA-40** Continuous Intelligence + Self-Evaluation → **LA-41…50**.
+**Critical rules (permanent):** **SIMULATION≠REALITY**; **PLANETARY=global business modeling** ≠ Earth omniscience; Digital Twin Supercomputer = logical fabric ≠ proven exascale ownership; **QUANTUM≠advantage**; **trillion-scale≠current**; **PROJECTED≠VERIFIED**; NO_ACTION baseline required; **no sim→production write**; sim agents ≠ production credentials; LA-37 handoff ≠ production mutation; AUTONOMOUS_SIM_ACTION=FALSE; L4 DISABLED; never infer PASS.
+
+**Feature flags (default OFF / FALSE):** `PLANETARY_BUSINESS_SIMULATION_ENABLED`, `DIGITAL_TWIN_SUPERCOMPUTER_ENABLED`, twin federation / scenario / quantum-route / trillion-target / founder-command flags, **`SIM_TO_PRODUCTION_WRITE_ENABLED=FALSE`**, **`QUANTUM_ADVANTAGE_CLAIM_ENABLED=FALSE`**, **`AUTONOMOUS_SIM_ACTION_ENABLED=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
+
+**Includes (document only):** PlanetarySimKernel; PLANETARY=global business modeling; DigitalTwinSupercomputer; Reality Boundary; twin federation (LA-24/25/37); scenario taxonomy; classical baseline gate; quantum honesty; trillion-scale target honesty; PROJECTED≠VERIFIED; comparison packs; proposals≠execution; security tests; Founder Sim Command; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-39 → LA-40.
+
+**HARD STOP — no LA-38 runtime.** **NEXT after LA-38:** **2I-LA-39** Global Africa Intelligence Brain V400 (Economic/Trade as subsystem) → **LA-40** Continuous Intelligence + Self-Evaluation → **LA-41…50**.
 
 ---
 
@@ -4396,7 +4405,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
-| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED TITLE — FULL STORY PENDING** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
@@ -5145,7 +5154,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
-| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED TITLE — FULL STORY PENDING** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
@@ -5875,7 +5884,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 — **QUEUED DOCS** (`xiv-2i-la-35a-zero-trust-security-agent-defense-fabric-v210.md`); **INSERT AFTER LA-35 / BEFORE LA-36**; **DO NOT IMPLEMENT until LA-35 PASS**; **Must PASS before LA-36 code** |
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
-| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED TITLE — FULL STORY PENDING** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
@@ -6156,9 +6165,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] LA-31 critical rules encoded (IDENTITY≠AUTHORITY; VERIFIED≠trusted for everything; TRUST≠popularity/wealth/one score; RISK≠guilt; DIRECTORY≠endorsement; MATCH≠endorsement; CLAIMED≠VERIFIED; FOUNDER TWIN≠FOUNDER; DEVICE≠PERSON; AGENT≠HUMAN; SIGNUP≠equity/royalty/partnership; DEAL≠CONTRACT; PRIVATE≠training; FINANCIAL≠trust network data; AI CONSENSUS≠TRUTH; GLEIF≠financial statements; PAY-TO-TRUST prohibited; UNKNOWN valid; Twin exact label; never infer PASS)
 - [x] **NEXT after LA-31:** LA-32 Global Contract + Deal Network → LA-33…40 title pointers only (do not implement LA-32+ from LA-31 docs commit)
 
-- [x] Ordering lock extended: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED TITLE — FULL STORY PENDING) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**
+- [x] Ordering lock extended: **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**
 - [x] **2I-LA-37** Universal Product + Information Digital Twin Network V300 queued (full §§1–200 + permanent rules; docs only; after LA-36); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier “Global Business Knowledge Exchange” title; trillion-scale = target ≠ claim; ONE XIV = logical control plane ≠ one DB; Universe≠DB; Passport≠authenticity; custody≠ownership; latest≠live; product location≠person; consumer tracking≠surveillance; event nervous system; bitemporal; multi-storage fabric; Warehouse V20; staged load 10K→100M+; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-37 runtime**; **DO NOT IMPLEMENT until LA-36 PASS**
-- [x] **2I-LA-38** title queued only — Planetary Business Simulation + Digital Twin Supercomputer V310 — **FULL STORY PENDING** (outline from LA-37 §154)
-- [x] **NEXT after LA-37:** LA-38 (title pending) → LA-39 → LA-40…50
+- [x] **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 queued (full §§1–153 + permanent rules; docs only; after LA-37); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; SIM≠REALITY; PLANETARY=global business modeling; QUANTUM≠advantage; trillion-scale≠current; PROJECTED≠VERIFIED; no sim→prod write; L4 DISABLED; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-38 runtime**; **DO NOT IMPLEMENT until LA-37 PASS**
+- [x] **NEXT after LA-37:** LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade subsystem) → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50
 
 

@@ -8,13 +8,13 @@
 **Founder summary sibling:** [`../queue/2I-LA-37-universal-product-information-digital-twin-network.md`](../queue/2I-LA-37-universal-product-information-digital-twin-network.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
 **Compose with:** LA-04 Meta Brain, **LA-05 Evidence/KG**, LA-06 Memory/Learning, LA-07 Trust, LA-08 Curiosity/Contradiction, LA-09 Temporal+Causal, LA-10 Simulation, LA-11 Chip/Model Router, LA-12 Quantum+Hybrid, LA-13 Nested Tool Foundry / Universe Fabric, LA-14 Cybersecurity, LA-15 Legal, LA-16 AI CFO, LA-17 Privacy Vault, LA-18 Identity/Age/Trust, **LA-21 Product Passport**, **LA-22 Federation + Data Control Tower**, LA-22B Treasury, LA-23 QA/Security Factory, **LA-24 Supply Chain Twin**, **LA-25 Company Twin + Business Hospital**, LA-26 Agent University, LA-27 Marketplace, LA-28 Device/Edge, LA-29 24/7 Org, LA-30 Founder Mission Control / Company Control Panel, LA-31 Identity/Trust, LA-32 Contract/Deal, LA-33 Opportunity, LA-34 Capital, **LA-35 Universal Business Fabric** (Warehouse Technology V10 → **Warehouse V20** here), **LA-35A Zero-Trust Security**, **LA-36 Company-to-Company Agent Network**, Guardian, Tenant/Universe Isolation, RLS, Secret plane.
-**Feeds:** **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 (**QUEUED TITLE — FULL STORY PENDING**); **2I-LA-39** Global Africa Intelligence Brain V400 — LA-37 supplies product/information twin fabric, event nervous system, multi-storage control plane, Warehouse V20, and honesty dictionary; **not** planetary simulation supercomputer depth and **not** Africa Intelligence Brain depth.
+**Feeds:** **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 (**QUEUED DOCS V310**); **2I-LA-39** Global Africa Intelligence Brain V400 — LA-37 supplies product/information twin fabric, event nervous system, multi-storage control plane, Warehouse V20, and honesty dictionary; **not** planetary simulation supercomputer depth and **not** Africa Intelligence Brain depth.
 
 > Docs-only queue. **QUEUE AFTER LA-36.** Do **not** interrupt active validated / deployment-critical work or LA-27…LA-36 mid-flight. Do **not** destabilize the 30-day deployment runway. **No trillion-scale identity/event fabric / product twin mesh / consumer tracking / warehouse robotics control runtime in this commit.** **L4 DISABLED**.
 >
 > **Feature flags (default OFF / FALSE):** `UNIVERSAL_PRODUCT_TWIN_NETWORK_ENABLED`, `INFORMATION_DIGITAL_TWIN_ENABLED`, `PRODUCT_EVENT_NERVOUS_SYSTEM_ENABLED`, `BITEMPORAL_PRODUCT_LEDGER_ENABLED`, `MULTI_STORAGE_FABRIC_ENABLED`, `PHYSICAL_PRODUCT_TWIN_ENABLED`, `DIGITAL_PRODUCT_TWIN_ENABLED`, `INFORMATION_PRODUCT_TWIN_ENABLED`, `WAREHOUSE_V20_ENABLED`, `PRODUCT_LOCATION_GRAPH_ENABLED`, `CUSTODY_CHAIN_ENABLED`, `CONSUMER_PRODUCT_JOURNEY_ENABLED`, `PRODUCT_SEARCH_FABRIC_ENABLED`, `PRODUCT_OBJECT_STORE_ENABLED`, `PRODUCT_GRAPH_ENABLED`, `PRODUCT_CACHE_FABRIC_ENABLED`, `EXTERNAL_PRODUCT_CONNECTOR_ENABLED`, `STAGED_LOAD_TEST_HARNESS_ENABLED`, **`CONSUMER_SURVEILLANCE_ENABLED=FALSE`**, **`AUTONOMOUS_PRODUCT_MUTATION_ENABLED=FALSE`**, **`ROBOTICS_GATEWAY_ENABLED=FALSE`**.
 >
-> **Tip note (docs landing):** Tip includes through **LA-36** (~`9c07f03`). Prefer land on tip; else park/include on `cursor/queue-2i-la-37-*-b993` / prior `*-4059` lineage and FF/rebase. Dual-push; never force-push / never `main`. Master queue: **LA-36 → LA-37 (this V300) → LA-38 (title pending) → LA-39 → LA-40…50**.
+> **Tip note (docs landing):** Tip includes through **LA-36** (~`9c07f03`). Prefer land on tip; else park/include on `cursor/queue-2i-la-37-*-b993` / prior `*-4059` lineage and FF/rebase. Dual-push; never force-push / never `main`. Master queue: **LA-36 → LA-37 (this V300) → LA-38 (V310 QUEUED DOCS) → LA-39 → LA-40…50**.
 >
 > **Title supersession:** This V300 **supersedes** the earlier title-only placeholder **“Global Business Knowledge Exchange”** for LA-37. Knowledge-exchange surfaces may still compose later; they are **not** the canonical LA-37 title.
 >
@@ -32,12 +32,12 @@
 | **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 | Security kernel compose |
 | **2I-LA-36** | Company-to-Company Agent Network V220 | **Must PASS before LA-37 code** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 | **This document** |
-| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **NEXT** — **QUEUED TITLE — FULL STORY PENDING** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **NEXT** — **QUEUED DOCS V310** |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 | After LA-38 title gate |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation | Title queue |
 | **2I-LA-41…50** | Prepared expansion titles | Title queue only |
 
-**Ordering lock:** **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 (title pending) → LA-39 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**.
+**Ordering lock:** **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**.
 
 **LA-21 / LA-24 / LA-25 / LA-35 ≠ LA-37:** Ancestors hold Product Passport, Supply Chain Twin, Company Twin, and Warehouse V10 fabric. Full **Universal Product + Information Digital Twin Network**, **event nervous system**, **bitemporal immutable product/event ledger**, **multi-storage fabric**, **physical/digital/information twins**, **Warehouse V20**, trillion-scale **architectural targets**, and the honesty dictionary below belong **here**.
 
@@ -305,7 +305,7 @@ Evaluate later: `product_identities`, `product_events_bitemporal`, `information_
 
 | Story | Title | Status |
 |-------|-------|--------|
-| **2I-LA-38** | **XIV Planetary Business Simulation + Digital Twin Supercomputer V310** | **QUEUED TITLE — FULL STORY PENDING** (outline only; see §154) |
+| **2I-LA-38** | **XIV Planetary Business Simulation + Digital Twin Supercomputer V310** | **QUEUED DOCS** — full §§1–153: [`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`](./xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md) |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 | Full story queues separately |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation | Title queued |
 | **2I-LA-41** | Global Knowledge + Research Fabric Expansion | Title queued — refine when authored |
@@ -319,7 +319,7 @@ Evaluate later: `product_identities`, `product_events_bitemporal`, `information_
 | **2I-LA-49** | Mobile CEO Mode + Master Control Room Runtime | Title queued — refine when authored |
 | **2I-LA-50** | Continuous Assurance + Verification Fabric | Title queued — refine when authored |
 
-**NEXT after LA-37:** **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 (**FULL STORY PENDING**). **Do not implement LA-38…50 from this commit.**
+**NEXT after LA-37:** **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 (**QUEUED DOCS V310**). **Do not implement LA-38…50 from this commit.**
 
 ## 23. Completion evidence placeholders
 
@@ -344,20 +344,19 @@ Evaluate later: `product_identities`, `product_events_bitemporal`, `information_
 
 101. Silent history rewrite forbidden. 102. Corrections = new events. 103. Freshness labels required. 104. Purpose-bind person-adjacent data. 105. No ambient person graph from SKUs. 106. Cross-company product events via LA-36 gateway. 107. LA-35A SecurityContext mandatory on external ingest. 108. RLS + tenant + Universe isolation. 109. Founder aggregate ≠ private product dossiers. 110. Company A products ≠ Company B. 111. Global Brain ≠ private product vault. 112. Simulation handoff to LA-38 ≠ production mutation. 113. Load stage N PASS ≠ stage N+1 PASS. 114. Empty CI ≠ PASS. 115. Calendar ≠ permission. 116. Queued ≠ implemented. 117. More twins ≠ authority. 118. More events ≠ truth. 119. Guardian above agents. 120. No LA-38+ runtime from this commit.
 
-## 154. Outline pointer — LA-38 (FULL STORY PENDING)
+## 154. Outline pointer — LA-38 (superseded by full V310 docs)
 
 **2I-LA-38 — XIV Planetary Business Simulation + Digital Twin Supercomputer V310**
 
-Status for master/queue: **QUEUED TITLE — FULL STORY PENDING.**
+Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — full contracts §§1–153: [`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`](./xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md).
 
-Outline only (do **not** invent full architecture beyond this pointer):
+Historical outline (retained for lineage; authoritative detail lives in LA-38 V310):
 
 - Planetary-scale **business simulation** composing LA-10 Simulation Grid + LA-25/37 twins
 - **Digital Twin Supercomputer** as logical simulation fabric — not a claim of owned exascale hardware
 - Inputs from product/information twins (this V300), company twins, supply-chain twins
 - **SIMULATION ≠ REALITY**; simulation ≠ authority; simulation agents ≠ production credentials
 - Feature-gated; non-blocking for first canary; evidence NEVER INFER PASS
-- Full founder story **not pasted** in this queue wave — stub/title only until authored
 
 ## 155–200. Permanent rules block (CEO)
 
@@ -384,7 +383,7 @@ COMPOSE LA-05 / LA-25 / LA-35 / LA-35A / LA-36
 STAGED LOAD TESTS 10K → 100M+ (EACH STAGE INDEPENDENT)
 FEATURE FLAGS DEFAULT OFF
 FIRST SAFE SLICES ONLY
-SIMULATION HANDOFF → LA-38 TITLE PENDING
+SIMULATION HANDOFF → LA-38 QUEUED DOCS V310
 UNKNOWN IS VALID
 QUEUED ARCHITECTURE ≠ IMPLEMENTATION PROOF
 NEVER INFER PASS
@@ -398,7 +397,7 @@ L4 DISABLED
 | Check | Result required |
 |-------|-----------------|
 | Docs paths | architecture V300 + queue summary + master queue update |
-| Ordering | **LA-36 → LA-37 QUEUED (V300) → LA-38 (title pending) → LA-39…50** |
+| Ordering | **LA-36 → LA-37 QUEUED (V300) → LA-38 QUEUED (V310) → LA-39…50** |
 | Remotes | LOCAL = GITHUB = GITLAB after dual-push |
 | Tree | CLEAN |
 | Runtime | **HARD STOP — no LA-37 runtime** |
