@@ -3183,8 +3183,9 @@ Every phase inherits and must preserve:
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 | **QUEUED DOCS** — `xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`; **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 | **QUEUED DOCS** — `xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`; **DO NOT IMPLEMENT until LA-42 PASS** |
 | **2I-LA-43A** | Global Naturist Business + Tourism + Culture + Private Community Universe V535 | **QUEUED DOCS** — `xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md`; **INSERT AFTER LA-43 / BEFORE LA-44**; **DO NOT IMPLEMENT until LA-43 PASS** |
-| **2I-LA-44** | Startup + Company Creation Factory V540 | **QUEUED TITLE** |
-| **2I-LA-45…60** | Prepared expansion titles | **TITLE QUEUE ONLY** |
+| **2I-LA-44** | Startup + Company Creation Factory V540 | **QUEUED DOCS** — `xiv-2i-la-44-startup-company-creation-factory-v540.md`; **DO NOT IMPLEMENT until LA-43A PASS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence V550 | **QUEUED TITLE** — **NEXT** after LA-44; do not start from LA-44 commit |
+| **2I-LA-46…60** | Prepared expansion titles | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3953,7 +3954,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–154 + permanent policies: [`xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md`](./xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md) (+ founder summary [`../queue/2I-LA-43A-global-naturist-business-tourism-culture-community.md`](../queue/2I-LA-43A-global-naturist-business-tourism-culture-community.md)).
 
-**DO NOT IMPLEMENT** until **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 PASS**. Ordering lock: **LA-43 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**. **INSERT AFTER LA-43 / BEFORE LA-44**. Tip through LA-43 ~`1498470` — tip-land if clean; else park on `cursor/queue-2i-la-43a-*-4059`; rebase — never force-push / never `main`.
+**DO NOT IMPLEMENT** until **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 PASS**. Ordering lock: **LA-43 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**. **INSERT AFTER LA-43 / BEFORE LA-44**. Tip through LA-43 ~`1498470` — tip-land if clean; else park on `cursor/queue-2i-la-43a-*-4059`; rebase — never force-push / never `main`.
 
 **Permanent policies (must remain explicit):** Naturism = lawful 18+ cultural/tourism/hospitality/wellness/education/business-networking — **NOT** adult-entertainment/sexual-services/porn; **MEDIA IMMUTABILITY** — XIV AI will **NOT** alter/stylize/enhance/generate-derivatives-from/manipulate user-uploaded naturist/nude photos/videos; permitted malware/safety/age-risk/consent/duplicate/hash/moderation/access/storage/delivery/deletion/audit only; original preserved; **`NATURIST_IMAGE_ALTERATION_ENABLED=FALSE`** permanent; deletion = verifiable XIV-controlled lifecycle — **not** impossible erase of third-party copies; BusinessProfile vs PrivateCommunityProfile — **no automatic membership inference**; **`MATURE_NATURIST_COMMUNITY_ENABLED=FALSE`** until full release gate (age, RLS, media safety, immutability, consent, deletion, privacy, moderation, jurisdiction, incident response); jurisdiction-first; listing≠endorsement; old law≠current; AI≠lawyer; privacy≠immunity for illegal activity; L4 DISABLED.
 
@@ -3961,11 +3962,31 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Release guard:** Entire V535 naturist universe does **not** block first canary. **Business/tourism honesty first; private community later** (stays FALSE until explicit late gate). Release slices 1–6.
 
-**Includes (document only):** NaturistUniverse V535 kernel; product distinction; permanent policy block; AgeAssurance; two-profile firewall; media immutability; PrivateMediaVault; verifiable deletion; jurisdiction-first; business directory; tourism/hospitality; culture/education; events; consent; Safety Council; marketplace; RLS/tests; flags; slices 1–6; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-44 V540 → LA-45…60.
+**Includes (document only):** NaturistUniverse V535 kernel; product distinction; permanent policy block; AgeAssurance; two-profile firewall; media immutability; PrivateMediaVault; verifiable deletion; jurisdiction-first; business directory; tourism/hospitality; culture/education; events; consent; Safety Council; marketplace; RLS/tests; flags; slices 1–6; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-44 V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60.
 
-**L4 DISABLED**. **HARD STOP — no LA-43A runtime.** Do not start LA-44.
+**L4 DISABLED**. **HARD STOP — no LA-43A runtime.**
 
-**NEXT after LA-43A:** **2I-LA-44** Startup + Company Creation Factory V540 → **LA-45…60**.
+**NEXT after LA-43A:** **2I-LA-44** Startup + Company Creation Factory V540 → **LA-45** Global Innovation + Invention + IP Intelligence V550 → **LA-46…60**.
+
+---
+
+## 2I-LA-44 — STARTUP + COMPANY CREATION FACTORY V540 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–160 + permanent rules: [`xiv-2i-la-44-startup-company-creation-factory-v540.md`](./xiv-2i-la-44-startup-company-creation-factory-v540.md) (+ founder summary [`../queue/2I-LA-44-startup-company-creation-factory.md`](../queue/2I-LA-44-startup-company-creation-factory.md)).
+
+**DO NOT IMPLEMENT** until **LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 PASS** (and **LA-43 PASS**). Ordering lock: **LA-43 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**. Queue **AFTER LA-43A**. Tip may still land LA-43A — park on `cursor/queue-2i-la-44-*-4059`; rebase when LA-43A on tip; never force-push / never `main`. Do not interrupt validated work or clobber unfinished LA-43A WIP.
+
+**Critical rules (permanent):** IDEA≠COMPANY; PLAN≠OPERATING; VISION≠FACT; FORECAST≠FACT; CODE≠PRODUCTION; FUNDING≠COMMITMENT; OWNERSHIP SIGNUP≠EQUITY; LAUNCH READINESS≠GUARANTEE; Master Plan agents propose / cannot silently rewrite; XIV does not auto-own customer startups; no unrestricted agent spawn; AI Board≠legal board; Legal≠attorney; Brand≠trademark clearance; no spam/deception; one DB≠everything; decimal money; AI CFO limits; Offline factory compose LA-43; Contracts LA-42; Startup Digital Twin + simulation LA-38; Africa country-specific; Company Brain isolation; Plan fact checker; Failure Lab; **`AUTONOMOUS_COMPANY_FORMATION/CONTRACT_SIGNING/MONEY_MOVEMENT/PRODUCTION_DEPLOYMENT=FALSE`**; UNKNOWN valid; never infer PASS; L4 DISABLED.
+
+**Feature flags (default OFF / FALSE):** Startup/Company Creation Factory V540 flags from LA-44 architecture; autonomy quartet / XIV auto-own / unrestricted spawn / AI Board legal / spam / deception / L4 flags **FALSE**.
+
+**Release guard:** Entire V540 factory does **not** block first canary. Release slices 1–5.
+
+**Includes (document only):** CompanyFactory/StartupBrain; CompanyBlueprint; stages; Founder interview/idea history; Master Plan propose-only; Problem/Market/Competitor/Customer brains; business+financial scenarios; AI CFO limits; funding/ownership honesty; virtual org + AI workforce designer; AI Board advisory; Product/MVP/Software factory; Offline factory (LA-43); Database architect; Security/Privacy-by-design; Legal workflow; Contracts LA-42; Supply chain; Brand; Marketing/Sales; Business Hospital; Startup Digital Twin + sim LA-38; Africa country-specific; Company Brain isolation; Lesson/Evolution; Founder Mission Control; Build my X; Plan fact checker; Failure Lab; Launch readiness; DBs/RLS eval list; tests; flags; slices 1–5; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-45 V550 → LA-46…60.
+
+**L4 DISABLED**. **HARD STOP — no LA-44 runtime.** **Do not start LA-45.**
+
+**NEXT after LA-44:** **2I-LA-45** Global Innovation + Invention + IP Intelligence V550 → **LA-46…60**.
 
 ---
 
@@ -4540,8 +4561,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-41** | Global Commercial Relationship + Business Network Graph V510 — **QUEUED DOCS** (`xiv-2i-la-41-global-commercial-relationship-business-network-graph-v510.md`); **DO NOT IMPLEMENT until LA-40 PASS** |
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
-| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED TITLE** |
-| **2I-LA-45…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence V550 — **QUEUED TITLE** |
+| **2I-LA-46…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### 51. Reserved future agent families
 
@@ -5293,8 +5315,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-41** | Global Commercial Relationship + Business Network Graph V510 — **QUEUED DOCS** (`xiv-2i-la-41-global-commercial-relationship-business-network-graph-v510.md`); **DO NOT IMPLEMENT until LA-40 PASS** |
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
-| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED TITLE** |
-| **2I-LA-45…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence V550 — **QUEUED TITLE** |
+| **2I-LA-46…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -6027,8 +6050,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-41** | Global Commercial Relationship + Business Network Graph V510 — **QUEUED DOCS** (`xiv-2i-la-41-global-commercial-relationship-business-network-graph-v510.md`); **DO NOT IMPLEMENT until LA-40 PASS** |
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
-| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED TITLE** |
-| **2I-LA-45…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence V550 — **QUEUED TITLE** |
+| **2I-LA-46…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -6322,7 +6346,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-43** Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 queued (full §§1–160 + permanent rules; docs only; after LA-42); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier Business Services Exchange title (may shift later if founder reassigns); CANDIDATE≠VERIFIED; verifiable deletion ≠ erase-forever; mature optional late-stage FALSE; JurisdictionResolver ≠ omniscient compliance; quantum≠literal private groups; public≠copy; discovered≠authorized; old law≠current; AI≠lawyer; AI moderation≠perfect; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-43 runtime**; **DO NOT IMPLEMENT until LA-42 PASS**
 - [x] Ordering lock extended: **LA-43 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**; tip-land LA-43A on `xiv-v2` if clean through LA-43 ~`1498470`; L4 off
 - [x] **2I-LA-43A** Global Naturist Business + Tourism + Culture + Private Community Universe V535 queued (full §§1–154 + permanent policies; docs only; after LA-43 / before LA-44); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; naturism≠adult-entertainment/sexual-services/porn; MEDIA IMMUTABILITY (`NATURIST_IMAGE_ALTERATION_ENABLED=FALSE` permanent); verifiable deletion ≠ third-party erase theater; BusinessProfile≠PrivateCommunityProfile (no auto membership inference); `MATURE_NATURIST_COMMUNITY_ENABLED=FALSE` until full release gate; jurisdiction-first; listing≠endorsement; old law≠current; AI≠lawyer; privacy≠immunity; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-43A runtime**; **DO NOT IMPLEMENT until LA-43 PASS**; do not start LA-44
-- [x] **NEXT after LA-43A:** LA-44 Startup + Company Creation Factory V540 → LA-45…60
+- [x] Ordering lock extended: **LA-43 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**; park LA-44 on `cursor/queue-2i-la-44-*-4059` until LA-43A on tip; L4 off
+- [x] **2I-LA-44** Startup + Company Creation Factory V540 queued (full §§1–160 + permanent rules; docs only; after LA-43A); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; IDEA≠COMPANY; PLAN≠OPERATING; VISION≠FACT; FORECAST≠FACT; CODE≠PRODUCTION; FUNDING≠COMMITMENT; SIGNUP≠EQUITY; Master Plan propose≠silent rewrite; XIV auto-own FALSE; autonomy quartet FALSE; AI Board≠legal board; no unrestricted spawn; no spam/deception; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-44 runtime**; **DO NOT IMPLEMENT until LA-43A PASS**; do not start LA-45
+- [x] **NEXT after LA-44:** LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60
 
 
 

@@ -2,7 +2,7 @@
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-42** completion gate **PASS** (and prior LA-01→LA-41 / Guardian gates as applicable).
 **Also blocked for code until:** LA-01 → LA-42 PASS minimum; compose **LA-05** Evidence/KG; **LA-06** Memory/Learning (promotion gated); **LA-07** Trust/Legal/Commerce; **LA-14** Cybersecurity; **LA-15** Legal (AI≠lawyer); **LA-17** Privacy Vault; **LA-18** Age Assurance + Identity + Community Trust; **LA-19** Mature Cultural Universes (separate product posture); **LA-22** Federation; **LA-35A** Zero-Trust; **LA-37** Product/Info Twin; **LA-39/40** Brain honesty; **LA-41** Commercial Relationship Graph; **LA-42** Enterprise Deal Intelligence; Guardian.
-**Queue rule:** **QUEUE AFTER LA-42.** Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Queue rule:** **QUEUE AFTER LA-42.** Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 **Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Tip through LA-42 ~`64252bc` — tip-land if clean; else park on `cursor/queue-2i-la-43-*-4059`; rebase — never force-push.
 **Canonical path:** `docs/architecture/xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`
 **Founder summary sibling:** [`../queue/2I-LA-43-offline-intelligence-global-knowledge-mature-community.md`](../queue/2I-LA-43-offline-intelligence-global-knowledge-mature-community.md)
@@ -14,7 +14,7 @@
 >
 > **Feature flags (default OFF / FALSE):** `OFFLINE_INTELLIGENCE_V530_ENABLED`, `OFFLINE_BRAIN_ENABLED`, `NEURAL_KNOWLEDGE_GRAPH_ENABLED`, `FAST_INGESTION_ROUTER_ENABLED`, `GLOBAL_KNOWLEDGE_TEAM_ENABLED`, `LIBRARY_BRAIN_ENABLED`, `HISTORY_BRAIN_ENABLED`, `GOVERNMENT_BRAIN_ENABLED`, `LAW_BRAIN_ENABLED`, `CULTURE_BRAIN_ENABLED`, `ART_BRAIN_ENABLED`, `TRAVEL_BRAIN_ENABLED`, `NEWS_BRAIN_ENABLED`, `BUSINESS_INTELLIGENCE_BRAIN_ENABLED`, `JURISDICTION_RESOLVER_ENABLED`, `VERIFIABLE_DELETION_WORKFLOW_ENABLED`, `MEDIA_SAFETY_PLANE_ENABLED`, **`MATURE_COMMUNITY_ENABLED=FALSE`**, **`MATURE_COMMUNITY_UNIVERSE_ENABLED=FALSE`**, **`SEXUAL_SERVICES_COMMERCE_ENABLED=FALSE`**, **`PRIVATE_MEDIA_TRAINING_ENABLED=FALSE`**, **`SILENT_CANDIDATE_PROMOTION_ENABLED=FALSE`**, **`OMNISCIENT_COMPLIANCE_CLAIM_ENABLED=FALSE`**, **`LITERAL_QUANTUM_PRIVATE_GROUPS_ENABLED=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
 >
-> **Tip note:** Tip through LA-42 ~`64252bc` — tip-land if clean; else park on `cursor/queue-2i-la-43-*-4059`. Dual-push; never force-push / never `main`. Master queue: **LA-42 → LA-43 (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+> **Tip note:** Tip through LA-42 ~`64252bc` — tip-land if clean; else park on `cursor/queue-2i-la-43-*-4059`. Dual-push; never force-push / never `main`. Master queue: **LA-42 → LA-43 (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 >
 > **Title supersession:** This V530 founder story **is** LA-43. It **replaces** the prior title-only placeholder **“Global Business Services + AI Solution Exchange + Enterprise Procurement Network V530”** (Business Services Exchange). Prior LA-43 title **may shift later** if founder reassigns Business Services Exchange to another LA slot.
 >
@@ -45,7 +45,7 @@
 | **2I-LA-44** | Startup + Company Creation Factory V540 | After LA-43A |
 | **2I-LA-45…60** | Prepared expansion titles | Title queue |
 
-**Ordering lock:** **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Ordering lock:** **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 
 **Prior LA-43 title note:** Earlier master-queue title-only **“Global Business Services + AI Solution Exchange + Enterprise Procurement Network V530”** (Business Services Exchange) is **superseded here**. That Business Services Exchange concept **may be reassigned later** by founder to another LA number — do not delete the concept from institutional memory; do not implement it from this commit.
 
@@ -102,7 +102,7 @@
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to run **Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530** — an **OfflineBrain** with offline capability classes; a **neural knowledge graph** where offline/neural learning creates **CANDIDATE** knowledge only (never silent promotion to verified); **fast ingestion + storage router**; a **Global Knowledge Team** coordinating **library / history / government / law / culture / art / travel / news / business-intelligence** brains; a **JurisdictionResolver** (sources + questions — not omniscient compliance); media safety; a **verifiable deletion workflow** (not erase-forever theater); and an optional late-stage **MatureCommunityUniverse** (security-gated; **`MATURE_COMMUNITY_ENABLED=FALSE`**; 18+ AgeAssurance; no sexual-services commerce; private media ≠ training/Global Brain) — with DB/RLS eval list; tests; release priority **business/knowledge canary first, mature later**; feature flags; permanent rules; evidence **NEVER INFER PASS**; next **LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60** — with **no runtime in this commit**.
+As the XIV AI Founder, I want XIV to run **Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530** — an **OfflineBrain** with offline capability classes; a **neural knowledge graph** where offline/neural learning creates **CANDIDATE** knowledge only (never silent promotion to verified); **fast ingestion + storage router**; a **Global Knowledge Team** coordinating **library / history / government / law / culture / art / travel / news / business-intelligence** brains; a **JurisdictionResolver** (sources + questions — not omniscient compliance); media safety; a **verifiable deletion workflow** (not erase-forever theater); and an optional late-stage **MatureCommunityUniverse** (security-gated; **`MATURE_COMMUNITY_ENABLED=FALSE`**; 18+ AgeAssurance; no sexual-services commerce; private media ≠ training/Global Brain) — with DB/RLS eval list; tests; release priority **business/knowledge canary first, mature later**; feature flags; permanent rules; evidence **NEVER INFER PASS**; next **LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60** — with **no runtime in this commit**.
 
 ### Core loops (contract)
 
@@ -334,7 +334,7 @@ L4_AUTONOMY_ENABLED=false
 |-------|-------|
 | **2I-LA-43A** | **Global Naturist Business + Tourism + Culture + Private Community Universe V535** |
 | **2I-LA-44** | **Startup + Company Creation Factory V540** |
-| **2I-LA-45** | Partner Ecosystem + Channel Graph Runtime (title queued) |
+| **2I-LA-45** | **Global Innovation + Invention + IP Intelligence V550** |
 | **2I-LA-46** | Negotiated Obligation + Performance Twin (title queued) |
 | **2I-LA-47** | Living Business Map Runtime (SIM≠reality) |
 | **2I-LA-48** | Founder Simulation Sandbox Runtime (≠ reality) |
@@ -421,7 +421,7 @@ L4 DISABLED
 | Check | Result required |
 |-------|-----------------|
 | Docs paths | architecture V530 + queue summary + master/KZ update |
-| Ordering | **LA-42 → LA-43 QUEUED (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60** |
+| Ordering | **LA-42 → LA-43 QUEUED (this V530) → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60** |
 | Remotes | LOCAL = GITHUB = GITLAB after dual-push |
 | Tree | CLEAN |
 | Runtime | **HARD STOP — no LA-43 runtime** |

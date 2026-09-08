@@ -2,7 +2,7 @@
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-43** completion gate **PASS** (and prior LA-01→LA-42 / LA-18 / LA-19 / Guardian gates as applicable).
 **Also blocked for code until:** LA-01 → LA-43 PASS minimum; compose **LA-07** Trust; **LA-15** Legal (AI≠lawyer); **LA-17** Privacy Vault; **LA-18** Age Assurance + Identity + Community Trust; **LA-19** Mature Cultural / Naturist Business Universes; **LA-35A** Zero-Trust; **LA-43** Offline Intelligence + Global Knowledge + MatureCommunityUniverse honesty; Guardian.
-**Queue rule:** **INSERT AFTER LA-43 / BEFORE LA-44.** Ordering: **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Queue rule:** **INSERT AFTER LA-43 / BEFORE LA-44.** Ordering: **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 **Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Tip through LA-43 ~`1498470` — tip-land if clean; else park on `cursor/queue-2i-la-43a-*-4059`; rebase — never force-push.
 **Canonical path:** `docs/architecture/xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md`
 **Founder summary sibling:** [`../queue/2I-LA-43A-global-naturist-business-tourism-culture-community.md`](../queue/2I-LA-43A-global-naturist-business-tourism-culture-community.md)
@@ -23,9 +23,9 @@
 >
 > **Feature flags (default OFF / FALSE):** `NATURIST_UNIVERSE_V535_ENABLED`, business/tourism/culture/private-community/events/marketplace/vault/deletion/firewall flags; **`MATURE_NATURIST_COMMUNITY_ENABLED=FALSE`**; **`NATURIST_IMAGE_ALTERATION_ENABLED=FALSE`** (permanent); **`SEXUAL_SERVICES_COMMERCE_ENABLED=FALSE`**; **`PRIVATE_MEDIA_TRAINING_ENABLED=FALSE`**; **`AUTOMATIC_PROFILE_MEMBERSHIP_INFERENCE_ENABLED=FALSE`**; **`OMNISCIENT_COMPLIANCE_CLAIM_ENABLED=FALSE`**; **`L4_AUTONOMY_ENABLED=FALSE`**.
 >
-> **Tip note:** Tip through LA-43 ~`1498470` — tip-land if clean; else park on `cursor/queue-2i-la-43a-*-4059`. Dual-push; never force-push / never `main`. Master queue: **LA-43 → LA-43A (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+> **Tip note:** Tip through LA-43 ~`1498470` — tip-land if clean; else park on `cursor/queue-2i-la-43a-*-4059`. Dual-push; never force-push / never `main`. Master queue: **LA-43 → LA-43A (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 >
-> **Queued architecture ≠ implementation proof.** Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-43A runtime.** Do not start LA-44.
+> **Queued architecture ≠ implementation proof.** Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-43A runtime.** LA-44 may queue after this; do not implement LA-44 from the LA-43A commit.
 
 ---
 
@@ -40,7 +40,7 @@
 | **2I-LA-44** | Startup + Company Creation Factory V540 | **NEXT** |
 | **2I-LA-45…60** | Prepared expansion titles | Title queue |
 
-**Ordering lock:** **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Ordering lock:** **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 
 **Deployment runway:** Do **not** block first canary on NaturistUniverse LIVE or private community LIVE. **Business directory / honesty bans first; private community later.** **`MATURE_NATURIST_COMMUNITY_ENABLED=FALSE`**. **L4 DISABLED**.
 
@@ -861,7 +861,7 @@ LA-43A supplies NaturistUniverse V535 contracts, profile firewall, media immutab
 
 ### 145. Hard stop — no runtime
 
-**HARD STOP — no LA-43A runtime** in this commit. No flags TRUE. No DB create. No media pipeline. Do not start LA-44.
+**HARD STOP — no LA-43A runtime** in this commit. No flags TRUE. No DB create. No media pipeline. LA-44 may queue after this; do not implement LA-44 from the LA-43A commit.
 
 ### 146. Permanent operational reminders (selected)
 
@@ -893,7 +893,7 @@ As the XIV AI Founder, I want XIV to run **Global Naturist Business + Tourism + 
 
 ### 153. Ordering lock
 
-**LA-42 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**LA-42 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 
 ### 154. Permanent rules block (CEO)
 
@@ -935,7 +935,7 @@ L4 DISABLED
 | Check | Result required |
 |-------|-----------------|
 | Docs paths | architecture V535 + queue summary + master/KZ update |
-| Ordering | **LA-43 → LA-43A QUEUED (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45…60** |
+| Ordering | **LA-43 → LA-43A QUEUED (this V535) → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60** |
 | Remotes | LOCAL = GITHUB = GITLAB after dual-push |
 | Tree | CLEAN |
 | Runtime | **HARD STOP — no LA-43A runtime** |

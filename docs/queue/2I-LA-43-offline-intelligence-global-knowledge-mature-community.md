@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-42 PASS**. Queue **AFTER LA-42**. Do 
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`](../architecture/xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md).
 
@@ -44,7 +44,8 @@ As the XIV AI Founder, I want XIV to run Offline Intelligence + Global Knowledge
 
 - **2I-LA-43A** Global Naturist Business + Tourism + Culture + Private Community Universe V535
 - **2I-LA-44** Startup + Company Creation Factory V540
-- **2I-LA-45…60** prepared expansion titles (as listed in architecture)
+- **2I-LA-45** Global Innovation + Invention + IP Intelligence V550
+- **2I-LA-46…60** prepared expansion titles (as listed in architecture)
 
 ## Docs-only gate
 

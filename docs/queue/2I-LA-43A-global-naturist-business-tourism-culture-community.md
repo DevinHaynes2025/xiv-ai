@@ -2,13 +2,13 @@
 
 Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / runtime **not started**
 Branch: xiv-v2 (tip-land if clean through LA-43 ~`1498470`; else park `cursor/queue-2i-la-43a-*-4059`; dual-push)
-HARD STOP: **DO NOT IMPLEMENT** until **LA-43 PASS**. **INSERT AFTER LA-43 / BEFORE LA-44**. Do not interrupt validated / deployment-critical work. Do not start LA-44. L4 disabled.
+HARD STOP: **DO NOT IMPLEMENT** until **LA-43 PASS**. **INSERT AFTER LA-43 / BEFORE LA-44**. Do not interrupt validated / deployment-critical work. LA-44 may queue after this; do not implement LA-44 from the LA-43A commit. L4 disabled.
 
 **Feature flags (default OFF / FALSE):** `NATURIST_UNIVERSE_V535_ENABLED`, business/tourism/culture/private-community/events/marketplace/vault/deletion/firewall flags, **`MATURE_NATURIST_COMMUNITY_ENABLED=FALSE`**, **`NATURIST_IMAGE_ALTERATION_ENABLED=FALSE`** (permanent), **`SEXUAL_SERVICES_COMMERCE_ENABLED=FALSE`**, **`PRIVATE_MEDIA_TRAINING_ENABLED=FALSE`**, **`AUTOMATIC_PROFILE_MEMBERSHIP_INFERENCE_ENABLED=FALSE`**, **`OMNISCIENT_COMPLIANCE_CLAIM_ENABLED=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+Ordering: **LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46…60**.
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md`](../architecture/xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md).
 
@@ -47,4 +47,4 @@ As the XIV AI Founder, I want XIV to run Global Naturist Business + Tourism + Cu
 
 ## Docs-only gate
 
-LOCAL = GITHUB = GITLAB; TREE = CLEAN; runtime **NOT** started. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-43A runtime.** Do not start LA-44. Parking: tip-land if clean; else `cursor/queue-2i-la-43a-*-4059`; rebase — never force-push.
+LOCAL = GITHUB = GITLAB; TREE = CLEAN; runtime **NOT** started. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-43A runtime.** LA-44 may queue after this; do not implement LA-44 from the LA-43A commit. Parking: tip-land if clean; else `cursor/queue-2i-la-43a-*-4059`; rebase — never force-push.
