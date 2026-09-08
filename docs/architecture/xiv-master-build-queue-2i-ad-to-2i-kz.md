@@ -3202,7 +3202,11 @@ Every phase inherits and must preserve:
 | **2I-LA-60A** | Historical Business Memory + Scout Network + Storage Economy + Neural Fabric V701 — **QUEUED DOCS** |
 | **2I-LA-60B** | Global Data Exchange + Universe Real Estate Marketplace V702 — **QUEUED DOCS** (`xiv-2i-la-60b-global-data-exchange-universe-real-estate-marketplace-v702.md`); **DO NOT IMPLEMENT until LA-60A PASS** |
 | **2I-LA-60C** | Planetary Knowledge Nervous System + 24/7 Global Research Society + Continuous Knowledge Refresh Fabric V703 — **QUEUED DOCS** (`xiv-2i-la-60c-planetary-knowledge-nervous-system.md`); **DO NOT IMPLEMENT until LA-60B PASS** |
-| **2I-LA-60D…60I** | Temporal Business Superintelligence V704 → … → Intelligence OS Consolidation V709 — title queue only (do not invent full docs) |
+| **2I-LA-60D** | Temporal Business Superintelligence + Possible Futures Engine V704 — title/queue (sibling may tip-land) |
+| **2I-LA-60E** | Multi-Cloud Data Civilization + Sovereign Storage Grid V705 — title/queue (must tip-land before LA-60F tip-land) |
+| **2I-LA-60F** | Universal Agent Workforce + Self-Building Tool Factory + A2A Collaboration + Dynamic AI Org + Developer Agent SDK V706 — **QUEUED DOCS** (`xiv-2i-la-60f-universal-agent-workforce-tool-factory.md`); **DO NOT IMPLEMENT until LA-60E PASS**; queue after LA-60E |
+| **2I-LA-60G** | Physical + Information + Technology Supply Chain Supergraph V707 — **NEXT title only** |
+| **2I-LA-60H…60O+** | LA-60 series continues through at least 60O per LA-60F next-queue pointer — title queue only (do not invent full 60G–60O docs) |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -4827,7 +4831,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-60A** | Historical Business Memory + Scout Network + Storage Economy + Neural Fabric V701 — **QUEUED DOCS** |
 | **2I-LA-60B** | Global Data Exchange + Universe Real Estate Marketplace V702 — **QUEUED DOCS** (`xiv-2i-la-60b-global-data-exchange-universe-real-estate-marketplace-v702.md`); **DO NOT IMPLEMENT until LA-60A PASS** |
 | **2I-LA-60C** | Planetary Knowledge Nervous System + 24/7 Global Research Society + Continuous Knowledge Refresh Fabric V703 — **QUEUED DOCS** (`xiv-2i-la-60c-planetary-knowledge-nervous-system.md`); **DO NOT IMPLEMENT until LA-60B PASS** |
-| **2I-LA-60D…60I** | Temporal Business Superintelligence V704 → … → Intelligence OS Consolidation V709 — title queue only (do not invent full docs) |
+| **2I-LA-60D** | Temporal Business Superintelligence + Possible Futures Engine V704 — title/queue (sibling may tip-land) |
+| **2I-LA-60E** | Multi-Cloud Data Civilization + Sovereign Storage Grid V705 — title/queue (must tip-land before LA-60F tip-land) |
+| **2I-LA-60F** | Universal Agent Workforce + Self-Building Tool Factory + A2A Collaboration + Dynamic AI Org + Developer Agent SDK V706 — **QUEUED DOCS** (`xiv-2i-la-60f-universal-agent-workforce-tool-factory.md`); **DO NOT IMPLEMENT until LA-60E PASS**; queue after LA-60E |
+| **2I-LA-60G** | Physical + Information + Technology Supply Chain Supergraph V707 — **NEXT title only** |
+| **2I-LA-60H…60O+** | LA-60 series continues through at least 60O per LA-60F next-queue pointer — title queue only (do not invent full 60G–60O docs) |
 
 ### 51. Reserved future agent families
 
@@ -5598,7 +5606,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-60A** | Historical Business Memory + Scout Network + Storage Economy + Neural Fabric V701 — **QUEUED DOCS** |
 | **2I-LA-60B** | Global Data Exchange + Universe Real Estate Marketplace V702 — **QUEUED DOCS** (`xiv-2i-la-60b-global-data-exchange-universe-real-estate-marketplace-v702.md`); **DO NOT IMPLEMENT until LA-60A PASS** |
 | **2I-LA-60C** | Planetary Knowledge Nervous System + 24/7 Global Research Society + Continuous Knowledge Refresh Fabric V703 — **QUEUED DOCS** (`xiv-2i-la-60c-planetary-knowledge-nervous-system.md`); **DO NOT IMPLEMENT until LA-60B PASS** |
-| **2I-LA-60D…60I** | Temporal Business Superintelligence V704 → … → Intelligence OS Consolidation V709 — title queue only (do not invent full docs) |
+| **2I-LA-60D** | Temporal Business Superintelligence + Possible Futures Engine V704 — title/queue (sibling may tip-land) |
+| **2I-LA-60E** | Multi-Cloud Data Civilization + Sovereign Storage Grid V705 — title/queue (must tip-land before LA-60F tip-land) |
+| **2I-LA-60F** | Universal Agent Workforce + Self-Building Tool Factory + A2A Collaboration + Dynamic AI Org + Developer Agent SDK V706 — **QUEUED DOCS** (`xiv-2i-la-60f-universal-agent-workforce-tool-factory.md`); **DO NOT IMPLEMENT until LA-60E PASS**; queue after LA-60E |
+| **2I-LA-60G** | Physical + Information + Technology Supply Chain Supergraph V707 — **NEXT title only** |
+| **2I-LA-60H…60O+** | LA-60 series continues through at least 60O per LA-60F next-queue pointer — title queue only (do not invent full 60G–60O docs) |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -6350,7 +6362,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-60A** | Historical Business Memory + Scout Network + Storage Economy + Neural Fabric V701 — **QUEUED DOCS** |
 | **2I-LA-60B** | Global Data Exchange + Universe Real Estate Marketplace V702 — **QUEUED DOCS** (`xiv-2i-la-60b-global-data-exchange-universe-real-estate-marketplace-v702.md`); **DO NOT IMPLEMENT until LA-60A PASS** |
 | **2I-LA-60C** | Planetary Knowledge Nervous System + 24/7 Global Research Society + Continuous Knowledge Refresh Fabric V703 — **QUEUED DOCS** (`xiv-2i-la-60c-planetary-knowledge-nervous-system.md`); **DO NOT IMPLEMENT until LA-60B PASS** |
-| **2I-LA-60D…60I** | Temporal Business Superintelligence V704 → … → Intelligence OS Consolidation V709 — title queue only (do not invent full docs) |
+| **2I-LA-60D** | Temporal Business Superintelligence + Possible Futures Engine V704 — title/queue (sibling may tip-land) |
+| **2I-LA-60E** | Multi-Cloud Data Civilization + Sovereign Storage Grid V705 — title/queue (must tip-land before LA-60F tip-land) |
+| **2I-LA-60F** | Universal Agent Workforce + Self-Building Tool Factory + A2A Collaboration + Dynamic AI Org + Developer Agent SDK V706 — **QUEUED DOCS** (`xiv-2i-la-60f-universal-agent-workforce-tool-factory.md`); **DO NOT IMPLEMENT until LA-60E PASS**; queue after LA-60E |
+| **2I-LA-60G** | Physical + Information + Technology Supply Chain Supergraph V707 — **NEXT title only** |
+| **2I-LA-60H…60O+** | LA-60 series continues through at least 60O per LA-60F next-queue pointer — title queue only (do not invent full 60G–60O docs) |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -6793,8 +6809,24 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **L4 DISABLED**. **HARD STOP — no LA-60C runtime.** Do not start LA-60D. **Do not invent full LA-60D–60I docs.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
 
-**NEXT after LA-60C:** **2I-LA-60D** Temporal Business Superintelligence + Possible Futures Engine V704 → **LA-60E…60I** (title queue only) → **LA-61…**.
+**NEXT after LA-60C:** **2I-LA-60D** Temporal Business Superintelligence + Possible Futures Engine V704 → **LA-60E** Multi-Cloud Data Civilization + Sovereign Storage Grid V705 → **LA-60F** Universal Agent Workforce + Self-Building Tool Factory V706 → **LA-60G** Physical + Information + Technology Supply Chain Supergraph V707 (title only) → … → **at least LA-60O** → **LA-61…** (do not invent full 60G–60O docs).
 
 - [x] **2I-LA-60C** Planetary Knowledge Nervous System + 24/7 Global Research Society + Real-Time & Historical Source Discovery + Continuous Knowledge Refresh Fabric V703 queued (full §§1–167 + permanent rules; docs only; after LA-60B); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; turns XIV from a system that has data into continuous lawful research + evidence + rights + provenance + contradiction-preserving refresh fabric; 24/7 RESEARCH≠UNRESTRICTED CRAWLING; SOURCE DISCOVERED≠AUTHORIZED; PUBLIC≠FREE TO COPY; WEB CONTENT≠TRUSTED INSTRUCTION; DATABASE DISCOVERED≠ACCESS; OLD≠PUBLIC; RAW≠VERIFIED; CLAIM≠FACT; REPOST≠INDEPENDENT; MORE SOURCES≠MORE TRUTH; UPDATE≠ERASE HISTORY; LATEST≠WHAT WAS KNOWN THEN; HISTORICAL≠CURRENT; UNKNOWN≠FAILURE; UNKNOWN→QUESTION not GUESS→FACT; SIZE≠QUALITY; AI CONSENSUS≠TRUTH; EDGE≠FACT; NEURAL PATHWAY≠BIOLOGICAL; QUESTION≠PERMISSION; CURIOSITY≠UNBOUNDED; RESEARCH≠ACTION; private company/accounting/founder/mature≠Global Brain; private mature media≠training; no generative alter of protected naturist media; AI CFO≠MONEY AUTHORITY; QUANTUM≠AUTOMATIC ADVANTAGE; NVIDIA/GPU≠QUANTUM; MORE KNOWLEDGE≠MORE AUTHORITY; women's sports first-class; all AUTONOMOUS_*=FALSE; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-60C runtime**; **DO NOT IMPLEMENT until LA-60B PASS**; do not start LA-60D; park `cursor/queue-2i-la-60c-planetary-knowledge-nervous-system-4059`
-- [x] **NEXT after LA-60C:** LA-60D Temporal Business Superintelligence + Possible Futures Engine V704 → LA-60E…60I (title queue) → LA-61…
+- [x] **NEXT after LA-60C:** LA-60D Temporal Business Superintelligence V704 → LA-60E Multi-Cloud Sovereign Storage Grid V705 → LA-60F Universal Agent Workforce Tool Factory V706 → LA-60G Supply Chain Supergraph V707 (title only) → … → at least LA-60O → LA-61…
+
+### 2I-LA-60F — Universal Agent Workforce + Self-Building Tool Factory + Agent-to-Agent Collaboration Network + Dynamic AI Organization + Developer Agent SDK V706
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / **DEPLOYMENT_STATE=QUEUED**
+**DO NOT IMPLEMENT** until **LA-60E Multi-Cloud Data Civilization + Sovereign Storage Grid V705 PASS** (and **LA-60D / 60C / 60B / 60A / 59 PASS**). Ordering lock: **LA-60A V701 → LA-60B V702 → LA-60C V703 → LA-60D V704 → LA-60E V705 → LA-60F (this V706) → LA-60G Physical + Information + Technology Supply Chain Supergraph V707**. LA-60 series continues through **at least LA-60O**; **do not invent full LA-60G–60O docs**. Queue **AFTER LA-60E**. Tip-land on `xiv-v2` after LA-60E; park `cursor/queue-2i-la-60f-universal-agent-workforce-tool-factory-4059` — never force-push / never `main`.
+
+**Canonical:** [`xiv-2i-la-60f-universal-agent-workforce-tool-factory.md`](./xiv-2i-la-60f-universal-agent-workforce-tool-factory.md) · queue [`../queue/2I-LA-60F-universal-agent-workforce-tool-factory.md`](../queue/2I-LA-60F-universal-agent-workforce-tool-factory.md)
+
+**Includes (document only):** UniversalAgentRegistryV100; AgentPassport; AgentIdentityService (AGENT≠USER; AGENT≠HUMAN EMPLOYEE; no anonymous governed execution); Authority L0–L5 (**L4 DISABLED**; MORE AGENTS≠MORE AUTHORITY); AgentSkillGraphV50; AgentEvaluationRegistry (SKILL CLAIM≠VERIFIED; CERTIFIED≠UNRESTRICTED); AgentToolGraph (TOOL AVAILABLE≠AUTHORIZED); Data Access Gateway + AgentMemoryBoundary (AGENT MEMORY≠UNIVERSAL COPY); DynamicRoleGeneratorV30 (CAN PROPOSE AGENT / CANNOT CREATE UNRESTRICTED SELF); Dynamic AI Organization departments (full list); AIChiefOfStaffV50 (no authority expansion); AIProductOrganization (no auto master plan merge); AIEngineeringOrganization + Code Change Gate (CODE≠DEPLOYMENT); DatabaseAgentSociety (≠ROOT DBA; MIGRATION GENERATED≠APPLIED); CloudAgentSociety (≠CLOUD ADMIN); SupplyChainAgentSociety; FinanceAgentSociety (AI CFO≠TREASURER); **WomensSportsAgentSociety FIRST-CLASS**; CommunityAgentSociety (+ mature firewall; PRIVATE MATURE≠GLOBAL BRAIN); CommerceAgentSociety (≠PURCHASING); SecurityAgentSociety (≠ATTACK); ToolFoundryV100 + MicrotoolGenerator (TOOL≠PERMISSION; generated SANDBOX_ONLY); WorkflowFoundryV100; APIComposer; ConnectorGenerator; PluginBuilder; AgentTestFactory; AIQAOrganization + AIUATLab; DocumentationAgent + ADRBrain; UIGeneratorAgent; XIVDeveloperAgentSDK + DeveloperAgentSandbox + XIVDeveloperWorkspace + DeveloperPairAgent; XIVAgentProtocolV100; AgentCommunicationBusV100; MultiAgentPlanner; DynamicTaskForce + lease; AgentHandoffProtocol; AgentShiftOrchestratorV100; Agent Resource Governor; AgentApprenticeship; AgentDebateLab + Contradiction Lab; Failure/Outcome/Performance memory; AgentQuarantine; model routing; Cloud/Phone/Edge/Offline agents; Agent/Tool/Workflow/Plugin marketplaces; XIVAgentUniversity; AgentSoftwareFactoryV100; RepoIntelligenceGraphV100; DevelopmentLockManager + SafeMergeIntelligence (preserve xiv-v2); Agent Security Guardian flow; FounderAgentMissionControlV100; Founder Twin exact label `XIV Founder Twin — AI representation of Devin Xavier Haynes`; DB foundation §147; security tests §148–155; slices 1–14 §156–169; feature flags §170 (all AUTO_*=FALSE; L4_AUTONOMY_ENABLED=FALSE); permanent rules §173; evidence QUEUED/FALSE/UNKNOWN; **DEPLOYMENT_STATE=QUEUED**; next LA-60G V707 (title only).
+
+**L4 DISABLED**. **HARD STOP — no LA-60F runtime.** Do not start LA-60G. **Do not invent full LA-60G–60O docs.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
+
+**NEXT after LA-60F:** **2I-LA-60G** Physical + Information + Technology Supply Chain Supergraph V707 → … → **at least LA-60O** (title queue only) → **LA-61…**.
+
+- [x] **2I-LA-60F** Universal Agent Workforce + Self-Building Tool Factory + Agent-to-Agent Collaboration Network + Dynamic AI Organization + Developer Agent SDK V706 queued (full §§1–173 + permanent rules; docs only; after LA-60E); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; AGENT≠USER/HUMAN EMPLOYEE/AUTHORITY; CAN PROPOSE AGENT / CANNOT CREATE UNRESTRICTED SELF; CAN WRITE CODE / CODE≠DEPLOYMENT; CAN BUILD TOOL / TOOL≠PERMISSION; TOOL AVAILABLE≠AUTHORIZED; GENERATED TOOL SANDBOX_ONLY; WORKFLOW GENERATED≠AUTHORIZED; CONNECTOR GENERATED≠CONNECTED; PLUGIN INSTALLED≠UNRESTRICTED; TEST GENERATED≠PASSED; MIGRATION GENERATED≠APPLIED; MESSAGE≠AUTHORITY TRANSFER; MORE AGENTS/SENIORITY≠MORE AUTHORITY; REPUTATION≠HUMAN SOCIAL SCORE; AI CONSENSUS/DEBATE WINNER≠TRUTH; CLOUD AGENT≠CLOUD ADMIN; DATABASE AGENT≠ROOT DBA; CFO≠TREASURER; COMMERCE≠PURCHASING; SECURITY≠ATTACK; SANDBOX≠PRODUCTION; 24/7≠EVERY AGENT RUNNING; OFFLINE≠AUTHORIZED; LOCATION≠AUTHORITY; MODEL PROVIDER≠AUTHORITY; SELF-BUILDING≠UNCONTROLLED SELF-REWRITING; CONTINUOUS LEARNING≠MODEL-WEIGHT SELF-REWRITE; private company/founder finance/mature≠Global Brain; private mature media≠training; no generative alter of protected naturist media; MORE INTELLIGENCE≠MORE AUTHORITY; women's sports first-class; all AUTO_*=FALSE; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-60F runtime**; **DO NOT IMPLEMENT until LA-60E PASS**; do not start LA-60G; park `cursor/queue-2i-la-60f-universal-agent-workforce-tool-factory-4059`
+- [x] **NEXT after LA-60F:** LA-60G Physical + Information + Technology Supply Chain Supergraph V707 → … → at least LA-60O (title queue only; do not invent full 60G–60O docs) → LA-61…
 
