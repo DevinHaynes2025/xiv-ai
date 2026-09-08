@@ -8,7 +8,8 @@ HARD STOP: **DO NOT IMPLEMENT** until ordering predecessors PASS (LA-37 minimum;
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**.
+Ordering: **LA-37 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 → LA-41 Global Commercial Relationship Graph → LA-42…55**.
+
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-39-global-africa-intelligence-brain-v400.md`](../architecture/xiv-2i-la-39-global-africa-intelligence-brain-v400.md).
 
@@ -35,8 +36,9 @@ As the XIV AI Founder, I want XIV to run Global Africa Intelligence Brain V400 �
 
 ## Next queue
 
-- **2I-LA-40** Continuous Intelligence + Self-Evaluation
-- **2I-LA-41…50** prepared expansion titles (as listed in architecture)
+- **2I-LA-40** Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500
+- **2I-LA-41** Global Commercial Relationship Graph
+- **2I-LA-42…55** prepared expansion titles (as listed in architecture)
 
 ## Docs-only gate
 
