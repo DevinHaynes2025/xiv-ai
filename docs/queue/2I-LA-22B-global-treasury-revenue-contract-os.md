@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-22 PASS**. Queue **AFTER LA-22 AND
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-22** (Global Database Federation + Data Control Tower V30) must PASS before LA-22B code. Ordering: **LA-22 → LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**.
+**2I-LA-22** (Global Database Federation + Data Control Tower V30) must PASS before LA-22B code. Ordering: **LA-22 → LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory V30 → LA-24**.
 
 **Tip note:** Fetch tip first (tip ~`046b026` includes LA-19…21 + LA-22 lineage). Rebase onto latest tip **including LA-22**. Never force-push / never `main`.
 
@@ -66,7 +66,7 @@ As the XIV AI Founder, I want XIV to run Global Treasury + Revenue + Contract OS
 
 ## Next queue
 
-- **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory (aggressive financial-security testing before real payments)
+- **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory V30 (aggressive financial-security testing before real payments)
 - Then **LA-24…LA-30** per master queue titles
 
 ## Docs-only gate

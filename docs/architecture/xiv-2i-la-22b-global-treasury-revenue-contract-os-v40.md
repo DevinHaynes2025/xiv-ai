@@ -28,7 +28,7 @@
 | **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 | **This document** |
 | **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory | **NEXT** after LA-22B (aggressive financial-security testing before real payments) |
 
-**Ordering lock:** **LA-21 → LA-22 Global Database Federation → LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**.
+**Ordering lock:** **LA-21 → LA-22 Global Database Federation → LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory V30 → LA-24**.
 
 **LA-12 / LA-16 ≠ LA-22B:** LA-12/16 hold CFO/banking/wealth **foundations and V20 depth**. Full Global Treasury Router, PaymentOrchestrator (gated), Contract OS V40 integration, Revenue Control Tower, multi-bank treasury states, and pre-payment financial-security canary pack belong **here**.
 
