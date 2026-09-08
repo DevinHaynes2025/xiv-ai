@@ -29,7 +29,9 @@ export function collectCloudWorkerEvidence(input?: {
       : deployment.status === 'NOT_CONFIGURED'
         ? 'NOT_CONFIGURED'
         : local.status,
-    cloudWorkerVerified: offline.cloudWorkerVerified,
+    cloudWorkerVerified:
+      offline.cloudWorkerVerified &&
+      (minimal.deployed || deployment.cloudDeployment !== 'BLOCKED'),
     offlineFounderTestPassed: offline.passed,
     crashRecoveryTestPassed: crash.passed && crash.resumedFromCheckpoint,
     runs247Live: false,

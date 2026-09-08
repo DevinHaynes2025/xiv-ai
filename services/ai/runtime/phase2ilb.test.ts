@@ -330,7 +330,8 @@ test('AgentWorkforceManager + communication + founder surfaces', () => {
 test('offline founder test + evidence honesty', () => {
   const offline = runOfflineFounderTest();
   assert.equal(offline.passed, true);
-  assert.equal(offline.cloudWorkerVerified, true);
+  assert.equal(offline.cloudWorkerVerified, false);
+  assert.equal(offline.mode, 'LOCAL_PROCESS_SIM');
   assert.equal(offline.indefinite247, false);
   assert.equal(offline.runs247Live, false);
   assert.equal(offline.ideRequired, false);
@@ -340,7 +341,8 @@ test('offline founder test + evidence honesty', () => {
   assert.equal(evidence.cloudDeployment, 'BLOCKED');
   assert.ok(evidence.cloudDeploymentBlocker);
   assert.equal(evidence.providerStatus, 'NOT_CONFIGURED');
-  assert.equal(evidence.cloudWorkerVerified, true);
+  assert.equal(evidence.cloudWorkerVerified, false);
+  assert.equal(evidence.cloudDeployment, 'BLOCKED');
   assert.equal(evidence.offlineFounderTestPassed, true);
   assert.equal(evidence.crashRecoveryTestPassed, true);
   assert.equal(evidence.runs247Live, false);
