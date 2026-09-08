@@ -2,7 +2,7 @@
 
 Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / runtime **not started** / **DEPLOYMENT_STATE=QUEUED**
 Branch: xiv-v2 (tip-land on `xiv-v2` after LA-60W; park `cursor/queue-2i-la-60x-quantum-agentic-compute-algorithm-foundry-4059`; never force-push; dual-push)
-HARD STOP: **DO NOT IMPLEMENT** until **LA-60W PASS** (and **LA-60V…60A / LA-59 PASS**). Queue **AFTER LA-60W**. Do not interrupt validated work or clobber unfinished tip-land WIP for LA-60L–60W. L4 disabled. All AUTO_* FALSE. **Do not start LA-60Y.**
+HARD STOP: **DO NOT IMPLEMENT** until **LA-60W PASS** (and **LA-60V…60A / LA-59 PASS**). Queue **AFTER LA-60W**. Do not interrupt validated work or clobber unfinished tip-land WIP for LA-60L–60W. L4 disabled. All AUTO_* FALSE. **LA-60Y now QUEUED DOCS.** Do not invent full LA-60Z–61D docs.
 
 **Title supersession:** Authoritative **2I-LA-60X** is **Quantum-Agentic Compute / Algorithm Foundry V724** — **not** earlier “Global Economic Coordination + Business Opportunity Routing.” Economic Coordination may remain later title-only elsewhere; do not invent its full doc as 60X.
 
@@ -53,12 +53,12 @@ As the XIV AI Founder, I want XIV to define a governed **Quantum-Agentic Compute
 
 ## Next queue
 
-- **2I-LA-60Y** Universal Business Simulation + Planetary Enterprise Strategy Engine V725
-- LA-60 series continues (pointer only; do not invent full 60Y–61C docs)
+- **2I-LA-60Y** Universal Business Simulation + Planetary Enterprise Strategy Engine V725 (**QUEUED DOCS**)
+- LA-60 series continues (pointer only; do not invent full 60Z–61D docs)
 - **2I-LA-61…**
 - Economic Coordination may remain later title-only elsewhere — **not** as 60X
 
-**Do not start LA-60Y from this commit.**
+**LA-60Y now QUEUED DOCS after this story; do not invent full LA-60Z–61D docs from this commit.**
 
 ## Docs-only gate
 
