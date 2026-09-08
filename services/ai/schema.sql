@@ -1,9 +1,14 @@
 -- Optional schema-only pointer. Canonical SQL lives in:
 -- supabase/migrations/20260904180000_ai_agent_governance.sql
 -- supabase/migrations/20260906220000_persistent_organizations_and_universes.sql
---   (MIGRATION AUTHORED — NOT APPLIED. Do not run in Phase 2F-A.)
--- Apply that file in the hosted Supabase SQL editor, then:
+--   (MIGRATION AUTHORED — DO NOT APPLY. Superseded by reconciliation.)
+-- supabase/migrations/20260906230000_xiv_tenant_reconciliation.sql
+--   (MIGRATION AUTHORED — NOT APPLIED. Membership helpers in xiv_internal.)
+-- supabase/migrations/20260908013000_harden_security_definer_grants.sql
+--   (Additive SECURITY DEFINER grant hardening; does not mark LIVE.)
+-- Apply reviewed files in the hosted Supabase SQL editor only after human authorization, then:
 --   NOTIFY pgrst, 'reload schema';
 -- RLS stays enabled. Do not apply from the mobile app.
 -- Client writes fail closed until matching owner-only policies exist for auth.uid().
 -- The AI service must not receive a service-role key.
+-- Auth leaked-password protection is a dashboard setting — see docs/supabase-security-hardening.md.

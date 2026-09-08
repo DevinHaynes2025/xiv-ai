@@ -22,7 +22,7 @@ Not: client says `organizationId` → grant.
 
 ## Recursion
 
-Policies on `xiv_organizations` / `xiv_universes` call `xiv_is_org_member` / `xiv_can_view_universe` (reconciliation file). The older Phase 2F names must not be applied.
+Policies on `xiv_organizations` / `xiv_universes` call `xiv_internal.xiv_is_org_member` / `xiv_internal.xiv_can_view_universe` (reconciliation file). The older Phase 2F public helper names must not be applied as PostgREST RPCs.
 
 Those helpers are `SECURITY DEFINER` with `set search_path = pg_catalog, public` and read membership tables **without** going back through RLS.
 
@@ -34,7 +34,7 @@ xiv_organizations policy → memberships → memberships policy → xiv_organiza
 
 does not recurse.
 
-Internal policy helpers `xiv_user_is_org_member`, `xiv_universe_org_id`, and `xiv_universe_belongs_to_org` live in schema `xiv_internal`. Do **not** add `xiv_internal` to PostgREST `db-schemas` / extra search path. `authenticated` receives schema USAGE plus EXECUTE on those helpers so RLS policy expressions can resolve them; that is not public RPC exposure. Trigger functions are revoked from `authenticated`. Bootstrap RPCs stay in `public`. No dynamic SQL. `PUBLIC` / `anon` execute is revoked.
+Internal policy helpers `xiv_is_org_member`, `xiv_has_org_role`, `xiv_is_universe_member`, `xiv_has_universe_role`, `xiv_can_view_universe`, `xiv_user_is_org_member`, `xiv_universe_org_id`, and `xiv_universe_belongs_to_org` live in schema `xiv_internal`. Do **not** add `xiv_internal` to PostgREST `db-schemas` / extra search path. `authenticated` receives schema USAGE plus EXECUTE on those helpers so RLS policy expressions can resolve them; that is intentional least privilege, not public application RPC exposure. Trigger functions are revoked from `authenticated`. Bootstrap RPCs `xiv_create_organization` / `xiv_create_universe` stay in `public` as intentional authenticated entry points (with `auth.uid()` and membership checks). No dynamic SQL. `PUBLIC` / `anon` execute is revoked. See [supabase-security-hardening.md](./supabase-security-hardening.md).
 
 Final-owner removal locks the parent organization/Universe row and all active owner memberships `FOR UPDATE` before counting, so two concurrent owner removals cannot both observe a remaining owner.
 

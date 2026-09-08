@@ -53,10 +53,22 @@ export function reviewPhase2HaReconciliation(sql = loadPhase2HaMigrationSql()) {
   if (/xiv_has_org_role\(p_organization_id, array\['owner', 'admin', 'executive'\]\)/i.test(sql)) {
     findings.push('xiv_create_universe must not allow executive.');
   }
-  if (!/xiv_has_org_role\(p_organization_id, array\['owner', 'admin'\]\)/i.test(sql)) {
-    findings.push('xiv_create_universe must require owner or admin.');
+  if (!/xiv_internal\.xiv_has_org_role\(p_organization_id, array\['owner', 'admin'\]\)/i.test(sql)) {
+    findings.push('xiv_create_universe must require owner or admin via xiv_internal.');
   }
   if (!/create schema if not exists xiv_internal/i.test(sql)) findings.push('xiv_internal schema missing.');
+  if (/create or replace function public\.xiv_is_org_member\b/i.test(sql)) {
+    findings.push('xiv_is_org_member must not be a public RPC.');
+  }
+  if (/create or replace function public\.xiv_has_org_role\b/i.test(sql)) {
+    findings.push('xiv_has_org_role must not be a public RPC.');
+  }
+  if (/create or replace function public\.xiv_can_view_universe\b/i.test(sql)) {
+    findings.push('xiv_can_view_universe must not be a public RPC.');
+  }
+  if (/grant execute on function public\.xiv_is_org_member\b/i.test(sql)) {
+    findings.push('xiv_is_org_member must not grant public EXECUTE.');
+  }
   if (/grant execute on function public\.xiv_user_is_org_member/i.test(sql)) {
     findings.push('xiv_user_is_org_member must not be a public RPC.');
   }

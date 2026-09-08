@@ -33,7 +33,7 @@
 
 create schema if not exists xiv_internal;
 comment on schema xiv_internal is
-  'Internal RLS/policy helpers. Not a PostgREST API schema. Do NOT add xiv_internal to db-schemas or extra_search_path. authenticated USAGE+EXECUTE is required so RLS policy expressions can resolve these SECURITY DEFINER helpers; that is not RPC exposure.';
+  'Internal RLS/policy helpers. Not a PostgREST API schema. Do NOT add xiv_internal to db-schemas or extra_search_path. Membership check helpers (xiv_is_org_member, xiv_has_org_role, xiv_is_universe_member, xiv_has_universe_role, xiv_can_view_universe) live here — not in public — so they are not PostgREST RPCs. authenticated USAGE+EXECUTE is intentional least privilege so RLS policy expressions can resolve these SECURITY DEFINER helpers; that is not application RPC exposure. Bootstrap RPCs xiv_create_organization / xiv_create_universe remain in public as intentional authenticated user-facing entry points with auth.uid() and membership checks.';
 revoke all on schema xiv_internal from public, anon;
 grant usage on schema xiv_internal to authenticated;
 
@@ -144,9 +144,10 @@ create index xiv_universe_memberships_universe_status_idx on public.xiv_universe
 
 -- ---------------------------------------------------------------------------
 -- SECURITY DEFINER helpers — hardened search_path, schema-qualified, no dynamic SQL
+-- Membership checks live in xiv_internal (not PostgREST). Bootstrap RPCs stay public.
 -- ---------------------------------------------------------------------------
 
-create or replace function public.xiv_is_org_member(p_organization_id uuid)
+create or replace function xiv_internal.xiv_is_org_member(p_organization_id uuid)
 returns boolean
 language sql
 stable
@@ -162,7 +163,7 @@ as $$
   );
 $$;
 
-create or replace function public.xiv_has_org_role(p_organization_id uuid, p_roles text[])
+create or replace function xiv_internal.xiv_has_org_role(p_organization_id uuid, p_roles text[])
 returns boolean
 language sql
 stable
@@ -222,7 +223,7 @@ as $$
   );
 $$;
 
-create or replace function public.xiv_is_universe_member(p_universe_id uuid)
+create or replace function xiv_internal.xiv_is_universe_member(p_universe_id uuid)
 returns boolean
 language sql
 stable
@@ -243,7 +244,7 @@ as $$
   );
 $$;
 
-create or replace function public.xiv_has_universe_role(p_universe_id uuid, p_roles text[])
+create or replace function xiv_internal.xiv_has_universe_role(p_universe_id uuid, p_roles text[])
 returns boolean
 language sql
 stable
@@ -265,7 +266,7 @@ as $$
   );
 $$;
 
-create or replace function public.xiv_can_view_universe(p_universe_id uuid)
+create or replace function xiv_internal.xiv_can_view_universe(p_universe_id uuid)
 returns boolean
 language sql
 stable
@@ -276,10 +277,10 @@ as $$
     select 1
     from public.xiv_universes u
     where u.id = p_universe_id
-      and public.xiv_is_org_member(u.organization_id)
+      and xiv_internal.xiv_is_org_member(u.organization_id)
       and (
-        public.xiv_is_universe_member(p_universe_id)
-        or public.xiv_has_org_role(u.organization_id, array['owner', 'admin', 'executive'])
+        xiv_internal.xiv_is_universe_member(p_universe_id)
+        or xiv_internal.xiv_has_org_role(u.organization_id, array['owner', 'admin', 'executive'])
       )
   );
 $$;
@@ -329,7 +330,7 @@ begin
   if auth.uid() is null then
     raise exception 'unauthenticated';
   end if;
-  if not public.xiv_has_org_role(p_organization_id, array['owner', 'admin']) then
+  if not xiv_internal.xiv_has_org_role(p_organization_id, array['owner', 'admin']) then
     raise exception 'not authorized';
   end if;
   insert into public.xiv_universes (
@@ -492,28 +493,35 @@ create trigger xiv_universes_protect_organization
 -- Privileges
 -- ---------------------------------------------------------------------------
 
-revoke all on function public.xiv_is_org_member(uuid) from public, anon;
-revoke all on function public.xiv_has_org_role(uuid, text[]) from public, anon;
+-- ---------------------------------------------------------------------------
+-- Privileges
+-- Membership helpers: xiv_internal only (authenticated EXECUTE for RLS resolution).
+-- Bootstrap RPCs: intentional public authenticated entry points.
+-- PUBLIC / anon EXECUTE revoked everywhere below.
+-- ---------------------------------------------------------------------------
+
+revoke all on function xiv_internal.xiv_is_org_member(uuid) from public, anon;
+revoke all on function xiv_internal.xiv_has_org_role(uuid, text[]) from public, anon;
 revoke all on function xiv_internal.xiv_user_is_org_member(uuid, uuid) from public, anon;
 revoke all on function xiv_internal.xiv_universe_org_id(uuid) from public, anon;
 revoke all on function xiv_internal.xiv_universe_belongs_to_org(uuid, uuid) from public, anon;
-revoke all on function public.xiv_is_universe_member(uuid) from public, anon;
-revoke all on function public.xiv_has_universe_role(uuid, text[]) from public, anon;
-revoke all on function public.xiv_can_view_universe(uuid) from public, anon;
+revoke all on function xiv_internal.xiv_is_universe_member(uuid) from public, anon;
+revoke all on function xiv_internal.xiv_has_universe_role(uuid, text[]) from public, anon;
+revoke all on function xiv_internal.xiv_can_view_universe(uuid) from public, anon;
 revoke all on function public.xiv_create_organization(text, text, text, text) from public, anon;
 revoke all on function public.xiv_create_universe(uuid, text, text, public.xiv_data_classification, public.xiv_storage_tier, text) from public, anon;
 revoke all on function xiv_internal.protect_organization_membership() from public, anon, authenticated;
 revoke all on function xiv_internal.protect_universe_membership() from public, anon, authenticated;
 revoke all on function xiv_internal.protect_universe_organization() from public, anon, authenticated;
 
-grant execute on function public.xiv_is_org_member(uuid) to authenticated;
-grant execute on function public.xiv_has_org_role(uuid, text[]) to authenticated;
+grant execute on function xiv_internal.xiv_is_org_member(uuid) to authenticated;
+grant execute on function xiv_internal.xiv_has_org_role(uuid, text[]) to authenticated;
 grant execute on function xiv_internal.xiv_user_is_org_member(uuid, uuid) to authenticated;
 grant execute on function xiv_internal.xiv_universe_org_id(uuid) to authenticated;
 grant execute on function xiv_internal.xiv_universe_belongs_to_org(uuid, uuid) to authenticated;
-grant execute on function public.xiv_is_universe_member(uuid) to authenticated;
-grant execute on function public.xiv_has_universe_role(uuid, text[]) to authenticated;
-grant execute on function public.xiv_can_view_universe(uuid) to authenticated;
+grant execute on function xiv_internal.xiv_is_universe_member(uuid) to authenticated;
+grant execute on function xiv_internal.xiv_has_universe_role(uuid, text[]) to authenticated;
+grant execute on function xiv_internal.xiv_can_view_universe(uuid) to authenticated;
 grant execute on function public.xiv_create_organization(text, text, text, text) to authenticated;
 grant execute on function public.xiv_create_universe(uuid, text, text, public.xiv_data_classification, public.xiv_storage_tier, text) to authenticated;
 
@@ -546,34 +554,34 @@ create policy xiv_organizations_select_member
   on public.xiv_organizations
   for select
   to authenticated
-  using (public.xiv_is_org_member(id));
+  using (xiv_internal.xiv_is_org_member(id));
 
 create policy xiv_organizations_update_admin
   on public.xiv_organizations
   for update
   to authenticated
-  using (public.xiv_has_org_role(id, array['owner', 'admin']))
-  with check (public.xiv_has_org_role(id, array['owner', 'admin']));
+  using (xiv_internal.xiv_has_org_role(id, array['owner', 'admin']))
+  with check (xiv_internal.xiv_has_org_role(id, array['owner', 'admin']));
 
 create policy xiv_universes_select_authorized
   on public.xiv_universes
   for select
   to authenticated
-  using (public.xiv_can_view_universe(id));
+  using (xiv_internal.xiv_can_view_universe(id));
 
 create policy xiv_universes_update_admin
   on public.xiv_universes
   for update
   to authenticated
   using (
-    public.xiv_has_universe_role(id, array['owner', 'admin'])
-    or public.xiv_has_org_role(organization_id, array['owner', 'admin'])
+    xiv_internal.xiv_has_universe_role(id, array['owner', 'admin'])
+    or xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin'])
   )
   with check (
     xiv_internal.xiv_universe_belongs_to_org(id, organization_id)
     and (
-      public.xiv_has_universe_role(id, array['owner', 'admin'])
-      or public.xiv_has_org_role(organization_id, array['owner', 'admin'])
+      xiv_internal.xiv_has_universe_role(id, array['owner', 'admin'])
+      or xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin'])
     )
   );
 
@@ -583,7 +591,7 @@ create policy xiv_organization_memberships_select_self_or_roster
   to authenticated
   using (
     user_id = auth.uid()
-    or public.xiv_has_org_role(organization_id, array['owner', 'admin', 'executive', 'manager'])
+    or xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin', 'executive', 'manager'])
   );
 
 create policy xiv_organization_memberships_insert_admin
@@ -593,8 +601,8 @@ create policy xiv_organization_memberships_insert_admin
   with check (
     user_id <> auth.uid()
     and (
-      (role <> 'owner' and public.xiv_has_org_role(organization_id, array['owner', 'admin']))
-      or (role = 'owner' and public.xiv_has_org_role(organization_id, array['owner']))
+      (role <> 'owner' and xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin']))
+      or (role = 'owner' and xiv_internal.xiv_has_org_role(organization_id, array['owner']))
     )
   );
 
@@ -604,17 +612,17 @@ create policy xiv_organization_memberships_update_admin
   to authenticated
   using (
     user_id <> auth.uid()
-    and public.xiv_has_org_role(organization_id, array['owner', 'admin'])
+    and xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin'])
     and (
       role <> 'owner'
-      or public.xiv_has_org_role(organization_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(organization_id, array['owner'])
     )
   )
   with check (
     user_id <> auth.uid()
     and (
-      (role <> 'owner' and public.xiv_has_org_role(organization_id, array['owner', 'admin']))
-      or (role = 'owner' and public.xiv_has_org_role(organization_id, array['owner']))
+      (role <> 'owner' and xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin']))
+      or (role = 'owner' and xiv_internal.xiv_has_org_role(organization_id, array['owner']))
     )
   );
 
@@ -624,10 +632,10 @@ create policy xiv_organization_memberships_delete_admin
   to authenticated
   using (
     user_id <> auth.uid()
-    and public.xiv_has_org_role(organization_id, array['owner', 'admin'])
+    and xiv_internal.xiv_has_org_role(organization_id, array['owner', 'admin'])
     and (
       role <> 'owner'
-      or public.xiv_has_org_role(organization_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(organization_id, array['owner'])
     )
   );
 
@@ -637,8 +645,8 @@ create policy xiv_universe_memberships_select_self_or_roster
   to authenticated
   using (
     user_id = auth.uid()
-    or public.xiv_has_universe_role(universe_id, array['owner', 'admin', 'executive'])
-    or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin', 'executive'])
+    or xiv_internal.xiv_has_universe_role(universe_id, array['owner', 'admin', 'executive'])
+    or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin', 'executive'])
   );
 
 create policy xiv_universe_memberships_insert_admin
@@ -649,13 +657,13 @@ create policy xiv_universe_memberships_insert_admin
     user_id <> auth.uid()
     and xiv_internal.xiv_user_is_org_member(xiv_internal.xiv_universe_org_id(universe_id), user_id)
     and (
-      public.xiv_has_universe_role(universe_id, array['owner', 'admin'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
+      xiv_internal.xiv_has_universe_role(universe_id, array['owner', 'admin'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
     )
     and (
       (role <> 'owner')
-      or public.xiv_has_universe_role(universe_id, array['owner'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
+      or xiv_internal.xiv_has_universe_role(universe_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
     )
   );
 
@@ -666,26 +674,26 @@ create policy xiv_universe_memberships_update_admin
   using (
     user_id <> auth.uid()
     and (
-      public.xiv_has_universe_role(universe_id, array['owner', 'admin'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
+      xiv_internal.xiv_has_universe_role(universe_id, array['owner', 'admin'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
     )
     and (
       role <> 'owner'
-      or public.xiv_has_universe_role(universe_id, array['owner'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
+      or xiv_internal.xiv_has_universe_role(universe_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
     )
   )
   with check (
     user_id <> auth.uid()
     and xiv_internal.xiv_user_is_org_member(xiv_internal.xiv_universe_org_id(universe_id), user_id)
     and (
-      public.xiv_has_universe_role(universe_id, array['owner', 'admin'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
+      xiv_internal.xiv_has_universe_role(universe_id, array['owner', 'admin'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
     )
     and (
       (role <> 'owner')
-      or public.xiv_has_universe_role(universe_id, array['owner'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
+      or xiv_internal.xiv_has_universe_role(universe_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
     )
   );
 
@@ -696,12 +704,12 @@ create policy xiv_universe_memberships_delete_admin
   using (
     user_id <> auth.uid()
     and (
-      public.xiv_has_universe_role(universe_id, array['owner', 'admin'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
+      xiv_internal.xiv_has_universe_role(universe_id, array['owner', 'admin'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner', 'admin'])
     )
     and (
       role <> 'owner'
-      or public.xiv_has_universe_role(universe_id, array['owner'])
-      or public.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
+      or xiv_internal.xiv_has_universe_role(universe_id, array['owner'])
+      or xiv_internal.xiv_has_org_role(xiv_internal.xiv_universe_org_id(universe_id), array['owner'])
     )
   );

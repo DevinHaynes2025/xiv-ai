@@ -83,6 +83,10 @@ import {
   resetWorldBankAdapterStatusForTests,
   worldBankAdapterCapabilityStatus,
 } from './sources/world-bank-status';
+import {
+  reviewSecurityDefinerGrantPolicy,
+  supabaseSecurityHardeningDoesNotMarkLive,
+} from './tenant/security-definer-review';
 
 function test(name: string, run: () => void) {
   run();
@@ -421,4 +425,14 @@ test('GLEIF proven', () => {
 
 test('Companies House NOT_CONFIGURED', () => {
   assert.equal(companiesHouseSourceState(), 'NOT_CONFIGURED');
+});
+
+test('SECURITY DEFINER grant hardening contract (pre-2I-Y)', () => {
+  const review = reviewSecurityDefinerGrantPolicy();
+  assert.equal(review.ok, true, review.findings.join('; '));
+  assert.equal(supabaseSecurityHardeningDoesNotMarkLive(), true);
+  assert.equal(agentReceivesSupabaseServiceRoleKey(), false);
+  assert.equal(agentReceivesRawDbCredential(), false);
+  assert.equal(boundedAutonomyEnabled(), false);
+  assert.equal(globalDataFabricProductionLive(), false);
 });

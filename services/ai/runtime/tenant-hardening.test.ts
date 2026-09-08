@@ -6,6 +6,10 @@ import assert from 'node:assert/strict';
 
 import { reviewPhase2HaReconciliation } from './tenant/reconciliation-review';
 import {
+  reviewSecurityDefinerGrantPolicy,
+  supabaseSecurityHardeningDoesNotMarkLive,
+} from './tenant/security-definer-review';
+import {
   canCreateUniverse,
   canManageOrganizationMembership,
   canManageUniverseMembership,
@@ -13,6 +17,11 @@ import {
   internalPolicyHelperIsNotPublicRpc,
 } from './tenant';
 import type { Organization, OrganizationMembership, Universe, UniverseMembership } from './tenant';
+import { boundedAutonomyEnabled } from './authority';
+import { globalDataFabricProductionLive } from './network-os';
+import { agentReceivesRawDbCredential } from './osfund/gateway';
+import { agentReceivesSupabaseServiceRoleKey } from './osfund/supabase';
+import { databaseRouterReturnsCredentials } from './osfund/router';
 
 function test(name: string, run: () => void) {
   run();
@@ -75,6 +84,24 @@ function uniMember(userId: string, role: UniverseMembership['role']): UniverseMe
 test('authored SQL review includes owner and immutability guards', () => {
   const review = reviewPhase2HaReconciliation();
   assert.equal(review.ok, true, review.findings.join('; '));
+});
+
+test('SECURITY DEFINER grant policy: helpers in xiv_internal; bootstrap RPCs intentional', () => {
+  const review = reviewSecurityDefinerGrantPolicy();
+  assert.equal(review.ok, true, review.findings.join('; '));
+  assert.equal(review.membershipHelpersSchema, 'xiv_internal');
+  assert.deepEqual(review.intentionalPublicRpcs, ['xiv_create_organization', 'xiv_create_universe']);
+  assert.equal(review.rlsAutoEnableCallableByAnonOrAuthenticated, false);
+  assert.equal(review.leakedPasswordProtectionClaimedFixedInSql, false);
+  assert.equal(supabaseSecurityHardeningDoesNotMarkLive(), true);
+});
+
+test('agent cannot obtain DB credentials; L4 disabled; GDF false', () => {
+  assert.equal(agentReceivesRawDbCredential(), false);
+  assert.equal(agentReceivesSupabaseServiceRoleKey(), false);
+  assert.equal(databaseRouterReturnsCredentials(), false);
+  assert.equal(boundedAutonomyEnabled(), false);
+  assert.equal(globalDataFabricProductionLive(), false);
 });
 
 test('admin attempts to demote owner -> DENIED', () => {

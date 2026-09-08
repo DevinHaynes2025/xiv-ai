@@ -49,6 +49,11 @@ export type HostedCatalogAclObservation = {
 export type HostedCatalogInternalObservation = {
   anonExecuteAnyInternalHelperOrProtect: false;
   authenticatedExecute: readonly [
+    'xiv_is_org_member',
+    'xiv_has_org_role',
+    'xiv_is_universe_member',
+    'xiv_has_universe_role',
+    'xiv_can_view_universe',
     'xiv_user_is_org_member',
     'xiv_universe_org_id',
     'xiv_universe_belongs_to_org',
@@ -58,6 +63,7 @@ export type HostedCatalogInternalObservation = {
     'protect_universe_membership',
     'protect_universe_organization',
   ];
+  intentionalPublicBootstrapRpcs: readonly ['xiv_create_organization', 'xiv_create_universe'];
 };
 
 export type HostedCatalogObservation = {
@@ -168,10 +174,19 @@ export function validateHostedCatalogObservation(observation: HostedCatalogObser
   if (
     !sameStringList(
       observation.xivInternal.authenticatedExecute,
-      ['xiv_user_is_org_member', 'xiv_universe_org_id', 'xiv_universe_belongs_to_org'],
+      [
+        'xiv_is_org_member',
+        'xiv_has_org_role',
+        'xiv_is_universe_member',
+        'xiv_has_universe_role',
+        'xiv_can_view_universe',
+        'xiv_user_is_org_member',
+        'xiv_universe_org_id',
+        'xiv_universe_belongs_to_org',
+      ],
     )
   ) {
-    findings.push('authenticated xiv_internal EXECUTE set is not the RLS helper trio.');
+    findings.push('authenticated xiv_internal EXECUTE set is not the RLS helper set.');
   }
   if (
     !sameStringList(observation.xivInternal.authenticatedCannotExecute, [
@@ -181,6 +196,14 @@ export function validateHostedCatalogObservation(observation: HostedCatalogObser
     ])
   ) {
     findings.push('authenticated must not execute xiv_internal protect functions.');
+  }
+  if (
+    !sameStringList(observation.xivInternal.intentionalPublicBootstrapRpcs, [
+      'xiv_create_organization',
+      'xiv_create_universe',
+    ])
+  ) {
+    findings.push('intentional public bootstrap RPCs must be create organization/universe only.');
   }
   return {
     ok: findings.length === 0,
@@ -237,12 +260,22 @@ export const PHASE2HC_HUMAN_VERIFIED_HOSTED_CATALOG: HostedCatalogObservation = 
   },
   xivInternal: {
     anonExecuteAnyInternalHelperOrProtect: false,
-    authenticatedExecute: ['xiv_user_is_org_member', 'xiv_universe_org_id', 'xiv_universe_belongs_to_org'],
+    authenticatedExecute: [
+      'xiv_is_org_member',
+      'xiv_has_org_role',
+      'xiv_is_universe_member',
+      'xiv_has_universe_role',
+      'xiv_can_view_universe',
+      'xiv_user_is_org_member',
+      'xiv_universe_org_id',
+      'xiv_universe_belongs_to_org',
+    ],
     authenticatedCannotExecute: [
       'protect_organization_membership',
       'protect_universe_membership',
       'protect_universe_organization',
     ],
+    intentionalPublicBootstrapRpcs: ['xiv_create_organization', 'xiv_create_universe'],
   },
 };
 

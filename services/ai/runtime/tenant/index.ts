@@ -1,3 +1,10 @@
+export { reviewPhase2HaReconciliation, loadPhase2HaMigrationSql } from './reconciliation-review';
+export {
+  reviewSecurityDefinerGrantPolicy,
+  loadSecurityDefinerHardeningSql,
+  SECURITY_DEFINER_HARDENING_MIGRATION,
+  supabaseSecurityHardeningDoesNotMarkLive,
+} from './security-definer-review';
 export {
   canCreateUniverse,
   canManageOrganization,

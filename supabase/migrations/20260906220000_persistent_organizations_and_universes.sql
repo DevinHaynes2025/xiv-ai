@@ -1,7 +1,11 @@
 -- XIV Phase 2F-A — Persistent organizations, Universes, and memberships
--- MIGRATION AUTHORED — NOT APPLIED.
--- Do not run against hosted Supabase in this phase.
--- Do not apply via supabase db push / migration up until Phase 2F-B review.
+-- MIGRATION AUTHORED — DO NOT APPLY.
+-- Superseded by 20260906230000_xiv_tenant_reconciliation.sql and
+-- 20260908013000_harden_security_definer_grants.sql.
+-- This file keeps public SECURITY DEFINER membership helpers — that RPC surface
+-- is intentionally retired by the reconciliation + hardening migrations.
+-- Do not run against hosted Supabase.
+-- Do not apply via supabase db push / migration up.
 --
 -- Authority: auth.uid() → membership row → org/Universe relation → RLS.
 -- Client-supplied organization_id / universe_id values are selectors only.
