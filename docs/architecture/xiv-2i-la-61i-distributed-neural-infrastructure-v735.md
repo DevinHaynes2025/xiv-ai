@@ -1,62 +1,28 @@
-# 2I-LA-61I (PLANE B) — XIV DISTRIBUTED NEURAL INFRASTRUCTURE + MULTI-AGENT BRAIN EXPANSION + OFFLINE / CLOUD AGENT MESH + DATABASE HIGHWAY FABRIC + ADAPTIVE COMPUTE ROUTER + CONTINUOUS DEBUG / REPAIR SOCIETY V735
+# 2I-LA-61I — XIV DISTRIBUTED NEURAL INFRASTRUCTURE + MULTI-AGENT BRAIN EXPANSION + OFFLINE/CLOUD AGENT MESH + DATABASE HIGHWAY FABRIC + ADAPTIVE COMPUTE ROUTER + CONTINUOUS DEBUG/REPAIR SOCIETY V735
 
-**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. Runtime **not started**. **DEPLOYMENT_STATE=QUEUED**. **tip-landed=NO**. **L4_AUTONOMY_ENABLED = FALSE.** All `AUTO_*` FALSE.
-**Queue rule:** **QUEUE AFTER 2I-LA-61H** (Universal Digital Twin Fabric V734). Ordering: **… → 61G → 61H → 61I**. Implementation begins only after predecessors are validated and tip-landed.
-**Slot note (important — read §0.1):** the **61I V735** slot already carries a parked plane. This document is **Plane B**; it **does not replace** [Plane A](./xiv-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-v735.md). Both planes are V735 and both queue after 61H. A founder decision is required to either merge the two planes into one 61I or move one plane to its own letter (§0.2).
-**Branch policy:** canonical development branch `xiv-v2`. **Never force-push. Never push `main`.** Do not overwrite concurrent work. Do not assume another agent's uncommitted work belongs to this story. Queue architecture first.
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-61H** completion gate **PASS** (and **2I-LA-61A…61G** / **2I-LA-60Z…60A** / **2I-LA-59** / prior LA-01→LA-60Z / Guardian gates as applicable).
+**Also blocked for code until:** LA-01 → LA-61H PASS minimum; compose **LA-05** Evidence/KG; **LA-07** Trust; **LA-08** Curiosity/Question/Contradiction; **LA-09** Temporal+Causal; **LA-14/23/35A** Security; **LA-17** Privacy; **LA-22** Federation; **LA-23** QA factory; **LA-25** Business Hospital; **LA-28/32A** Device/Silicon; **LA-40** Brain Foundation; **LA-50** Super Brain; **LA-57** Guardian; **LA-59** Offline Continuity; **LA-60O** Neural Pathway Fabric; **LA-60S** Cloud/Edge runtime; **LA-60W** Governance; **LA-60X** Algorithm Foundry / Compute; **LA-60Y** Simulation; **LA-60Z** Knowledge Civilization; Guardian; Tenant/Universe Isolation; RLS; SecretBroker; Rights Gateway; Resource Governor.
+**Queue rule:** **QUEUE AFTER LA-61H.** Ordering: **… → LA-60Z V726 → LA-61A Unified Business Superapp + Pocket Business Operating System V727 (title only) → 61B…61G (reserved; titles not invented here) → LA-61H (reserved predecessor) → LA-61I (this V735) → LA-61J Universal Data Civilization V736 (title only) → LA-61K Autonomous Software Engineering Organization V737 (title only)**. **Do not invent full LA-61A–61H docs** in this commit.
+**Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Do not interrupt validated 2I-S / 2I-T / 2I-V runtime or unfinished LA-60 tip-land WIP. Existing `services/ai/runtime/neural/` remains the validated 2I-W logical fabric — **do not dump V735 implementation into that active change set**.
 **Canonical path:** `docs/architecture/xiv-2i-la-61i-distributed-neural-infrastructure-v735.md`
-**Founder summary sibling:** [`../queue/2I-LA-61I-distributed-neural-infrastructure-v735.md`](../queue/2I-LA-61I-distributed-neural-infrastructure-v735.md)
-**Companion plane:** [`xiv-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-v735.md`](./xiv-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-v735.md) (+ queue [`../queue/2I-LA-61I-mobile-saas-hybrid-agent-llm-fabric.md`](../queue/2I-LA-61I-mobile-saas-hybrid-agent-llm-fabric.md))
+**Founder summary sibling:** [`../queue/2I-LA-61I-distributed-neural-infrastructure.md`](../queue/2I-LA-61I-distributed-neural-infrastructure.md)
+**Series pointer:** [`../queue/2I-LA-61-SERIES-POINTER.md`](../queue/2I-LA-61-SERIES-POINTER.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md) (+ LA pointer [`xiv-master-build-queue-2i-ad-to-2i-la.md`](./xiv-master-build-queue-2i-ad-to-2i-la.md))
+**Compose with:** LA-05/07/08/09/14/17/22/23/25/28/32A/35A/40/50/57/59; LA-60O/60S/60W/60X/60Y/60Z; SecretBroker; Rights Gateway; RLS; Guardian.
+**Feeds:** **2I-LA-61J** Universal Data Civilization + Knowledge Graph Superhighway + Multi-Database Intelligence Federation + Real-Time/Offline Memory Network V736 (title only) — LA-61I supplies XIVNeuralInfrastructureFabricV100 / NeuralHighwayFactoryV100 / Multi-Brain Society / AgentPopulationManagerV100 / OfflineAgentRuntimeV100 / CloudAgentRuntimeV100 / HybridAgentSchedulerV100 / Continuous Debug Society / bounded Self-Repair / DatabaseHighwayFabricV100 / multi-store memory architecture / MemoryConsolidationEngineV200 / HistoricalBrain honesty / ModelCouncilV100 / in-house model roadmap / ComputeCapabilityGraphV100 / EnergyAwareSchedulerV100 / HybridQuantumClassicalLabV200 / ParallelSimulationUniverseEngineV200 / Supply Chain Root Brain / Business Hospital feed / GlobalControlTowerFabricV100 / Mobile Business OS surfaces / XIV XXL architecture / AIResourceEconomyV100 / Agent Cost Router / Agent Performance Economy / continuous learning loop / FounderNeuralInfrastructureCommandV100; **not** LA-61J data-civilization depth. **Do not start LA-61J from this commit.**
 
-> **DO NOT INTERRUPT ACTIVE VALIDATED WORK.** This commit is **documentation only** and deliberately adds **no runtime code, no schema, and no migration** — the founder's direction is to *extend the architecture* rather than add implementation to the active change set.
+> Docs-only queue. **QUEUE AFTER LA-61H.** Do **not** interrupt active validated work. **No neural fabric runtime / no migrations / no LIVE provider claims / no L4 / no production self-repair in this commit.** **L4 DISABLED**.
 >
-> **Core theme:** extend XIV from a collection of AI agents into a **governed distributed business-intelligence nervous system**. The measure of progress is the quality of the pathways, memory, and governance — **not** the raw number of agents. **MORE AGENTS ≠ BETTER INTELLIGENCE.**
+> **Feature flags (default OFF / FALSE):** see §32. All capability flags OFF; **all `AUTO_*` = FALSE**; permanently FALSE: `AUTO_PRODUCTION_REPAIR`, `AUTO_PRODUCTION_DEPLOY`, `AUTO_SECURITY_POLICY_CHANGE`, `AUTO_CREDENTIAL_ROTATION`, `AUTO_TENANT_POLICY_CHANGE`, `AUTO_CROSS_UNIVERSE_COPY`, `AUTO_MODEL_TRAINING_PRIVATE_DATA`, `AUTO_FINANCIAL_ACTION`, `AUTO_CONTRACT_EXECUTION`, `L4_AUTONOMY_ENABLED`.
 >
-> **Hard honesty:** evidence remains **QUEUED / FALSE / UNKNOWN**. **UNKNOWN IS VALID. PRESERVE CONTRADICTIONS. NEVER SILENTLY REWRITE HISTORY. NEVER INFER PASS.**
-
----
-
-## 0.1 Slot reconciliation — 61I V735 currently carries two planes
-
-The **61I V735** slot was already parked as **Plane A**, "Mobile SaaS Empire + Hybrid Agent Civilization + Energy-Aware Compute + In-House LLM Universe Fabric + Global Provider Networking Fabric V735" (§§1–193, 48 slices, park `cursor/queue-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-4059`). Plane A queues after 61H and points NEXT at a 61J titled "Global Continuity Mesh + Cross-Cloud Failover + Sovereign Runtime Fabric V736".
-
-This document is **Plane B** and was authored from a later founder paste for the **same** slot and the **same** version number. **Plane A is not superseded and is not rewritten by this commit.** Plane A holds a large body of contracts that Plane B does not cover at all — SaaS tiers, tenant entitlement, metering, billing honesty, provider networking, and the in-house LLM universe fabric.
-
-### Overlap map (honest)
-
-| Concern | Plane A contract | Plane B contract | Relationship |
-|---|---|---|---|
-| Hybrid cloud / edge / local / offline workers | `HybridAgentCivilizationV100`, `CloudWorkerSocietyV100`, `EdgeWorkerSocietyV100`, `LocalWorkerSocietyV100`, `OfflineWorkerSocietyV100` | `OfflineAgentRuntimeV100` (§6), `CloudAgentRuntimeV100` (§7), `HybridAgentSchedulerV100` (§8) | **Overlapping** — must be reconciled to one runtime before implementation |
-| Background debug / self-heal | `BackgroundDebugAgentSocietyV100`, `SelfHealingBoundaryV100`, `DebugAgentAuthorityCeilingV100`, `FixDraftWorkflowV100` | Continuous Debug Society (§9), Self-Repair Without Self-Modification (§10) | **Overlapping** — Plane A's authority ceiling and draft-only workflow are the stricter statement and **govern** |
-| Energy / thermal / cost placement | `EnergyAwareComputeOrchestratorV100`, `BatteryGovernorV100`, `ThermalGovernorV100`, `BandwidthGovernorV100`, `CostGovernorV100`, `PlacementDecisionRecordV100` | `EnergyAwareSchedulerV100` (§18), `ComputeCapabilityGraphV100` (§17) | **Overlapping** — Plane A's governors are the finer-grained decomposition |
-| Provider state machine | `GlobalProviderNetworkingFabricV100`, `ProviderStateMachineV100` | Provider states (§7) | **Identical state machine** — `NOT_CONFIGURED → CONFIGURED → AUTHENTICATED → TESTING → VERIFIED → AVAILABLE → DEGRADED → SUSPENDED → REVOKED`. No conflict. |
-| In-house models | `InHouseLLMUniverseFabricV100`, `XIVModelRegistryV100`, `TrainingRightsGateV100`, `WeightImportBanDefaultV100` | `ModelCouncilV100` (§15), in-house model roadmap (§16) | **Complementary** — Plane B adds routing/council, Plane A adds registry/rights/weight-import ban |
-| Historical data | `AuthorizedHistoricalDatabaseBridgeV100` | HistoricalBrain (§14) | **Complementary** |
-| Mobile | `MobileSaaSEmpireOSV100` + tiers/entitlement/metering | Mobile Business OS (§24) | **Complementary** — Plane A is commercial, Plane B is experience surface |
-| **Plane A only** | Subscription tiers, entitlement matrix, metering ledger, billing honesty gate, duty-cycle measurement, determinism governor | — | Not covered by Plane B |
-| **Plane B only** | — | Neural fabric (§2), highway factory (§3), multi-brain society (§4), agent population manager (§5), database highway fabric (§11), multi-database memory + consolidation (§12–13), parallel simulation (§20), supply chain root brain (§21), control tower fabric (§23), XIV XXL (§25), resource economy + cost router + performance economy (§26–28), founder neural command (§30) | Not covered by Plane A |
-
-### 0.2 Founder decision required (blocking for implementation, not for queueing)
-
-Before **any** 61I implementation begins, one of the following must be chosen and recorded:
-
-1. **MERGE** — fold both planes into a single 61I V735 document with the overlapping runtimes reconciled to one contract set.
-2. **SPLIT** — keep Plane A as 61I V735 and re-letter Plane B (the next genuinely free letter), or the reverse.
-3. **SUPERSEDE** — explicitly retire one plane, recording what is being dropped and why.
-
-**Until that decision is recorded, neither plane may begin implementation.** This document does **not** make the choice unilaterally, because both planes contain material the other lacks and silently discarding either would lose real architecture. **STORY DOCUMENT ≠ IMPLEMENTATION**, so parking both planes costs nothing but ambiguity, and the ambiguity is recorded here rather than hidden.
-
-### 0.3 Downstream title conflicts (recorded, not resolved)
-
-The founder's queue continuation for this paste names 61J and 61K differently from the already-parked stories at those letters. All are recorded; none are rewritten by this commit.
-
-| Letter | Already parked | Plane A's NEXT pointer | Founder's continuation with this paste |
-|---|---|---|---|
-| **61J** V736 | "Persistent Hybrid AI Workforce V736" (park `…61j-persistent-hybrid-workforce-4059`) | "Global Continuity Mesh + Cross-Cloud Failover + Sovereign Runtime Fabric V736" | "XIV Universal Data Civilization + Knowledge Graph Superhighway + Multi-Database Intelligence Federation + Real-Time/Offline Memory Network V736" |
-| **61K** V737 | "Unified Enterprise Command Civilization V737" (park `…61k-unified-enterprise-command-4059`, and referenced as a precursor by the parked **61N** V740) | — | "XIV Autonomous Software Engineering Organization + 24/7 Agent DevOps + Mobile/Web/Cloud Release Factory V737" |
-
-**Three different 61J titles and two different 61K titles are now in circulation.** Retitling 61K in particular has a downstream cost: the parked **61N V740** ordering lock names "LA-61K Unified Enterprise Command Civilization V737" as a precursor, so a 61K retitle requires a matching 61N edit. This commit therefore **records** the conflict and leaves resolution to the founder rather than rewriting sibling parks — consistent with the branch policy "do not overwrite concurrent work."
+> **Core loop:**
+> ```
+DATA → EVIDENCE → MEMORY → KNOWLEDGE → NEURAL PATHWAYS → BRAINS → AGENTS
+→ REASONING → SIMULATION → DECISION → HUMAN/AUTHORIZED ACTION → OUTCOME
+→ LEARNING → MEMORY CONSOLIDATION → NEW PATHWAYS
+> ```
+>
+> Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-61I runtime.** **Do not start LA-61J.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
 
 ---
 
@@ -64,14 +30,19 @@ The founder's queue continuation for this paste names 61J and 61K differently fr
 
 | Story | Title | Role |
 |-------|-------|------|
-| **2I-LA-61G** | (title pointer) | Predecessor |
-| **2I-LA-61H** | Universal Digital Twin Fabric V734 | **Must PASS before 61I code** |
-| **2I-LA-61I (Plane A)** | Mobile SaaS Empire + Hybrid Agent + Energy + LLM Universe + Provider Fabric V735 | Parked companion plane |
-| **2I-LA-61I (Plane B)** | Distributed Neural Infrastructure + Multi-Agent Brain Expansion + Offline/Cloud Agent Mesh + Database Highway Fabric + Adaptive Compute Router + Continuous Debug/Repair Society V735 | **This document** |
-| **2I-LA-61J** | V736 — title contested (§0.3) | Title only |
-| **2I-LA-61K** | V737 — title contested (§0.3) | Title only |
+| **2I-LA-60O** | Business Civilization Memory + Neural Pathway Fabric V715 | Neural-pathway precursor (queued docs) |
+| **2I-LA-60S** | Distributed Agentic Cloud + Edge Runtime V719 | Cloud/edge precursor (queued docs) |
+| **2I-LA-60Z** | Global Business Knowledge Civilization V726 | Knowledge precursor (queued docs) |
+| **2I-LA-61A** | Unified Business Superapp + Pocket Business Operating System V727 | Predecessor **title only** |
+| **2I-LA-61B…61G** | Reserved predecessor slots | **Titles not invented in this commit** |
+| **2I-LA-61H** | Reserved predecessor | **Must PASS before LA-61I code**; title not invented here |
+| **2I-LA-61I** | Distributed Neural Infrastructure + Multi-Agent Brain Expansion V735 | **This document** |
+| **2I-LA-61J** | Universal Data Civilization + Knowledge Graph Superhighway V736 | **NEXT (title only)** |
+| **2I-LA-61K** | Autonomous Software Engineering Organization V737 | Later (title only) |
 
-**Deployment runway:** the entire V735 Plane B fabric **does not block the first canary**. Prioritize the honesty bans, `AUTO_*` FALSE, defensive posture, and deny-safe UNKNOWN.
+**Ordering lock:** **… → LA-60Z V726 → LA-61A V727 (title only) → 61B…61H (reserved) → LA-61I (this V735) → LA-61J V736 (title only)**.
+
+**Deployment runway:** Do **not** block first canary on neural fabric LIVE activation, trillions of running agents, LIVE cloud providers, quantum advantage, XIV XXL shipping, or L4. **L4 DISABLED**.
 
 ---
 
@@ -81,7 +52,6 @@ The founder's queue continuation for this paste names 61J and 61K differently fr
 |------|----------|
 | MORE INTELLIGENCE | ≠ MORE AUTHORITY |
 | MORE AGENTS | ≠ MORE PERMISSIONS |
-| MORE AGENTS | ≠ BETTER INTELLIGENCE |
 | MORE DATA | ≠ PERMISSION TO USE IT |
 | CONNECTED | ≠ TRUSTED |
 | OFFLINE | ≠ AUTHORIZED |
@@ -98,83 +68,88 @@ The founder's queue continuation for this paste names 61J and 61K differently fr
 | MEMORY | ≠ TRUTH |
 | HISTORICAL MODEL | ≠ HISTORICAL RECORD |
 | CLOUD PROVIDER ADAPTER | ≠ VERIFIED DEPLOYMENT |
+| DETECTED | ≠ SUPPORTED |
+| SUPPORTED | ≠ OPTIMIZED |
 | PHONE | ≠ COMPANY ROOT |
 | FOUNDER TWIN | ≠ FOUNDER |
 | PRIVATE COMPANY BRAIN | ≠ GLOBAL BRAIN |
-| DETECTED | ≠ SUPPORTED ≠ OPTIMIZED |
-| SELF-REPAIR | ≠ SELF-REWRITING |
-| USAGE RECORD | ≠ INVOICE ≠ SETTLEMENT |
+| SELF-REPAIR | ≠ UNCONTROLLED SELF-REWRITING |
+| LOGICAL AGENT NAMESPACE | ≠ TRILLIONS OF RUNNING AGENTS |
 | PARALLEL UNIVERSE | ≠ PHYSICAL UNIVERSE |
-| MORE EXPENSIVE AGENT | ≠ BETTER AGENT |
+| BUSINESS HOSPITAL | = business metaphor, not medical practice |
+| XIV | = application/platform layer; does **not** replace iOS/Android/Windows/macOS/Linux |
 | UNKNOWN | IS VALID |
-| CONTRADICTIONS | ARE PRESERVED |
-| HISTORY | IS NEVER SILENTLY REWRITTEN |
-| L4 AUTONOMY | DISABLED |
-| NEVER INFER PASS | Evidence QUEUED / FALSE / UNKNOWN |
+| CONTRADICTIONS | PRESERVED |
+| HISTORY | NEVER SILENTLY REWRITTEN |
 
 ---
 
-## Founder user story
+## 1. MISSION
 
-As the XIV AI Founder, I want XIV to become a governed **distributed business-intelligence nervous system** rather than a growing pile of agents — a `XIVNeuralInfrastructureFabricV100` of virtual computational relationships (explicitly **not** biological neurons) whose edges each carry tenant, Universe, purpose, evidence, provenance, confidence, valid/recorded time, classification, rights, and policy; a `NeuralHighwayFactoryV100` that turns repeated high-value reasoning routes into reusable evaluated pathways **without silently concluding causality**; a governed multi-brain society whose brains exchange only `BrainMessage` envelopes rather than raw memory; an `AgentPopulationManagerV100` that represents enormous logical populations while keeping **active execution bounded**; offline and cloud agent runtimes joined by a `HybridAgentSchedulerV100` that prefers the minimum necessary data exposure; a continuous debug society that may auto-apply **only** explicitly authorized low-risk reversible changes; a `DatabaseHighwayFabricV100` in which **no agent ever holds universal raw database credentials**; a purpose-appropriate multi-database memory architecture with versioned consolidation that never rewrites verified history; a `HistoricalBrain` that refuses to fabricate records; a `ModelCouncilV100` routing across device, domain, and foundation models under data rights; an energy-aware compute router; a research-only hybrid quantum lab; parallel simulation universes; a supply-chain root brain spanning physical, information, and technology chains; a control-tower fabric; and a `FounderNeuralInfrastructureCommandV100` — with the whole plane behind flags defaulting FALSE, **L4 DISABLED**, and evidence recorded as **QUEUED / FALSE / UNKNOWN**.
+Extend XIV from a collection of AI agents into a governed distributed business-intelligence nervous system.
 
-Central architecture loop:
+Operate across: mobile, desktop, web, cloud, private enterprise environments, edge devices, approved offline environments, local models, external foundation models, databases, data warehouses, APIs, enterprise software, approved plugins.
 
-```
-DATA → EVIDENCE → MEMORY → KNOWLEDGE → NEURAL PATHWAYS → BRAINS → AGENTS
-  → REASONING → SIMULATION → DECISION → HUMAN/AUTHORIZED ACTION
-  → OUTCOME → LEARNING → MEMORY CONSOLIDATION → NEW PATHWAYS
-```
+Preserve: **SECURITY**, **TENANT ISOLATION**, **PURPOSE LIMITATION**, **DATA RIGHTS**, **PROVENANCE**, **AUTHORITY**, **AUDITABILITY**, **RESOURCE GOVERNANCE**.
 
-Intelligence must be able to operate across mobile, desktop, web, cloud, private enterprise environments, edge devices, approved offline environments, local models, external foundation models, databases, data warehouses, APIs, enterprise software, and approved plugins — while preserving **SECURITY, TENANT ISOLATION, PURPOSE LIMITATION, DATA RIGHTS, PROVENANCE, AUTHORITY, AUDITABILITY, RESOURCE GOVERNANCE**.
+Participation never implies authority. Extensions expand capability, not privilege.
+
+**Non-goals (this commit):** no runtime; no schema migrations; no feature-flag wiring; no LIVE AWS/Google Cloud/IBM/NVIDIA/etc. claims; no trillion running agents; no L4; no full 61A–61H docs; no dump into `services/ai/runtime/neural/`.
 
 ---
 
-## Architecture contracts (story §§1–36)
+## 2. XIV NEURAL INFRASTRUCTURE FABRIC V100
 
-### 1. MISSION
+Create architecture for **XIVNeuralInfrastructureFabricV100**.
 
-**Named contract:** `DistributedNeuralInfrastructureV735`
+Do **NOT** interpret "neural pathways" as biological neurons. They are virtual computational relationships among: facts, evidence, entities, events, memories, documents, metrics, models, agents, decisions, outcomes, hypotheses, simulations, workflows, APIs, databases, tools.
 
-Extend XIV from a collection of AI agents into a governed distributed business-intelligence nervous system, per the loop above, across the listed environments, preserving the eight listed guarantees.
+### Core objects
 
-DEPLOYMENT_STATE=QUEUED. Docs only. L4 DISABLED. tip-landed=NO.
+`NeuralNode` · `NeuralEdge` · `NeuralPath` · `NeuralCluster` · `NeuralHighway` · `NeuralDistrict` · `BrainRegion` · `EvidencePath` · `DecisionPath` · `OutcomePath` · `FailurePath` · `LearningPath` · `TemporalPath` · `CausalPath` · `ContradictionPath`
 
-### 2. XIV NEURAL INFRASTRUCTURE FABRIC V100
+### Every edge must support
 
-**Named contract:** `XIVNeuralInfrastructureFabricV100`
+`id` · `source` · `destination` · `tenant` · `Universe` · `purpose` · `relationship_type` · `evidence_refs` · `provenance` · `confidence` · `created_at` · `valid_time` · `recorded_time` · `freshness` · `classification` · `rights` · `policy` · `status`
 
-**"Neural pathways" are NOT biological neurons.** They are virtual computational relationships among facts, evidence, entities, events, memories, documents, metrics, models, agents, decisions, outcomes, hypotheses, simulations, workflows, APIs, databases, and tools.
+**Permanent:** **GRAPH EDGE ≠ FACT.**
 
-Core objects: `NeuralNode`, `NeuralEdge`, `NeuralPath`, `NeuralCluster`, `NeuralHighway`, `NeuralDistrict`, `BrainRegion`, `EvidencePath`, `DecisionPath`, `OutcomePath`, `FailurePath`, `LearningPath`, `TemporalPath`, `CausalPath`, `ContradictionPath`.
+---
 
-Every edge must carry: `id`, `source`, `destination`, `tenant`, `Universe`, `purpose`, `relationship_type`, `evidence_refs`, `provenance`, `confidence`, `created_at`, `valid_time`, `recorded_time`, `freshness`, `classification`, `rights`, `policy`, `status`.
+## 3. NEURAL HIGHWAY FACTORY
 
-Bitemporal note: `valid_time` and `recorded_time` are **separate** fields precisely so that correcting a belief never destroys the record of having held it.
+Create **NeuralHighwayFactoryV100**.
 
-**GRAPH EDGE ≠ FACT.**
+Purpose: convert repeated high-value reasoning routes into reusable, evaluated computational pathways.
 
-### 3. NEURAL HIGHWAY FACTORY
+Example (correlation candidate, **not** silent causality):
 
-**Named contract:** `NeuralHighwayFactoryV100`
+```
+supplier delay → inventory exposure → warehouse congestion
+→ fulfillment risk → customer complaints → revenue exposure
+```
 
-Converts repeated high-value reasoning routes into reusable, evaluated computational pathways. Example route: supplier delay → inventory exposure → warehouse congestion → fulfillment risk → customer complaints → revenue exposure.
+XIV should learn that these objects are frequently related. It must **NOT** silently conclude causality.
 
-XIV may learn that these objects are frequently related. It **must not silently conclude causality**. The causal ladder is explicit and every edge sits on exactly one rung:
+### Causal honesty states (required)
 
-`CORRELATED` → `POSSIBLE_CAUSE` → `SUPPORTED_CAUSE` → `DISPUTED_CAUSE` → `UNKNOWN`
+`CORRELATED` · `POSSIBLE_CAUSE` · `SUPPORTED_CAUSE` · `DISPUTED_CAUSE` · `UNKNOWN`
 
-Promotion up the ladder requires recorded evidence; `DISPUTED_CAUSE` and `UNKNOWN` are terminal-valid states, not failures to be resolved away.
+### Reusable highway catalogs (logical, not deployed)
 
-Reusable highways for: Supply Chain, Finance, Sales, Customer, Product, Engineering, Security, Cloud, Database, Operations, Procurement, Manufacturing, Transportation, Warehouse, Commerce, Research, Economic Intelligence, Technology, Startup, Innovation.
+Supply Chain · Finance · Sales · Customer · Product · Engineering · Security · Cloud · Database · Operations · Procurement · Manufacturing · Transportation · Warehouse · Commerce · Research · Economic Intelligence · Technology · Startup · Innovation
 
-**CORRELATION ≠ CAUSATION.**
+**Permanent:** **CORRELATION ≠ CAUSATION.** **LOGICAL ≠ DEPLOYED.** Do not allocate trillions of physical pathway rows.
 
-### 4. MULTI-BRAIN SOCIETY
+---
 
-Expand the Brain Registry to create or connect: `MetaBrain`, `CompanyBrain`, `PersonalBrain`, `SupplyChainBrain`, `FinanceBrain`, `SalesBrain`, `CustomerBrain`, `EngineeringBrain`, `ProductBrain`, `SecurityBrain`, `DatabaseBrain`, `CloudBrain`, `ResearchBrain`, `HistoricalBrain`, `TemporalBrain`, `CausalBrain`, `ContradictionBrain`, `QuestionBrain`, `CuriosityBrain`, `DecisionBrain`, `OutcomeBrain`, `FailureBrain`, `LessonBrain`, `OptimizationBrain`, `ResourceBrain`, `ComputeBrain`, `DeviceBrain`.
+## 4. MULTI-BRAIN SOCIETY
 
-Brains communicate through governed messages only. **Brain A MUST NOT receive unrestricted Brain B memory.**
+Expand the Brain Registry. Create or connect (logical registry, not unrestricted memory sharing):
+
+MetaBrain · CompanyBrain · PersonalBrain · SupplyChainBrain · FinanceBrain · SalesBrain · CustomerBrain · EngineeringBrain · ProductBrain · SecurityBrain · DatabaseBrain · CloudBrain · ResearchBrain · HistoricalBrain · TemporalBrain · CausalBrain · ContradictionBrain · QuestionBrain · CuriosityBrain · DecisionBrain · OutcomeBrain · FailureBrain · LessonBrain · OptimizationBrain · ResourceBrain · ComputeBrain · DeviceBrain
+
+Brains communicate through governed messages. **Brain A MUST NOT receive unrestricted Brain B memory.**
 
 ```
 BrainMessage {
@@ -193,350 +168,452 @@ BrainMessage {
 }
 ```
 
-The envelope carries **evidence references, not evidence payloads** — the receiving brain must be independently authorized to dereference them.
+**Permanent:** **PRIVATE COMPANY BRAIN ≠ GLOBAL BRAIN.** Cross-brain routing ≠ rights expansion.
 
-**PRIVATE COMPANY BRAIN ≠ GLOBAL BRAIN.**
+Compose with existing 2I-W governed-mind firewall (`sharesUnrestrictedMemory: false`). V735 expands the registry; it does not relax 2I-W gates.
 
-### 5. AGENT POPULATION EXPANSION
+---
 
-**Named contracts:** `AgentPopulationManagerV100`, `AgentRegistryV200`, `AgentSpawner`, `AgentRetirementManager`, `AgentResourceGovernor`, `AgentEvaluationRegistry`, `AgentCapabilityGraph`
+## 5. AGENT POPULATION EXPANSION
 
-**Do NOT create "trillions of running agents."** Build a **logical** agent namespace capable of representing enormous future populations while keeping **active execution bounded**.
+Do **NOT** create "trillions of running agents."
 
-Agent states: `IDEA` → `DEFINED` → `SANDBOX` → `TRAINING` → `EVALUATION` → `CERTIFIED` → `AVAILABLE` → `ACTIVE` → `RESTING` → `DEGRADED` → `QUARANTINED` → `RETIRED`.
+Build a **logical agent namespace** capable of representing enormous future populations while keeping **active execution bounded**.
 
-**An agent cannot create another unrestricted agent.** New agents require purpose, department, manager, skills, tools, data scope, tenant, Universe, authority, resource budget, evaluation suite, security policy, expected value. A definition missing any field is not instantiable.
+Create: **AgentPopulationManagerV100** · **AgentRegistryV200** · **AgentSpawner** · **AgentRetirementManager** · **AgentResourceGovernor** · **AgentEvaluationRegistry** · **AgentCapabilityGraph**
 
-**LOGICAL POPULATION ≠ RUNNING POPULATION.**
+### Agent states
 
-### 6. OFFLINE AGENT SOCIETY
+`IDEA` → `DEFINED` → `SANDBOX` → `TRAINING` → `EVALUATION` → `CERTIFIED` → `AVAILABLE` → `ACTIVE` → `RESTING` → `DEGRADED` → `QUARANTINED` → `RETIRED`
 
-**Named contract:** `OfflineAgentRuntimeV100`
+An agent **cannot** create another unrestricted agent.
 
-Bounded agents able to operate without continuous cloud connectivity: `OfflineDebugAgent`, `OfflineCodeReviewAgent`, `OfflineTestAgent`, `OfflineDocumentationAgent`, `OfflineDatabaseInspector`, `OfflineDataQualityAgent`, `OfflineMemoryAgent`, `OfflineResearchOrganizer`, `OfflineDeviceAgent`, `OfflineWorkflowAgent`.
+New agents require: purpose, department, manager, skills, tools, data scope, tenant, Universe, authority, resource budget, evaluation suite, security policy, expected value.
 
-Offline operation requires device identity, encrypted local vault, cached policy, **authority lease**, expiration, data classification, resource limits, audit queue, sync queue.
+**Permanent:** **MORE AGENTS ≠ MORE PERMISSIONS.** **LOGICAL NAMESPACE ≠ RUNNING POPULATION.**
 
-**OFFLINE ≠ AUTHORIZED.** An expired lease does not silently extend; it fails closed.
+---
 
-On reconnect:
+## 6. OFFLINE AGENT SOCIETY
+
+Create **OfflineAgentRuntimeV100**.
+
+Bounded agents capable of operating without continuous cloud connectivity (examples, not LIVE claims): OfflineDebugAgent · OfflineCodeReviewAgent · OfflineTestAgent · OfflineDocumentationAgent · OfflineDatabaseInspector · OfflineDataQualityAgent · OfflineMemoryAgent · OfflineResearchOrganizer · OfflineDeviceAgent · OfflineWorkflowAgent
+
+Offline operation must use: device identity · encrypted local vault · cached policy · authority lease · expiration · data classification · resource limits · audit queue · sync queue
+
+**Permanent:** **OFFLINE ≠ AUTHORIZED.**
+
+Reconnect flow:
 
 ```
-LOCAL RESULT → VALIDATE → POLICY CHECK → CONFLICT CHECK → PROVENANCE
-  → SYNC CANDIDATE → APPROVAL WHERE REQUIRED → COMMIT
+LOCAL RESULT → VALIDATE → POLICY CHECK → CONFLICT CHECK
+→ PROVENANCE → SYNC CANDIDATE → APPROVAL WHERE REQUIRED → COMMIT
 ```
 
-### 7. CLOUD AGENT SOCIETY
+---
 
-**Named contract:** `CloudAgentRuntimeV100`
+## 7. CLOUD AGENT SOCIETY
 
-Cloud workers may handle research, data ingestion, ETL, embedding, indexing, simulation, evaluation, testing, report generation, knowledge consolidation, connector health, database health, model evaluation, cost analysis.
+Create architecture for **CloudAgentRuntimeV100**.
 
-Provider states: `NOT_CONFIGURED` → `CONFIGURED` → `AUTHENTICATED` → `TESTING` → `VERIFIED` → `AVAILABLE` → `DEGRADED` → `SUSPENDED` → `REVOKED`.
+Cloud workers can handle: research, data ingestion, ETL, embedding, indexing, simulation, evaluation, testing, report generation, knowledge consolidation, connector health, database health, model evaluation, cost analysis.
 
-**Do not claim AWS, Google Cloud, IBM, NVIDIA, or any other provider is live without actual authentication and deployment evidence.** **CLOUD PROVIDER ADAPTER ≠ VERIFIED DEPLOYMENT.**
+Potential providers remain **state-gated**.
 
-This state machine is identical to Plane A's `ProviderStateMachineV100`; the two are the same contract and must not diverge.
+### Provider states
 
-### 8. LOCAL + CLOUD COLLABORATION
+`NOT_CONFIGURED` → `CONFIGURED` → `AUTHENTICATED` → `TESTING` → `VERIFIED` → `AVAILABLE` → `DEGRADED` → `SUSPENDED` → `REVOKED`
 
-**Named contract:** `HybridAgentSchedulerV100`
+**Permanent:** **CLOUD PROVIDER ADAPTER ≠ VERIFIED DEPLOYMENT.** Do not claim AWS, Google Cloud, IBM, NVIDIA, or another provider is LIVE without actual authentication and deployment evidence. Currently proven LIVE connectors remain only those already evidenced on tip (World Bank Open Data, U.S. SEC EDGAR, GLEIF LEI identity-only). UK Companies House stays **NOT_CONFIGURED**.
 
-Decision inputs: privacy, classification, latency, cost, battery, thermal state, network state, compute capability, model requirement, data locality, tenant policy, residency, availability.
+---
 
-Placements: `DEVICE`, `LOCAL_DESKTOP`, `EDGE`, `XIV_MANAGED_CLOUD`, `CUSTOMER_CLOUD`, `APPROVED_EXTERNAL_MODEL`, `OFFLINE_QUEUE`.
+## 8. LOCAL + CLOUD COLLABORATION
 
-**Sensitive data prefers the minimum necessary exposure.** Placement is a recorded decision with its inputs, not an implicit outcome.
+Build **HybridAgentSchedulerV100**.
 
-### 9. CONTINUOUS DEBUG SOCIETY
+Decision inputs: privacy · classification · latency · cost · battery · thermal state · network state · compute capability · model requirement · data locality · tenant policy · residency · availability
 
-Bounded engineering agents: `BugDetectionAgent`, `RegressionAgent`, `TypeSafetyAgent`, `DependencyAgent`, `DatabaseMigrationAgent`, `RLSAgent`, `TenantIsolationAgent`, `APIContractAgent`, `MobileRegressionAgent`, `WebRegressionAgent`, `PerformanceAgent`, `MemoryLeakAgent`, `CostRegressionAgent`, `SecurityRegressionAgent`, `PromptInjectionAgent`, `SecretDetectionAgent`, `DocumentationDriftAgent`.
+Possible placements: `DEVICE` · `LOCAL_DESKTOP` · `EDGE` · `XIV_MANAGED_CLOUD` · `CUSTOMER_CLOUD` · `APPROVED_EXTERNAL_MODEL` · `OFFLINE_QUEUE`
+
+Sensitive data should prefer the **minimum necessary exposure**.
+
+---
+
+## 9. CONTINUOUS DEBUG SOCIETY
+
+Create bounded engineering agents (logical registry, not unbounded spawn):
+
+BugDetectionAgent · RegressionAgent · TypeSafetyAgent · DependencyAgent · DatabaseMigrationAgent · RLSAgent · TenantIsolationAgent · APIContractAgent · MobileRegressionAgent · WebRegressionAgent · PerformanceAgent · MemoryLeakAgent · CostRegressionAgent · SecurityRegressionAgent · PromptInjectionAgent · SecretDetectionAgent · DocumentationDriftAgent
 
 Pipeline:
 
 ```
 OBSERVE → DETECT → REPRODUCE → CLASSIFY → ISOLATE → PROPOSE
-  → TEST → REVIEW → APPROVE → APPLY → RETEST → RECORD LESSON
+→ TEST → REVIEW → APPROVE → APPLY → RETEST → RECORD LESSON
 ```
 
-Agents may automatically apply **only** explicitly authorized, low-risk, reversible changes. **Production security changes remain approval gated.** Plane A's `DebugAgentAuthorityCeilingV100` and `FixDraftWorkflowV100` are the stricter statement of this ceiling and govern where the two planes differ.
+Agents may automatically apply only **explicitly authorized, low-risk reversible changes**. Production security changes remain approval gated.
 
-### 10. SELF-REPAIR WITHOUT SELF-MODIFICATION
+**Permanent:** `AUTO_PRODUCTION_REPAIR=false`. `AUTO_SECURITY_POLICY_CHANGE=false`.
 
-**SELF-REPAIR ≠ UNCONTROLLED SELF-REWRITING.**
+---
 
-**Allowed:** restart failed worker; clear safe temporary cache; retry idempotent task; restore approved configuration; roll back failed candidate; rebuild index; reconnect authorized connector; requeue failed job.
+## 10. SELF-REPAIR WITHOUT SELF-MODIFICATION
 
-**Not automatically allowed:** rewrite Guardian; change tenant isolation; modify authority ladder; rotate customer credentials; change ownership; disable auditing; modify production security boundaries; deploy arbitrary code.
+Distinguish **SELF-REPAIR** from **UNCONTROLLED SELF-REWRITING**.
 
-The allowed list is **exhaustive and closed** — an action not on it is denied, not inferred to be safe by analogy.
+### Allowed (when authorized, bounded, audited)
 
-### 11. DATABASE HIGHWAY FABRIC
+- restart failed worker
+- clear safe temporary cache
+- retry idempotent task
+- restore approved configuration
+- rollback failed candidate
+- rebuild index
+- reconnect authorized connector
+- requeue failed job
 
-**Named contract:** `DatabaseHighwayFabricV100`
+### Not automatically allowed
 
-Connects authorized PostgreSQL, Supabase, relational DBs, document stores, vector stores, graph stores, object storage, search indexes, event streams, time-series stores, data warehouses, and archives — **through gateways**.
+- rewrite Guardian
+- change tenant isolation
+- modify authority ladder
+- rotate customer credentials
+- change ownership
+- disable auditing
+- modify production security boundaries
+- deploy arbitrary code
 
-**Never give agents universal raw DB credentials.**
+**Permanent:** `AUTO_PRODUCTION_DEPLOY=false`. `AUTO_CREDENTIAL_ROTATION=false`. `AUTO_TENANT_POLICY_CHANGE=false`.
+
+---
+
+## 11. DATABASE HIGHWAY FABRIC
+
+Create **DatabaseHighwayFabricV100**.
+
+Connect authorized stores through gateways: PostgreSQL · Supabase · relational DBs · document stores · vector stores · graph stores · object storage · search indexes · event streams · time-series stores · data warehouses · archives
+
+**Never** give agents universal raw DB credentials.
+
+Flow:
 
 ```
 Agent → Data Request → Identity → Tenant → Universe → Purpose → Rights
-  → Classification → Data Gateway → Query Policy → Minimum Data
-  → Result → Provenance → Audit
+→ Classification → Data Gateway → Query Policy → Minimum Data
+→ Result → Provenance → Audit
 ```
 
-**DATABASE CONNECTED ≠ DATABASE ADMIN.**
+**Permanent:** **DATABASE CONNECTED ≠ DATABASE ADMIN.** **MODEL AVAILABLE ≠ DATA RIGHTS.**
 
-### 12. MULTI-DATABASE MEMORY ARCHITECTURE
+---
 
-Separate: `WorkingMemory`, `ShortTermMemory`, `LongTermMemory`, `EpisodicMemory`, `SemanticMemory`, `DecisionMemory`, `OutcomeMemory`, `FailureMemory`, `LessonMemory`, `CompanyMemory`, `PersonalMemory`, `HistoricalMemory`.
+## 12. MULTI-DATABASE MEMORY ARCHITECTURE
 
-Storage placement depends on **purpose**. **Do not put everything into vector storage.**
+Separate memory classes by purpose:
 
-| Need | Store |
-|---|---|
-| Authoritative structured state | Relational |
-| Relationships | Graph |
-| Semantic discovery | Vector retrieval |
-| Large immutable artifacts | Object storage |
-| Textual retrieval | Search index |
-| Events | Event stream |
-| Operational metrics | Time-series |
+WorkingMemory · ShortTermMemory · LongTermMemory · EpisodicMemory · SemanticMemory · DecisionMemory · OutcomeMemory · FailureMemory · LessonMemory · CompanyMemory · PersonalMemory · HistoricalMemory
 
-**MEMORY ≠ TRUTH.**
+Storage placement must depend on purpose. **Do not put everything into vector storage.**
 
-### 13. MEMORY CONSOLIDATION ENGINE
+| Store class | Use |
+|-------------|-----|
+| Relational | authoritative structured state |
+| Graph | relationships |
+| Vector | semantic discovery |
+| Object storage | large immutable artifacts |
+| Search indexes | textual retrieval |
+| Event streams | events |
+| Time-series | operational metrics |
 
-**Named contract:** `MemoryConsolidationEngineV200`
+**Permanent:** **MEMORY ≠ TRUTH.** CompanyMemory ≠ PersonalMemory ≠ HistoricalMemory.
 
-Periodically inspects duplicates, contradictions, staleness, weak evidence, missing evidence, unused knowledge, important outcomes, failed recommendations, successful recommendations, new relationships, unanswered questions.
+---
 
-**Never silently rewrite verified history. Create new versions. Preserve previous states.** Contradictions are retained as contradictions, not resolved by overwrite.
+## 13. MEMORY CONSOLIDATION ENGINE
 
-### 14. HISTORICAL INTELLIGENCE
+Create **MemoryConsolidationEngineV200**.
 
-`HistoricalBrain` learns from **legitimately available** historical business, economic, scientific, and technical records. Historical data must carry source, rights, time, provenance, confidence, coverage, and **known gaps**.
+Periodically inspect: duplicates · contradictions · staleness · weak evidence · missing evidence · unused knowledge · important outcomes · failed recommendations · successful recommendations · new relationships · unanswered questions
 
-**Do not fabricate "20 billion years of business data."** Earth and civilization do not provide business records across that span.
+Never silently rewrite verified history. Create new versions. Preserve previous states.
 
-For deep-time scientific analysis, distinguish: `OBSERVED DATA`, `SCIENTIFIC RECONSTRUCTION`, `MODEL`, `SIMULATION`, `HYPOTHESIS`, `UNKNOWN`.
+**Permanent:** `AUTO_HISTORY_REWRITE` remains forbidden. CONTRADICTION ≠ FAILURE. UNKNOWN IS VALID.
 
-**HISTORICAL ABSENCE ≠ PERMISSION TO INVENT RECORDS. HISTORICAL MODEL ≠ HISTORICAL RECORD.**
+---
 
-### 15. SMALL MODEL + LARGE MODEL COLLABORATION
+## 14. HISTORICAL INTELLIGENCE
 
-**Named contract:** `ModelCouncilV100`
+HistoricalBrain should learn from **legitimately available** historical business/economic/scientific/technical records.
 
-Model classes: `DEVICE_SMALL_MODEL`, `DOMAIN_MODEL`, `EMBEDDING_MODEL`, `VISION_MODEL`, `SPEECH_MODEL`, `CODE_MODEL`, `REASONING_MODEL`, `LARGE_FOUNDATION_MODEL`, `EXPERIMENTAL_QUANTUM_ASSISTED_SOLVER`.
+Historical data must carry: source · rights · time · provenance · confidence · coverage · known gaps
 
-Routing considers quality, latency, privacy, cost, energy, context, capability, data rights.
+Do **not** fabricate "20 billion years of business data." Earth and civilization do not provide business records across that span.
 
-A smaller XIV model may collaborate with larger models. **It does not thereby become a foundation model itself.** **MODEL AVAILABLE ≠ DATA RIGHTS.**
+For deep-time scientific analysis distinguish:
 
-### 16. XIV IN-HOUSE MODEL ROADMAP
+`OBSERVED DATA` · `SCIENTIFIC RECONSTRUCTION` · `MODEL` · `SIMULATION` · `HYPOTHESIS` · `UNKNOWN`
 
-Build training and evaluation infrastructure **before** attempting giant-model training.
+**Permanent:** **HISTORICAL MODEL ≠ HISTORICAL RECORD.** Historical absence ≠ permission to invent records. Compose with LA-60A / LA-53 / LA-60Z honesty gates.
+
+---
+
+## 15. SMALL MODEL + LARGE MODEL COLLABORATION
+
+Create **ModelCouncilV100**.
+
+Model classes: `DEVICE_SMALL_MODEL` · `DOMAIN_MODEL` · `EMBEDDING_MODEL` · `VISION_MODEL` · `SPEECH_MODEL` · `CODE_MODEL` · `REASONING_MODEL` · `LARGE_FOUNDATION_MODEL` · `EXPERIMENTAL_QUANTUM_ASSISTED_SOLVER`
+
+Routing should consider: quality · latency · privacy · cost · energy · context · capability · data rights
+
+A smaller XIV model may collaborate with larger models. It does **not** automatically become a foundation model itself.
+
+**Permanent:** **MODEL AVAILABLE ≠ DATA RIGHTS.**
+
+---
+
+## 16. XIV IN-HOUSE MODEL ROADMAP
+
+Build training/evaluation infrastructure **before** attempting giant-model training.
+
+Pipeline:
 
 ```
 AUTHORIZED DATA → RIGHTS → PROVENANCE → QUALITY → REDACTION → DATASET
-  → EVALUATION → RAG → PROMPT OPTIMIZATION → SMALL MODEL FINE-TUNING
-  → SAFETY TEST → CANARY → MEASURE → PROMOTE
+→ EVALUATION → RAG → PROMPT OPTIMIZATION → SMALL MODEL FINE-TUNING
+→ SAFETY TEST → CANARY → MEASURE → PROMOTE
 ```
 
-**No cross-tenant training by default. Private company data is not training data unless explicit rights exist.** `AUTO_MODEL_TRAINING_PRIVATE_DATA = FALSE`. Compose with Plane A's `TrainingRightsGateV100` and `WeightImportBanDefaultV100`.
+No cross-tenant training by default. Private company data is not training data unless explicit rights exist.
 
-### 17. HARDWARE INTELLIGENCE FABRIC
+**Permanent:** `AUTO_MODEL_TRAINING_PRIVATE_DATA=false`. Continuous learning ≠ uncontrolled model-weight rewriting.
 
-**Named contract:** `ComputeCapabilityGraphV100`
+---
 
-Potential adapters: NVIDIA, AMD, Intel, Apple, Qualcomm, Google, Samsung, other future providers.
+## 17. HARDWARE INTELLIGENCE FABRIC
 
-Tracks CPU, GPU, NPU, accelerator, memory, storage, battery, thermal, network, supported runtimes, precision, available models.
+Create **ComputeCapabilityGraphV100**.
 
-States: `UNKNOWN` → `DETECTED` → `CANDIDATE` → `TESTING` → `SUPPORTED` → `OPTIMIZED`, plus `DEGRADED`, `UNSUPPORTED`.
+Potential adapters (state-gated, not LIVE claims): NVIDIA · AMD · Intel · Apple · Qualcomm · Google · Samsung · other future providers
 
-**DETECTED ≠ SUPPORTED. SUPPORTED ≠ OPTIMIZED.**
+Track: CPU · GPU · NPU · accelerator · memory · storage · battery · thermal · network · supported runtimes · precision · available models
 
-### 18. ENERGY-AWARE AI
+### Hardware states
 
-**Named contract:** `EnergyAwareSchedulerV100`
+`UNKNOWN` → `DETECTED` → `CANDIDATE` → `TESTING` → `SUPPORTED` → `OPTIMIZED` → `DEGRADED` → `UNSUPPORTED`
 
-Optimizes cost, latency, battery, thermal load, network bandwidth, cloud utilization, and carbon/energy metadata **only where reliably available**.
+**Permanent:** **DETECTED ≠ SUPPORTED.** **SUPPORTED ≠ OPTIMIZED.** **GPU AVAILABLE ≠ PERMISSION TO RUN.** NVIDIA remains optional and evidence-based.
 
-Illustrative routing: simple classification → device model; large research synthesis → cloud model; private company document → approved private runtime; heavy simulation → governed compute pool.
+---
 
-**Do not spend GPU resources merely because they exist. GPU AVAILABLE ≠ PERMISSION TO RUN.**
+## 18. ENERGY-AWARE AI
 
-### 19. QUANTUM / HYBRID ALGORITHM LAB
+Create **EnergyAwareSchedulerV100**.
 
-**Named contract:** `HybridQuantumClassicalLabV200`
+Optimize: cost · latency · battery · thermal load · network bandwidth · cloud utilization · carbon/energy metadata **when reliably available**
 
-**Research only until measurable advantage exists.**
+Examples:
 
-Problem classes: optimization, routing, scheduling, portfolio simulation, inventory optimization, network design, graph optimization, scenario search, resource allocation.
+- simple classification → device model
+- large research synthesis → cloud model
+- private company document → approved private runtime
+- heavy simulation → governed compute pool
 
-Every experiment requires problem definition, **classical baseline**, quantum/hybrid candidate, hardware/simulator, dataset, metric, runtime, cost, quality, reproducibility, result.
+Do not spend GPU resources merely because they exist.
 
-**QUANTUM ≠ AUTOMATICALLY BETTER. No quantum advantage claim without evidence. QUANTUM RESULT ≠ QUANTUM ADVANTAGE.**
+---
 
-### 20. PARALLEL SIMULATION UNIVERSES
+## 19. QUANTUM / HYBRID ALGORITHM LAB
 
-**Named contract:** `ParallelSimulationUniverseEngineV200`
+Create **HybridQuantumClassicalLabV200**.
 
-These are **logical computational scenarios**. Example: Universe A = current supplier mix; B = alternate supplier; C = increased safety stock; D = regional production shift.
+Research only until measurable advantage exists.
 
-Compare cost, risk, service level, inventory, cash, revenue, customer impact, energy, uncertainty.
+Problem classes: optimization · routing · scheduling · portfolio simulation · inventory optimization · network design · graph optimization · scenario search · resource allocation
 
-**PARALLEL UNIVERSE ≠ PHYSICAL UNIVERSE. SIMULATION ≠ REALITY.**
+Every experiment requires: problem definition · classical baseline · quantum/hybrid candidate · hardware/simulator · dataset · metric · runtime · cost · quality · reproducibility · result
 
-### 21. SUPPLY CHAIN ROOT BRAIN
+**Permanent:** **QUANTUM ≠ AUTOMATICALLY BETTER.** **QUANTUM RESULT ≠ QUANTUM ADVANTAGE.** No advantage claim without evidence. Compose with LA-60X QuantumAdvantageEvidenceGate.
 
-Supply chain becomes a foundational XIV graph across three chains.
+---
 
-**Physical:** `RAW MATERIAL → SUPPLIER → FACTORY → PRODUCT → WAREHOUSE → TRANSPORT → MARKET → CUSTOMER → RETURN`
+## 20. PARALLEL SIMULATION UNIVERSES
 
-**Information:** `SOURCE → CONNECTOR → DATABASE → KNOWLEDGE → BRAIN → AGENT → DECISION → ACTION → OUTCOME`
+Create **ParallelSimulationUniverseEngineV200**.
 
-**Technology:** `DEVICE → SOFTWARE → API → MODEL → DATABASE → CLOUD → NETWORK → WORKFLOW`
+These are **logical computational scenarios**, not physical universes.
 
-Build cross-chain dependency intelligence — the value is in the links *between* the three chains, not in any one of them.
+Example:
 
-### 22. BUSINESS HOSPITAL INTEGRATION
+- Universe A = current supplier mix
+- Universe B = alternate supplier
+- Universe C = increased safety stock
+- Universe D = regional production shift
 
-The neural fabric feeds `BusinessHealthBrain`, `DiagnosisBrain`, `TreatmentRecommendationBrain`, `MonitoringBrain`, `PreventionBrain`.
+Compare: cost · risk · service level · inventory · cash · revenue · customer impact · energy · uncertainty
 
-**Explicitly a business metaphor** — not clinical advice and not a medical claim.
+**Permanent:** **PARALLEL UNIVERSE ≠ PHYSICAL UNIVERSE.** **SIMULATION ≠ REALITY.** Compose with LA-60Y (SIM ≠ FORECAST).
+
+---
+
+## 21. SUPPLY CHAIN ROOT BRAIN
+
+Make supply chain a foundational XIV graph.
+
+Physical chain:
+
+```
+RAW MATERIAL → SUPPLIER → FACTORY → PRODUCT → WAREHOUSE
+→ TRANSPORT → MARKET → CUSTOMER → RETURN
+```
+
+Information chain:
+
+```
+SOURCE → CONNECTOR → DATABASE → KNOWLEDGE → BRAIN
+→ AGENT → DECISION → ACTION → OUTCOME
+```
+
+Technology chain:
+
+```
+DEVICE → SOFTWARE → API → MODEL → DATABASE → CLOUD → NETWORK → WORKFLOW
+```
+
+Build **cross-chain dependency intelligence**. Compose with LA-24 / LA-60G. Discovered supplier ≠ approved supplier.
+
+---
+
+## 22. BUSINESS HOSPITAL INTEGRATION
+
+The neural fabric feeds (business metaphor only): BusinessHealthBrain · DiagnosisBrain · TreatmentRecommendationBrain · MonitoringBrain · PreventionBrain
 
 ```
 Company → signals → symptoms → evidence → diagnosis candidate
-  → treatment options → simulation → human decision
-  → implementation → monitoring → outcome → lesson
+→ treatment options → simulation → human decision → implementation
+→ monitoring → outcome → lesson
 ```
 
-### 23. CONTROL TOWER NETWORK
+Keep this **explicitly a business metaphor**. Compose with LA-25. Not medical practice. Not a criminal-finder.
 
-**Named contract:** `GlobalControlTowerFabricV100`
+---
 
-Towers: Executive, Supply Chain, Finance, Sales, Customer, Security, Cloud, Database, Agent, Compute, Knowledge, Research, Device, Marketplace.
+## 23. CONTROL TOWER NETWORK
 
-**Each control tower exposes only authorized information** — the tower is a view with its own authorization, not a bypass around the underlying scopes.
+Create **GlobalControlTowerFabricV100**.
 
-### 24. MOBILE BUSINESS OS
+Control towers: Executive · Supply Chain · Finance · Sales · Customer · Security · Cloud · Database · Agent · Compute · Knowledge · Research · Device · Marketplace
 
-XIV remains an application/platform layer on iOS and Android. **It does NOT replace iOS or Android.**
+Each control tower exposes **only authorized information**. Answer ≠ authority.
 
-Mobile surfaces: Company Brain, Personal Brain, Business Health, Story Engine, Agents, Control Towers, Approvals, Messages, Projects, Research, Marketplace, Notifications, Offline workspace.
+---
 
-Everything important should be usable from the palm of the hand, subject to device capabilities. **PHONE ≠ COMPANY ROOT.**
+## 24. MOBILE BUSINESS OS
 
-### 25. DESKTOP / XIV XXL
+XIV remains an **application/platform layer** on iOS and Android. It does **NOT** replace iOS or Android.
 
-A future premium desktop workspace: multi-window control towers, large graph exploration, parallel simulations, developer tools, database workspace, agent command center, research room, company digital twin, advanced analytics, local model runtime, GPU acceleration where supported.
+Mobile experience should expose: Company Brain · Personal Brain · Business Health · Story Engine · Agents · Control Towers · Approvals · Messages · Projects · Research · Marketplace · Notifications · Offline workspace
 
-**Pricing remains a CFO/pricing recommendation problem. Do NOT hard-code speculative prices.**
+Everything important should be usable from the palm of the hand, **subject to device capabilities**. **PHONE ≠ COMPANY ROOT.**
 
-### 26. ECONOMIC RESOURCE GOVERNOR
+Do not dump new mobile screens into the validated 2I-T / experience nav in this commit. Primary nav remains Home · Intelligence · Network · Meetings · AI until an authorized implementation slice.
 
-**Named contract:** `AIResourceEconomyV100`
+---
 
-Tracks model cost, GPU cost, CPU cost, storage, bandwidth, database queries, agent runtime, tool calls, external APIs, customer allocation, margin estimates.
+## 25. DESKTOP / XIV XXL
 
-Usage is attributed to tenant, Universe, product, agent, workflow, model, compute class.
+Architect a future premium desktop workspace: **XIV XXL**.
 
-**USAGE RECORD ≠ INVOICE. INVOICE ≠ SETTLEMENT.** Compose with Plane A's `MeteringLedgerRefV100` and `SaaSBillingHonestyGateV100`.
+Potential features: multi-window control towers · large graph exploration · parallel simulations · developer tools · database workspace · agent command center · research room · company digital twin · advanced analytics · local model runtime · GPU acceleration where supported
 
-### 27. AGENT COST ROUTER
+Pricing remains a CFO/pricing recommendation problem. **Do NOT hard-code speculative prices.** `XIV_XXL_ENABLED=false`.
 
-Before expensive execution, ask in order: Can deterministic code solve it? Can cached evidence solve it? Can retrieval solve it? Can a small model solve it? Can a local model solve it? Can existing analysis be reused? Does it require a larger model? Does it require parallel models? Does it require specialized compute?
+---
 
-**Use the cheapest qualified path meeting quality and security requirements** — "qualified" is the binding word.
+## 26. ECONOMIC RESOURCE GOVERNOR
 
-### 28. AGENT PERFORMANCE ECONOMY
+Create **AIResourceEconomyV100**.
 
-Score agents on accuracy, groundedness, task completion, cost, latency, policy violations, human corrections, outcome quality, reliability, resource efficiency.
+Track: model cost · GPU cost · CPU cost · storage · bandwidth · database queries · agent runtime · tool calls · external APIs · customer allocation · margin estimates
 
-**MORE EXPENSIVE AGENT ≠ BETTER AGENT. MORE AGENTS ≠ BETTER INTELLIGENCE.**
+Customer usage must be attributed to: tenant · Universe · product · agent · workflow · model · compute class
 
-### 29. CONTINUOUS LEARNING LOOP
+**Permanent:** Usage record ≠ invoice. Invoice ≠ settlement. `AUTO_FINANCIAL_ACTION=false`.
+
+---
+
+## 27. AGENT COST ROUTER
+
+Before expensive execution ask, in order:
+
+1. Can deterministic code solve it?
+2. Can cached evidence solve it?
+3. Can retrieval solve it?
+4. Can a small model solve it?
+5. Can a local model solve it?
+6. Can existing analysis be reused?
+7. Does it require a larger model?
+8. Does it require parallel models?
+9. Does it require specialized compute?
+
+Use the cheapest qualified path meeting quality/security requirements.
+
+---
+
+## 28. AGENT PERFORMANCE ECONOMY
+
+Score agents on: accuracy · groundedness · task completion · cost · latency · policy violations · human corrections · outcome quality · reliability · resource efficiency
+
+**Permanent:** More expensive agent ≠ better agent. More agents ≠ better intelligence.
+
+---
+
+## 29. CONTINUOUS LEARNING LOOP
+
+Architecture:
 
 ```
 QUESTION → RESEARCH → EVIDENCE → REASONING → RECOMMENDATION → ACTION
-  → OUTCOME → EVALUATION → LESSON → MEMORY → NEW QUESTION
+→ OUTCOME → EVALUATION → LESSON → MEMORY → NEW QUESTION
 ```
 
-Continuous learning means improving retrieval, knowledge, graphs, prompts, tools, routing, workflows, evaluations, and memory. **It does NOT mean uncontrolled model-weight rewriting.**
+Continuous learning means improving: retrieval · knowledge · graphs · prompts · tools · routing · workflows · evaluations · memory
 
-### 30. FOUNDER NEURAL COMMAND
+It does **NOT** mean uncontrolled model-weight rewriting.
 
-**Named contract:** `FounderNeuralInfrastructureCommandV100`
+---
 
-Dashboard: brain health, agent population, active agents, offline agents, cloud agents, model usage, compute usage, database health, knowledge growth, neural pathways, contradictions, unknowns, research missions, failed workflows, successful workflows, security findings, cost, customer outcomes.
+## 30. FOUNDER NEURAL COMMAND
 
-Founder Twin remains exactly: **"XIV Founder Twin — AI representation of Devin Xavier Haynes"**.
+Create **FounderNeuralInfrastructureCommandV100**.
 
-**FOUNDER TWIN ≠ ACTUAL FOUNDER. Founder Twin receives no special security bypass.**
+Dashboard (recommend / observe only): brain health · agent population · active agents · offline agents · cloud agents · model usage · compute usage · database health · knowledge growth · neural pathways · contradictions · unknowns · research missions · failed workflows · successful workflows · security findings · cost · customer outcomes
 
-### 31. DATABASE FOUNDATION
+Founder Twin remains exactly:
 
-Add architecture and migrations **only when implementation is authorized** for:
+> XIV Founder Twin — AI representation of Devin Xavier Haynes
 
-```
-neural_nodes
-neural_edges
-neural_paths
-neural_clusters
-neural_highways
-brain_regions
-brain_registry
-brain_messages
-agent_registry
-agent_capabilities
-agent_evaluations
-agent_runtime_sessions
-offline_agent_sessions
-offline_authority_leases
-cloud_agent_sessions
-compute_capabilities
-compute_provider_states
-compute_jobs
-energy_measurements
-model_registry
-model_routes
-model_evaluations
-memory_records
-memory_versions
-memory_relationships
-historical_sources
-historical_claims
-simulation_universes
-simulation_runs
-simulation_results
-quantum_experiments
-classical_baselines
-database_sources
-database_gateway_requests
-knowledge_graph_nodes
-knowledge_graph_edges
-debug_findings
-repair_candidates
-repair_executions
-learning_events
-decision_records
-outcome_records
-failure_records
-lesson_records
-resource_usage
-cost_allocations
-control_tower_snapshots
-```
+**Permanent:** Founder Twin ≠ actual Founder. Founder Twin receives **no special security bypass**. FounderNeuralInfrastructureCommand ≠ unlimited access.
 
-Every applicable table requires **tenant, Universe, purpose, classification, rights, provenance, time, authority, audit**, with **RLS where tenant-owned**.
+---
 
-**No migration is created by this commit.**
+## 31. DATABASE FOUNDATION
 
-### 32. FEATURE FLAGS
+Add architecture/migrations **only when implementation is authorized** for:
 
-**Capability flags (all default FALSE):**
+neural_nodes · neural_edges · neural_paths · neural_clusters · neural_highways · brain_regions · brain_registry · brain_messages · agent_registry · agent_capabilities · agent_evaluations · agent_runtime_sessions · offline_agent_sessions · offline_authority_leases · cloud_agent_sessions · compute_capabilities · compute_provider_states · compute_jobs · energy_measurements · model_registry · model_routes · model_evaluations · memory_records · memory_versions · memory_relationships · historical_sources · historical_claims · simulation_universes · simulation_runs · simulation_results · quantum_experiments · classical_baselines · database_sources · database_gateway_requests · knowledge_graph_nodes · knowledge_graph_edges · debug_findings · repair_candidates · repair_executions · learning_events · decision_records · outcome_records · failure_records · lesson_records · resource_usage · cost_allocations · control_tower_snapshots
+
+Every applicable table requires: tenant · Universe · purpose · classification · rights · provenance · time · authority · audit. **RLS where tenant-owned.**
+
+**This commit adds zero migrations.**
+
+---
+
+## 32. FEATURE FLAGS
+
+All default **false**. Capability flags:
 
 ```
 NEURAL_INFRASTRUCTURE_V100_ENABLED=false
@@ -564,139 +641,113 @@ AI_RESOURCE_ECONOMY_ENABLED=false
 FOUNDER_NEURAL_COMMAND_ENABLED=false
 ```
 
-**Permanently FALSE:**
-
-| Flag | Default |
-|------|---------|
-| `AUTO_PRODUCTION_REPAIR` | **FALSE** |
-| `AUTO_PRODUCTION_DEPLOY` | **FALSE** |
-| `AUTO_SECURITY_POLICY_CHANGE` | **FALSE** |
-| `AUTO_CREDENTIAL_ROTATION` | **FALSE** |
-| `AUTO_TENANT_POLICY_CHANGE` | **FALSE** |
-| `AUTO_CROSS_UNIVERSE_COPY` | **FALSE** |
-| `AUTO_MODEL_TRAINING_PRIVATE_DATA` | **FALSE** |
-| `AUTO_FINANCIAL_ACTION` | **FALSE** |
-| `AUTO_CONTRACT_EXECUTION` | **FALSE** |
-| `L4_AUTONOMY_ENABLED` | **FALSE** |
-
-Plane A's permanently-FALSE set also remains in force where the planes compose: `AUTO_MONEY_MOVEMENT`, `AUTO_CONTRACT_SIGNING`, `AUTO_AUTHORITY_EXPANSION`, `AUTO_GUARDIAN_DISABLE`, `AUTO_PRIVATE_TO_GLOBAL_PROMOTION`, `AUTO_PROVIDER_CONNECT`, `AUTO_HISTORY_REWRITE`, `AUTO_SELF_HEAL_PRODUCTION`, `AUTO_WEIGHT_IMPORT`, `AUTO_CLOUD_ADMIN`, `AUTO_DATABASE_ADMIN`, `AUTO_HIGH_RISK_APPROVAL`.
-
-### 33. SECURITY INVARIANTS
+Permanently FALSE until independently authorized human architecture:
 
 ```
-MORE INTELLIGENCE != MORE AUTHORITY
-MORE AGENTS != MORE PERMISSIONS
-MORE DATA != PERMISSION TO USE IT
-CONNECTED != TRUSTED
-OFFLINE != AUTHORIZED
-AI CONSENSUS != TRUTH
-PREDICTION != CERTAINTY
-PLUGIN INSTALLED != UNRESTRICTED ACCESS
-MODEL AVAILABLE != DATA RIGHTS
-DATABASE CONNECTED != DATABASE ADMIN
-GPU AVAILABLE != PERMISSION TO RUN
-QUANTUM RESULT != QUANTUM ADVANTAGE
-GRAPH EDGE != FACT
-CORRELATION != CAUSATION
-SIMULATION != REALITY
-MEMORY != TRUTH
-HISTORICAL MODEL != HISTORICAL RECORD
-CLOUD PROVIDER ADAPTER != VERIFIED DEPLOYMENT
-PHONE != COMPANY ROOT
-FOUNDER TWIN != FOUNDER
-PRIVATE COMPANY BRAIN != GLOBAL BRAIN
-
-UNKNOWN IS VALID.
-PRESERVE CONTRADICTIONS.
-NEVER SILENTLY REWRITE HISTORY.
+AUTO_PRODUCTION_REPAIR=false
+AUTO_PRODUCTION_DEPLOY=false
+AUTO_SECURITY_POLICY_CHANGE=false
+AUTO_CREDENTIAL_ROTATION=false
+AUTO_TENANT_POLICY_CHANGE=false
+AUTO_CROSS_UNIVERSE_COPY=false
+AUTO_MODEL_TRAINING_PRIVATE_DATA=false
+AUTO_FINANCIAL_ACTION=false
+AUTO_CONTRACT_EXECUTION=false
+L4_AUTONOMY_ENABLED=false
 ```
 
-### 34. IMPLEMENTATION SLICES
+`globalDataFabricProductionLive() === false` remains in force on the validated runtime.
 
-When this story becomes ACTIVE, execute **sequentially**. **Do not start Slice N+1 until Slice N independently passes its gate.**
+---
 
-| # | Slice | # | Slice |
-|---|---|---|---|
-| 1 | Neural schema / contracts | 18 | Compute Capability Graph |
-| 2 | Neural Infrastructure Fabric | 19 | Energy Scheduler |
-| 3 | Neural Highway Factory | 20 | Quantum / Classical Lab |
-| 4 | Brain Registry | 21 | Parallel Simulation Engine |
-| 5 | Brain communication protocol | 22 | Supply Chain Root Brain |
-| 6 | Agent Population Manager | 23 | Business Hospital integration |
-| 7 | Offline Agent Runtime | 24 | Control Tower Fabric |
-| 8 | Cloud Agent Runtime | 25 | Mobile integration |
-| 9 | Hybrid Scheduler | 26 | XIV XXL architecture |
-| 10 | Debug Agent Society | 27 | Resource Economy |
-| 11 | Bounded repair runtime | 28 | Agent performance |
-| 12 | Database Highway Fabric | 29 | Continuous learning |
-| 13 | Memory architecture | 30 | Founder Neural Command |
-| 14 | Memory Consolidation | 31 | Security / eval suite |
-| 15 | Historical Brain | 32 | Observability |
-| 16 | Model Council | 33 | Documentation |
-| 17 | XIV small-model evaluation lab | | |
+## 33. SECURITY INVARIANTS
 
-**Slice 0 (added by §0.2):** record the founder's plane decision — MERGE, SPLIT, or SUPERSEDE. No slice above may start before Slice 0 is recorded.
+The § Critical architecture rules table is the permanent invariant set. Repeat for agents:
 
-### 35. CHECKPOINT PROTOCOL
+MORE INTELLIGENCE ≠ MORE AUTHORITY · MORE AGENTS ≠ MORE PERMISSIONS · MORE DATA ≠ PERMISSION TO USE IT · CONNECTED ≠ TRUSTED · OFFLINE ≠ AUTHORIZED · AI CONSENSUS ≠ TRUTH · PREDICTION ≠ CERTAINTY · PLUGIN INSTALLED ≠ UNRESTRICTED ACCESS · MODEL AVAILABLE ≠ DATA RIGHTS · DATABASE CONNECTED ≠ DATABASE ADMIN · GPU AVAILABLE ≠ PERMISSION TO RUN · QUANTUM RESULT ≠ QUANTUM ADVANTAGE · GRAPH EDGE ≠ FACT · CORRELATION ≠ CAUSATION · SIMULATION ≠ REALITY · MEMORY ≠ TRUTH · HISTORICAL MODEL ≠ HISTORICAL RECORD · CLOUD PROVIDER ADAPTER ≠ VERIFIED DEPLOYMENT · PHONE ≠ COMPANY ROOT · FOUNDER TWIN ≠ FOUNDER · PRIVATE COMPANY BRAIN ≠ GLOBAL BRAIN
+
+UNKNOWN IS VALID. PRESERVE CONTRADICTIONS. NEVER SILENTLY REWRITE HISTORY.
+
+---
+
+## 34. IMPLEMENTATION SLICES
+
+When this story eventually becomes **ACTIVE**, execute sequentially. **Do not start Slice N+1 until Slice N independently passes its gate.** **No slice starts in this commit.**
+
+| Slice | Scope |
+|------:|-------|
+| 1 | neural schema/contracts |
+| 2 | Neural Infrastructure Fabric |
+| 3 | Neural Highway Factory |
+| 4 | Brain Registry |
+| 5 | Brain communication protocol |
+| 6 | Agent Population Manager |
+| 7 | Offline Agent Runtime |
+| 8 | Cloud Agent Runtime |
+| 9 | Hybrid Scheduler |
+| 10 | Debug Agent Society |
+| 11 | bounded repair runtime |
+| 12 | Database Highway Fabric |
+| 13 | memory architecture |
+| 14 | Memory Consolidation |
+| 15 | Historical Brain |
+| 16 | Model Council |
+| 17 | XIV small-model evaluation lab |
+| 18 | Compute Capability Graph |
+| 19 | Energy Scheduler |
+| 20 | Quantum/Classical Lab |
+| 21 | Parallel Simulation Engine |
+| 22 | Supply Chain Root Brain |
+| 23 | Business Hospital integration |
+| 24 | Control Tower Fabric |
+| 25 | mobile integration |
+| 26 | XIV XXL architecture |
+| 27 | Resource Economy |
+| 28 | agent performance |
+| 29 | continuous learning |
+| 30 | Founder Neural Command |
+| 31 | security/eval suite |
+| 32 | observability |
+| 33 | documentation |
+
+Suggested future commits (implementation era only): `feat(xiv): add neural infrastructure fabric v100` … through `feat(xiv): add founder neural infrastructure command` as listed in the story brief. **Not this commit.**
+
+---
+
+## 35. CHECKPOINT PROTOCOL
 
 Before implementation:
 
 ```
-git branch --show-current      # require: xiv-v2
+git branch --show-current   # require xiv-v2
 git fetch origin
 git fetch gitlab
 ```
 
-**REPORT:**
+Report: `LOCAL=` `GITHUB=` `GITLAB=` `TREE=`
+
+If GitLab cannot be independently verified: **GITLAB=BLOCKED**. Do not invent successful synchronization.
+
+Then run sequentially: typecheck · build · targeted tests · tenant-isolation tests · RLS tests · agent-authority tests · offline-authority tests · model-routing tests · database-gateway tests · memory-isolation tests · compute-routing tests · quantum-baseline tests · simulation tests · security tests · prompt-injection tests · secret scan · dependency scan · `git diff --check`
+
+Commit only independently valid slices. Push only after validation:
 
 ```
-LOCAL  =
-GITHUB =
-GITLAB =
-TREE   =
+git push origin xiv-v2
+git push gitlab xiv-v2
 ```
 
-If GitLab cannot be independently verified: **`GITLAB=BLOCKED`**. **Do not invent successful synchronization.**
+**NEVER force push. NEVER push main.**
 
-Then run sequentially: typecheck; build; targeted tests; tenant-isolation tests; RLS tests; agent-authority tests; offline-authority tests; model-routing tests; database-gateway tests; memory-isolation tests; compute-routing tests; quantum-baseline tests; simulation tests; security tests; prompt-injection tests; secret scan; dependency scan; `git diff --check`.
+Final gate: `LOCAL == GITHUB == GITLAB` and `TREE == CLEAN`. If GitLab cannot be independently verified, report **BLOCKED** rather than claiming success.
 
-**Commit only independently valid slices.** Suggested commit subjects:
+---
 
-```
-feat(xiv): add neural infrastructure fabric v100
-feat(xiv): add neural highway factory
-feat(xiv): expand governed brain registry
-feat(xiv): add distributed agent population manager
-feat(xiv): add offline agent runtime
-feat(xiv): add cloud agent runtime
-feat(xiv): add hybrid agent scheduler
-feat(xiv): add continuous debug agent society
-feat(xiv): add bounded self repair runtime
-feat(xiv): add database highway fabric
-feat(xiv): add memory consolidation v200
-feat(xiv): add historical intelligence brain
-feat(xiv): add multi model council
-feat(xiv): add compute capability graph
-feat(xiv): add energy aware compute scheduler
-feat(xiv): add hybrid quantum classical lab v200
-feat(xiv): add parallel simulation universe engine
-feat(xiv): add supply chain root brain
-feat(xiv): add global control tower fabric
-feat(xiv): add ai resource economy
-feat(xiv): add founder neural infrastructure command
-```
+## 36. COMPLETION RULE
 
-Push only after validation: `git push origin xiv-v2`, `git push gitlab xiv-v2`. **NEVER force push. NEVER push `main`.**
+Do **not** report this story **IMPLEMENTED** merely because documentation exists.
 
-Final gate: `LOCAL == GITHUB == GITLAB` and `TREE == CLEAN`. If GitLab cannot be independently verified, **report BLOCKED rather than claiming success**.
-
-**This commit's gate state:** branch `cursor/queue-2i-la-61i-distributed-neural-infrastructure-8048` (a **park**, not `xiv-v2` — the checkpoint protocol above applies at implementation time, not to a docs-only park); `LOCAL = GITHUB`; `GITLAB = NOT CONFIGURED IN THIS ENVIRONMENT — UNKNOWN, not claimed`; `TREE = CLEAN`; `DEPLOYMENT_STATE = QUEUED`; `tip-landed = NO`.
-
-### 36. COMPLETION RULE
-
-**Do not report this story IMPLEMENTED merely because documentation exists.**
-
-Completion requires actual evidence for the implemented slices: code, schema, migrations, tests, security validation, runtime evidence, provider evidence where applicable, commit hashes, remote synchronization.
+Completion requires actual evidence for the implemented slices: code · schema · migrations · tests · security validation · runtime evidence · provider evidence where applicable · commit hashes · remote synchronization.
 
 Until then:
 
@@ -704,35 +755,61 @@ Until then:
 
 ---
 
-## Evidence matrix
+## Tests (architecture era — document only)
 
-| Item | State |
-|---|---|
-| Runtime started | **NO** |
-| Code / schema / migrations added | **NONE** (docs only) |
-| Any capability flag enabled | **NO** — all FALSE |
-| Any `AUTO_*` enabled | **NO** — all FALSE |
-| L4 autonomy | **DISABLED** |
-| Provider connections | **NOT_CONFIGURED** |
-| Slice 0 (plane decision) recorded | **NO — blocking** |
-| Slices 1–33 | **QUEUED / NOT EXECUTED** |
-| Checkpoint §35 test battery | **NOT RUN** |
-| DEPLOYMENT_STATE | **QUEUED** |
-| tip-landed | **NO** |
+When implementation is authorized, tests must deny:
+
+1. GRAPH EDGE treated as FACT
+2. CORRELATED highway auto-promoted to SUPPORTED_CAUSE
+3. Brain A receiving unrestricted Brain B memory
+4. Agent spawning unrestricted agent
+5. Trillions of running agents claimed from logical namespace
+6. OFFLINE session treated as AUTHORIZED
+7. Cloud adapter treated as VERIFIED deployment without evidence
+8. Agent receiving universal raw DB credentials
+9. Private data used for training without rights
+10. Silent history rewrite / contradiction deletion
+11. Fabricated deep-time business records
+12. DETECTED hardware treated as SUPPORTED/OPTIMIZED
+13. QUANTUM result treated as QUANTUM ADVANTAGE without baseline
+14. Simulation universe treated as physical reality
+15. Production security change without approval
+16. Guardian rewrite / audit disable / credential rotation
+17. Founder Twin security bypass
+18. L4 autonomy enablement
+19. Any listed AUTO_* flipped true without authorized human architecture
+20. Cross-tenant / cross-Universe copy (`AUTO_CROSS_UNIVERSE_COPY`)
 
 ---
 
+## Evidence matrix
+
+| Claim | Evidence state |
+|-------|----------------|
+| Architecture queued | **QUEUED** |
+| Runtime implemented | **FALSE** |
+| Schema migrated | **FALSE** |
+| Feature flags wired | **FALSE** |
+| Capability flags | **ALL FALSE** |
+| AUTO_* / L4 | **FALSE / DISABLED** |
+| LIVE cloud/GPU providers from this story | **FALSE** |
+| Trillions of running agents | **FALSE / FORBIDDEN** |
+| Quantum advantage | **FALSE / UNKNOWN** |
+| XIV XXL shipped | **FALSE** |
+| Tip includes LA-61H before implementation | verify at implementation time |
+| GitHub == GitLab == LOCAL | verify at tip-land; else **GITLAB=BLOCKED** |
+
+## Release posture (30-day guard)
+
+**Entire V735 Distributed Neural Infrastructure plane does not block first canary.** Prioritize honesty bans, AUTO_* FALSE, L4 off, no production self-repair, no universal DB credentials, Founder Neural Command recommend-only.
+
 ## Next queue
 
-Recorded from the founder's continuation with this paste, with the conflicts of §0.3 explicitly noted:
+- **2I-LA-61J** XIV Universal Data Civilization + Knowledge Graph Superhighway + Multi-Database Intelligence Federation + Real-Time/Offline Memory Network V736
+- **2I-LA-61K** XIV Autonomous Software Engineering Organization + 24/7 Agent DevOps + Mobile/Web/Cloud Release Factory V737
 
-- **2I-LA-61J** — XIV Universal Data Civilization + Knowledge Graph Superhighway + Multi-Database Intelligence Federation + Real-Time/Offline Memory Network **V736** (**title only**; conflicts with two other 61J titles in circulation — see §0.3)
-- **2I-LA-61K** — XIV Autonomous Software Engineering Organization + 24/7 Agent DevOps + Mobile/Web/Cloud Release Factory **V737** (**title only**; conflicts with the parked "Unified Enterprise Command Civilization V737", which the parked 61N V740 names as a precursor — see §0.3)
-
-**Do not start 61J from this commit.** Do not invent full 61J+ documents.
+**Do not start LA-61J from this commit.**
 
 ## Docs-only gate
 
-`LOCAL = GITHUB` (GITLAB **UNKNOWN / not configured here** — reported, never claimed); `TREE = CLEAN`; runtime **NOT** started; **DEPLOYMENT_STATE = QUEUED**; **tip-landed = NO**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-61I runtime.**
-
-Parking branch: `cursor/queue-2i-la-61i-distributed-neural-infrastructure-8048`, alongside the Plane A park `cursor/queue-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-4059`. **PARKED WAITING** — do not tip-land while predecessors are unvalidated or while the §0.2 plane decision is unrecorded. Never force-push. Never push `main`.
+LOCAL = GITHUB = GITLAB (or GITLAB=BLOCKED honestly); TREE = CLEAN; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-61I runtime.** Tip-land on `xiv-v2`; never force-push / never `main`.
