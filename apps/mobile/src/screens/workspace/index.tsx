@@ -804,8 +804,31 @@ export function WorkspaceVoice() {
 
 export function WorkspaceNightShift() {
   return (
-    <PremiumDesk title="Night Shift" subtitle="Bounded overnight research. Recommendations only. No autonomous deploy.">
-      <XivListRow title="Morning brief" body="Security, platform, intelligence, and proposals for human review." />
+    <PremiumDesk title="Night Shift V2" subtitle="Scheduled research, QA, data quality, sandbox patches, Founder Brief. No silent production deploy.">
+      <XivStatusPill label="No self-grant of credentials or authority" tone="warning" />
+      <XivListRow title="Morning brief" body="Security, research, data quality, QA, and proposals for human review." />
+      <XivListRow title="Sandbox only" body="Patches stay sandboxed until human approval. Production deploy remains denied." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceIntelligenceTaskForce() {
+  return (
+    <PremiumDesk title="Intelligence Task Forces" subtitle="Temporary multi-agent teams. Collaboration is not shared permissions.">
+      <XivListRow title="No transfer" body="Membership never grants or transfers authority. Guardian stays above every force." />
+      <XivListRow title="L4" body="Task forces cannot grant bounded autonomy." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceResearchFabric() {
+  return (
+    <PremiumDesk title="Research Fabric" subtitle="Global intelligence library, patent foundry, outreach consent, compute and network contracts.">
+      <XivStatusPill label="Quantum / network / Gmail live send: NOT_CONFIGURED" tone="warning" />
+      <XivListRow title="Library" body="Lawful public and licensed sources only. Company private stays separated. No government classified acquisition." />
+      <XivListRow title="Patent foundry" body="Prior art to counsel workspace. Never claims patentability. No unauthorized patent DB ingest." />
+      <XivListRow title="Outreach" body="Consent, suppression, jurisdiction, and opt-out required. No Yellow Pages spam." />
+      <XivListRow title="Data Task Force" body="Role catalog only. DB ops still Agent → Guardian → Data Access Gateway." />
     </PremiumDesk>
   );
 }

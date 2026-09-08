@@ -370,6 +370,19 @@ export {
   routeAgentDataAccess,
 } from './osfund';
 export {
+  conveneIntelligenceTaskForce,
+  gmailLiveSendState,
+  nightShiftV2DeploysProduction,
+  nightShiftV2SilentProductionDeploy,
+  openAdvancedComputeFabric,
+  openIntelligenceLibrary,
+  openNetworkAbstractionFabric,
+  openNightShiftV2,
+  openPatentFoundry,
+  quantumProviderState,
+  yellowPagesSpamAllowed,
+} from './nightshift';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,

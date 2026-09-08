@@ -168,6 +168,8 @@ const hidden = [
   'db-health',
   'pocket-brain-v2',
   'os-data-fabric',
+  'intelligence-task-force',
+  'research-fabric',
 ];
 
 export default function BusinessLayout() {

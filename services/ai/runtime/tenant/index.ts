@@ -3,8 +3,11 @@ export {
   reviewSecurityDefinerGrantPolicy,
   loadSecurityDefinerHardeningSql,
   SECURITY_DEFINER_HARDENING_MIGRATION,
+  LEAKED_PASSWORD_PROTECTION,
+  LEAKED_PASSWORD_PROTECTION_EVIDENCE,
   supabaseSecurityHardeningDoesNotMarkLive,
 } from './security-definer-review';
+export type { LeakedPasswordProtectionStatus } from './security-definer-review';
 export {
   canCreateUniverse,
   canManageOrganization,
