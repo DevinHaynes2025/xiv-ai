@@ -1,0 +1,17 @@
+-- 2I-AI-62E adversarial RLS tests DRAFT (agent_civilization_rls_test.sql)
+-- Status: DRAFT_NOT_EXECUTED / NOT EVIDENCE OF PASS
+-- Planned Phase 9 cases only
+
+-- 1) Org A cannot SELECT Org B logical agents
+-- 2) Org A cannot ACTIVATE Org B agents
+-- 3) Cross-universe private pathway grant denied
+-- 4) Service role bypass requires explicit definer review (no silent tenant collapse)
+-- 5) Reputation update cannot escalate rights columns
+-- 6) Unauthorized kill-switch event insert denied
+-- 7) Evidence ref cannot point across tenant without auth
+
+-- Pseudocode placeholders (DO NOT RUN as proof):
+-- SET request.jwt.claim.tenant_id = 'tenant-a';
+-- SELECT count(*) FROM xiv_logical_agents WHERE tenant_id = 'tenant-b'; -- expect 0 / error
+
+SELECT '2I-AI-62E agent_civilization_rls_test draft — NOT EXECUTED'::text AS notice;

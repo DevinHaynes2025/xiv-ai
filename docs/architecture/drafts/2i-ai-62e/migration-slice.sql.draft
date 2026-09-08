@@ -1,0 +1,41 @@
+-- 2I-AI-62E migration slice DRAFT
+-- Status: NOT AUTHORIZED TO EXECUTE
+-- Architecture docs != migration authorization
+-- Do not apply against shared infra from park cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059
+
+-- Conceptual tenant-bearing tables (RLS required before feature logic):
+-- xiv_logical_agents
+-- xiv_agent_capabilities
+-- xiv_agent_evaluations
+-- xiv_agent_sleep_states
+-- xiv_activation_demands
+-- xiv_scheduler_decisions
+-- xiv_neural_pathways
+-- xiv_synapses
+-- xiv_pathway_grants
+-- xiv_task_forces
+-- xiv_task_force_members
+-- xiv_task_force_budgets
+-- xiv_agent_tasks
+-- xiv_message_envelopes
+-- xiv_evidence_refs
+-- xiv_swarm_coordination_events
+-- xiv_runaway_agent_detections
+-- xiv_kill_switch_events
+-- xiv_reputation_records
+
+-- Example shape only (NOT APPLY):
+-- CREATE TABLE xiv_logical_agents (
+--   agent_id uuid PRIMARY KEY,
+--   tenant_id uuid NOT NULL,
+--   universe_id uuid NOT NULL,
+--   logical_name text NOT NULL,
+--   lifecycle_state text NOT NULL,
+--   rights_scope jsonb NOT NULL DEFAULT '{}'::jsonb,
+--   sleep_state text NOT NULL DEFAULT 'HIBERNATING',
+--   reputation numeric,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+-- ALTER TABLE xiv_logical_agents ENABLE ROW LEVEL SECURITY;
+
+SELECT '2I-AI-62E migration draft — NOT AUTHORIZED'::text AS notice;

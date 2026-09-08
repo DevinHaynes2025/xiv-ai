@@ -739,6 +739,643 @@ None auto-authorize production. **Deployment Gate Hardening** still required.
 
 ---
 
+---
+
+# FULL Executable Implementation Plan — Phases 0–52
+
+> Status of every phase below: **QUEUED / NOT EXECUTED**. No runtime implementation, no shared-infra migrations, no tip-land, no VERIFY PASS claim. Complements §§1–43 contracts above; does not authorize code.
+
+## Execution Objective (logical agent → … → hibernation loop)
+
+Governed objective for later implementation (not started):
+
+```
+logical agents
+  → AgentRegistry (identity + capability + policy + evaluation)
+  → demand / purpose intake (human / workflow / meeting / event)
+  → PopulationBudget + PopulationDecision (scale ≠ authority)
+  → Discovery (specialists by domain/role/runtime/cost — not by raw process ID)
+  → Ranking (utility under constraints; **security is a gate, not a score**)
+  → Activation (N live processes << logical population; attestation + rights + budget)
+  → Neural Pathway / Synapse authorization (default-deny)
+  → Temporary TaskForce assembly (time + purpose bounded)
+  → AgentTask + Scheduler V1 (race-safe, resource-budgeted)
+  → Message Envelope + Evidence refs (lineage)
+  → Distributed meetings (62B compose) when required
+  → Evaluation (outcome quality ≠ authority expansion)
+  → Reputation update (**Reputation ≠ Authority**)
+  → Hibernation / sleep (default resting state)
+  → Retirement eligibility (identity vs process separately)
+```
+
+**Sleep is default. Activation is exception. Demand ≠ permission. Specialization ≠ permission.**
+
+---
+
+## Engineering Principle
+
+> **One intelligence network. Many logical agents. Few live processes. One security boundary. Human + Guardian authority remain above autonomous execution.**
+
+Permanent honesty contracts:
+
+| Contract | Meaning |
+|----------|---------|
+| LOGICAL ≠ LIVE | Namespace scale ≠ OS process count |
+| MORE AGENTS | ≠ MORE PERMISSIONS ≠ BETTER INTELLIGENCE |
+| SECURITY | **gate / veto** — never a soft ranking feature |
+| REPUTATION | ≠ AUTHORITY / ≠ RIGHTS EXPANSION |
+| PATHWAY / SYNAPSE | default-deny; grant is explicit + scoped + expiring |
+| TASK FORCE | temporary assembly ≠ standing army of processes |
+| DOCS / PLAN / CHECKMARK | ≠ IMPLEMENTED ≠ PASS ≠ DEPLOYMENT_AUTHORIZED |
+| MIGRATION DRAFT | ≠ migration authorization |
+| UNKNOWN | deny-safe |
+| L4 / AUTO_* | **FALSE** permanently for autonomous expansion classes |
+
+---
+
+## Definition of Implementation Complete vs VERIFIED vs DEPLOYMENT_AUTHORIZED=false
+
+| State | Meaning | This park |
+|-------|---------|-----------|
+| **Architecture Complete (docs)** | Phases 0–52 planned; contracts written; flags FALSE; evidence placeholders QUEUED | **THIS COMMIT TARGET** |
+| **Implementation Complete** | Runtime/modules/migrations/tests exist per plan under process authorization | **NOT CLAIMED** |
+| **VERIFIED** | `xiv verify` / `npm\|pnpm verify:62e` executed with honest evidence packs | **NOT CLAIMED** |
+| **DEPLOYMENT_AUTHORIZED** | Explicit gate after VERIFY + human/Guardian authorization | **MUST remain `false`** |
+
+Completion command (Phase 52 — **planned only**, not run here):
+
+```bash
+xiv verify   # or: npm run verify:62e / pnpm verify:62e
+```
+
+Required JSON shape (illustrative — **not produced as PASS evidence here**):
+
+```json
+{
+  "story": "2I-AI-62E",
+  "status": "QUEUED_ARCHITECTURE",
+  "implementation_complete": false,
+  "verified": false,
+  "deployment_authorized": false,
+  "l4_autonomy_enabled": false,
+  "auto_flags_all_false": true,
+  "tip_landed": false,
+  "migration_authorized": false,
+  "never_infer_pass": true
+}
+```
+
+**Architecture docs ≠ VERIFY PASS. Never invent PASS.**
+
+---
+
+## Phase 0 — Preconditions & `62e-preflight.json` + stop condition
+
+**Goal:** Refuse to start 62E runtime unless hard preconditions are honest.
+
+**Planned artifact:** `evidence/2i-ai-62e/62e-preflight.json` (template present; values QUEUED/FALSE).
+
+**Required preconditions (all must be true before code eligibility):**
+1. **2I-AI-62D PASS** (never invent)
+2. **2I-AI-62C PASS**, **62B PASS**, **62A PASS**
+3. Deployment Gate Hardening PASS (independently authoritative)
+4. Guardian / RLS / identity / tenant isolation gates applicable PASS
+5. Feature flags for 62E remain default OFF until explicitly enabled under process
+6. No concurrent unauthorized migration against shared infra
+
+**Stop condition (abort / refuse start):**
+- Any predecessor ≠ PASS
+- Any `AUTO_*` flipped TRUE without process
+- `L4_AUTONOMY_ENABLED=true`
+- Attempted tip-land / `main` push / force-push
+- Migration execution without process authorization
+- Preflight `deployment_authorized` ≠ false while unverified
+- Sibling park conflict unresolved with unique-path policy violated
+
+**Preflight fields (template):** see `evidence/2i-ai-62e/62e-preflight.json`.
+
+**Exit criteria (docs):** preflight template + stop condition documented; **runtime not started**.
+
+---
+
+## Phases 1–6 — Domain contracts, lifecycle, registry, budgets
+
+### Phase 1 — Domain contracts module layout
+
+Planned module layout (names = contracts, ≠ LIVE):
+
+```
+services/ai/runtime/agentcivilization/          # compose 62A
+services/ai/runtime/agentscheduler/             # 62E control plane
+  contracts/
+    agent-lifecycle.ts
+    logical-agent.ts
+    capabilities.ts
+    forbidden-autonomous-capabilities.ts
+    population-budget.ts
+    population-decision.ts
+    agent-registry-repository.ts
+    pathway.ts
+    synapse-authorization.ts
+    task-force.ts
+    agent-task.ts
+    message-envelope.ts
+    hibernation.ts
+    evaluation.ts
+    reputation.ts
+  scheduler/
+  discovery/
+  ranking/
+  activation/
+  pathway/
+  taskforce/
+  guardian/
+```
+
+**Honesty:** path names ≠ implemented capability.
+
+### Phase 2 — `AgentLifecycleState`
+
+States (compose 61I / 62A; extend as needed):
+
+`IDEA · DEFINED · SANDBOX · TRAINING · EVALUATION · CERTIFIED · AVAILABLE · ACTIVE · RESTING · HIBERNATING · DEGRADED · QUARANTINED · RETIRED`
+
+Transitions require purpose + rights + budget + evaluation hooks. Illegal: AVAILABLE→ACTIVE without demand/budget/attestation; RETIRED→ACTIVE without re-certification.
+
+### Phase 3 — `LogicalAgent`
+
+Logical agent = governed **identity + capability + policy + evaluation record**, not necessarily an OS process.
+
+Required fields (contract): `agent_id`, `logical_name`, `specialization`, `department`, `tenant_id`, `universe_id`, `classification`, `rights_scope`, `tools`, `knowledge_domains`, `runtime_requirements` (62D capability classes, not machine IDs), `evaluation_state`, `cost_profile`, `sleep_state`, `last_activation`, `retirement_eligibility`, `reputation` (**≠ authority**).
+
+**An agent cannot create another unrestricted agent.**
+
+### Phase 4 — Capabilities
+
+Capability records are **declared + attested + scoped**. Capability name ≠ grant. Compose 62D XHAL honesty: DETECTED ≠ SUPPORTED ≠ OPTIMIZED ≠ AVAILABLE.
+
+### Phase 5 — `FORBIDDEN_AUTONOMOUS_CAPABILITIES`
+
+Hard deny list (non-exhaustive, permanently non-auto):
+
+- cloud admin / database admin / Guardian disable
+- money movement / contract signing
+- production deploy / main push / force push
+- satellite command / beyond-cloud actuation
+- self-permission expansion / L4 autonomy
+- unrestricted agent spawn / task-force authority self-grant
+- attestation bypass / history rewrite / weight import without process
+- private→global promotion / provider connect without verification
+
+Any attempt → deny + audit + optional quarantine. Flags: all related `AUTO_*=false`.
+
+### Phase 6 — `PopulationBudget` / `PopulationDecision` / `AgentRegistryRepository`
+
+- **PopulationBudget:** max logical identities, max ACTIVE processes, max concurrent task forces, token/cost/energy ceilings, per-tenant/universe caps.
+- **PopulationDecision:** admit / defer / deny activation under budget + rights + security gates.
+- **AgentRegistryRepository:** persistence contract for logical agents; listing millions AVAILABLE with near-zero ACTIVE is a success pattern, not a defect.
+
+**MORE REGISTRY ROWS ≠ MORE LIVE COMPUTE ≠ MORE AUTHORITY.**
+
+---
+
+## Phases 7–9 — Migration draft, RLS matrix, adversarial RLS tests
+
+### Phase 7 — Migration draft (**do not execute without process**)
+
+Draft only: [`./drafts/2i-ai-62e/migration-slice.sql.draft`](./drafts/2i-ai-62e/migration-slice.sql.draft)
+
+Conceptual tables (tenant-bearing → RLS required):
+
+```
+xiv_logical_agents
+xiv_agent_capabilities
+xiv_agent_evaluations
+xiv_agent_sleep_states
+xiv_activation_demands
+xiv_scheduler_decisions
+xiv_neural_pathways
+xiv_synapses
+xiv_pathway_grants
+xiv_task_forces
+xiv_task_force_members
+xiv_task_force_budgets
+xiv_agent_tasks
+xiv_message_envelopes
+xiv_evidence_refs
+xiv_swarm_coordination_events
+xiv_runaway_agent_detections
+xiv_kill_switch_events
+xiv_reputation_records
+```
+
+**Do not alter** `20260908150000_xiv_agent_meetings.sql` from 62E without process.  
+**Architecture docs ≠ migration authorization.** Shared-infra migrate = **FORBIDDEN** in this park.
+
+### Phase 8 — RLS Before Feature Logic matrix
+
+| Table class | RLS before feature logic? | Notes |
+|-------------|---------------------------|-------|
+| Logical agents / capabilities / sleep | **YES** | tenant + universe isolation |
+| Activation / scheduler decisions | **YES** | no cross-tenant read of demands |
+| Pathways / synapses / grants | **YES** | default-deny grants |
+| Task forces / members / budgets | **YES** | sponsor + tenant scoped |
+| Agent tasks / envelopes / evidence refs | **YES** | lineage stays in-tenant |
+| Reputation | **YES** | reputation ≠ rights bypass |
+| Kill-switch / audit events | **YES** + privileged roles | Guardian-readable |
+
+Rule: **RLS policies land before feature logic that reads/writes these tables.** Feature code must assume deny-by-default.
+
+### Phase 9 — Adversarial RLS tests `agent_civilization_rls_test.sql`
+
+Draft: [`./drafts/2i-ai-62e/agent_civilization_rls_test.sql.draft`](./drafts/2i-ai-62e/agent_civilization_rls_test.sql.draft)
+
+Required adversarial cases (planned):
+1. Org A cannot SELECT Org B logical agents
+2. Org A cannot ACTIVATE Org B agents
+3. Cross-universe private pathway grant denied
+4. Service role ≠ silent bypass for tenant tables without explicit definer review
+5. Reputation update cannot escalate rights columns
+6. Kill-switch event insert from unauthorized principal denied
+7. Evidence ref cannot point across tenant without auth
+
+**Not executed in this park.**
+
+---
+
+## Phases 10–13 — Discovery, Ranking, Activation, Idempotency
+
+### Phase 10 — Discovery
+
+Match specialists by: domain (62C), language, meeting role (62B), runtime capability class (62D), evaluation, cost, energy, data locality, tenant policy.
+
+Discover **specialists**, not arbitrary PIDs. **Specialization ≠ permission.**
+
+### Phase 11 — Ranking (**security not a score**)
+
+Ranking may order by fitness / cost / latency / locality **among already-authorized candidates**.
+
+**SECURITY IS NOT A SCORE.** Security/attestation/rights failures are **hard filters / vetoes**, never soft penalties that can be outweighed by utility.
+
+### Phase 12 — Activation
+
+```
+DEMAND → PURPOSE + CLASSIFICATION + RIGHTS
+→ DISCOVERY → RANKING (post-security filter)
+→ BUDGET CHECK → RUNTIME QUALIFICATION (62D when available)
+→ ACTIVATE N PROCESSES (N << logical population)
+→ PATHWAY/SYNAPSE AUTH → TASK FORCE / TASK
+→ COMPLETE → SLEEP / HIBERNATE
+```
+
+Demand ≠ permission. Event routing ≠ authority.
+
+### Phase 13 — Idempotency (100 concurrent)
+
+Contract: 100 concurrent identical activation requests for the same demand key produce **one** authoritative activation decision set (or safe no-ops), no duplicate runaway task forces, no double budget spend.
+
+Planned tests: concurrent workers, shared demand idempotency key, unique constraints, lease/lock semantics. **Not run here.**
+
+---
+
+## Phases 14–16 — Pathway tables, Authorization Engine, Default-Deny Synapse
+
+### Phase 14 — Pathway tables
+
+Neural pathway fabric (virtual, not biological; compose LA-60O/61I):
+
+- `xiv_neural_pathways` — named routes between roles/domains/runtimes
+- `xiv_synapses` — directed edges with scope + expiry
+- `xiv_pathway_grants` — explicit allow records
+
+Pathway existence ≠ authorization.
+
+### Phase 15 — Authorization Engine
+
+Evaluates: principal, tenant, universe, classification, rights, pathway grant, budget, attestation, Guardian hooks, kill-switch state.
+
+Output: ALLOW (scoped) / DENY / QUARANTINE. Denies are first-class audit events.
+
+### Phase 16 — Default-Deny Synapse
+
+Synapses are **deny by default**. No implicit mesh. No “connected because same task force” lateral free movement. Grant must be explicit, purpose-bound, expiring, and revocable by Guardian/kill-switch.
+
+---
+
+## Phases 17–19 — TaskForce model, Builder, Anti-Agent-Explosion
+
+### Phase 17 — TaskForce model
+
+Time-bounded, purpose-bounded assembly:
+
+`task_force_id, purpose, tenant, universe, human_sponsor, member_agent_ids, meeting_id?, runtime_assignments?, budget, expires_at, kill_switch, evaluation_plan`
+
+On expiry: drain → sleep members → retain lineage → retire force. Logical identities may remain AVAILABLE without ACTIVE.
+
+### Phase 18 — Builder
+
+TaskForce Builder composes members under discovery+ranking+budget+pathway grants. Builder cannot expand rights beyond sponsor/higher scheduler grants.
+
+### Phase 19 — Anti-Agent-Explosion
+
+Controls: cool-down, duplicate-work detection, recursive spawn caps, max fan-out, test-storm / model-call-storm defenses, runaway detection events.
+
+**Runaway spawn is a defect, not scale.**
+
+---
+
+## Phases 20–23 — AgentTask, Scheduler V1, Race Safety, Resource Budget
+
+### Phase 20 — `AgentTask`
+
+Unit of scheduled work: purpose, assignee logical agent, activation binding, budget slice, deadline, evidence plan, state machine (PENDING/LEASED/RUNNING/SUCCEEDED/FAILED/CANCELLED/HIBERNATED).
+
+### Phase 21 — Scheduler V1
+
+Hierarchy:
+
+```
+Control plane → Universe → Organization → Department/domain → TaskForce → Agent process (bounded)
+```
+
+Lower scheduler **cannot** expand rights from higher layers. Guardian above all.
+
+### Phase 22 — Race Safety
+
+Leases, compare-and-swap state transitions, unique active assignment constraints, fencing tokens for kill-switch vs worker races (Phase 30).
+
+### Phase 23 — Resource Budget
+
+Bound CPU/GPU/RAM/storage/network/tokens/model calls/live agent count/task-force count/energy/cost/duration. Saving cost ≠ skipping validation. Compose 62D Resource Governor when available.
+
+---
+
+## Phases 24–28 — Message Envelope, Evidence refs, Hibernation, Evaluation, Reputation≠Authority
+
+### Phase 24 — Message Envelope
+
+Envelope fields: `message_id`, `correlation_id`, `tenant`, `universe`, `classification`, `sender_agent`, `recipient`, `pathway_grant_id`, `purpose`, `payload_ref`, `evidence_refs[]`, `created_at`, `expires_at`.
+
+**Agent message ≠ binding contract. Multiple AI approvals ≠ verified.**
+
+### Phase 25 — Evidence refs
+
+Pointers into `evidence/2i-ai-62e/` and runtime evidence stores. Evidence missing → cannot claim PASS. Placeholders remain QUEUED/FALSE/UNKNOWN.
+
+### Phase 26 — Hibernation
+
+| Mode | Meaning |
+|------|---------|
+| RESTING | process stopped; identity AVAILABLE |
+| HIBERNATING | cold; reactivation needs demand + budget + attestation |
+| ACTIVE | live on authorized runtime |
+
+### Phase 27 — Evaluation
+
+Score activations: accuracy, groundedness, completion, cost, latency, policy violations, human corrections, outcome quality, reliability, efficiency.
+
+Failed eval → DEGRADED/QUARANTINE — not silent retry storms. **TEST GENERATED ≠ TEST PASSED.**
+
+### Phase 28 — Reputation ≠ Authority
+
+Reputation may inform ranking **among authorized candidates** only. Reputation must **never** grant rights, bypass RLS, disable Guardian, or flip AUTO_*/L4.
+
+---
+
+## Phases 29–33 — Guardian Hooks, Kill-Switch + Race Test, Audit/Logistics, Observability
+
+### Phase 29 — Guardian Hooks
+
+Pre-activation, pre-pathway-grant, pre-task-force-create, pre-message-egress, pre-hibernation-wake. Guardian deny is non-overridable by schedulers.
+
+### Phase 30 — Kill-Switch + Race Test
+
+Kill-switch must stop task force / agent activation **without workload cooperation**. Race test: concurrent kill vs activate/lease — kill wins or both end in safe non-running state; no resurrection without new authorized demand.
+
+Target (later measured): stop effectiveness 100%; p95 latency budget compose with 62D (≥ honesty, not invent PASS).
+
+### Phase 31 — Audit / Logistics
+
+Every consequential decision emits audit + information-logistics lineage (who/what/why/budget/pathway/evidence).
+
+### Phase 32 — Observability metrics (planned names)
+
+- `xiv_62e_logical_agents_total` / `xiv_62e_active_processes`
+- `xiv_62e_activations_total{result}`
+- `xiv_62e_task_forces_active`
+- `xiv_62e_pathway_denies_total`
+- `xiv_62e_kill_switch_latency_ms`
+- `xiv_62e_budget_blocks_total`
+- `xiv_62e_idempotency_collisions_total`
+
+Metrics existence ≠ PASS.
+
+### Phase 33 — Ops dashboards / alerts (contracts)
+
+Alert on runaway spawn, cross-tenant deny spikes, kill-switch failures, budget exhaustion storms. Dashboards are read-models — not authority planes.
+
+---
+
+## Phases 34–41 — Synthetic generator, scale tests, fault injection, adversarial suite
+
+### Phase 34 — Synthetic generator
+
+Generate logical populations, demands, pathway graphs, and adversarial principals for lab tests. Synthetic ≠ production tenants.
+
+### Phase 35 — 100K logical agents test
+
+Registry holds **100,000** logical identities with near-zero ACTIVE; memory/process bounded. Logical ≠ live.
+
+### Phase 36 — 10K AVAILABLE pool / discovery test
+
+Discovery+ranking over 10K candidates under budget; security veto still hard-filter.
+
+### Phase 37 — 1K concurrent activation stress
+
+Bounded activations; idempotency + budget hold; no isolation break.
+
+### Phase 38 — 100 concurrent identical demand (idempotency hammer)
+
+See Phase 13 — explicit suite entry.
+
+### Phase 39 — 1K pathway/synapse authorization decisions
+
+Default-deny correctness under load; grant expiry honored.
+
+### Phase 40 — Fault Injection
+
+Kill worker mid-lease, dual scheduler partitions, clock skew, storage fail, Guardian timeout → deny-safe.
+
+### Phase 41 — Adversarial Suite
+
+Cross-tenant activate, reputation privilege escalation, pathway lateral move, recursive spawn, kill-switch race, RLS bypass attempts. Expected: **deny + audit**.
+
+**None of Phases 34–41 are executed in this park commit.**
+
+---
+
+## Phases 42–46 — Scans, Evidence manifest, CI Gate, Feature Flags
+
+### Phase 42 — Secret scan
+
+CI secret scan on 62E paths; no credentials in drafts/evidence placeholders.
+
+### Phase 43 — Dependency scan
+
+Policy-violating deps deny merge when implementation starts; docs-only park still lists the gate.
+
+### Phase 44 — Evidence manifest `evidence/2i-ai-62e/`
+
+Present: README + `manifest.json` + `62e-preflight.json`. All entries **QUEUED/FALSE/UNKNOWN**. Manifest ≠ PASS pack.
+
+### Phase 45 — CI Gate
+
+Planned job `verify-62e` / gate checklist: flags FALSE, no unauthorized SQL apply, unique paths, docs honesty headers, preflight `deployment_authorized:false`.
+
+### Phase 46 — Feature Flags (all default FALSE)
+
+```
+AGENT_POPULATION_MANAGER_V200_ENABLED=false
+MASSIVE_AGENT_SCHEDULER_ENABLED=false
+NEURAL_PATHWAY_FABRIC_ENABLED=false
+DEFAULT_DENY_SYNAPSE_ENABLED=false   # engine may exist later; grants still default deny
+TASK_FORCE_FABRIC_ENABLED=false
+DEMAND_ACTIVATION_ENABLED=false
+AGENT_SLEEP_HIBERNATE_ENABLED=false
+SWARM_COORDINATION_ENABLED=false
+AGENT_CIVILIZATION_RLS_ENFORCEMENT=false  # until migration authorized + applied
+
+AUTO_AGENT_SPAWN=false
+AUTO_TASK_FORCE_CREATE=false
+AUTO_TASK_FORCE_AUTHORITY=false
+AUTO_PERMISSION_EXPANSION=false
+AUTO_PRODUCTION_DEPLOY=false
+AUTO_MAIN_PUSH=false
+AUTO_FORCE_PUSH=false
+AUTO_SATELLITE_ACCESS=false
+AUTO_CLOUD_ADMIN=false
+AUTO_DATABASE_ADMIN=false
+AUTO_GUARDIAN_DISABLE=false
+AUTO_MONEY_MOVEMENT=false
+AUTO_CONTRACT_SIGNING=false
+AUTO_ATTESTATION_BYPASS=false
+AUTO_HISTORY_REWRITE=false
+AUTO_WEIGHT_IMPORT=false
+AUTO_PRIVATE_TO_GLOBAL_PROMOTION=false
+AUTO_PROVIDER_CONNECT=false
+AUTO_HIGH_RISK_APPROVAL=false
+L4_AUTONOMY_ENABLED=false
+```
+
+---
+
+## Phases 47–51 — PR sequence, Ownership, Hard Blockers, State Machine, MVD
+
+### Phase 47 — PR sequence **PR-62E-01…20** (planned)
+
+| PR | Scope |
+|----|-------|
+| PR-62E-01 | Domain contracts + lifecycle types |
+| PR-62E-02 | LogicalAgent + capabilities + forbidden list |
+| PR-62E-03 | PopulationBudget/Decision + registry repository |
+| PR-62E-04 | Migration draft review only (no apply) |
+| PR-62E-05 | RLS policies + adversarial SQL tests |
+| PR-62E-06 | Discovery |
+| PR-62E-07 | Ranking (security veto) |
+| PR-62E-08 | Activation + idempotency |
+| PR-62E-09 | Pathway tables |
+| PR-62E-10 | Authorization engine + default-deny synapse |
+| PR-62E-11 | TaskForce model + builder |
+| PR-62E-12 | Anti-explosion controls |
+| PR-62E-13 | AgentTask + Scheduler V1 |
+| PR-62E-14 | Race safety + resource budget |
+| PR-62E-15 | Envelope + evidence refs |
+| PR-62E-16 | Hibernation + evaluation + reputation≠authority |
+| PR-62E-17 | Guardian hooks + kill-switch + race test |
+| PR-62E-18 | Audit/logistics + observability |
+| PR-62E-19 | Synthetic + scale + fault + adversarial suites |
+| PR-62E-20 | Scans + evidence manifest + CI gate + flags + verify command |
+
+PRs are **planned**; none opened/merged as implementation from this docs park.
+
+### Phase 48 — Ownership table
+
+| Area | Owner (role) | Notes |
+|------|--------------|-------|
+| Domain contracts | Agent Runtime | compose 62A |
+| Registry / population | Agent Runtime | logical ≠ live |
+| RLS / migrations | Data Platform + Security | process-gated |
+| Pathway / synapse auth | Security + Runtime | default-deny |
+| Scheduler / task force | Runtime Orchestration | rights non-expansion |
+| Guardian / kill-switch | Guardian | above schedulers |
+| Evidence / CI verify | Quality + Security | never invent PASS |
+| Tip-land decision | Founder / process | **NO** in this park |
+
+### Phase 49 — Hard Blockers
+
+1. 62D (and required predecessors) not PASS  
+2. Deployment Gate Hardening incomplete  
+3. Migration without process  
+4. AUTO_*/L4 true  
+5. Tip-land attempt while QUEUED  
+6. Cross-tenant isolation test failing  
+7. Kill-switch race unsafe  
+8. Security treated as soft score  
+9. Reputation used as authority  
+10. Sibling/unique-path clobber of 62D AC/evidence or `-104c` base without merge process  
+
+### Phase 50 — Execution State Machine
+
+```
+QUEUED_ARCHITECTURE
+  → PREFLIGHT (Phase 0)
+  → IMPLEMENTATION_AUTHORIZED (process only; not this commit)
+  → IMPLEMENTATION_IN_PROGRESS (PR-62E-01…20)
+  → IMPLEMENTATION_COMPLETE
+  → VERIFY_RUNNING
+  → VERIFIED (honest evidence) OR VERIFY_FAILED
+  → DEPLOYMENT_AUTHORIZED=false (default)
+  → (separate process) DEPLOYMENT_AUTHORIZED=true only after explicit gate
+```
+
+This park remains in **QUEUED_ARCHITECTURE**.
+
+### Phase 51 — Minimum Viable Demonstration (later)
+
+```
+HUMAN PURPOSE
+→ LOGICAL REGISTRY LOOKUP
+→ N ACTIVATED PROCESSES (N bounded)
+→ PATHWAY GRANT (explicit)
+→ TASK FORCE
+→ 62B MEETING + HUMAN SEAT (when required)
+→ 62D RUNTIME (when implemented) OR HONEST QUEUE
+→ OUTCOME + EVALUATION + EVIDENCE REFS
+→ SLEEP / HIBERNATE
+→ LINEAGE RETAINED
+```
+
+Documentation existence ≠ MVD.
+
+---
+
+## Phase 52 — Completion Command
+
+Planned:
+
+```bash
+xiv verify
+# or
+npm run verify:62e
+# or
+pnpm verify:62e
+```
+
+JSON must include `"deployment_authorized": false` until an explicit later gate.  
+**Not executed in this park. No VERIFY PASS claimed.**
+
+---
+
 ## Queue Lock
 
 | Lock | Value |

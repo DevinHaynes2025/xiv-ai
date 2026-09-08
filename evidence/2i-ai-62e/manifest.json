@@ -1,0 +1,53 @@
+{
+  "story": "2I-AI-62E",
+  "evidence_root": "evidence/2i-ai-62e/",
+  "status": "QUEUED",
+  "deployment_authorized": false,
+  "verified": false,
+  "items": [
+    {
+      "id": "preflight",
+      "path": "62e-preflight.json",
+      "status": "QUEUED",
+      "pass": false
+    },
+    {
+      "id": "rls_adversarial",
+      "path": "docs/architecture/drafts/2i-ai-62e/agent_civilization_rls_test.sql.draft",
+      "status": "DRAFT_NOT_EXECUTED",
+      "pass": false
+    },
+    {
+      "id": "migration_slice",
+      "path": "docs/architecture/drafts/2i-ai-62e/migration-slice.sql.draft",
+      "status": "DRAFT_NOT_AUTHORIZED",
+      "pass": false
+    },
+    {
+      "id": "idempotency_100",
+      "status": "NOT_RUN",
+      "pass": false
+    },
+    {
+      "id": "scale_100k_logical",
+      "status": "NOT_RUN",
+      "pass": false
+    },
+    {
+      "id": "kill_switch_race",
+      "status": "NOT_RUN",
+      "pass": false
+    },
+    {
+      "id": "verify_62e",
+      "command": "xiv verify | npm|pnpm verify:62e",
+      "status": "NOT_RUN",
+      "pass": false,
+      "deployment_authorized": false
+    }
+  ],
+  "never_infer_pass": true,
+  "canonical_architecture": "docs/architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md",
+  "queue_card": "docs/queue/2I-AI-62E-massive-agent-scheduler-neural-pathway.md",
+  "executable_plan_phases": "0-52"
+}

@@ -1,0 +1,30 @@
+{
+  "story": "2I-AI-62E",
+  "artifact": "62e-preflight",
+  "status": "QUEUED_ARCHITECTURE",
+  "runtime_started": false,
+  "tip_landed": false,
+  "migration_authorized": false,
+  "implementation_complete": false,
+  "verified": false,
+  "deployment_authorized": false,
+  "l4_autonomy_enabled": false,
+  "auto_flags_all_false": true,
+  "predecessors": {
+    "deployment_gate_hardening": "REQUIRED_PASS_ELSEWHERE_UNKNOWN",
+    "2I-AI-62A": "REQUIRED_PASS_UNKNOWN",
+    "2I-AI-62B": "REQUIRED_PASS_UNKNOWN",
+    "2I-AI-62C": "REQUIRED_PASS_UNKNOWN",
+    "2I-AI-62D": "REQUIRED_PASS_UNKNOWN_STILL_QUEUED"
+  },
+  "stop_condition": {
+    "abort_if_any_predecessor_not_pass": true,
+    "abort_if_auto_or_l4_true": true,
+    "abort_if_tip_land_or_main_or_force_push": true,
+    "abort_if_migration_without_process": true,
+    "abort_if_deployment_authorized_while_unverified": true,
+    "abort_if_unique_path_clobber_62d_or_sibling": true
+  },
+  "never_infer_pass": true,
+  "notes": "Template only. Not a PASS evidence pack. Architecture docs != migration authorization."
+}
