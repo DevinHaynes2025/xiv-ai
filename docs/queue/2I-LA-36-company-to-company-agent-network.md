@@ -8,9 +8,9 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-35A PASS**. Queue **AFTER LA-35A**
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-35A** (Zero-Trust Security + Agent Defense Fabric V210) must PASS before LA-36 code. Ordering: **LA-35 → LA-35A → LA-36 Company-to-Company Agent Network V220 → LA-37 Global Business Knowledge Exchange → LA-38…47**.
+**2I-LA-35A** (Zero-Trust Security + Agent Defense Fabric V210) must PASS before LA-36 code. Ordering: **LA-35 → LA-35A → LA-36 Company-to-Company Agent Network V220 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 (title pending) → LA-39…50**.
 
-**Tip note:** Fetch tip first (LA-27…LA-35A may still land). Park/include on `cursor/queue-2i-la-35a-*-4059` if tip contested; **rebase when LA-35 / LA-35A present**. Never force-push / never `main`. Master queue: **LA-35 → LA-35A → LA-36 → LA-37 → LA-38…47**.
+**Tip note:** Fetch tip first (LA-27…LA-35A may still land). Park/include on `cursor/queue-2i-la-35a-*-4059` if tip contested; **rebase when LA-35 / LA-35A present**. Never force-push / never `main`. Master queue: **LA-35 → LA-35A → LA-36 → LA-37 → LA-38 (title pending) → LA-39…50**.
 
 **Full contracts (architecture §§1–120 + permanent rules):** [`docs/architecture/xiv-2i-la-36-company-to-company-agent-network-v220.md`](../architecture/xiv-2i-la-36-company-to-company-agent-network-v220.md).
 
@@ -54,11 +54,11 @@ As the XIV AI Founder, I want XIV to run Company-to-Company Agent Network V220 �
 
 ## Next queue
 
-- **2I-LA-37** Global Business Knowledge Exchange
-- **2I-LA-38** Business Simulation Supercomputer (refine when authored)
-- **2I-LA-39** Global Economic + Trade Intelligence (refine when authored)
-- **2I-LA-40** Self-Improving Business OS Evaluation System (refine when authored)
-- **2I-LA-41…47** prepared expansion titles (refine when authored)
+- **2I-LA-37** Universal Product + Information Digital Twin Network V300
+- **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED TITLE — FULL STORY PENDING**
+- **2I-LA-39** Global Africa Intelligence Brain V400
+- **2I-LA-40** Continuous Intelligence + Self-Evaluation
+- **2I-LA-41…50** prepared expansion titles (refine when authored)
 
 ## Docs-only gate
 
