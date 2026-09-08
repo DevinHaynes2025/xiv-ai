@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 import { LocalCheckpointStore } from './checkpoint-store';
-import type { LocalTask } from './types';
+import type { LocalTask, LocalTaskRequirement } from './types';
 
 function now() {
   return new Date().toISOString();
@@ -10,7 +10,13 @@ function now() {
 export class LocalTaskQueue {
   constructor(private readonly store = new LocalCheckpointStore()) {}
 
-  async enqueue(input: Pick<LocalTask, 'kind' | 'prompt'> & { maxAttempts?: number; maxModelCalls?: number }) {
+  async enqueue(
+    input: Pick<LocalTask, 'kind' | 'prompt'> & {
+      maxAttempts?: number;
+      maxModelCalls?: number;
+      requirements?: LocalTaskRequirement;
+    },
+  ) {
     const at = now();
     const task: LocalTask = {
       id: `local_${randomUUID()}`,
@@ -25,6 +31,7 @@ export class LocalTaskQueue {
         maxModelCalls: Math.max(1, Math.min(input.maxModelCalls ?? 3, 10)),
         modelCallsUsed: 0,
       },
+      requirements: input.requirements,
     };
     await this.store.saveTask(task);
     await this.store.checkpoint({ taskId: task.id, at, state: task.state, attempt: 0, summary: 'Task queued locally.' });
@@ -44,7 +51,7 @@ export class LocalTaskQueue {
   async counts() {
     const tasks = await this.store.listTasks();
     return {
-      queued: tasks.filter((task) => task.state === 'queued' || task.state === 'waiting_local_model').length,
+      queued: tasks.filter((task) => task.state === 'queued' || task.state === 'waiting_local_model' || task.state === 'waiting_data').length,
       running: tasks.filter((task) => task.state === 'running').length,
     };
   }
