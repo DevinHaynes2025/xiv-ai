@@ -11,8 +11,16 @@ export const BUSINESS_DEPARTMENTS: BusinessDepartment[] = [
   {
     key: 'executive',
     name: 'Executive Office',
-    responsibilities: ['strategy', 'prioritization', 'risk review', 'cross-functional synthesis'],
-    defaultAgentRoles: ['executive_synthesizer', 'business_analyst', 'evidence_verifier', 'skeptic'],
+    responsibilities: ['strategy', 'prioritization', 'risk review', 'cross-functional synthesis', 'briefing', 'meeting and decision preparation'],
+    defaultAgentRoles: [
+      'executive_secretary',
+      'executive_synthesizer',
+      'decision_strategist',
+      'workflow_planner',
+      'business_analyst',
+      'evidence_verifier',
+      'skeptic',
+    ],
   },
   {
     key: 'engineering',
@@ -24,7 +32,7 @@ export const BUSINESS_DEPARTMENTS: BusinessDepartment[] = [
     key: 'operations',
     name: 'Operations',
     responsibilities: ['process health', 'capacity', 'quality', 'continuous improvement'],
-    defaultAgentRoles: ['operations_analyst', 'business_analyst', 'skeptic'],
+    defaultAgentRoles: ['operations_analyst', 'workflow_planner', 'business_analyst', 'skeptic'],
   },
   {
     key: 'supply_chain',
@@ -36,13 +44,13 @@ export const BUSINESS_DEPARTMENTS: BusinessDepartment[] = [
     key: 'finance',
     name: 'Finance & Capital',
     responsibilities: ['financial analysis', 'budgeting', 'scenario modeling', 'market intelligence'],
-    defaultAgentRoles: ['finance_analyst', 'business_analyst', 'skeptic', 'evidence_verifier'],
+    defaultAgentRoles: ['finance_analyst', 'decision_strategist', 'business_analyst', 'skeptic', 'evidence_verifier'],
   },
   {
     key: 'research',
     name: 'Research & Civilization Intelligence',
-    responsibilities: ['historical research', 'culture', 'public institutions', 'science', 'humanities'],
-    defaultAgentRoles: ['researcher', 'culture_historian', 'evidence_verifier', 'skeptic'],
+    responsibilities: ['historical research', 'culture', 'public institutions', 'science', 'humanities', 'knowledge curation'],
+    defaultAgentRoles: ['researcher', 'culture_historian', 'knowledge_curator', 'memory_librarian', 'evidence_verifier', 'skeptic'],
   },
 ];
 
