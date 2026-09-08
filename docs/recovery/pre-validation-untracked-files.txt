@@ -1,0 +1,4 @@
+docs/architecture/xiv-2i-la-61a-unified-business-superapp-pocket-os-v727.md
+docs/queue/2I-LA-61A-unified-business-superapp-pocket-os.md
+docs/recovery/pre-validation-untracked-files.txt
+docs/recovery/pre-validation-working-tree.patch
