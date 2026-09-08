@@ -1,8 +1,8 @@
 # 2I-AI-62E — Massive Agent Scheduler, Neural Pathway & Task Force Fabric V1
 
-Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / runtime **not started** / **DEPLOYMENT_STATE=QUEUED**  
-Branch: xiv-v2 tip-land **NO**; park `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`; never force-push; dual-push park only  
-Series: **`2I-AI-62*`**  
+Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / runtime **not started** / **DEPLOYMENT_STATE=QUEUED**
+Branch: xiv-v2 tip-land **NO**; park `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`; never force-push; dual-push park only
+Series: **`2I-AI-62*`**
 HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62D PASS** + **2I-AI-62C PASS** + **2I-AI-62B PASS** + **2I-AI-62A PASS** + **Deployment Gate Hardening PASS** (and applicable LA-61\* / Guardian / identity / RLS / device-trust predecessors). **CURRENT (active elsewhere): Deployment Gate Hardening — DO NOT INTERRUPT.** Queue **AFTER 62D**. L4 disabled. All AUTO_* FALSE. **LOGICAL ≠ LIVE/ACTIVE. MORE AGENTS ≠ MORE PERMISSIONS. SECURITY ≠ SCORE. PATHWAY STRENGTH ≠ SECURITY AUTHORITY. REPUTATION ≠ AUTHORITY. CONSENSUS ≠ TRUTH.** Architecture docs ≠ migration authorization. **PARK ONLY** — no tip-land; no shared-infra migrate; no VERIFY PASS claim; no million-agent capacity claim; no production agents. **tip-landed=NO**. **Do not start 62F.**
 
 **Sibling coordination:** `bc-102c5519` / park `cursor/queue-2i-ai-62e-massive-agent-scheduler-task-force-104c` may still write thinner `-104c` base — isolated worktree from latest **this** park tip; rebase on park only; **prefer this fuller neural-pathway doc set**; unique paths; no tip `xiv-v2` sync; **do not clobber 62D AC/evidence parks**.
@@ -11,13 +11,14 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62D PASS** + **2I-AI-62C PASS** + 
 
 ## Prerequisite (queue ordering)
 
-**CURRENT:** Deployment Gate Hardening (active elsewhere — do not override)  
-**PREDECESSORS:** **2I-AI-62A** (~`2c3c7f2` / park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` — **do not overwrite**); **2I-AI-62B** (~`56da288` / park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` — **do not overwrite**); **2I-AI-62C** (park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059` — **do not overwrite**); **2I-AI-62D** (park `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059` + AC/evidence siblings — **do not overwrite**)  
-**THIS:** **2I-AI-62E** Massive Agent Scheduler, Neural Pathway & Task Force Fabric V1 (**PARK ARCHITECTURE + Executable Plan Phases 0–52**)  
+**CURRENT:** Deployment Gate Hardening (active elsewhere — do not override)
+**PREDECESSORS:** **2I-AI-62A** (~`2c3c7f2` / park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` — **do not overwrite**); **2I-AI-62B** (~`56da288` / park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` — **do not overwrite**); **2I-AI-62C** (park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059` — **do not overwrite**); **2I-AI-62D** (park `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059` + AC/evidence siblings — **do not overwrite**)
+**THIS:** **2I-AI-62E** Massive Agent Scheduler, Neural Pathway & Task Force Fabric V1 (**PARK ARCHITECTURE + Executable Plan Phases 0–52**)
 **THEN:** **62F** Universe Federation + Constellation Control (**CONNECTED SOVEREIGN INTELLIGENCE**) → **62G** Beyond-Cloud/Space Interface → **FUTURE** **62H** Galaxy Federation
 
 **Cross-links (do not clobber):**
 - Fuller canonical architecture + Phases 0–52 — [`../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md`](../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md)
+- **Concrete File & Command Mapping (FULL):** [`../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md`](../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md) — Repository Rule + §§1–41 + Implementation Lock + Final Rule; **docs only; no runtime sources created**
 - Short pointer path — [`../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md`](../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md)
 - Evidence placeholders — [`../../evidence/2i-ai-62e/`](../../evidence/2i-ai-62e/) (`62e-preflight.json`, manifest; all QUEUED; `deployment_authorized:false`)
 - SQL drafts NOT AUTHORIZED — [`../architecture/drafts/2i-ai-62e/`](../architecture/drafts/2i-ai-62e/)
@@ -89,3 +90,10 @@ One intelligence network. Many logical agents. Few live processes. One security 
 - Park-only / after 62D / Deployment Gate current / tip-landed=NO
 - Unique neural-pathway paths; fuller plan preferred over thinner `-104c` base
 - **No runtime code executed**; no shared-infra migrations; no VERIFY PASS
+- Implementation Complete ≠ VERIFIED ≠ DEPLOYMENT_AUTHORIZED (`false`)
+
+## Concrete File & Command Mapping
+
+**FULL:** [`../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md`](../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md)
+
+Repository Rule + §§1–41 + Implementation Lock + Final Rule. Maps future `src/xiv/agents/*`, migrations, RLS, scale scripts, CI, PR-62E-01…20, and `verify:62e` (`deployment_authorized:false`). **Documented only — no runtime source files created.**

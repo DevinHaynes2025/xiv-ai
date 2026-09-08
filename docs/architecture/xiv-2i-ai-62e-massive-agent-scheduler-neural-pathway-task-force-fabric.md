@@ -1,16 +1,18 @@
 # 2I-AI-62E — XIV Massive Agent Scheduler, Neural Pathway & Task Force Fabric V1
 
-**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only.  
-**DEPLOYMENT_STATE:** QUEUED  
-**Runtime:** NOT STARTED  
-**tip-landed:** NO  
-**Park branch:** `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`  
-**L4_AUTONOMY_ENABLED:** FALSE  
-**Evidence class:** QUEUED / FALSE / UNKNOWN — **NEVER INFER PASS**  
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only.
+**DEPLOYMENT_STATE:** QUEUED
+**Runtime:** NOT STARTED
+**tip-landed:** NO
+**Park branch:** `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`
+**L4_AUTONOMY_ENABLED:** FALSE
+**Evidence class:** QUEUED / FALSE / UNKNOWN — **NEVER INFER PASS**
 **Series label:** **`2I-AI-62*`**
 
 **Canonical companions:**
 - Queue founder summary: [`../queue/2I-AI-62E-massive-agent-scheduler-neural-pathway.md`](../queue/2I-AI-62E-massive-agent-scheduler-neural-pathway.md)
+- **Concrete File & Command Mapping (FULL):** [`xiv-2i-ai-62e-concrete-file-command-mapping.md`](./xiv-2i-ai-62e-concrete-file-command-mapping.md) — Repository Rule + §§1–41 + Implementation Lock + Final Rule; **docs only; runtime NOT created**
+- Executable plan Phases 0–52: [`xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md`](./xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md)
 - Canonical master queue: [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md) (+ LA pointer [`xiv-master-build-queue-2i-ad-to-2i-la.md`](./xiv-master-build-queue-2i-ad-to-2i-la.md))
 - Predecessor **2I-AI-62A** (sibling park — do **not** overwrite): [`xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`](./xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md) · queue [`../queue/2I-AI-62A-agent-civilization-foundation.md`](../queue/2I-AI-62A-agent-civilization-foundation.md) · park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` · SHA ~`2c3c7f2`
 - Predecessor **2I-AI-62B** (sibling park — do **not** overwrite): [`xiv-2i-ai-62b-agent-meetings-collective-reasoning-human-bridge.md`](./xiv-2i-ai-62b-agent-meetings-collective-reasoning-human-bridge.md) · queue [`../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md) · park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` · SHA ~`56da288`
@@ -25,13 +27,13 @@
 - **LA-60O** Neural Pathway Fabric adjacency; **LA-61I** AgentPopulationManager / HybridAgentScheduler adjacency — **additive only; do not clobber LA-61\***
 - **RLS / negative JWT / unauthorized-role tests** (62A Initial Engineering Slice + Security Boundary) — **pathway authorization foundation by docs reference only**; no migration / no claiming PASS
 
-> Docs-only queue. **CURRENT (active elsewhere): Deployment Gate Hardening — DO NOT INTERRUPT / DO NOT OVERRIDE.**  
-> **Queue AFTER 2I-AI-62D.** **DO NOT IMPLEMENT** 62E runtime until **62D PASS** + **62C PASS** + **62B PASS** + **62A PASS** + Deployment Gate Hardening PASS (and applicable LA-61\* / Guardian / identity / RLS / device-trust predecessors).  
-> **No tip-land** onto `xiv-v2`. Never force-push. Never push `main`. Prefer isolated worktree; selective docs `git add` only.  
-> Unique **62E paths only** — do not overwrite 62A–62D or LA-61\* parks. Alternate sibling park paths (e.g. `*-104c`) are **not** this document.  
-> **PARK ONLY** — no tip-land; no migrations; no claiming million-agent capacity; no production agents; no self-deploy.  
-> LOGICAL ≠ ACTIVE. IDENTITY ≠ CONTINUOUS LLM. PATHWAY STRENGTH ≠ SECURITY AUTHORITY. SPECIALIZATION ≠ AUTHORITY. CONSENSUS ≠ TRUTH.  
-> Scale targets = **engineering targets**, not current claims. **Never invent PASS.**  
+> Docs-only queue. **CURRENT (active elsewhere): Deployment Gate Hardening — DO NOT INTERRUPT / DO NOT OVERRIDE.**
+> **Queue AFTER 2I-AI-62D.** **DO NOT IMPLEMENT** 62E runtime until **62D PASS** + **62C PASS** + **62B PASS** + **62A PASS** + Deployment Gate Hardening PASS (and applicable LA-61\* / Guardian / identity / RLS / device-trust predecessors).
+> **No tip-land** onto `xiv-v2`. Never force-push. Never push `main`. Prefer isolated worktree; selective docs `git add` only.
+> Unique **62E paths only** — do not overwrite 62A–62D or LA-61\* parks. Alternate sibling park paths (e.g. `*-104c`) are **not** this document.
+> **PARK ONLY** — no tip-land; no migrations; no claiming million-agent capacity; no production agents; no self-deploy.
+> LOGICAL ≠ ACTIVE. IDENTITY ≠ CONTINUOUS LLM. PATHWAY STRENGTH ≠ SECURITY AUTHORITY. SPECIALIZATION ≠ AUTHORITY. CONSENSUS ≠ TRUTH.
+> Scale targets = **engineering targets**, not current claims. **Never invent PASS.**
 > Queue architecture into brain as **plan / knowledge graph** — **not** permission for self-deploy.
 
 ---
@@ -50,8 +52,8 @@
 | **2I-AI-62G** | Beyond-Cloud / Space Interface | Title / deferred (satellites UNCONFIGURED) |
 | **2I-AI-62H** | Galaxy Federation | **FUTURE** title only |
 
-**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 62A → 62B → 62C → 62D → 62E (this) → 62F → 62G → FUTURE 62H**.  
-**DO NOT IMPLEMENT** 62E runtime until **62D PASS** (and 62C/62B/62A PASS + Deployment Gate Hardening PASS + applicable predecessors). **Never invent PASS.**  
+**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 62A → 62B → 62C → 62D → 62E (this) → 62F → 62G → FUTURE 62H**.
+**DO NOT IMPLEMENT** 62E runtime until **62D PASS** (and 62C/62B/62A PASS + Deployment Gate Hardening PASS + applicable predecessors). **Never invent PASS.**
 **Does not override** the deployment-readiness gate.
 
 **Deployment runway:** Million-agent LIVE claims, continuous LLM-per-identity, L4, AUTO_* paths, constellation control, and satellite access do **not** block first canary. **L4 DISABLED**.
@@ -60,7 +62,7 @@
 
 ## Growth Principle / Architecture Principle
 
-> **Grow roots before breaking surface.**  
+> **Grow roots before breaking surface.**
 > Scale the **logical registry, neural pathways, governors, and hibernation honesty** before claiming simultaneous live intelligence. Pathways strengthen through evidence — never through authority theater. Scheduler scale is a **trust problem first**, a throughput problem second.
 
 **Permanent principles:**
@@ -650,7 +652,7 @@ Implementation-era gate (not claimed by this park):
 QUEUED → IMPLEMENTED → VERIFIED → STAGING/CANARY CANDIDATE
 ```
 
-None auto-authorize production. **Deployment Gate Hardening** still required.  
+None auto-authorize production. **Deployment Gate Hardening** still required.
 **DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION.**
 
 ### 42. Queue Advancement
@@ -712,18 +714,18 @@ None auto-authorize production. **Deployment Gate Hardening** still required.
 ## Permanent invariants + sibling coordination (summary checklist)
 
 **Invariants:**
-- Logical ≠ active ≠ continuous LLM  
-- Pathway strength ≠ security authority  
-- Specialization ≠ authority; consensus ≠ truth  
-- Demand ≠ permission; sleep default  
-- Hierarchical schedulers cannot expand rights  
-- Population caps + recursive creation lock hard  
-- Hibernation tiers honest; memory separated  
-- Schema slice: **no migration authorized**  
-- No million-agent capacity claim from this park  
-- Brain ingest = plan/knowledge graph ≠ self-deploy  
-- L4 DISABLED; all AUTO_* FALSE  
-- NEVER INFER PASS; DEPLOYMENT_STATE=QUEUED; tip-landed=NO  
+- Logical ≠ active ≠ continuous LLM
+- Pathway strength ≠ security authority
+- Specialization ≠ authority; consensus ≠ truth
+- Demand ≠ permission; sleep default
+- Hierarchical schedulers cannot expand rights
+- Population caps + recursive creation lock hard
+- Hibernation tiers honest; memory separated
+- Schema slice: **no migration authorized**
+- No million-agent capacity claim from this park
+- Brain ingest = plan/knowledge graph ≠ self-deploy
+- L4 DISABLED; all AUTO_* FALSE
+- NEVER INFER PASS; DEPLOYMENT_STATE=QUEUED; tip-landed=NO
 
 **Sibling coordination:**
 
@@ -969,7 +971,7 @@ xiv_kill_switch_events
 xiv_reputation_records
 ```
 
-**Do not alter** `20260908150000_xiv_agent_meetings.sql` from 62E without process.  
+**Do not alter** `20260908150000_xiv_agent_meetings.sql` from 62E without process.
 **Architecture docs ≠ migration authorization.** Shared-infra migrate = **FORBIDDEN** in this park.
 
 ### Phase 8 — RLS Before Feature Logic matrix
@@ -1313,16 +1315,16 @@ PRs are **planned**; none opened/merged as implementation from this docs park.
 
 ### Phase 49 — Hard Blockers
 
-1. 62D (and required predecessors) not PASS  
-2. Deployment Gate Hardening incomplete  
-3. Migration without process  
-4. AUTO_*/L4 true  
-5. Tip-land attempt while QUEUED  
-6. Cross-tenant isolation test failing  
-7. Kill-switch race unsafe  
-8. Security treated as soft score  
-9. Reputation used as authority  
-10. Sibling/unique-path clobber of 62D AC/evidence or `-104c` base without merge process  
+1. 62D (and required predecessors) not PASS
+2. Deployment Gate Hardening incomplete
+3. Migration without process
+4. AUTO_*/L4 true
+5. Tip-land attempt while QUEUED
+6. Cross-tenant isolation test failing
+7. Kill-switch race unsafe
+8. Security treated as soft score
+9. Reputation used as authority
+10. Sibling/unique-path clobber of 62D AC/evidence or `-104c` base without merge process
 
 ### Phase 50 — Execution State Machine
 
@@ -1371,7 +1373,7 @@ npm run verify:62e
 pnpm verify:62e
 ```
 
-JSON must include `"deployment_authorized": false` until an explicit later gate.  
+JSON must include `"deployment_authorized": false` until an explicit later gate.
 **Not executed in this park. No VERIFY PASS claimed.**
 
 ---
@@ -1399,3 +1401,13 @@ JSON must include `"deployment_authorized": false` until an explicit later gate.
 ## Docs-only gate / parking
 
 LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); park TREE = CLEAN for selective docs; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no 2I-AI-62E runtime.** Parking: `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`; dual-push park only; rebase — never force-push. 62A–62D / LA-61\* paths untouched. No tip-land. No migrations. No million-agent capacity claims. No production agents.
+
+---
+
+## Concrete File & Command Mapping (pointer)
+
+**FULL mapping:** [`xiv-2i-ai-62e-concrete-file-command-mapping.md`](./xiv-2i-ai-62e-concrete-file-command-mapping.md)
+
+Covers: Repository Rule + read-only discovery bash; §1 Target Repository Layout; §2 architecture paths + `git diff --check`; §§3–17 `src/xiv/agents/*` module map (exports/invariants/tests/scale — **FUTURE ONLY, not created**); §18 migration proposed file + lint/reset notes (**NO `db push`**); §19 preserve `agent_civilization_rls_test.sql` + anon+JWT=NO GRANT; §§20–23 RLS suites; §§24–32 scale scripts + evidence JSON + kill-switch + manifest + `verify.ts`; §34 `package.json` script mapping; §§35–37 CI workflows; §38 git safety; §39 PR-62E-01…20; §40 Agent Execution Prompt Mapping; §41 master `verify:62e` JSON with **`deployment_authorized:false`**; Implementation Lock (not QUEUE→PRODUCTION); Final Rule.
+
+**Confirmation:** mapping is documented; **`src/xiv/agents/*.ts` / migrations / CI / package.json scripts were NOT created as implementation in this park.**
