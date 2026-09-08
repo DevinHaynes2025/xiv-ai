@@ -72,8 +72,9 @@ SYNC=BLOCKED_ACTIVE_WORK
 
 ```
 ENVIRONMENT_A_BRANCH=cursor/queue-2i-la-61n-copilot-engineering-civilization-104c
-ENVIRONMENT_A_COMMIT=(this overlay commit after park)
-ENVIRONMENT_A_TREE=(this overlay commit tree)
+ENVIRONMENT_A_COMMIT=088b7e268dd6a4aeda868925ef90bf9097b832b4
+ENVIRONMENT_A_TREE=5ad395d66a9718fef5875d845811bc095cff2dc8
+ENVIRONMENT_A_PR=https://github.com/DevinHaynes2025/xiv-ai/pull/4
 ENVIRONMENT_A_SCOPE=unique 61N Copilot overlay docs only
 
 ENVIRONMENT_B_BRANCH=UNKNOWN (sibling Copilot-upgrade agents running)
