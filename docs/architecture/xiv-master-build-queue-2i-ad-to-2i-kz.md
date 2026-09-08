@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…26 docs + **LA-22B/23/24/25/26** queued + **LA-27 Global Agent + Tool + Plugin + Workflow Marketplace V60** (queued after LA-26 / before LA-28) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…27 docs + **LA-28 Universal Device + Edge + AI Chip Compute Fabric V70** (queued after LA-27 / before LA-29) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3164,7 +3164,9 @@ Every phase inherits and must preserve:
 | **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 | **QUEUED DOCS** — `xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`; **DO NOT IMPLEMENT until LA-24 PASS** |
 | **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 | **QUEUED DOCS** — `xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`; **DO NOT IMPLEMENT until LA-25 PASS**; **must PASS before LA-27 code** |
 | **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 | **QUEUED DOCS** — `xiv-2i-la-27-global-agent-tool-plugin-workflow-marketplace-v60.md`; **DO NOT IMPLEMENT until LA-26 PASS** |
-| **2I-LA-28…30** | Universal Device + Edge + AI Chip Fabric → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-27** is LA-28 |
+| **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 | **QUEUED DOCS** — `xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`; **DO NOT IMPLEMENT until LA-27 PASS** |
+| **2I-LA-29** | XIV 24/7 AI Organization V120 | **QUEUE ONLY** — **NEXT after LA-28** |
+| **2I-LA-30** | XIV Founder Mission Control V130 | **QUEUE ONLY** — after LA-29 |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3530,7 +3532,26 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **2I-AD / 2I-ED / 2I-GS / 2I-GT / 2I-GX ≠ LA-27 V60 depth.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-27 runtime.**
 
-**NEXT after LA-27:** **2I-LA-28** Universal Device + Edge + AI Chip Fabric.
+**NEXT after LA-27:** **2I-LA-28** Universal Device + Edge + AI Chip Compute Fabric V70.
+
+## 2I-LA-28 — UNIVERSAL DEVICE + EDGE + AI CHIP COMPUTE FABRIC V70 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–150 + permanent rules: [`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`](./xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md) (+ founder summary [`../queue/2I-LA-28-universal-device-edge-ai-chip-compute-fabric.md`](../queue/2I-LA-28-universal-device-edge-ai-chip-compute-fabric.md)).
+
+**DO NOT IMPLEMENT** until **LA-27 Global AI Tool + Plugin Marketplace PASS**. Ordering lock: **LA-26 Agent University → LA-27 Global AI Tool + Plugin Marketplace → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization → LA-30 Founder Mission Control**. Queue **AFTER LA-27**; do not interrupt active validated / deployment-critical work. Fetch tip first (LA-22B–27 may still land); rebase onto tip including LA-27 when present.
+
+**Critical rules (permanent):** XIV Business OS ≠ replacing iOS/Android/Windows/macOS/Linux; DETECTED ≠ SUPPORTED; chip/device detected ≠ supported; model installed ≠ approved; unknown accelerator → EVALUATION_REQUIRED; Model ≠ Agent; Hardware ≠ authority; Local ≠ automatically safe; Cloud ≠ automatically authorized; Edge ≠ trusted; Connected ≠ trusted; Offline ≠ authorized; Device identity ≠ company access; Compromised phone ≠ compromised company; Faster/cheaper ≠ better; Benchmark ≠ business outcome; Quantum backend ≠ advantage; User device ≠ XIV compute farm without explicit consent; Contributed device ≠ authorized private compute; Never fabricate AWS/multi-cloud LIVE; Potential adapter ≠ supported; No "works on every phone" — track measured coverage; Offline permission must not override newer server policy on reconnect; Authority does not move automatically with agent mobility; Founder asleep ≠ authority; More compute ≠ more authority; L4 off.
+
+**Feature flags (default OFF):** `COMPUTE_FABRIC_ENABLED`, `LOCAL_AI_ENABLED`, `EDGE_RUNTIME_ENABLED`, `OFFLINE_OS_ENABLED`, `HARDWARE_ROUTER_ENABLED`, `NPU_RUNTIME_ENABLED`, `CONTRIBUTED_COMPUTE_ENABLED`, `QUANTUM_COMPUTE_ENABLED`. **`CLOUD_WORKER_VERIFIED` stays FALSE** until authenticated deployment + logs + health + restart/recovery evidence.
+
+**Release / canary priority:** Do **not** block first canary on universal hardware. Prioritize mobile, web, cloud-worker foundation, device identity, compute router, offline policy, security, observability. Advanced NPU/contribution/quantum/universal coverage stay feature-gated.
+
+**Includes (document only):** Founder mission; XIV≠device OS; ComputeFabric kernel + node types; Device registry + capability discovery + DETECTED≠SUPPORTED; Hardware capability graph + vendor-neutral adapters; CPU/GPU/NPU/AI accelerator abstractions; Hardware≠authority; LocalModelRuntime + security; Model≠agent; Model-to-hardware router + execution options; Local-first privacy / cloud-first performance + ComputeRouter + routing policy; Mobile Business OS (not thin remote) + device trust + compromised phone; Desktop/Web/Edge OS; Warehouse/manufacturing/vehicle/robotics/IoT gateways (connected≠authorized autonomous); Offline OS + authority/data/expiration; Secure sync + conflicts; Event nervous system; GlobalComputeScheduler + priorities≠authority; Follow-the-sun + local PC offline + cloud worker truth; Compute economics + cost-aware routing + cheapest≠best; Latency/Performance brains; Energy/thermal/battery-aware; User device consent + contributed compute (feature-gated) + security; Isolation + residency + device-to-company boundary + sessions + lost device; Passkey/MFA + secure hardware + secrets; Cloud broker + provider registry/states + AWS honesty + multi-cloud architecture≠deployment; Local/Company private/XIV cloud/hybrid modes + data minimization; Model router (LA-11) + multi-model + local eval + quantization; Hardware Compatibility Lab + device matrix + coverage + fallback + graceful degradation; Failure/Recovery brains + no blind retry + checkpointed agents + agent mobility + authority revalidation; Agent University (LA-26) compute certs; Marketplace (LA-27) requirements; Business Hospital / Company Twin / Supply Chain edge / Security OS integrations; Attestation + model integrity + edge update/rollback; Observability + Command Center + map; Capacity/Forecast/Procurement/Partnership brains; NVIDIA/chip ecosystem + future chips plug-in path; Quantum abstraction (LA-12) + routing + advantage gate; Research lab (research≠deployment); Innovation + story factory; 24/7 council + night shift; Learning loop + router learning (no uncontrolled rewrite); Device/sensor/voice/location privacy; Device data≠training; DB tables; Security/offline/router/hardware/model/performance tests; No fake coverage; Deployment guard + flags; Checkpoint protocol + suggested commits; Completion evidence (never infer PASS); next LA-29 24/7 AI Organization then LA-30 Founder Mission Control.
+
+**LA-11 ≠ LA-28.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-28 runtime.**
+
+**NEXT after LA-28:** **2I-LA-29** 24/7 AI Organization → **2I-LA-30** Founder Mission Control.
+
 
 ---
 
@@ -4088,9 +4109,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
 | **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
 | **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 — **QUEUED DOCS** (`xiv-2i-la-27-global-agent-tool-plugin-workflow-marketplace-v60.md`); **DO NOT IMPLEMENT until LA-26 PASS** |
-| **2I-LA-28** | Universal Device + Edge + AI Chip Fabric — **NEXT after LA-27** |
-| **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS** |
+| **2I-LA-29** | XIV 24/7 AI Organization V120 — **NEXT after LA-28** |
+| **2I-LA-30** | XIV Founder Mission Control V130 |
 
 ### 51. Reserved future agent families
 
@@ -4824,9 +4845,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
 | **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
 | **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 — **QUEUED DOCS** (`xiv-2i-la-27-global-agent-tool-plugin-workflow-marketplace-v60.md`); **DO NOT IMPLEMENT until LA-26 PASS** |
-| **2I-LA-28** | Universal Device + Edge + AI Chip Fabric — **NEXT after LA-27** |
-| **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS** |
+| **2I-LA-29** | XIV 24/7 AI Organization V120 — **NEXT after LA-28** |
+| **2I-LA-30** | XIV Founder Mission Control V130 |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -5541,9 +5562,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
 | **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
 | **2I-LA-27** | Global Agent + Tool + Plugin + Workflow Marketplace V60 — **QUEUED DOCS** (`xiv-2i-la-27-global-agent-tool-plugin-workflow-marketplace-v60.md`); **DO NOT IMPLEMENT until LA-26 PASS** |
-| **2I-LA-28** | Universal Device + Edge + AI Chip Fabric — **NEXT after LA-27** |
-| **2I-LA-29** | Overnight AI Organization V20 |
-| **2I-LA-30** | Founder Mission Control V25 |
+| **2I-LA-28** | Universal Device + Edge + AI Chip Compute Fabric V70 — **QUEUED DOCS** (`xiv-2i-la-28-universal-device-edge-ai-chip-compute-fabric-v70.md`); **DO NOT IMPLEMENT until LA-27 PASS** |
+| **2I-LA-29** | XIV 24/7 AI Organization V120 — **NEXT after LA-28** |
+| **2I-LA-30** | XIV Founder Mission Control V130 |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -5791,6 +5812,10 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-25** Global Company Digital Twin + Business Hospital V40 queued (full §§1–130 + permanent rules; docs only; after LA-24); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; complete twin not first-canary blocker; **HARD STOP — no LA-25 runtime**; **DO NOT IMPLEMENT until LA-24 PASS**
 - [x] LA-25 critical rules encoded (twin≠company; Company A≠B≠Global Brain; Hospital≠medicine; no fake HEALTH=97%; Financial twin≠bank; Customer twin≠unrestricted profile; Org twin≠surveillance; AI Board≠directors; consensus≠truth; Founder Twin≠Devin / no ownership/money/Guardian override; Founder finance≠Company Brain; sim≠future/prod/authority; sim agent≠prod credentials; projected≠verified; trillion-savings=target≠claim; AFTER≠BECAUSE; ideas≠execution; more agents≠authority; executive offline≠authority)
 - [x] **NEXT after LA-25:** LA-26 XIV Agent University + AI Workforce Academy V50
+- [x] Ordering lock extended: **LA-26 Agent University → LA-27 Global AI Tool + Plugin Marketplace → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization**; queue AFTER LA-27; tip rebase when LA-27 lands; L4 off
+- [x] **2I-LA-28** Universal Device + Edge + AI Chip Compute Fabric V70 queued (full §§1–150 + permanent rules; docs only; after LA-27); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; `CLOUD_WORKER_VERIFIED=FALSE` until evidence; do not block first canary on universal hardware; **HARD STOP — no LA-28 runtime**; **DO NOT IMPLEMENT until LA-27 PASS**
+- [x] LA-28 critical rules encoded (XIV≠device OS; DETECTED≠SUPPORTED; Model≠Agent; Hardware≠authority; Local≠auto-safe; Cloud≠auto-authorized; Edge≠trusted; Connected≠trusted; Offline≠authorized; device identity≠company access; compromised phone≠company; faster/cheaper≠better; benchmark≠outcome; quantum≠advantage; user device≠compute farm without consent; contributed≠authorized private; no fake AWS/multi-cloud LIVE; no every-phone claim; offline must not override newer server policy; authority≠auto-move with mobility; Founder asleep≠authority; more compute≠authority; L4 off)
+- [x] **NEXT after LA-28:** LA-29 24/7 AI Organization → LA-30 Founder Mission Control
 
 - [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 18+ Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS V20 → LA-21 Product Passport + Authenticity Network → LA-22 Global Database Federation**; rebase onto tip including LA-19/LA-22 when present; L4 off
 - [x] **2I-LA-18** 18+ Age Assurance + Global Identity + Community Trust OS V20 queued — full contracts §§1–99 + permanent rules in `xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md` (+ founder summary `docs/queue/2I-LA-18-age-assurance-global-identity-community-trust.md`); **DO NOT IMPLEMENT until LA-17 PASS**; HARD STOP no runtime; core identity/security RELEASE-CRITICAL (age/auth/tenant/Universe/RLS/recovery/audit); AgeAssuranceAdapter NOT_CONFIGURED until verified; FAILED age → no activation; Twin AI_REPRESENTATION never HUMAN_FOUNDER
