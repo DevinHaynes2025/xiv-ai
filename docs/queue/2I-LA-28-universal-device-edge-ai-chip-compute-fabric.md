@@ -10,7 +10,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-27 PASS**. Queue **AFTER LA-27**; 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-27** (Global AI Tool + Plugin Marketplace) must PASS before LA-28 code. Ordering: **LA-26 Agent University → LA-27 Global AI Tool + Plugin Marketplace → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization → LA-30 Founder Mission Control**.
+**2I-LA-27** (Global Agent + Tool + Plugin + Workflow Marketplace V60) must PASS before LA-28 code. Ordering: **LA-26 Agent University → LA-27 Global Agent + Tool + Plugin + Workflow Marketplace V60 → LA-28 Universal Device + Edge + AI Chip Compute Fabric V70 → LA-29 24/7 AI Organization → LA-30 Founder Mission Control**.
 
 **Tip note:** Fetch tip first (LA-22B–27 may still land). Rebase onto latest tip **including LA-27** when present. Never force-push / never `main`.
 
