@@ -1,7 +1,7 @@
 # Phase 2I-AD Proposal — Plugin Marketplace + Developer OS
 
 **Status:** PROPOSAL ONLY — not scheduled for implementation until CEO authorization after 2I-AB/AC inspection.  
-**Queue:** [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) (AD–AT); continuation [`xiv-master-build-queue-2i-ad-to-2i-bf.md`](./xiv-master-build-queue-2i-ad-to-2i-bf.md).
+**Queue:** [`xiv-master-build-queue-2i-ad-to-2i-bf.md`](./xiv-master-build-queue-2i-ad-to-2i-bf.md) (canonical AD→BF). AD–AT path is a pointer stub.
 
 ## Intent
 

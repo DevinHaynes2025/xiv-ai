@@ -1,9 +1,9 @@
 # XIV Master Build Queue — 2I-AD → 2I-BF
 
 **Status:** QUEUED ONLY (documentation). No AD–BF implementation in this commit.  
-**Canonical path (AD–AT detail):** [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md)  
-**Canonical path (AU–BF continuation + this index):** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bf.md`  
-**2I-AC landed:** `e090413` (+ completion `a5fe7dc`); beyond 2I-AB `e604244`.  
+**Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bf.md`  
+**AD–AT path:** pointer stub only → this file.  
+**Tip context:** beyond 2I-AB `e604244`; 2I-AC `e090413` (+ completion `a5fe7dc`).  
 **Audience:** agents + CEO. One major foundation phase at a time.
 
 ---
@@ -14,7 +14,7 @@
 |-------|-------|--------|
 | **2I-AB** | Global Connector Fabric + Online/Offline Agent Mesh + Supply Chain Intelligence Graph | **LANDED** (`e604244`) |
 | **2I-AC** | XIV Brain V4 + Data Nervous System + Agent DevOps + Continuous Evolution | **LANDED** (`e090413`; completion `a5fe7dc`) |
-| **2I-AD…BF** | See queues below | **NOT STARTED** — documentation only |
+| **2I-AD…BF** | Queued below | **NOT STARTED** — documentation only |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -83,11 +83,112 @@ Morning / Night Shift **Founder Brief** delivery address:
 
 *Not started. CEO authorization after AC inspection required before AD.*
 
-**Full AD–AT phase contracts live in** [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) (do not re-expand here).
+### 2I-AD — Plugin Marketplace + Developer OS
 
-Index: **AD** Plugin Marketplace + Developer OS → **AE** Global Business API + Connector Foundry → **AF** Supplier & Commerce (+ Product Passport) → **AG** Information Logistics Control Tower → **AH** Agent Society V5 → **AI** Software Factory → **AJ** Model Foundry + Model Router → **AK** Learning Engine → **AL** Pocket Brain V4 → **AM** Location & Earth Intelligence V4 → **AN** Media & Knowledge Network → **AO** Foresight + Simulation → **AP** Digital Product Foundry → **AQ** Globalization Engine → **AR** Planetary Scale Engineering (capacity targets) → **AS** Universe Fabric V5 → **AT** Self-Evaluation + Continuous Improvement.
+- Signed plugin manifests; capability declarations; tenant + universe scoping
+- Marketplace catalog lifecycle: discover → review → sandbox install → (human/policy) promote
+- Developer OS / SDK surfaces, fixtures, local simulation
+- Compose with Agent Firewall, Guardian, Data Access Gateway, evidence/provenance
+- Plugin installed ≠ unrestricted; creative/developer control ≠ production control
+- Proposal (docs only): [`phase-2i-ad-plugin-developer-platform.md`](./phase-2i-ad-plugin-developer-platform.md) (also `docs/phase-2i-ad-plugin-developer-platform.md`)
 
-AD proposal (docs only): [`phase-2i-ad-plugin-developer-platform.md`](./phase-2i-ad-plugin-developer-platform.md)
+### 2I-AE — Global Business API + Connector Foundry
+
+- Stable external Business API contracts; versioned, authenticated, tenant-scoped
+- Connector Foundry: build/test connectors without claiming LIVE providers
+- Compose with 2I-AB Global Connector Fabric
+- Providers stay `NOT_CONFIGURED` until proven; connected network ≠ trusted
+
+### 2I-AF — Global Supplier & Commerce Network (+ Product Passport)
+
+- Supplier graph + commerce intents; Product Passport lineage hooks
+- No wholesale unauthorized copyright copy; commerce providers remain gated
+- No silent settlement credentials; passport existence ≠ cross-tenant data rights
+
+### 2I-AG — Information Logistics Control Tower
+
+- Control-tower view over SOURCE → … → LESSON pipelines (extends AC Data Nervous / logistics)
+- Freshness / quality / quarantine signals; metadata-first observability
+- Not surveillance; not a substitute for Guardian or Data Access Gateway
+
+### 2I-AH — Agent Society V5
+
+- Role fabric expansion; no self-grant; society role ⇏ L4
+- Multi-agent review preserves disagreement; human/policy remains authority
+- Builds on AC Agent DevOps / society collaboration without auto-privilege
+
+### 2I-AI — Software Factory
+
+- Bounded codegen / patch / review factory; sandbox builds; release candidates only
+- Creative control ≠ production control; no auto-ship to production
+- Human/policy gate on promote; evidence attached to every candidate
+
+### 2I-AJ — Model Foundry + Model Router
+
+- Extends 2I-AA foundry; routing policy with eval gates
+- Model providers `NOT_CONFIGURED` until proven; no silent key injection
+- Grounded use → eval → router policy flywheel; L4 remains disabled
+
+### 2I-AK — Learning Engine
+
+- Lesson capture from outcomes; hypothesis → eval → policy proposal
+- Training candidates classified; no unauthorized training on tenant-private data
+- Lessons inform policy proposals — they do not self-grant authority
+
+### 2I-AL — Pocket Brain V4
+
+- Scoped encrypted pocket sync; never cache `CLOUD_ONLY`
+- No auto personal→company→global→public promotion
+- Offline pocket ≠ authorized cloud action
+
+### 2I-AM — Location & Earth Intelligence V4
+
+- Extends location / Earth intel contracts; grounding + provenance mandatory
+- Capacity targets ≠ proven planetary scale
+- Location claims require evidence nodes; denied/unknown sources stay quarantined
+
+### 2I-AN — Media & Knowledge Network
+
+- Multimodal ingest with rights states; transcription/extraction pipelines
+- Claims + evidence nodes; denied/unknown rights never enter verified knowledge
+- Media provenance required before knowledge promotion
+
+### 2I-AO — Foresight + Simulation
+
+- Scenarios / projections labeled non-facts; simulation sandboxes
+- Predictions are not facts; no production action from foresight alone
+- Simulation outputs remain non-authoritative without human/policy gate
+
+### 2I-AP — Digital Product Foundry
+
+- Product definition → build artifacts → Product Passport hooks
+- Sandbox distribution only until CEO/release gate
+- Foundry output ≠ production entitlement
+
+### 2I-AQ — Globalization Engine
+
+- Locale, residency, regional policy packs; residency ≠ weaker isolation
+- Regional connectors still `NOT_CONFIGURED` until proven
+- Cross-region routing preserves tenant/universe isolation
+
+### 2I-AR — Planetary Scale Engineering (CAPACITY TARGETS)
+
+- Engineering **capacity targets only** — not claims of billions of users or trillions of agents/DBs
+- Load / shard / region plans remain unproven until measured
+- Scale docs must not imply LIVE multi-region production without proof
+
+### 2I-AS — Universe Fabric V5 (logical namespaces)
+
+- Logical universe namespaces; isolation preserved
+- Namespace existence ≠ cross-universe data rights
+- Extends prior Universe Fabric kinds without collapsing tenant boundaries
+
+### 2I-AT — Self-Evaluation + Continuous Improvement
+
+- Eval harnesses, scorecards, regression budgets
+- Improvement proposals require human/policy authority
+- No self-modifying production autonomy; L4 remains disabled
+- Feeds Learning Engine / Founder Brief proposals — not automatic authority expansion
 
 ---
 
@@ -178,9 +279,9 @@ AD proposal (docs only): [`phase-2i-ad-plugin-developer-platform.md`](./phase-2i
 
 ## Idempotency / sibling agents
 
-- Prefer [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) for **full AD–AT** phase contracts.
-- Prefer **this file** for **AU–BF continuation** plus shared permanent rules / flywheels / Directory≠Fabric≠Brain.
-- Refine in place; do not spam duplicate AD–AT section trees.
+- **This file is the single canonical master queue for AD→BF.**
+- `xiv-master-build-queue-2i-ad-to-2i-at.md` is a **pointer stub** only — do not re-expand AD–AT there.
+- Refine in place; do not spam duplicate queue trees.
 
 ---
 
@@ -191,3 +292,4 @@ AD proposal (docs only): [`phase-2i-ad-plugin-developer-platform.md`](./phase-2i
 - [x] Permanent 24/7 loop + permanent rules + Directory / Fabric / Brain separation recorded
 - [x] ONE phase at a time; L4 disabled; providers `NOT_CONFIGURED` until proven
 - [x] STOP for CEO before AD after AB→AC inspection
+- [x] Full AD–AT + AU–BF contracts in one canonical file
