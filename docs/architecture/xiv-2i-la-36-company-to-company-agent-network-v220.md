@@ -380,23 +380,17 @@ Evaluate later: `business_agent_directory`, `business_messages`, `business_messa
 
 Required compose: LA-31, LA-32, LA-33, LA-35, **LA-35A**, LA-30 Control Panel, LA-23 meetings, LA-15 legal, LA-16/22B finance honesty (no ambient settlement).
 
-## 29. Next queue — LA-37…47
+## 29. Next queue — LA-37…50
 
 | Story | Title |
 |-------|-------|
-| **2I-LA-37** | **Global Business Knowledge Exchange** |
-| **2I-LA-38** | Business Simulation Supercomputer (refine when authored) |
-| **2I-LA-39** | Global Economic + Trade Intelligence (refine when authored) |
-| **2I-LA-40** | Self-Improving Business OS Evaluation System (refine when authored) |
-| **2I-LA-41** | Prepared expansion (title queued) |
-| **2I-LA-42** | Prepared expansion (title queued) |
-| **2I-LA-43** | Prepared expansion (title queued) |
-| **2I-LA-44** | Prepared expansion (title queued) |
-| **2I-LA-45** | Prepared expansion (title queued) |
-| **2I-LA-46** | Prepared expansion (title queued; may refine LA-30 Living Business Map title) |
-| **2I-LA-47** | Prepared expansion (title queued; may refine Founder Simulation Sandbox title — SIM≠reality) |
+| **2I-LA-37** | **Universal Product + Information Digital Twin Network V300** |
+| **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 (**QUEUED TITLE — FULL STORY PENDING**) |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 |
+| **2I-LA-40** | Continuous Intelligence + Self-Evaluation (title queued) |
+| **2I-LA-41…50** | Prepared expansion titles (refine when authored) |
 
-**NEXT after LA-36:** **2I-LA-37** Global Business Knowledge Exchange. **Do not implement LA-37…47 from this commit.**
+**NEXT after LA-36:** **2I-LA-37** Universal Product + Information Digital Twin Network V300. **Do not implement LA-37…50 from this commit.**
 
 ## 30. Completion evidence placeholders
 
