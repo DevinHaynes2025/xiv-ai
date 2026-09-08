@@ -383,6 +383,23 @@ export {
   yellowPagesSpamAllowed,
 } from './nightshift';
 export {
+  FOUNDER_TWIN_DISCLOSURE,
+  agentMaySelfGrantPermissions,
+  agentMaySilentProductionDeploy,
+  foresightEqualsCertainty,
+  mongoDbLifecycle,
+  nvidiaIsAuthorityLayer,
+  offlineEqualsAuthorization,
+  openCapabilityGateway,
+  openContinuousDataFabric,
+  openForesightEngine,
+  openFounderIntelligence,
+  openOperationsShift,
+  openPocketBrain,
+  openProductFoundry,
+  patentResearchIsFilingAuthority,
+} from './cios';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,
