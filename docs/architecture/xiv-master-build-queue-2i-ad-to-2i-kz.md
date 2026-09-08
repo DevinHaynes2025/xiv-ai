@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…16 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** + **LA-15 Legal + Product Evolution V10** + **LA-16 AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** (architecture queued; after LA-15) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…18 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** + **LA-15 Legal + Product Evolution V10** + **LA-16 AI CFO + Banking + Wealth + Executive Org V20** + **LA-17 Privacy Vault + Revenue + Sales Tech** + **LA-18 Age Assurance + Global Identity + Community Trust OS V20** (architecture queued; after LA-17) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3151,8 +3151,10 @@ Every phase inherits and must preserve:
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 | **QUEUED DOCS** — `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS** |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 (+ Customer Security Center + Business Hospital cyber dept) | **QUEUED DOCS** — `xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine | **QUEUED DOCS** — `xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`; **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
-| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **QUEUED DOCS** — `xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`; **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17…30** | **Personal Privacy Vault** → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-16** is LA-17 |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **QUEUED DOCS** — `xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`; **DO NOT IMPLEMENT until LA-15 PASS**; **must PASS before LA-17 code** |
+| **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine | **QUEUED DOCS** — `xiv-2i-la-17-personal-privacy-vault-revenue-sales-tech-v20.md` (lands with LA-17); **DO NOT IMPLEMENT until LA-16 PASS**; **must PASS before LA-18 code** |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 | **QUEUED DOCS** — `xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md`; **DO NOT IMPLEMENT until LA-17 PASS** |
+| **2I-LA-19…30** | Cultural/Naturist Business Universes → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-18** is LA-19 |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3276,7 +3278,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Status:** QUEUED (docs). Full contracts §§1–77 + permanent rules: [`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`](./xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md) (+ founder summary [`../queue/2I-LA-16-ai-cfo-banking-wealth-executive-organization.md`](../queue/2I-LA-16-ai-cfo-banking-wealth-executive-organization.md)).
 
-**DO NOT IMPLEMENT** until **LA-15 Legal + Product Evolution PASS**. Ordering lock: **LA-14 → LA-15 → LA-16 → LA-17 Personal Privacy Vault**.
+**DO NOT IMPLEMENT** until **LA-15 Legal + Product Evolution PASS**. Ordering lock: **LA-14 → LA-15 → LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Identity + Community Trust → LA-19**.
 
 **Critical corrections (permanent):**
 
@@ -3288,9 +3290,24 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Release posture:** Do **not** make every LA-16 capability a release blocker. **Release-critical:** private vault architecture, tenant isolation, RLS, financial separation, pricing/entitlement foundation, agent permissions, DB tracker, security. Bank partnerships stay **NOT_CONFIGURED** until authenticated + contractual. Advanced bank marketplace / wealth SKUs / quantum task force / massive workforce demos stay feature-gated and must **not** block the 30-day runway. **LA-12 ≠ LA-16** depth. **L4 DISABLED**.
 
-**NEXT after LA-16:** **2I-LA-17** Personal Privacy Vault + Private Search.
+**NEXT after LA-16:** **2I-LA-17** Personal Privacy Vault + Revenue + Sales Tech → **LA-18** Age Assurance + Global Identity + Community Trust → **LA-19** Cultural/Naturist Business Universes.
 
 ---
+
+## 2I-LA-18 — 18+ AGE ASSURANCE + GLOBAL IDENTITY + COMMUNITY TRUST OS V20 (queued docs)
+
+**Status:** QUEUED (docs). Full contracts §§1–99 + permanent rules: [`xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md`](./xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md) (+ founder summary [`../queue/2I-LA-18-age-assurance-global-identity-community-trust.md`](../queue/2I-LA-18-age-assurance-global-identity-community-trust.md)).
+
+**DO NOT IMPLEMENT** until **LA-17 Privacy Vault + Revenue + Sales Tech PASS**. Ordering lock: **LA-16 → LA-17 → LA-18 → LA-19 Cultural/Naturist Business Universes**.
+
+**Critical rules (permanent):** Identity ≠ authority; Authenticated ≠ authorized; Connected ≠ trusted. Privacy-preserving age assurance (prefer USER IS 18+ without unnecessary full ID retention). `AgeAssuranceAdapter` **NOT_CONFIGURED** until verified; **FAILED age gate → no account activation**. Distribution controls ≠ absolute minor exclusion; XIV service/account remains 18+. Trust ≠ popularity/followers/fame/wealth. Founder Twin exact label; type **AI_REPRESENTATION** never **HUMAN_FOUNDER**. Compromised phone ≠ compromised company; plugin installed ≠ trusted; DB connection ≠ unrestricted access; identity data ≠ marketing/training; anomaly ≠ attack. Community safety = behavior/evidence/policy. **Core identity/security is RELEASE-CRITICAL** — critical auth/age/tenant/Universe/RLS/privilege/recovery bypass **BLOCKS** production candidate.
+
+**Includes (document only):** IdentityKernel + types; 18+ eligibility + privacy-preserving + third-party adapter + activation/session gates; distribution honesty; 12-step configurable onboarding; passkey-first; device trust + states; session risk; identity graph; company/employee identity + offboarding; RBAC + ABAC; Universe access token; agent/tool/plugin/DB connection identity; TrustEngine + dimensions (researcher/developer/creator/business); trust states; community trust foundation; ConsentEngine; private profile + minimization; personal/business split + multi-company; conflict-of-interest; recovery (no bypass); high-risk reauth; Founder root + Guardian; PAM + JIT + break-glass; identity security agents + red team; zero-trust; jurisdiction; privacy-preserving verification; biometric boundary; marketplace identity/trust; payment KYC boundary; AI CFO/sales/negotiation identity limits; researcher session; community safety agents + 18+ boundary + community separation; content access context; identity event nervous system + Security/DB/Agent/Sales/PrivateSearch/Revenue connections; UIs; analytics; anomaly; trust learning + appeal; Agent/Researcher University links; 24/7 defense + night shift; story gen; continuous tests; attack sims (LA-10); DB tables; deployment criticality + security gate; checkpoints; suggested commits; completion evidence (never infer PASS).
+
+**Release posture:** Adult eligibility, auth, tenant/Universe isolation, permissions, session/device, RLS, recovery, audit = release-critical. Advanced community trust UX feature-gated. Prepare LA-19 `VERIFIED_18_PLUS` + mature vs general separation. Compose LA-17 vault boundaries / existence≠permission. **L4 DISABLED**.
+
+**NEXT after LA-18:** **2I-LA-19** Cultural / Naturist Business Universes.
+
 
 ## 2I-LA-04 — MULTI-BRAIN ROUTER + META BRAIN RUNTIME
 
@@ -3833,9 +3850,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine — **must PASS before LA-18 code** |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 — **QUEUED DOCS** (`xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md`); **DO NOT IMPLEMENT until LA-17 PASS** |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) — **NEXT after LA-18** |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |
@@ -4568,9 +4585,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine — **must PASS before LA-18 code** |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 — **QUEUED DOCS** (`xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md`); **DO NOT IMPLEMENT until LA-17 PASS** |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) — **NEXT after LA-18** |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |
@@ -5284,9 +5301,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine — **must PASS before LA-18 code** |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 — **QUEUED DOCS** (`xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md`); **DO NOT IMPLEMENT until LA-17 PASS** |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) — **NEXT after LA-18** |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |
@@ -5520,3 +5537,6 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] 30-day deployment runway weeks 1–4 + evidence-gated canary (not date-gated) recorded
 - [x] Final LA-10 evidence gate fields recorded as FAIL until implemented; empty CI ≠ PASS
 - [x] No LA-05/06/07/08/09/10 runtime implementation in the docs-only queue commit
+
+- [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 Cultural/Naturist Business Universes**; rebase onto tip including LA-17 when present; L4 off
+- [x] **2I-LA-18** 18+ Age Assurance + Global Identity + Community Trust OS V20 queued — full contracts §§1–99 + permanent rules in `xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md` (+ founder summary `docs/queue/2I-LA-18-age-assurance-global-identity-community-trust.md`); **DO NOT IMPLEMENT until LA-17 PASS**; HARD STOP no runtime; core identity/security RELEASE-CRITICAL (age/auth/tenant/Universe/RLS/recovery/audit); AgeAssuranceAdapter NOT_CONFIGURED until verified; FAILED age → no activation; Twin AI_REPRESENTATION never HUMAN_FOUNDER

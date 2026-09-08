@@ -558,8 +558,8 @@ On LegalDataGateway or graph failure: degrade to draft-only local library, mark 
 |----|-------|
 | **2I-LA-16** | **AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** — deep finance/banking/wealth/exec — do **not** overload LA-12 |
 | **2I-LA-17** | Personal Privacy Vault + Private Search |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | Cultural / Naturist Business Universes (VERIFIED_18_PLUS + mature vs general separation) |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |

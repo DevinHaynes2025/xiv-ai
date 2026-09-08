@@ -56,8 +56,10 @@ As the XIV AI Founder, I want XIV to run an AI CFO + Banking Collaboration Fabri
 
 ## Next queue
 
-- **2I-LA-17** Personal Privacy Vault + Private Search
-- Then **LA-18…LA-30** per master queue titles
+- **2I-LA-17** Privacy Vault + Revenue + Sales Tech
+- **2I-LA-18** Age Assurance + Global Identity + Community Trust OS V20
+- **2I-LA-19** Cultural / Naturist Business Universes
+- Then **LA-20…LA-30** per master queue titles
 
 ## Docs-only gate
 
