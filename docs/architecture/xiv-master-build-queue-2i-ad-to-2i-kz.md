@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…09 docs + **LA-10 Simulation Grid V10** (architecture present; runtime not started) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…10 docs + **LA-11 Multi-Model + Universal AI Chip Router V10** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -2790,7 +2790,7 @@ Expand XIV into a **governed AI workforce** — executives, managers, specialist
 
 - Model selection, eval harnesses, fine-tune proposals via Model Foundry only
 - Continuous learning ≠ uncontrolled weight changes; providers stay `NOT_CONFIGURED` until proven
-- Compose with Model Foundry lineage, Multi-Model Arena (LA-10 title), and Confidence Engine
+- Compose with Model Foundry lineage, Multi-Model Arena / Chip Router (**LA-11**), and Confidence Engine
 
 ### 2I-KC — Agentic Engineering Department
 
@@ -3015,7 +3015,7 @@ Compose with Global Task Force Network (2I-HO), Shift Orchestrator (2I-DF), and 
 - Multiple models/providers may staff roles under Model Router policy
 - Society agreement ≠ truth; labels remain FACT/INFERENCE/UNKNOWN
 - Model swap cannot bypass Guardian / Firewall / permission grants
-- Compose with Model Foundry, Multi-Model Arena (LA-10 title), and Honesty-of-LIVE rules
+- Compose with Model Foundry, Multi-Model Arena / Chip Router (**LA-11**), and Honesty-of-LIVE rules
 
 ---
 
@@ -3145,7 +3145,8 @@ Every phase inherits and must preserve:
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 | **This expansion — docs queue now; code only after LA-01→LA-07 PASS** |
 | **2I-LA-09** | Temporal + Causal Intelligence V10 | **QUEUED DOCS** — `xiv-2i-la-09-temporal-causal-intelligence-v10.md`; **DO NOT IMPLEMENT until LA-08 PASS** |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 | **QUEUED (architecture present)** — `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11…30** | Multi-Model + AI Chip Intelligence Router → … | **QUEUE ONLY** — LA-11 next after LA-10; do not implement from this commit |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 | **QUEUED DOCS** — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS** |
+| **2I-LA-12…30** | Quantum + Hybrid Compute Lab → … | **QUEUE ONLY** — LA-12 next after LA-11; classical baseline; non-blocking for first release |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3157,7 +3158,7 @@ Founder Brief delivery address when contacts/briefs mentioned: **`devinhaynes202
 
 **Status:** QUEUED (docs). Full contracts: [`xiv-2i-la-09-temporal-causal-intelligence-v10.md`](./xiv-2i-la-09-temporal-causal-intelligence-v10.md).
 
-**DO NOT IMPLEMENT** until **LA-08 Curiosity PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation**.
+**DO NOT IMPLEMENT** until **LA-08 Curiosity PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab**.
 
 Prerequisite for **LA-10** Parallel Quantum Universe Simulation Grid: credible temporal ordering + causal states (AFTER ≠ BECAUSE; CORRELATION ≠ CAUSATION; bitemporal; supersede don’t rewrite). **L4 DISABLED**.
 
@@ -3169,13 +3170,29 @@ Curiosity sibling: [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`
 
 **Status:** QUEUED (architecture present). Full contracts §§1–69: [`xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`](./xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md). Founder summary: [`../queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md`](../queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md). Founder checkpoint ancestor: `bf37d5d`.
 
-**DO NOT IMPLEMENT** until **LA-09 Temporal+Causal PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip Router**.
+**DO NOT IMPLEMENT** until **LA-09 Temporal+Causal PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab**.
 
 Core contracts (document only): `SimulationUniverse*`, Reality Boundary (`OBSERVED_REALITY` vs `SIMULATED_*`), Parallel Branch + `BASELINE_NO_ACTION`, isolation fields, Parallel DB Lab + firewall, Digital Twin / Supply / Retail / Financial / Software / DB / Model / Agent universes, councils + independent analysis + devil’s advocate, Monte Carlo, Optimization + multi-objective/Pareto, Classical baseline, Quantum-ready adapters + **QUANTUM EVIDENCE GATE**, AI chip routing prep (LA-11), Simulation router, cost/WIP governors, checkpoints, reproducibility, provenance, confidence, sensitivity, stress/black-swan, security sim + cyber range, failure/recovery universes, Decision Arena, sim→reality firewall, outcome learning, UIs, overnight lab (XIV Deployment Shift ~12h; evidence-gated canary), DB tables evaluation, RLS/security tests, 24/7 loop, **30-day runway weeks 1–4**, deployment states/scorecard/blockers, GitHub/GitLab gate, checkpoint commit plan, final evidence gate (**all FAIL until implemented**).
 
 **Permanent rules:** SIMULATION≠REALITY; PARALLEL UNIVERSE≠PHYSICAL; QUANTUM-READY≠ADVANTAGE; NO_ACTION baseline required; UNKNOWN valid; **L4 DISABLED**. Runtime Parallel Simulation Grid = **not started**.
 
 Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`](./xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md).
+
+---
+
+## 2I-LA-11 — MULTI-MODEL + UNIVERSAL AI CHIP INTELLIGENCE ROUTER V10 (queued docs)
+
+**Status:** QUEUED (docs). Full contracts: [`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`](./xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md).
+
+**DO NOT IMPLEMENT** until **LA-10 Simulation PASS**. Ordering lock: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab**.
+
+**Core loop:** MISSION → META BRAIN → POLICY → MODEL/TOOL/DATA/COMPUTE ROUTERS → EXECUTION → EVALUATION → OUTCOME → LEARNING.
+
+**Release posture:** Separate **RELEASE-CRITICAL** vs **EXPERIMENTAL**. Quantum / untested chips behind feature flags; must **not** block 30-day deployment runway. **L4 DISABLED**. Overnight = XIV Deployment Shift; evidence-gated canary.
+
+**Title correction:** supersedes older “Multi-Model Arena + Model Evolution” LA-11-only labels — canonical includes Universal AI Chip / Compute routing.
+
+**NEXT after LA-11:** **2I-LA-12** Quantum + Hybrid Compute Lab (classical baseline required; non-blocking for first release).
 
 ---
 
@@ -3714,8 +3731,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY SUMMARY BELOW** (docs only) |
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
-| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
 | **2I-LA-13** | Nested AI Tool Foundry |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
@@ -4230,6 +4247,7 @@ Speeds are **scheduler modes**, not biological metaphors as product claims.
 | **Honest telemetry** | Do not invent thermal/CPU/GPS when unavailable |
 | **Device capability principle** | Degrade gracefully; Pocket/Edge ≠ full Mission Control |
 | **NOT_CONFIGURED** until proven for exotic backends |
+| **Full contracts** | **2I-LA-11** — [`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`](./xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md) (docs only; **DO NOT IMPLEMENT until LA-10 PASS**) |
 
 ### 11. Universal OS Experience
 
@@ -4446,8 +4464,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY BELOW** |
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
-| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
 | **2I-LA-13** | Nested AI Tool Foundry |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
@@ -5162,8 +5180,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 |----|-------|
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
-| **2I-LA-12** | Quantum/Hybrid Compute Lab |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
 | **2I-LA-13** | Nested AI Tool Foundry |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
@@ -5186,6 +5204,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 ### NEXT after LA-08 (queue mention only)
 
 **2I-LA-09 — Temporal + Causal Intelligence V10** — full contracts in `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (do **not** implement until **LA-08 PASS**).
+
+**Ordering lock (docs):** LA-09 → **LA-10 Simulation** → **LA-11 Multi-Model + Universal AI Chip Router** (`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**) → **LA-12 Quantum Lab** (non-blocking for first release).
 
 ### Permanent rules (LA-08 / CEO)
 
