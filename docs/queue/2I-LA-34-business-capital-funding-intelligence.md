@@ -58,13 +58,11 @@ As the XIV AI Founder, I want XIV to run Business Capital + Funding Intelligence
 
 ## Next queue
 
-- **2I-LA-35** Global Supplier + Procurement Exchange
-- **2I-LA-36** Company-to-Company Agent Network V190
-- **2I-LA-37** Global Business Knowledge Exchange V200
-- **2I-LA-38** Business Simulation Supercomputer V210
-- **2I-LA-39** Global Economic + Trade Intelligence V220
-- **2I-LA-40** Self-Improving Business OS Evaluation System V230
-- **2I-LA-41…42** prepared expansion titles (refine when authored)
+- **2I-LA-35** Universal Business Fabric V200 (Supplier/Procurement retained)
+- **2I-LA-35A** Zero-Trust Security + Agent Defense Fabric V210
+- **2I-LA-36** Company-to-Company Agent Network V220
+- **2I-LA-37** Global Business Knowledge Exchange
+- **2I-LA-38…47** prepared expansion titles (refine when authored)
 
 ## Docs-only gate
 

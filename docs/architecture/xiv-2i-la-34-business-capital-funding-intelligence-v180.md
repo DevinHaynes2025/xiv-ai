@@ -700,16 +700,16 @@ Founder asleep ≠ authority. Night research ≠ signatory. More capital agents 
 
 | Story | Title |
 |-------|-------|
-| **2I-LA-35** | **Global Supplier + Procurement Exchange** |
-| **2I-LA-36** | Company-to-Company Agent Network V190 |
-| **2I-LA-37** | Global Business Knowledge Exchange V200 |
-| **2I-LA-38** | Business Simulation Supercomputer V210 |
-| **2I-LA-39** | Global Economic + Trade Intelligence V220 |
-| **2I-LA-40** | Self-Improving Business OS Evaluation System V230 |
-| **2I-LA-41** | Prepared expansion (title queued; refine when authored) |
-| **2I-LA-42** | Prepared expansion (title queued; refine when authored) |
+| **2I-LA-35** | Universal Business Fabric V200 (Supplier/Procurement retained; may still land) |
+| **2I-LA-35A** | Zero-Trust Security + Agent Defense Fabric V210 |
+| **2I-LA-36** | Company-to-Company Agent Network V220 |
+| **2I-LA-37** | Global Business Knowledge Exchange |
+| **2I-LA-38** | Business Simulation Supercomputer (refine when authored) |
+| **2I-LA-39** | Global Economic + Trade Intelligence (refine when authored) |
+| **2I-LA-40** | Self-Improving Business OS Evaluation System (refine when authored) |
+| **2I-LA-41…47** | Prepared expansion titles (refine when authored) |
 
-**NEXT after LA-34:** **2I-LA-35** Global Supplier + Procurement Exchange. **Do not implement LA-35…42 from this commit.**
+**NEXT after LA-34:** **2I-LA-35 → LA-35A → LA-36 → LA-37 → LA-38…47**. **Do not implement LA-35…47 from this commit.**
 
 ## 105. Completion evidence placeholders
 
