@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-41 PASS**. Queue **AFTER LA-41**. Do 
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Global Business Services + AI Solution Exchange + Enterprise Procurement Network V530 → LA-44…57**.
+Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`](../architecture/xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md).
 
@@ -16,7 +16,7 @@ Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Cont
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to run Enterprise Contract + Deal Intelligence + Negotiation Operating System V520 — Deal Intelligence Kernel; DealRoom isolation/security; AI task force (more agents≠authority); counterparty research (no private dossiers); Contract Intelligence + versioning/diff/clauses; document=data (prompt injection defense); Obligation Graph; NegotiationBrain + BATNA + simulator (sim≠intent/acceptance); Deal Finance (decimal money; estimate≠settlement); Pricing/Value Proof; Security questionnaire (never invent certs); Privacy/Tech DD; Cisco known≠connected; DealClaimVerifier (PLAN≠IMPLEMENTED); Proposal/RFP factories; Contract→ops/project/monitoring; Renewal/Win-Loss; templates≠legal advice; Deal Simulation Universes; Human signatory; AI CFO/negotiator limits; payment≠settlement; security threats; Control Tower; DB/RLS; tests; release slices 1–4; **`AI_AUTONOMOUS_NEGOTIATION/SIGNING/MONEY_MOVEMENT=FALSE`**; permanent rules; evidence **NEVER INFER PASS**; next LA-43…57.
+As the XIV AI Founder, I want XIV to run Enterprise Contract + Deal Intelligence + Negotiation Operating System V520 — Deal Intelligence Kernel; DealRoom isolation/security; AI task force (more agents≠authority); counterparty research (no private dossiers); Contract Intelligence + versioning/diff/clauses; document=data (prompt injection defense); Obligation Graph; NegotiationBrain + BATNA + simulator (sim≠intent/acceptance); Deal Finance (decimal money; estimate≠settlement); Pricing/Value Proof; Security questionnaire (never invent certs); Privacy/Tech DD; Cisco known≠connected; DealClaimVerifier (PLAN≠IMPLEMENTED); Proposal/RFP factories; Contract→ops/project/monitoring; Renewal/Win-Loss; templates≠legal advice; Deal Simulation Universes; Human signatory; AI CFO/negotiator limits; payment≠settlement; security threats; Control Tower; DB/RLS; tests; release slices 1–4; **`AI_AUTONOMOUS_NEGOTIATION/SIGNING/MONEY_MOVEMENT=FALSE`**; permanent rules; evidence **NEVER INFER PASS**; next LA-43 Offline Intelligence + Global Knowledge V530 → LA-44…60.
 
 ## Critical architecture rules (permanent)
 
@@ -43,8 +43,9 @@ As the XIV AI Founder, I want XIV to run Enterprise Contract + Deal Intelligence
 
 ## Next queue
 
-- **2I-LA-43** Global Business Services + AI Solution Exchange + Enterprise Procurement Network V530
-- **2I-LA-44…57** prepared expansion titles (as listed in architecture)
+- **2I-LA-43** Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530
+- **2I-LA-44** Startup + Company Creation Factory V540
+- **2I-LA-45…60** prepared expansion titles (as listed in architecture)
 
 ## Docs-only gate
 
