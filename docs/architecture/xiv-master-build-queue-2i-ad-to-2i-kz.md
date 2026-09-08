@@ -3184,7 +3184,7 @@ Every phase inherits and must preserve:
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 | **QUEUED DOCS** — `xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`; **DO NOT IMPLEMENT until LA-42 PASS** |
 | **2I-LA-43A** | Global Naturist Business + Tourism + Culture + Private Community Universe V535 | **QUEUED DOCS** — `xiv-2i-la-43a-global-naturist-business-tourism-culture-community-v535.md`; **INSERT AFTER LA-43 / BEFORE LA-44**; **DO NOT IMPLEMENT until LA-43 PASS** |
 | **2I-LA-44** | Startup + Company Creation Factory V540 | **QUEUED DOCS** — `xiv-2i-la-44-startup-company-creation-factory-v540.md`; **DO NOT IMPLEMENT until LA-43A PASS** |
-| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 | **QUEUED DOCS** — `xiv-2i-la-45-global-innovation-invention-ip-technology-evolution-v550.md`; **DO NOT IMPLEMENT until LA-44 PASS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 | **QUEUED DOCS** — `xiv-2i-la-45-global-innovation-invention-ip-technology-brain-v550.md`; **DO NOT IMPLEMENT until LA-44 PASS** |
 | **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 | **QUEUED DOCS** — `xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`; **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Business Community + Knowledge Economy Network V570 | **QUEUED TITLE** |
 | **2I-LA-48…60** | Prepared expansion titles | **TITLE QUEUE ONLY** |
@@ -4608,8 +4608,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
 | **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
-| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-evolution-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
-| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-brain-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
+| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Business Community + Knowledge Economy Network V570 — **QUEUED TITLE** |
 | **2I-LA-48…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
@@ -5364,8 +5364,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
 | **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
-| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-evolution-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
-| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-brain-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
+| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Business Community + Knowledge Economy Network V570 — **QUEUED TITLE** |
 | **2I-LA-48…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
@@ -6101,8 +6101,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 — **QUEUED DOCS** (`xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`); **DO NOT IMPLEMENT until LA-41 PASS** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — **QUEUED DOCS** (`xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`); **DO NOT IMPLEMENT until LA-42 PASS** |
 | **2I-LA-44** | Startup + Company Creation Factory V540 — **QUEUED DOCS** (`xiv-2i-la-44-startup-company-creation-factory-v540.md`); **DO NOT IMPLEMENT until LA-43A PASS** |
-| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-evolution-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
-| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** |
+| **2I-LA-45** | Global Innovation + Invention + IP Intelligence + Technology Evolution Brain V550 — **QUEUED DOCS** (`xiv-2i-la-45-global-innovation-invention-ip-technology-brain-v550.md`); **DO NOT IMPLEMENT until LA-44 PASS** |
+| **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Business Community + Knowledge Economy Network V570 — **QUEUED TITLE** |
 | **2I-LA-48…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
