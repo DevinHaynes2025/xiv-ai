@@ -3129,16 +3129,16 @@ Every phase inherits and must preserve:
 
 ## EXECUTABLE FOUNDATION SERIES — 2I-LA (cloud workforce → Meta Brain)
 
-*Documentation queue for the **2I-LA** executable track. **QUEUED ONLY** for LA-04+ until prerequisites PASS. Do **not** implement 2I-LA-04 code until **2I-LA-01**, **2I-LA-02**, and **2I-LA-03** completion gates all PASS on tip. Do not jump to LA-05+ implementation from this document.*
+*Documentation queue for the **2I-LA** executable track. **LA-01 / LA-02 / LA-03 LANDED** on `xiv-v2` tip. **QUEUED ONLY** for LA-04+ until CEO authorizes next code. Do **not** implement 2I-LA-04 code until this document’s hard stop is cleared after inspecting LA-03 contracts. Do not jump to LA-05+ implementation from this document.*
 
 ### Sequencing (hard)
 
 | Story | Title | Gate |
 |-------|-------|------|
-| **2I-LA-01** | Persistent Agent Mission Runtime / Cloud Workforce | Must PASS before LA-02/03/04 code |
-| **2I-LA-02** | Cloud Worker Deployment + Scheduler | Must PASS before LA-03/04 code |
-| **2I-LA-03** | Agent Mission Control + 24/7 Shift Orchestrator | Must PASS before LA-04 code |
-| **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | **This expansion — docs queue now; code only after LA-01+02+03 PASS** |
+| **2I-LA-01** | Persistent Agent Mission Runtime / Cloud Workforce | **LANDED** (`e2d1119`…`8fde277`) |
+| **2I-LA-02** | Cloud Worker Deployment + Scheduler | **LANDED** (`0bc9713`…`f3fca3c`; `CLOUD_WORKER_VERIFIED=false` honest) |
+| **2I-LA-03** | Agent Mission Control + 24/7 Shift Orchestrator | **LANDED** (`34f2190`…`b93f56c`; shift runtime ≠ 24/7 LIVE) |
+| **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | **QUEUE ONLY** — code only after CEO gate on LA-03 inspection |
 | **2I-LA-05…30** | Titles below | **QUEUE ONLY** — do not implement from this document |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
