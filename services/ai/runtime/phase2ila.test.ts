@@ -449,4 +449,111 @@ test('handoff via guardian/router: no permission/authority transfer', () => {
   assert.ok(result.bundle.checkpoint);
 });
 
+
+test('duplicate claim rejected + audited; retry limit quarantines', () => {
+  const q = openDbBackedAgentMissionQueue();
+  q.enqueue(
+    createMission({
+      missionId: 'm-dup-claim',
+      tenantId: 't1',
+      universeId: 'u1',
+      objective: 'dup',
+      budgetId: 'b1',
+      nowIso: NOW_ISO,
+    }),
+  );
+  const first = q.claim({
+    workerId: 'w1',
+    tenantId: 't1',
+    universeId: 'u1',
+    nowMs: NOW,
+    nowIso: NOW_ISO,
+    missionId: 'm-dup-claim',
+  });
+  assert.equal(first.ok, true);
+  const second = q.claim({
+    workerId: 'w2',
+    tenantId: 't1',
+    universeId: 'u1',
+    nowMs: NOW + 1,
+    nowIso: NOW_ISO,
+    missionId: 'm-dup-claim',
+  });
+  assert.equal(second.ok, false);
+  if (!second.ok) {
+    assert.equal(second.reason, 'duplicate_claim_rejected');
+    assert.equal(second.audited, true);
+  }
+  assert.ok(q.listEvents('m-dup-claim').some((e) => e.kind === 'SECURITY_DENIED'));
+
+  const q2 = openDbBackedAgentMissionQueue();
+  q2.enqueue(
+    createMission({
+      missionId: 'm-q',
+      tenantId: 't1',
+      universeId: 'u1',
+      objective: 'retry',
+      budgetId: 'b1',
+      maxRetries: 0,
+      nowIso: NOW_ISO,
+    }),
+  );
+  const c = q2.claim({
+    workerId: 'w1',
+    tenantId: 't1',
+    universeId: 'u1',
+    nowMs: NOW,
+    nowIso: NOW_ISO,
+  });
+  assert.equal(c.ok, true);
+  if (!c.ok) throw new Error('claim');
+  q2.fail({ missionId: 'm-q', workerId: 'w1', reason: 'x', nowIso: NOW_ISO });
+  const retry = q2.retry({ missionId: 'm-q', nowIso: NOW_ISO });
+  assert.equal(retry.ok, false);
+  assert.equal(q2.getMission('m-q')?.status, 'QUARANTINED');
+});
+
+test('heartbeat renews lease; checkpoint tamper fails verification', () => {
+  const q = openDbBackedAgentMissionQueue();
+  q.enqueue(
+    createMission({
+      missionId: 'm-hb',
+      tenantId: 't1',
+      universeId: 'u1',
+      objective: 'hb',
+      budgetId: 'b1',
+      nowIso: NOW_ISO,
+    }),
+  );
+  const claim = q.claim({
+    workerId: 'w1',
+    tenantId: 't1',
+    universeId: 'u1',
+    nowMs: NOW,
+    nowIso: NOW_ISO,
+  });
+  assert.equal(claim.ok, true);
+  if (!claim.ok) throw new Error('claim');
+  const hb = q.heartbeat({
+    leaseId: claim.lease.leaseId,
+    workerId: 'w1',
+    nowMs: NOW + 5_000,
+    nowIso: '2026-09-08T03:00:05.000Z',
+  });
+  assert.equal(hb.ok, true);
+
+  const cp = q.checkpoint({
+    missionId: 'm-hb',
+    workerId: 'w1',
+    progressCursor: 'p',
+    completedSteps: ['1'],
+    pendingSteps: ['2'],
+    nowIso: NOW_ISO,
+  });
+  assert.equal(cp.ok, true);
+  if (!cp.ok) throw new Error('cp');
+  const tampered = { ...cp.checkpoint, signature: 'forged-signature' };
+  assert.equal(verifyCheckpointSignature(tampered), false);
+});
+
 console.log('phase2ila: all tests passed');

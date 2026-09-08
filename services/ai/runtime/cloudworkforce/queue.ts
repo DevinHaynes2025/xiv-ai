@@ -33,6 +33,7 @@ export interface AgentMissionQueue {
     universeId: string;
     nowMs: number;
     nowIso: string;
+    missionId?: string;
   }): ClaimResult;
   heartbeat(input: {
     leaseId: string;
