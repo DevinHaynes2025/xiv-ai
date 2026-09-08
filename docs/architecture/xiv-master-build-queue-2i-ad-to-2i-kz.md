@@ -1,8 +1,8 @@
 # XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30)
 
-**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ implementation in this commit.
+**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-06** implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
-**Branch tip at authoring:** beyond `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
+**Branch tip at authoring:** beyond `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
 **Sequencing dependency:** Architecture queue **2I-JV → 2I-KZ** follows **2I-JU** when present. **IX–JU was not yet landed** at authoring tip `2e025f3` — JV–KZ is appended after HB–HV / alongside the LA executable track with the explicit note that **JV follows JU**.
 
@@ -41,14 +41,14 @@ Pointer stubs (do not duplicate content):
 | **2I-HB…HV** | Global Collaboration Fabric Series | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
-| **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **IN PROGRESS / WAITING** — LA-01 foundation landing on tip; LA-02/03 not PASS; LA-04 code blocked |
-| **2I-LA-04…30** | Multi-Brain / Meta Brain Runtime + queued LA-05…30 | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
+| **2I-LA-04…30** | Multi-Brain / Meta Brain + LA-05 KG queue + **LA-06 Memory/Learning/Quantum/Agentic OS** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
 1. Inspect actual 2I-AB and 2I-AC builds on `xiv-v2` (contracts, tests, invariants).
 2. **CEO authorization required before any 2I-AD implementation begins.**
-3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** additionally requires LA-01+02+03 completion gates PASS. Queued workforce architecture ≠ proof agents are already running.
+3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** requires LA-01+02+03 PASS. **LA-05 code** requires LA-01→LA-04 PASS. **LA-06 code** requires LA-01→LA-05 PASS. Queued workforce architecture ≠ proof agents are already running.
 4. On gate fail: STOP, report, preserve last good tip. Never force-push. Keep `xiv-v2` (never `main` for foundation landings).
 
 ---
@@ -3129,7 +3129,7 @@ Every phase inherits and must preserve:
 
 ## EXECUTABLE FOUNDATION SERIES — 2I-LA (cloud workforce → Meta Brain)
 
-*Documentation queue for the **2I-LA** executable track. **LA-01 / LA-02 / LA-03 LANDED** on `xiv-v2` tip. **QUEUED ONLY** for LA-04+ until CEO authorizes next code. Do **not** implement 2I-LA-04 code until this document’s hard stop is cleared after inspecting LA-03 contracts. Do not jump to LA-05+ implementation from this document.*
+*Documentation queue for the **2I-LA** executable track. **LA-01 / LA-02 / LA-03 LANDED** on `xiv-v2` tip. **QUEUED ONLY** for LA-04+ until CEO authorizes next code. Do **not** implement 2I-LA-04 until the hard stop is cleared after inspecting LA-03 contracts. Do **not** implement LA-05 until LA-01→LA-04 PASS. Do **not** implement **LA-06** until **LA-01→LA-05** PASS. Do not jump ahead from this document.*
 
 ### Sequencing (hard)
 
@@ -3139,7 +3139,9 @@ Every phase inherits and must preserve:
 | **2I-LA-02** | Cloud Worker Deployment + Scheduler | **LANDED** (`0bc9713`…`f3fca3c`; `CLOUD_WORKER_VERIFIED=false` honest) |
 | **2I-LA-03** | Agent Mission Control + 24/7 Shift Orchestrator | **LANDED** (`34f2190`…`b93f56c`; shift runtime ≠ 24/7 LIVE) |
 | **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | **QUEUE ONLY** — code only after CEO gate on LA-03 inspection |
-| **2I-LA-05…30** | Titles below | **QUEUE ONLY** — do not implement from this document |
+| **2I-LA-05** | Knowledge Graph + Evidence Nervous System | Full story on sibling queue `5ef7412` / refine into canonical; code only after LA-01→LA-04 PASS |
+| **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) | **This expansion — docs queue now; code only after LA-01→LA-05 PASS** |
+| **2I-LA-07…30** | Titles in §50 / LA-06 §83 | **QUEUE ONLY** — do not implement from this document |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3670,15 +3672,15 @@ Never force push. Never push `main`. Land on `xiv-v2` lineage only.
 
 Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN / ROUTING / ISOLATION / TENANT_ISOLATION / SECURITY_TEST / TESTS.
 
-### 50. Queue next user stories (LA-05 → LA-30)
+### 50. Queue next user stories (LA-05 → LA-30) — §83 titles
 
-**QUEUE ONLY — do not implement from this document.**
+**QUEUE ONLY — do not implement from this document.** Titles below are the permanent §83 continuation list (CEO). Full contracts expand one story at a time.
 
 | ID | Title |
 |----|-------|
-| **2I-LA-05** | Knowledge Graph + Evidence Nervous System |
-| **2I-LA-06** | Memory Consolidation + Organizational Learning |
-| **2I-LA-07** | Curiosity + Question + Contradiction Brain |
+| **2I-LA-05** | Knowledge Graph + Evidence Nervous System — full story on sibling queue (`5ef7412`); refine into canonical when merging |
+| **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) — **FULL STORY SUMMARY BELOW** (docs only) |
+| **2I-LA-07** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-06** (queue mention only; do not implement) |
 | **2I-LA-08** | Temporal + Causal Intelligence |
 | **2I-LA-09** | Parallel Universe Simulation Grid |
 | **2I-LA-10** | Multi-Model Arena + Model Evolution |
@@ -3750,6 +3752,418 @@ Every LA story inherits Guardian, Tenant Isolation, Universe Isolation, Agent Fi
 
 ---
 
+## 2I-LA-06 — MEMORY CONSOLIDATION + ORGANIZATIONAL LEARNING ENGINE (+ Quantum / Agentic OS foundations)
+
+**Status:** QUEUED (docs). Do **not** mark implemented until tested. Queue after LA-05. Do **not** interrupt active validated LA-01/02/03 work, LA-04/05 queues, or merge WIP. Do **not** implement LA-06 code until **LA-01 → LA-05** completion gates all **PASS**.
+
+### User story
+
+As the XIV AI Founder, I want XIV to consolidate memory into durable organizational learning — with a governed Learning Engine, memory hierarchy/promotion, three-speed brain cadence, quantum/hybrid research pipeline (computational advantage gate only), simulation-grid isolation, parallel DB fabric, agentic OS kernel foundations, tool foundry, agent council, privacy/security/community safety boundaries, and continuous improvement loops — so that XIV learns from evidence and outcomes without privilege inflation, fake quantum claims, partnership theater, or unsafe community/content surfaces.
+
+### Architectural emphasis (CEO)
+
+| Principle | Contract |
+|-----------|----------|
+| **Learning ≠ privilege growth** | Memory and lessons improve capability quality; they do **not** auto-expand authority, L4, or credentials |
+| **Promotion is gated** | Working → episodic → semantic → organizational → global only via explicit evidence + policy/human gates |
+| **Three-speed brain** | Fast / deliberative / consolidation speeds are scheduled computational modes — not biology cosplay |
+| **Quantum = research + advantage gate** | Parallel sim universes and quantum/hybrid paths are **COMPUTATIONAL**; no advertising quantum advantage until measured |
+| **Simulation ≠ production** | Sim grids / parallel DBs cannot mutate prod; promotion is explicit |
+| **Compose, don’t fork** | Reuse 2I-AK Learning Engine, 2I-EP Memory Consolidation, 2I-DV Organizational Learning, 2I-EO Persistent Memory, LA-04 Meta Brain, LA-05 Knowledge Graph — extend contracts |
+| **Providers honest** | External creator platforms (e.g. OnlyFans) = potential connectors **`NOT_CONFIGURED`** until verified — **never claim partnership** |
+| **Behavior-based safety** | “No criminals” via enforceable conduct/fraud/legal/safety policies — **not** inferring criminality from appearance |
+| **L4 DISABLED** | Consolidation / Night Shift / council / tool foundry never self-promote bounded→L4 |
+
+### Architecture adjustment notes (permanent)
+
+1. **OnlyFans / external creator platforms:** Potential **provider connector** class only. Status remains **`NOT_CONFIGURED`** until verified credentials, ToS-compliant integration, and evidence pack exist. UI must not imply LIVE partnership. **Never claim OnlyFans partnership.**
+2. **18+ Mature Community Universe + Naturist / Free-Spirit:** Separate **18+ Universe** with age assurance, consent, privacy, anti-harassment, content provenance, and **hard separation from minors**. Not a sexual-services marketplace. Behavior- and policy-based trust — **do not infer criminality (or virtue) from appearance**.
+3. **“No criminals” framing:** Enforceable via community standards, fraud detection, harassment bans, legal process cooperation, and Trust Scorecard signals grounded in **behavior and verified violations** — not physiognomy, stereotypes, or appearance-based criminality inference.
+
+Founder Brief delivery when contacts/briefs mentioned: **`devinhaynes2025@gmail.com`** (never `@gmil.com`; Gmail LIVE `NOT_CONFIGURED` until proven).
+
+### Flow
+
+```
+OBSERVE / EXPERIENCE
+→ CAPTURE EPISODE (scoped memory)
+→ ATTACH EVIDENCE + OUTCOME
+→ CONSOLIDATE (three-speed / dream shift — computational)
+→ PROMOTE / DEMOTE / QUARANTINE
+→ ORGANIZATIONAL LESSON (tenant-bound)
+→ OPTIONAL GLOBAL CANDIDATE (gated)
+→ MEASURE → RED TEAM → IMPROVE
+```
+
+---
+
+### 1. Preflight (implementation gate — later)
+
+Before any LA-06 code:
+
+1. Tip continuity: `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`; clean tree; **no force**; never `main`.
+2. **LA-01 → LA-05** completion gates all **PASS** (honest — never infer PASS).
+3. Inspect and **reuse**: Learning Engine (2I-AK), Memory Consolidation (2I-EP), Organizational Learning (2I-DV), Persistent Memory V6 (2I-EO), Lesson Library (2I-DU), Knowledge Graph (LA-05), Meta Brain (LA-04), Guardian, Tenant/Universe isolation, DAG, Evidence/Provenance.
+4. Do **not** claim quantum advantage, planetary omniscience, or external platform partnerships without verification evidence.
+
+### 2. Learning Engine
+
+| Contract | Detail |
+|----------|--------|
+| **Purpose** | Turn outcomes, contradictions, debriefs, and evaluations into durable lessons |
+| **Inputs** | Mission results, debates, simulations, user feedback, incident postmortems, red-team findings |
+| **Outputs** | Lesson objects with evidence refs, applicability scope, confidence, expiry, promotion state |
+| **Not** | Blind training on every interaction; uncontrolled weight updates; privilege minting |
+| **Fine-tune path** | Model weight changes only via Model Foundry gates — Learning Engine proposes, does not silently train |
+| **Compose** | 2I-AK / 2I-DU / CQ Continuous Improvement Kernel |
+
+### 3. Memory Hierarchy / Promotion / Consolidation
+
+| Tier | Role | Promotion rule |
+|------|------|----------------|
+| **Working** | Active task context | Ephemeral; TTL; no ambient cross-tenant |
+| **Episodic** | Mission/event traces | Retain with classification + purpose |
+| **Semantic** | Distilled facts/concepts | Requires evidence class ≥ policy threshold |
+| **Organizational** | Company lessons / playbooks | Tenant-bound; human/policy gate for wide publish |
+| **Global candidate** | Lawful shared lessons | Explicit private↛global gate + audit; never auto |
+
+Consolidation shift (computational “dream”): `DEDUPLICATE → SUPERSEDE → COMPRESS → LINK → MEASURE` — **do not destroy source evidence** (compose neural pruning rules).
+
+### 4. Three-Speed Brain
+
+| Speed | Use | Bound |
+|-------|-----|-------|
+| **Fast** | Cheap retrieval / simple routing | Must not wake every brain/agent |
+| **Deliberative** | Multi-brain debate, evidence synthesis | Cost/latency budgets; impact-triggered |
+| **Consolidation** | Night/off-peak learning & gardening | No silent prod deploy; no L4; no credential self-grant |
+
+Speeds are **scheduler modes**, not biological metaphors as product claims.
+
+### 5. Quantum Intelligence Pipeline (+ advantage gate)
+
+| Rule | Contract |
+|------|----------|
+| **Label honesty** | `RESEARCH` / `SIMULATED` / `HYBRID_CLASSICAL` / `QUANTUM_BACKEND` / `NOT_CONFIGURED` |
+| **Advantage gate** | Claim “quantum advantage” only with measured benchmark evidence vs classical baseline on the same problem class |
+| **Parallel sim universes** | **COMPUTATIONAL** exploration of scenarios — not literal physics product claims |
+| **No theater** | UI must not imply LIVE quantum hardware when backend is classical sim or `NOT_CONFIGURED` |
+| **Compose** | 2I-BO Quantum-Ready Optimization Interface; LA-11 queue for deeper lab |
+
+### 6. Simulation Grid / DB isolation
+
+| Rule | Contract |
+|------|----------|
+| **Grid** | Parallel scenario runners with versioned world/state snapshots |
+| **Isolation** | Sim Universe DB ≠ production DB; network/IAM/RLS walls |
+| **No side effects** | Sims cannot alter prod knowledge, money, messages, or schemas without gated promotion |
+| **Promotion** | Sim lesson → organizational candidate via Learning Engine + evidence pack |
+| **Compose** | 2I-GE Parallel Simulation Universes; LA-09 title queue |
+
+### 7. Parallel DB Fabric
+
+| Rule | Contract |
+|------|----------|
+| **Purpose** | Isolated stores for sims, tenants, universes, and research sandboxes |
+| **Federation ≠ merge** | Compose HB–HV DB federation — connecting ≠ copying ≠ understanding |
+| **Credentials** | Never invent; DAG only; discovery ≠ access |
+| **Labels** | Real DB labels: `PROD` / `STAGING` / `SIM` / `TENANT_X` / `UNIVERSE_Y` — no ambiguous “main brain DB” |
+
+### 8. DB evolution agents / protocol
+
+| Agent / step | Contract |
+|--------------|----------|
+| **Propose** | Schema/index/retention proposals with purpose, owner, rollback |
+| **Test** | Non-prod migrate + isolation tests |
+| **Gate** | Human/policy for prod; Night Shift cannot destructive-apply |
+| **Apply** | Expand/contract; verify; audit |
+| **Forbidden** | Autonomous prod destroy; creating DBs because a vendor exists |
+
+### 9. Agentic OS Kernel (foundations)
+
+| Layer | Contract |
+|-------|----------|
+| **Kernel** | Scheduling, isolation, capability tokens, message bus, audit — **application/intelligence layer**, does not replace host OS |
+| **Syscall analogy** | Tool/DB/model invokes are capability-checked “calls” — catalog membership ≠ invoke rights |
+| **No ambient root** | Agents default **NONE**; Meta Brain ≠ root |
+| **Compose** | 2I-BK Agentic Full-Stack OS; Mission Control (LA-03); Guardian |
+
+### 10. Hardware / AI Chip Router
+
+| Rule | Contract |
+|------|----------|
+| **Route by cost/latency/privacy/capability** | CPU / GPU / NPU / cloud accelerator / quantum backend (when configured) |
+| **Honest telemetry** | Do not invent thermal/CPU/GPS when unavailable |
+| **Device capability principle** | Degrade gracefully; Pocket/Edge ≠ full Mission Control |
+| **NOT_CONFIGURED** until proven for exotic backends |
+
+### 11. Universal OS Experience
+
+XIV is an **intelligence/experience layer** across Windows / Mac / Linux / mobile / vehicle / XR companions (LA-22…26 titles) — **not** a claim to replace or remotely wipe host OSes. Companion surfaces inherit Guardian + least privilege.
+
+### 12. Tool Foundry / tools-building-tools / nested tools
+
+| Contract | Detail |
+|----------|--------|
+| **Tool Foundry** | Compose 2I-BW Tool-Building Tool Foundry + LA-21 Plugin/Connector Factory |
+| **Nested tools** | Tools may generate tools under sandbox + Firewall review before widen |
+| **Signed manifests** | Required before production invoke rights |
+| **Efficiency** | Prefer reuse/composition over infinite microtool spam |
+| **Default** | Generated tools get **NONE** permissions |
+
+### 13. Agent Council V10 + Devil's Advocate
+
+| Role | Contract |
+|------|----------|
+| **Council** | Structured multi-agent deliberation for high-impact decisions |
+| **Devil's Advocate** | Mandatory dissent path — must supply evidence/reasoning; not automatic disagreement theater |
+| **Output** | FACTS / INFERENCES / DISAGREEMENTS / UNKNOWN / OPTIONS / RECOMMENDATION |
+| **Authority** | Council recommends; human/policy acts — consensus ≠ truth ≠ permission |
+
+### 14. Brainstorm + overnight meetings / reports
+
+| Mode | Contract |
+|------|----------|
+| **Brainstorm** | Divergent idea capture with provenance; ideas ≠ backlog authority |
+| **Overnight meetings** | Scheduled agent sessions with agendas, timeboxes, debriefs |
+| **Reports** | Founder Brief / shift reports to **`devinhaynes2025@gmail.com`** when severity warrants — Gmail LIVE `NOT_CONFIGURED` until proven |
+| **No silent prod** | Overnight work cannot deploy L4, mint credentials, or destructive-migrate |
+
+### 15. Executive / engineering / cyber roles (logical)
+
+Logical role families (specialize ≠ spawn farm): ExecutiveChiefOfStaffAgent, EngineeringLeadAgent, SREAgent, SecOpsAgent, PrivacyCounselAgent, RedTeamAgent, ForensicsAgent, ComplianceAgent — default **NONE**; follow LA-04 §52 role creation principle.
+
+### 16. 24/7 security + forensic chain + cybersecurity plugins
+
+| Pillar | Contract |
+|--------|----------|
+| **24/7 security** | Continuous detect→contain→report inside boundaries — not uncontrolled offensive autonomy |
+| **Forensic chain** | Evidence preservation, hash chain, access audit; no silent log wipe |
+| **Cyber plugins** | Marketplace/plugins behind Firewall + review; no ambient network root |
+| **Fail closed** | Missing grant → DENIED + AUDITED |
+
+### 17. Personal Privacy Vault + Private Search Mode
+
+| Feature | Contract |
+|---------|----------|
+| **Privacy Vault** | User-controlled sealed store; separate from company/global brain; explicit export only |
+| **Private Search Mode** | Queries do not train global models by default; minimized logs; no cross-tenant leakage |
+| **Data minimization** | Collect least necessary; retain with purpose + expiry |
+| **Surveillance ban** | Authorized lineage ≠ surveillance; no raw secrets/PII “for audit” dumps |
+
+### 18. Content Provenance / Media Integrity / AI Manipulation Protection
+
+| Rule | Contract |
+|------|----------|
+| **Provenance** | Media carries source, edit history, model-generation flags when known |
+| **Integrity** | Tamper-evident digests where feasible |
+| **Honest limits** | Detection of AI manipulation is **probabilistic** — UI must not claim perfect deepfake omniscience |
+| **UNKNOWN valid** | When provenance missing → label UNKNOWN / UNVERIFIED — not fake certainty |
+
+### 19. 18+ Mature Community Universe + Naturist / Free-Spirit (safety / trust)
+
+| Rule | Contract |
+|------|----------|
+| **Separate Universe** | Hard isolation from minors / general community |
+| **Age assurance + consent** | Required before access; consent revocable |
+| **Not a sexual-services marketplace** | No brokering illegal services |
+| **Anti-harassment** | Behavior-based enforcement; Trust Scorecard |
+| **Appearance ≠ criminality** | Do **not** infer criminal status from body, clothing, or naturist context |
+| **Provenance** | Media integrity + privacy defaults on |
+| **Compose** | 2I-BV remains optional/boundary — do not implement adult spaces from this doc alone without CEO gate |
+
+### 20. Creator Safety + External Creator Platform Connector
+
+| Rule | Contract |
+|------|----------|
+| **Creator Safety** | Anti-harassment, leak prevention aids, consent, takedown workflows — honest capability labels |
+| **External connectors** | OnlyFans and peers = **potential providers**, status **`NOT_CONFIGURED`** until verified |
+| **Never claim partnership** | Marketing/UI/docs must not assert official partnership without evidence |
+| **ToS / law** | Integrations must respect platform ToS and applicable law |
+
+### 21. Community Partnership / Meetup Safety
+
+| Rule | Contract |
+|------|----------|
+| **Meetup safety** | Optional safety checklists, venue tips, report flows — not guaranteed physical protection claims |
+| **Partnership** | Community partnerships are explicit, revocable, auditable |
+| **No stalking features** | Location/meetup tools fail closed on harassment patterns |
+
+### 22. Retail Product Intelligence / Passport / Anti-counterfeit
+
+Compose Product Passport (2I-GQ / 2I-AF): authenticity signals, supply-chain evidence, counterfeit risk labels with confidence honesty — not absolute “guaranteed genuine” without evidence class.
+
+### 23. Media OS + Premium UI aspiration
+
+| Surface | Contract |
+|---------|----------|
+| **Media OS** | Governed ingest, transform, publish, rights, provenance |
+| **Premium UI aspiration** | Design quality target — aspiration ≠ shipped claim; no LIVE badges without proof |
+| **Interface layers** | Role-adaptive Home / Mission Control / Privacy / Trust Center — least privilege per layer |
+
+### 24. Workforce / Brain dialogue visualization + Agent dialogue protocol
+
+| Contract | Detail |
+|----------|--------|
+| **Viz** | Show which brains/agents spoke, evidence used, dissent — without dumping secrets |
+| **Protocol** | Versioned AgentMessage: purpose, tenant, universe, classification, evidence refs, confidence |
+| **No blind trust** | Agents do not auto-adopt peer claims as FACT |
+
+### 25. GitHub / Cursor / multi-IDE + Software Factory Council
+
+| Contract | Detail |
+|----------|--------|
+| **Multi-IDE** | Agents assist across GitHub/Cursor/IDEs via explicit connectors — `NOT_CONFIGURED` until proven |
+| **Software Factory Council** | Review architecture, risk, test plan before widen — compose 2I-AI Software Factory |
+| **Repo rule** | Dual-push discipline; no force; never `main` for foundation landings |
+
+### 26. Tool discovery / composition + Algorithm Foundry
+
+| Rule | Contract |
+|------|----------|
+| **Discovery ≠ invoke** | Catalog visibility without capability token |
+| **Composition** | Preserve per-API auth boundaries |
+| **Algorithm Foundry** | Propose/evaluate algorithms with benchmarks; uncontrolled self-modification forbidden |
+| **Swarm limiter** | Cap parallelism/cost; efficiency > vanity swarm size |
+
+### 27. Efficiency / Swarm limiter + Role expansion
+
+| Rule | Contract |
+|------|----------|
+| **Limiter** | Max concurrent agents/brains per mission class; budget breaker |
+| **Role expansion** | Only via capability gap → evidence → proposal → … → approval (§52) |
+| **One capable agent** may cover multiple close roles when more efficient |
+
+### 28. Trust scorecard / Trust Center + Permission screens
+
+| Surface | Contract |
+|---------|----------|
+| **Trust Scorecard** | Behavior, verification, violation history, evidence-backed signals — not appearance scoring |
+| **Trust Center** | User-visible permissions, connectors, data uses, LIVE vs NOT_CONFIGURED |
+| **Permission screens** | Explicit grant UX; default deny; revocable |
+| **Privacy-first community UI** | Minimized public fields; mature content segmentation behind age gates |
+
+### 29. Mature content segmentation + Community AI Safety + Data minimization
+
+| Rule | Contract |
+|------|----------|
+| **Segmentation** | 18+ content never bleeds into minor-accessible surfaces |
+| **Community AI Safety** | Classifiers assist; humans/policy for high-impact; UNKNOWN over fake certainty |
+| **Minimization** | Purpose-limited collection; no blind training on private vault / private search |
+
+### 30. Real DB labels + DB Health Council + Brain↔DB feedback
+
+| Rule | Contract |
+|------|----------|
+| **Real labels** | Surfaces must show true environment/tenant/universe labels |
+| **DB Health Council** | Logical reviewers for migrations, RLS, bloat, isolation drills |
+| **Brain↔DB feedback** | Query quality and schema lessons flow to Learning Engine — DB presence ≠ permission |
+
+### 31. Continuous improvement + Testing + Red team
+
+| Loop | Contract |
+|------|----------|
+| **CI** | OBSERVE→…→IMPROVE→REPEAT; CI ≠ uncontrolled prod modification |
+| **Tests** | Unit/isolation/promotion/sim-isolation/quantum-label honesty/community separation |
+| **Red team** | Scheduled adversarial tests on privilege escalation, cross-universe leak, deepfake overclaim, connector spoofing |
+| **Scorecard** | Evidence / accuracy / security / outcomes / cost / reliability / learning |
+
+### 32. Checkpoint protocol
+
+At each future code checkpoint (when gated): TYPECHECK → TEST → SECURITY → SECRET SCAN → `git diff --check` → COMMIT → Dual-push GitHub+GitLab.
+
+**Phase gate:** `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`. **No force. No main. L4 off.**
+
+Suggested commit patterns (implementation time only):
+
+- `feat(xiv): add memory consolidation engine`
+- `feat(xiv): add organizational learning promotion gates`
+- `feat(xiv): add simulation db isolation fabric`
+- `feat(xiv): add agent council devil advocate protocol`
+- `test(xiv): harden la-06 isolation and promotion`
+
+Docs-only commit for this queue: `docs(xiv): queue memory learning quantum agentic OS 2I-LA-06`
+
+### 33. Completion evidence (when implemented later)
+
+Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_ENGINE / MEMORY_PROMOTION / THREE_SPEED / QUANTUM_LABELS / SIM_ISOLATION / PARALLEL_DB / AGENTIC_OS / TOOL_FOUNDRY / COUNCIL / PRIVACY_VAULT / CREATOR_CONNECTOR_STATUS / MATURE_UNIVERSE_SEPARATION / TRUST_CENTER / TESTS / SECURITY.
+
+### 34. Out of scope for LA-06 implementation (when gated)
+
+- Implementing before LA-01→LA-05 PASS
+- Claiming quantum advantage without measured gate
+- Claiming OnlyFans or other creator-platform partnerships
+- Appearance-based criminality inference
+- Mixing 18+ Universe with minors
+- Auto private→global lesson promotion
+- Silent prod deploy / L4 / credential self-grant from overnight council
+- Replacing host OSes; inventing device telemetry
+- Sexual-services marketplace features
+
+### 35. §83 — Queue LA-07 → LA-30 (titles only)
+
+**QUEUE ONLY — do not implement from this LA-06 docs commit.**
+
+| ID | Title |
+|----|-------|
+| **2I-LA-07** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-06** |
+| **2I-LA-08** | Temporal + Causal Intelligence |
+| **2I-LA-09** | Parallel Universe Simulation Grid |
+| **2I-LA-10** | Multi-Model Arena + Model Evolution |
+| **2I-LA-11** | Quantum/Hybrid Compute Lab |
+| **2I-LA-12** | AI Sales Force V10 |
+| **2I-LA-13** | AI Marketing Organization V10 |
+| **2I-LA-14** | AI Customer Success Organization |
+| **2I-LA-15** | AI Finance + Revenue Organization |
+| **2I-LA-16** | AI Supply Chain Company |
+| **2I-LA-17** | Global Research Network |
+| **2I-LA-18** | Global Public/Government Data Fabric |
+| **2I-LA-19** | Technology + Partnership Intelligence |
+| **2I-LA-20** | Investor + Capital Intelligence |
+| **2I-LA-21** | Plugin + Connector Factory |
+| **2I-LA-22** | Windows / Mac / Linux Companion |
+| **2I-LA-23** | Android / iOS Pocket Brain |
+| **2I-LA-24** | Vehicle + Edge Experience |
+| **2I-LA-25** | Robotics Capability Gateway |
+| **2I-LA-26** | XR/Spatial Business OS |
+| **2I-LA-27** | Digital Twin Earth |
+| **2I-LA-28** | Global Business Simulation Network |
+| **2I-LA-29** | Business Hospital V10 |
+| **2I-LA-30** | Founder Mission Control V12 |
+
+### NEXT after LA-06 (queue mention only)
+
+**2I-LA-07 — Curiosity + Question + Contradiction Brain V10** (do **not** implement from this docs commit).
+
+### Permanent rules (LA-06 / CEO)
+
+```
+LEARNING ≠ PRIVILEGE GROWTH
+PROMOTION IS GATED (PRIVATE ≠ GLOBAL)
+THREE-SPEED BRAIN = COMPUTATIONAL MODES
+QUANTUM ADVANTAGE ONLY WHEN MEASURED
+SIMULATION ≠ PRODUCTION
+PROVIDER CONNECTORS NOT_CONFIGURED UNTIL PROVEN
+NO PARTNERSHIP CLAIMS WITHOUT EVIDENCE
+BEHAVIOR-BASED SAFETY ≠ APPEARANCE-BASED CRIMINALITY
+18+ UNIVERSE SEPARATE FROM MINORS
+UNKNOWN > FAKE CERTAINTY
+L4 DISABLED
+```
+
+Additional permanent inheritance (all LA stories):
+
+- Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway
+- Evidence / Provenance, Audit, Human + Policy Authority
+- Providers `NOT_CONFIGURED` until proven; no force push; never `main` for foundation landings
+- Specialization ≠ authority; more agents ≠ better decisions; node/memory count ≠ intelligence
+- Founder Brief: `devinhaynes2025@gmail.com`
+
+### Inheritance (LA-06)
+
+Every LA-06 deliverable inherits Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway, Evidence/Provenance, Audit, Human + Policy Authority, providers `NOT_CONFIGURED` until proven, and **L4 DISABLED**.
+
+---
+
 ## RESIDUAL RESERVE PLACEHOLDERS (not in HB–HV / JV–KZ)
 
 Still **reserve only** (do not implement from this document) if not covered above:
@@ -3766,10 +4180,12 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Out of scope for this document
 
-- Implementing any AD–HV / JV–KZ / LA-04+ runtime code, providers, or credentials
+- Implementing any AD–HV / JV–KZ / LA-04+ / **LA-06** runtime code, providers, or credentials
 - Starting 2I-AD or any BG–BZ / CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / IX–JU / **JV–KZ** / **LA-04…30** coding from this queue alone
 - Claiming queued AI workforce departments prove agents are already running
 - Implementing Meta Brain / multi-brain router before LA-01+02+03 gates PASS
+- Implementing Knowledge Graph (LA-05) before LA-01→LA-04 PASS; implementing Memory/Learning/Quantum/Agentic OS (LA-06) before LA-01→LA-05 PASS
+- Claiming OnlyFans or other creator-platform partnerships; appearance-based criminality inference; mixing 18+ Universe with minors
 - Enabling L4, GDF production-live, or Gmail LIVE send
 - Claiming planetary scale, quantum advantage, or advertising trillions as proven
 - Merging Data Directory, Storage Fabric, and Brain into one confused subsystem
@@ -3814,7 +4230,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB→HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue).
+- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-06** full story). Sibling LA-05 expansion on `cursor/master-queue-la-05-b42e` should be refined into this file when merging — do not fork a second canonical.
 - Older AD–AT, AD–BF, AD–BZ, AD–CP, AD–DF, AD–DV, AD–EL, AD–FG, AD–GF, AD–HA, AD–HV, and AD–LA paths are **pointer stubs** to this document (when present).
 - If siblings are mid-write on IX–JU / LB–MF / post-KZ blocks: refine in place after wait-gate clean; **preserve** all prior sections (including JV–KZ + LA) when expanding.
 - **JV follows JU:** if IX–JU lands later, keep JV–KZ content; add pointer/dependency notes idempotently — do not delete workforce queue.
@@ -3824,7 +4240,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Confirmation checklist (docs agents)
 
-- [x] Queued-only documentation (no AD–HV / HB–HV / JV–KZ / LA-04+ implementation in the docs commit)
+- [x] Queued-only documentation (no AD–HV / HB–HV / JV–KZ / LA-04+ / LA-06 implementation in the docs commit)
 - [x] AD→BZ prior queue content preserved
 - [x] Brain Expansion Series **2I-BG → 2I-BZ** preserved
 - [x] Business OS continuation **2I-CA → 2I-CP** preserved
@@ -3843,7 +4259,11 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] NEXT QUEUE RESERVE 2I-LA+ noted (LA-04…30 already expanded; IX–JU dependency noted)
 - [x] PERMANENT GOVERNANCE + L4 DISABLED (JV–KZ); Founder Twin ≠ CEO; Manager Agent ≠ human executive; Founder Brief `devinhaynes2025@gmail.com`
 - [x] Executable Foundation **2I-LA-04** Multi-Brain Router + Meta Brain Runtime preserved (full CEO summary)
-- [x] **2I-LA-05 → 2I-LA-30** titles queued (CEO list)
+- [x] **2I-LA-05** Knowledge Graph noted (full story on sibling `5ef7412`; titles retained)
+- [x] **2I-LA-06** Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) queued (full CEO summary; docs only)
+- [x] Architecture adjustments encoded: OnlyFans connector NOT_CONFIGURED / no partnership claim; 18+ Mature/Naturist Universe separation; behavior-based safety ≠ appearance criminality
+- [x] **§83 / LA-07 → LA-30** titles queued; **NEXT after LA-06:** LA-07 Curiosity + Question + Contradiction Brain V10
+- [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm
 - [x] Architectural correction encoded prominently (adapters/APIs/federation; CONNECTING ≠ COPYING ≠ UNDERSTANDING)
 - [x] NEW AGENT DEPARTMENTS (default NONE) + 24/7 CONNECTION WATCH + 24/7 BRAIN FEEDING recorded
@@ -3888,5 +4308,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Founder Brief email corrected to `devinhaynes2025@gmail.com` (never `gmil`)
 - [x] ONE phase at a time; L4 disabled; providers `NOT_CONFIGURED` until proven
 - [x] STOP for CEO before AD after AB→AC inspection — **still awaiting CEO; 2I-AD first when authorized**
-- [x] No CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / JV–KZ / AD–BZ / LA-04+ implementation started
+- [x] No CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / JV–KZ / AD–BZ / LA-04+ / LA-06 implementation started
 - [x] HARD STOP: LA-04 code blocked until LA-01+02+03 completion gates PASS on tip
+- [x] HARD STOP: LA-05 code blocked until LA-01→LA-04 PASS; LA-06 code blocked until LA-01→LA-05 PASS
+- [x] No LA-06 implementation in the docs-only queue commit
