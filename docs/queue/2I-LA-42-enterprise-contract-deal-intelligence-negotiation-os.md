@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-41 PASS**. Queue **AFTER LA-41**. Do 
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`](../architecture/xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md).
 

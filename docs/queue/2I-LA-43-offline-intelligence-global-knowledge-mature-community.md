@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-42 PASS**. Queue **AFTER LA-42**. Do 
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 
 **Full contracts:** [`docs/architecture/xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md`](../architecture/xiv-2i-la-43-offline-intelligence-global-knowledge-mature-community-v530.md).
 
@@ -16,7 +16,7 @@ Ordering: **LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to run Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — OfflineBrain; offline capability classes; neural knowledge graph (**CANDIDATE→VERIFIED**, no silent promotion); fast ingestion + storage router; Global Knowledge Team; library/history/government/law/culture/art/travel/news/BI brains; JurisdictionResolver (sources + questions — not omniscient compliance); MatureCommunityUniverse (separate, late-stage, release gate; **NOT** primary product; **`MATURE_COMMUNITY_ENABLED=FALSE`**; 18+ AgeAssurance; no sexual-services commerce; private media ≠ training/Global Brain); media safety; verifiable deletion workflow (revoke→primary→derivatives→cache→backup expiration — not erase-forever theater); RLS/tests; release priority business canary first / mature later; feature flags; permanent rules; evidence **NEVER INFER PASS**; next LA-44…60.
+As the XIV AI Founder, I want XIV to run Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 — OfflineBrain; offline capability classes; neural knowledge graph (**CANDIDATE→VERIFIED**, no silent promotion); fast ingestion + storage router; Global Knowledge Team; library/history/government/law/culture/art/travel/news/BI brains; JurisdictionResolver (sources + questions — not omniscient compliance); MatureCommunityUniverse (separate, late-stage, release gate; **NOT** primary product; **`MATURE_COMMUNITY_ENABLED=FALSE`**; 18+ AgeAssurance; no sexual-services commerce; private media ≠ training/Global Brain); media safety; verifiable deletion workflow (revoke→primary→derivatives→cache→backup expiration — not erase-forever theater); RLS/tests; release priority business canary first / mature later; feature flags; permanent rules; evidence **NEVER INFER PASS**; next LA-43A → LA-44…60.
 
 ## Critical architecture rules (permanent)
 
@@ -42,6 +42,7 @@ As the XIV AI Founder, I want XIV to run Offline Intelligence + Global Knowledge
 
 ## Next queue
 
+- **2I-LA-43A** Global Naturist Business + Tourism + Culture + Private Community Universe V535
 - **2I-LA-44** Startup + Company Creation Factory V540
 - **2I-LA-45…60** prepared expansion titles (as listed in architecture)
 

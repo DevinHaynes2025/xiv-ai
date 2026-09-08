@@ -2,7 +2,7 @@
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-41** completion gate **PASS** (and prior LA-01→LA-40 / LA-32 / LA-35A / Guardian gates as applicable).
 **Also blocked for code until:** LA-01 → LA-41 PASS minimum; compose **LA-15** Legal/Contract Intelligence; **LA-16** AI CFO; **LA-22B** Treasury/Contract OS; **LA-32** Global Contract + Deal Network V150; **LA-33** Opportunity Exchange; **LA-35A** Zero-Trust; **LA-36** C2C; **LA-40** Brain Foundation / Master Plan honesty; **LA-41** Global Commercial Relationship Graph; Guardian.
-**Queue rule:** **QUEUE AFTER LA-41.** Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 (this V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Queue rule:** **QUEUE AFTER LA-41.** Ordering: **LA-41 Global Commercial Relationship Graph → LA-42 (this V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 **Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Tip may still land LA-37…41 — park on `cursor/queue-2i-la-42-*-4059`; rebase when LA-41 on tip.
 **Canonical path:** `docs/architecture/xiv-2i-la-42-enterprise-contract-deal-intelligence-negotiation-os-v520.md`
 **Founder summary sibling:** [`../queue/2I-LA-42-enterprise-contract-deal-intelligence-negotiation-os.md`](../queue/2I-LA-42-enterprise-contract-deal-intelligence-negotiation-os.md)
@@ -14,7 +14,7 @@
 >
 > **Feature flags (default OFF / FALSE):** `ENTERPRISE_DEAL_INTELLIGENCE_V520_ENABLED`, `DEAL_INTELLIGENCE_KERNEL_ENABLED`, `DEAL_ROOM_ISOLATION_ENABLED`, `DEAL_AI_TASK_FORCE_ENABLED`, `COUNTERPARTY_RESEARCH_ENABLED`, `CONTRACT_INTELLIGENCE_ENABLED`, `CONTRACT_VERSIONING_DIFF_ENABLED`, `DOCUMENT_AS_DATA_GATE_ENABLED`, `OBLIGATION_GRAPH_V520_ENABLED`, `NEGOTIATION_BRAIN_V520_ENABLED`, `BATNA_ENGINE_ENABLED`, `NEGOTIATION_SIMULATOR_ENABLED`, `DEAL_FINANCE_ENABLED`, `PRICING_VALUE_PROOF_ENABLED`, `SECURITY_QUESTIONNAIRE_ASSIST_ENABLED`, `PRIVACY_TECH_DD_ENABLED`, `CISCO_DEAL_CONTEXT_ADAPTER_ENABLED`, `DEAL_CLAIM_VERIFIER_ENABLED`, `PROPOSAL_FACTORY_ENABLED`, `RFP_FACTORY_ENABLED`, `CONTRACT_TO_OPS_HANDOFF_ENABLED`, `RENEWAL_WIN_LOSS_ENABLED`, `DEAL_SIMULATION_UNIVERSES_ENABLED`, `DEAL_CONTROL_TOWER_ENABLED`, **`AI_AUTONOMOUS_NEGOTIATION_ENABLED=FALSE`**, **`AI_AUTONOMOUS_SIGNING_ENABLED=FALSE`**, **`AI_AUTONOMOUS_MONEY_MOVEMENT_ENABLED=FALSE`**, **`AI_SIGNATORY_ENABLED=FALSE`**, **`FAKE_CERTIFICATION_INVENT_ENABLED=FALSE`**, **`PRIVATE_COUNTERPARTY_DOSSIER_ENABLED=FALSE`**, **`CISCO_FAKE_CONNECT_ENABLED=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
 >
-> **Tip note:** Tip may still land LA-37…41 — park on `cursor/queue-2i-la-42-*-4059`; rebase when LA-41 on tip. Dual-push; never force-push / never `main`. Master queue: **LA-41 → LA-42 (this V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+> **Tip note:** Tip may still land LA-37…41 — park on `cursor/queue-2i-la-42-*-4059`; rebase when LA-41 on tip. Dual-push; never force-push / never `main`. Master queue: **LA-41 → LA-42 (this V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 >
 > **Title supersession:** This V520 **supersedes** earlier title-only placeholder **“Commercial Trust + Counterparty Integrity Fabric”** for LA-42.
 >
@@ -36,10 +36,11 @@
 | **2I-LA-41** | Global Commercial Relationship Graph | **Must PASS before LA-42 code** |
 | **2I-LA-42** | Enterprise Contract + Deal Intelligence + Negotiation OS V520 | **This document** |
 | **2I-LA-43** | Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 | **NEXT** |
-| **2I-LA-44** | Startup + Company Creation Factory V540 | Title / next after LA-43 |
+| **2I-LA-43A** | Global Naturist Business + Tourism + Culture + Private Community Universe V535 | After LA-43 |
+| **2I-LA-44** | Startup + Company Creation Factory V540 | After LA-43A |
 | **2I-LA-45…60** | Prepared expansion titles | Title queue |
 
-**Ordering lock:** **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
+**Ordering lock:** **LA-41 Global Commercial Relationship Graph → LA-42 Enterprise Contract + Deal Intelligence + Negotiation OS V520 → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60**.
 
 **LA-32 ≠ LA-42:** LA-32 holds Contract/Deal Network V150 foundations. Enterprise **Deal Intelligence Kernel**, DealRoom isolation depth, AI task-force honesty, counterparty research (no private dossiers), Contract Intelligence + versioning/diff/clauses, document=data prompt-injection defense, Obligation Graph V520, NegotiationBrain + BATNA + simulator (sim≠intent/acceptance), Deal Finance (decimal; estimate≠settlement), Pricing/Value Proof, Security questionnaire (never invent certs), Privacy/Tech DD, Cisco known≠connected, DealClaimVerifier (PLAN≠IMPLEMENTED), Proposal/RFP factories, Contract→ops/project/monitoring, Renewal/Win-Loss, Deal Simulation Universes, Human signatory supremacy, Control Tower, and permanent autonomy flags **FALSE** belong **here**.
 
@@ -445,6 +446,7 @@ L4_AUTONOMY_ENABLED=false
 | Story | Title |
 |-------|-------|
 | **2I-LA-43** | **Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530** |
+| **2I-LA-43A** | **Global Naturist Business + Tourism + Culture + Private Community Universe V535** |
 | **2I-LA-44** | **Startup + Company Creation Factory V540** |
 | **2I-LA-45** | Partner Ecosystem + Channel Graph Runtime (title queued) |
 | **2I-LA-46** | Negotiated Obligation + Performance Twin (title queued) |
@@ -463,7 +465,7 @@ L4_AUTONOMY_ENABLED=false
 | **2I-LA-59** | Business Services Exchange + AI Solution Network (title queued — prior LA-43 concept may land here if founder reassigns) |
 | **2I-LA-60** | Continuity + Expansion Control Plane (title queued) |
 
-**NEXT after LA-42:** **2I-LA-43** Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530. **Do not implement LA-43…60 from this commit.**
+**NEXT after LA-42:** **2I-LA-43** Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → **LA-43A** Global Naturist Business + Tourism + Culture + Private Community Universe V535 → **LA-44**. **Do not implement LA-43…60 from this commit.**
 
 ## 29. Completion evidence placeholders
 
@@ -532,7 +534,7 @@ L4 DISABLED
 | Check | Result required |
 |-------|-----------------|
 | Docs paths | architecture V520 + queue summary + master/KZ update |
-| Ordering | **LA-41 → LA-42 QUEUED (V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-44 Startup + Company Creation Factory V540 → LA-45…60** |
+| Ordering | **LA-41 → LA-42 QUEUED (V520) → LA-43 Offline Intelligence + Global Knowledge Nervous System + Culture/Travel/Business Intelligence + 18+ Private Community Trust OS V530 → LA-43A Global Naturist Business + Tourism + Culture + Private Community Universe V535 → LA-44 Startup + Company Creation Factory V540 → LA-45…60** |
 | Remotes | LOCAL = GITHUB = GITLAB after dual-push |
 | Tree | CLEAN |
 | Runtime | **HARD STOP — no LA-42 runtime** |
