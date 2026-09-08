@@ -6,7 +6,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-15 PASS**. Queue **AFTER LA-15**; 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-15 Global Legal + Contract Intelligence OS + Autonomous Product Owner + 24/7 User Story Evolution Engine** must PASS before LA-16 code. Ordering: LA-14 Cybersecurity+Forensics → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO + Banking + Wealth + Executive Org V20** → **LA-17 Personal Privacy Vault**.
+**2I-LA-15 Global Legal + Contract Intelligence OS + Autonomous Product Owner + 24/7 User Story Evolution Engine** must PASS before LA-16 code. Ordering: LA-14 Cybersecurity+Forensics → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO + Banking + Wealth + Executive Org V20** → **LA-17 Privacy Vault + Revenue + Sales Tech** → **LA-18 Age Assurance + Identity + Community Trust**.
 
 **Tip note:** Rebased onto tip that includes LA-15 (after LA-14). Never force-push / never `main`.
 
@@ -56,7 +56,7 @@ As the XIV AI Founder, I want XIV to run an AI CFO + Banking Collaboration Fabri
 
 ## Next queue
 
-- **2I-LA-17** Personal Privacy Vault + Private Search
+- **2I-LA-17** Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine
 - Then **LA-18…LA-30** per master queue titles
 
 ## Docs-only gate

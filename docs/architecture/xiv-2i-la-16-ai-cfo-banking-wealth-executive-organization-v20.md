@@ -7,7 +7,7 @@
 **Founder summary sibling:** [`../queue/2I-LA-16-ai-cfo-banking-wealth-executive-organization.md`](../queue/2I-LA-16-ai-cfo-banking-wealth-executive-organization.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
 **Compose with:** LA-04 Meta Brain, LA-05 Evidence/KG, LA-06 Memory/Learning, LA-07 Trust + Contract/Legal/Commerce, LA-08 Curiosity/Contradiction, LA-09 Temporal+Causal, LA-10 Simulation Grid (Financial Digital Twin sims), LA-11 Chip/Model Router, LA-12 Quantum+Hybrid Lab + **finance foundations** (AI CFO foundation / FinancialVault / PricingPlan — **not** this depth), LA-13 Nested Tool Foundry + Universe Fabric, LA-14 Cybersecurity+Forensics, **LA-15 Legal + Product Evolution** (obligation/contract memory, cost brain, regulated-activity counsel handoff), Tracker V2→V3, Data Nervous System, Agent Firewall, Data Access Gateway, Guardian.
-**Feeds:** **2I-LA-17** Personal Privacy Vault + Private Search — LA-16 supplies financial separation / vault boundaries; **not** full personal privacy OS depth.
+**Feeds:** **2I-LA-17** Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine — LA-16 supplies financial separation / vault boundaries; **not** full personal privacy OS depth.
 
 > Docs-only queue. **QUEUE AFTER LA-15.** Do **not** interrupt active validated LA-01–03+ / LA-09–15 docs or release-critical code. Do **not** destabilize the 30-day deployment runway. No AI CFO / banking / wealth / executive-agent runtime in this commit. Experimental features stay **feature-gated**. **L4 DISABLED**.
 >
@@ -22,9 +22,9 @@
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS | Prior (docs) |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine | **Must PASS before LA-16 code** (may still be rebasing docs — do not interrupt) |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **This document** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search | **NEXT** after LA-16 |
+| **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine | **NEXT** after LA-16 |
 
-**Ordering lock:** **LA-14 Cybersecurity+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 → LA-17 Personal Privacy Vault**.
+**Ordering lock:** **LA-14 Cybersecurity+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Identity + Community Trust**.
 
 Do not regress: Trust → Curiosity → Temporal+Causal → Simulation → Chip Router → Quantum Lab (finance **foundations**) → Foundry/Fabric → Cybersecurity OS → Legal + Product Evolution → **this Finance / Banking / Wealth / Executive OS** → Privacy Vault.
 
@@ -529,12 +529,12 @@ Separate commits for: vault isolation, RLS, disclosure+regulated gate, pricing e
 | Critical rules A–D | Explicit in this document |
 | Tip | Rebase onto tip that includes LA-15 when present; else after LA-14 + note prerequisite |
 
-### 76. Next queue — LA-17 Personal Privacy Vault
+### 76. Next queue — LA-17 Privacy Vault + Revenue + Sales Tech
 
 | ID | Title |
 |----|-------|
-| **2I-LA-17** | **Personal Privacy Vault + Private Search** |
-| **2I-LA-18** | Age Assurance + Community Trust |
+| **2I-LA-17** | **Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine** |
+| **2I-LA-18** | Age Assurance + Identity + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
 | **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
@@ -548,7 +548,7 @@ Separate commits for: vault isolation, RLS, disclosure+regulated gate, pricing e
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
 
-**NEXT after LA-16:** **2I-LA-17** Personal Privacy Vault + Private Search.
+**NEXT after LA-16:** **2I-LA-17** Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine.
 
 ### 77. Permanent rules (LA-16 / CEO)
 
