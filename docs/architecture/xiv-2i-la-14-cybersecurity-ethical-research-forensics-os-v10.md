@@ -546,7 +546,7 @@ All fields require evidence. **Never infer PASS.**
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **NEXT** (incl. security research agreements, RoE contracts, bounty terms, disclosure legal path) |
 | **2I-LA-16** | **AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** — do not overload LA-12/LA-14 |
 | **2I-LA-17** | Privacy Vault + Private Search |
-| **2I-LA-18** | Age Assurance + Community Trust |
+| **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universe |
 | **2I-LA-20** | Creator Safety + Media Rights |
 | **2I-LA-21** | Retail Product Passport + Authenticity |
