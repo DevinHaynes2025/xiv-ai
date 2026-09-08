@@ -40,6 +40,10 @@ Thumbs.db
 tmp/
 temp/
 
+# XIV local brain runtime state (never commit checkpoints/prompts/results)
+.xiv-local/
+**/.xiv-local/
+
 # Coverage
 coverage/
 
