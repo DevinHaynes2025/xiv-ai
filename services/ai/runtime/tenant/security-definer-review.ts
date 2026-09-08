@@ -1,6 +1,10 @@
 /**
  * Static contract for Supabase SECURITY DEFINER grant hardening.
  * UNIT/SEMANTIC — not hosted advisor proof and not LIVE claim.
+ *
+ * LEAKED_PASSWORD_PROTECTION is Auth dashboard-only. Without screenshot/export
+ * proof it stays NOT_VERIFIED (NOT_CONFIGURED / dashboard-pending) — never PASS
+ * or ENABLED from SQL or agent inference.
  */
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -9,6 +13,14 @@ import { PHASE2HA_MIGRATION } from './reconciliation';
 
 export const SECURITY_DEFINER_HARDENING_MIGRATION =
   '20260908013000_harden_security_definer_grants.sql';
+
+/** Auth dashboard control — not verifiable via SQL migrations. */
+export type LeakedPasswordProtectionStatus =
+  | 'NOT_VERIFIED'
+  | 'NOT_CONFIGURED'
+  | 'ENABLED';
+
+export const LEAKED_PASSWORD_PROTECTION: LeakedPasswordProtectionStatus = 'NOT_VERIFIED';
 
 const MEMBERSHIP_HELPERS = [
   'xiv_is_org_member',
@@ -87,6 +99,8 @@ export function reviewSecurityDefinerGrantPolicy(input?: {
     intentionalPublicRpcs: ['xiv_create_organization', 'xiv_create_universe'] as const,
     rlsAutoEnableCallableByAnonOrAuthenticated: false as const,
     leakedPasswordProtectionClaimedFixedInSql: false as const,
+    /** Never PASS/ENABLED without Supabase Auth dashboard proof. */
+    LEAKED_PASSWORD_PROTECTION: LEAKED_PASSWORD_PROTECTION,
   };
 }
 
