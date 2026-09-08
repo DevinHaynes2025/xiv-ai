@@ -3,14 +3,14 @@
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only.
 **DO NOT IMPLEMENT** until **Deployment Gate Hardening PASS** (CI, security, RLS isolation, dependency/secret scanning, regression, rollback, backup/restore, worker and agent-evaluation gates) **and** applicable LA-01→LA-61 / Guardian predecessors as required by foundation policy.
 **This story does not override the current deployment-readiness gate.** Architecture may grow in parallel; staging/canary promotion remains blocked until those gates prove PASS with evidence.
-**Queue rule:** **CURRENT = Deployment Gate Hardening.** **NEXT architecture park = this 2I-AI-62A.** Then **62B → 62C → 62D → 62E → 62F → 62G → 62H (titles)**. Do **not** start 62B–62H implementation from this commit.
+**Queue rule:** **CURRENT = Deployment Gate Hardening.** **62A = this document (QUEUED DOCS).** **62B = QUEUED DOCS.** Then **62C → 62D → 62E → 62F → 62G → 62H (titles)**. Do **not** start 62C–62H implementation from this commit.
 **Branch:** tip intent `xiv-v2`; park `cursor/queue-2i-ai-62a-agent-civilization-foundation-7b68`. Never `main`. Never force-push. Do not dump runtime into `services/ai/` or land Supabase migrations in this commit.
 **Canonical path:** `docs/architecture/xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`
 **Founder summary sibling:** [`../queue/2I-AI-62A-agent-civilization-foundation.md`](../queue/2I-AI-62A-agent-civilization-foundation.md)
 **Series pointer:** [`../queue/2I-AI-62-SERIES-POINTER.md`](../queue/2I-AI-62-SERIES-POINTER.md)
 **Deployment gate pointer:** [`../queue/DEPLOYMENT-GATE-HARDENING.md`](../queue/DEPLOYMENT-GATE-HARDENING.md)
 **Compose with:** LA-07 Trust; LA-14/23/35A Security; LA-15 User Story Evolution; LA-18 Identity; LA-26 Agent University; LA-29 24/7 Org; LA-35A Zero-Trust; LA-36 C2C; LA-57 Guardian; LA-59 Offline; LA-60F Workforce; LA-60S Runtime; LA-60W Governance; LA-61I Neural/Agent population; LA-61J Data Civilization / tool mesh; LA-61K Parallel pathway/universe/engineering (sibling parks may be ahead on other branches — do not overwrite).
-**Feeds:** **2I-AI-62B** Agent Meetings + Human Intelligence Bridge (title / next) — 62A supplies civilization foundation, XACP spine, registry/scheduler honesty, security boundary; **not** full 62B meeting-depth or 62C–62H depth.
+**Feeds:** **2I-AI-62B** Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS** — [`xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`](./xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md)) — 62A supplies civilization foundation, XACP spine, registry/scheduler honesty, security boundary; **not** full 62B meeting-depth or 62C–62H depth. **Do not start 62B implementation from the 62A commit.**
 
 > Docs-only queue. **No uncontrolled autonomous agents / no production deploy / no satellite access / no unrestricted self-modification / no automatic permission expansion in this commit.** **L4 DISABLED**.
 >
@@ -568,15 +568,11 @@ Report `LOCAL=` `GITHUB=` `GITLAB=` `TREE=`. GitLab unverifiable → **BLOCKED**
 
 ## Next queue
 
-- **2I-AI-62B** — Agent Meetings + Human Intelligence Bridge
-- **2I-AI-62C** — Historical / Multilingual Knowledge Lineage
-- **2I-AI-62D** — Distributed Device & Hardware Runtime
-- **2I-AI-62E** — Massive Agent Scheduler + Task Forces
-- **2I-AI-62F** — Universe Federation + Constellations
-- **2I-AI-62G** — Beyond-Cloud / Space Interface Architecture
-- **2I-AI-62H** — XIV Galaxy Federation (future)
+- **2I-AI-62B** — Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS**)
+- **2I-AI-62C** — XIV Historical, Cultural & Multilingual Intelligence Network (title only)
+- **2I-AI-62D…62H** as series pointer
 
-**Do not start 62B from this commit.**
+**Do not start 62B implementation from the 62A commit.**
 
 ## Docs-only gate
 

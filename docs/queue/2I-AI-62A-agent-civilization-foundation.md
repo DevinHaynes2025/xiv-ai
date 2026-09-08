@@ -12,7 +12,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **Deployment Gate Hardening PASS** and app
 
 **NEXT (this):** `2I-AI-62A — Agent Civilization Foundation`
 
-**THEN:** 62B Agent Meetings + Human Intelligence Bridge → 62C Historical / Multilingual Knowledge Lineage → 62D Distributed Device & Hardware Runtime → 62E Massive Agent Scheduler + Task Forces → 62F Universe Federation + Constellations → 62G Beyond-Cloud / Space Interface Architecture → **FUTURE** 62H XIV Galaxy Federation
+**THEN:** 62B Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS**) → 62C Historical / Cultural / Multilingual Intelligence Network (title only) → 62D Distributed Device & Hardware Runtime → 62E Massive Agent Scheduler + Task Forces → 62F Universe Federation + Constellations → 62G Beyond-Cloud / Space Interface Architecture → **FUTURE** 62H XIV Galaxy Federation
 
 Sibling **2I-LA-61\*** parks (neural / data civilization / parallel pathways) may continue as architecture; they do not skip the deployment gate.
 
@@ -36,14 +36,14 @@ The long-term objective is not simply millions of AI agents — it is **millions
 
 1. **Agent Civilization Layer** — controlled agent identity; discover authorized peers; form temporary task forces
 2. **XACP** — `discover → request → negotiate → reason → delegate → collaborate → verify → report → archive` with full exchange provenance
-3. **AI Meeting Rooms** — hooks now; depth in 62B; humans enter reasoning, not only finals
-4. **Human Intelligence Bridge** — distinguish human fact/opinion, agent inference, evidence, prediction, unknown
+3. **AI Meeting Rooms** — hooks in 62A; **full depth QUEUED in 62B**; humans enter reasoning, not only finals
+4. **Human Intelligence Bridge** — distinguish human fact/opinion, agent inference, evidence, prediction, unknown (**62B QUEUED**)
 5. **Historical Knowledge Lineage** — curated eras/disciplines; historical belief ≠ modern fact (depth 62C)
 6. **Language & Cultural Intelligence** — translation ≠ interpretation; no stereotyping (depth 62C)
 7. **Temporal Intelligence** — operational time + Universe lifecycle Seed→Archive
 8. **Cross-Device Runtime** — capability requests behind Compute Abstraction Layer (depth 62D)
 9. **Parallel Universe Architecture** — Org→…→Audit; cross-Universe needs explicit auth
-10. **Agent Task Forces** — specialist teams; recommendation + required approval (depth 62E)
+10. **Agent Task Forces** — specialist teams; recommendation + required approval (depth 62B/62E)
 11. **Massive Agent Scaling** — logical millions; activate only needed; sleep/archive (depth 62E)
 12. **Information Logistics** — origin→…→retention lineage
 13. **Beyond-Cloud / Space interface** — unconfigured providers only; no satellite commands (depth 62G)
@@ -64,10 +64,10 @@ Demonstrate: Human → Universe → Coordinator → specialists → private meet
 
 ## Next queue
 
-- **2I-AI-62B** Agent Meetings + Human Intelligence Bridge
+- **2I-AI-62B** Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS**)
 - **2I-AI-62C…62H** as series pointer
 
-**Do not start 62B from this commit.**
+**Do not start 62B implementation from the 62A commit.**
 
 ## Docs-only gate
 

@@ -7293,8 +7293,25 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **L4 DISABLED**. **HARD STOP — no 62A runtime.** Do not start 62B. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
 
-**NEXT after 62A:** **2I-AI-62B** Agent Meetings + Human Intelligence Bridge (title only) → 62C…62H.
+**NEXT after 62A:** **2I-AI-62B** Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS**) → 62C…62H.
 
 - [x] **Deployment Gate Hardening** recorded as **CURRENT** promotion blocker (docs pointer; evidence UNKNOWN until executed)
-- [x] **2I-AI-62A** Agent Civilization & Distributed Intelligence Foundation queued (docs only); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; does not override deployment gate; MORE AGENTS≠MORE PERMISSIONS; LOGICAL NAMESPACE≠ALWAYS-ON MILLIONS; SATELLITE≠AUTHORIZED; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 62A runtime**; do not start 62B
-- [x] **NEXT after 62A:** 62B Agent Meetings + Human Intelligence Bridge (title only) → 62C…62H titles
+- [x] **2I-AI-62A** Agent Civilization & Distributed Intelligence Foundation queued (docs only); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; does not override deployment gate; MORE AGENTS≠MORE PERMISSIONS; LOGICAL NAMESPACE≠ALWAYS-ON MILLIONS; SATELLITE≠AUTHORIZED; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 62A runtime**; 62B now **QUEUED DOCS**
+- [x] **NEXT after 62A:** 62B Agent Meetings, Collective Reasoning & Human Intelligence Bridge (**QUEUED DOCS**) → 62C…62H titles
+
+#### 2I-AI-62B — XIV Agent Meetings, Collective Reasoning & Human Intelligence Bridge
+
+**QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Docs only. **DEPLOYMENT_STATE=QUEUED**.
+
+**DO NOT IMPLEMENT** until **62A PASS** and **Deployment Gate Hardening PASS**. Does **not** override deployment-readiness gate. Ordering: **62A → 62B (this) → 62C Historical/Cultural/Multilingual Intelligence Network (title only) → 62D…62H**. Park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-7b68`; never force-push / never `main`. No `services/ai/` dump; no migrations.
+
+**Canonical:** [`xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`](./xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md) · queue [`../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md) · series pointer [`../queue/2I-AI-62-SERIES-POINTER.md`](../queue/2I-AI-62-SERIES-POINTER.md)
+
+**Includes (document only):** MeetingEngineV100 + lifecycle trigger→…→knowledge lineage; ten `xiv_agent_meeting_*` table contracts with RLS/provenance; XARP roles (Investigator…Synthesizer); evidence-before-consensus proposal schema; DisagreementLedgerV100 + OptionCardV100; HumanIntelligenceBridgeV100 + HUMAN_* knowledge classes; AsyncMeetingScheduler + OvernightIntelligenceBrief honesty; TaskForceEngineV100; AgentReputationModelV100 (≠ authority expansion); OutcomeBasedLearningPipelineV100 (≠ blind training); multilingual/temporal/meeting-memory hooks; Guardian Meeting Observer; kill/pause controls; MeetingResourceGovernorV100 (no infinite subagents); Command Center visualization honesty; API contracts (route≠capability); §22 staging tests; DoD path CEO→…→institutional knowledge; architecture principle (agent/team/human); flags all FALSE; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN.
+
+**L4 DISABLED**. **HARD STOP — no 62B runtime.** Do not start 62C. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
+
+**NEXT after 62B:** **2I-AI-62C** XIV Historical, Cultural & Multilingual Intelligence Network (title only) → 62D…62H.
+
+- [x] **2I-AI-62B** Agent Meetings, Collective Reasoning & Human Intelligence Bridge queued (docs only); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; MEETING≠ACTION; CONSENSUS≠TRUTH; HUMAN APPROVAL≠FABRICABLE; ASYNC≠UNCONTROLLED; GUARDIAN ABOVE MEETINGS; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no 62B runtime**; **DO NOT IMPLEMENT until 62A PASS + Deployment Gate PASS**; do not start 62C
+- [x] **NEXT after 62B:** 62C Historical, Cultural & Multilingual Intelligence Network (title only) → 62D…62H titles
