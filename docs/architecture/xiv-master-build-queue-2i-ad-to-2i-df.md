@@ -1,12 +1,13 @@
 # XIV Master Build Queue — 2I-AD → 2I-DF
 
-**Status:** QUEUED ONLY (documentation). No AD–DF implementation in this commit.  
-**Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-df.md`  
-**Branch tip at authoring:** beyond `0303e3f` (BG–BZ queue) / `651da63` (AD–AT) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.  
+**Status:** QUEUED ONLY (documentation). No AD–DF implementation in this commit.
+**Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-df.md`
+**Branch tip at authoring:** beyond `1682c99` (CQ–DF queue) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
 
 Pointer stubs (do not duplicate content):
 
+- [`xiv-master-build-queue-2i-ad-to-2i-cp.md`](./xiv-master-build-queue-2i-ad-to-2i-cp.md) → this file (CA–CP span discoverability)
 - [`xiv-master-build-queue-2i-ad-to-2i-bz.md`](./xiv-master-build-queue-2i-ad-to-2i-bz.md) → this file
 - [`xiv-master-build-queue-2i-ad-to-2i-bf.md`](./xiv-master-build-queue-2i-ad-to-2i-bf.md) → this file
 - [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) → this file
@@ -21,8 +22,8 @@ Pointer stubs (do not duplicate content):
 | **2I-AC** | XIV Brain V4 + Data Nervous System + Agent DevOps + Continuous Evolution | **LANDED** (`e090413` neural brain; `a5fe7dc` agent society / continuous builder completion) |
 | **2I-AD** | Plugin Marketplace + Developer OS | **PROPOSAL DOCS ONLY** (`e665b18`); **NOT STARTED** for implementation |
 | **2I-AE…BZ** | See queues below (AD–AT, AU–BF, Brain Expansion BG–BZ) | **NOT STARTED** — documentation only |
-| **2I-CA…CP** | Reserved / sibling continuation block | **DOCS TBD** — do not invent; preserve when siblings land |
-| **2I-CQ…DF** | Continuous Improvement Series (this expansion) | **NOT STARTED** — documentation only |
+| **2I-CA…CP** | Business OS continuation (queued below) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-CQ…DF** | Continuous Improvement Series | **NOT STARTED** — documentation only |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -149,7 +150,7 @@ Frequent **user-story checkpoints** (every meaningful story or phase slice). Age
 - **Push both** GitHub (`origin`) and GitLab (`gitlab`) **only after** gates pass.
 - **NO FORCE PUSH** to shared foundation branches.
 - **NEVER land foundation work on `main`.**
-- After each phase / dual-push: fetch both again and require **three-way match**  
+- After each phase / dual-push: fetch both again and require **three-way match**
   `LOCAL == origin/xiv-v2 == gitlab/xiv-v2` (+ clean tree).
 - If **GitLab push/fetch fails**: preserve local + GitHub tip; **report the blocker honestly**; do not invent “synced” status; do not force; do not delete the GitHub landing to “match” a failed GitLab.
 
@@ -178,7 +179,7 @@ Prefer small, reversible, evidence-backed commits over giant opaque landings.
 
 ### Valuable first story (when this CQ–DF portion is reached)
 
-**Recommended first story (do NOT implement now):**  
+**Recommended first story (do NOT implement now):**
 **CEO Continuous Improvement Scorecard** — Brain quality, security, reliability, DB health, agent effectiveness, software delivery, supply-chain intel, UX, cost, business outcomes.
 
 Queue it when authorized; documentation here is not implementation.
@@ -255,7 +256,7 @@ Queue it when authorized; documentation here is not implementation.
 
 ## Queued block A — 2I-AD → 2I-AT
 
-*Not started. CEO authorization after AC inspection required before AD.*  
+*Not started. CEO authorization after AC inspection required before AD.*
 *(Contracts merged from prior AD–AT / AD–BF queue docs for idempotent sibling coordination.)*
 
 ### 2I-AD — Plugin Marketplace + Developer OS
@@ -627,18 +628,223 @@ Queue it when authorized; documentation here is not implementation.
 
 ---
 
-## Reserved block — 2I-CA → 2I-CP (sibling continuation)
+## CONTINUATION 2I-CA → 2I-CP — Business OS series
 
-**Status:** Reserved for sibling/CEO queue expansion. **Do not invent CA–CP phase bodies here.**
+*Queued only. Do **not** start coding any CA–CP phase. Same permanent rules + Brain Rule + Scale Rule + Git/Checkpoint Protocol. Every phase inherits Guardian, Tenant/Universe Isolation, Agent Firewall, Data Access Gateway, Evidence/Provenance, Audit, Human/Policy Authority, **L4 DISABLED**.*
+*Documentation order ≠ permission to skip earlier AD→BZ checkpoints. Still awaiting CEO before **any** next implementation (**2I-AD first** when authorized).*
 
-- If siblings land CA–CP docs, **merge/preserve** them idempotently into this canonical file (or keep a pointer) without deleting AD→BZ or CQ→DF content.
-- CQ→DF below may execute only after prior sequential checkpoints and CEO authorization order — documentation order ≠ permission to skip CA–CP if/when those phases are defined as prerequisites.
+### 2I-CA — Business Memory System
+
+- Memory classes (minimum): **Personal**, **Company**, **Global** (plus optional team/universe slices) — **Personal ≠ Company ≠ Global**
+- Object fields (illustrative, refine at build): subject, class, classification, rights, provenance, confidence, freshness, tenant, universe, retention, promotion state
+- Promotion path: agents may **propose** memory writes/promotions; **promote** across Personal→Company→Global (or into public) only with explicit rights + human/policy gates
+- No silent private→company→global promotion; memory existence ≠ permission to use in training or cross-tenant retrieval
+- Compose with Pocket Brain, Knowledge Freshness, and Data Access Gateway
+
+### 2I-CB — Business Story Engine V5
+
+- Narrative chain (minimum): **EVENTS → CONTEXT → DECISIONS → ACTIONS → OUTCOME** (exact labels may refine; chain is mandatory)
+- Stories explain *why* something happened with evidence pointers — not fictional filler
+- **Chain explanation example:** dock delay EVENT → labor + carrier CONTEXT → expedite DECISION → overtime ACTION → on-time OUTCOME + Lesson
+- Stories remain non-authoritative recommendations until verified; AI narrative ≠ truth
+- Compose with Information Logistics, Founder Brief, and Learning Engine
+
+### 2I-CC — Company Digital Twin
+
+- Logical twin of company structure, flows, assets, and policies for simulation and foresight
+- **Logical model ≠ perfect reality** — twin outputs are approximations with confidence/freshness labels
+- Twin mutations in sandbox do not mutate production systems
+- Twin access remains tenant/universe scoped; twin ≠ surveillance of people without consent/authority
+
+### 2I-CD — Business Hospital V6
+
+- Care pipeline (minimum): **DIAGNOSE → TRIAGE → TREAT → MONITOR → RECOVER → LESSON** (labels may refine)
+- Domains (examples): finance, ops, supply, security, data quality, agent health, UX, reliability
+- **Metaphor only where helpful** — hospital language aids triage clarity; it is not medical advice and must not invent clinical authority
+- Treatments are bounded remediation proposals; critical “surgery” on production requires human/policy authority
+- Compose with Operations Simulator, Reliability Engine, and CQ kernel
+
+### 2I-CE — Executive Command OS
+
+- Executive surfaces: missions, risk board, decisions queue, authority map, briefings
+- Command OS **presents and routes**; it does not silently execute irreversible commitments
+- CEO/human authority remains the gate for spend, legal, production promote, and L-level changes
+- Founder Twin / executive twin ≠ actual founder/CEO authority
+- Delivery address for Founder Brief remains **`devinhaynes2025@gmail.com`** (LIVE send `NOT_CONFIGURED` until proven)
+
+### 2I-CF — Meeting Intelligence OS
+
+- Meeting capture, summarization, action extraction, and evidence linking under classification
+- **No default always-on recording** — recording/transcription requires **explicit authorized mode** (consent, jurisdiction, tenant policy)
+- Voice/audio pipelines need explicit authorized mode; offline cache ≠ license to retain forever
+- Meeting intel ≠ silent surveillance; participants’ rights and retention policies bind the OS
+- Outputs are PROPOSED notes/actions until human accepts
+
+### 2I-CG — Communication Intelligence
+
+- Email/chat/comms intelligence for routing, summarization, and risk flags
+- **No silent private ingest** — private mailboxes/channels require explicit authorization, scope, and audit
+- Comms connectors stay `NOT_CONFIGURED` until proven; connected inbox ≠ unrestricted brain food
+- Classification + minimization preferred; raw secrets/PII not retained “for audit theater”
+- Compose with Cloud Access Broker and Data Access Gateway
+
+### 2I-CH — Customer Intelligence Brain
+
+- Customer graph, journey signals, support intel, and opportunity hypotheses with provenance
+- Customer insight ≠ license to spam, dark-pattern, or exfiltrate PII across tenants
+- Consent, jurisdiction, and retention bind all customer memory promotions
+- Predictions/segments labeled non-facts until evidenced; compose with Marketing Department publish gates
+
+### 2I-CI — Innovation Exchange
+
+- Exchange for ideas, experiments, and digital-product proposals across authorized universes
+- **Explicit IP/ownership** required on every contribution (author, tenant, license, confidentiality)
+- Exchange listing ≠ transfer of ownership; no silent IP absorption into global/public knowledge
+- Innovations remain PROPOSED until human/policy accept; compose with Digital Product Foundry/Factory
+
+### 2I-CJ — Entrepreneur OS
+
+- Venture/mission toolkit: idea → validation → sandbox build → gated go-to-market proposals
+- Entrepreneur agents may propose aggressively; capital, legal, and brand commitments stay human-gated
+- No fabricated traction, revenue, or user metrics (Scale Rule applies)
+- Compose with Agent Economy, Cost Intelligence, and Product Foundry
+
+### 2I-CK — Small Business OS
+
+- Modular **packs** for SMB operations (examples: retail, services, light inventory, bookkeeping assist)
+- Packs are optional installs with signed manifests; pack installed ≠ cross-pack data rights
+- Keep SMB defaults least-privilege; providers `NOT_CONFIGURED` until proven
+- Compose with Plugin Marketplace / Industry Pack Framework
+
+### 2I-CL — Industry Pack Framework
+
+- Framework for industry-specific packs (schemas, playbooks, connectors, eval fixtures)
+- Packs declare capabilities, data classes, and required authorities; no hidden privilege
+- Industry pack ≠ automatic LIVE connectors or regulatory certification claims
+- Versioned, reviewable, sandbox-first; compose with Developer OS and Globalization Engine
+
+### 2I-CM — Warehouse OS V5
+
+- Warehouse operations intelligence: slots, waves, labor, dock-to-ship, exceptions
+- **No fabricated inventory** — counts, locations, and ASN claims require evidence/source systems
+- Recommendations OK; inventory adjustments / ship commits need explicit authority where required
+- Compose with Supply Chain Burden Reduction, Business Story Engine, and Event Nervous System
+
+### 2I-CN — Transportation OS V5
+
+- Transportation planning, tracking, and exception intelligence
+- **Authorized/evidenced tracking only** — no shadow tracking of people or vehicles without authority, consent, and lawful basis
+- ETA/predictions labeled non-facts until grounded; carrier connectors gated
+- Tracking metadata preferred over invasive payloads; compose with Location & Earth Intelligence
+
+### 2I-CO — Procurement OS
+
+- Sourcing, RFQ, supplier scoring, PO proposals, and exception handling
+- **Binding commitments need explicit authority** — agents may draft POs/contracts; humans/policy bind spend
+- Connected supplier ≠ trusted counterparty; no silent payment credential use
+- Compose with Supplier & Commerce Network and Financial Intelligence Fabric
+
+### 2I-CP — Manufacturing Intelligence OS
+
+- Manufacturing signals: lines, yield, quality, maintenance, schedule risk
+- Shop-floor actuators and MES writes remain human/policy gated; intel ≠ automatic machine control
+- No fabricated OEE/quality metrics; Scale/Evidence rules apply
+- Compose with Warehouse/Transportation/Procurement and Business Hospital triage domains
+
+---
+
+## CROSS-PHASE NEURALIZATION
+
+Business OS phases are **not isolated apps**. Events, memories, stories, twins, and OS packs must neuralize through shared fabric:
+
+- Shared bus: claims, evidence, lessons, and authorized events across CA–CP and earlier AD→BZ / CQ→DF layers
+- **Example chain:** Warehouse **event** (2I-CM) → Story Engine explanation (2I-CB) → Hospital triage (2I-CD) → Executive Command brief (2I-CE) → Learning/**Lesson** (2I-AK / 2I-BY / CQ kernel)
+- Cross-phase links preserve tenant, universe, classification, rights, provenance, and confidence
+- Neuralization ≠ privilege merge — Firewall and Gateway still mediate every hop
+- Pack/OS install never creates a side channel around Guardian
+
+---
+
+## AGENT-INITIATED PROJECTS
+
+Agents may initiate nested work under Projects-within-Projects (2I-BJ):
+
+- Propose span (minimum): **Mission → … → Digital Product** (and/or Experiment → Outcome → Lesson)
+- **Required fields** (minimum): goal, actor/owner agent, tenant/universe scope, acceptance criteria, evidence plan, risk/blast radius, cost envelope, human/policy gate, non-goals, IP/ownership when applicable (2I-CI)
+- Lifecycle (minimum): **AGENT PROPOSAL → REVIEW → HUMAN/POLICY GATE → SANDBOX BUILD** (then RC / promote only under Gradual Deployment Engine rules)
+- Proposal freeness ≠ execution freeness; sandbox ≠ production; digital product artifact ≠ store publish
+
+---
+
+## BRAIN FEEDING path
+
+Authorized path for growing brain knowledge (refine enums at build):
+
+`AUTHORIZED INGEST → CLASSIFY → GROUND → EVAL → PROMOTE (or QUARANTINE / RETRACT)`
+
+- **No blind training on every interaction** — chats, meetings, comms, and tool traces are not automatic corpus
+- Feeding requires rights, classification, provenance, and explicit promotion — compose with Business Memory (2I-CA) and Learning Engine (2I-AK)
+- Personal/customer/private comms need explicit authorized ingest (see 2I-CF / 2I-CG)
+- AI agreement / volume of interactions ≠ VERIFIED knowledge
+
+---
+
+## 24/7 SHIFT SYSTEM (Business OS lens)
+
+- Shifts continue: health, evaluation, alerting, bounded remediation, and **handoffs** (Night→Day packets)
+- Handoffs must include open loops, evidence pointers, risk board, next actions, and explicit non-actions
+- **No manufacturing endless low-value busywork** — agents must not invent make-work missions to appear busy (compose with NEURAL EXPANSION RULE / useful connectivity)
+- 24/7 ≠ L4; 24/7 ≠ silent production deploy; 24/7 ≠ always-on recording/ingest
+
+---
+
+## QUEUE GOVERNANCE
+
+Every queued phase / story should carry (or inherit) governance fields:
+
+| Field | Intent |
+|-------|--------|
+| **PhaseDependency** | What must be landed/authorized first |
+| **Priority** | Ordered relative importance (human/policy may override) |
+| **Risk** | Blast radius, safety, legal, security |
+| **Cost** | Expected spend / agent-hours / infra |
+| **Value** | Measurable business or platform outcome |
+| **Status** | PROPOSED / QUEUED / AUTHORIZED / IN_PROGRESS / BLOCKED / DONE / REJECTED / SUPERSEDED |
+| **Evidence** | Links to proofs, evals, audits, briefs |
+
+### Before each phase — reassess (mandatory)
+
+1. Is the **dependency** actually complete (not merely documented)?
+2. Is the **architecture still appropriate** given what landed?
+3. Does an **existing solution** already cover this?
+4. Can we **reuse** rather than rebuild?
+5. Are **acceptance criteria measurable** with evidence?
+
+**Do not blindly implement obsolete queued specs.** Continuous improvement ≠ continuous code generation. Supersede, slim, or skip with CEO/human recorded rationale when reality diverges from the queue.
+
+### Founder metric (later)
+
+Track when authorized: **architecture implemented vs proposed ratio** (honest denominator; docs-only queues do not count as implemented). Do not game the metric with vanity landings.
+
+---
+
+## PERMANENT CHECKPOINT (full gate reminder)
+
+Full gate before/after foundation landings:
+
+1. Dual-fetch: `origin` + `gitlab`
+2. Prove **`LOCAL == origin/xiv-v2 == gitlab/xiv-v2`** (GitHub == GitLab tip)
+3. Working tree **clean** (only intentional staged changes during commit)
+4. Build / typecheck / targeted tests / security checks / secret scan / `git diff --check` as applicable
+5. Dual-push both remotes; **NO FORCE**; **NO MAIN** for foundation landings
+6. **L4 DISABLED**
+7. On fail: **STOP**, report honestly, **preserve** last good tip — do not invent sync
 
 ---
 
 ## CONTINUOUS IMPROVEMENT SERIES — 2I-CQ → 2I-DF
 
-*Not started. Documentation only. Inherits Guardian / Tenant / Universe / Firewall / DAG / Evidence / Audit / Human Authority / **L4 off**.*  
+*Not started. Documentation only. Inherits Guardian / Tenant / Universe / Firewall / DAG / Evidence / Audit / Human Authority / **L4 off**.*
 *Mission reminder: 24/7 shifts `OBSERVE → UNDERSTAND → PREDICT → DECIDE → ACT → MEASURE → LEARN → HANDOFF`. Continuous improvement ≠ uncontrolled production modification.*
 
 ### 2I-CQ — Continuous Improvement Kernel
@@ -762,8 +968,8 @@ Agents (esp. Agent PO / Backlog Intelligence) may **propose** stories; human/pol
 
 ### Example parent — warehouse throughput
 
-> **AS A** warehouse operations lead  
-> **I WANT** a grounded throughput diagnosis and bounded improvement plan for dock-to-ship cycle time  
+> **AS A** warehouse operations lead
+> **I WANT** a grounded throughput diagnosis and bounded improvement plan for dock-to-ship cycle time
 > **SO THAT** we raise on-time ship rate without weakening safety, labor rules, or inventory accuracy
 
 **Child story hierarchy (illustrative):**
@@ -802,15 +1008,18 @@ Measure **useful connectivity**, not vanity scale:
 - Claiming planetary scale, quantum advantage, or advertising trillions as proven
 - Merging Data Directory, Storage Fabric, and Brain into one confused subsystem
 - Implementing 2I-BV (adult business social spaces) — boundary docs only if/when explicitly authorized later
-- Inventing 2I-CA→2I-CP bodies ahead of sibling/CEO content
+- Default always-on meeting recording, silent private comms ingest, fabricated inventory, or unauthorized tracking
+- Binding procurement/manufacturing commitments without explicit human/policy authority
+- Blind training on every interaction; manufacturing endless low-value busywork
+- Blindly implementing obsolete queued specs without reassessment
 - Unsafe user experimentation or cost opts that weaken security
 
 ---
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for **AD→DF**.
-- Older AD–AT, AD–BF, and AD–BZ paths are **pointer stubs** to this document.
+- Prefer **this file** as the single canonical master queue for **AD→DF** (includes Business OS **CA→CP**).
+- Older AD–AT, AD–BF, AD–BZ, and AD–CP paths are **pointer stubs** to this document (when present).
 - If siblings are mid-write on AU–BF, BG–BZ, or CA–CP: refine in place after wait-gate clean; **preserve** all prior sections when expanding.
 - Do not spam duplicate queue trees.
 
@@ -818,10 +1027,14 @@ Measure **useful connectivity**, not vanity scale:
 
 ## Confirmation checklist (docs agents)
 
-- [x] Queued-only documentation (no AD–DF implementation in the docs commit)
+- [x] Queued-only documentation (no AD–DF / CA–CP implementation in the docs commit)
 - [x] AD→BZ prior queue content preserved
 - [x] Brain Expansion Series **2I-BG → 2I-BZ** preserved
-- [x] Continuous Improvement Series **2I-CQ → 2I-DF** queued with contracts
+- [x] Business OS continuation **2I-CA → 2I-CP** queued with CEO contracts
+- [x] CROSS-PHASE NEURALIZATION + AGENT-INITIATED PROJECTS + BRAIN FEEDING + 24/7 SHIFT SYSTEM recorded
+- [x] QUEUE GOVERNANCE fields + before-phase reassess + Founder implemented-vs-proposed metric (later) recorded
+- [x] PERMANENT CHECKPOINT full gate reminder (LOCAL==GITHUB==GITLAB; NO FORCE; NO MAIN; L4 off)
+- [x] Continuous Improvement Series **2I-CQ → 2I-DF** preserved
 - [x] Permanent Git / Checkpoint Protocol recorded (dual-fetch, gates, no force, never main)
 - [x] COMMIT THROUGHOUT + Continuous Improvement > Codegen + L4 disabled recorded
 - [x] SELF-GENERATED USER STORIES example + child hierarchy recorded
@@ -834,5 +1047,5 @@ Measure **useful connectivity**, not vanity scale:
 - [x] Projects-within-projects noted as fundamental to agent society vision
 - [x] Founder Brief email corrected to `devinhaynes2025@gmail.com` (never `gmil`)
 - [x] ONE phase at a time; L4 disabled; providers `NOT_CONFIGURED` until proven
-- [x] STOP for CEO before AD after AB→AC inspection
-- [x] No CQ–DF (or AD–BZ) implementation started
+- [x] STOP for CEO before AD after AB→AC inspection — **still awaiting CEO; 2I-AD first when authorized**
+- [x] No CA–CP / CQ–DF / AD–BZ implementation started
