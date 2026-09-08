@@ -1,8 +1,9 @@
 # XIV Master Build Queue — 2I-AD → 2I-BF
 
 **Status:** QUEUED ONLY (documentation). No AD–BF implementation in this commit.  
-**Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bf.md`  
-**Branch tip at authoring:** beyond 2I-AB `e604244` with 2I-AC landed (`feat(xiv): phase 2I-AC neural brain and continuous evolution fabric`).  
+**Canonical path (AD–AT detail):** [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md)  
+**Canonical path (AU–BF continuation + this index):** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bf.md`  
+**2I-AC landed:** `e090413` (+ completion `a5fe7dc`); beyond 2I-AB `e604244`.  
 **Audience:** agents + CEO. One major foundation phase at a time.
 
 ---
@@ -12,7 +13,7 @@
 | Phase | Title | State |
 |-------|-------|--------|
 | **2I-AB** | Global Connector Fabric + Online/Offline Agent Mesh + Supply Chain Intelligence Graph | **LANDED** (`e604244`) |
-| **2I-AC** | XIV Brain V4 + Data Nervous System + Agent DevOps + Continuous Evolution | **LANDED** (tip at authoring; verify `git log -1`) |
+| **2I-AC** | XIV Brain V4 + Data Nervous System + Agent DevOps + Continuous Evolution | **LANDED** (`e090413`; completion `a5fe7dc`) |
 | **2I-AD…BF** | See queues below | **NOT STARTED** — documentation only |
 
 ### HARD STOP for CEO before 2I-AD
@@ -82,95 +83,11 @@ Morning / Night Shift **Founder Brief** delivery address:
 
 *Not started. CEO authorization after AC inspection required before AD.*
 
-### 2I-AD — Plugin Marketplace + Developer OS
+**Full AD–AT phase contracts live in** [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) (do not re-expand here).
 
-- Governed plugin packages, signed manifests, tenant/universe-scoped install
-- Developer OS / SDK surfaces; sandbox install ≠ production privilege
-- Extends prior platform/plugin foundations; no unrestricted plugin runtime
-- Proposal (docs only): `docs/architecture/phase-2i-ad-plugin-developer-platform.md`
+Index: **AD** Plugin Marketplace + Developer OS → **AE** Global Business API + Connector Foundry → **AF** Supplier & Commerce (+ Product Passport) → **AG** Information Logistics Control Tower → **AH** Agent Society V5 → **AI** Software Factory → **AJ** Model Foundry + Model Router → **AK** Learning Engine → **AL** Pocket Brain V4 → **AM** Location & Earth Intelligence V4 → **AN** Media & Knowledge Network → **AO** Foresight + Simulation → **AP** Digital Product Foundry → **AQ** Globalization Engine → **AR** Planetary Scale Engineering (capacity targets) → **AS** Universe Fabric V5 → **AT** Self-Evaluation + Continuous Improvement.
 
-### 2I-AE — Global Business API + Connector Foundry
-
-- Stable external Business API contracts; versioned, authenticated, tenant-scoped
-- Connector Foundry: build/test connectors without claiming LIVE providers
-- Compose with 2I-AB Global Connector Fabric; providers stay `NOT_CONFIGURED` until proven
-
-### 2I-AF — Global Supplier & Commerce Network (+ Product Passport)
-
-- Supplier graph + commerce intents; Product Passport lineage
-- No wholesale unauthorized copyright copy; connected ≠ trusted
-- Commerce providers remain gated; no silent settlement credentials
-
-### 2I-AG — Information Logistics Control Tower
-
-- Control-tower view over SOURCE → … → LESSON pipelines
-- Freshness / quality / quarantine signals; metadata-first observability
-- Not surveillance; not a substitute for Guardian or Gateway
-
-### 2I-AH — Agent Society V5
-
-- Role fabric expansion; no self-grant; society role ⇏ L4
-- Multi-agent review preserves disagreement; human/policy remains authority
-
-### 2I-AI — Software Factory
-
-- Bounded codegen / patch / review factory; sandbox builds; release candidates only
-- Creative control ≠ production control; no auto-ship
-
-### 2I-AJ — Model Foundry + Model Router
-
-- Extends 2I-AA foundry; routing policy with eval gates
-- Model providers `NOT_CONFIGURED` until proven; no silent key injection
-
-### 2I-AK — Learning Engine
-
-- Lesson capture from outcomes; hypothesis → eval → policy proposal
-- Training candidates classified; no unauthorized training on tenant-private data
-
-### 2I-AL — Pocket Brain V4
-
-- Scoped encrypted pocket sync; never cache `CLOUD_ONLY`
-- No auto personal→company→global→public promotion
-
-### 2I-AM — Location & Earth Intelligence V4
-
-- Extends location / Earth intel contracts; grounding + provenance mandatory
-- Capacity targets ≠ proven planetary scale
-
-### 2I-AN — Media & Knowledge Network
-
-- Multimodal ingest with rights states; transcription/extraction pipelines
-- Claims + evidence nodes; denied/unknown rights never enter verified knowledge
-
-### 2I-AO — Foresight + Simulation
-
-- Scenarios / projections labeled non-facts; simulation sandboxes
-- Predictions are not facts; no production action from foresight alone
-
-### 2I-AP — Digital Product Foundry
-
-- Product definition → build artifacts → passport hooks
-- Sandbox distribution only until CEO/release gate
-
-### 2I-AQ — Globalization Engine
-
-- Locale, residency, regional policy packs; residency ≠ weaker isolation
-- Regional connectors still `NOT_CONFIGURED` until proven
-
-### 2I-AR — Planetary Scale Engineering (CAPACITY TARGETS)
-
-- Engineering capacity targets only; **not** claims of billions of users or trillions of agents/DBs
-- Load / shard / region plans remain unproven until measured
-
-### 2I-AS — Universe Fabric V5 (logical namespaces)
-
-- Logical universe namespaces; isolation preserved
-- Namespace existence ≠ cross-universe data rights
-
-### 2I-AT — Self-Evaluation + Continuous Improvement
-
-- Eval harnesses, scorecards, regression budgets
-- Improvement proposals require human/policy authority; no self-modifying production autonomy
+AD proposal (docs only): [`phase-2i-ad-plugin-developer-platform.md`](./phase-2i-ad-plugin-developer-platform.md)
 
 ---
 
@@ -261,9 +178,9 @@ Morning / Night Shift **Founder Brief** delivery address:
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for AD→BF.
-- If an older AD–AT-only path exists, treat it as a **pointer stub** to this document (see `xiv-master-build-queue-2i-ad-to-2i-at.md`).
-- Refine in place; do not spam duplicate queue trees.
+- Prefer [`xiv-master-build-queue-2i-ad-to-2i-at.md`](./xiv-master-build-queue-2i-ad-to-2i-at.md) for **full AD–AT** phase contracts.
+- Prefer **this file** for **AU–BF continuation** plus shared permanent rules / flywheels / Directory≠Fabric≠Brain.
+- Refine in place; do not spam duplicate AD–AT section trees.
 
 ---
 
