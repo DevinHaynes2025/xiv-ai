@@ -584,7 +584,7 @@ No new ambient egress. Secrets via vault/broker. Twin cannot export secrets. Def
 | ID | Title |
 |----|-------|
 | **2I-LA-19** | **Cultural / Naturist Business Universes** — mature vs general business community separation; membership requires `VERIFIED_18_PLUS`; lawful adult business communities; not a dump of unsupported assumptions; compose LA-18 eligibility + trust + safety |
-| **2I-LA-20** | Creator + Influencer Business OS |
+| **2I-LA-20** | Content Rights + Media Provenance |
 | **2I-LA-21** | Retail Product Passport |
 | **2I-LA-22** | Global Database Federation |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
@@ -596,7 +596,7 @@ No new ambient egress. Secrets via vault/broker. Twin cannot export secrets. Def
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
 
-**NEXT after LA-18:** **2I-LA-19** 18+ Cultural / Naturist Business Universes V20 (VERIFIED_18_PLUS + separate mature vs general; `MATURE_COMMUNITIES_ENABLED=FALSE`).
+**NEXT after LA-18:** **2I-LA-19** Cultural / Naturist Business Universes (VERIFIED_18_PLUS + separate mature vs general business communities).
 
 ### 91. Permanent honesty dictionary (identity)
 
