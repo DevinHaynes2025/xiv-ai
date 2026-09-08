@@ -7252,7 +7252,36 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **L4 DISABLED**. **HARD STOP — no LA-60Z runtime.** Do not start LA-61A. **Do not invent full LA-61A–61E docs.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
 
-**NEXT after LA-60Z:** **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727 (title only).
+**NEXT after LA-60Z:** **2I-LA-61A** Unified Business Superapp + Pocket Business Operating System V727 (title/park) → **LA-61B…61H** (title/parks) → **LA-61I** Mobile SaaS Empire + Hybrid Agent + Energy + LLM Universe + Provider Fabric V735 (park) → **LA-61J** Persistent Hybrid AI Workforce + Resilient Intelligence Infrastructure V736 (**QUEUED DOCS**) → **LA-61K…61O** (title only).
 
-- [x] **2I-LA-60Z** Global Business Knowledge Civilization + Continuous Discovery Super-Brain V726 queued (full §§1–166; docs only; after LA-60Y); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; MORE KNOWLEDGE≠MORE AUTHORITY; UNKNOWN IS VALID; L4 DISABLED; all listed AUTO_*=FALSE; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-60Z runtime**; **DO NOT IMPLEMENT until LA-60Y PASS**; do not start LA-61A; park `cursor/queue-2i-la-60z-global-business-knowledge-civilization-4059`
-- [x] **NEXT after LA-60Z:** LA-61A Unified Business Superapp + Pocket Business Operating System V727 (title only)
+- [x] **2I-LA-60Z** Global Business Knowledge Civilization + Continuous Discovery Super-Brain V726 queued (full §§1–166; docs only; after LA-60Y); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; MORE KNOWLEDGE≠MORE AUTHORITY; UNKNOWN IS VALID; L4 DISABLED; all listed AUTO_*=FALSE; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-60Z runtime**; **DO NOT IMPLEMENT until LA-60Y PASS**; park `cursor/queue-2i-la-60z-global-business-knowledge-civilization-4059`
+- [x] **NEXT after LA-60Z:** LA-61A…61I (parks as tip provides) → LA-61J Persistent Hybrid AI Workforce V736 (**QUEUED DOCS**) → LA-61K…61O (title only)
+
+### 2I-LA-61A…61H — series parks / title pointers
+
+**Status:** title/park pointers as tip provides (not all tip-landed). Ordering: **61A V727 → 61B V728 → 61C Temporal Superintelligence V729 → 61D Computational Economy V730 → 61E…61G → 61H Universal Digital Twin Fabric V734 → 61I V735 → 61J V736**.
+
+### 2I-LA-61I — Mobile SaaS Empire + Hybrid Agent + Energy + LLM Universe + Provider Fabric V735 (park pointer)
+
+**Status:** sibling park `cursor/queue-2i-la-61i-mobile-saas-hybrid-agent-llm-fabric-4059` (docs may land separately). **NEXT** LA-61J. Giants/Amazon/IBM/NVIDIA = adapters only.
+
+### 2I-LA-61J — XIV PERSISTENT HYBRID AI WORKFORCE + RESILIENT INTELLIGENCE INFRASTRUCTURE V736
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **LA-61I PASS**.
+**Queue rule:** **QUEUE AFTER LA-61I.** Ordering lock: **… → LA-61I V735 → LA-61J (this V736) → LA-61K Unified Enterprise Command V737**.
+**Park:** `cursor/queue-2i-la-61j-persistent-hybrid-workforce-4059` — **PARK ONLY** unless tip CLEAN + 61I tip-landed + no concurrent tip-land; dual-push; never force-push / never `main`.
+
+**Canonical:** [`xiv-2i-la-61j-persistent-hybrid-ai-workforce-v736.md`](./xiv-2i-la-61j-persistent-hybrid-ai-workforce-v736.md) · queue [`../queue/2I-LA-61J-persistent-hybrid-ai-workforce-v736.md`](../queue/2I-LA-61J-persistent-hybrid-ai-workforce-v736.md)
+
+**Architectural corrections (prominent):** IBM/NVIDIA/AWS/networking/consulting = providers/connectors ONLY; historical consulting data public/licensed/customer-authorized/contracted ONLY; in-house models learn from XIV permissioned knowledge/eval — NOT silent third-party DB absorption; giants as accelerators not root; provider states NOT_CONFIGURED→…→VERIFIED (AWS/IBM never VERIFIED without authenticated verification; NVIDIA no proprietary algorithm copy / partnership claim); CLOUD≠DEFAULT; LOCAL≠ALWAYS BETTER; DEBUGGING≠PRODUCTION AUTHORITY; SELF-HEALING≠SELF-REWRITING; AUTO_PRODUCTION_REPAIR=FALSE.
+
+**Includes (document only):** XIVHybridIntelligenceFabricV100; PersistentAgentWorkforceV200; full named agent society; AgentWorkforceGovernorV100; BackgroundEngineeringSocietyV100; BackgroundDebugBrainV100; SafeRepairCandidateEngineV100; failure memory + RecurringFailurePatternBrainV100; OfflineAgentRuntimeV200 + offline authority lease; XIVMobileIntelligenceRuntimeV200 + MobileResourceGovernorV100 + EnergyAwareAIRouterV100 / EnergyAwareComputeSchedulerV100; AgentHandoffProtocolV200; MultiCloudAIFabricV200 + state-gated AWS/IBM/NVIDIA/AMD/Intel/Apple/Qualcomm adapters; HardwareCapabilityGraphV200; GlobalNetworkIntelligenceFabricV100; XIVModelFamilyV100 (NANO/EDGE/DOMAIN/ROUTER/RETRIEVAL/REASON/XXL-ORCHESTRATOR) + GlobalModelCouncilV200; HistoricalKnowledgeFederationV200 + HistoricalBusinessGraphV200 + HistoricalAnalogAgentV100; DatabaseCivilizationV300; Mobile SaaS continuity + CrossDeviceMissionContinuityV100; ControlTowerNetworkV200; resilience brain / failure lab / twin adjacency LA-61H; WhatXIVDidWhileYouWereAwayV100 + Founder Twin exact label; security super-gate; DB §98; slices 1–46; flags §100; validation §101; checkpoint park-now §102; permanent invariants §103; evidence QUEUED/FALSE/UNKNOWN; **DEPLOYMENT_STATE=QUEUED**.
+
+**Sibling reconciliation:** Concurrent 61I title-only “Continuity Mesh” as 61J is **superseded** by this exact V736 workforce story; Continuity Mesh candidate → **61L**. Prefer fuller content over thin stubs.
+
+**L4 DISABLED**. **HARD STOP — no LA-61J runtime.** Do not start LA-61K. **Do not invent full LA-61K–61O docs.** If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
+
+**NEXT after LA-61J:** **2I-LA-61K** Unified Enterprise Command V737 (title only) → **61L** Global Continuity Mesh + Cross-Cloud Failover + Sovereign Runtime Fabric V738 (title) → **61M** Planetary Agent Economy + Workforce Marketplace Fabric V739 (title) → **61N** Sovereign AI Safety + Constitutional Runtime Enforcement Fabric V740 (title) → **61O** Founder Civilization Control Plane + Long-Horizon Stewardship OS V741 (title only).
+
+- [x] **2I-LA-61J** Persistent Hybrid AI Workforce + Resilient Intelligence Infrastructure V736 queued (full §§1–104; docs only; after LA-61I); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; AUTO_PRODUCTION_REPAIR=FALSE; giants=adapters only; L4 DISABLED; all listed AUTO_*=FALSE; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-61J runtime**; **DO NOT IMPLEMENT until LA-61I PASS**; do not start LA-61K; park `cursor/queue-2i-la-61j-persistent-hybrid-workforce-4059`; **PARK ONLY** (tip not clean for tip-land / 61I not tip-landed / concurrent sibling parks)
+- [x] **NEXT after LA-61J:** LA-61K Unified Enterprise Command V737 (title) → LA-61L…61O (title only)
