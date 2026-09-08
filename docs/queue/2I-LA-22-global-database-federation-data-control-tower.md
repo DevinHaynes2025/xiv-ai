@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-21 PASS**. Queue **AFTER LA-21**; 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-21** (Product Passport + Authenticity Network / Retail Product Passport depth) must PASS before LA-22 code. Ordering: LA-20 Creator Business OS → **LA-21 Product Passport + Authenticity Network** → **LA-22 Global Database Federation + Data Control Tower V30** → **LA-23 Autonomous QA + Defensive Red/Blue Security Factory**.
+**2I-LA-21** (Product Passport + Authenticity Network / Retail Product Passport depth) must PASS before LA-22 code. Ordering: LA-20 Creator Business OS → **LA-21 Product Passport + Authenticity Network** → **LA-22 Global Database Federation + Data Control Tower V30** → **LA-22B Global Treasury + Revenue + Contract OS V40** → **LA-23 Autonomous QA + Defensive Red/Blue Security Factory**.
 
 **Tip note:** Fetch tip first (LA-16…18 on tip as of queue commit; LA-19…21 may still land; LA-21 agent may be mid-flight). Rebase onto latest tip **including LA-21** when present. Never force-push / never `main`.
 
@@ -60,6 +60,7 @@ As the XIV AI Founder, I want XIV to run Global Database Federation + Data Contr
 
 ## Next queue
 
+- **2I-LA-22B** Global Treasury + Revenue + Contract OS V40
 - **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory
 - Then **LA-24…LA-30** per master queue titles
 

@@ -27,7 +27,8 @@
 | **2I-LA-20** | Creator + Influencer Business OS V20 | Prior (creator data plane / rights — compose) |
 | **2I-LA-21** | Product Passport + Authenticity Network (Retail Product Passport depth) | **Must PASS before LA-22 code** (may still be mid-flight — do not interrupt) |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 | **This document** |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory | **NEXT** after LA-22 |
+| **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 | **NEXT** after LA-22 |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory | Next after LA-22B |
 
 **Ordering lock:** **LA-20 Creator Business OS → LA-21 Product Passport + Authenticity Network → LA-22 Global Database Federation + Data Control Tower V30 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**.
 
@@ -649,7 +650,7 @@ Separate commits for: secret/broker plane, DAG enforcement, RLS/FORCE RLS eviden
 
 Required evidence classes when implementation era claims PASS: flag defaults OFF verified; no raw secrets in UI/logs sample; connector states honest; RLS + FORCE RLS catalog evidence; cross-tenant/Universe harness logs; recovery drill reports; lineage samples; red-team DENY/DETECT/AUDIT packs. Empty CI ≠ PASS.
 
-### 121. Next queue — LA-23 Autonomous QA + Defensive Red/Blue Security Factory
+### 121. Next queue — LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23
 
 | ID | Title |
 |----|-------|
@@ -662,7 +663,7 @@ Required evidence classes when implementation era claims PASS: flag defaults OFF
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
 
-**NEXT after LA-22:** **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory.
+**NEXT after LA-22:** **2I-LA-22B** Global Treasury + Revenue + Contract OS V40 → then **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory.
 
 ### 122. Inheritance / compose map
 
@@ -719,7 +720,7 @@ Agents do not gain DBA/root/secret/L4 powers when Founder is offline. Night org 
 | LOCAL / GITHUB / GITLAB SHAs | Equal on branch after dual-push; merge path is `xiv-v2` (never `main`) |
 | TREE | CLEAN |
 | Runtime federation / clean room / marketplace / advanced DB agents | **NOT implemented** |
-| Ordering | LA-20 → **LA-21** → **LA-22 QUEUED** → **LA-23** |
+| Ordering | LA-20 → **LA-21** → **LA-22 QUEUED** → **LA-22B** → **LA-23** |
 | Implementation | **DO NOT IMPLEMENT until LA-21 PASS**; do not interrupt LA-21 WIP |
 | Feature flags | Documented default **OFF** |
 | Critical rules A–H | Explicit in this document |
@@ -819,7 +820,7 @@ Compose LA-16…21 data planes without collapsing vault/universe/passport bounda
 | LOCAL / GITHUB / GITLAB SHAs | Equal after dual-push |
 | TREE | CLEAN (no unrelated WIP in commit) |
 | Runtime | **NOT started** |
-| Ordering | **LA-21 → LA-22 QUEUED → LA-23** |
+| Ordering | **LA-21 → LA-22 QUEUED → LA-22B → LA-23** |
 | Implementation | **DO NOT IMPLEMENT until LA-21 PASS** |
 | Critical architecture rules | A–H explicit; §§1–135 present |
 | Feature flags | Default OFF documented |

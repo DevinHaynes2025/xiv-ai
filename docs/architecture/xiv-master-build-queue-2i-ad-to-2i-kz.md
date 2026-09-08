@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…22 docs + **LA-16…22** queued (LA-19 mature / LA-20 creator / LA-21 product passport / LA-22 federation) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…22 docs + **LA-16…22** queued (LA-19 mature / LA-20 creator / LA-21 product passport / LA-22 federation) + **LA-22B Global Treasury + Revenue + Contract OS V40** (queued; after LA-22 / before LA-23) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3158,7 +3158,8 @@ Every phase inherits and must preserve:
 | **2I-LA-20** | Creator + Influencer Business OS V20 | **QUEUED DOCS** — `xiv-2i-la-20-creator-influencer-business-os-v20.md`; **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED = FALSE` |
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 | **QUEUED DOCS** — `xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`; **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED = FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 | **QUEUED DOCS** — `xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`; **DO NOT IMPLEMENT until LA-21 PASS** |
-| **2I-LA-23…30** | Autonomous QA + Defensive Red/Blue Security Factory → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-22** is LA-23 |
+| **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 | **QUEUED DOCS** — `xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`; **DO NOT IMPLEMENT until LA-22 PASS**; insert after LA-22 / before LA-23 |
+| **2I-LA-23…30** | Autonomous QA + Defensive Red/Blue Security Factory → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-22B** is LA-23 |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3391,7 +3392,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–135 + permanent rules: [`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`](./xiv-2i-la-22-global-database-federation-data-control-tower-v30.md) (+ founder summary [`../queue/2I-LA-22-global-database-federation-data-control-tower.md`](../queue/2I-LA-22-global-database-federation-data-control-tower.md)).
 
-**DO NOT IMPLEMENT** until **LA-21 Product Passport + Authenticity Network PASS**. Ordering lock: **LA-20 → LA-21 → LA-22 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**. Queue **AFTER LA-21**; do not interrupt LA-21 mid-flight. Fetch tip first (LA-16…19 on tip; LA-20…21 may still land); rebase onto tip including LA-21 when present.
+**DO NOT IMPLEMENT** until **LA-21 Product Passport + Authenticity Network PASS**. Ordering lock: **LA-20 → LA-21 → LA-22 → LA-22B Global Treasury + Revenue + Contract OS V40 → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**. Queue **AFTER LA-21**; do not interrupt validated / deployment-critical work. Fetch tip first (tip includes LA-19…21 + LA-22 lineage ~`046b026`); rebase onto latest tip.
 
 **Critical rules (permanent):** Database discovered ≠ access; Connected ≠ trusted; Authenticated ≠ authorized; Read ≠ write; Router ≠ permission; prefer federated query / minimum data over COPY EVERYTHING; external access only via owner/user/contract/license/official API/approved connector; no raw universal credentials (SecretReference/ScopedCredential/TemporaryToken/ConnectionBroker); never display raw credentials in UI; Personal ≠ Founder ≠ Founder Financial ≠ Company ≠ Customer ≠ Community ≠ Global; private/training default FALSE; Company A ≠ B; Universe isolation; purpose limitation; bad data ≠ truth; preserve contradictions; UNKNOWN → research never guess→DB; Event ≠ fact; Backup ≠ verified recovery; Vector/search/cache ≠ permission bypass; Quantum backend ≠ data governance bypass; More databases ≠ better; Founder offline ≠ authority; do not sell private customer data because accessible; RLS: do not infer protection because policy code exists — FORCE RLS needs catalog evidence.
 
@@ -3403,7 +3404,27 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **LA-12 ≠ LA-22:** LA-12 foundations only. No fake LIVE connectors. Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-22 runtime.**
 
-**NEXT after LA-22:** **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory.
+**NEXT after LA-22:** **2I-LA-22B** Global Treasury + Revenue + Contract OS V40 → then **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory.
+
+---
+
+## 2I-LA-22B — GLOBAL TREASURY + REVENUE + CONTRACT OS V40 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–132 + permanent rules: [`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`](./xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md) (+ founder summary [`../queue/2I-LA-22B-global-treasury-revenue-contract-os.md`](../queue/2I-LA-22B-global-treasury-revenue-contract-os.md)).
+
+**DO NOT IMPLEMENT** until **LA-22 Global Database Federation + Data Control Tower PASS**. Ordering lock: **LA-22 → LA-22B → LA-23 Autonomous QA + Defensive Red/Blue Security Factory**. Queue **AFTER LA-22 AND BEFORE LA-23**; do not interrupt active validated / deployment-critical work. Fetch tip first (tip ~`046b026` includes LA-19…21 + LA-22); rebase onto latest tip including LA-22.
+
+**Critical rules (permanent):** Do NOT promise $400T wires / no hard-coded MAX_WIRE — size via TransactionLimitPolicy / ProviderLimit / JurisdictionLimit / CurrencyLimit / AccountLimit / ApprovalThreshold / ComplianceThreshold; XIV is NOT automatically a bank/custodian/broker-dealer/money transmitter/exchange unless legal/licensing/partner structure exists; funds remain with regulated banks/custodians/processors/licensed crypto providers — XIV records references/evidence/instructions/reconciliation/intelligence; Founder personal ≠ XIV corporate ≠ customer finance ≠ Global Brain — no auto exposure to sales/marketing/community/ads/training; AI may prepare/analyze/reconcile/forecast/recommend — NOT move money/borrow/open accounts/sign/invest/file taxes/bind contracts; potential revenue ≠ active revenue; recurring infrastructure ≠ guaranteed passive income; paying XIV ≠ guaranteed return; Fraud SIGNAL ≠ fraud; Ledger balance ≠ bank balance; Payment intent ≠ settlement; Contract draft ≠ executed; More agents ≠ financial authority (even 1M agents can’t vote to move $1); Bank/Founder/Customer finance → global training defaults FALSE; Quantum finance research = classical baseline required.
+
+**Feature flags (default OFF):** `FINANCIAL_OS_ENABLED`, `BANK_CONNECTIONS_ENABLED`, `PAYMENT_EXECUTION_ENABLED`, `CRYPTO_GATEWAY_ENABLED`, `GLOBAL_FX_ENABLED`, `MARKETPLACE_PAYMENTS_ENABLED`, `AUTOMATED_INVOICING_ENABLED`, `ENTERPRISE_CONTRACT_OS_ENABLED`.
+
+**Release / canary priority:** ledger contracts, financial vault isolation, contract system, invoicing, usage metering, revenue tracking, read-only bank connector architecture, reconciliation, security — **not** real money movement. Payment execution stays OFF until provider/legal/security proven. Do not destabilize 30-day runway.
+
+**Includes (document only):** Founder mission; XIV not bank; custody boundary; FounderFinancialVault + privacy firewall; CorporateTreasuryVault + personal/corporate firewall; Multi-bank treasury + states; Small bank partnership; TreasuryRouter; No artificial $400T; Large transaction workflow; No autonomous money movement; PaymentOrchestrator + types; Multi-currency + FX evidence; Crypto/fiat gateway + custody + conversion (no guaranteed); Double-entry ledger + invariants; Cash ledger; AI CFO + Accounting orgs + authority limits; Revenue ledger + 20+ stream registry; Toll/usage engine + transparency + no double billing; Entitlement engine; Contract OS V40 + types + AI contract team + authority; Negotiator V30 + memory + authority; Enterprise deal room + sales force; Partnership brain + bank partnership; Ad contracts + privacy; Business opportunity network + invest-in-yourself (no guaranteed profit); User financial autonomy / disclaimer≠legal exemption; Wealth education + scenarios; Private user vault; Classification + agent gateway; Financial security task force; Payment security + bank account change protection; Secret mgmt; Financial DB tables; Replication/reconciliation/contradiction/temporal/provenance; Financial digital twin; Cash flow + revenue story; Revenue Control Tower + Founder privacy mode; Money-in-sleep = recurring infra not guarantee; 24/7 revenue agents (no sign/move); Revenue war room; Logical workforce; Financial task force + performance; Story factory + governor; Financial tool foundry; Opportunity brain/marketplace + disclosures; Education + professional handoff; Contract→payment and sales/partnership/ad/marketplace/API/agent/DB/security revenue chains; Currency reporting; Paper cash model; Cash control; Backup/forensics/append-only/corrections; Anomaly engine; Red team + 3 critical tests; UIs + morning brief + sleep metrics; Learning; Quantum finance research rules; Training defaults; Release boundary + flags; Checkpoint protocol + suggested commits; Completion evidence (never infer PASS); Next LA-23 with aggressive financial-security testing before real payments.
+
+**LA-12 / LA-16 ≠ LA-22B.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-22B runtime / no payment execution.**
+
+**NEXT after LA-22B:** **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory (aggressive financial-security testing before real payments).
 
 ---
 
@@ -3955,7 +3976,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-20** | Creator + Influencer Business OS V20 — **QUEUED DOCS** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`); **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE` |
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22** |
+| **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
 | **2I-LA-26** | AI Agent University + Evaluation System |
@@ -4690,7 +4712,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-20** | Creator + Influencer Business OS V20 — **QUEUED DOCS** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`); **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE` |
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22** |
+| **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
 | **2I-LA-26** | AI Agent University + Evaluation System |
@@ -5406,7 +5429,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-20** | Creator + Influencer Business OS V20 — **QUEUED DOCS** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`); **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE` |
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22** |
+| **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
 | **2I-LA-26** | AI Agent University + Evaluation System |
@@ -5582,10 +5606,13 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 18+ Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS V20 → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation**; rebase onto tip including LA-20/LA-22 when present; L4 off
 - [x] **2I-LA-17** Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine queued (full §§1–84; docs only; after LA-16); **DO NOT IMPLEMENT until LA-16 PASS**; **HARD STOP — no LA-17 runtime**
 - [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 18+ Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS V20 → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation**; rebase onto tip including LA-20/LA-22 when present; L4 off
-- [x] Ordering lock extended through **LA-21 → LA-22 → LA-23**; do not interrupt LA-21 mid-flight; tip rebase when LA-18…21 land
+- [x] Ordering lock extended through **LA-21 → LA-22 → LA-22B → LA-23**; do not interrupt validated / deployment-critical work; tip rebase when LA-18…22 land
 - [x] **2I-LA-22** Global Database Federation + Data Control Tower V30 queued (full §§1–135 + permanent rules; docs only; after LA-21); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; no fake LIVE connectors; **HARD STOP — no LA-22 runtime**; **DO NOT IMPLEMENT until LA-21 PASS**
 - [x] LA-22 critical rules encoded (discovered≠access; connected≠trusted; authn≠authz; read≠write; router≠permission; federate/minimize≠copy-everything; no raw universal credentials; brain firewalls; UNKNOWN→research; backup≠recovery; vector/search/cache≠bypass; quantum≠governance bypass; FORCE RLS needs catalog evidence; do not sell private customer data because accessible)
-- [x] **NEXT after LA-22:** LA-23 Autonomous QA + Defensive Red/Blue Security Factory
+- [x] **2I-LA-22B** Global Treasury + Revenue + Contract OS V40 queued (full §§1–132 + permanent rules; docs only; after LA-22 / before LA-23); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; payment execution OFF; flags default OFF; no $400T/MAX_WIRE; custody boundary; AI authority limits; honesty dictionary; training defaults FALSE; **HARD STOP — no LA-22B runtime / no payment execution**; **DO NOT IMPLEMENT until LA-22 PASS**
+- [x] LA-22B critical rules encoded (not automatically a bank; funds remain with regulated parties; Founder≠corporate≠customer≠Global Brain; no autonomous money movement; potential≠active revenue; fraud signal≠fraud; ledger≠bank; intent≠settlement; draft≠executed; more agents≠financial authority; quantum finance classical baseline)
+- [x] **NEXT after LA-22:** LA-22B Global Treasury + Revenue + Contract OS V40
+- [x] **NEXT after LA-22B:** LA-23 Autonomous QA + Defensive Red/Blue Security Factory (aggressive financial-security testing before real payments)
 - [x] Ordering lock extended: **LA-20 Creator + Influencer Business OS → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation + Data Control Tower V30**; rebase onto tip including LA-20 when present (LA-17–20 may still land); L4 off
 - [x] **2I-LA-21** Global Product Passport + Authenticity Network V20 queued — full contracts §§1–101 + permanent rules in `xiv-2i-la-21-global-product-passport-authenticity-network-v20.md` (+ founder summary `docs/queue/2I-LA-21-global-product-passport-authenticity-network.md`); **DO NOT IMPLEMENT until LA-20 PASS**; HARD STOP no runtime; `PRODUCT_PASSPORT_ENABLED = FALSE`; QUEUED ARCHITECTURE — NOT IMPLEMENTED; no fake LIVE connectors; core canary non-blocking unless explicitly selected release-critical
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
