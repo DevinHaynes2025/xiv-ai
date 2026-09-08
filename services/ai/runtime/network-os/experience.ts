@@ -141,6 +141,11 @@ export const PREMIUM_ROUTE_MAP = {
   'information-logistics': 'information-logistics',
   'incident-engine': 'incident-engine',
   'executive-briefs': 'executive-briefs',
+  'brain-map': 'brain-map',
+  'create-workspace': 'create-workspace',
+  'neural-fabric': 'neural-fabric',
+  'experience-fabric': 'experience-fabric',
+  'deployment-readiness': 'deployment-readiness',
 } as const;
 
 export type PremiumRouteKey = keyof typeof PREMIUM_ROUTE_MAP;

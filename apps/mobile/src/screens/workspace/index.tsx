@@ -1103,6 +1103,52 @@ export function WorkspaceExecutiveBriefs() {
   );
 }
 
+export function WorkspaceBrainMap() {
+  return (
+    <PremiumDesk title="Brain Map" subtitle="Logical minds across operations, finance, security, and research. Not nested physical databases.">
+      <XivStatusPill label="A mind cannot self-grant authority or disable Guardian." tone="warning" />
+      <XivListRow title="Scope" body="Each mind stays tenant- and Universe-bound. Quarantined minds cannot route." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceCreateWorkspace() {
+  return (
+    <PremiumDesk title="Create Workspace" subtitle="Ideas, experiments, and temporary task forces. Not production publishing.">
+      <XivListRow title="Task force" body="Specialists assemble on demand. Temporary agents never receive permanent authority." />
+      <XivListRow title="Claims" body="AI-generated drafts stay labeled. Simulation is not observed fact." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceNeuralFabric() {
+  return (
+    <PremiumDesk title="Neural Fabric" subtitle="Governed mind-to-mind routes. AVAILABLE is not AUTHORIZED.">
+      <XivStatusPill label="AI consensus does not create verified evidence." tone="warning" />
+      <XivListRow title="Gates" body="Guardian, Cognitive Security Gate, and Neural Firewall stay in every route." />
+      <XivListRow title="Isolation" body="Cross-tenant and cross-Universe routes are denied. Memory is not shared by default." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceExperienceFabric() {
+  return (
+    <PremiumDesk title="Experience Fabric" subtitle="Adaptive phone, tablet, desktop, web, and PWA layouts. Primary nav stays five tabs.">
+      <XivListRow title="Adaptation" body="Useful layout changes still require sandbox, security review, and governance. No self-approval." />
+      <XivListRow title="Host OS" body="XIV plugs into the host. It does not replace iOS, Android, Windows, or macOS." />
+    </PremiumDesk>
+  );
+}
+
+export function WorkspaceDeploymentReadiness() {
+  return (
+    <PremiumDesk title="Deployment Readiness" subtitle="Development → test → staging → production gates. Not live deployment.">
+      <XivStatusPill label="App Store, Play Store, and public hosting remain unpublished." tone="warning" />
+      <XivListRow title="Flags" body="Feature flags cannot casually change high-risk security policy." />
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceMoreLinks() {
   const router = useRouter();
   const { session } = useSession();

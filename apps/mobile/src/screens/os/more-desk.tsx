@@ -181,6 +181,11 @@ export function MoreDesk() {
       <Chip label="Information Logistics" onPress={() => go('information-logistics')} />
       <Chip label="Incident Engine" onPress={() => go('incident-engine')} />
       <Chip label="Executive Briefs" onPress={() => go('executive-briefs')} />
+      <Chip label="Brain Map" onPress={() => go('brain-map')} />
+      <Chip label="Create Workspace" onPress={() => go('create-workspace')} />
+      <Chip label="Neural Fabric" onPress={() => go('neural-fabric')} />
+      <Chip label="Experience Fabric" onPress={() => go('experience-fabric')} />
+      <Chip label="Deployment Readiness" onPress={() => go('deployment-readiness')} />
     </ExperienceScreen>
   );
 }

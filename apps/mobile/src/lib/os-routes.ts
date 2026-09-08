@@ -154,7 +154,12 @@ export type OsPath =
   | 'scenario-lab'
   | 'information-logistics'
   | 'incident-engine'
-  | 'executive-briefs';
+  | 'executive-briefs'
+  | 'brain-map'
+  | 'create-workspace'
+  | 'neural-fabric'
+  | 'experience-fabric'
+  | 'deployment-readiness';
 
 export type OsEmphasis = 'operator' | 'chair';
 

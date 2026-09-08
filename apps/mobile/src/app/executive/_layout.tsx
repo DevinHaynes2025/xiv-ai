@@ -155,6 +155,11 @@ const hidden = [
   'information-logistics',
   'incident-engine',
   'executive-briefs',
+  'brain-map',
+  'create-workspace',
+  'neural-fabric',
+  'experience-fabric',
+  'deployment-readiness',
 ];
 
 export default function ExecutiveLayout() {
