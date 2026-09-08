@@ -3427,7 +3427,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **LA-12 / LA-16 ≠ LA-22B.** Experimental features feature-gated. **L4 DISABLED**. **HARD STOP — no LA-22B runtime / no payment execution.**
 
-**NEXT after LA-22B:** **2I-LA-23** → **LA-24** → **LA-25** Global Company Digital Twin + Business Hospital V40 → **LA-26** (LA-23 first) (aggressive financial-security testing before real payments).
+**NEXT after LA-22B:** **2I-LA-23** Autonomous QA + Defensive Red/Blue Security Factory V30 (aggressive financial-security testing before real payments) → **LA-24** → **LA-25** Global Company Digital Twin + Business Hospital V40 → **LA-26**.
 
 ---
 
