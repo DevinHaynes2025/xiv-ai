@@ -58,7 +58,7 @@ As the XIV AI Founder, I want XIV to run an 18+ Cultural / Naturist Business Uni
 
 ## Next queue
 
-- **2I-LA-20** Creator + Influencer Business OS (media provenance/rights baseline stays in LA-19; creator/influencer depth next)
+- **2I-LA-20** Creator + Influencer Business OS V20 (media provenance/rights baseline stays in LA-19; creator/influencer depth next)
 - Then **LA-21…LA-30** per master queue titles
 
 ## Docs-only gate
