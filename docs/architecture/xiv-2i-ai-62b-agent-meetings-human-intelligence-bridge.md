@@ -3,14 +3,14 @@
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only.
 **DO NOT IMPLEMENT** until **2I-AI-62A PASS** **and** **Deployment Gate Hardening PASS** (CI, security, RLS isolation, dependency/secret scanning, regression, rollback, backup/restore, worker and agent-evaluation gates) **and** applicable LA/Guardian predecessors.
 **This story does not override the current deployment-readiness gate.** Architecture may grow in parallel; staging/canary promotion remains blocked until those gates prove PASS with evidence.
-**Queue rule:** **QUEUE AFTER 2I-AI-62A.** Ordering: **Deployment Gate Hardening (CURRENT) → 62A (QUEUED DOCS) → 62B (this) → 62C Historical/Cultural/Multilingual Intelligence Network (title only) → 62D…62H**. Do **not** start 62C–62H from this commit.
+**Queue rule:** **QUEUE AFTER 2I-AI-62A.** Ordering: **Deployment Gate Hardening (CURRENT) → 62A (QUEUED DOCS) → 62B (this) → 62C Historical/Cultural/Multilingual Intelligence Network (title only) → 62D Distributed Device/Chip/Edge Runtime (**QUEUED DOCS**) → 62E…62H**. Do **not** start 62C–62H implementation from this commit.
 **Branch:** tip intent `xiv-v2`; park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-7b68`. Never `main`. Never force-push. Do not dump runtime into `services/ai/` or land Supabase migrations in this commit.
 **Canonical path:** `docs/architecture/xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`
 **Founder summary sibling:** [`../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md)
 **Series pointer:** [`../queue/2I-AI-62-SERIES-POINTER.md`](../queue/2I-AI-62-SERIES-POINTER.md)
 **Deployment gate pointer:** [`../queue/DEPLOYMENT-GATE-HARDENING.md`](../queue/DEPLOYMENT-GATE-HARDENING.md)
 **Compose with:** 62A Agent Civilization / XACP / registry / quotas / kill switch; LA-07 Trust; LA-08 Curiosity/Contradiction; LA-14/23/35A Security; LA-15 Story Evolution; LA-57 Guardian; LA-59 Offline; LA-61I Multi-Brain / BrainMessage; LA-61J Data Civilization / tool mesh; LA-61K Parallel universe / pathway (sibling parks — do not overwrite).
-**Feeds:** **2I-AI-62C** XIV Historical, Cultural & Multilingual Intelligence Network (title only) — 62B supplies Meeting Engine, XARP, Human Intelligence Bridge, disagreement preservation, overnight briefs, task-force meetings, reputation/learning hooks, Guardian observer, resource governor, API/test contracts; **not** 62C historical knowledge depth.
+**Feeds:** **2I-AI-62C** XIV Historical, Cultural & Multilingual Intelligence Network (title only); **2I-AI-62D** Distributed Device, Chip & Edge Runtime Fabric V1 (**QUEUED DOCS**) — 62B supplies Meeting Engine, XARP, Human Intelligence Bridge, disagreement preservation, overnight briefs, task-force meetings, reputation/learning hooks, Guardian observer, resource governor, API/test contracts; **not** 62C historical knowledge depth or 62D runtime fabric depth.
 
 > Docs-only queue. **Objective is governed collective intelligence — not unrestricted autonomy.** **L4 DISABLED**.
 >
@@ -57,6 +57,7 @@ The objective is **governed collective intelligence**.
 | **2I-AI-62A** | Agent Civilization Foundation | Predecessor (**QUEUED DOCS**) |
 | **2I-AI-62B** | Agent Meetings + Collective Reasoning + Human Intelligence Bridge | **This document** |
 | **2I-AI-62C** | Historical, Cultural & Multilingual Intelligence Network | **NEXT (title only)** |
+| **2I-AI-62D** | Distributed Device, Chip & Edge Runtime Fabric V1 | **QUEUED DOCS** (implementation still after 62C PASS) |
 
 ---
 
@@ -603,10 +604,11 @@ Report `LOCAL=` `GITHUB=` `GITLAB=` `TREE=`. GitLab unverifiable → **BLOCKED**
 
 ## Next queue
 
-- **2I-AI-62C** — XIV Historical, Cultural & Multilingual Intelligence Network  
-  Separates history from mythology, primary evidence from interpretation, historical belief from modern fact, culture from stereotype, knowledge from prediction — and foundations for multilingual / cross-civilization reasoning without uncontrolled ingestion corrupting trusted knowledge.
+- **2I-AI-62C** — XIV Historical, Cultural & Multilingual Intelligence Network (**title only** — required before 62D implementation)
+- **2I-AI-62D** — Distributed Device, Chip & Edge Runtime Fabric V1 (**QUEUED DOCS**)
+- **2I-AI-62E** — Massive Agent Scheduler, Swarm Coordination & Task Force Fabric (**title only**)
 
-**Do not start 62C from this commit.**
+**Do not start 62C or 62D implementation from the 62B commit.**
 
 ## Docs-only gate
 

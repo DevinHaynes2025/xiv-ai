@@ -60,6 +60,8 @@ Guardian above meetings. No fabricated human approval. No recursive unlimited ag
 ## Next queue
 
 - **2I-AI-62C** XIV Historical, Cultural & Multilingual Intelligence Network (title only)
+- **2I-AI-62D** Distributed Device, Chip & Edge Runtime Fabric V1 (**QUEUED DOCS**)
+- **2I-AI-62E** Massive Agent Scheduler, Swarm Coordination & Task Force Fabric (title only)
 
 **Do not start 62C from this commit.**
 
