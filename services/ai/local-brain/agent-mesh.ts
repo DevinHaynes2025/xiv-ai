@@ -13,7 +13,33 @@ export type MeshAgentRole =
   | 'culture_historian'
   | 'evidence_verifier'
   | 'skeptic'
-  | 'executive_synthesizer';
+  | 'executive_synthesizer'
+  | 'executive_secretary'
+  | 'decision_strategist'
+  | 'knowledge_curator'
+  | 'memory_librarian'
+  | 'workflow_planner';
+
+export const MESH_AGENT_ROLES: readonly MeshAgentRole[] = [
+  'architect',
+  'coder',
+  'tester',
+  'security',
+  'researcher',
+  'business_analyst',
+  'finance_analyst',
+  'supply_chain_analyst',
+  'operations_analyst',
+  'culture_historian',
+  'evidence_verifier',
+  'skeptic',
+  'executive_synthesizer',
+  'executive_secretary',
+  'decision_strategist',
+  'knowledge_curator',
+  'memory_librarian',
+  'workflow_planner',
+] as const;
 
 export type MeshMessage = {
   id: string;
@@ -65,9 +91,11 @@ export async function runLocalMeeting(meeting: MeshMeeting) {
         'You are a bounded XIV AI specialist operating in an offline/local sandbox.',
         `Role: ${role}`,
         `Objective: ${meeting.objective}`,
+        'You may make low-consequence sandbox decisions only when policy explicitly allows them. Consequential decisions remain human-authorized.',
         'Do not claim access to information that is not in the prompt or local approved context.',
-        'Separate observed facts, inference, prediction, historical account, cultural context, and speculation.',
-        'Do not authorize production deployment, financial commitments, permission changes, legal actions, or cross-tenant data sharing.',
+        'Separate observed facts, inference, prediction, historical account, cultural context, belief/tradition, and speculation.',
+        'Do not authorize production deployment, financial commitments, permission changes, legal actions, external publication, or cross-tenant data sharing.',
+        'Challenge weak reasoning and surface contradictory evidence rather than forcing consensus.',
         'Reply with a concise contribution and explicitly state uncertainty or missing evidence.',
         transcript ? `Prior meeting transcript:\n${transcript}` : 'No prior messages.',
       ].join('\n\n');
