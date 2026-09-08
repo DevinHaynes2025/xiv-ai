@@ -1,6 +1,6 @@
 # XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30)
 
-**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** / **LA-08** implementation in this commit.
+**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-09 Temporal+Causal** implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
 **Branch tip at authoring:** beyond `4d7d5d1` (LA-07 Trust queue) / `86f04e2` (LA-05→KZ sync) / `0375e6f` (LA-06 queue) / `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain / Meta Brain + **LA-05 KG** + **LA-06 Memory/Learning** + **LA-07 Trust plane** + **LA-08 Curiosity/Question/Contradiction Brain V10** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…08 docs + **LA-09 Temporal+Causal** (this expansion) + LA-10 Simulation | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3143,11 +3143,24 @@ Every phase inherits and must preserve:
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) | **This expansion — docs queue now; code only after LA-01→LA-05 PASS** |
 | **2I-LA-07** | Trust Kernel + Age/Consent/Waiver + Contract/Legal/Commerce Control Plane + 24/7 Safety Feedback | **This expansion — docs queue now; code only after LA-01→LA-06 PASS** |
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 | **This expansion — docs queue now; code only after LA-01→LA-07 PASS** |
-| **2I-LA-09…30** | Titles in LA-08 §57 | **QUEUE ONLY** — do not implement from this document |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 | **QUEUED DOCS** — `xiv-2i-la-09-temporal-causal-intelligence-v10.md`; **DO NOT IMPLEMENT until LA-08 PASS** |
+| **2I-LA-10…30** | Parallel Quantum Universe Simulation Grid → … | **QUEUE ONLY** — LA-10 next; temporal/causal prerequisite |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
 Founder Brief delivery address when contacts/briefs mentioned: **`devinhaynes2025@gmail.com`** (never `@gmil.com`; Gmail LIVE remains `NOT_CONFIGURED` until proven).
+
+---
+
+## 2I-LA-09 — TEMPORAL + CAUSAL INTELLIGENCE V10 (queued docs)
+
+**Status:** QUEUED (docs). Full contracts: [`xiv-2i-la-09-temporal-causal-intelligence-v10.md`](./xiv-2i-la-09-temporal-causal-intelligence-v10.md).
+
+**DO NOT IMPLEMENT** until **LA-08 Curiosity PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation**.
+
+Prerequisite for **LA-10** Parallel Quantum Universe Simulation Grid: credible temporal ordering + causal states (AFTER ≠ BECAUSE; CORRELATION ≠ CAUSATION; bitemporal; supersede don’t rewrite). **L4 DISABLED**.
+
+Curiosity sibling: [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md).
 
 ---
 
@@ -3684,8 +3697,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) — **FULL STORY SUMMARY BELOW** (docs only) |
 | **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **FULL STORY SUMMARY BELOW** (docs only; **supersedes** older “Curiosity = LA-07” notes) |
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY SUMMARY BELOW** (docs only) |
-| **2I-LA-09** | Temporal + Causal Intelligence V10 — **NEXT after LA-08** |
-| **2I-LA-10** | Parallel Universe Simulation Grid |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid — **NEXT**; temporal/causal prerequisite (`docs/queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md`) |
 | **2I-LA-11** | Multi-Model Arena + Model Evolution |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
 | **2I-LA-13** | AI Sales Force V10 |
@@ -4416,8 +4429,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 |----|-------|
 | **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **NEXT after LA-06** / **FULL STORY BELOW** |
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY BELOW** |
-| **2I-LA-09** | Temporal + Causal Intelligence V10 — **NEXT after LA-08** |
-| **2I-LA-10** | Parallel Universe Simulation Grid |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid — **NEXT**; temporal/causal prerequisite (`docs/queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md`) |
 | **2I-LA-11** | Multi-Model Arena + Model Evolution |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
 | **2I-LA-13** | AI Sales Force V10 |
@@ -4835,7 +4848,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / TRUST_KERNE
 | ID | Title |
 |----|-------|
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY BELOW** |
-| **2I-LA-09** | Temporal + Causal Intelligence V10 — **NEXT after LA-08** (see LA-08 §57) |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**) |
 | **2I-LA-10…30** | See **LA-08 §57** title list |
 
 ### NEXT after LA-07 (queue mention only)
@@ -5130,8 +5143,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 
 | ID | Title |
 |----|-------|
-| **2I-LA-09** | Temporal + Causal Intelligence V10 — **NEXT after LA-08** |
-| **2I-LA-10** | Parallel Quantum Universe Simulation Grid |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid — **NEXT**; temporal/causal prerequisite (`docs/queue/2I-LA-10-parallel-quantum-universe-simulation-grid.md`) |
 | **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
 | **2I-LA-13** | Nested AI Tool Foundry |
@@ -5155,7 +5168,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 
 ### NEXT after LA-08 (queue mention only)
 
-**2I-LA-09 — Temporal + Causal Intelligence V10** (do **not** implement from this docs commit).
+**2I-LA-09 — Temporal + Causal Intelligence V10** — full contracts in `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (do **not** implement until **LA-08 PASS**).
 
 ### Permanent rules (LA-08 / CEO)
 
