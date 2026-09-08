@@ -437,22 +437,39 @@ Document-only tables (names illustrative):
 
 **Never invent PASS** for unimplemented tests. Evidence remains QUEUED / FALSE / UNKNOWN.
 
-### 26. Definition of Done flow (implementation era — not this park)
+### 26. Definition of Done state machine (implementation era — not this park)
+
+**Permanent state machine (none of these auto-authorize production):**
+
+```
+QUEUED ARCHITECTURE (this park)
+  → IMPLEMENTED          (code + schema exist; flags still FALSE until slice gates)
+  → VERIFIED             (AC-01…AC-24 + Required Tests green with evidence artifacts)
+  → STAGING/CANARY CANDIDATE  (authority-gated; CRITICAL=0 on Canary Gate)
+```
+
+**Hard rules:**
+- **QUEUED ≠ IMPLEMENTED ≠ VERIFIED ≠ STAGING/CANARY CANDIDATE ≠ PRODUCTION AUTHORIZATION**
+- Reaching **STAGING/CANARY CANDIDATE** does **not** auto-authorize production.
+- **Deployment Gate Hardening** remains independently required and authoritative for any staging/canary/production promotion — **do not interrupt / do not override**.
+- NEVER claim PASS without evidence artifacts. NEVER invent PASS / AVAILABLE.
+- NEVER device enrollment / compute purchase / satellite / production agents from docs park.
+
+**Implementation-era path (after predecessors PASS — not claimed here):**
 
 ```
 DOCS PARKED (this) → 62C PASS evidence → 62B PASS → 62A PASS
-→ Deployment Gate Hardening PASS
+→ Deployment Gate Hardening PASS (still required)
 → flags still FALSE until slice gates → schema + RLS (authorized separately)
 → XHAL + Capability Registry MVP → Runtime Node Identity + Attestation
 → XCR security-first routing → XIV EDGE leases
 → Offline honesty + Kill Switch → Mobility + Continuity
-→ Required Tests green with evidence
-→ authority-gated canary only if separately approved
+→ AC-01…AC-24 + Required Tests green with evidence
+→ Canary Gate CRITICAL=0 → STAGING/CANARY CANDIDATE only if separately approved
 → NEVER claim PASS without evidence artifacts
-→ NEVER device enrollment / compute purchase / satellite from docs park
 ```
 
-**This park’s DoD:** docs committed on park branch; dual-pushed; tip-landed=NO; no runtime; unique 62D paths; master queue updated; 62A/62B/62C/LA-61\* untouched.
+**This park’s DoD:** docs committed on park branch; dual-pushed; tip-landed=NO; no runtime; unique 62D paths; master queue updated; 62A/62B/62C/LA-61\* untouched; status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.
 
 ### 27. Space Boundary (satellites UNCONFIGURED)
 
@@ -559,6 +576,306 @@ Space / beyond-cloud adjacency is **interface-only** (compose 62A §13 / future 
 | **62C** park `cursor/queue-2i-ai-62c-historical-cultural-multilingual-4059` / `bc-323959d4` | Queue **AFTER 62C**; **do not overwrite** 62C paths |
 | **LA-61\*** parks | **Do not clobber** LA-61\* files; additive cross-links only |
 | Deployment Gate Hardening | **Do not interrupt** active validated work |
+
+---
+
+## Acceptance Criteria & Measurable Thresholds (AC-01…AC-24)
+
+**Status of all ACs in this park:** **QUEUED / Measured=TBD / Status=⬜** — **TBD is not PASS.** These criteria apply in the **implementation / verification era**. This park does **not** claim IMPLEMENTED, VERIFIED, or PASS. Evidence class remains **QUEUED / FALSE / UNKNOWN**.
+
+Cross-link: **Deployment Gate Hardening** (CURRENT elsewhere — do not interrupt) remains required for any staging/canary/production promotion.
+
+### AC-01 — Runtime Registration
+
+**Given** a candidate compute node (phone / laptop / workstation / edge / cloud worker class) presenting Runtime Node Identity fields  
+**When** the node requests registration into XUR / XDN without complete identity, capability record, or enrollment authorization  
+**Then** registration is **DENIED** or held **PENDING**; ENROLLMENT ≠ AUTHORITY; no consequential workload is schedulable  
+**Threshold:** 100% of registration attempts missing required fields are denied or pending; 0 silent auto-enrollments; `AUTO_DEVICE_ENROLLMENT=FALSE`  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-02 — Attestation
+
+**Given** a registered runtime node in any attestation state other than an evidence-backed pass class  
+**When** a consequential workload is offered to that node  
+**Then** the workload is **DENIED** (deny-safe UNKNOWN / FAIL / EXPIRED / REVOKED); unattested nodes cannot run consequential work  
+**Threshold:** 100% of consequential offers to non-pass attestation states denied; 0 attestation bypasses; `AUTO_ATTESTATION_BYPASS=FALSE`  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-03 — Tenant / Universe Isolation (**CRITICAL**)
+
+**Given** two tenants (or two Universes) with workloads eligible for shared physical hosts  
+**When** XCR / EDGE attempts placement without explicit cross-tenant / cross-Universe authorization  
+**Then** co-placement is **DENIED**; cross-tenant compute isolation remains hard default; no silent co-tenancy  
+**Threshold:** **0** cross-tenant compute isolation violations; **0** cross-Universe co-compute without explicit auth; CRITICAL severity if any violation  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-04 — Workload Authorization
+
+**Given** a routed workload package lacking Guardian / authority bindings for its consequential class  
+**When** XCR.Route or Edge.LeaseWorkload is invoked  
+**Then** routing/lease is **DENIED**; XCR policy decision ≠ execution authority; lease ≠ permanent authority  
+**Threshold:** 100% of unauthorized consequential workloads denied; 0 leases granted without authority bindings  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-05 — Compute Routing
+
+**Given** a synthetic routing suite of **1000** capability-constrained placement requests with known security-first expected routes  
+**When** XCR evaluates routes under mixed performance vs isolation pressure  
+**Then** security overrides performance on every conflict; insecure faster routes are rejected  
+**Threshold:** **≥99.9%** correct security-first route decisions across **1000** synthetic cases (≤1 miss); 0 accepted routes that trade isolation/attestation for speed  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-06 — Hardware Portability
+
+**Given** equivalent capability-class requests across CPU / accelerator / mobile / edge abstractions (XHAL)  
+**When** vendor brands differ but capability classes and support evidence match  
+**Then** routing remains capability-based (CAPABILITY ≠ VENDOR); brand slogans never grant AVAILABLE; DETECTED ≠ SUPPORTED ≠ OPTIMIZED ≠ AVAILABLE  
+**Threshold:** 100% of brand-as-capability attempts fail; AVAILABLE only with individual vendor-support evidence pack; 0 invented AVAILABLE states  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-07 — Agent Runtime Assignment
+
+**Given** an agent mobility or assignment request to a destination node  
+**When** destination attestation / capability / tenant bindings are incomplete or stale  
+**Then** assignment/migration is **DENIED** until re-attest succeeds; MOBILITY ≠ privilege escalation  
+**Threshold:** 100% of mobility attempts without destination re-attest denied; 0 privilege expansions via migrate  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-08 — Resource Governance
+
+**Given** workloads and agent spawns under Resource Governor + Compute Economics + Thermal/Energy governors  
+**When** budget, lease, thermal, or energy limits would be exceeded (or saver modes engage)  
+**Then** excess is **PAUSED/DENIED**; energy saver never disables attestation/Guardian hooks; cost hooks ≠ auto purchase  
+**Threshold:** 100% of over-budget spawns blocked; 0 security-bypass via thermal/energy saver; `AUTO_COMPUTE_PURCHASE=FALSE`; `AUTO_EDGE_SCALE=FALSE`  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-09 — Massive Logical-Agent Scale
+
+**Given** a logical agent identity registry targeting **100,000** logical identities  
+**When** identities are registered/scheduled under bounded-active policy  
+**Then** logical registry scale succeeds without claiming equal live process scale; LOGICAL ≠ ACTIVE COMPUTE; spawn remains budget-bound  
+**Threshold:** **100k** logical identities registerable in test harness; active concurrent processes remain explicitly bounded and reported separately; 0 honesty failures equating logical=active  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-10 — Offline Work Packages
+
+**Given** Offline XIV work packages under device lease/budget  
+**When** connectivity is absent or degraded  
+**Then** packages execute only within lease/budget/Guardian bounds; OFFLINE ≠ AUTHORIZED; reconnect does not silently expand privilege  
+**Threshold:** 100% of offline packages respect lease expiry → PAUSE; 0 unauthorized consequential actions offline; 0 silent privilege merge on reconnect  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-11 — Offline Meeting Integrity
+
+**Given** Offline Agent Meetings on device (compose 62B overnight honesty)  
+**When** meetings run asynchronously without cloud authority  
+**Then** meeting outputs remain labeled; **0 unauthorized actions**; disagreement/evidence rules preserved; lease/budget enforced  
+**Threshold:** **0** unauthorized actions across offline meeting suite; 100% lease/budget violations paused/denied  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-12 — Failure Recovery
+
+**Given** a chaos suite of **100** forced runtime/node/route failures  
+**When** Failure Recovery plans execute  
+**Then** recovery is deny-safe; no blind replay of consequential actions; plan ≠ auto production repair; kill/pause remains available  
+**Threshold:** **100/100** forced failures handled without unauthorized consequential replay; 0 `AUTO_PRODUCTION_REPAIR` paths exercised; recovery evidence logged for each case  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-13 — Kill Switch
+
+**Given** an active edge/runtime node executing a leased workload  
+**When** Kill/Pause is invoked via authorized control plane  
+**Then** execution stops; fabric is not unkillable; PauseNode is a real control  
+**Threshold:** Kill/Pause propagation **p95 ≤ 2 seconds** in instrumented test harness; 100% of kill targets reach paused/stopped; 0 ignored kill commands  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-14 — Model Authorization
+
+**Given** Model Runtime Registry entries and routing requests  
+**When** a model name is presented without deploy/runtime authorization evidence  
+**Then** routing/deploy is **DENIED**; model name ≠ authorized deploy; registry list ≠ capability grant  
+**Threshold:** 100% of unauthorized model deploy/route attempts denied; 0 name-as-auth grants  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-15 — Information Logistics
+
+**Given** workloads hopping across mobile ↔ edge ↔ cloud compute  
+**When** lineage / provenance is inspected after multi-hop execution  
+**Then** Information Logistics records compute hops; faster ≠ truer; continuity ≠ silent exfil / privilege merge  
+**Threshold:** 100% of multi-hop consequential executions emit lineage records; 0 silent privilege merges; 0 unlabeled provenance gaps on required paths  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-16 — Secret & Credential Safety
+
+**Given** runtime nodes, edge leases, and service contracts touching secrets/credentials  
+**When** workloads request raw cloud/DB admin credentials or secret exfil paths  
+**Then** requests are **DENIED**; no universal raw credential grant; secret brokers remain deny-safe when UNCONFIGURED/UNKNOWN  
+**Threshold:** 0 raw universal credential grants in suite; 100% of unauthorized secret access denied; CRITICAL if any secret leakage  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-17 — Dependency Security
+
+**Given** runtime dependency / plugin / accelerator driver surfaces  
+**When** unsigned, unattested, or policy-violating dependencies are presented  
+**Then** load/attach is **DENIED**; dependency presence ≠ trust; Guardian hooks remain above  
+**Threshold:** 100% of policy-violating dependency attaches denied; 0 Guardian-disable via dependency path; `AUTO_GUARDIAN_DISABLE=FALSE`  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-18 — Mobile Regression
+
+**Given** iOS / Android runtime boundaries with flags default FALSE  
+**When** mobile regression suite runs against Business OS / continuity surfaces touched by 62D contracts  
+**Then** phone ≠ unrestricted infra; store-release gates remain separate; no mobile path enables L4 or AUTO_*  
+**Threshold:** Mobile regression suite **0 CRITICAL** failures attributable to 62D contracts; all mobile runtime flags remain FALSE by default  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-19 — Web / API Regression
+
+**Given** Device Edge API / service contract names documented in §24  
+**When** web/API regression suite invokes documented names while flags are FALSE / UNCONFIGURED  
+**Then** names ≠ capabilities; OPENAPI ENTRY ≠ AUTHORIZED; DOCUMENTED ≠ DEPLOYED; deny-safe responses  
+**Threshold:** Web/API regression suite **0 CRITICAL** failures; 100% of flagged-off API capability claims fail closed  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-20 — Performance (concurrency)
+
+**Given** an authorized synthetic concurrency harness targeting **1,000** simultaneous bounded tasks  
+**When** XCR / EDGE / Governor run under load with security-first policy  
+**Then** system sustains bounded concurrency without dropping isolation/attestation; performance never overrides security  
+**Threshold:** **≥1,000** simultaneous active bounded tasks sustained in harness with **0** isolation/attestation policy violations; p95 kill switch still ≤2s under load (compose AC-13)  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-21 — Cost Governance
+
+**Given** Compute Economics hooks observing usage/cost signals  
+**When** spend would require purchase, scale-out, or provider connect  
+**Then** no silent paid scale; usage ≠ invoice authority; purchase/connect require separate human/authority gates  
+**Threshold:** 0 auto purchases; 0 silent paid scale events; `AUTO_COMPUTE_PURCHASE=FALSE`; `AUTO_PROVIDER_CONNECT=FALSE`; `AUTO_EDGE_SCALE=FALSE`  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-22 — Observability
+
+**Given** runtime registration, attestation, routing, kill, and recovery events  
+**When** operators query observability surfaces  
+**Then** required events are queryable with honest states (including UNKNOWN); logical vs active counts are not conflated  
+**Threshold:** 100% of AC-critical event classes emit observability records in harness; 0 honesty failures claiming logical=active; deny-safe UNKNOWN preserved  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-23 — Backup & Restore
+
+**Given** runtime metadata / lineage / lease state within documented backup scope  
+**When** backup and restore drills run  
+**Then** restore does not silently re-authorize consequential work; restored nodes require attestation/authority re-check  
+**Threshold:** 100% of restore drills re-check attestation/authority before consequential resume; 0 blind consequential replay post-restore  
+**Measured:** TBD · **Status:** ⬜
+
+### AC-24 — Rollback
+
+**Given** a failed 62D slice deploy / flag enable attempt in staging  
+**When** rollback is invoked  
+**Then** flags return to FALSE/safe defaults; no partial authority retention; L4 remains FALSE; AUTO_* remain FALSE  
+**Threshold:** 100% of rollback drills restore safe defaults; 0 retained unauthorized capabilities post-rollback  
+**Measured:** TBD · **Status:** ⬜
+
+---
+
+## Canary Gate checklist (62D)
+
+**Applies only in verification / canary-candidate era — not claimed by this park.** Cross-link: **Deployment Gate Hardening** still required; this checklist does **not** auto-authorize production.
+
+| Gate line | Severity | Required | Park status |
+|-----------|----------|----------|-------------|
+| AC-03 Tenant/Universe Isolation violations | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| Secret/credential leakage (AC-16) | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| Cross-tenant shared compute without explicit auth | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| Kill switch ineffective / p95 > 2s (AC-13) | **CRITICAL** | **PASS** (p95 ≤ 2s) | ⬜ TBD (not PASS) |
+| Attestation bypass / unattested consequential work | **CRITICAL** | **= 0** / **PASS** | ⬜ TBD (not PASS) |
+| Security traded for performance (AC-05) | **CRITICAL** | **= 0** / route ≥99.9% | ⬜ TBD (not PASS) |
+| Unauthorized offline/meeting actions (AC-10/11) | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| L4_AUTONOMY_ENABLED or any listed AUTO_* true by default | **CRITICAL** | **FALSE** | ⬜ documented FALSE (not VERIFIED runtime) |
+| Satellite command while UNCONFIGURED | **CRITICAL** | **DENIED / = 0** | ⬜ TBD (not PASS) |
+| Mobile regression CRITICAL failures (AC-18) | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| Web/API regression CRITICAL failures (AC-19) | **CRITICAL** | **= 0** | ⬜ TBD (not PASS) |
+| Failure recovery unauthorized replay (AC-12) | **CRITICAL** | **= 0** across 100 forced failures | ⬜ TBD (not PASS) |
+| Deployment Gate Hardening | **REQUIRED** | **PASS** (elsewhere) | ⬜ not claimed here |
+| All feature flags / AUTO_* | **REQUIRED** | remain **FALSE** until slice gates | ⬜ documented FALSE |
+
+**Canary Gate rule:** all **CRITICAL = 0** and all required lines **PASS** with evidence artifacts before **STAGING/CANARY CANDIDATE**. **None of these auto-authorize production.**
+
+---
+
+## Readiness Scorecard
+
+| Dimension | Target | Measured | Status |
+|-----------|--------|----------|--------|
+| Runtime Registration (AC-01) | 100% deny/pending on incomplete enroll | TBD | ⬜ |
+| Attestation (AC-02) | 100% deny consequential on non-pass | TBD | ⬜ |
+| Tenant/Universe Isolation (AC-03) | 0 violations (CRITICAL) | TBD | ⬜ |
+| Workload Authorization (AC-04) | 100% unauthorized denied | TBD | ⬜ |
+| Compute Routing (AC-05) | 1000 synthetic ≥99.9% security-first | TBD | ⬜ |
+| Hardware Portability (AC-06) | 0 brand-as-capability AVAILABLE | TBD | ⬜ |
+| Agent Runtime Assignment (AC-07) | 100% mobility re-attest enforced | TBD | ⬜ |
+| Resource Governance (AC-08) | 100% over-budget blocked | TBD | ⬜ |
+| Massive Logical-Agent (AC-09) | 100k logical identities; logical≠active | TBD | ⬜ |
+| Offline Work Packages (AC-10) | 0 unauthorized offline actions | TBD | ⬜ |
+| Offline Meeting Integrity (AC-11) | 0 unauthorized meeting actions | TBD | ⬜ |
+| Failure Recovery (AC-12) | 100/100 forced failures safe | TBD | ⬜ |
+| Kill Switch (AC-13) | p95 ≤ 2s; 100% stop | TBD | ⬜ |
+| Model Authorization (AC-14) | 100% unauthorized model deny | TBD | ⬜ |
+| Information Logistics (AC-15) | 100% multi-hop lineage | TBD | ⬜ |
+| Secret & Credential Safety (AC-16) | 0 leakage (CRITICAL) | TBD | ⬜ |
+| Dependency Security (AC-17) | 100% policy-violating deny | TBD | ⬜ |
+| Mobile Regression (AC-18) | 0 CRITICAL | TBD | ⬜ |
+| Web/API Regression (AC-19) | 0 CRITICAL | TBD | ⬜ |
+| Performance 1K concurrent (AC-20) | ≥1000 bounded tasks; 0 isolation breaks | TBD | ⬜ |
+| Cost Governance (AC-21) | 0 auto purchase / silent paid scale | TBD | ⬜ |
+| Observability (AC-22) | 100% AC-critical events queryable | TBD | ⬜ |
+| Backup & Restore (AC-23) | 100% restore re-attest before resume | TBD | ⬜ |
+| Rollback (AC-24) | 100% safe-default restore | TBD | ⬜ |
+| Canary Gate CRITICAL | = 0 | TBD | ⬜ |
+| Deployment Gate Hardening | PASS (elsewhere; still required) | TBD | ⬜ |
+| Feature flags / AUTO_* | all FALSE | documented FALSE | ⬜ |
+| tip-landed | NO | NO | ⬜ park posture |
+| DEPLOYMENT_STATE | QUEUED | QUEUED | ⬜ |
+
+### Permanent scorecard notes (never collapse)
+
+- **TBD is not PASS**
+- **UNCONFIGURED is not PASS**
+- **DOCUMENTED is not IMPLEMENTED**
+- **IMPLEMENTED is not VERIFIED**
+- **VERIFIED is not PRODUCTION AUTHORIZATION**
+
+---
+
+## Queue Lock
+
+| Lock | Value |
+|------|-------|
+| **CURRENT (this park)** | **2I-AI-62D** Distributed Device, Chip & Edge Runtime Fabric V1 — **QUEUED ARCHITECTURE — NOT IMPLEMENTED** |
+| **NEXT** | **2I-AI-62E** Massive Agent Scheduler & Task Force Fabric |
+| **Active elsewhere** | **Deployment Gate Hardening** — DO NOT INTERRUPT / DO NOT OVERRIDE |
+| **tip-landed** | **NO** |
+| **Production auto-auth** | **NONE** — STAGING/CANARY CANDIDATE never auto-authorizes production |
+
+**Do not start 62E from this commit.**
+
+---
+
+## 62E Entry Requirement (targets — not claimed)
+
+Before **2I-AI-62E** may leave title/preview into implementation eligibility, **62D** verification evidence must demonstrate (Measured remain TBD here):
+
+| Target | Threshold | Measured | Status |
+|--------|-----------|----------|--------|
+| Logical agents addressable on fabric | **100,000** logical identities | TBD | ⬜ |
+| Synthetic scheduling suite | **10,000** synthetic scheduling decisions | TBD | ⬜ |
+| Simultaneous active bounded tasks | **≥ 1,000** | TBD | ⬜ |
+| Cross-tenant scheduling violations | **0** | TBD | ⬜ |
+| Uncontrolled recursive creation | **0** | TBD | ⬜ |
+| Resource-budget attachment | **100%** of scheduled/active tasks have budgets attached | TBD | ⬜ |
+
+**62E Entry Requirement ≠ 62E PASS ≠ production authorization.** Deployment Gate Hardening still required. Feature flags / AUTO_* remain **FALSE**.
 
 ---
 
