@@ -14,9 +14,12 @@ import {
   INVARIANTS,
   KNOWLEDGE_CLASSES,
   L4_AUTONOMY_ENABLED,
+  MEETING_TABLE_FAMILIES,
+  MESSAGE_TABLE_FAMILIES,
   NAMESPACE_HIERARCHY,
   OPEN_SCHEMA_DEFECTS,
   PREEXISTING_TABLES,
+  SCHEMA_FORKED,
   PROHIBITED_AGENT_ACTIONS,
   QUEUE_SEQUENCE,
   SLICE_1_TABLE_DISPOSITION,
@@ -24,6 +27,7 @@ import {
   STORAGE_TIERS,
   STORY_ID,
   STORY_SERIES,
+  UNIVERSE_BLIND_TABLE_COUNT,
   UNIVERSE_LIFECYCLE_STATES,
   XACP_RECORD_FIELDS,
   XACP_STAGES,
@@ -168,9 +172,21 @@ for (const table of Object.keys(SLICE_1_TABLE_DISPOSITION) as Array<
 assert.ok(PREEXISTING_TABLES.includes('agent_meetings'));
 assert.ok(PREEXISTING_TABLES.includes('agent_task_forces'));
 
+// 62B landed before 62A, so meetings have two homes and messages have three.
+assert.equal(SCHEMA_FORKED, true);
+assert.equal(MEETING_TABLE_FAMILIES.length, 2);
+assert.equal(MESSAGE_TABLE_FAMILIES.length, 3);
+for (const t of [...MEETING_TABLE_FAMILIES, ...MESSAGE_TABLE_FAMILIES]) {
+  assert.ok(
+    (PREEXISTING_TABLES as readonly string[]).includes(t),
+    `${t} already exists and must not be re-created`,
+  );
+}
+
 // Both reconciliation defects stay open until Slice 1.0 closes them.
 assert.equal(OPEN_SCHEMA_DEFECTS.universeBlindRls, true);
 assert.equal(OPEN_SCHEMA_DEFECTS.tenantIdTypeInconsistent, true);
+assert.equal(UNIVERSE_BLIND_TABLE_COUNT, 19);
 
 // Nothing is demonstrated yet; never infer PASS.
 assert.equal(noAcceptanceCriteriaDemonstrated(), true);

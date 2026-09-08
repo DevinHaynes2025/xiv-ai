@@ -239,6 +239,25 @@ export const PREEXISTING_TABLES = [
   'agent_workers',
   'agent_departments',
   'universes',
+  'xiv_agent_meetings',
+  'xiv_agent_meeting_participants',
+  'xiv_agent_meeting_messages',
+] as const;
+
+/**
+ * The agent model is already forked across parallel schemas: 62B landed before
+ * 62A and added the xiv_agent_meetings family alongside the pre-existing
+ * agent_meetings, so meetings have two homes and messages have three.
+ * Slice 1.0 reconciles this; until then the fork is recorded, not resolved.
+ */
+export const SCHEMA_FORKED = true;
+
+export const MEETING_TABLE_FAMILIES = ['agent_meetings', 'xiv_agent_meetings'] as const;
+
+export const MESSAGE_TABLE_FAMILIES = [
+  'ai_agent_messages',
+  'agent_mc_messages',
+  'xiv_agent_meeting_messages',
 ] as const;
 
 /** Open defects found while reconciling. Both must be closed in Slice 1.0. */
@@ -246,6 +265,12 @@ export const OPEN_SCHEMA_DEFECTS = {
   universeBlindRls: true,
   tenantIdTypeInconsistent: true,
 } as const;
+
+/**
+ * Tables carrying universe_id whose RLS policies filter on tenant_id only.
+ * Nine from agent_mission_control plus ten from the 62B meetings migration.
+ */
+export const UNIVERSE_BLIND_TABLE_COUNT = 19;
 
 export const ACCEPTANCE_CRITERIA_DEMONSTRATED = {
   organizationIsolation: false,

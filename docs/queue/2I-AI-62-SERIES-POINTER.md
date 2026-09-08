@@ -1,49 +1,57 @@
 # 2I-AI-62 series pointer
 
-Status: **POINTER ONLY** — does not implement any 62-series story.
+Status: **POINTER** for the 2I-AI-62 Agent Civilization track.
 Branch: `xiv-v2` (never `main`; never force-push)
 
-This file records the `2I-AI-62x` ordering without inventing full successor architecture.
+This series is **separate** from 2I-LA-61 (neural infrastructure). Do not merge the two tracks.
 
 ## Prefix collision — founder decision required
 
 The master build queue **already uses `2I-AI` as a letter-pair slot meaning "Software Factory"** (`xiv-master-build-queue-2i-ad-to-2i-kz.md` §`2I-AI — Software Factory`, cross-referenced from at least three other entries as "compose with Software Factory (2I-AI)").
 
-The founder's new story is prefixed `2I-AI-62A` and is about **Agent Civilization**, not Software Factory. Two readings are possible:
-
-1. **`2I-AI` = "Artificial Intelligence", a new top-level series** parallel to `2I-LA`. The `62A`/`62B`/… numbering and the separate queue sequence both point this way, and this is the reading assumed by these documents.
-2. `2I-AI-62A` is item 62A *within* the existing Software Factory slot — **unlikely**, since the subject matter does not match.
-
-**These documents assume reading 1** and do not modify the existing `2I-AI — Software Factory` slot. No existing entry has been renamed or reassigned. If the founder intends a different prefix (for example `2I-AC-62x` or `2I-AGENT-62x`), the rename is mechanical at this point — two documents, one contracts module, and the queue registrations — and should be done **before** 62B is written.
+This series is prefixed `2I-AI-62x` and is about **Agent Civilization**, not Software Factory. These documents read `2I-AI` as **"Artificial Intelligence", a new top-level series**, and **do not modify the existing Software Factory slot**. If the founder intends a different prefix, the rename should happen before the series grows further.
 
 ## Ordering lock
 
-**Deployment Gate Hardening (CURRENT) → 2I-AI-62A (NEXT) → 62B → 62C → 62D → 62E → 62F → 62G → 62H (FUTURE)**
+**Deployment Gate Hardening (CURRENT) → 62A → 62B → 62C → 62D → 62E → 62F → 62G → 62H (FUTURE)**
 
-| Story | Title | State in this commit |
-|-------|-------|----------------------|
-| *(current)* | **Deployment Gate Hardening** | **CURRENT.** Owns the deployment-readiness gate; 62A cannot lift it. |
-| **2I-AI-62A** | Agent Civilization & Distributed Intelligence Foundation | **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — [`2I-AI-62A-agent-civilization-foundation.md`](./2I-AI-62A-agent-civilization-foundation.md) |
-| **2I-AI-62B** | Agent Meetings + Human Intelligence Bridge | **NEXT (title only).** Do not start. |
-| **2I-AI-62C** | Historical / Multilingual Knowledge Lineage | **LATER (title only).** Do not start. |
+| Story | Title | State |
+|-------|-------|-------|
+| *(current)* | **Deployment Gate Hardening** | **CURRENT.** Owns the deployment-readiness gate; no 62-series story lifts it. |
+| **2I-AI-62A** | Agent Civilization & Distributed Intelligence Foundation | **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — [`2I-AI-62A-agent-civilization-foundation.md`](./2I-AI-62A-agent-civilization-foundation.md). Contracts §§1–15 plus the schema reconciliation below. |
+| **2I-AI-62B** | Agent Meetings, Collective Reasoning & Human Intelligence Bridge | **BOUNDED ENGINE** — deterministic in-process network + RLS schema + required tests. **NOT LIVE overnight autonomy.** |
+| **2I-AI-62C** | XIV Historical, Cultural & Multilingual Intelligence Network | **NEXT (title only).** Do not start. |
 | **2I-AI-62D** | Distributed Device & Hardware Runtime | **LATER (title only).** Do not start. |
 | **2I-AI-62E** | Massive Agent Scheduler + Task Forces | **LATER (title only).** Do not start. |
 | **2I-AI-62F** | Universe Federation + Constellations | **LATER (title only).** Do not start. |
 | **2I-AI-62G** | Beyond-Cloud / Space Interface Architecture | **LATER (title only).** Do not start. |
 | **2I-AI-62H** | XIV Galaxy Federation | **FUTURE (title only).** Do not start. |
 
-## Relationship to the 2I-LA series
+Note that **62B landed before 62A**. 62B composes the existing mission-control / nightshift agent directories and task forces as a practical foundation; 62A supplies the governing contracts and the schema reconciliation that 62B's tables should eventually be reconciled against.
 
-The `2I-AI-62x` series is **independent of** the `2I-LA-xx` master build queue. It does not depend on, supersede, or reorder any `2I-LA` story, and no `2I-LA` ordering lock is changed by it.
+## Schema state — the agent model is now forked
 
-Subject-matter overlap exists and is expected — notably `2I-LA-61I` (Distributed Neural Infrastructure, agent mesh and population management) and `2I-LA-61N` (developer/agent societies). Overlap is **recorded, not resolved**: if the founder wants these merged, that is a separate reconciliation decision, not something these documents assume.
+62A §0.1 checked the fifteen tables named in the founder's Initial Engineering Slice against migrations already on `xiv-v2` and found that five already exist or have close equivalents. **That fork has since materialized:**
+
+- `agent_meetings` (from `20260908040000_agent_mission_control.sql`) and the ten-table **`xiv_agent_meetings`** family (from `20260908150000_xiv_agent_meetings.sql`) are now **two parallel meeting schemas** in the same database.
+- Message data now has **three** homes: `ai_agent_messages`, `agent_mc_messages`, and `xiv_agent_meeting_messages`.
+- `agent_task_forces` (+ members) already existed before the 62 series began.
+
+This is recorded, not resolved. Any further 62-series table work should start from 62A §0.1 rather than from the raw fifteen-table list.
+
+**Open defect — Universe-blind RLS.** Agent tables carry `universe_id` but their RLS policies filter on `tenant_id` only. This was true of the nine mission-control tables and is **also true of all ten new `xiv_agent_meetings` tables**, whose policies are generated as `tenant_id::text = coalesce(auth.jwt() ->> 'tenant_id', '')`. A principal holding a valid tenant JWT can read every Universe inside that tenant, which contradicts 62A's Universe-isolation acceptance criterion. See 62A §0.2.
 
 ## Hard stops
 
-- **CURRENT is Deployment Gate Hardening, not 62A.** Do not begin 62A slices while the gate work is current.
-- Do **not** issue the fifteen Slice-1 `CREATE TABLE` statements as written — **five already exist** on `xiv-v2`. See architecture §0.1 and start with **Slice 1.0 schema reconciliation**.
-- Do **not** treat this pointer as PASS, LIVE, or IMPLEMENTED.
-- Do **not** invent full 62B–62H documents from this commit.
-- **L4 DISABLED.** All `AUTO_*` FALSE. Satellite providers **UNCONFIGURED**.
+- **CURRENT is Deployment Gate Hardening.** Architecture growth ≠ deployment readiness; staging/canary promotion stays blocked.
+- Do **not** issue 62A's fifteen Slice-1 `CREATE TABLE` statements as written — start from **§0.1 Slice 1.0 schema reconciliation**.
+- L4 DISABLED. All `AUTO_*` FALSE. Satellite providers **UNCONFIGURED**.
+- Overnight work ≠ uncontrolled action.
+- Meeting ≠ authority.
+- Consensus ≠ truth.
+- API names ≠ capabilities.
+- Logical agent population ≠ running compute.
+- Do not dump 62B into `services/ai/runtime/neural/`.
+- Do not invent full 62D–62H documents.
 
 Canonical 62A architecture: [`../architecture/xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`](../architecture/xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md)

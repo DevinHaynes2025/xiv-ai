@@ -7294,4 +7294,17 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 **L4 DISABLED**. **HARD STOP — no 62A runtime; no migration and no table created by that commit.** **ARCHITECTURE GROWTH≠DEPLOYMENT READINESS** — staging/canary promotion stays **blocked** until CI, security, RLS isolation, dependency/secret scanning, regression, rollback, backup/restore, worker, and agent-evaluation gates are proven. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
 
 - [x] **2I-AI-62A** Agent Civilization & Distributed Intelligence Foundation queued (§§1–15 + §0.1 reconciliation + §0.2 defects; docs + queued contracts lock only); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; **CURRENT = Deployment Gate Hardening, 62A is NEXT**; MEETING≠AUTHORITY; AGENT CONSENSUS≠CORRECTNESS; LOGICAL≠RUNNING AGENT COUNT; HISTORICAL BELIEF≠MODERN FACT; SATELLITE=UNCONFIGURED; L4 DISABLED; all `AUTO_*`=FALSE; no acceptance criterion demonstrated; evidence QUEUED/FALSE/UNKNOWN; **prefix collision with the `2I-AI — Software Factory` slot recorded, not resolved**; park `cursor/queue-2i-ai-62a-agent-civilization-foundation-8048`
-- [x] **NEXT after 62A:** 62B Agent Meetings + Human Intelligence Bridge (title only) → 62C…62G (titles only) → **FUTURE** 62H XIV Galaxy Federation (title only)
+- [x] **NEXT after 62A:** 62B Agent Meetings + Human Intelligence Bridge (**bounded engine since landed — see the 62B section below**) → 62C…62G (titles only) → **FUTURE** 62H XIV Galaxy Federation (title only)
+
+### 2I-AI-62B — XIV Agent Meetings, Collective Reasoning & Human Intelligence Bridge
+
+**Status:** **BOUNDED ENGINE LANDED** (deterministic; **NOT LIVE** overnight; **L4 DISABLED**). Predecessor **2I-AI-62A Agent Civilization Foundation** remains **TITLE ONLY**.
+**Canonical:** [`xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`](./xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md) · queue [`../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md) · series [`../queue/2I-AI-62-SERIES-POINTER.md`](../queue/2I-AI-62-SERIES-POINTER.md)
+**Runtime:** `services/ai/runtime/agentmeetings/` · tests `phase2ai62b.test.ts` · schema `supabase/migrations/20260908150000_xiv_agent_meetings.sql`
+
+**Includes:** XIV Meeting Engine (private Universe rooms; meeting≠authority); lifecycle TRIGGER…KNOWLEDGE_LINEAGE; XARP roles (Investigator…Synthesizer); evidence-before-consensus proposals; preserved disagreement; Human Intelligence Bridge + HUMAN_* classifications (opinion≠truth; no fabricated approval); overnight briefs with unauthorizedActionsExecuted=0; Task Force Engine (sleep/archive; membership≠permissions); logical agent directory; reputation without authority expansion; outcome-based learning; multilingual provenance (culture≠fact); temporal context; meeting memory reconstruction; Guardian observer (not subordinate); pause/stop/quarantine kill switch without agent cooperation; meeting resource governor; command-center snapshot (logical≠active compute); bounded APIs (names≠capabilities); RLS tables `xiv_agent_meetings*`.
+
+**NEXT after 62B:** **2I-AI-62C** XIV Historical, Cultural & Multilingual Intelligence Network (title only). Do not start 62C from this commit.
+
+- [x] **2I-AI-62B** Agent Meetings + Human Intelligence Bridge bounded engine landed (deterministic tests; RLS schema prepared; LIVE overnight FALSE; L4 DISABLED)
+- [x] **NEXT after 62B:** 2I-AI-62C Historical, Cultural & Multilingual Intelligence Network (title only)

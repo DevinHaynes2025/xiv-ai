@@ -28,6 +28,9 @@ Existing agent-related migrations on `xiv-v2`:
 | `20260906220000_persistent_organizations_and_universes.sql` | `organizations`, `universes`, `organization_memberships`, `universe_memberships` |
 | `20260908031500_agent_cloud_workforce.sql` | `agent_workers`, `agent_missions`, `agent_leases`, `agent_checkpoints`, `agent_debriefs`, `agent_execution_events` |
 | `20260908040000_agent_mission_control.sql` | `agent_departments`, `agent_shift_definitions`, `agent_shift_instances`, `agent_shift_assignments`, **`agent_task_forces`**, `agent_task_force_members`, `agent_mc_messages`, **`agent_meetings`**, `agent_performance` |
+| `20260908150000_xiv_agent_meetings.sql` (2I-AI-62B) | `xiv_agent_meetings`, `xiv_agent_meeting_participants`, `xiv_agent_meeting_messages`, `xiv_agent_meeting_evidence`, `xiv_agent_meeting_proposals`, `xiv_agent_meeting_objections`, `xiv_agent_meeting_votes`, `xiv_agent_meeting_decisions`, `xiv_agent_meeting_actions`, `xiv_agent_meeting_outcomes` |
+
+> **The fork this section warned about has since materialized.** 2I-AI-62B landed **before** 62A and added the ten-table `xiv_agent_meetings` family. The name collision with the pre-existing `agent_meetings` was avoided by prefixing `xiv_`, but the result is **two parallel meeting schemas in the same database**, and message data now has **three** homes (`ai_agent_messages`, `agent_mc_messages`, `xiv_agent_meeting_messages`). This is recorded, not resolved; it makes Slice 1.0 more necessary, not less.
 
 ### Disposition of the fifteen proposed tables
 
@@ -66,6 +69,8 @@ CREATE POLICY agent_meetings_tenant_isolation ON agent_meetings
 ```
 
 Every one of these tables carries a `universe_id` column, but **no policy references it** — a search for a `universe_id` predicate across the mission-control policies returns zero matches. Isolation is therefore enforced at the tenant boundary only.
+
+**This defect has since propagated.** All ten tables added by 62B's `20260908150000_xiv_agent_meetings.sql` declare `universe_id text NOT NULL` and receive a generated policy of exactly the same shape, filtering on `tenant_id` only. The Universe-blind surface is now nineteen tables rather than nine, and it grows with every migration that copies this pattern.
 
 62A's acceptance criteria require **organization isolation and Universe isolation to be proven independently**, and §9 requires that "cross-Universe communication requires explicit authorization". **As written, a principal holding a valid tenant JWT can read every Universe inside that tenant.** Slice 1 must add Universe predicates (or an explicit, documented decision that Universe is an application-layer scope rather than an RLS scope — but the acceptance criteria as stated demand the former).
 
