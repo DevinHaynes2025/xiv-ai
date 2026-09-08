@@ -1,0 +1,20 @@
+{
+  "name": "XIV AI",
+  "install": "bash ./.cursor/install.sh",
+  "terminals": [
+    {
+      "name": "ai-service",
+      "command": "cd services/ai && npm start",
+      "description": "XIV AI HTTP service (Node/tsx). Serves http://localhost:8787 with a /health endpoint and the /v1 executive API."
+    },
+    {
+      "name": "mobile-metro",
+      "command": "cd apps/mobile && npx expo start",
+      "description": "Expo (Metro) dev server for the XIV AI mobile app on http://localhost:8081. Connect via Expo Go or a dev client to load the app."
+    }
+  ],
+  "ports": [
+    { "name": "ai-service", "port": 8787 },
+    { "name": "mobile-metro", "port": 8081 }
+  ]
+}
