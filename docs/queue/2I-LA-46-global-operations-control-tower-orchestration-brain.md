@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-45 PASS** (and **LA-44 PASS**). Queue
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46 Global Operations Control Tower Orchestration Brain V560 → LA-47 Business Digital Civilization + Global Business Community + Knowledge Economy Network V570 → LA-48…60**.
+Ordering: **LA-44 Startup + Company Creation Factory V540 → LA-45 Global Innovation + Invention + IP Intelligence V550 → LA-46 Global Operations Control Tower Orchestration Brain V560 → LA-47 Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49…60**.
 
 **Full contracts §§1–159:** [`docs/architecture/xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`](../architecture/xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md).
 
@@ -40,8 +40,9 @@ As the XIV AI Founder, I want XIV to run Global Operations + Real-Time Business 
 
 ## Next queue
 
-- **2I-LA-47** Business Digital Civilization + Global Business Community + Knowledge Economy Network V570
-- **2I-LA-48…60** prepared expansion titles (as listed in architecture)
+- **2I-LA-47** Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570
+- **2I-LA-48** Global Product + Information + Technology Nervous System V580
+- **2I-LA-49…60** prepared expansion titles (as listed in architecture)
 
 **Do not start LA-47 from this commit.**
 
