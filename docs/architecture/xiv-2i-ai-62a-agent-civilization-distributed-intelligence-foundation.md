@@ -44,7 +44,7 @@ This story establishes the **infrastructure foundation**. It does **not** author
 |------|-------|------|
 | **Deployment Gate Hardening** | CI / security / RLS / scan / regression / rollback / backup / worker / agent-eval gates | **CURRENT — blocks promotion** |
 | **2I-AI-62A** | Agent Civilization & Distributed Intelligence Foundation | **This document** |
-| **2I-AI-62B** | Agent Meetings + Human Intelligence Bridge | **NEXT** |
+| **2I-AI-62B** | Agent Meetings + Human Intelligence Bridge | **QUEUED DOCS** |
 | **2I-AI-62C** | Historical / Multilingual Knowledge Lineage | Later |
 | **2I-AI-62D** | Distributed Device & Hardware Runtime | Later |
 | **2I-AI-62E** | Massive Agent Scheduler + Task Forces | Later |
@@ -52,7 +52,7 @@ This story establishes the **infrastructure foundation**. It does **not** author
 | **2I-AI-62G** | Beyond-Cloud / Space Interface Architecture | Later |
 | **2I-AI-62H** | XIV Galaxy Federation | Future |
 
-**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 62A (this) → 62B → 62C → 62D → 62E → 62F → 62G → 62H**. Sibling **2I-LA-61\*** parks continue as architecture; they do not authorize skipping the deployment gate.
+**Ordering lock:** **Deployment Gate Hardening (CURRENT) → 62A (this) → 62B (**QUEUED DOCS**) → 62C → 62D → 62E → 62F → 62G → 62H**. Sibling **2I-LA-61\*** parks continue as architecture; they do not authorize skipping the deployment gate.
 
 ---
 
