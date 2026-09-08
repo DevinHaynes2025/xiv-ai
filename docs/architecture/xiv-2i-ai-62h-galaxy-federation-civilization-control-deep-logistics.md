@@ -1,6 +1,7 @@
 # 2I-AI-62H — XIV Galaxy Federation, Civilization Control Plane & Deep Information Logistics V2
 
-**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only.  
+**Status:** **ARCHITECTURE — QUEUED (GALAXY FEDERATION / CIVILIZATION CONTROL PLANE)** — **NOT IMPLEMENTED** / **NOT VERIFIED** / **NOT PRODUCTION AUTHORIZED.** Documentation only.  
+**Ownership companion status:** `ARCHITECTURE — QUEUED (CONTROL-LAYER OWNERSHIP & AUTHORITY MODEL)` — **NOT IMPLEMENTED** / **NOT VERIFIED** / **NOT PRODUCTION AUTHORIZED**  
 **DEPLOYMENT_STATE:** QUEUED  
 **Runtime:** NOT STARTED  
 **tip-landed:** NO  
@@ -10,7 +11,9 @@
 **Series label:** **`2I-AI-62*`**
 
 **Canonical companions:**
+- **Control-Layer Ownership & Authority Model (read early):** [`xiv-2i-ai-62h-control-layer-ownership-authority-model.md`](./xiv-2i-ai-62h-control-layer-ownership-authority-model.md)
 - Queue founder summary: [`../queue/2I-AI-62H-galaxy-federation-civilization-control.md`](../queue/2I-AI-62H-galaxy-federation-civilization-control.md)
+- Master architecture queue: [`xiv-master-architecture-queue.md`](./xiv-master-architecture-queue.md)
 - Canonical master queue: [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md) (+ LA pointer [`xiv-master-build-queue-2i-ad-to-2i-la.md`](./xiv-master-build-queue-2i-ad-to-2i-la.md))
 - Predecessor **2I-AI-62A** (sibling park — do **not** overwrite): [`xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`](./xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md) · park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` · SHA ~`2c3c7f2`
 - Predecessor **2I-AI-62B** (sibling park — do **not** overwrite): park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-4059` · SHA ~`56da288`
@@ -33,7 +36,44 @@
 > Unique **62H paths only** — do not overwrite 62A–62G or LA-61\* parks.  
 > **PARK ONLY** — no tip-land; Galaxy is a **logical governance domain**, **NOT** astronomical ownership / cosmic command plane.  
 > **GLOBAL OBSERVATION ≠ AUTHORITY.** **SIMULATION TARGETS ≠ PRODUCTION CLAIMS.**  
+> **OWNERSHIP ≠ UNLIMITED AUTHORITY.**  
 > **NEVER INFER PASS.** L4 DISABLED. All listed AUTO_* FALSE including `AUTO_GALAXY_*`, `AUTO_CONSTELLATION_*`, `AUTO_UNIVERSE_TRANSFER_*`, `AUTO_PERMISSION_*`, `AUTO_GLOBAL_DATA_POOL_*`, `AUTO_INFRA_PURCHASE_*`, `AUTO_CONTRACT_*`, `AUTO_PRODUCTION_*`, `AUTO_GUARDIAN_*`, `AUTO_TOOL_INSTALL_*`, `AUTO_MODEL_ENABLE_*`.
+
+---
+
+## Control-Layer Ownership & Authority Model (read first)
+
+> **OWNERSHIP ≠ UNLIMITED AUTHORITY.**  
+> Full model: [`xiv-2i-ai-62h-control-layer-ownership-authority-model.md`](./xiv-2i-ai-62h-control-layer-ownership-authority-model.md)  
+> Status: `ARCHITECTURE — QUEUED (CONTROL-LAYER OWNERSHIP & AUTHORITY MODEL)` — **NOT IMPLEMENTED** / **NOT VERIFIED** / **NOT PRODUCTION AUTHORIZED**
+
+Readers hit ownership **immediately after Status** so authority bounds are visible before Galaxy Federation / Deep Logistics depth.
+
+**Hierarchy:**
+
+```
+Human → Civilization Control Plane → Galaxy → Constellation → Universe → Task Force → Agent → Model/Tool/Runtime
+```
+
+**Core invariants:**
+
+```
+HUMANS OWN CONSEQUENCE
+GUARDIAN OWNS ENFORCEMENT
+UNIVERSES OWN SOVEREIGN DATA AND AGENTS
+CONSTELLATIONS OWN SHARED RELATIONSHIPS
+GALAXIES OWN HIGH-LEVEL COORDINATION
+PLATFORM TEAMS OWN INFRASTRUCTURE
+AGENTS OWN ONLY ASSIGNED WORK
+MODELS / TOOLS / RUNTIMES OWN NO AUTHORITY
+IMPLEMENTED ≠ VERIFIED ≠ DEPLOYMENT AUTHORIZED
+ALLOW + DENY = DENY
+NO AUTOMATIC ELEVATION ACROSS LAYERS
+```
+
+**Companion covers:** per-layer Owner / Owns / May / Must Not · Ownership Matrix · Authority Conflict Rule · Scope Rule · Delegation Contract · Separation of Duties · Emergency Authority · Kill / Budget / Identity maps · Provenance · Security decision recording · future **XIV AUTHORITY MAP** · Ownership Health Checks · Ownership Acceptance Criteria (100% named owners; 0 orphaned / self-granted / implicit elevation).
+
+**NEXT (suggest only — do not implement):** **2I-AI-62I** Tool Mesh / Model Exchange / Workflow OS / Operator Command Plane.
 
 ---
 

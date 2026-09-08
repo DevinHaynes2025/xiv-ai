@@ -18,8 +18,10 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62G PASS** + **2I-AI-62F PASS** + 
 
 **Cross-links (do not clobber):**
 - Fuller canonical architecture Compact §1 + §§2–84 + Security Lock + Queue + NEXT 62I + Civilization Principle — [`../architecture/xiv-2i-ai-62h-galaxy-federation-civilization-control-deep-logistics.md`](../architecture/xiv-2i-ai-62h-galaxy-federation-civilization-control-deep-logistics.md)
+- **Control-Layer Ownership & Authority Model** (after Status in main doc) — [`../architecture/xiv-2i-ai-62h-control-layer-ownership-authority-model.md`](../architecture/xiv-2i-ai-62h-control-layer-ownership-authority-model.md) — status `ARCHITECTURE — QUEUED (CONTROL-LAYER OWNERSHIP & AUTHORITY MODEL)`; **OWNERSHIP ≠ UNLIMITED AUTHORITY**; ALLOW+DENY=DENY; no automatic elevation
+- Master architecture queue — [`../architecture/xiv-master-architecture-queue.md`](../architecture/xiv-master-architecture-queue.md)
 - 62A–62G + LA-61\* — additive only; **do not overwrite**
-- Compact Architecture Overview (§1) lives near top of architecture doc (after Status)
+- Compact Architecture Overview (§1) lives near top of architecture doc (after Status + Ownership pointer)
 
 ## Founder user story
 
