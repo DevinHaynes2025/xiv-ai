@@ -3836,7 +3836,7 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Feature flags (default OFF / FALSE):** `PLANETARY_BUSINESS_SIMULATION_ENABLED`, `DIGITAL_TWIN_SUPERCOMPUTER_ENABLED`, twin federation / scenario / quantum-route / trillion-target / founder-command flags, **`SIM_TO_PRODUCTION_WRITE_ENABLED=FALSE`**, **`QUANTUM_ADVANTAGE_CLAIM_ENABLED=FALSE`**, **`AUTONOMOUS_SIM_ACTION_ENABLED=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
 
-**Includes (document only):** PlanetarySimKernel; PLANETARY=global business modeling; DigitalTwinSupercomputer; Reality Boundary; twin federation (LA-24/25/37); scenario taxonomy; classical baseline gate; quantum honesty; trillion-scale target honesty; PROJECTED≠VERIFIED; comparison packs; proposals≠execution; security tests; Founder Sim Command; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-39 → LA-40.
+**Includes (document only):** PlanetarySimKernel; PLANETARY=global business modeling; DigitalTwinSupercomputer; Reality Boundary; twin federation (LA-24/25/37); scenario taxonomy; classical baseline gate; quantum honesty; trillion-scale target honesty; PROJECTED≠VERIFIED; comparison packs; proposals≠execution; security tests; Founder Sim Command; flags; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-39 → LA-40 V500 → LA-41.
 
 **HARD STOP — no LA-38 runtime.** **NEXT after LA-38:** **2I-LA-39** Global Africa Intelligence Brain V400 (Economic/Trade as subsystem) → **LA-40** Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 → **LA-41** Global Commercial Relationship Graph → **LA-42…55**.
 
@@ -6232,6 +6232,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 - [x] **2I-LA-39** Global Africa Intelligence Brain V400 queued (full §§1–150 + permanent rules; docs only; after LA-38 V310); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier Economic+Trade title (Economic/Trade = subsystem); hard honesty vs brain-multiplier/NN-count/quantum-prophecy claims; Africa first-class; Android-first/XIV Lite/offline/PWA; Historical Brain provenance; gateway control FALSE; healthcare/biotech gates; compose LA-35A+LA-37; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-39 runtime**
 - [x] **NEXT after LA-39:** LA-40 Brain Foundation + Master Plan + Cisco + Historical Civilization Memory + Continuous Self-Evaluation V500 → LA-41 Global Commercial Relationship Graph → LA-42…55
+- [x] **2I-LA-40** Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 queued (full §§1–150 + permanent rules; docs only; after LA-39); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier Continuous Intelligence title (self-eval = subsystem); Master Plan honesty; Cisco optional/no-fake; rings 0–15; L4 DISABLED; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-40 runtime**; **DO NOT IMPLEMENT until LA-39 PASS**
 - [x] **NEXT after LA-40:** LA-41 Global Commercial Relationship Graph → LA-42…55
 
 
