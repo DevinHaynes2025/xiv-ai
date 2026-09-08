@@ -1,7 +1,7 @@
 # XIV Master Build Queue — 2I-AD → 2I-AT (pointer)
 
-**Moved / superseded.** The single canonical master queue covering **2I-AD through 2I-BF** (full AD–AT + AU–BF continuation, permanent rules, 24/7 loop, Directory≠Fabric≠Brain, Founder Brief email) lives at:
+**Moved / superseded.** The canonical master queue covering **2I-AD through 2I-BZ** (including full AD–AT, AU–BF continuation, and Brain Expansion Series BG–BZ) lives at:
 
-→ [`docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bf.md`](./xiv-master-build-queue-2i-ad-to-2i-bf.md)
+→ [`docs/architecture/xiv-master-build-queue-2i-ad-to-2i-bz.md`](./xiv-master-build-queue-2i-ad-to-2i-bz.md)
 
-Do not duplicate AD–AT content here. Refine the canonical BF file in place.
+Do not duplicate AD–AT content here. Refine the canonical file in place.
