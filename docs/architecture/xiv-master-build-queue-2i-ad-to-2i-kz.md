@@ -1,6 +1,6 @@
 # XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30)
 
-**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** implementation in this commit.
+**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** / **LA-08** implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
 **Branch tip at authoring:** beyond `86f04e2` (LA-05→KZ sync) / `0375e6f` (LA-06 queue) / `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
@@ -42,13 +42,13 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **IN PROGRESS / WAITING** — LA-01 foundation landing on tip; LA-02/03 not PASS; LA-04 code blocked |
-| **2I-LA-04…30** | Multi-Brain / Meta Brain + **LA-05 KG** + **LA-06 Memory/Learning/Quantum/Agentic OS** + **LA-07 Trust/Privacy/Legal/Commerce Control Plane** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain / Meta Brain + LA-05 KG + LA-06 Memory/Learning + LA-07 Trust + **LA-08 Curiosity/Question/Contradiction Brain V10** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
 1. Inspect actual 2I-AB and 2I-AC builds on `xiv-v2` (contracts, tests, invariants).
 2. **CEO authorization required before any 2I-AD implementation begins.**
-3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** requires LA-01+02+03 PASS. **LA-05 code** requires LA-01→LA-04 PASS. **LA-06 code** requires LA-01→LA-05 PASS. **LA-07 code** requires LA-01→LA-06 PASS. Queued workforce architecture ≠ proof agents are already running.
+3. Do not open AD–AT, AU–BF, BG–BZ, CA–CP, CQ–DF, DG–DV, DW–EL, EM–FG, FH–GF, GG–HA, HB–HV, IX–JU, **JV–KZ**, or **LA-04…30** coding work from this queue document alone. **LA-04 code** requires LA-01+02+03 PASS. **LA-05 code** requires LA-01→LA-04 PASS. **LA-06 code** requires LA-01→LA-05 PASS. **LA-07 code** requires LA-01→LA-06 PASS. **LA-08 code** requires **LA-07 PASS**. Queued workforce architecture ≠ proof agents are already running.
 4. On gate fail: STOP, report, preserve last good tip. Never force-push. Keep `xiv-v2` (never `main` for foundation landings).
 
 ---
@@ -3141,8 +3141,9 @@ Every phase inherits and must preserve:
 | **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | Docs queued; code only after LA-01+02+03 PASS |
 | **2I-LA-05** | Knowledge Graph + Evidence Nervous System | **Full CEO summary in this file** (from `5ef7412`); code only after LA-01→LA-04 PASS |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) | **This expansion — docs queue now; code only after LA-01→LA-05 PASS** |
-| **2I-LA-07** | Trust Kernel + Age/Consent/Waiver + Contract/Legal/Commerce Control Plane + 24/7 Safety Feedback | **This expansion — docs queue now; code only after LA-01→LA-06 PASS** |
-| **2I-LA-08…30** | Titles in §50 / LA-07 §73 (Curiosity now **LA-08**) | **QUEUE ONLY** — do not implement from this document |
+| **2I-LA-07** | Trust Kernel + Age/Consent/Waiver + Contract/Legal/Commerce Control Plane + 24/7 Safety Feedback | Docs queued; code only after LA-01→LA-06 PASS |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 | **This expansion — full story doc; DO NOT IMPLEMENT until LA-07 PASS** |
+| **2I-LA-09…30** | Titles in §50 / LA-08 §57 (Temporal → … → Founder MC) | **QUEUE ONLY** — do not implement from this document |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3682,29 +3683,29 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-05** | Knowledge Graph + Evidence Nervous System — **full CEO summary in this file** (merged from `5ef7412`) |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) — **FULL STORY SUMMARY BELOW** (docs only) |
 | **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **FULL STORY SUMMARY BELOW** (docs only; **supersedes** older “Curiosity = LA-07” notes) |
-| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** (queue mention only; do not implement) |
-| **2I-LA-09** | Temporal + Causal Intelligence |
-| **2I-LA-10** | Parallel Universe Simulation Grid |
-| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY** [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md); evidence-first / contradiction-edges; **DO NOT IMPLEMENT until LA-07 PASS** |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
-| **2I-LA-13** | AI Sales Force V10 |
-| **2I-LA-14** | AI Marketing Organization V10 |
-| **2I-LA-15** | AI Customer Success Organization |
-| **2I-LA-16** | AI Finance + Revenue Organization |
-| **2I-LA-17** | AI Supply Chain Company |
-| **2I-LA-18** | Global Research Network |
-| **2I-LA-19** | Global Public/Government Data Fabric |
-| **2I-LA-20** | Technology + Partnership Intelligence |
-| **2I-LA-21** | Investor + Capital Intelligence |
-| **2I-LA-22** | Plugin + Connector Factory |
-| **2I-LA-23** | Windows / Mac / Linux Companion |
-| **2I-LA-24** | Android / iOS Pocket Brain |
-| **2I-LA-25** | Vehicle + Edge Experience |
-| **2I-LA-26** | Robotics Capability Gateway |
-| **2I-LA-27** | XR/Spatial Business OS |
-| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
-| **2I-LA-29** | Business Hospital V10 |
-| **2I-LA-30** | Founder Mission Control V12 |
+| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-14** | Cybersecurity + Digital Forensics OS |
+| **2I-LA-15** | Global Contract + Legal Intelligence Brain |
+| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-18** | Age Assurance + Community Trust |
+| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-20** | Content Rights + Media Provenance |
+| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-22** | Global Database Federation |
+| **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
+| **2I-LA-24** | Supply Chain Digital Twin |
+| **2I-LA-25** | Global Business Digital Twin |
+| **2I-LA-26** | AI Agent University + Evaluation System |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-28** | Universal Device + AI Chip Fabric |
+| **2I-LA-29** | Overnight AI Organization V20 |
+| **2I-LA-30** | Founder Mission Control V25 |
 
 ### 51. Reserved future agent families
 
@@ -4414,29 +4415,29 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | ID | Title |
 |----|-------|
 | **2I-LA-07** | Trust + Privacy + Legal + Contract + Commerce Control Plane + 24/7 Safety Feedback — **NEXT after LA-06** / **FULL STORY BELOW** |
-| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** |
-| **2I-LA-09** | Temporal + Causal Intelligence |
-| **2I-LA-10** | Parallel Universe Simulation Grid |
-| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** / full story in LA-08 expansion |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
-| **2I-LA-13** | AI Sales Force V10 |
-| **2I-LA-14** | AI Marketing Organization V10 |
-| **2I-LA-15** | AI Customer Success Organization |
-| **2I-LA-16** | AI Finance + Revenue Organization |
-| **2I-LA-17** | AI Supply Chain Company |
-| **2I-LA-18** | Global Research Network |
-| **2I-LA-19** | Global Public/Government Data Fabric |
-| **2I-LA-20** | Technology + Partnership Intelligence |
-| **2I-LA-21** | Investor + Capital Intelligence |
-| **2I-LA-22** | Plugin + Connector Factory |
-| **2I-LA-23** | Windows / Mac / Linux Companion |
-| **2I-LA-24** | Android / iOS Pocket Brain |
-| **2I-LA-25** | Vehicle + Edge Experience |
-| **2I-LA-26** | Robotics Capability Gateway |
-| **2I-LA-27** | XR/Spatial Business OS |
-| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
-| **2I-LA-29** | Business Hospital V10 |
-| **2I-LA-30** | Founder Mission Control V12 |
+| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-14** | Cybersecurity + Digital Forensics OS |
+| **2I-LA-15** | Global Contract + Legal Intelligence Brain |
+| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-18** | Age Assurance + Community Trust |
+| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-20** | Content Rights + Media Provenance |
+| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-22** | Global Database Federation |
+| **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
+| **2I-LA-24** | Supply Chain Digital Twin |
+| **2I-LA-25** | Global Business Digital Twin |
+| **2I-LA-26** | AI Agent University + Evaluation System |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-28** | Universal Device + AI Chip Fabric |
+| **2I-LA-29** | Overnight AI Organization V20 |
+| **2I-LA-30** | Founder Mission Control V25 |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -4835,33 +4836,33 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / TRUST_KERNE
 
 | ID | Title |
 |----|-------|
-| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** |
-| **2I-LA-09** | Temporal + Causal Intelligence |
-| **2I-LA-10** | Parallel Universe Simulation Grid |
-| **2I-LA-11** | Multi-Model Arena + Model Evolution |
+| **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-07** / full story in LA-08 expansion |
+| **2I-LA-09** | Temporal + Causal Intelligence V10 |
+| **2I-LA-10** | Parallel Quantum Universe Simulation Grid |
+| **2I-LA-11** | Multi-Model + AI Chip Intelligence Router |
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
-| **2I-LA-13** | AI Sales Force V10 |
-| **2I-LA-14** | AI Marketing Organization V10 |
-| **2I-LA-15** | AI Customer Success Organization |
-| **2I-LA-16** | AI Finance + Revenue Organization |
-| **2I-LA-17** | AI Supply Chain Company |
-| **2I-LA-18** | Global Research Network |
-| **2I-LA-19** | Global Public/Government Data Fabric |
-| **2I-LA-20** | Technology + Partnership Intelligence |
-| **2I-LA-21** | Investor + Capital Intelligence |
-| **2I-LA-22** | Plugin + Connector Factory |
-| **2I-LA-23** | Windows / Mac / Linux Companion |
-| **2I-LA-24** | Android / iOS Pocket Brain |
-| **2I-LA-25** | Vehicle + Edge Experience |
-| **2I-LA-26** | Robotics Capability Gateway |
-| **2I-LA-27** | XR/Spatial Business OS |
-| **2I-LA-28** | Digital Twin Earth (+ Global Business Simulation Network compose — prior separate LA-28 title folded after Curiosity→LA-08 shift) |
-| **2I-LA-29** | Business Hospital V10 |
-| **2I-LA-30** | Founder Mission Control V12 |
+| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-14** | Cybersecurity + Digital Forensics OS |
+| **2I-LA-15** | Global Contract + Legal Intelligence Brain |
+| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-18** | Age Assurance + Community Trust |
+| **2I-LA-19** | 18+ Mature Community Universe |
+| **2I-LA-20** | Content Rights + Media Provenance |
+| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-22** | Global Database Federation |
+| **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
+| **2I-LA-24** | Supply Chain Digital Twin |
+| **2I-LA-25** | Global Business Digital Twin |
+| **2I-LA-26** | AI Agent University + Evaluation System |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-28** | Universal Device + AI Chip Fabric |
+| **2I-LA-29** | Overnight AI Organization V20 |
+| **2I-LA-30** | Founder Mission Control V25 |
 
-### NEXT after LA-07 (queue mention only)
+### NEXT after LA-07 (queue — LA-08 expansion)
 
-**2I-LA-08 — Curiosity + Question + Contradiction Brain V10** (do **not** implement from this docs commit).
+**2I-LA-08 — Curiosity + Question + Contradiction Brain V10** — **DO NOT IMPLEMENT until LA-07 PASS**. Full contracts: [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md). Design direction: **evidence-first / contradiction edges** (not agreement optimization).
 
 ### Permanent rules (LA-07 / CEO)
 
@@ -4894,6 +4895,63 @@ Every LA-07 deliverable inherits Guardian, Tenant Isolation, Universe Isolation,
 
 ---
 
+## 2I-LA-08 — CURIOSITY + QUESTION + CONTRADICTION BRAIN V10
+
+**Status:** QUEUED (docs). **DO NOT IMPLEMENT until LA-07 PASS.** Queue after LA-07 Trust. Do not interrupt active LA-01–03+ work. Curiosity was previously mislabeled as LA-07 — **corrected** (Curiosity is LA-08).
+
+**Full contracts:** [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md)
+
+### User story (essence)
+
+As the XIV AI Founder, I want Brains and authorized agents to continuously question assumptions, discover unknowns, challenge one another, seek contradictory evidence, generate research missions, run safe experiments, and learn from outcomes — so XIV optimizes for **evidence quality and calibrated decisions**, not agent agreement.
+
+### Core loop
+
+`OBSERVE → QUESTION → CHALLENGE → EVIDENCE → CONTRADICTION → RESEARCH → EXPERIMENT → SYNTHESIS → DECISION PROPOSAL → OUTCOME → LESSON → NEW QUESTION`
+
+### Design direction
+
+| Direction | Contract |
+|-----------|----------|
+| **Evidence-first** | Confidence ≠ evidence; consensus ≠ truth; repetition ≠ corroboration |
+| **Contradiction edges** | Preserve CLAIM A ↕ CONTRADICTS ↕ CLAIM B + evidence history; do not overwrite |
+| **Bounded curiosity** | Priority engine + research stop criteria + performance budget |
+| **Authority limits** | Agent meetings / overnight brainstorm ≠ authority; L4 DISABLED |
+
+### Major surfaces (contracts only)
+
+CuriosityBrain, QuestionBrain, UnknownEngine, ContradictionBrain, Devil’s Advocate network, domain critics, Independent Position Protocol, Adversarial Council, Claim Challenge, Disconfirmation Search, Source Diversity, Evidence Stability, Research Mission Generator, Research Agent Expansion, ExperimentBrain + labs, Parallel Hypothesis Universes, Contradiction DB, Assumption/Prediction registries, Pre/Post-mortem + Success Analysis, Agent Meetings, Overnight Brainstorm, Founder UIs (Changed Mind / Does Not Know / Disagrees With Itself), KnowledgeFrontier, Idea Factory + Evidence Gate, User Story Generator, Queue Governor, structured messages, quality agents, graph integrity, security tests, Database Agent Council, GitHub/Cursor contrib, continuous test loop, performance budget, completion metrics.
+
+### Checkpoint commit plan (future impl — document only)
+
+`curiosity/question brain` → `contradiction runtime` → `adversarial council` → `experiment engine` → `research feedback loop` → `knowledge frontier UI`
+
+### Permanent rules (LA-08)
+
+```
+QUESTION ≠ FACT
+HYPOTHESIS ≠ FACT
+CORRELATION ≠ CAUSATION
+REPETITION ≠ CORROBORATION
+CONSENSUS ≠ TRUTH
+CONFIDENCE ≠ EVIDENCE
+SIMULATION ≠ REALITY
+DEVIL'S ADVOCATE ≠ AUTOMATIC DISAGREEMENT
+MORE RESEARCH ≠ AUTOMATICALLY BETTER
+PRIVATE COMPANY KNOWLEDGE ≠ GLOBAL KNOWLEDGE
+AGENT MEETING ≠ AUTHORITY
+UNKNOWN IS A VALID ANSWER
+L4 REMAINS DISABLED
+```
+
+### NEXT after LA-08
+
+**2I-LA-09 — Temporal + Causal Intelligence V10**, then **2I-LA-10 — Parallel Quantum Universe Simulation Grid**, … through **LA-30**.
+
+Docs-only commit for this queue: `docs(xiv): queue 2I-LA-08 curiosity question contradiction brain v10`
+
+---
+
 ## RESIDUAL RESERVE PLACEHOLDERS (not in HB–HV / JV–KZ)
 
 Still **reserve only** (do not implement from this document) if not covered above:
@@ -4910,7 +4968,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Out of scope for this document
 
-- Implementing any AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** runtime code, providers, or credentials
+- Implementing any AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** / **LA-07** / **LA-08** runtime code, providers, or credentials
 - Starting 2I-AD or any BG–BZ / CA–CP / CQ–DF / DG–DV / DW–EL / EM–FG / FH–GF / GG–HA / HB–HV / IX–JU / **JV–KZ** / **LA-04…30** coding from this queue alone
 - Claiming queued AI workforce departments prove agents are already running
 - Implementing Meta Brain / multi-brain router before LA-01+02+03 gates PASS
@@ -4918,7 +4976,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - Claiming OnlyFans or other creator-platform partnerships; appearance-based criminality inference; mixing 18+ Universe with minors
 - Claiming AI agents are licensed attorneys by default; production waivers without jurisdiction/version + human/legal review
 - Treating draft contracts as executed; payment requests as confirmations; crypto as guaranteed value
-- Implementing Curiosity/Contradiction Brain as LA-07 (renumbered to **LA-08**)
+- Implementing Curiosity/Contradiction Brain as LA-07 (renumbered to **LA-08**); implementing LA-08 before **LA-07 PASS**
 - Enabling L4, GDF production-live, or Gmail LIVE send
 - Claiming planetary scale, quantum advantage, or advertising trillions as proven
 - Merging Data Directory, Storage Fabric, and Brain into one confused subsystem
@@ -4963,7 +5021,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-05**, **LA-06**, and **LA-07** full stories). Do not fork a second canonical.
+- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-05**, **LA-06**, **LA-07** Trust, and **LA-08** Curiosity full stories). Do not fork a second canonical.
 - Older AD–AT, AD–BF, AD–BZ, AD–CP, AD–DF, AD–DV, AD–EL, AD–FG, AD–GF, AD–HA, AD–HV, and AD–LA paths are **pointer stubs** to this document (when present).
 - If siblings are mid-write on IX–JU / LB–MF / post-KZ blocks: refine in place after wait-gate clean; **preserve** all prior sections (including JV–KZ + LA) when expanding.
 - **JV follows JU:** if IX–JU lands later, keep JV–KZ content; add pointer/dependency notes idempotently — do not delete workforce queue.
@@ -4998,7 +5056,8 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Architecture adjustments encoded: OnlyFans connector NOT_CONFIGURED / no partnership claim; 18+ Mature/Naturist Universe separation; behavior-based safety ≠ appearance criminality
 - [x] LA-07 critical rules encoded: AI legal≠attorney; waiver jurisdiction/version+review; 18+ only; security≠criminality; draft≠executed; payment request≠confirmation; crypto≠guaranteed value
 - [x] **Curiosity renumbered to LA-08** (older LA-07 curiosity notes superseded)
-- [x] **§83 / §73 / LA-08 → LA-30** titles queued; **NEXT after LA-07:** LA-08 Curiosity + Question + Contradiction Brain V10
+- [x] **§83 / §73 / LA-08 → LA-30** titles queued (LA-08 story titles: Temporal V10 → Parallel Quantum → … → Founder MC V25); **NEXT after LA-07:** LA-08 Curiosity
+- [x] **2I-LA-08** Curiosity + Question + Contradiction Brain V10 full story queued; evidence-first / contradiction-edges; **DO NOT IMPLEMENT until LA-07 PASS**
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
 - [x] Permanent LA-07 CEO rules encoded (counsel gate; commerce honesty; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm
