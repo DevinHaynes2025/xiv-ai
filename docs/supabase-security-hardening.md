@@ -9,7 +9,7 @@
 | `public.rls_auto_enable()` SECURITY DEFINER callable by anon/authenticated | Additive migration revokes EXECUTE from `PUBLIC` / `anon` / `authenticated` when the function exists (any of `public` / `extensions` / `auth`). Not an XIV RPC. |
 | `xiv_can_view_universe`, `xiv_has_org_role`, `xiv_has_universe_role`, `xiv_is_org_member`, `xiv_is_universe_member` SECURITY DEFINER callable by authenticated | Moved to schema `xiv_internal` in the reconciliation migration. Not PostgREST RPCs (`xiv_internal` must stay off `db-schemas`). `authenticated` EXECUTE remains intentional least privilege for RLS policy resolution only. |
 | `xiv_create_organization`, `xiv_create_universe` SECURITY DEFINER RPCs | Kept as intentional authenticated bootstrap RPCs. Require `auth.uid()`; universe create requires org owner/admin via `xiv_internal.xiv_has_org_role`. `PUBLIC` / `anon` EXECUTE revoked. |
-| Auth leaked-password protection disabled | **Dashboard-only.** Cannot be fixed by SQL migrations. |
+| Auth leaked-password protection (`LEAKED_PASSWORD_PROTECTION`) | **NOT_VERIFIED** / **dashboard-pending.** Dashboard-only; SQL migrations cannot enable or prove it. Never PASS / ENABLED without dashboard proof. |
 
 ## Required external dashboard action
 
@@ -19,7 +19,7 @@ In the Supabase project dashboard:
 2. Enable **Leaked password protection** (HaveIBeenPwned / compromised password check).
 3. Record proof (screenshot or project setting export) before claiming the control is fixed.
 
-Until that human step is done, treat leaked-password protection as **OPEN**.
+Until that human step is done **and** screenshot/export proof exists, classify `LEAKED_PASSWORD_PROTECTION` as **NOT_VERIFIED** (alias: **NOT_CONFIGURED** / dashboard-pending). Do **not** claim **PASS**, **ENABLED**, or **OPEN-as-fixed**. ChatGPT and agents cannot toggle the Auth dashboard; SQL cannot prove the setting.
 
 ## Authoritative SQL
 
@@ -29,4 +29,4 @@ Until that human step is done, treat leaked-password protection as **OPEN**.
 
 ## Runtime contract
 
-`services/ai/runtime/tenant/security-definer-review.ts` + `tenant-hardening.test.ts` assert grant policy text contracts. Agents still cannot obtain DB credentials; L4 stays disabled; GDF production-live remains false (also covered in phase 2I-X tests).
+`services/ai/runtime/tenant/security-definer-review.ts` + `tenant-hardening.test.ts` assert grant policy text contracts and expose `LEAKED_PASSWORD_PROTECTION: 'NOT_VERIFIED'` (never ENABLED without dashboard proof). Agents still cannot obtain DB credentials; L4 stays disabled; GDF production-live remains false (also covered in phase 2I-X tests).
