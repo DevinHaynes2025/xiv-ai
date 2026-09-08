@@ -346,11 +346,11 @@ Never infer PASS.
 After LA-10:
 
 - 2I-LA-11 Multi-Model + Universal AI Chip Intelligence Router V10 (`docs/architecture/xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**)
-- 2I-LA-12 Quantum/Hybrid Compute Lab (classical baseline required; must not block first release)
+- 2I-LA-12 Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — classical baseline required; must not block first release; **not** LA-16 depth
 - 2I-LA-13 Nested AI Tool Foundry
 - 2I-LA-14 Cybersecurity + Digital Forensics OS
 - 2I-LA-15 Global Contract + Legal Intelligence Brain
-- 2I-LA-16 Global Payments / FX / Crypto Fabric
+- 2I-LA-16 Deep Finance / Payments (RESERVED): AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20
 - 2I-LA-17 Privacy Vault + Private Search
 - 2I-LA-18 Age Assurance + Community Trust
 - 2I-LA-19 18+ Cultural/Naturist Business Universe

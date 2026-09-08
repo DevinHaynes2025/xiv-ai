@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…10 docs + **LA-11 Multi-Model + Universal AI Chip Router V10** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…11 docs + **LA-12 Quantum + Hybrid Compute Lab V10** (DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing; architecture queued) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3146,7 +3146,10 @@ Every phase inherits and must preserve:
 | **2I-LA-09** | Temporal + Causal Intelligence V10 | **QUEUED DOCS** — `xiv-2i-la-09-temporal-causal-intelligence-v10.md`; **DO NOT IMPLEMENT until LA-08 PASS** |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 | **QUEUED (architecture present)** — `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
 | **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 | **QUEUED DOCS** — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS** |
-| **2I-LA-12…30** | Quantum + Hybrid Compute Lab → … | **QUEUE ONLY** — LA-12 next after LA-11; classical baseline; non-blocking for first release |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) | **QUEUED DOCS** — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md`; **DO NOT IMPLEMENT until LA-11 PASS**; non-blocking for first release |
+| **2I-LA-13…15** | Nested Tool Foundry → Legal Intelligence | **QUEUE ONLY** — LA-13 next after LA-12 |
+| **2I-LA-16** | **Deep Finance / Payments (RESERVED)** — AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 | **QUEUE ONLY** — do **not** overload into LA-12 |
+| **2I-LA-17…30** | Privacy Vault → Founder Mission Control | **QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3158,7 +3161,7 @@ Founder Brief delivery address when contacts/briefs mentioned: **`devinhaynes202
 
 **Status:** QUEUED (docs). Full contracts: [`xiv-2i-la-09-temporal-causal-intelligence-v10.md`](./xiv-2i-la-09-temporal-causal-intelligence-v10.md).
 
-**DO NOT IMPLEMENT** until **LA-08 Curiosity PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab**.
+**DO NOT IMPLEMENT** until **LA-08 Curiosity PASS**. Ordering: **LA-07 Trust → LA-08 Curiosity → LA-09 Temporal+Causal → LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab → LA-13 Nested Tool Foundry**.
 
 Prerequisite for **LA-10** Parallel Quantum Universe Simulation Grid: credible temporal ordering + causal states (AFTER ≠ BECAUSE; CORRELATION ≠ CAUSATION; bitemporal; supersede don’t rewrite). **L4 DISABLED**.
 
@@ -3192,7 +3195,23 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Title correction:** supersedes older “Multi-Model Arena + Model Evolution” LA-11-only labels — canonical includes Universal AI Chip / Compute routing.
 
-**NEXT after LA-11:** **2I-LA-12** Quantum + Hybrid Compute Lab (classical baseline required; non-blocking for first release).
+**NEXT after LA-11:** **2I-LA-12** Quantum + Hybrid Compute Lab (classical baseline required; finance foundations only — not LA-16 depth; non-blocking for first release).
+
+---
+
+## 2I-LA-12 — QUANTUM + HYBRID COMPUTE LAB V10 (queued docs)
+
+**Status:** QUEUED (docs). Full contracts: [`xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md`](./xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md) (+ founder summary [`../queue/2I-LA-12-quantum-hybrid-compute-lab.md`](../queue/2I-LA-12-quantum-hybrid-compute-lab.md)).
+
+**DO NOT IMPLEMENT** until **LA-11 Chip/Model Router PASS**. Ordering lock: **LA-11 → LA-12 → LA-13 Nested Tool Foundry**.
+
+**Includes (foundations only):** Quantum+Hybrid lab (classical-first + evidence gate), DatabaseRegistry + Control Tower + Tracker, PrivateDataVault + Personal↔Business firewall, FinancialVault (no raw bank passwords), AICFOAgent foundation (not licensed pro), Accounting Dept + CFO council, Financial Digital Twin **foundation**, cash-flow story, anomalies (≠fraud), connector fabric `NOT_CONFIGURED`, multi-currency/crypto accounting **foundations**, PricingPlan/tiers/entitlements (never paywall core security), Ask My CFO, LA-10 sim linkage, overnight DB/CFO shifts with **no autonomous money movement**.
+
+**Must not block canary:** advanced connectors, full accounting OS, payments/FX/crypto payment depth — feature-gated; **LA-16 reserved** for deep Finance/Payments.
+
+**Experimental compute separate from production finance.** Personal Brain ≠ Company Brain. Simulation ≠ financial guarantee. Pricing entitlements centralized. **L4 DISABLED**.
+
+**NEXT after LA-12:** **2I-LA-13** Nested AI Tool Foundry.
 
 ---
 
@@ -3731,12 +3750,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY SUMMARY BELOW** (docs only) |
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
-| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
-| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
+| **2I-LA-13** | Nested AI Tool Foundry — **NEXT after LA-12** |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
-| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -4464,12 +4483,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-08** | Curiosity + Question + Contradiction Brain V10 — **FULL STORY BELOW** |
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
-| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
-| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
+| **2I-LA-13** | Nested AI Tool Foundry — **NEXT after LA-12** |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
-| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -5180,12 +5199,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 |----|-------|
 | **2I-LA-09** | Temporal + Causal Intelligence V10 — `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (**DO NOT IMPLEMENT until LA-08 PASS**; this expansion) |
 | **2I-LA-10** | Parallel Quantum Universe Simulation Grid V10 — **QUEUED (architecture present)**; `xiv-2i-la-10-parallel-quantum-universe-simulation-grid-v10.md`; **DO NOT IMPLEMENT until LA-09 PASS** |
-| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**; this expansion) |
-| **2I-LA-12** | Quantum + Hybrid Compute Lab — classical baseline required; must **not** block first release |
-| **2I-LA-13** | Nested AI Tool Foundry |
+| **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 — `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md` (**DO NOT IMPLEMENT until LA-10 PASS**) |
+| **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
+| **2I-LA-13** | Nested AI Tool Foundry — **NEXT after LA-12** |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Contract + Legal Intelligence Brain |
-| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -5348,8 +5367,11 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **Curiosity renumbered to LA-08** (older LA-07 curiosity notes superseded)
 - [x] **§83 / §73 / LA-08 → LA-30** titles queued; **LA-08 Curiosity full story** recorded; **§57 / NEXT after LA-08:** LA-09 Temporal + Causal Intelligence V10
 - [x] **2I-LA-11** Multi-Model + Universal AI Chip Intelligence Router V10 queued — full contracts in `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**
-- [x] Ordering lock encoded: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab**; RELEASE-CRITICAL vs EXPERIMENTAL; quantum/untested chips feature-flagged; non-blocking for 30-day runway; L4 off
+- [x] Ordering lock encoded: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab → LA-13 Nested Tool Foundry**; RELEASE-CRITICAL vs EXPERIMENTAL; quantum/untested chips feature-flagged; non-blocking for 30-day runway; L4 off
 - [x] LA-11 permanent rules encoded (BEST≠BIGGEST; NEWEST≠BEST; AI not always required; LOCAL≠secure; CLOUD≠trusted; DETECTED≠SUPPORTED; QUANTUM≠ADVANTAGE; FALLBACK≠lower security; MODEL OUTPUT≠FACT; UNKNOWN valid; MORE INTEL≠AUTHORITY)
+- [x] **2I-LA-12** Quantum + Hybrid Compute Lab V10 queued — full contracts §§1–56 + permanent rules in `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` (+ founder summary `docs/queue/2I-LA-12-quantum-hybrid-compute-lab.md`); **DO NOT IMPLEMENT until LA-11 PASS**
+- [x] LA-12 includes DB Tracker + AI CFO foundation + Private Financial Vault + tiered pricing/entitlements; experimental compute ≠ production finance; **LA-16 reserved** for deep Finance/Payments; canary non-blocking for advanced connectors
+- [x] LA-12 permanent rules encoded (QUANTUM-READY≠ADVANTAGE; PERSONAL≠COMPANY BRAIN; AI CFO≠licensed pro; ANOMALY≠FRAUD; SIMULATION≠FINANCIAL GUARANTEE; NEVER PAYWALL CORE SECURITY; NO AUTONOMOUS MONEY MOVEMENT; L4 off)
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
 - [x] Permanent LA-07 CEO rules encoded (counsel gate; commerce honesty; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm
