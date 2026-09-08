@@ -3177,7 +3177,7 @@ Every phase inherits and must preserve:
 | **2I-LA-36** | Company-to-Company Agent Network V220 | **QUEUED DOCS** — `xiv-2i-la-36-company-to-company-agent-network-v220.md`; **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 | **QUEUED DOCS** — `xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`; **DO NOT IMPLEMENT until LA-36 PASS** |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **QUEUED DOCS** — `xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`; **DO NOT IMPLEMENT until LA-37 PASS** |
-| **2I-LA-39** | Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) | **QUEUE ONLY / TITLE LOCK** — **NEXT after LA-38** |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) | **QUEUED DOCS** — `xiv-2i-la-39-global-africa-intelligence-brain-v400.md`; **DO NOT IMPLEMENT until LA-37/38 gates**; **NEXT** LA-40 |
 | **2I-LA-40…50** | Continuous Intelligence + Self-Evaluation → prepared expansions | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
@@ -3840,6 +3840,29 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 ---
 
+
+## 2I-LA-39 — GLOBAL AFRICA INTELLIGENCE BRAIN V400 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–150 + permanent rules: [`xiv-2i-la-39-global-africa-intelligence-brain-v400.md`](./xiv-2i-la-39-global-africa-intelligence-brain-v400.md) (+ founder summary [`../queue/2I-LA-39-global-africa-intelligence-brain.md`](../queue/2I-LA-39-global-africa-intelligence-brain.md)).
+
+**DO NOT IMPLEMENT** until ordering predecessors PASS (LA-37 minimum; LA-38 V310 PASS as applicable). Ordering lock: **LA-37 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**. Never force-push / never `main`.
+
+**Title supersession:** Supersedes earlier LA-39 title-only placeholder **“Global Economic + Trade Intelligence”**.
+
+**Critical rules (permanent):** “400 trillion × human brain” / “400,000 trillion neural networks” / quantum future-prediction = **NOT verified** → IntelligenceBenchmark / logical scale / quantum research lab + classical baseline; Africa first-class ≠ one market; Android-first; XIV Lite; low-bandwidth; offline; multilingual; PWA/web; Brand≠compatibility; Historical Brain provenance; history≠destiny; no future leakage; telemetry≠control; **`PHYSICAL_GATEWAY_CONTROL_ENABLED=FALSE`**; healthcare/biotech elevated gates; autonomous clinical/lab **FALSE**; compose LA-35A + LA-37; UNKNOWN valid; never infer PASS; L4 DISABLED.
+
+**Feature flags (default OFF / FALSE):** Africa/XIV Lite/offline/multilingual/PWA/Historical Brain/benchmark/gateway telemetry/healthcare/biotech flags from LA-39 architecture; claim/control/autonomy flags **FALSE**.
+
+**Release guard:** Entire V400 brain does **not** block first canary.
+
+**Includes (document only):** Global Africa Intelligence Brain kernel; IntelligenceBenchmark; logical scale metrics; quantum research lab honesty; Africa-first access surfaces; Brand≠compatibility; Historical Brain / deep time; physical gateway telemetry≠control; healthcare/biotech gates; Universe Directory expansion; LA-35A + LA-37 compose; flags; first safe slices; permanent rules; evidence QUEUED/FALSE/UNKNOWN; next LA-40…50.
+
+**L4 DISABLED**. **HARD STOP — no LA-39 runtime.**
+
+**NEXT after LA-39:** **2I-LA-40** Continuous Intelligence + Self-Evaluation → **LA-41…50**.
+
+---
+
 ## 2I-LA-04 — MULTI-BRAIN ROUTER + META BRAIN RUNTIME
 
 **Status:** QUEUED (docs). Do not mark implemented until tested. Queue after LA-03; do not interrupt active LA-01/02/03 work.
@@ -4406,7 +4429,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
-| **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 — **QUEUED DOCS** (`xiv-2i-la-39-global-africa-intelligence-brain-v400.md`); Economic/Trade = subsystem; **DO NOT IMPLEMENT until LA-37/38 gates** |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
 
@@ -5155,7 +5178,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
-| **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 — **QUEUED DOCS** (`xiv-2i-la-39-global-africa-intelligence-brain-v400.md`); Economic/Trade = subsystem; **DO NOT IMPLEMENT until LA-37/38 gates** |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
 
@@ -5885,7 +5908,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-36** | Company-to-Company Agent Network V220 — **QUEUED DOCS** (`xiv-2i-la-36-company-to-company-agent-network-v220.md`); **DO NOT IMPLEMENT until LA-35A PASS** |
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 — **QUEUED DOCS** (`xiv-2i-la-37-universal-product-information-digital-twin-network-v300.md`); **DO NOT IMPLEMENT until LA-36 PASS** |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS** (`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`); **DO NOT IMPLEMENT until LA-37 PASS** |
-| **2I-LA-39** | Global Africa Intelligence Brain V400 — *(full story queues separately / title lock)* |
+| **2I-LA-39** | Global Africa Intelligence Brain V400 — **QUEUED DOCS** (`xiv-2i-la-39-global-africa-intelligence-brain-v400.md`); Economic/Trade = subsystem; **DO NOT IMPLEMENT until LA-37/38 gates** |
 | **2I-LA-40** | Continuous Intelligence + Self-Evaluation *(title queued)* |
 | **2I-LA-41…50** | Prepared expansion titles *(title queued — refine when authored)* |
 
@@ -6169,5 +6192,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-37** Universal Product + Information Digital Twin Network V300 queued (full §§1–200 + permanent rules; docs only; after LA-36); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier “Global Business Knowledge Exchange” title; trillion-scale = target ≠ claim; ONE XIV = logical control plane ≠ one DB; Universe≠DB; Passport≠authenticity; custody≠ownership; latest≠live; product location≠person; consumer tracking≠surveillance; event nervous system; bitemporal; multi-storage fabric; Warehouse V20; staged load 10K→100M+; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-37 runtime**; **DO NOT IMPLEMENT until LA-36 PASS**
 - [x] **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 queued (full §§1–153 + permanent rules; docs only; after LA-37); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; SIM≠REALITY; PLANETARY=global business modeling; QUANTUM≠advantage; trillion-scale≠current; PROJECTED≠VERIFIED; no sim→prod write; L4 DISABLED; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-38 runtime**; **DO NOT IMPLEMENT until LA-37 PASS**
 - [x] **NEXT after LA-37:** LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 (QUEUED DOCS) → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade subsystem) → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50
+
+- [x] **2I-LA-39** Global Africa Intelligence Brain V400 queued (full §§1–150 + permanent rules; docs only; after LA-38 V310); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; supersedes earlier Economic+Trade title (Economic/Trade = subsystem); hard honesty vs brain-multiplier/NN-count/quantum-prophecy claims; Africa first-class; Android-first/XIV Lite/offline/PWA; Historical Brain provenance; gateway control FALSE; healthcare/biotech gates; compose LA-35A+LA-37; flags default OFF; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-39 runtime**
+- [x] **NEXT after LA-39:** LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50
+
 
 
