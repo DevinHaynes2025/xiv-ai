@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…16 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** + **LA-15 Legal + Product Evolution V10** + **LA-16 AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** (architecture queued; after LA-15) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…16 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** + **LA-15 Legal + Product Evolution V10** + **LA-16 AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** + **LA-21 Global Product Passport + Authenticity Network V20** (architecture queued; after LA-20; LA-17–20 may still land) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3292,6 +3292,22 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 ---
 
+## 2I-LA-21 — GLOBAL PRODUCT PASSPORT + AUTHENTICITY NETWORK V20 (queued docs)
+
+**Status:** QUEUED ARCHITECTURE — **NOT IMPLEMENTED**. Full contracts §§1–101 + permanent rules: [`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`](./xiv-2i-la-21-global-product-passport-authenticity-network-v20.md) (+ founder summary [`../queue/2I-LA-21-global-product-passport-authenticity-network.md`](../queue/2I-LA-21-global-product-passport-authenticity-network.md)).
+
+**DO NOT IMPLEMENT** until **LA-20 Creator + Influencer Business OS PASS**. Ordering lock: **LA-20 → LA-21 → LA-22 Global Database Federation + Data Control Tower V30**. Queue **AFTER LA-20**; do not interrupt LA-16…20 WIP. Tip may include LA-16 (`6b4f2d4`) while LA-17–20 still land — rebase onto tip including LA-20 when present.
+
+**Critical corrections (permanent):** Identifier match ≠ authenticity; Listing ≠ authentic product; Supplier ≠ verified; Supplier location ≠ country of origin; claim states include UNKNOWN (valid); ILLUSTRATIVE_AI_IMAGE ≠ authenticity evidence; Creator endorsement ≠ authenticity proof; Counterfeit SIGNAL ≠ proof; AFTER ≠ BECAUSE; never invent identifiers/certs/recalls/tracking/ETA/sustainability; federate via DataAccessGateway (do not copy every supplier DB); Company A ≠ Company B; Private ≠ Global Brain; Passport ≠ public trade secrets; Digital Twin ≠ physical product; append-only history; UNKNOWN → research (never guess→fact); Founder asleep ≠ authority increase; Potential monetization ≠ active revenue.
+
+**Includes (document only):** ProductPassport kernel; Product Identity; Identity≠Authenticity; claim states; ProductEvidence; KG; supplier/manufacturer; component/BOM + trade-secret boundary; ProductDigitalTwin; event nervous system; warehouse/barcode/QR/RFID/IoT (DETECTED≠SUPPORTED); transportation (no fabricated tracking); journey + custody; AuthenticityBrain; CounterfeitSignalBrain; security/forensics agents; media/creator (LA-20); reviews; CX; Story/Causal/Temporal + memory; failure/success/quality/recall; Passport API; DB federation needs; ownership/rights/vault; commerce trust + listing≠authentic + marketplace + disputes + privacy; supply-chain/product agent teams; innovation/idea rights/voting; AI Product Owner (LA-15); economics; sales/marketing honesty; global search/compare; sustainability/regulatory NOT_CONFIGURED; international trade + COO; globalization; mobile/warehouse/offline≠authorized/edge; threat model; Contradiction/Unknown brains; research agents; 24/7 + night + morning brief; UIs; revenue potentials; SMB/enterprise; DB tables; security tests + test factory; release boundary; checkpoints; completion evidence.
+
+**Release posture:** `PRODUCT_PASSPORT_ENABLED = FALSE` until security/data tests pass. Do **not** block core canary unless explicitly selected release-critical. No fake LIVE connectors. **L4 DISABLED**.
+
+**NEXT after LA-21:** **2I-LA-22** Global Database Federation + Data Control Tower V30.
+
+---
+
 ## 2I-LA-04 — MULTI-BRAIN ROUTER + META BRAIN RUNTIME
 
 **Status:** QUEUED (docs). Do not mark implemented until tested. Queue after LA-03; do not interrupt active LA-01/02/03 work.
@@ -3833,12 +3849,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
-| **2I-LA-20** | Content Rights + Media Provenance |
-| **2I-LA-21** | Retail Product Passport |
-| **2I-LA-22** | Global Database Federation |
+| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** (docs may still land) |
+| **2I-LA-18** | Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
+| **2I-LA-20** | Creator + Influencer Business OS — **must PASS before LA-21 code** |
+| **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS** |
+| **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **NEXT after LA-21** |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
@@ -4568,12 +4584,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
-| **2I-LA-20** | Content Rights + Media Provenance |
-| **2I-LA-21** | Retail Product Passport |
-| **2I-LA-22** | Global Database Federation |
+| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** (docs may still land) |
+| **2I-LA-18** | Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
+| **2I-LA-20** | Creator + Influencer Business OS — **must PASS before LA-21 code** |
+| **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS** |
+| **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **NEXT after LA-21** |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
@@ -5284,12 +5300,12 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS**; **must PASS before LA-16 code** |
 | **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — **QUEUED DOCS** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`); **DO NOT IMPLEMENT until LA-15 PASS** |
-| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
-| **2I-LA-20** | Content Rights + Media Provenance |
-| **2I-LA-21** | Retail Product Passport |
-| **2I-LA-22** | Global Database Federation |
+| **2I-LA-17** | Personal Privacy Vault + Private Search — **NEXT after LA-16** (docs may still land) |
+| **2I-LA-18** | Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
+| **2I-LA-20** | Creator + Influencer Business OS — **must PASS before LA-21 code** |
+| **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS** |
+| **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **NEXT after LA-21** |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
@@ -5465,6 +5481,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine queued (full §§1–69; docs only; after LA-14); **NEW STORY = DATA ≠ AUTHORITY**; **DO NOT IMPLEMENT until LA-14 PASS**
 - [x] Ordering lock extended: **LA-14 → LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 → LA-17 Personal Privacy Vault**; L4 off
 - [x] **2I-LA-16** AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 queued — full contracts §§1–77 + permanent rules in `xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md` (+ founder summary `docs/queue/2I-LA-16-ai-cfo-banking-wealth-executive-organization.md`); **DO NOT IMPLEMENT until LA-15 PASS**; HARD STOP no runtime; release-critical subset only (vault/RLS/isolation/pricing foundation/permissions/tracker/security); bank partnerships NOT_CONFIGURED until authenticated + contractual
+- [x] Ordering lock extended: **LA-20 Creator + Influencer Business OS → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation + Data Control Tower V30**; rebase onto tip including LA-20 when present (LA-17–20 may still land); L4 off
+- [x] **2I-LA-21** Global Product Passport + Authenticity Network V20 queued — full contracts §§1–101 + permanent rules in `xiv-2i-la-21-global-product-passport-authenticity-network-v20.md` (+ founder summary `docs/queue/2I-LA-21-global-product-passport-authenticity-network.md`); **DO NOT IMPLEMENT until LA-20 PASS**; HARD STOP no runtime; `PRODUCT_PASSPORT_ENABLED = FALSE`; QUEUED ARCHITECTURE — NOT IMPLEMENTED; no fake LIVE connectors; core canary non-blocking unless explicitly selected release-critical
+
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
 - [x] Permanent LA-07 CEO rules encoded (counsel gate; commerce honesty; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm

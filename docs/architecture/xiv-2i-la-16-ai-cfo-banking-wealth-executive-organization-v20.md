@@ -534,11 +534,11 @@ Separate commits for: vault isolation, RLS, disclosure+regulated gate, pricing e
 | ID | Title |
 |----|-------|
 | **2I-LA-17** | **Personal Privacy Vault + Private Search** |
-| **2I-LA-18** | Age Assurance + Community Trust |
-| **2I-LA-19** | 18+ Mature Community Universe |
-| **2I-LA-20** | Content Rights + Media Provenance |
-| **2I-LA-21** | Retail Product Passport |
-| **2I-LA-22** | Global Database Federation |
+| **2I-LA-18** | Age Assurance + Global Identity + Community Trust OS V20 |
+| **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
+| **2I-LA-20** | Creator + Influencer Business OS |
+| **2I-LA-21** | Global Product Passport + Authenticity Network V20 |
+| **2I-LA-22** | Global Database Federation + Data Control Tower V30 |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
 | **2I-LA-25** | Global Business Digital Twin |
