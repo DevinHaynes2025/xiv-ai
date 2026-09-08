@@ -1,6 +1,6 @@
 # XIV Master Build Queue — 2I-AD → 2I-KZ (incl. LA-04…LA-30)
 
-**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-06** implementation in this commit.
+**Status:** QUEUED ONLY (documentation). No AD–HV / JV–KZ / LA-04+ / **LA-05** / **LA-06** implementation in this commit.
 **Canonical path:** `docs/architecture/xiv-master-build-queue-2i-ad-to-2i-kz.md`
 **Branch tip at authoring:** beyond `f3fca3c` (LA-02 cloud-worker verified-false tip) / `0bc9713` (LA-02 land) / `bfde605` (JV–KZ queue) / `5ef7412` (LA-05 queue sibling) / `2e025f3` (LA-04…30 queue) / `8fde277` (LA-01 test harden) / `0ef775b` (LA-01 foundation) / `3155720` (HB–HV queue) / `b3017f0` (GG–HA) / `0f0a2e5` (FH–GF) / `4d04c6e` (EM–FG) / `b66326c` (DW–EL) / `fd997fb` (DG–DV) / `0241713` (CA–CP) / `1682c99` (CQ–DF) / `0303e3f` (BG–BZ) / `e665b18` (2I-AD proposal); 2I-AC complete at `a5fe7dc`; neural-brain AC at `e090413`.
 **Audience:** agents + CEO. One major foundation phase at a time.
@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **IN PROGRESS / WAITING** — LA-01 foundation landing on tip; LA-02/03 not PASS; LA-04 code blocked |
-| **2I-LA-04…30** | Multi-Brain / Meta Brain + LA-05 KG queue + **LA-06 Memory/Learning/Quantum/Agentic OS** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain / Meta Brain + **LA-05 KG** + **LA-06 Memory/Learning/Quantum/Agentic OS** (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3139,7 +3139,7 @@ Every phase inherits and must preserve:
 | **2I-LA-02** | Cloud Worker Deployment + Scheduler | Must PASS before LA-03/04 code |
 | **2I-LA-03** | Agent Mission Control + 24/7 Shift Orchestrator | Must PASS before LA-04 code |
 | **2I-LA-04** | Multi-Brain Router + Meta Brain Runtime | Docs queued; code only after LA-01+02+03 PASS |
-| **2I-LA-05** | Knowledge Graph + Evidence Nervous System | Full story on sibling queue `5ef7412` / refine into canonical; code only after LA-01→LA-04 PASS |
+| **2I-LA-05** | Knowledge Graph + Evidence Nervous System | **Full CEO summary in this file** (from `5ef7412`); code only after LA-01→LA-04 PASS |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) | **This expansion — docs queue now; code only after LA-01→LA-05 PASS** |
 | **2I-LA-07…30** | Titles in §50 / LA-06 §83 | **QUEUE ONLY** — do not implement from this document |
 
@@ -3678,7 +3678,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 
 | ID | Title |
 |----|-------|
-| **2I-LA-05** | Knowledge Graph + Evidence Nervous System — full story on sibling queue (`5ef7412`); refine into canonical when merging |
+| **2I-LA-05** | Knowledge Graph + Evidence Nervous System — **full CEO summary in this file** (merged from `5ef7412`) |
 | **2I-LA-06** | Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) — **FULL STORY SUMMARY BELOW** (docs only) |
 | **2I-LA-07** | Curiosity + Question + Contradiction Brain V10 — **NEXT after LA-06** (queue mention only; do not implement) |
 | **2I-LA-08** | Temporal + Causal Intelligence |
@@ -3749,6 +3749,311 @@ Quality is measured by: **EVIDENCE / ACCURACY / SECURITY / OUTCOMES / COST / REL
 ### Inheritance (LA-04 and LA-05…30)
 
 Every LA story inherits Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway, Evidence/Provenance, Audit, Human + Policy Authority, providers `NOT_CONFIGURED` until proven, and **L4 DISABLED**.
+
+---
+
+## 2I-LA-05 — KNOWLEDGE GRAPH + EVIDENCE NERVOUS SYSTEM
+
+**Status:** QUEUED (docs). Do **not** mark implemented until tested. Queue after LA-04. Do **not** interrupt active LA-01 WIP, LA-02/03 waiters, or LA-04 queue/code. Do **not** implement LA-05 code until **LA-01 → LA-04** completion gates all **PASS**. Do **not** claim global knowledge capability until verified.
+
+### User story
+
+As the XIV AI Founder, I want XIV to maintain a governed **Knowledge Graph + Evidence Nervous System** — nodes, edges, claims, evidence, provenance, contradictions, and unknowns — so that agents and brains can retrieve, challenge, promote, and reject knowledge under tenant/universe isolation, without treating model output as verification or node count as intelligence.
+
+### Architectural emphasis (CEO)
+
+| Principle | Contract |
+|-----------|----------|
+| **Evidence nervous system** | Knowledge is a living circuit of **claims ↔ evidence ↔ provenance ↔ audit** — not a static wiki dump |
+| **MODEL_OUTPUT alone ≠ verification** | LLM/agent text is at most a **claim candidate**; never auto-VERIFIED / FACT without independent evidence class + gate |
+| **Private ≠ global** | Personal / company / universe graphs do **not** auto-promote to global; promotion is explicit, evidenced, auditable |
+| **UNKNOWN is valid** | Missing evidence → `UNKNOWN` / refuse — not invented certainty; UNKNOWN cannot be laundered into FACT by repetition |
+| **Node count ≠ intelligence** | Useful connectivity, evidence quality, contradiction handling, and outcomes beat vanity graph scale |
+| **L4 DISABLED** | Graph growth / gardening / Night Shift never self-promotes bounded→L4 |
+| **Compose, don’t duplicate** | Reuse Provenance Chain (2I-DR), Persistent Memory (2I-EO), Cross-DB KG (2I-HF), NEURAL PATHWAY V7, EvidenceAgent (LA-04) — extend contracts; don’t fork a second truth store |
+
+### Flow
+
+```
+INGEST / OBSERVE
+→ CLAIM CANDIDATE
+→ ATTACH EVIDENCE + PROVENANCE
+→ CLASSIFY (FACT / INFERENCE / FORECAST / UNKNOWN / CONTRADICTED)
+→ NAMESPACE + ISOLATION CHECK
+→ INDEX / LINK (KnowledgeNode / KnowledgeEdge)
+→ QUERY GATEWAY (hybrid retrieval under rights)
+→ GARDEN (promote / reject / supersede / prune metadata)
+→ MEASURE → LEARN
+```
+
+Founder Brief delivery when contacts/briefs mentioned: **`devinhaynes2025@gmail.com`** (never `@gmil.com`; Gmail LIVE `NOT_CONFIGURED` until proven).
+
+---
+
+### 1. Preflight (implementation gate — later)
+
+Before any LA-05 code:
+
+1. Tip continuity: `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`; clean tree; **no force**; never `main`.
+2. **LA-01, LA-02, LA-03, LA-04** completion gates all **PASS** (honest — never infer PASS).
+3. Inspect and **reuse**: Evidence objects, Provenance Chain, Knowledge Routing, Neural graphs, Memory V6, Meta Brain / EvidenceAgent, Guardian, Tenant/Universe isolation, Data Access Gateway.
+4. Do **not** claim planetary / global omniscient knowledge; capability claims require verification evidence.
+
+### 2. Core types — KnowledgeNode / KnowledgeEdge
+
+| Type | Contract |
+|------|----------|
+| **KnowledgeNode** | First-class entity: id, kind, label, namespace, tenant/universe, classification, confidence, freshness, status, pointers to claims/evidence |
+| **KnowledgeEdge** | Directed/typed relationship: source, target, relation type (compose NEURAL PATHWAY V7), rights, confidence, provenance, temporal validity |
+| **No orphan theater** | Nodes/edges without provenance or namespace are defects — quarantine, don’t silently “heal” with invented links |
+| **Useful connectivity** | Prefer edges that change retrieval, contradiction detection, or decisions — not vanity dense cliques |
+
+Minimum node kinds (extensible registry, not hard-coded forever): `Entity`, `Concept`, `Claim`, `EvidenceRef`, `DocumentRef`, `Event`, `Agent`, `Org`, `Asset`, `Metric`, `UnknownStub`.
+
+Minimum edge kinds: `RELATED_TO`, `SUPPORTS`, `CONTRADICTS`, `DERIVED_FROM`, `SUPERSEDES`, `PART_OF`, `LOCATED_IN`, `OWNED_BY`, `OBSERVED_AT`, `CAUSES_HYPOTHESIS` (hypothesis ≠ proven cause).
+
+### 3. Claims
+
+| Rule | Contract |
+|------|----------|
+| **Claim object** | Proposition with subject/predicate/object (or structured payload), author/agent, created_at, status |
+| **Statuses** | At minimum: `CANDIDATE` → `ASSERTED` → `SUPPORTED` / `CONTRADICTED` / `REJECTED` / `SUPERSEDED` / `UNKNOWN` |
+| **Label honesty** | UI/API surfaces must distinguish **FACT / INFERENCE / FORECAST / UNKNOWN / MODEL_OUTPUT** |
+| **MODEL_OUTPUT** | Stored as claim class **MODEL_OUTPUT** (or CANDIDATE with source=`model`) — **never** equal to VERIFIED |
+| **One claim ≠ consensus** | Multiple agents agreeing without evidence is still unproven |
+
+### 4. Evidence
+
+| Rule | Contract |
+|------|----------|
+| **Evidence object** | Content ref or payload pointer + evidence class + hash/digest + collected_at + collector + rights |
+| **Evidence classes** | Minimum: `ATTESTED`, `CERTIFIED`, `MEASURED`, `DOCUMENTED`, `SELF_DECLARED`, `INFERRED`, `MODEL_OUTPUT`, `UNKNOWN` |
+| **Binding** | Claims link to evidence via `SUPPORTS` / `CONTRADICTS` edges — free-floating “trust me” claims fail closed |
+| **Prefer references** | Store refs + digests over uncontrolled sensitive copies (compose EvidenceAgent LA-04) |
+| **Freshness** | Stale evidence downgrades confidence; expiry policies are first-class |
+
+### 5. Provenance
+
+| Rule | Contract |
+|------|----------|
+| **Chain required** | Every promoted claim/node carries provenance chain (who/what/when/where/under which grant) |
+| **No silent rewrite** | Corrections append / supersede; do not erase prior provenance (compose 2I-EP / Neural pruning evidence retention) |
+| **Audit** | Mutations emit audit events; authorized lineage ≠ surveillance (metadata preferred; no raw secrets/PII for “audit”) |
+| **Compose** | Provenance Chain (2I-DR) remains authoritative vocabulary where already defined |
+
+### 6. Contradictions
+
+| Rule | Contract |
+|------|----------|
+| **First-class** | Contradictions are objects/edges — not log noise to delete |
+| **Retention** | Minority / contradicting claims retained until governed resolution |
+| **Resolution modes** | `OPEN`, `EXPLAINED`, `SUPERSEDED`, `SCOPED` (both true in different namespaces/times), `REJECTED_SIDE` |
+| **Consensus ≠ truth** | Meta Brain synthesis may surface contradictions; it does not auto-delete dissent |
+| **Fail closed on safety** | Safety-critical paths cannot ignore OPEN contradictions |
+
+### 7. Unknowns
+
+| Rule | Contract |
+|------|----------|
+| **UNKNOWN valid** | Explicit UNKNOWN nodes/claims are healthy honesty — not defects to paper over |
+| **No invention** | Agents must not fill UNKNOWN with plausible MODEL_OUTPUT presented as FACT |
+| **Query behavior** | Gateway may return UNKNOWN with reason codes (missing grant, missing evidence, stale, conflict) |
+| **UNKNOWN ≠ usable contact/outreach** | Compose contact provenance rules — UNKNOWN cannot auto-use for consequential acts |
+
+### 8. Promotion / rejection
+
+| Path | Contract |
+|------|----------|
+| **Propose** | Agents may propose promote/reject with evidence pack |
+| **Gate** | Human/policy / configured authority gates consequential promotions (esp. private→company→global) |
+| **Promote** | Raises status + namespace eligibility; never silent; audit required |
+| **Reject** | Quarantine / reject with reason; retain evidence links |
+| **Supersede** | New claim supersedes old; old remains readable under history/snapshot |
+| **No auto private→global** | Compose Information Exchange Gateway / Memory promotion rules |
+
+### 9. Temporal validity + snapshots
+
+| Concern | Contract |
+|---------|----------|
+| **Valid interval** | Nodes/edges/claims may carry `valid_from` / `valid_to` (open-ended allowed) |
+| **As-of queries** | Query gateway supports as-of / bi-temporal reads where schema allows |
+| **Snapshots** | Point-in-time graph snapshots for missions, audits, and simulations — snapshots ≠ production merge |
+| **Universe sims** | Parallel universe / sim graphs stay isolated (compose LA-09 queue; no production side effects) |
+| **Supersession** | Temporal Brain rules (DG–DV) compose — prefer supersession over destructive history rewrite |
+
+### 10. Namespaces
+
+| Namespace (illustrative) | Contract |
+|--------------------------|----------|
+| **personal** | User-scoped; not company-visible by default |
+| **tenant / company** | Org-scoped under tenant isolation |
+| **universe** | Simulation / what-if scopes — not ambient prod truth |
+| **shared / workspace** | Explicit sharing overlays (compose 2I-HK) — shared ≠ merged |
+| **global / public-lawful** | Rights-gated; global ≠ public dump; lawful public only where claimed |
+| **system** | Platform control metadata — still least privilege |
+
+Namespace is mandatory on every node/edge/claim. Cross-namespace links require explicit policy.
+
+### 11. Isolation
+
+| Boundary | Contract |
+|----------|----------|
+| **Tenant isolation** | No cross-tenant leakage via graph walk, embedding index, or “helpful” join |
+| **Universe isolation** | Sim/universe graphs cannot mutate production knowledge without gated promotion |
+| **Company A Brain ≠ Company B Brain** | Compose GLOBAL COLLABORATION RULE |
+| **Gateway enforced** | All reads/writes pass Data Access Gateway + Guardian + classification checks |
+| **Discovery ≠ access** | Knowing a node id exists does not grant read of payload/evidence |
+
+### 12. Query gateway
+
+| Rule | Contract |
+|------|----------|
+| **Single front door** | Agents/brains query via **Knowledge Query Gateway** — not raw table/Cypher omnivory |
+| **Purpose-bound** | Requests carry purpose, tenant, universe, max blast radius |
+| **Fail closed** | Missing grant → DENIED / UNKNOWN — not partial silent leak |
+| **Answer labels** | Responses preserve FACT/INFERENCE/UNKNOWN/CONTRADICTION labels |
+| **Audit** | Query metadata auditable; avoid logging raw sensitive payloads |
+
+### 13. Hybrid retrieval
+
+| Mode | Role |
+|------|------|
+| **Symbolic / structured** | Exact node/edge/claim filters, graph traversal under rights |
+| **Lexical** | Keyword / BM25-style over authorized text refs |
+| **Vector / semantic** | Embedding retrieval over authorized chunks — embeddings inherit source rights |
+| **Hybrid rank** | Fuse scores with evidence class, freshness, namespace priority, contradiction penalties |
+| **No bypass** | Vector hit cannot bypass classification or tenant walls |
+| **Honesty** | Low-evidence semantic neighbors remain INFERENCE / UNKNOWN — not FACT |
+
+### 14. Domain graphs
+
+Domain graphs are **views / subgraphs / typed overlays** (supply chain, finance, security, civic, research, etc.) — not separate unaudited databases by default.
+
+| Rule | Contract |
+|------|----------|
+| **Overlay ≠ new authority** | Domain graph membership does not mint new privileges |
+| **Compose** | Cross-Database KG (2I-HF), Civic KG (2I-FZ), Problem/Solution graphs — logical refs + provenance preferred |
+| **Registration** | Domain graph defs live in a registry with owner, purpose, retention |
+
+### 15. Agents (LA-05 roles — logical first)
+
+Propose **logical capabilities** (may map to shared workers; do not spawn farm):
+
+| Agent / role | Responsibility |
+|--------------|----------------|
+| **KnowledgeIngestAgent** | Normalize ingest → claim candidates + evidence refs |
+| **EvidenceBinderAgent** | Bind claims to evidence classes; reject unbound promotion |
+| **ContradictionWatchAgent** | Detect/open contradiction objects; escalate OPEN safety conflicts |
+| **ProvenanceAuditorAgent** | Verify chain completeness; quarantine broken provenance |
+| **GraphGardenerAgent** | Propose prune/supersede/dedup; never destroy source evidence |
+| **KnowledgeQueryAgent** | Serve gateway queries with labels + rights |
+| **NamespaceWardenAgent** | Enforce namespace/isolation invariants |
+
+Default permissions: **NONE** until explicit grants. Role creation follows LA-04 §52. **SPECIALIZATION ≠ AUTHORITY.**
+
+### 16. Gardening (24/7 knowledge hygiene)
+
+Compose **24/7 KNOWLEDGE GARDENING** + BRAIN DREAM / consolidation:
+
+| Allowed | Forbidden |
+|---------|-----------|
+| Dedup proposals, supersession, confidence decay, contradiction surfacing, UNKNOWN stubs | Silent history rewrite; deleting provenance; private→global auto-promote; inventing edges for vanity density |
+| Quarantine low-quality MODEL_OUTPUT claims | Treating Night Shift gardening as L4 or prod schema destruction |
+| Snapshot + archive | Hard-deleting evidence required for audit |
+
+### 17. Metrics (quality over scale)
+
+Measure:
+
+- Evidence coverage % on promoted claims
+- Contradiction open/resolve rates (and safety SLO on OPEN)
+- UNKNOWN honesty rate (UNKNOWN returned when appropriate vs hallucinated FACT)
+- Promotion gate pass/fail + private→global attempt denials
+- Retrieval precision/recall under rights (eval sets)
+- Provenance completeness
+- Cost / latency of hybrid query
+- Gardening actions with audit completeness
+
+**Do not** optimize primarily for node/edge count, embedding volume, or agent count. **Node count ≠ intelligence.**
+
+### 18. Storage — Postgres-first
+
+| Rule | Contract |
+|------|----------|
+| **Postgres-first** | Implement KnowledgeNode / Edge / Claim / Evidence / Provenance in **Postgres** (Supabase migrations) until evidence justifies a dedicated graph DB |
+| **Graph DB later** | Neo4j/etc. only with measured need (query patterns, scale, ops) + CEO/architecture gate — not because “knowledge graph” marketing |
+| **No dual-write chaos** | If a graph engine is added later: explicit sync contract, single authority for truth, migrate with expand/contract |
+| **Embeddings** | Vector store is an index, not the system of record; rights metadata must travel with vectors |
+| **DATABASE UPDATE RULE** | No new DB because a vendor exists; placement/purpose/owner/retention required |
+
+### 19. Migrations
+
+| Rule | Contract |
+|------|----------|
+| **Expand/contract** | Additive migrations first; destructive changes gated |
+| **RLS / grants** | Tenant isolation enforced at DB; SECURITY DEFINER hardened |
+| **Idempotent** | Repeatable migrate in non-prod; honesty of LIVE in prod |
+| **No autonomous prod destroy** | Night Shift cannot drop knowledge tables |
+| **Seed** | Dev seeds ≠ fabricated production knowledge |
+
+### 20. Tests (minimum)
+
+- Unit: claim status transitions; evidence class gates; UNKNOWN paths
+- Isolation: cross-tenant and cross-universe denials
+- Promotion: private↛global without gate
+- Contradiction: OPEN retained; safety fail-closed
+- MODEL_OUTPUT cannot become FACT without evidence gate
+- Query gateway purpose/blast-radius enforcement
+- Hybrid retrieval rights inheritance on vector hits
+- Provenance incompleteness → quarantine
+- Migration smoke + RLS tests
+- Checkpoint evidence pack honesty (never infer PASS)
+
+### 21. Checkpoints + commit patterns
+
+| Moment | Pattern |
+|--------|---------|
+| Docs / queue only | `docs(xiv): queue knowledge graph evidence nervous system 2I-LA-05` |
+| Schema slice | `feat(xiv): phase 2I-LA-05 knowledge nodes edges claims` |
+| Gateway / retrieval | `feat(xiv): phase 2I-LA-05 knowledge query gateway` |
+| Harden | `fix(xiv): …` / `test(xiv): …` |
+
+At each code checkpoint (when gated): TYPECHECK → TEST → SECURITY → SECRET SCAN → `git diff --check` → COMMIT → Dual-push GitHub+GitLab. **Phase gate:** `LOCAL == origin/xiv-v2 == gitlab/xiv-v2`. **No force. No main. L4 off.**
+
+### 22. Completion evidence (when implemented later)
+
+Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / KNOWLEDGE_NODE / EVIDENCE_BIND / PROVENANCE / CONTRADICTION / UNKNOWN / ISOLATION / QUERY_GATEWAY / HYBRID_RETRIEVAL / POSTGRES_FIRST / TESTS / SECURITY.
+
+**Do not claim global knowledge capability until verified.**
+
+### 23. Out of scope for LA-05 implementation (when gated)
+
+- Implementing before LA-01→LA-04 PASS
+- Graph DB mandate without evidence
+- Auto private→global promotion
+- Treating MODEL_OUTPUT as verification
+- Vanity billion-node manufacturing
+- Merging tenant brains via “unified graph”
+- L4 enablement; silent prod destructive migrations
+- Claiming omniscience / planetary knowledge without proof
+
+### NEXT after LA-05 (queue mention only)
+
+**2I-LA-06 — Memory Consolidation + Organizational Learning Engine** (queued title only; do **not** implement from this LA-05 docs commit). Remaining **LA-07…LA-30** stay title-queued per §50.
+
+### Permanent rule (LA-05)
+
+```
+EVIDENCE > MODEL_OUTPUT
+UNKNOWN > FAKE CERTAINTY
+PRIVATE ≠ GLOBAL
+NODE COUNT ≠ INTELLIGENCE
+L4 DISABLED
+```
+
+### Inheritance (LA-05)
+
+Every LA-05 deliverable inherits Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data Access Gateway, Evidence/Provenance, Audit, Human + Policy Authority, providers `NOT_CONFIGURED` until proven, and **L4 DISABLED**.
 
 ---
 
@@ -4230,7 +4535,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 ## Idempotency / sibling agents
 
-- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-06** full story). Sibling LA-05 expansion on `cursor/master-queue-la-05-b42e` should be refined into this file when merging — do not fork a second canonical.
+- Prefer **this file** as the single canonical master queue for **AD→KZ** (includes Business OS **CA→CP**, Continuous Improvement **CQ→DF**, Temporal/Causal **DG→DV**, Decision/Workflow/Global **DW→EL**, Memory/Commerce/Outreach **EM→FG**, Resilience/Ops/Civic/Neural **FH→GF**, Interface/Physical/Marketplace/Economy/Ops **GG→HA**, Global Collaboration Fabric **HB–HV**, AI Workforce Organization **JV→KZ**, and Executable Foundation **LA-01…30** queue, including **LA-05** and **LA-06** full stories). Do not fork a second canonical.
 - Older AD–AT, AD–BF, AD–BZ, AD–CP, AD–DF, AD–DV, AD–EL, AD–FG, AD–GF, AD–HA, AD–HV, and AD–LA paths are **pointer stubs** to this document (when present).
 - If siblings are mid-write on IX–JU / LB–MF / post-KZ blocks: refine in place after wait-gate clean; **preserve** all prior sections (including JV–KZ + LA) when expanding.
 - **JV follows JU:** if IX–JU lands later, keep JV–KZ content; add pointer/dependency notes idempotently — do not delete workforce queue.
@@ -4259,7 +4564,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] NEXT QUEUE RESERVE 2I-LA+ noted (LA-04…30 already expanded; IX–JU dependency noted)
 - [x] PERMANENT GOVERNANCE + L4 DISABLED (JV–KZ); Founder Twin ≠ CEO; Manager Agent ≠ human executive; Founder Brief `devinhaynes2025@gmail.com`
 - [x] Executable Foundation **2I-LA-04** Multi-Brain Router + Meta Brain Runtime preserved (full CEO summary)
-- [x] **2I-LA-05** Knowledge Graph noted (full story on sibling `5ef7412`; titles retained)
+- [x] **2I-LA-05** Knowledge Graph + Evidence Nervous System queued (full CEO summary merged from `5ef7412`; Postgres-first; MODEL_OUTPUT≠verification)
 - [x] **2I-LA-06** Memory Consolidation + Organizational Learning Engine (+ Quantum/Agentic OS foundations) queued (full CEO summary; docs only)
 - [x] Architecture adjustments encoded: OnlyFans connector NOT_CONFIGURED / no partnership claim; 18+ Mature/Naturist Universe separation; behavior-based safety ≠ appearance criminality
 - [x] **§83 / LA-07 → LA-30** titles queued; **NEXT after LA-06:** LA-07 Curiosity + Question + Contradiction Brain V10
