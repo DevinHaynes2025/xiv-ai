@@ -55,7 +55,8 @@ As the XIV AI Founder, I want XIV to operate a Nested AI Tool Foundry where tool
 ## Next queue
 
 - **2I-LA-14** Cybersecurity + Digital Forensics OS (commercial Security Center depth)
-- Then LA-15…LA-30 per master queue titles
+- **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine
+- Then LA-16…LA-30 per master queue titles
 
 ## Docs-only gate
 

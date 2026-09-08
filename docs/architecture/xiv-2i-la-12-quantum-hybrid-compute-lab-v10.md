@@ -607,7 +607,7 @@ All fields require evidence. **Never infer PASS.**
 |----|-------|
 | **2I-LA-13** | Nested AI Tool Foundry — **NEXT after LA-12** |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine |
 | **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO + Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing + Billing V20 — **not** overloaded into LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |

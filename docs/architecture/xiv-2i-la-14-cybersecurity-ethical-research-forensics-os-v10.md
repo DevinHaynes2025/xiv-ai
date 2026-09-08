@@ -24,7 +24,7 @@
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 | Prior (docs) |
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Universe Fabric | **Must PASS before LA-14 code** (docs queued on tip — do not interrupt validated work) |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 | **This document** |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain (incl. security research agreements) | **NEXT** after LA-14 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements) | **NEXT** after LA-14 |
 | **2I-LA-16…30** | Deep Finance → Founder Mission Control | QUEUE ONLY |
 
 **Ordering lock:** **LA-12 Quantum Lab → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal+Contract**.
@@ -542,8 +542,8 @@ All fields require evidence. **Never infer PASS.**
 
 | ID | Title |
 |----|-------|
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain — **NEXT** (incl. security research agreements, RoE contracts, bounty terms, disclosure legal path) |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED)** / or master-queue payment fabric title as locked in KZ — do not overload LA-12/LA-14 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **NEXT** (incl. security research agreements, RoE contracts, bounty terms, disclosure legal path) |
+| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED)** — deep Finance/Payments; do not overload LA-12/LA-14 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universe |
@@ -559,7 +559,7 @@ All fields require evidence. **Never infer PASS.**
 | **2I-LA-29** | Overnight AI Organization |
 | **2I-LA-30** | Founder Mission Control |
 
-**NEXT after LA-14:** **2I-LA-15** Legal+Contract — security research agreements live there; LA-14 defines security-plane contracts only.
+**NEXT after LA-14:** **2I-LA-15** Legal + Product Evolution — security research agreements live there; LA-14 defines security-plane contracts only.
 
 ### 55. RELEASE-CRITICAL vs EXPERIMENTAL (explicit)
 
@@ -599,7 +599,7 @@ Prepare adapters for Founder Brief: open validated findings, token expiries, gat
 LA-13 PASS
 → LA-14 implementation may begin (still slice-gated)
 → Advanced Cyber Range / marketplace / quantum-security depth remain flagged
-→ LA-15 Legal+Contract still QUEUE ONLY (research agreements depth)
+→ LA-15 Legal + Product Evolution still QUEUE ONLY (research agreements depth)
 ```
 
 Do not implement LA-14 from LA-12/LA-13 docs alone. Queue LA-14 docs in parallel with LA-13 docs is allowed; **code ordering follows CEO gate after LA-13 PASS**.
@@ -701,7 +701,7 @@ Inherited: Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data 
 | LOCAL / GITHUB / GITLAB SHAs | Equal on branch after dual-push (rebase onto latest `xiv-v2` tip including LA-13 when landed) |
 | TREE | CLEAN |
 | Runtime Cybersecurity / Ethical Research / Forensics OS / Security Center | **NOT started / NOT implemented** |
-| Ordering | LA-12 → **LA-13** → **LA-14 QUEUED** → **LA-15 Legal+Contract** |
+| Ordering | LA-12 → **LA-13** → **LA-14 QUEUED** → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO+Payments V20** |
 | Implementation | **DO NOT IMPLEMENT until LA-13 PASS**; do not interrupt LA-13 WIP |
 | Core ethical rule | Explicit in this document |
 

@@ -211,8 +211,8 @@ DATABASE=  SECURITY=  CONTINUOUS_TESTING=
 | **2I-LA-12** | Quantum/Hybrid Compute Lab |
 | **2I-LA-13** | Nested AI Tool Foundry |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain |
-| **2I-LA-16** | Global Payment + Currency + Crypto Fabric |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine |
+| **2I-LA-16** | AI CFO + Payments V20 (deep Finance/Payments — reserved) |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |

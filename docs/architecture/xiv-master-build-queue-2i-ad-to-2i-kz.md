@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…14 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** (Security Center commercial + Business Hospital cyber dept; architecture queued) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…15 docs + **LA-13 Nested AI Tool Foundry + Infinite Universe Fabric V10** + **LA-14 Cybersecurity + Ethical Research + Forensics OS V10** + **LA-15 Legal + Product Evolution V10** (architecture queued; after LA-14) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3150,8 +3150,8 @@ Every phase inherits and must preserve:
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) | **QUEUED DOCS** — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md`; **DO NOT IMPLEMENT until LA-11 PASS**; non-blocking for first release |
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 | **QUEUED DOCS** — `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS** |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 (+ Customer Security Center + Business Hospital cyber dept) | **QUEUED DOCS** — `xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS** |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain (incl. security research agreements) | **QUEUE ONLY** — **NEXT after LA-14** |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED)** — AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 | **QUEUE ONLY** — do **not** overload into LA-12 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine | **QUEUED DOCS** — `xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`; **DO NOT IMPLEMENT until LA-14 PASS** |
+| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED)** — deep Finance/Payments; Accounting OS depth; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 | **QUEUE ONLY** — do **not** overload into LA-12 |
 | **2I-LA-17…30** | Privacy Vault → Founder Mission Control | **QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
@@ -3242,7 +3242,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Status:** QUEUED (docs). Full contracts §§1–66 + permanent rules: [`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`](./xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md) (+ founder summary [`../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md`](../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md)).
 
-**DO NOT IMPLEMENT** until **LA-13 Nested Tool Foundry PASS**. Ordering lock: **LA-13 → LA-14 → LA-15 Legal+Contract**.
+**DO NOT IMPLEMENT** until **LA-13 Nested Tool Foundry PASS**. Ordering lock: **LA-13 → LA-14 → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20**.
 
 **Core ethical rule:** Ethical hacking ONLY against XIV-owned systems, purpose-built labs/CTF, or third parties with **explicit authorization and defined scope**. Learning from historical/public/licensed defensive knowledge ≠ permission to break into unrelated companies. **NO STEALING / UNAUTHORIZED ACCESS / EXTORTION / DATA EXFILTRATION / MALWARE / CREDENTIAL THEFT.** UNKNOWN scope = NO ACTIVE TESTING. Publicly reachable ≠ authorized. AI supervision ≠ legal auth. Expired Security Mission Token = STOP. Guardian above agents.
 
@@ -3252,7 +3252,23 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Must not block canary:** advanced Cyber Range / marketplace scale / quantum-security lab / full Security Center SKUs — feature-gated; 30-day runway stays active. **L4 DISABLED**.
 
-**NEXT after LA-14:** **2I-LA-15** Global Contract + Legal Intelligence Brain (incl. security research agreements / RoE / bounty contracts).
+**NEXT after LA-14:** **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements / RoE / bounty contracts).
+
+---
+
+## 2I-LA-15 — GLOBAL LEGAL + CONTRACT INTELLIGENCE OS V10 + AUTONOMOUS PRODUCT OWNER + 24/7 USER STORY EVOLUTION ENGINE (queued docs)
+
+**Status:** QUEUED (docs). Full contracts §§1–69 + permanent rules: [`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`](./xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md) (+ founder summary [`../queue/2I-LA-15-global-legal-contract-intelligence-product-evolution.md`](../queue/2I-LA-15-global-legal-contract-intelligence-product-evolution.md)).
+
+**DO NOT IMPLEMENT** until **LA-14 Cybersecurity+Ethical Research+Forensics PASS**. Ordering lock: **LA-13 → LA-14 → LA-15 → LA-16 AI CFO+Payments V20**.
+
+**Critical rule (permanent):** Agents may continuously propose/research/challenge/prioritize/test/split/merge/refine stories, but a newly generated story is **DATA not AUTHORITY** — cannot deploy, increase authority, weaken security, spend without auth, access new data, disable Guardian, weaken RLS, change ownership, activate L4, move money, sign contracts, or create unrestricted agents. **CONTINUOUS LEARNING ≠ UNCONTROLLED SELF-MODIFICATION.** Freeze release-critical scope when needed; new ideas stay in **IDEA_POOL**.
+
+**Includes (document only):** Autonomous Product Owner; 24/7 story evolution; `UserStoryCandidate` contract; sources/states/evolution/family tree/graph; evidence; duplicate detection; quality score; WIP + generation-rate governors; night product shift + brainstorm; devil’s advocate; story→task force; propose agents + apprenticeship (seniority≠authority); product memory + “Why did XIV build this?”; FeedbackBrain (feedback≠automatic roadmap); LegalIntelligenceBrain + AI legal team (≠ licensed attorneys); LegalDataGateway honesty (no fake proprietary access); provenance + freshness; ContractFactory + XIV contract library (incl. ethical hacking/bug bounty/RoE from LA-14) + clause library; WaiverEngine; IP Protection + tech inventory + trade secret classification; obligation graph + contract memory + contradiction agent; Legal↔Product connection; privacy/security/database/AI-by-design story gates; story testing + simulation universes; cost brain; deployment classification + queue governor; continuous QA; outcome/failure/success memory; UIs; Founder controls; morning report; graph reporting; autonomous story security; 24/7 feedback loop; DB tables; checkpoint protocol; suggested commits; completion evidence (never infer PASS).
+
+**Experimental features feature-gated.** Do not interrupt LA-14 or destabilize 30-day runway. **L4 DISABLED**.
+
+**NEXT after LA-15:** **2I-LA-16** AI CFO + Payments V20 (then LA-17…30).
 
 ---
 
@@ -3795,8 +3811,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 — `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md` (**DO NOT IMPLEMENT until LA-12 PASS**; this expansion) |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain — **NEXT after LA-14** (incl. security research agreements) |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS** |
+| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED):** deep Finance/Payments; Accounting OS depth; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -4530,8 +4546,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 — `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md` (**DO NOT IMPLEMENT until LA-12 PASS**) |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain — **NEXT after LA-14** (incl. security research agreements) |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS** |
+| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED):** deep Finance/Payments; Accounting OS depth; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -5246,8 +5262,8 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) — `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` |
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 — `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md` (**DO NOT IMPLEMENT until LA-12 PASS**) |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 — **QUEUED DOCS** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`); Security Center commercial + Business Hospital cyber dept; **DO NOT IMPLEMENT until LA-13 PASS** |
-| **2I-LA-15** | Global Contract + Legal Intelligence Brain — **NEXT after LA-14** (incl. security research agreements) |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO+Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
+| **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **QUEUED DOCS** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`); **DO NOT IMPLEMENT until LA-14 PASS** |
+| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED):** deep Finance/Payments; Accounting OS depth; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20 — do not overload LA-12 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
@@ -5267,7 +5283,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 
 **2I-LA-09 — Temporal + Causal Intelligence V10** — full contracts in `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (do **not** implement until **LA-08 PASS**).
 
-**Ordering lock (docs):** LA-09 → **LA-10 Simulation** → **LA-11 Multi-Model + Universal AI Chip Router** (`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**) → **LA-12 Quantum Lab** (non-blocking for first release) → **LA-13 Nested Tool Foundry + Universe Fabric** (`xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS**) → **LA-14 Cybersecurity+Ethical Research+Forensics** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS**) → **LA-15 Legal+Contract**. Security Center = commercial line; Business Hospital cyber dept. Non-blocking experimental depth for 30-day runway.
+**Ordering lock (docs):** LA-09 → **LA-10 Simulation** → **LA-11 Multi-Model + Universal AI Chip Router** (`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**) → **LA-12 Quantum Lab** (non-blocking for first release) → **LA-13 Nested Tool Foundry + Universe Fabric** (`xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS**) → **LA-14 Cybersecurity+Ethical Research+Forensics** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS**) → **LA-15 Legal + Product Evolution** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`; **DO NOT IMPLEMENT until LA-14 PASS**) → **LA-16 AI CFO+Payments V20**. Security Center = commercial line; Business Hospital cyber dept. Non-blocking experimental depth for 30-day runway. **NEW STORY = DATA ≠ AUTHORITY.**
 
 ### Permanent rules (LA-08 / CEO)
 
@@ -5410,7 +5426,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **Curiosity renumbered to LA-08** (older LA-07 curiosity notes superseded)
 - [x] **§83 / §73 / LA-08 → LA-30** titles queued; **LA-08 Curiosity full story** recorded; **§57 / NEXT after LA-08:** LA-09 Temporal + Causal Intelligence V10
 - [x] **2I-LA-11** Multi-Model + Universal AI Chip Intelligence Router V10 queued — full contracts in `xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**
-- [x] Ordering lock encoded: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab → LA-13 Nested Tool Foundry + Universe Fabric → LA-14 Cybersecurity+Forensics**; RELEASE-CRITICAL vs EXPERIMENTAL; quantum/untested chips feature-flagged; non-blocking for 30-day runway; L4 off
+- [x] Ordering lock encoded: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum Lab → LA-13 Nested Tool Foundry + Universe Fabric → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20**; RELEASE-CRITICAL vs EXPERIMENTAL; quantum/untested chips feature-flagged; non-blocking for 30-day runway; L4 off; **NEW STORY = DATA ≠ AUTHORITY**
 - [x] LA-11 permanent rules encoded (BEST≠BIGGEST; NEWEST≠BEST; AI not always required; LOCAL≠secure; CLOUD≠trusted; DETECTED≠SUPPORTED; QUANTUM≠ADVANTAGE; FALLBACK≠lower security; MODEL OUTPUT≠FACT; UNKNOWN valid; MORE INTEL≠AUTHORITY)
 - [x] **2I-LA-12** Quantum + Hybrid Compute Lab V10 queued — full contracts §§1–56 + permanent rules in `xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md` (+ founder summary `docs/queue/2I-LA-12-quantum-hybrid-compute-lab.md`); **DO NOT IMPLEMENT until LA-11 PASS**
 - [x] LA-12 includes DB Tracker + AI CFO foundation + Private Financial Vault + tiered pricing/entitlements; experimental compute ≠ production finance; **LA-16 reserved** for deep Finance/Payments; canary non-blocking for advanced connectors
@@ -5418,12 +5434,13 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-13** Nested AI Tool Foundry + Infinite Computational Universe Infrastructure V10 queued — full contracts §§1–65 + permanent rules in `xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md` (+ founder summary `docs/queue/2I-LA-13-nested-ai-tool-foundry-infinite-universe-fabric.md`); **DO NOT IMPLEMENT until LA-12 PASS**
 - [x] LA-13 critical corrections encoded (DefensiveWeakness=authorized defensive discovery only; trillions=logical namespaces/lazy templates; Founder Twin exact label ≠ actual Founder / no root/secrets/Guardian/L4)
 - [x] LA-13 permanent rules encoded (DEFENSIVE≠EXPLOITATION; PUBLIC WEBSITE≠ATTACK; nested perms=intersection; CompositeTool own manifest; LOGICAL≠PHYSICAL; POTENTIAL≠CONNECTED; DETECTED≠SUPPORTED≠OPTIMAL; CALENDAR≠PERMISSION; never infer PASS; L4 off)
-- [x] **NEXT after LA-13:** LA-14 Cybersecurity + Digital Forensics OS (commercial Security Center depth)
-- [x] Ordering lock extended: **LA-12 → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal+Contract**; 30-day runway kept active; L4 off
+- [x] **NEXT after LA-13:** LA-14 Cybersecurity + Ethical Security Research + Digital Forensics OS V10 (Customer Security Center commercial + Business Hospital cyber dept)
+- [x] Ordering lock extended: **LA-12 → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20**; 30-day runway kept active; L4 off
 - [x] **2I-LA-14** Cybersecurity + Ethical Security Research + Digital Forensics OS V10 queued — full contracts §§1–66 + permanent rules in `xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md` (+ founder summary `docs/queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md`); **DO NOT IMPLEMENT until LA-13 PASS**
 - [x] LA-14 core ethical rule encoded (authorized-only ethical hacking; NO stealing/unauthorized access/extortion/exfil/malware/credential theft; UNKNOWN=no active testing; publicly reachable≠authorized; AI supervision≠legal auth; expired token=STOP; Guardian above agents)
 - [x] LA-14 commercial notes encoded: Customer Security Center premium product line; Business Hospital cybersecurity department; never paywall/weaken core security
 - [x] LA-14 permanent rules encoded (DEFENSIVE≠EXPLOITATION; reputation≠popularity; Security Score≠vanity; private findings≠global training; Negotiation≠threats; L4 off)
+- [x] **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine queued (full §§1–69; docs only; after LA-14); **NEW STORY = DATA ≠ AUTHORITY**; **DO NOT IMPLEMENT until LA-14 PASS**
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
 - [x] Permanent LA-07 CEO rules encoded (counsel gate; commerce honesty; L4 off)
 - [x] §51 future agent families reserved; §52 role creation principle recorded; L4 off; logical brains over spawn farm
