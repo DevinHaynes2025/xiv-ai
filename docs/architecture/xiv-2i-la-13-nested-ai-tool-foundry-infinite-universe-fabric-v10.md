@@ -735,8 +735,8 @@ Do not implement LA-13 from LA-11/LA-12 docs alone. Queue LA-13 docs in parallel
 | **2I-LA-17** | Personal Privacy Vault + Private Search |
 | **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
-| **2I-LA-20** | Creator + Influencer Business OS |
-| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-20** | Creator + Influencer Business OS V20 |
+| **2I-LA-21** | Product Passport + Authenticity Network |
 | **2I-LA-22** | Global Database Federation |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |

@@ -26,7 +26,7 @@
 | **2I-LA-17** | Personal Privacy Vault + Private Search + Personal AI Brain V20 + Revenue Engine Factory + Sales Tech AI + Innovation + Security Expansion + 24/7 Business Growth Engine | Prior (docs) |
 | **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 | **Must PASS before LA-19 code** (may still be landing docs — do not interrupt) |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 | **This document** |
-| **2I-LA-20** | Creator + Influencer Business OS | **NEXT** after LA-19 |
+| **2I-LA-20** | Creator + Influencer Business OS V20 | **NEXT** after LA-19 |
 
 **Ordering lock:** **LA-16 AI CFO + Banking + Wealth + Executive Org → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Identity + Community Trust → LA-19 Mature Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS**.
 
@@ -647,12 +647,12 @@ Do **not** force MatureUniverse into initial Business OS release. Keep experimen
 
 Fetch tip before land; rebase onto tip that includes **LA-18** when present; dual-push GitHub+GitLab; prove three-way match; never force; never `main`; secret-free diffs; do not commit unrelated LA-16/17/18 WIP from other agents.
 
-### 88. Next queue — LA-20 Creator + Influencer Business OS then LA-21…30
+### 88. Next queue — LA-20 Creator + Influencer Business OS V20 then LA-21 Product Passport + Authenticity Network
 
 | ID | Title |
 |----|-------|
-| **2I-LA-20** | **Creator + Influencer Business OS** — creator monetization, brand/influencer workflows, deeper rights/licensing commerce (builds on LA-19 baseline rights + vault + consent); **not** sexual-services marketplace |
-| **2I-LA-21** | Retail Product Passport |
+| **2I-LA-20** | **Creator + Influencer Business OS V20** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`) — creator business intelligence OS (builds on LA-19 baseline rights + vault + consent); **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE`; **not** sexual-services marketplace |
+| **2I-LA-21** | Product Passport + Authenticity Network |
 | **2I-LA-22** | Global Database Federation |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
@@ -663,7 +663,7 @@ Fetch tip before land; rebase onto tip that includes **LA-18** when present; dua
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
 
-**NEXT after LA-19:** **2I-LA-20** Creator + Influencer Business OS.
+**NEXT after LA-19:** **2I-LA-20** Creator + Influencer Business OS V20 → **LA-21** Product Passport + Authenticity Network.
 
 **Title correction:** Older queue rows that labeled LA-20 as “Content Rights + Media Provenance” alone are **superseded** for sequencing — media provenance/rights **baseline** lives in **LA-19**; creator/influencer Business OS depth is **LA-20**. Content-rights commerce may compose into LA-20 rather than replace it.
 
