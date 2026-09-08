@@ -423,6 +423,37 @@ export {
   openLocationGateway,
 } from './locationintel';
 export {
+  agentMeshL4Enabled,
+  evaluateOfflineAction,
+  offlineCreatesAuthority,
+  openAgentRuntime,
+  synchronizeAgentMesh,
+} from './agentmesh';
+export {
+  ciscoMayBypassNetworkControls,
+  connectorState as globalConnectorState,
+  evaluateConnectorAccess,
+  nvidiaIsAuthorizationLayer,
+  openCloudFabric,
+  openEnterprisePlugins,
+  openGlobalConnectorFabric,
+  pluginState,
+  xivConnectsToAllWorldDatabases,
+} from './connectorfabric';
+export {
+  evaluateSupplierProvenance,
+  extremeScaleIsProven,
+  l4AutonomyEnabled,
+  openInformationLogisticsCenter,
+  openPhase2iabGrounding,
+  openScaleArchitecture,
+  openSupplierCommerceNetwork,
+  openSupplyChainGraph,
+  openUniverseFabric,
+  productionCredentialsEnabledInPhase2iab,
+  supplierAdapterState,
+} from './supplygraph';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,
