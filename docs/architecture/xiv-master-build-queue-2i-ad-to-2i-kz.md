@@ -3188,8 +3188,9 @@ Every phase inherits and must preserve:
 | **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 | **QUEUED DOCS** — `xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`; **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 | **QUEUED DOCS** — `xiv-2i-la-47-business-digital-civilization-financial-parallel-brain-v570.md`; **DO NOT IMPLEMENT until LA-46 PASS** |
 | **2I-LA-48** | Global Product + Information + Technology Nervous System V580 | **QUEUED DOCS** — `xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md`; **DO NOT IMPLEMENT until LA-47 PASS** |
-| **2I-LA-49** | Autonomous Business Research Lab V590 | **QUEUED TITLE** |
-| **2I-LA-50…60** | Prepared expansion titles | **TITLE QUEUE ONLY** |
+| **2I-LA-49** | Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 | **QUEUED DOCS** — `xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md`; **DO NOT IMPLEMENT until LA-48 PASS** |
+| **2I-LA-50** | Business Intelligence Super Brain V600 | **QUEUED TITLE** |
+| **2I-LA-51…60** | Prepared expansion titles | **TITLE QUEUE ONLY** |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -4068,8 +4069,27 @@ Historical Founder MC title-only placeholders (superseded where commercial docs 
 
 **Includes (document only):** XIVNervousSystem family; XIVBusinessObject; Universal identity; UniversalBusinessEvent; Evidence/Rights/TemporalContract; ProductPassportV20; Physical/Digital/Information/Technology twins; InformationSupplyChainV3; TechnologyBOM/SoftwareBOM/AgentLineage; NeuralPathwayBuilder V2; ProductGraph/DependencyGraph/Historical pathways; Security blast radius / Security Rings V3; Event nervous system; journeys; time machine; offline warehouse; healthcare product supply (patient separation); Bank connector (AUTHORIZED API only); SEC/economic signals; Feedback loops; Parallel product universes; Product Story Engine; FounderNervousSystemCommand; Memory tiers HOT/WARM/COLD/ARCHIVE; edge brain; high-speed pipeline with backpressure/DLQ; permanent honesty bans; slices 1–6; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-48 runtime**.
 
-**NEXT after LA-48:** **2I-LA-49** Autonomous Business Research Lab V590 → **LA-50…60**.
+**NEXT after LA-48:** **2I-LA-49** Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 → **LA-50** Business Intelligence Super Brain V600 → **LA-51…60**.
 
+## 2I-LA-49 — AUTONOMOUS BUSINESS RESEARCH LAB + GLOBAL KNOWLEDGE DISCOVERY + CONTINUOUS QUESTION ENGINE V590 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–177 + permanent rules: [`xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md`](./xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md) (+ founder summary [`../queue/2I-LA-49-autonomous-business-research-lab-question-engine.md`](../queue/2I-LA-49-autonomous-business-research-lab-question-engine.md)). **DEPLOYMENT_STATE=QUEUED**.
+
+**DO NOT IMPLEMENT** until **LA-48 Global Product + Information + Technology Nervous System V580 PASS** (and **LA-47 PASS**). Ordering lock: **LA-46 → LA-47 Business Digital Civilization V570 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 → LA-50 Business Intelligence Super Brain V600 → LA-51…60**. Queue **AFTER LA-48**. Tip-land on `xiv-v2` after LA-48; park was `cursor/queue-2i-la-49-autonomous-business-research-lab-4059` — never force-push / never `main`.
+
+**Title supersession:** This V590 story **is** LA-49 and **expands/replaces** earlier short title-only placeholders (e.g. “Autonomous Business Research Lab V590” / “Morning/Evening Brief + Overnight Learning Runtime”). Prior concepts may shift later if founder reassigns.
+
+**Permanent rules (must remain explicit):** UNKNOWN≠FAILURE; UNKNOWN→QUESTION; QUESTION≠AUTHORITY; SOURCE≠TRUTH; DOCUMENT≠INSTRUCTION; PUBLIC≠UNRESTRICTED COPYING; PUBLIC DATABASE≠PRIVATE DATABASE; HISTORICAL≠LIVE; HISTORY≠DESTINY; HISTORICAL ANALOGY≠PREDICTION; NEWS≠PERMANENT FACT; MIRRORS≠INDEPENDENT SOURCES; LAW REFERENCE≠LEGAL ADVICE; OLD LAW≠CURRENT LAW; BANK RESEARCH≠BANK CONNECTION; BANK CONNECTION≠MONEY AUTHORITY; SEC FILING≠COMPLETE COMPANY TRUTH; MODEL OUTPUT≠FACT; AI CONSENSUS≠TRUTH; NVIDIA≠QUANTUM; QUANTUM≠MAGIC; QUBITS≠PAST OR FUTURE DATA; CULTURE≠STEREOTYPE; ART PROVENANCE CLAIM≠OWNERSHIP PROOF; PRIVATE MEDIA≠TRAINING DATA; MODERATION≠SURVEILLANCE; NEURAL PATH≠FACT; GRAPH GROWTH≠AUTHORITY GROWTH; MORE RESEARCH/AGENTS≠MORE AUTHORITY; MORE DATA≠PERMISSION; MASTER PLAN PATCH≠APPROVED CHANGE; PRIVATE COMPANY BRAIN≠GLOBAL BRAIN; UNKNOWN valid; L4 DISABLED; AUTONOMOUS_MASTER_PLAN_EDIT/PRODUCTION_CHANGE/FINANCIAL_ACTION/LEGAL_ACTION=FALSE; internet content ≠ executable instructions by retrieval alone; no ACTIVE direct insert (queue governor); no silent Master Plan edit; NO MINORS; adult community research ≠ sexual services; patient data firewall; wellness data ≠ employer surveillance; speed ≠ skipping verification; parallel ≠ infinite compute; growth = evidence quality ≠ vanity scale.
+
+**Feature flags (default OFF / FALSE):** Autonomous Business Research Lab V590 / UnknownRegistry / QuestionBrainV20 / QuestionRegistry / ResearchDirector / AI Research Organization / GlobalSourceRegistry / SourceRights / SourceFamilyGraph / ResearchMission / Prompt-injection firewall / Evidence / Contradiction Lab / Historical Research Lab / Civilization Memory / GovernmentKnowledgeBrain / Jurisdiction Graph / Law Time Machine / SEC / Banking / domain research / Provider Watch / Model Arena / Quantum Research Team / Neural Path Discovery / Parallel Research Universes / Master Plan Patch / User Story Generator / Offline Research Brain / FounderResearchCommand flags; autonomy + honesty-ban flags **FALSE**; **`L4_AUTONOMY_ENABLED=FALSE`**.
+
+**Release guard:** Entire V590 Research Lab does **not** block first canary. Honesty bans + FALSE autonomy first. Release slices 1–6.
+
+**Includes (document only):** UnknownRegistry; QuestionBrainV20; QuestionRegistry; ResearchDirector; AI Research Organization; GlobalSourceRegistry; SourceRights; SourceFamilyGraph (ORIGINAL/SYNDICATED/MIRROR/DERIVED); ResearchMission; prompt-injection firewall; Evidence; Contradiction Lab; Historical Research Lab; Civilization Memory; GovernmentKnowledgeBrain; Jurisdiction Graph; Law Time Machine; SEC/Banking/Small-Bank/AI CFO/40+ Revenue research honesty; B2B+B2C+C2B rights separation; Information & Technology supply research; Provider Watch; Model Arena; Quantum Research Team (classical baseline first); Healthcare/Wellness/Culture/Art/Travel/Naturist business research; Media deletion lifecycle; Cybersecurity Research Lab + 32-layer model; Knowledge promotion/freshness; Neural Path Discovery; Parallel Research Universes; Hypothesis/Experiment pipeline; Master Plan Patch pipeline; User Story Generator (queue-only); Offline Research Brain; FounderResearchCommand; Africa/Global South country-aware research; core loop Sense→Unknown→…→New Question; compose LA-05/08/09/12/15/16/37/39/40/43/46/47/48; RLS/tests/flags; slices 1–6; permanent rules; evidence QUEUED/FALSE/UNKNOWN; **DEPLOYMENT_STATE=QUEUED**; next LA-50 V600.
+
+**L4 DISABLED**. **HARD STOP — no LA-49 runtime.** Do not start LA-50.
+
+**NEXT after LA-49:** **2I-LA-50** Business Intelligence Super Brain V600 → **LA-51…60**.
 
 ---
 
@@ -4651,8 +4671,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 — **QUEUED DOCS** (`xiv-2i-la-47-business-digital-civilization-financial-parallel-brain-v570.md`); **DO NOT IMPLEMENT until LA-46 PASS** |
 | **2I-LA-48** | Global Product + Information + Technology Nervous System V580 — **QUEUED DOCS** (`xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md`); **DO NOT IMPLEMENT until LA-47 PASS** |
-| **2I-LA-49** | Autonomous Business Research Lab V590 — **QUEUED TITLE** |
-| **2I-LA-50…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-49** | Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 — **QUEUED DOCS** (`xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md`); **DO NOT IMPLEMENT until LA-48 PASS** |
+| **2I-LA-50** | Business Intelligence Super Brain V600 — **QUEUED TITLE** |
+| **2I-LA-51…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### 51. Reserved future agent families
 
@@ -5409,8 +5430,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 — **QUEUED DOCS** (`xiv-2i-la-47-business-digital-civilization-financial-parallel-brain-v570.md`); **DO NOT IMPLEMENT until LA-46 PASS** |
 | **2I-LA-48** | Global Product + Information + Technology Nervous System V580 — **QUEUED DOCS** (`xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md`); **DO NOT IMPLEMENT until LA-47 PASS** |
-| **2I-LA-49** | Autonomous Business Research Lab V590 — **QUEUED TITLE** |
-| **2I-LA-50…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-49** | Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 — **QUEUED DOCS** (`xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md`); **DO NOT IMPLEMENT until LA-48 PASS** |
+| **2I-LA-50** | Business Intelligence Super Brain V600 — **QUEUED TITLE** |
+| **2I-LA-51…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### NEXT after LA-06 (queue mention only)
 
@@ -6148,8 +6170,9 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-46** | Global Operations + Real-Time Business Control Tower + Governed Work Orchestration Brain V560 — **QUEUED DOCS** (`xiv-2i-la-46-global-operations-control-tower-orchestration-brain-v560.md`); **DO NOT IMPLEMENT until LA-45 PASS** |
 | **2I-LA-47** | Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 — **QUEUED DOCS** (`xiv-2i-la-47-business-digital-civilization-financial-parallel-brain-v570.md`); **DO NOT IMPLEMENT until LA-46 PASS** |
 | **2I-LA-48** | Global Product + Information + Technology Nervous System V580 — **QUEUED DOCS** (`xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md`); **DO NOT IMPLEMENT until LA-47 PASS** |
-| **2I-LA-49** | Autonomous Business Research Lab V590 — **QUEUED TITLE** |
-| **2I-LA-50…60** | Prepared expansion titles *(title queued — refine when authored)* |
+| **2I-LA-49** | Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 — **QUEUED DOCS** (`xiv-2i-la-49-autonomous-business-research-lab-question-engine-v590.md`); **DO NOT IMPLEMENT until LA-48 PASS** |
+| **2I-LA-50** | Business Intelligence Super Brain V600 — **QUEUED TITLE** |
+| **2I-LA-51…60** | Prepared expansion titles *(title queued — refine when authored)* |
 
 ### NEXT after LA-08 (queue mention only)
 
@@ -6461,6 +6484,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **NEXT after LA-47:** LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab V590 → LA-50…60
 - [x] Ordering lock extended: **LA-46 → LA-47 Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab V590 → LA-50…60**; queue LA-48 **AFTER LA-47**; tip-land on `xiv-v2`; L4 off
 - [x] **2I-LA-48** Global Product + Information + Technology Nervous System V580 queued (full §§1–157 + permanent rules; docs only; after LA-47); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; supersedes earlier Founder Simulation Sandbox title placeholder; OBJECT ID/PASSPORT≠AUTHENTICITY; EVENT≠TRUTH; LATEST≠LIVE; GRAPH EDGE/NEURAL PATH≠FACT; AUTONOMOUS_PRODUCT_ACTION_ENABLED=FALSE; device takeover / unauthorized bank FALSE; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-48 runtime**; **DO NOT IMPLEMENT until LA-47 PASS**; do not start LA-49
-- [x] **NEXT after LA-48:** LA-49 Autonomous Business Research Lab V590 → LA-50…60
+- [x] **NEXT after LA-48:** LA-49 Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 → LA-50 Business Intelligence Super Brain V600 → LA-51…60
+- [x] Ordering lock extended: **LA-46 → LA-47 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 → LA-50 Business Intelligence Super Brain V600 → LA-51…60**; queue LA-49 **AFTER LA-48**; tip-land on `xiv-v2`; L4 off
+- [x] **2I-LA-49** Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 queued (full §§1–177 + permanent rules; docs only; after LA-48); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; expands/supersedes earlier short “Autonomous Business Research Lab V590” / Morning-Evening Brief title placeholders; UNKNOWN≠FAILURE; UNKNOWN→QUESTION; QUESTION≠AUTHORITY; SOURCE≠TRUTH; DOCUMENT≠INSTRUCTION; PUBLIC≠UNRESTRICTED COPYING; HISTORICAL≠LIVE; MIRRORS≠INDEPENDENT; LAW≠ADVICE; BANK RESEARCH≠CONNECTION≠MONEY; SEC≠COMPLETE TRUTH; MODEL OUTPUT≠FACT; AI CONSENSUS≠TRUTH; NVIDIA≠QUANTUM; QUANTUM≠MAGIC; QUBITS≠PAST/FUTURE; NEURAL PATH≠FACT; MORE RESEARCH≠AUTHORITY; MASTER PLAN PATCH≠APPROVED; AUTONOMOUS_MASTER_PLAN_EDIT/PRODUCTION_CHANGE/FINANCIAL_ACTION/LEGAL_ACTION=FALSE; internet≠instruction; no ACTIVE direct insert; L4 DISABLED; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-49 runtime**; **DO NOT IMPLEMENT until LA-48 PASS**; do not start LA-50
+- [x] **NEXT after LA-49:** LA-50 Business Intelligence Super Brain V600 → LA-51…60
 
 

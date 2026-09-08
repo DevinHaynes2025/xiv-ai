@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-47 PASS** (and **LA-46 PASS**). Queue
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-46 Global Operations Control Tower Orchestration Brain V560 → LA-47 Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab V590 → LA-50…60**.
+Ordering: **LA-46 Global Operations Control Tower Orchestration Brain V560 → LA-47 Business Digital Civilization + Global Intelligence, Financial Infrastructure, Information Supply Chain + Parallel Brain Fabric V570 → LA-48 Global Product + Information + Technology Nervous System V580 → LA-49 Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590 → LA-50 Business Intelligence Super Brain V600 → LA-51…60**.
 
 **Full contracts §§1–157:** [`docs/architecture/xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md`](../architecture/xiv-2i-la-48-global-product-information-technology-nervous-system-v580.md).
 
@@ -47,7 +47,7 @@ As the XIV AI Founder, I want XIV to run Global Product + Information + Technolo
 
 ## Next queue
 
-- **2I-LA-49** Autonomous Business Research Lab V590
+- **2I-LA-49** Autonomous Business Research Lab + Global Knowledge Discovery + Continuous Question Engine V590
 - **2I-LA-50…60** prepared expansion titles (as listed in architecture)
 
 **Do not start LA-49 from this commit.**
