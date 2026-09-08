@@ -537,7 +537,7 @@ Separate commits for: vault isolation, RLS, disclosure+regulated gate, pricing e
 | **2I-LA-18** | 18+ Age Assurance + Global Identity + Community Trust OS V20 |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universes V20 |
 | **2I-LA-20** | Creator + Influencer Business OS V20 |
-| **2I-LA-21** | Product Passport + Authenticity Network |
+| **2I-LA-21** | Global Product Passport + Authenticity Network V20 |
 | **2I-LA-22** | Global Database Federation |
 | **2I-LA-23** | Autonomous QA / Red-Blue Test Factory |
 | **2I-LA-24** | Supply Chain Digital Twin |
