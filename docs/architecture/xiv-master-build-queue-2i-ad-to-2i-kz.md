@@ -7285,3 +7285,26 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 - [x] **2I-AI-62B** Agent Meetings + Human Intelligence Bridge bounded engine landed (deterministic tests; RLS schema prepared; LIVE overnight FALSE; L4 DISABLED)
 - [x] **NEXT after 62B:** 2I-AI-62C Historical, Cultural & Multilingual Intelligence Network (title only)
+
+### 2I-AI-62C — XIV Historical, Cultural & Multilingual Intelligence Network
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** No knowledge table exists; no source is ingested; **L4 DISABLED**.
+**Schema reconciliation:** [`xiv-2i-ai-62c-knowledge-schema-reconciliation.md`](./xiv-2i-ai-62c-knowledge-schema-reconciliation.md) · contracts `services/ai/runtime/queued/2i-ai-62c.ts` · tests `npm run test:2i-ai-62c`
+
+**Blocking naming decision before any 62C migration.** §26 names fifteen tables; two are concepts 62A already planned under different names, and none exist yet, so the fork is still preventable:
+
+| Concept | 62A slice 1 | 62C §26 |
+| --- | --- | --- |
+| Knowledge source registry | `agent_knowledge_sources` | `xiv_knowledge_sources` |
+| Lineage chain | `knowledge_lineage` | `xiv_knowledge_lineage` |
+
+This is the same pattern that produced the landed `agent_meetings` / `xiv_agent_meetings` fork, caught one story earlier. Recommended resolution is the `xiv_` names. `unresolvedNameCollisions()` returns both pairs until the decision is recorded.
+
+**Tenant split for §26 ("tenant-bearing structures require RLS" — which ones):** 10 tenant-bearing (`xiv_knowledge_sources`, `_objects`, `_versions`, `_claims`, `_contradictions`, `_translations`, `_lineage`, `xiv_agent_knowledge_access`, `xiv_knowledge_evaluations`, `xiv_knowledge_quarantine`) require tenant **and Universe** RLS; 5 shared reference (`xiv_civilizations`, `xiv_historical_periods`, `xiv_languages`, `xiv_professions`, `xiv_knowledge_domains`) carry no tenant column. Tenant-only policies are insufficient: §15 routes access through Universe and §16's `UNIVERSE_PRIVATE` class is meaningless without it.
+
+**Contracts pinned while queued:** 15 §4 classifications kept distinct; 6 §16 access classes; 12 §2 periods with regional overlap permitted; §8 translation chain rooted at ORIGINAL; 12 §17 lineage stages; 9 §20 supply-chain stages incl. reverse logistics; §22 permission check ahead of context assembly; 7 §24 quarantine reasons; all 8 §27 evaluations recorded **not demonstrated**; all capability and `AUTO_*` flags FALSE.
+
+**NEXT after 62C:** **2I-AI-62D** Distributed Device, Chip & Edge Runtime (title only).
+
+- [x] **2I-AI-62C** knowledge schema reconciled ahead of implementation (naming fork prevented; tenant/reference split fixed; Universe RLS required); status **QUEUED — NOT IMPLEMENTED**; MYTHOLOGY≠HISTORY; TRANSLATION≠INTERPRETATION; CULTURE≠IDENTITY; ANALOGUE≠PREDICTION; CONSENSUS≠CERTAINTY; QUARANTINED≠TRUSTED; **HARD STOP — no ingestion, no knowledge migration until the naming decision is recorded**
+- [x] **NEXT after 62C:** 2I-AI-62D Distributed Device, Chip & Edge Runtime (title only)
