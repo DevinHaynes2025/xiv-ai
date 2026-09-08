@@ -20,7 +20,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62C PASS** + **2I-AI-62B PASS** + 
 - 62C historical/cultural — [`../architecture/xiv-2i-ai-62c-historical-cultural-multilingual-intelligence.md`](../architecture/xiv-2i-ai-62c-historical-cultural-multilingual-intelligence.md)
 - LA-61\* parks — additive links only; **do not clobber LA-61\***
 
-**Full contracts §§1–32 + AC-01…AC-24 + Canary Gate + Readiness Scorecard + Queue Lock + 62E Entry Requirement + Principle:** [`../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md`](../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md).
+**Full contracts:** §§1–32 + AC-01…AC-24 + Canary Gate + Readiness Scorecard + §§33–61 Test Evidence/Verification/Ownership + Queue Lock + 62E Entry Requirement + Principle — [`../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md`](../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric.md).
 
 ## Founder user story
 
@@ -99,6 +99,8 @@ None auto-authorize production. **Deployment Gate Hardening** still required.
 
 ## Queue Lock
 
+**CURRENT 62D QUEUED / NEXT 62E / L4=FALSE** (tip-landed=NO). See architecture for full lock table + evidence-plane lock.
+
 - **CURRENT:** **2I-AI-62D** (this) — QUEUED ARCHITECTURE — NOT IMPLEMENTED  
 - **NEXT:** **2I-AI-62E** Massive Agent Scheduler & Task Force Fabric  
 - **Active elsewhere:** Deployment Gate Hardening — DO NOT INTERRUPT  
@@ -115,13 +117,20 @@ None auto-authorize production. **Deployment Gate Hardening** still required.
 | Uncontrolled recursive creation | **0** |
 | Resource-budget attachment | **100%** |
 
+## Evidence plane (park)
+
+**Status:** §§33–61 **DOCUMENTED contracts only** — packages ABSENT; strength E0; results TBD/UNKNOWN/UNPROVEN; ownership UNASSIGNED. AC Measured remain **TBD** (TBD≠PASS).  
+**Queue Lock:** CURRENT **62D QUEUED** / NEXT **62E** / **L4=FALSE**.  
+**Governing Principle:** Claims move only as far as owned, fresh, exact-commit evidence allows.  
+Demos/screenshots/agent PASS insufficient alone. skipped≠PASS. store≠security. existence≠recovery. automation≠human approval. hard blockers cannot be waived. **Never invent PASS.**
+
 ## Release posture (30-day guard)
 
 **Entire 62D Device / Chip / Edge Runtime plane does not block first canary.** Prioritize Guardian, security>performance, attestation honesty, AUTO_*=FALSE, satellites UNCONFIGURED, non-interruption of Deployment Gate Hardening.
 
 ## Release slices (document only)
 
-1–32 as architecture §§ (+ Required Tests T01–T18 + **AC-01…AC-24** + Canary Gate + Scorecard + Queue Lock + 62E Entry Requirement).
+1–32 as architecture §§ (+ Required Tests T01–T18 + **AC-01…AC-24** + Canary Gate + Scorecard + **§§33–61 Evidence/Verification/Ownership** + Queue Lock CURRENT 62D QUEUED / NEXT 62E / L4=FALSE + 62E Entry Requirement).
 
 ## Next queue
 
@@ -134,4 +143,4 @@ None auto-authorize production. **Deployment Gate Hardening** still required.
 
 ## Docs-only gate
 
-LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); park TREE = CLEAN for selective docs; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no 2I-AI-62D runtime.** Parking: `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`; dual-push park only; rebase — never force-push. 62A/62B/62C/LA-61\* paths untouched. Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.
+LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); park TREE = CLEAN for selective docs; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN** (AC TBD; §§33–61 DOCUMENTED; packages ABSENT; TBD≠PASS). Never infer PASS. **HARD STOP — no 2I-AI-62D runtime.** Parking: `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`; dual-push park only; rebase — never force-push. 62A/62B/62C/LA-61\* paths untouched. Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.

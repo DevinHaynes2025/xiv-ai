@@ -7,6 +7,7 @@
 **Park branch:** `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`  
 **L4_AUTONOMY_ENABLED:** FALSE  
 **Evidence class:** QUEUED / FALSE / UNKNOWN — **NEVER INFER PASS**  
+**Evidence plane:** §§33–61 Test Evidence, Verification & Ownership — **contracts only; packages ABSENT; TBD≠PASS**  
 **Series label:** **`2I-AI-62*`**
 
 **Canonical companions:**
@@ -856,6 +857,7 @@ Cross-link: **Deployment Gate Hardening** (CURRENT elsewhere — do not interrup
 | **NEXT** | **2I-AI-62E** Massive Agent Scheduler & Task Force Fabric |
 | **Active elsewhere** | **Deployment Gate Hardening** — DO NOT INTERRUPT / DO NOT OVERRIDE |
 | **tip-landed** | **NO** |
+| **L4_AUTONOMY_ENABLED** | **FALSE** |
 | **Production auto-auth** | **NONE** — STAGING/CANARY CANDIDATE never auto-authorizes production |
 
 **Do not start 62E from this commit.**
@@ -879,6 +881,561 @@ Before **2I-AI-62E** may leave title/preview into implementation eligibility, **
 
 ---
 
+
+---
+
+## Architecture contracts (story §§33–61) — Test Evidence, Verification & Ownership
+
+> **Status for this plane:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** All evidence rows below are **contracts / placeholders**. Values are **QUEUED / TBD / FALSE / UNKNOWN / UNPROVEN / UNAVAILABLE** unless an exact-commit evidence pack later proves otherwise. **Never invent PASS.** Demos, screenshots, and agent self-PASS are **insufficient alone**.  
+> **Alongside:** AC-01…AC-24 + Canary Gate + Readiness Scorecard (sibling park tip) remain in force — evidence plane **verifies** those ACs; it does **not** replace them or invent Measured PASS.
+
+### Queue Lock (evidence plane) — CURRENT 62D QUEUED / NEXT 62E / L4=FALSE
+
+| Lock | Value |
+|------|-------|
+| **CURRENT** | **2I-AI-62D** — **QUEUED ARCHITECTURE** (docs park; ACs + evidence contracts) |
+| **NEXT** | **2I-AI-62E** Massive Agent Scheduler & Task Force Fabric |
+| **L4_AUTONOMY_ENABLED** | **FALSE** |
+| **tip-landed** | **NO** |
+| **DEPLOYMENT_STATE** | **QUEUED** |
+| **Evidence invent-PASS** | **FORBIDDEN** |
+| **AC Measured** | **TBD** (TBD ≠ PASS) |
+
+### Governing Principle (Evidence)
+
+> **Claims move only as far as owned, fresh, exact-commit evidence allows — never as far as demos, narratives, or unchecked automation suggest.**
+
+Evidence exists so Founder / CEO / Guardian decisions stay honest under Distributed Device / Chip / Edge Runtime pressure: enrollment theater ≠ trust; CI green-with-skips ≠ PASS; store listing ≠ security; backup existence ≠ recovery; automation ≠ human approval. **SECURITY OVERRIDES PERFORMANCE** still governs how evidence is collected (no attestation bypass to “make the dashboard green”).
+
+---
+
+### 33. Evidence Principle + progression
+
+**Principle:** A 62D capability claim is not true because it is documented, demonstrated, AC-checked-in-docs, or asserted by an agent. It is true only when an **Evidence Record** (§34) at sufficient **strength** (§35), with correct **ownership** (§36–§37), bound to an **exact commit** (§38), in a valid **freshness** state (§55), survives verification without inventing PASS.
+
+**Progression (document-only state machine — not executed here):**
+
+```
+DOCUMENTED → HARNESSED → EVIDENCED → VERIFIED → STAGING
+```
+
+| Stage | Meaning | 62D park posture now |
+|-------|---------|----------------------|
+| **DOCUMENTED** | Contracts / ACs / tests named in docs | **HERE** (architecture park + AC-01…AC-24) |
+| **HARNESSED** | Automated or manual harness exists and is runnable | **QUEUED / NOT STARTED** |
+| **EVIDENCED** | Evidence package produced for exact commit | **QUEUED / ABSENT** |
+| **VERIFIED** | Independent VERIFIER confirms package | **QUEUED / UNPROVEN** |
+| **STAGING** | APPROVER + GUARDIAN allow staging promotion | **FORBIDDEN from this park** |
+
+**Insufficient alone (never promote on these):**
+- Product demos / walkthrough videos
+- Screenshots without harness + commit SHA + environment truth
+- Agent self-declared PASS / chat “looks good”
+- Docs checkmarks / queue `[x]` parked boxes / AC rows with Measured=TBD
+- Partial CI with skipped critical jobs
+- Marketing vendor claims (CAPABILITY ≠ VENDOR)
+
+**Hard rule:** DOCUMENTED ≠ HARNESSED ≠ EVIDENCED ≠ VERIFIED ≠ STAGING ≠ PRODUCTION. **Never invent PASS.**
+
+---
+
+### 34. Evidence Record Contract (all fields; no secrets)
+
+Every 62D claim that can gate advancement (including AC-01…AC-24 when verified) requires an Evidence Record with **all** fields below. Missing required field → record **INVALID** (§55) → cannot support PASS.
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `evidence_id` | YES | Stable id (`62D-EV-…`) |
+| `claim_id` | YES | Maps to AC / T0x / capability claim |
+| `story` | YES | `2I-AI-62D` |
+| `commit_sha` | YES | Full SHA — Exact-Commit rule (§38) |
+| `park_branch` | YES | `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059` (or later authorized branch) |
+| `environment` | YES | local / CI / staging / prod-canary — honesty required |
+| `evidence_class` | YES | RLS / Agent Security / Runtime / Perf / Cost / … |
+| `strength` | YES | E0–E4 (§35) |
+| `result` | YES | PASS / FAIL / SKIP / ERROR / UNKNOWN / BLOCKED / UNAVAILABLE — **park default UNKNOWN/UNPROVEN** |
+| `owner` | YES | Role binding (§36) |
+| `verifier` | YES | Must differ from owner for critical claims |
+| `approver` | YES when gating | Must differ from owner+verifier for critical gates |
+| `guardian_signoff` | YES when security/attestation/isolation | GUARDIAN role |
+| `method` | YES | harness name / procedure id |
+| `artifacts_uri` | YES | Path under `xiv-evidence/` (§39) — no secret values |
+| `started_at` / `finished_at` | YES | UTC |
+| `freshness` | YES | VALID / STALE / SUPERSEDED / INVALID (§55) |
+| `lineage_refs` | YES when data moves | Information-lineage (§51) |
+| `negative_cases` | YES for authz | Denials (§52) |
+| `failure_refs` | YES if any fail | Failures do not disappear (§53) |
+| `exception_refs` | IF ANY | Exception governance (§54) |
+| `notes` | OPTIONAL | No secrets, tokens, private keys, raw credentials |
+
+**No secrets in evidence:** Never paste API keys, tokens, device private keys, attestation root secrets, customer PII, or Founder vault material into Evidence Records, Founder Briefs, or `xiv-evidence/` manifests. Reference secret **handles / lease ids / scan finding ids** only.
+
+**Park posture:** Evidence Record templates **DOCUMENTED**; populated runtime records **ABSENT / QUEUED**.
+
+---
+
+### 35. Evidence Strength Levels E0–E4
+
+| Level | Name | Definition | Gate use |
+|-------|------|------------|----------|
+| **E0** | Assertion | Claim in docs/chat/demo without reproducible artifact | **Cannot gate** |
+| **E1** | Observed | Manual observation / screenshot with commit+env noted | Advisory only; **not** security PASS |
+| **E2** | Harnessed | Automated harness ran; artifacts stored; may include skips | Partial signal; **skipped ≠ PASS** |
+| **E3** | Verified | Independent VERIFIER replay or review of package on exact commit | Minimum for many non-critical claims |
+| **E4** | Dual-control + Guardian | OWNER≠VERIFIER≠APPROVER (+ GUARDIAN when required); negative + failure evidence attached | Required for security / RLS / attestation / isolation / kill-switch / rollback gates |
+
+**62D mapping (implementation era — not claimed now):**
+- Vendor AVAILABLE / attestation LIVE / cross-tenant isolation / kill switch / RLS deny matrix / AC security rows → **E4**
+- Runtime smoke / performance budgets / cost meters → **E3** minimum for gate language
+- Founder Brief narrative color → may cite **E1** only as **OBSERVED**, never as VERIFIED PASS
+
+**Park default strength for all rows:** **E0 (DOCUMENTED only)** until harnesses exist.
+
+---
+
+### 36. Evidence Ownership Model
+
+| Role | Duty | Constraint |
+|------|------|------------|
+| **OWNER** | Produces harness + package; first to assert claim readiness | Cannot self-approve critical gates |
+| **VERIFIER** | Independently checks package against claim + commit | Cannot be the same agent/persona as OWNER for critical roles |
+| **APPROVER** | Accepts gate advancement language (still ≠ production deploy) | Cannot be OWNER or VERIFIER for critical triad |
+| **GUARDIAN** | Security / isolation / attestation / authority boundary signoff | Above agents; cannot be bypassed by AUTO_* |
+
+**Hard rule:** **No same agent as all three critical roles** (OWNER + VERIFIER + APPROVER). For security-class evidence, GUARDIAN is additional and **not** replaceable by OWNER/VERIFIER/APPROVER collapse.
+
+**Also permanent:** Agent chat PASS ≠ VERIFIER. Founder Twin ≠ GUARDIAN. Automation collector ≠ APPROVER (§60).
+
+---
+
+### 37. Evidence Ownership Matrix (full table)
+
+| Evidence class | OWNER (impl era) | VERIFIER | APPROVER | GUARDIAN required? | Park state |
+|----------------|------------------|----------|----------|--------------------|------------|
+| Docs / architecture / AC completeness | Docs OWNER | Docs VERIFIER | Queue APPROVER | No (unless security claim) | **DOCUMENTED** |
+| CI Evidence Package (§39) | CI OWNER | CI VERIFIER | Release APPROVER | If security jobs | **QUEUED** |
+| RLS Evidence (§40) | Data/RLS OWNER | Security VERIFIER | Security APPROVER | **YES** | **QUEUED** |
+| Agent Security Evidence (§41) | Agent Sec OWNER | Security VERIFIER | Security APPROVER | **YES** | **QUEUED** |
+| Runtime Evidence (§42) | Runtime OWNER | Runtime VERIFIER | Fabric APPROVER | If attestation/kill | **QUEUED** |
+| Performance Evidence (§43) | Perf OWNER | Perf VERIFIER | Fabric APPROVER | No (unless security tradeoff claimed) | **QUEUED** |
+| Cost Evidence (§44) → feeds **62E** | Cost OWNER | FinOps VERIFIER | Fabric APPROVER | No | **QUEUED** |
+| Model & Agent Evaluation (§45) | Eval OWNER | Eval VERIFIER | Fabric APPROVER | If authority-affecting | **QUEUED** |
+| Mobile Evidence (§46) | Mobile OWNER | Mobile VERIFIER | Fabric APPROVER | **YES** for trust/security claims | **QUEUED** |
+| Secret-Scan Evidence (§47) | SecOps OWNER | SecOps VERIFIER | Security APPROVER | **YES** | **QUEUED** |
+| Dependency Evidence (§48) | Supply-chain OWNER | SecOps VERIFIER | Security APPROVER | **YES** for critical CVEs | **QUEUED** |
+| Backup/Restore Evidence (§49) | Platform OWNER | DR VERIFIER | Platform APPROVER | **YES** if tenant data | **QUEUED** |
+| Rollback Evidence (§50) | Release OWNER | Release VERIFIER | Release APPROVER | **YES** if prod-adjacent | **QUEUED** |
+| Information-Lineage Evidence (§51) | Lineage OWNER | Data VERIFIER | Fabric APPROVER | **YES** for gating cases | **QUEUED** |
+| Negative Evidence (§52) | Same as claim class | Independent VERIFIER | Per class | Per class | **QUEUED** |
+| Failure Evidence (§53) | Incident OWNER | Reliability VERIFIER | Fabric APPROVER | If security failure | **QUEUED** |
+| Exception Governance (§54) | Exception OWNER | Compliance VERIFIER | **Cannot waive hard blockers** | **YES** | **QUEUED** |
+| Evidence Freshness (§55) | Record OWNER | VERIFIER on use | APPROVER on gate | Per class | **QUEUED** |
+| Founder Brief labels (§58) | Brief OWNER | Brief VERIFIER | CEO/Founder reader | N/A (label honesty) | **QUEUED** |
+| AC-01…AC-24 verification | Per AC class | Independent VERIFIER | Fabric APPROVER | Per AC security need | **QUEUED / TBD** |
+
+**Park note:** Matrix is **binding contract**. Role assignments above are **implementation-era placeholders**, not staffed claims. **Never invent PASS** by filling roles with the same agent.
+
+---
+
+### 38. Exact-Commit Evidence rule
+
+1. Evidence packages **must** declare the full `commit_sha` under test.
+2. Gate language (PASS / VERIFIED / STAGING-ready) applies **only** to that SHA (+ recorded environment).
+3. Rebase, amend, cherry-pick, or “nearby commit” **invalidates** prior VERIFIED unless re-run / re-verified.
+4. Docs-only park commits (this series) produce **DOCUMENTED** evidence of contracts — **not** runtime PASS.
+5. Tip-land onto `xiv-v2` is **out of scope**; park dual-push SHAs are coordination artifacts, not canary proof.
+
+**Never:** “CI was green last week on main” as evidence for this park SHA.
+
+---
+
+### 39. CI Evidence Package — `xiv-evidence/` layout + manifest
+
+**Target layout (implementation era — not created by this park commit):**
+
+```
+xiv-evidence/
+  2I-AI-62D/
+    <commit_sha>/
+      manifest.json
+      ci/
+        jobs.json
+        junit/ …
+        logs/ …          # redacted
+      rls/ …
+      agent-security/ …
+      runtime/ …
+      performance/ …
+      cost/ …
+      eval/ …
+      mobile/ …
+      secret-scan/ …     # finding ids only — NEVER secret values
+      dependencies/ …
+      backup-restore/ …
+      rollback/ …
+      lineage/ …
+      negative/ …
+      failures/ …
+      exceptions/ …
+      ac/                 # AC-01…AC-24 harness outputs
+```
+
+**`manifest.json` minimum keys:** `story`, `commit_sha`, `generated_at`, `jobs[]` (`name`, `result`, `skip_reason`, `artifact_paths`), `evidence_records[]`, `ac_results[]`, `redaction_policy`, `collector` (automation id), `human_approval_required`.
+
+**Hard rules:**
+- **skipped ≠ PASS** — skipped critical jobs → package cannot claim PASS
+- failed job → package **FAIL** (see §53)
+- empty `xiv-evidence/` → **UNAVAILABLE**, not PASS
+- This park commit **does not** add `xiv-evidence/` runtime artifacts
+
+**Park posture:** layout **DOCUMENTED**; packages **ABSENT**.
+
+---
+
+### 40. RLS Evidence (ALLOW/DENY matrix + ops)
+
+RLS / tenant / universe / purpose isolation for device-edge data planes must publish an **ALLOW/DENY matrix** with ops:
+
+| Case | Expected | Evidence artifact | Park |
+|------|----------|-------------------|------|
+| Same-tenant authorized read | ALLOW | query trace + policy id | **QUEUED** |
+| Cross-tenant read | DENY | deny log + code path | **QUEUED** |
+| Cross-universe read without grant | DENY | deny log | **QUEUED** |
+| Purpose mismatch | DENY | purpose check artifact | **QUEUED** |
+| Offline cache serving foreign tenant | DENY | offline harness | **QUEUED** |
+| Enrollment without authority widening | ALLOW enroll / DENY authority | identity+Guardian | **QUEUED** |
+| Operator break-glass | DENY by default / dual-control if ever allowed | ops runbook evidence | **QUEUED** |
+
+**Ops:** matrix regeneration on schema change; deny samples retained; **ALLOW without DENY twin is incomplete**. GUARDIAN required. Strength **E4** for gate language.
+
+---
+
+### 41. Agent Security Evidence + unauthorized capability test → 0 grants
+
+Required negative proof (implementation era):
+
+| Test | Expected |
+|------|----------|
+| Agent requests unauthorized device capability | **0 grants** |
+| Agent requests attestation bypass | **0 grants** |
+| Agent requests cross-tenant compute | **0 grants** |
+| Agent requests AUTO_* enablement | **0 grants** |
+| Agent requests satellite command | **0 grants** (UNCONFIGURED) |
+| Agent requests L4 | **0 grants** (`L4_AUTONOMY_ENABLED=FALSE`) |
+| Confused-deputy tool chain | **0 grants** beyond least privilege |
+
+**Unauthorized capability test → 0 grants** is a **hard gate** for Agent Security Evidence. Demo of a happy-path agent ≠ security evidence.
+
+**Park posture:** contract **DOCUMENTED**; grants observed in prod **N/A**; result **UNPROVEN**.
+
+---
+
+### 42. Runtime Evidence
+
+Covers XUR / XHAL / XCR / EDGE / Offline / XDN / mobility / attestation / kill switch — **honest states only**:
+
+| Claim family | Minimum evidence | Park |
+|--------------|------------------|------|
+| DETECTED | inventory probe artifact | **QUEUED** |
+| SUPPORTED | vendor-support pack | **QUEUED** |
+| OPTIMIZED | benchmark on supported path | **QUEUED** |
+| AVAILABLE | SUPPORTED + attestation + policy | **QUEUED** — **never invent** |
+| Mobility | destination re-attest proof | **QUEUED** |
+| Kill/Pause | real control-plane effect | **QUEUED** |
+| Offline lease | expiry → PAUSE proof | **QUEUED** |
+
+**DETECTED ≠ SUPPORTED ≠ OPTIMIZED ≠ AVAILABLE** remains evidentiary law.
+
+---
+
+### 43. Performance Evidence
+
+| Element | Contract |
+|---------|----------|
+| Budgets | latency / throughput / queue depth / thermal — declared before run |
+| Method | load harness + commit SHA + hardware class |
+| Honesty | SECURITY OVERRIDES PERFORMANCE — no PASS that required attestation/RLS disable |
+| Regression | compare to baseline artifact; missing baseline → UNKNOWN not PASS |
+| Park | **QUEUED / UNPROVEN** |
+
+---
+
+### 44. Cost Evidence (feeds 62E)
+
+Cost meters, routing cost scores, and budget denials for device/edge compute:
+
+- Produce cost evidence packs that **62E** Massive Agent Scheduler & Task Force Fabric will consume
+- Usage ≠ invoice; estimate ≠ bill; logical agents ≠ billed processes
+- Missing cost evidence → 62E must treat cost as **UNKNOWN** (deny-safe), not zero
+- **Park:** schemas/contracts **DOCUMENTED**; meters **NOT STARTED**; feeds 62E **QUEUED**
+
+---
+
+### 45. Model & Agent Evaluation Evidence
+
+| Element | Contract |
+|---------|----------|
+| Model Runtime Registry claims | eval suite ids + version pins |
+| Routing decisions | policy trace (security>performance) |
+| Agent behavior on device | eval + unauthorized capability test (§41) |
+| Drift | eval freshness (§55); stale eval → STALE |
+| Park | **QUEUED / UNPROVEN** |
+
+Eval score ≠ authority. High benchmark ≠ AVAILABLE accelerator.
+
+---
+
+### 46. Mobile Evidence (store ≠ security)
+
+| Claim | Evidence | Non-evidence |
+|-------|----------|--------------|
+| App builds | CI build artifacts | — |
+| Store listing | store metadata | **≠ security PASS** |
+| Device trust / attestation | attestation pipeline evidence | screenshot of login |
+| Compromised-phone isolation | negative harness | “works on my phone” |
+| Offline Agent Meetings on device | offline lease + 0 unauthorized actions | demo GIF |
+
+**Permanent:** **Store ≠ security.** Listing, review score, or TestFlight/Play track ≠ Guardian/attestation PASS.
+
+---
+
+### 47. Secret-Scan Evidence
+
+| Rule | Contract |
+|------|----------|
+| Scan must run on exact commit | job in CI package |
+| Findings | ids + severity + path — **never secret values** |
+| Founder Brief | **never** paste secret values (§58) |
+| Waiving critical secret findings | **hard blocker** — cannot waive (§54) |
+| Park | scan evidence **QUEUED / UNAVAILABLE** (docs-only; no claim of clean tree beyond normal git hygiene) |
+
+---
+
+### 48. Dependency Evidence + exceptions
+
+- SBOM / lockfile digest / advisory scan artifacts bound to commit
+- Exceptions require Exception Record (§54): owner, expiry, compensating control, GUARDIAN if security-class
+- **No silent exception**; expired exception → STALE/INVALID
+- Park: **QUEUED**
+
+---
+
+### 49. Backup/Restore Evidence (existence ≠ recovery)
+
+| Proof | Required? |
+|-------|-----------|
+| Backup job exists | necessary, **not sufficient** |
+| Restore drill artifact | **required** for recovery claims |
+| Integrity check post-restore | **required** |
+| Tenant isolation after restore | **required** for multi-tenant |
+
+**Permanent:** **Existence ≠ recovery.** “Backups enabled” screenshot ≠ PASS.
+
+---
+
+### 50. Rollback Evidence
+
+- Rollback procedure id + dry-run/real-run artifact on exact commit/build
+- Rollback success criteria pre-declared (compose AC-24)
+- Failed rollback retained as Failure Evidence (§53)
+- Feature-flag OFF proof for 62D flags remains the **docs-era** rollback analogue — **not** runtime rollback PASS
+- Park: **QUEUED / UNPROVEN**
+
+---
+
+### 51. Information-Lineage Evidence — 100% for gating cases
+
+For gating device/edge data movements (sync, mobility payload, offline→online reconcile, cross-node handoff):
+
+- Lineage fields: source, transform, rights, purpose, valid_time, recorded_time, actors
+- **100% of gating cases** must carry lineage evidence — partial lineage → **BLOCKED** gate, not PASS
+- Park: contract **DOCUMENTED**; coverage **0% runtime** (honest); **UNPROVEN**
+
+---
+
+### 52. Negative Evidence (denials)
+
+Positive ALLOW evidence without DENY twins is incomplete for authz/security classes.
+
+Required denial families (document matrix — not executed): unauthorized capability, cross-tenant, attestation bypass, AUTO_*, satellite, L4, purpose mismatch, expired offline lease privilege expansion.
+
+Each denial: expected DENY, observed DENY (impl era), artifact path. Park: **QUEUED**.
+
+---
+
+### 53. Failure Evidence (failures don't disappear)
+
+- Failures, flakes, and errored jobs remain in the evidence package
+- Overwriting FAIL with later PASS without lineage → **INVALID**
+- Quarantine / known-fail lists must reference Failure Evidence ids
+- **Failures don't disappear** when dashboards refresh
+- Park: no runtime failures to hide; honesty still required for future packages
+
+---
+
+### 54. Exception Governance (hard blockers cannot be waived)
+
+| Exception class | Waivable? |
+|-----------------|-----------|
+| Docs typo / non-gating advisory | Yes, with expiry |
+| Perf budget miss with security intact | Conditional |
+| Critical secret finding | **NO** |
+| RLS deny-matrix gap on gating path | **NO** |
+| Unauthorized capability grant > 0 | **NO** |
+| Attestation bypass | **NO** |
+| L4 / listed AUTO_* true | **NO** |
+| Tip-land / force-push / main push from park | **NO** |
+| Invented PASS / TBD→PASS by decree | **NO** |
+
+**Hard blockers cannot be waived.** Exception Records still require OWNER/VERIFIER and cannot collapse roles.
+
+---
+
+### 55. Evidence Freshness — VALID / STALE / SUPERSEDED / INVALID
+
+| State | Meaning | Gate effect |
+|-------|---------|-------------|
+| **VALID** | Within freshness window; commit match; roles intact | May support claim at its strength |
+| **STALE** | Past TTL or env drift | Cannot newly gate; report STALE |
+| **SUPERSEDED** | Newer commit/package replaces it | Historical only |
+| **INVALID** | Missing fields, role collapse, secret leak, tampering, skipped-as-PASS | **Cannot gate**; must remediate |
+
+Park docs are **DOCUMENTED** contracts — not VALID runtime evidence.
+
+---
+
+### 56. Ownership State machine
+
+```
+UNASSIGNED → ASSIGNED → IN_PRODUCING → IN_VERIFICATION → APPROVAL_PENDING
+    → ACCEPTED | REJECTED | BLOCKED
+ACCEPTED → (freshness) VALID → STALE → SUPERSEDED
+ANY → INVALID (on contract breach)
+```
+
+Rules:
+- UNASSIGNED evidence cannot gate
+- IN_PRODUCING cannot be labeled VERIFIED
+- REJECTED retains Failure Evidence
+- Role collapse attempt → INVALID
+- Park: ownership states **UNASSIGNED / DOCUMENTED** only
+
+---
+
+### 57. Evidence Dashboard table (TBD ≠ PASS)
+
+| Panel | Values allowed | Park default |
+|-------|----------------|--------------|
+| Claim | id / title / AC-xx | listed contracts + ACs |
+| Strength | E0–E4 | **E0** |
+| Result | PASS/FAIL/SKIP/ERROR/UNKNOWN/BLOCKED/UNAVAILABLE/TBD | **TBD / UNKNOWN** |
+| Freshness | VALID/STALE/SUPERSEDED/INVALID | **N/A (no package)** |
+| Ownership | OWNER/VERIFIER/APPROVER/GUARDIAN | **UNASSIGNED** |
+| Commit | SHA | park docs SHA ≠ runtime proof |
+
+**TBD ≠ PASS. UNKNOWN ≠ PASS. SKIP ≠ PASS. QUEUED ≠ PASS.**
+
+Dashboard green-color without package → **INVALID** presentation. Scorecard ⬜ rows stay ⬜ until evidence exists.
+
+---
+
+### 58. Founder Brief Evidence Rule
+
+Founder Briefs covering 62D must label every material claim:
+
+| Label | Meaning |
+|-------|---------|
+| **VERIFIED** | E3+ package accepted with roles; exact commit |
+| **OBSERVED** | E1 manual observation only |
+| **REPORTED** | Third-party/vendor/agent report without XIV verification |
+| **UNPROVEN** | Claim asserted; evidence absent/insufficient |
+| **BLOCKED** | Evidence or policy blocks advancement |
+| **UNAVAILABLE** | Evidence cannot be collected (env/tooling) |
+
+**Never** put secret values in Founder Brief. Prefer UNAVAILABLE/UNPROVEN over invented VERIFIED.
+
+**Park brief posture:** architecture + ACs **DOCUMENTED**; runtime claims **UNPROVEN**; deployment **BLOCKED** (predecessors + gate); GitLab if unverifiable → **REPORT BLOCKED** honestly.
+
+---
+
+### 59. CEO Decision Boundary
+
+CEO / Founder may:
+- Accept risk language **only** with correctly labeled evidence (§58)
+- Order prioritization of harnesses / remediations
+- Refuse advancement when evidence is TBD/UNPROVEN/BLOCKED
+
+CEO / Founder may **not**:
+- Convert TBD → PASS by decree
+- Waive hard blockers (§54)
+- Collapse OWNER/VERIFIER/APPROVER into one agent
+- Enable L4 / AUTO_* / satellite from a docs park
+- Tip-land park docs as proof of runtime
+
+**Decision boundary:** authority chooses direction; evidence constrains truth. **Never invent PASS.**
+
+---
+
+### 60. Automated Evidence Collection (automation ≠ human approval)
+
+- Collectors may build `xiv-evidence/` packages, redact secrets, and propose record drafts
+- Collectors **must not** set APPROVER/GUARDIAN acceptance
+- Auto-filed PASS without VERIFIER → **INVALID**
+- Automation outage → UNAVAILABLE (honest), not inherited last-PASS
+- **Automation ≠ human approval**
+
+Park: collectors **NOT STARTED**.
+
+---
+
+### 61. Evidence Definition of Done — questions
+
+Implementation-era DoD for 62D evidence plane (all must be answerable with artifacts — **not** claimed now):
+
+1. Does every gating claim (incl. AC-01…AC-24 when gated) have an Evidence Record with all §34 fields?
+2. Is strength ≥ required level (§35) for that class?
+3. Are OWNER / VERIFIER / APPROVER distinct for critical triad (§36)?
+4. Is GUARDIAN present where the matrix requires (§37)?
+5. Is evidence bound to the exact commit under promotion (§38)?
+6. Does `xiv-evidence/<sha>/manifest.json` exist with no skipped-as-PASS (§39)?
+7. Is RLS ALLOW/DENY matrix complete with ops (§40)?
+8. Did unauthorized capability tests yield **0 grants** (§41)?
+9. Are runtime honesty states proven without inventing AVAILABLE (§42)?
+10. Do perf runs preserve security overrides (§43)?
+11. Is cost evidence exportable to **62E** (§44)?
+12. Are model/agent evals fresh and non-authoritative (§45)?
+13. Is mobile evidence free of store≠security confusion (§46)?
+14. Is secret-scan clean of criticals **without pasting secrets** (§47)?
+15. Are dependency exceptions unexpired and governed (§48)?
+16. Was restore — not merely backup existence — proven (§49)?
+17. Is rollback evidence present for the build (§50)?
+18. Is lineage present for **100%** of gating data movements (§51)?
+19. Are negative denials attached (§52)?
+20. Are failures retained and visible (§53)?
+21. Were any hard blockers waived? (**must be NO**) (§54)
+22. Is freshness VALID for every gating record (§55)?
+23. Did ownership state machine reach ACCEPTED without role collapse (§56)?
+24. Does the dashboard show TBD/UNKNOWN honestly — not fake green (§57)?
+25. Are Founder Brief labels correct (§58)?
+26. Did CEO decisions respect the boundary (§59)?
+27. Was automation kept from self-approving (§60)?
+
+**If any answer is unknown:** gate stays **BLOCKED / UNPROVEN**. **Never invent PASS.**
+
+**This park answers:** contracts **DOCUMENTED** alongside AC-01…AC-24; runtime DoD **NOT MET** (expected); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.
+
+---
+
+### Evidence plane — coordination + honesty checklist
+
+- Sibling agents may share this park branch — **prefer one fuller doc set**; append evidence rather than competing branches
+- AC-01…AC-24 + Canary + Scorecard remain; §§33–61 **append** verification ownership — do not clobber 62A/62B/62C/LA-61\*
+- Queue Lock: **CURRENT 62D QUEUED / NEXT 62E / L4=FALSE**
+- tip-landed=**NO**; dual-push park only; never force-push; never `main`
+- **HARD STOP — no 2I-AI-62D runtime** from evidence docs alone
+
+---
+
 ## Release posture (30-day guard)
 
 **Entire 2I-AI-62D Distributed Device / Chip / Edge Runtime plane does not block first canary.** Prioritize Guardian supremacy, security>performance, attestation honesty, AUTO_*=FALSE, satellites UNCONFIGURED, non-interruption of Deployment Gate Hardening, deny-safe UNKNOWN.
@@ -887,4 +1444,4 @@ Before **2I-AI-62E** may leave title/preview into implementation eligibility, **
 
 ## Docs-only gate / parking
 
-LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); park TREE = CLEAN for selective docs; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no 2I-AI-62D runtime.** Parking: `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`; dual-push park only; rebase — never force-push. 62A/62B/62C/LA-61\* paths untouched. No tip-land. No device enrollment. No compute purchase. No satellite. No production agents.
+LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); park TREE = CLEAN for selective docs; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN** (AC Measured=TBD; §§33–61 DOCUMENTED; packages ABSENT; TBD≠PASS). Never infer PASS. **HARD STOP — no 2I-AI-62D runtime.** Parking: `cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059`; dual-push park only; rebase — never force-push. 62A/62B/62C/LA-61\* paths untouched. No tip-land. No device enrollment. No compute purchase. No satellite. No production agents.
