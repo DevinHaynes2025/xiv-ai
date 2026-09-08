@@ -18,7 +18,7 @@ HARD STOP: **DO NOT IMPLEMENT.** Full founder story was **not pasted** in this q
 
 ## Ordering
 
-**LA-37 → LA-38 (this title) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**
+**LA-37 → LA-38 (this title) → LA-39 Global Africa Intelligence Brain V400 → LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 → LA-41 Global Commercial Relationship Graph → LA-42…55**
 
 ## Docs-only gate
 
