@@ -1,0 +1,16 @@
+# XIV Cloud Worker — provider-neutral minimal deploy manifest
+# CLOUD_DEPLOYMENT=BLOCKED until XIV_CLOUD_WORKER_VERIFIED=1 + provider config
+apiVersion: xiv.ai/v1
+kind: CloudWorkerDeployment
+metadata:
+  name: xiv-minimal-worker
+  labels:
+    phase: 2I-LA-02
+    l4: disabled
+spec:
+  replicas: 1
+  provider: LOCAL_PROCESS
+  cloudDeployment: BLOCKED_UNTIL_VERIFIED
+  defaultPermissions: NONE
+  runs247Live: false
+  indefinite247Claimed: false
