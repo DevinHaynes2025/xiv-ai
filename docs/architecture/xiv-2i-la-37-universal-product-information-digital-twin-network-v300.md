@@ -34,10 +34,10 @@
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 | **This document** |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **NEXT** — **QUEUED DOCS V310** |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 | After LA-38 title gate |
-| **2I-LA-40** | Continuous Intelligence + Self-Evaluation | Title queue |
+| **2I-LA-40** | Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 | Title queue |
 | **2I-LA-41…50** | Prepared expansion titles | Title queue only |
 
-**Ordering lock:** **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 → LA-40 Continuous Intelligence + Self-Evaluation → LA-41…50**.
+**Ordering lock:** **LA-36 → LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 → LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 → LA-41 Global Commercial Relationship Graph → LA-42…55**.
 
 **LA-21 / LA-24 / LA-25 / LA-35 ≠ LA-37:** Ancestors hold Product Passport, Supply Chain Twin, Company Twin, and Warehouse V10 fabric. Full **Universal Product + Information Digital Twin Network**, **event nervous system**, **bitemporal immutable product/event ledger**, **multi-storage fabric**, **physical/digital/information twins**, **Warehouse V20**, trillion-scale **architectural targets**, and the honesty dictionary below belong **here**.
 
@@ -307,7 +307,7 @@ Evaluate later: `product_identities`, `product_events_bitemporal`, `information_
 |-------|-------|--------|
 | **2I-LA-38** | **XIV Planetary Business Simulation + Digital Twin Supercomputer V310** | **QUEUED DOCS** — full §§1–153: [`xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md`](./xiv-2i-la-38-planetary-business-simulation-digital-twin-supercomputer-v310.md) |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 | Full story queues separately |
-| **2I-LA-40** | Continuous Intelligence + Self-Evaluation | Title queued |
+| **2I-LA-40** | Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 | Title queued |
 | **2I-LA-41** | Global Knowledge + Research Fabric Expansion | Title queued — refine when authored |
 | **2I-LA-42** | Planetary Observability + Sensor Integrity Fabric | Title queued — refine when authored |
 | **2I-LA-43** | Cross-Domain Twin Interoperability Runtime | Title queued — refine when authored |

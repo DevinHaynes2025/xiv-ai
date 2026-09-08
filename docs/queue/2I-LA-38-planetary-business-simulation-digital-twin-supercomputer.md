@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-37 PASS**. Queue **AFTER LA-37**. 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-37** (Universal Product + Information Digital Twin Network V300) must PASS before LA-38 code. Ordering: **LA-37 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade as subsystem) → LA-40 Continuous Intelligence + Self-Evaluation**.
+**2I-LA-37** (Universal Product + Information Digital Twin Network V300) must PASS before LA-38 code. Ordering: **LA-37 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 Global Africa Intelligence Brain V400 (Economic/Trade as subsystem) → LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500**.
 
 **Tip note:** Tip previously through LA-36 (~`9c07f03`); LA-37 parked on `cursor/queue-2i-la-37-*-b993`. **Park** on `cursor/queue-2i-la-38-planetary-simulation-4059`; **rebase after LA-37 on tip**. Never force-push / never `main`. Master queue: **LA-37 → LA-38 → LA-39 → LA-40**.
 
@@ -20,7 +20,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-37 PASS**. Queue **AFTER LA-37**. 
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to run Planetary Business Simulation + Digital Twin Supercomputer V310 — federate twins (incl. LA-37 product/information) into isolated planetary (= global business modeling) scenario universes; schedule classical / hybrid / quantum-**ready** jobs without claiming advantage; require NO_ACTION baselines; separate PROJECTED≠VERIFIED; keep trillion-scale as target≠current; forbid sim→production write; keep AUTONOMOUS_SIM_ACTION=FALSE; L4 DISABLED; next **LA-39 → LA-40**; permanent rules; evidence **NEVER INFER PASS**.
+As the XIV AI Founder, I want XIV to run Planetary Business Simulation + Digital Twin Supercomputer V310 — federate twins (incl. LA-37 product/information) into isolated planetary (= global business modeling) scenario universes; schedule classical / hybrid / quantum-**ready** jobs without claiming advantage; require NO_ACTION baselines; separate PROJECTED≠VERIFIED; keep trillion-scale as target≠current; forbid sim→production write; keep AUTONOMOUS_SIM_ACTION=FALSE; L4 DISABLED; next **LA-39 → LA-40 V500 → LA-41**; permanent rules; evidence **NEVER INFER PASS**.
 
 ## Critical architecture rules (permanent)
 
@@ -46,13 +46,14 @@ As the XIV AI Founder, I want XIV to run Planetary Business Simulation + Digital
 - Scenario taxonomy; assumption/evidence/comparison packs; proposals ≠ execution
 - Quantum honesty (LA-12); trillion-scale target honesty; PROJECTED≠VERIFIED
 - No sim→production write; security tests; Founder Sim Command (LA-30)
-- Evidence QUEUED/FALSE/UNKNOWN; Next LA-39 → LA-40
+- Evidence QUEUED/FALSE/UNKNOWN; Next LA-39 → LA-40 V500 → LA-41
 
 ## Next queue
 
 - **2I-LA-39** Global Africa Intelligence Brain V400 (Economic + Trade Intelligence as subsystem when Africa story authoritative; do not rename Africa→Economic-only if Africa docs exist)
-- **2I-LA-40** Continuous Intelligence + Self-Evaluation
-- **2I-LA-41…50** prepared expansion titles (refine when authored)
+- **2I-LA-40** Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500
+- **2I-LA-41** Global Commercial Relationship Graph
+- **2I-LA-42…55** prepared expansion titles (refine when authored)
 
 ## Docs-only gate
 

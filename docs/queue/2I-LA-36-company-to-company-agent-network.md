@@ -57,7 +57,7 @@ As the XIV AI Founder, I want XIV to run Company-to-Company Agent Network V220 �
 - **2I-LA-37** Universal Product + Information Digital Twin Network V300
 - **2I-LA-38** Planetary Business Simulation + Digital Twin Supercomputer V310 — **QUEUED DOCS V310**
 - **2I-LA-39** Global Africa Intelligence Brain V400 (Economic/Trade = subsystem)
-- **2I-LA-40** Continuous Intelligence + Self-Evaluation
+- **2I-LA-40** Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500
 - **2I-LA-41…50** prepared expansion titles (refine when authored)
 
 ## Docs-only gate

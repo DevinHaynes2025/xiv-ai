@@ -9,7 +9,7 @@
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
 **Predecessor outline:** LA-37 §154 title pointer (FULL STORY PENDING) — **this document replaces the stub with full §§1–153**.
 **Compose with:** LA-04 Meta Brain, **LA-05 Evidence/KG**, LA-06 Memory/Learning, LA-07 Trust + Commerce, LA-08 Curiosity/Contradiction, LA-09 Temporal+Causal, **LA-10 Parallel Simulation Grid**, LA-11 Chip/Model Router, **LA-12 Quantum+Hybrid Lab**, LA-13 Nested Tool Foundry, LA-14 Cybersecurity, LA-15 Legal, LA-16 AI CFO, LA-17 Privacy Vault, LA-18 Identity/Age/Trust, **LA-21 Product Passport**, LA-22 Federation/DAG, LA-22B Treasury, LA-23 QA/Security Factory, **LA-24 Supply Chain Twin**, **LA-25 Company Twin + Business Hospital**, LA-26 Agent University, LA-27 Marketplace, **LA-28 Device/Edge/Compute Fabric**, LA-29 24/7 Org, **LA-30 Founder Mission Control**, LA-31 Identity/Trust, LA-32 Contract/Deal, LA-32A Silicon, LA-33 Opportunity Exchange, LA-34 Capital Intelligence, **LA-35 Universal Business Fabric** (Warehouse V10→V20 via LA-37), **LA-35A Zero-Trust**, **LA-36 C2C Agent Network**, **LA-37 Universal Product + Information Digital Twin Network V300**, Guardian, Agent Firewall, Tenant/Universe Isolation, RLS, Secret plane, Reality Boundary.
-**Feeds:** **2I-LA-39** Global Africa Intelligence Brain V400 (Economic + Trade Intelligence treated as **subsystem** of LA-39 when Africa story is authoritative — do **not** rename Africa→Economic-only) — LA-38 supplies planetary simulation / twin-supercomputer honesty, scenario packs, no-sim→prod write boundary, compute budgeting; **not** Africa depth and **not** LA-40 Continuous Intelligence + Self-Evaluation depth.
+**Feeds:** **2I-LA-39** Global Africa Intelligence Brain V400 (Economic + Trade Intelligence treated as **subsystem** of LA-39 when Africa story is authoritative — do **not** rename Africa→Economic-only) — LA-38 supplies planetary simulation / twin-supercomputer honesty, scenario packs, no-sim→prod write boundary, compute budgeting; **not** Africa depth and **not** LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 depth.
 
 > Docs-only queue. **QUEUE AFTER LA-37.** Do **not** interrupt active validated / deployment-critical work or LA-37 / LA-39 mid-flight. Do **not** destabilize the 30-day deployment runway. **No planetary simulation supercomputer / digital-twin federation runtime / quantum-advantage claim / sim→production write path in this commit.** **L4 DISABLED**.
 >
@@ -29,9 +29,9 @@
 | **2I-LA-37** | Universal Product + Information Digital Twin Network V300 | **Must PASS before LA-38 code** (may still be parked — do not clobber) |
 | **2I-LA-38** | Planetary Business Simulation + Digital Twin Supercomputer V310 | **This document** (replaces title stub) |
 | **2I-LA-39** | Global Africa Intelligence Brain V400 (Economic/Trade = subsystem) | **NEXT** after LA-38 |
-| **2I-LA-40** | Continuous Intelligence + Self-Evaluation | After LA-39 |
+| **2I-LA-40** | Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 | After LA-39 |
 
-**Ordering lock:** **LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 Global Africa Intelligence Brain V400 → LA-40 Continuous Intelligence + Self-Evaluation**.
+**Ordering lock:** **LA-37 Universal Product + Information Digital Twin Network V300 → LA-38 Planetary Business Simulation + Digital Twin Supercomputer V310 → LA-39 Global Africa Intelligence Brain V400 → LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500**.
 
 **LA-10 / LA-24 / LA-25 / LA-37 ≠ LA-38:** Ancestors hold Parallel Simulation Grid isolation, Supply Chain Twin, Company Twin + Business Hospital, and Product/Information Twin V300. Full **planetary (= global business modeling)** simulation plane, **digital twin supercomputer** orchestration, multi-twin federation at planetary scope, trillion-scale **capacity targets ≠ current**, quantum **≠ advantage**, and absolute **no sim→production write** belong **here**.
 
@@ -717,7 +717,7 @@ Required compose: LA-10 Reality Boundary + grid; LA-12 quantum honesty; LA-24/25
 
 - LA-37 Product Twin depth already authored on peer branch (compose, do not rewrite)
 - LA-39 Global Africa Intelligence Brain V400 depth (Economic/Trade may be subsystem there)
-- LA-40 Continuous Intelligence + Self-Evaluation depth
+- LA-40 Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 depth
 - Real quantum hardware procurement
 - Claiming LIVE planetary Earth digital twin
 - Enabling sim→production writes
@@ -765,7 +765,7 @@ Docs landing requires LOCAL = GITHUB = GITLAB on the feature branch (or tip if t
 | Story | Title |
 |-------|-------|
 | **2I-LA-39** | **Global Africa Intelligence Brain V400** — Economic + Trade Intelligence as **subsystem** when Africa story is authoritative (do **not** rename Africa→Economic-only if Africa docs exist) |
-| **2I-LA-40** | Continuous Intelligence + Self-Evaluation |
+| **2I-LA-40** | Brain Foundation + Master Plan Intelligence + Cisco Network Fabric + Historical Civilization Memory + Continuous Self-Evaluation V500 |
 | **2I-LA-41…50** | Prepared expansion titles (refine when authored; see LA-37 next-queue table) |
 
 **NEXT after LA-38:** **2I-LA-39**. **Do not implement LA-39…50 from this commit.**
