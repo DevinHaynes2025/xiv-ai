@@ -39,7 +39,7 @@
 | **2I-LA-61N** | Global Developer + Infrastructure Civilization V740 | **NEXT (title only)** |
 | **2I-LA-61O** | Intelligence Economy + Agent/Tool/Algorithm/Model/Data Product Marketplace V741 | Title only (marketplace foundation) |
 | **2I-LA-61P** | Mobile SaaS Distribution + Global App/Device/Enterprise Deployment Network V742 | Title only |
-| **2I-LA-61Q** | Global Continuity + Sovereign Business Operations Fabric V743 | Title only |
+| **2I-LA-61Q** | Founder Civilization Commercial Stewardship + Long-Horizon Revenue Integrity OS V743 | Title only |
 | **2I-LA-61R** | XIV Civilization Audit + Long-Horizon Stewardship Plane V744 | Title only |
 
 **Ordering lock:** **… → LA-61K V737 → LA-61L V738 → LA-61M (this V739) → LA-61N V740**; do not invent full 61N–61R docs.
@@ -1280,8 +1280,8 @@ Global App / Device / Enterprise
 Deployment Network V742
 
 2I-LA-61Q
-Global Continuity + Sovereign Business
-Operations Fabric V743
+Founder Civilization Commercial Stewardship +
+Long-Horizon Revenue Integrity OS V743
 
 2I-LA-61R
 XIV Civilization Audit + Long-Horizon

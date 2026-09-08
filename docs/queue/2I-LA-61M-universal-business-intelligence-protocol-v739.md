@@ -52,7 +52,7 @@ As the XIV AI Founder, I want XIV to define a governed **Universal Business Inte
 - **2I-LA-61N** Global Developer + Infrastructure Civilization V740 (**title only**)
 - **2I-LA-61O** Intelligence Economy + Agent/Tool/Algorithm/Model/Data Product Marketplace V741 (**title only**; marketplace foundation)
 - **2I-LA-61P** XIV Mobile SaaS Distribution + Global App/Device/Enterprise Deployment Network V742 (**title only**)
-- **2I-LA-61Q** Global Continuity + Sovereign Business Operations Fabric V743 (**title only**)
+- **2I-LA-61Q** Founder Civilization Commercial Stewardship + Long-Horizon Revenue Integrity OS V743 (**title only**)
 - **2I-LA-61R** XIV Civilization Audit + Long-Horizon Stewardship Plane V744 (**title only**)
 
 **Do not start LA-61N from this commit.** Further stories 61N+ may be designed elsewhere, but this environment should **not** keep tip-landing races while setup/queue drains.
