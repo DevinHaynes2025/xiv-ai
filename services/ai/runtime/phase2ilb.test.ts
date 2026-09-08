@@ -48,6 +48,7 @@ import {
   openWorkerPool,
   poolAutoScaleIsLive,
   provisionSpecialtyWorker,
+  registerRuntimeWorker,
   recordWorkerHeartbeat,
   registerSchedule,
   requestGuardianDbQuery,
@@ -118,9 +119,7 @@ test('CloudAgentRuntime + lifecycle + identity', () => {
   assert.equal(identityHasAllTools(id), false);
   assert.equal(id.defaultPermissions, 'NONE');
 
-  // register via runtime helpers
-  const { registerRuntimeWorker } = require('./cloudworker') as typeof import('./cloudworker');
-  registerRuntimeWorker(rt, {
+registerRuntimeWorker(rt, {
     workerId: id.workerId,
     instanceId: id.instanceId,
     role: id.agentRole,

@@ -11,7 +11,7 @@ import {
 } from '../cloudworkforce';
 import type { WorkerIdentity, WorkerProcessState } from './types';
 import { transitionWorkerProcess } from './lifecycle';
-import { createMissionAudit, type MissionAuditRecord } from './audit';
+import { appendAudit, openCloudWorkerAuditLog, type CloudWorkerAuditEvent } from './audit';
 
 export type WorkerProcessStep =
   | 'BOOT'
@@ -54,7 +54,7 @@ export type WorkerProcessRunResult = {
   missionId: string | null;
   checkpointId: string | null;
   debriefId: string | null;
-  audit: MissionAuditRecord | null;
+  audit: CloudWorkerAuditEvent | null;
   dependsOnIde: false;
   dependsOnFounderPc: false;
   l4Enabled: false;
@@ -150,21 +150,14 @@ export function runWorkerProcessOnce(input: {
   if (!done.ok) throw new Error(done.reason);
 
   steps.push('NEXT_MISSION');
-  const audit = createMissionAudit({
-    auditId: `audit-${missionId}`,
+  const auditLog = openCloudWorkerAuditLog();
+  const audit = appendAudit(auditLog, {
+    eventId: `audit-${missionId}`,
+    at: nowIso,
+    kind: 'OFFLINE_FOUNDER_TEST',
+    workerId: input.identity.workerId,
     missionId,
-    who: input.identity.workerId,
-    what: 'cloud_runtime_verification',
-    when: nowIso,
-    why: 'la02_deployment_test',
-    where: 'LOCAL_PROCESS',
-    tools: [],
-    dataScopes: ['mission_local'],
-    authority: 'L0',
-    result: 'SUCCESS',
-    costUnits: 1,
-    checkpointId: cp.checkpoint.checkpointId,
-    outcome: debrief.outcome,
+    detail: 'cloud_runtime_verification_complete',
   });
 
   return {
