@@ -12,6 +12,7 @@
 **Canonical companions:**
 - Queue founder summary: [`../queue/2I-AI-62E-massive-agent-scheduler-neural-pathway.md`](../queue/2I-AI-62E-massive-agent-scheduler-neural-pathway.md)
 - **Concrete File & Command Mapping (FULL):** [`xiv-2i-ai-62e-concrete-file-command-mapping.md`](./xiv-2i-ai-62e-concrete-file-command-mapping.md) — Repository Rule + §§1–41 + Implementation Lock + Final Rule; **docs only; runtime NOT created**
+- **COMPLETE SCALE-HARNESS MAPPING (CORRECTED):** this document — [§§1–30 + Completion Rule](#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion); **SUPERSEDES** incomplete scale-harness portions (Phases 34–41 stubs, prior PR-62E-19 lump, incomplete Concrete Mapping scale script rows); **docs only; no `scripts/xiv/62e/scale/*.ts` created**
 - Executable plan Phases 0–52: [`xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md`](./xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md)
 - Canonical master queue: [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md) (+ LA pointer [`xiv-master-build-queue-2i-ad-to-2i-la.md`](./xiv-master-build-queue-2i-ad-to-2i-la.md))
 - Predecessor **2I-AI-62A** (sibling park — do **not** overwrite): [`xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`](./xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md) · queue [`../queue/2I-AI-62A-agent-civilization-foundation.md`](../queue/2I-AI-62A-agent-civilization-foundation.md) · park `cursor/queue-2i-ai-62a-agent-civilization-foundation-4059` · SHA ~`2c3c7f2`
@@ -130,6 +131,9 @@ As the XIV AI Founder, I want XIV to define a governed **Massive Agent Scheduler
 ---
 
 ## Architecture contracts (story §§1–43)
+
+> **Scale-harness:** incomplete scale stubs are **SUPERSEDED** by [COMPLETE SCALE-HARNESS MAPPING (CORRECTED)](#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion) §§1–30 + Completion Rule (PR-62E-16…24). Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.
+
 
 ### 1. Mission — Governed Massive Scheduler + Neural Pathway Fabric
 
@@ -519,19 +523,22 @@ All Measured=TBD here.
 
 ### 31. Scale-Test Evidence fields
 
+> **Incomplete field stub SUPERSEDED** by **[COMPLETE SCALE-HARNESS MAPPING](#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion)** (Metrics Contract §6, Evidence Writer §22, Scale Summary JSON §24, Scale Gate §29). Retained mini-table is a **non-authoritative index only**.
+
 | Field | Purpose |
 |-------|---------|
-| `test_id` / `suite_id` | harness identity |
+| `test_id` / `suite_id` / `test_run_id` | harness identity (cleanup scopes `test_run_id` only) |
 | `logical_count` | registry size under test |
-| `active_count` | concurrent active observed |
+| `active_count` / `observed_peak_concurrency` | concurrent active observed (proof field required) |
 | `task_force_count` | concurrent forces |
 | `pathways_per_sec` | measured hop rate |
 | `authz_deny_count` | expected denials |
 | `recursive_lock_trips` | must be handled; uncontrolled = 0 |
 | `cross_tenant_violations` | must be 0 |
 | `budget_attachment_pct` | must be 100% for active |
+| `gpu_available` | boolean — **`false` ≠ `0`** |
 | `evidence_artifact_uri` | required before any PASS claim |
-| `result_class` | QUEUED / FAIL / PASS — never infer |
+| `result_class` | QUEUED / FAIL / PASS — never infer; security FAIL overrides perf PASS |
 
 ### 32. Initial Schema Slice (document only — **no migration authorized**)
 
@@ -1178,41 +1185,30 @@ Alert on runaway spawn, cross-tenant deny spikes, kill-switch failures, budget e
 
 ---
 
-## Phases 34–41 — Synthetic generator, scale tests, fault injection, adversarial suite
+## Phases 34–41 — Synthetic / scale / fault / adversarial (**SUPERSEDED stubs**)
 
-### Phase 34 — Synthetic generator
+> **SUPERSEDED / REPLACED** for the **scale-harness portion** by **[COMPLETE SCALE-HARNESS MAPPING (CORRECTED)](#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion)** §§1–30 + Completion Rule below.
+>
+> The prior incomplete Phases 34–41 bullets remain **historical pointers only** and **MUST NOT** be treated as the scale-harness contract.
+>
+> **Canonical scale-harness contract** = Corrected Harness Tree (`scripts/xiv/62e/scale/*`), `ScaleHarnessConfig`, Safety Guard, Deterministic RNG/Population, Workload Generator + `expected_decision`, Metrics / Latency Histogram / Resource Sampler (`gpu_available=false` vs `0`), Concurrency Runner, Registry/Scheduler/Active-Task/Task-Force/Pathway harnesses, Active-Task Concurrency Proof (`observed_peak_concurrency`), Pathway Saturation optional profiles, Fault Injection, Warm-Up/Measurement/Cooldown, Cleanup (`test_run_id` only), Result Validator (security overrides perf), Evidence Writer schema, Master Scale Orchestrator (fail-closed), Scale Summary JSON, corrected `package.json` scripts (`xiv:62e:scale` + `active-scale`), local profiles, verification pipeline, **PR-62E-16…24**, Scale Gate, Final Flow, Completion Rule.
+>
+> Also **SUPERSEDES** incomplete scale script paths in the Concrete File & Command Mapping (`scripts/2i-ai-62e/scale-*.ts` / `scale:62e:*` lump) — canonical tree is `scripts/xiv/62e/scale/` per §1.
+>
+> **Status remains QUEUED ARCHITECTURE — NOT IMPLEMENTED.** No `scripts/xiv/62e/scale/*.ts` created in this park. Production is **not** an accepted harness environment. Never invent PASS.
 
-Generate logical populations, demands, pathway graphs, and adversarial principals for lab tests. Synthetic ≠ production tenants.
+| Legacy phase id | Now covered by |
+|-----------------|----------------|
+| Phase 34 Synthetic generator | Scale-harness §§4–5 (RNG/Population + Workload Generator) |
+| Phase 35 100K logical | Registry harness + canonical profile (§§2, 10) |
+| Phase 36 10K discovery | Scheduler/discovery workload classes (§§5, 11) |
+| Phase 37 1K activation | Active-Task harness + concurrency proof (§§12, 14) |
+| Phase 38 100 idempotency | Workload class + Task-Force harness (§§5, 13) |
+| Phase 39 1K pathway/sec | Pathway harness + optional saturation (§§15–16) |
+| Phase 40 Fault injection | §17 Fault Injection |
+| Phase 41 Adversarial | Workload `expected_decision=DENY` + Result Validator security-first (§§5, 20) |
 
-### Phase 35 — 100K logical agents test
-
-Registry holds **100,000** logical identities with near-zero ACTIVE; memory/process bounded. Logical ≠ live.
-
-### Phase 36 — 10K AVAILABLE pool / discovery test
-
-Discovery+ranking over 10K candidates under budget; security veto still hard-filter.
-
-### Phase 37 — 1K concurrent activation stress
-
-Bounded activations; idempotency + budget hold; no isolation break.
-
-### Phase 38 — 100 concurrent identical demand (idempotency hammer)
-
-See Phase 13 — explicit suite entry.
-
-### Phase 39 — 1K pathway/synapse authorization decisions
-
-Default-deny correctness under load; grant expiry honored.
-
-### Phase 40 — Fault Injection
-
-Kill worker mid-lease, dual scheduler partitions, clock skew, storage fail, Guardian timeout → deny-safe.
-
-### Phase 41 — Adversarial Suite
-
-Cross-tenant activate, reputation privilege escalation, pathway lateral move, recursive spawn, kill-switch race, RLS bypass attempts. Expected: **deny + audit**.
-
-**None of Phases 34–41 are executed in this park commit.**
+**None of Phases 34–41 / scale-harness suites are executed in this park commit.**
 
 ---
 
@@ -1273,7 +1269,11 @@ L4_AUTONOMY_ENABLED=false
 
 ## Phases 47–51 — PR sequence, Ownership, Hard Blockers, State Machine, MVD
 
-### Phase 47 — PR sequence **PR-62E-01…20** (planned)
+### Phase 47 — PR sequence **PR-62E-01…24** (planned; scale portion **CORRECTED**)
+
+> **SUPERSEDES** the prior incomplete map that placed hibernation/guardian/audit at PR-62E-16…18 and lumped all scale into a single **PR-62E-19** (“Synthetic + scale + fault + adversarial”), including the Concrete File & Command Mapping §39 incomplete scale rows.
+> Product surface through envelope/evidence stays **PR-62E-01…15**. Hibernation / Guardian / audit / observability fold into **PR-62E-15** closure + pre-scale gates (not scale-harness PRs).
+> **Scale-harness PRs are exclusively PR-62E-16…24** — full fidelity in [COMPLETE SCALE-HARNESS MAPPING §28](#28-corrected-pr-mapping-pr-62e-16–24).
 
 | PR | Scope |
 |----|-------|
@@ -1291,14 +1291,18 @@ L4_AUTONOMY_ENABLED=false
 | PR-62E-12 | Anti-explosion controls |
 | PR-62E-13 | AgentTask + Scheduler V1 |
 | PR-62E-14 | Race safety + resource budget |
-| PR-62E-15 | Envelope + evidence refs |
-| PR-62E-16 | Hibernation + evaluation + reputation≠authority |
-| PR-62E-17 | Guardian hooks + kill-switch + race test |
-| PR-62E-18 | Audit/logistics + observability |
-| PR-62E-19 | Synthetic + scale + fault + adversarial suites |
-| PR-62E-20 | Scans + evidence manifest + CI gate + flags + verify command |
+| PR-62E-15 | Envelope + evidence refs + hibernation/evaluation/reputation≠authority + Guardian/kill-switch/audit/observability **pre-scale product closure** |
+| **PR-62E-16** | **Scale harness shared utils + `ScaleHarnessConfig` + Safety Guard + canonical profile** |
+| **PR-62E-17** | **Deterministic RNG/Population + Workload Generator classes + `expected_decision`** |
+| **PR-62E-18** | **Metrics contract + Latency Histogram + Resource Sampler (`gpu_available=false` vs `0`) + Concurrency Runner** |
+| **PR-62E-19** | **Registry scale harness + Scheduler scale harness (gates + evidence paths)** |
+| **PR-62E-20** | **Active-Task scale harness + `run-active-task-scale` + Concurrency Proof (`observed_peak_concurrency`)** |
+| **PR-62E-21** | **Task-Force scale harness (gates + evidence paths)** |
+| **PR-62E-22** | **Pathway scale harness + optional saturation profiles** |
+| **PR-62E-23** | **Fault Injection + Warm-Up/Measurement/Cooldown + Cleanup (`test_run_id` only) + Result Validator (security overrides perf) + Evidence Writer schema** |
+| **PR-62E-24** | **Master Scale Orchestrator (fail-closed) + Scale Summary JSON + corrected `package.json` scripts (`xiv:62e:scale`, `active-scale`) + local profiles + verification pipeline + Scale Gate** |
 
-PRs are **planned**; none opened/merged as implementation from this docs park.
+PRs are **planned**; none opened/merged as implementation from this docs park. **No runtime scale harness code in this commit.**
 
 ### Phase 48 — Ownership table
 
@@ -1332,7 +1336,7 @@ PRs are **planned**; none opened/merged as implementation from this docs park.
 QUEUED_ARCHITECTURE
   → PREFLIGHT (Phase 0)
   → IMPLEMENTATION_AUTHORIZED (process only; not this commit)
-  → IMPLEMENTATION_IN_PROGRESS (PR-62E-01…20)
+  → IMPLEMENTATION_IN_PROGRESS (PR-62E-01…24)
   → IMPLEMENTATION_COMPLETE
   → VERIFY_RUNNING
   → VERIFIED (honest evidence) OR VERIFY_FAILED
@@ -1378,6 +1382,552 @@ JSON must include `"deployment_authorized": false` until an explicit later gate.
 
 ---
 
+---
+
+# COMPLETE SCALE-HARNESS MAPPING (CORRECTED — supersedes incomplete scale-harness portion)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED**  
+**Park:** `cursor/queue-2i-ai-62e-massive-agent-scheduler-neural-pathway-4059`  
+**tip-landed:** **NO**  
+**Runtime:** **DO NOT IMPLEMENT / DO NOT CREATE** `scripts/xiv/62e/scale/*.ts` in this park; **DO NOT** run scale tests against shared infra  
+**Honesty:** Never invent PASS. Production is **not** an accepted harness environment. `DEPLOYMENT_STATE=QUEUED`. All AUTO_* / L4 FALSE.
+
+> This corrected mapping **SUPERSEDES / REPLACES** prior incomplete scale-harness portions in this document:
+> - incomplete §31 Scale-Test Evidence field stub (now index-only)
+> - incomplete Phases 34–41 synthetic/scale/fault/adversarial one-liners
+> - incomplete PR map that lumped scale into **PR-62E-19** and mis-numbered product work as PR-62E-16…18
+>
+> Canonical scale-harness PR sequence is **PR-62E-16…24** (see §28).
+
+## §1 Corrected Harness Tree
+
+Planned tree (**docs contract only** — files do not exist yet):
+
+```
+scripts/xiv/62e/scale/                    # DO NOT CREATE IN THIS PARK
+├── config/
+│   ├── ScaleHarnessConfig.ts
+│   ├── profiles/
+│   │   ├── smoke.json
+│   │   ├── integration.json
+│   │   ├── acceptance.json
+│   │   └── pathway-saturation.optional.json
+│   └── canonical-profile.json
+├── safety/
+│   └── SafetyGuard.ts                    # fail-closed; blocks prod / shared-infra misuse
+├── rng/
+│   └── DeterministicRng.ts
+├── population/
+│   └── DeterministicPopulation.ts
+├── workload/
+│   ├── WorkloadGenerator.ts
+│   └── classes.ts                        # + expected_decision per class
+├── metrics/
+│   ├── MetricsContract.ts
+│   ├── LatencyHistogram.ts
+│   └── ResourceSampler.ts                # gpu_available=false vs 0
+├── concurrency/
+│   └── ConcurrencyRunner.ts
+├── harnesses/
+│   ├── registry-scale.ts
+│   ├── scheduler-scale.ts
+│   ├── active-task-scale.ts              # run-active-task-scale entry
+│   ├── task-force-scale.ts
+│   └── pathway-scale.ts
+├── fault/
+│   └── FaultInjection.ts
+├── lifecycle/
+│   ├── WarmUp.ts
+│   ├── MeasurementWindow.ts
+│   └── Cooldown.ts
+├── cleanup/
+│   └── CleanupContract.ts                # test_run_id only
+├── validate/
+│   └── ResultValidator.ts                # security overrides perf
+├── evidence/
+│   └── EvidenceWriter.ts
+├── orchestrator/
+│   └── MasterScaleOrchestrator.ts        # fail-closed sequence
+└── summary/
+    └── ScaleSummary.ts                   # Scale Summary JSON
+
+tests/xiv/62e/scale/                      # DO NOT CREATE IN THIS PARK
+├── smoke/
+├── integration/
+├── acceptance/
+├── active-task-concurrency-proof.test.ts
+├── pathway-saturation.optional.test.ts
+└── scale-suite.test.ts
+
+evidence/2i-ai-62e/scale/                 # placeholders only until SCALE_TESTED
+├── runs/<test_run_id>/
+│   ├── summary.json
+│   ├── metrics.json
+│   ├── histogram.json
+│   ├── resources.json
+│   ├── decisions.jsonl
+│   ├── concurrency-proof.json
+│   └── validator.json
+└── INDEX.md                              # QUEUED / FALSE / UNKNOWN
+```
+
+**Shared utils** live under `scripts/xiv/62e/scale/{config,safety,rng,population,workload,metrics,concurrency,lifecycle,cleanup,validate,evidence}` and are imported by all entry points. **Entry points:** registry / scheduler / active-task (`run-active-task-scale`) / task-force / pathway harnesses + Master Scale Orchestrator + scale suite. **Tests** mirror profiles. **Evidence dirs** are per-`test_run_id` and never write outside scoped paths.
+
+## §2 ScaleHarnessConfig + canonical profile
+
+```ts
+// CONTRACT ONLY — not implemented in this park
+type ScaleHarnessConfig = {
+  suite_id: 'xiv-62e-scale';
+  profile: 'smoke' | 'integration' | 'acceptance' | 'pathway-saturation-optional';
+  seed: number;                     // deterministic
+  test_run_id: string;              // cleanup scope key
+  targets: {
+    logical_agents: number;         // canonical acceptance: 100_000
+    synthetic_scheduling: number;   // 10_000
+    simultaneous_active_bound: number; // 1_000
+    concurrent_task_forces: number; // 100
+    pathway_hops_per_sec: number;   // 1_000
+  };
+  gates: {
+    cross_tenant_violations_max: 0;
+    uncontrolled_recursive_creation_max: 0;
+    budget_attachment_pct_min: 100;
+    security_fail_overrides_perf: true;
+  };
+  environment: {
+    allow_production: false;        // HARD — production NEVER accepted
+    allow_shared_infra: false;      // HARD for this park era
+    require_isolated_lab: true;
+  };
+  resources: {
+    // gpu_available is boolean presence — NOT a count
+    // missing GPU => gpu_available=false (≠ gpu_count:0 ambiguity)
+    sample_gpu: true;
+  };
+  windows: { warmup_ms: number; measure_ms: number; cooldown_ms: number };
+};
+```
+
+**Canonical acceptance profile (engineering targets — not claims):**
+
+| Knob | Canonical value |
+|------|-----------------|
+| logical agents | **100,000** |
+| synthetic scheduling ops | **10,000** |
+| simultaneous active bound | **1,000** |
+| concurrent task forces | **100** |
+| pathway hops/sec (authZ-checked) | **1,000** |
+| cross-tenant violations | **0** |
+| uncontrolled recursive creation | **0** |
+| budget attachment on active | **100%** |
+
+Smoke/integration use strictly smaller populations/windows; acceptance alone may attempt canonical targets — and only in isolated lab after implementation authorization.
+
+## §3 Safety Guard
+
+Safety Guard is **fail-closed** and runs before every harness entry:
+
+1. Reject if `NODE_ENV=production` or any production project ref detected  
+2. Reject if shared-infra migrate/apply credentials present for scale path  
+3. Reject if `allow_production` or `allow_shared_infra` flipped true without explicit future process (not this park)  
+4. Reject if feature flags / AUTO_* / L4 are not FALSE for the run  
+5. Reject if `test_run_id` missing/malformed  
+6. Reject if evidence output path escapes `evidence/2i-ai-62e/scale/runs/<test_run_id>/`  
+7. On any guard failure: **do not start workload**; write `validator.json` with `result_class=FAIL` / `guard_blocked=true`
+
+**Production is not an accepted harness environment.**
+
+## §4 Deterministic RNG / Population
+
+- `DeterministicRng(seed)` — mulberry32/xorshift64* class contract; same seed ⇒ same sequence across registry/scheduler/active-task/task-force/pathway harnesses  
+- `DeterministicPopulation` materializes logical identities, tenants, universes, capability tags, and pathway graphs from seed  
+- No wall-clock entropy in population construction  
+- Population is **logical** by default; ACTIVE bindings only via workload classes that explicitly request activation under budget  
+
+## §5 Workload Generator classes + `expected_decision`
+
+| Class id | Intent | `expected_decision` |
+|----------|--------|---------------------|
+| `REG_REGISTER_OK` | register logical agents in-tenant | ALLOW |
+| `REG_CROSS_TENANT` | cross-tenant register/lookup | DENY |
+| `SCH_ADMIT_OK` | security-first admit in budget | ALLOW |
+| `SCH_RIGHTS_EXPAND` | lower scheduler expands rights | DENY |
+| `ACT_ACTIVATE_OK` | demand+budget+attestation activate | ALLOW |
+| `ACT_NO_BUDGET` | activate without budget | DENY |
+| `ACT_IDEMPOTENT_STORM` | 100 identical demand keys | ALLOW (single authoritative set) |
+| `TF_CREATE_OK` | bounded task force | ALLOW |
+| `TF_RECURSIVE_SPAWN` | uncontrolled recursive create | DENY (+ lock trip) |
+| `PW_HOP_GRANTED` | hop with explicit grant | ALLOW |
+| `PW_STRENGTH_WITHOUT_AUTHZ` | strength used as authority | DENY |
+| `PW_EXPIRED_GRANT` | expired synapse | DENY |
+| `ADV_REPUTATION_AS_AUTHZ` | reputation privilege escalation | DENY |
+| `ADV_LATERAL_MESH` | implicit lateral pathway | DENY |
+
+Every generated item carries `expected_decision ∈ {ALLOW, DENY, QUARANTINE}`. Validator scores **decision correctness before latency**.
+
+## §6 Metrics Contract
+
+Required metrics (names planned):
+
+| Metric | Type | Notes |
+|--------|------|-------|
+| `logical_agents_total` | gauge | registry size |
+| `active_processes` | gauge | live bindings |
+| `observed_peak_concurrency` | gauge | Active-Task proof |
+| `task_forces_active` | gauge | |
+| `admissions_total{decision}` | counter | |
+| `pathway_hops_total{decision}` | counter | |
+| `pathways_per_sec` | derived | measurement window |
+| `authz_deny_count` | counter | |
+| `cross_tenant_violations` | counter | must end **0** |
+| `uncontrolled_recursive_creation` | counter | must end **0** |
+| `budget_attachment_pct` | gauge | must be **100** for active |
+| `recursive_lock_trips` | counter | handled trips OK; uncontrolled ≠ trip |
+| `latency_ms_*` | histogram export | see §7 |
+| `gpu_available` | boolean | see §8 |
+| `gpu_count` | integer optional | only if `gpu_available=true` |
+
+Metrics existence ≠ PASS.
+
+## §7 Latency Histogram
+
+- Buckets: fixed ms boundaries suitable for admit/activate/hop (e.g. 1,2,5,10,25,50,100,250,500,1000,2500,5000,+)  
+- Export p50/p95/p99 + raw bucket counts into `histogram.json`  
+- Separate histograms per harness (`registry|scheduler|active_task|task_force|pathway`)  
+- Warm-up samples **excluded** from scored histograms  
+
+## §8 Resource Sampler (`gpu_available=false` vs `0`)
+
+Critical honesty rule:
+
+| Observation | Correct encoding |
+|-------------|------------------|
+| No GPU present / not probed / unavailable | `gpu_available=false` (**boolean**) |
+| GPU present, zero devices allocatable | `gpu_available=true`, `gpu_count=0` |
+| GPU present, N devices | `gpu_available=true`, `gpu_count=N` |
+
+**Never encode “no GPU” as `gpu_count=0` alone.** Sampler records CPU%, RSS, logical/active counts, optional GPU fields each sample tick into `resources.json`.
+
+## §9 Concurrency Runner
+
+- Spawns N workers with deterministic stagger from seed  
+- Tracks in-flight leases; updates `observed_peak_concurrency`  
+- Supports barriers for idempotency storms and kill-switch races  
+- Hard-stops on Safety Guard trip mid-run  
+- Never exceeds profile `simultaneous_active_bound`  
+
+## §10 Registry scale harness (gates & evidence)
+
+- **Gate:** 100k logical identities (acceptance) with near-zero ACTIVE; cross-tenant register DENY; no rights inflation  
+- **Evidence:** `evidence/2i-ai-62e/scale/runs/<test_run_id>/registry/` + contribution to `summary.json`  
+
+## §11 Scheduler scale harness (gates & evidence)
+
+- **Gate:** synthetic scheduling volume; security-first admits; **0** rights-expansion allows; budget attached  
+- **Evidence:** `.../scheduler/`  
+
+## §12 Active-Task scale harness (+ `run-active-task-scale`)
+
+- **Entry:** `run-active-task-scale` (script alias + suite member)  
+- **Gate:** bounded simultaneous ACTIVE; idempotency storm correctness; activation DENY without demand/budget/attestation  
+- **Evidence:** `.../active-task/` + **Concurrency Proof** (§14)  
+
+## §13 Task-Force scale harness (gates & evidence)
+
+- **Gate:** ≤100 concurrent forces (acceptance); 100% reach DISSOLVE/ARCHIVE; **0** permanent authority residue; recursive spawn DENY  
+- **Evidence:** `.../task-force/`  
+
+## §14 Active-Task Concurrency Proof (`observed_peak_concurrency`)
+
+Proof artifact `concurrency-proof.json` **required** for Active-Task acceptance:
+
+```json
+{
+  "test_run_id": "...",
+  "profile": "acceptance",
+  "target_bound": 1000,
+  "observed_peak_concurrency": null,
+  "samples": [],
+  "result_class": "QUEUED"
+}
+```
+
+Rules:
+
+- `observed_peak_concurrency` must be **measured**, never inferred from config  
+- PASS only if measured peak ∈ (0, target_bound] **and** no isolation/security fails  
+- Peak above bound ⇒ FAIL even if latency looks good  
+- Missing proof artifact ⇒ cannot claim Active-Task scale PASS  
+
+## §15 Pathway harness (gates & evidence)
+
+- AuthZ-checked hops; strength-without-grant DENY; expired grant DENY; target **1k hops/sec** (acceptance engineering target)  
+- Evidence: `.../pathway/`  
+
+## §16 Pathway Saturation (optional profiles)
+
+- Profile `pathway-saturation-optional` may raise hop attempt rate / graph density  
+- **Optional:** failure or skip of saturation profile does **not** alone fail core Scale Gate if required pathway harness PASS and skip is honest (`result_class=SKIPPED_OPTIONAL`)  
+- Must still fail-closed on security violations if executed  
+
+## §17 Fault Injection
+
+Injected faults (lab only): worker crash mid-lease, dual-scheduler partition, clock skew, storage fail, Guardian timeout, budget service timeout, evidence writer I/O fail.
+
+Expected: deny-safe or fail-closed; no cross-tenant leak; no zombie ACTIVE without lease; no PASS on partial evidence.
+
+## §18 Warm-Up / Measurement / Cooldown
+
+| Window | Purpose |
+|--------|---------|
+| Warm-Up | populate caches/JIT; **samples discarded** from scored metrics |
+| Measurement | only window that feeds histograms, rates, proof peak |
+| Cooldown | drain leases; prepare cleanup; no new admits |
+
+Orchestrator enforces ordering; skipping windows ⇒ FAIL.
+
+## §19 Cleanup Contract (`test_run_id` only)
+
+Cleanup may delete/retain **only** artifacts and ephemeral lab rows scoped by `test_run_id`.
+
+Forbidden:
+
+- global truncate of agent/pathway tables  
+- cleanup by tenant/universe alone  
+- touching production or shared non-lab data  
+- deleting other runs’ evidence  
+
+## §20 Result Validator (security overrides perf)
+
+Precedence (highest first):
+
+1. Safety Guard / environment violations → FAIL  
+2. Security / isolation / AuthZ decision mismatches → FAIL  
+3. `cross_tenant_violations > 0` or `uncontrolled_recursive_creation > 0` → FAIL  
+4. Missing required evidence / proof artifacts → FAIL  
+5. Budget attachment & gate zeros → FAIL if violated  
+6. Only then: latency/throughput vs profile targets  
+
+**A perf “green” run with any security fail is FAIL.** Validator writes `validator.json`.
+
+## §21 Evidence Writer schema
+
+```json
+{
+  "schema_version": "62e-scale-evidence-v1",
+  "test_run_id": "string",
+  "suite_id": "xiv-62e-scale",
+  "profile": "smoke|integration|acceptance|pathway-saturation-optional",
+  "seed": 0,
+  "started_at": "ISO-8601",
+  "finished_at": "ISO-8601",
+  "environment": { "production": false, "shared_infra": false, "lab": true },
+  "config_digest": "sha256:...",
+  "harnesses": ["registry", "scheduler", "active_task", "task_force", "pathway"],
+  "artifacts": {
+    "summary": "summary.json",
+    "metrics": "metrics.json",
+    "histogram": "histogram.json",
+    "resources": "resources.json",
+    "decisions": "decisions.jsonl",
+    "concurrency_proof": "concurrency-proof.json",
+    "validator": "validator.json"
+  },
+  "result_class": "QUEUED|FAIL|PASS|SKIPPED_OPTIONAL",
+  "deployment_authorized": false
+}
+```
+
+Writer is append-safe per `test_run_id`. **No PASS without artifacts.**
+
+## §22 Master Scale Orchestrator (fail-closed sequence)
+
+```
+SafetyGuard
+  → load ScaleHarnessConfig + profile
+  → DeterministicRng/Population
+  → WarmUp
+  → Measurement:
+      Registry → Scheduler → ActiveTask(+proof) → TaskForce → Pathway
+      (FaultInjection interleaved per profile)
+  → Cooldown
+  → Cleanup(test_run_id only)
+  → ResultValidator (security > perf)
+  → EvidenceWriter
+  → ScaleSummary JSON
+```
+
+Any step FAIL/throws ⇒ stop promotion; still attempt cleanup + evidence of failure; **fail-closed** (no partial PASS).
+
+## §23 Scale Summary JSON
+
+`summary.json` roll-up:
+
+- identity: `test_run_id`, profile, seed, git SHA (when run)  
+- targets vs measured (logical/active/task_force/pathways_per_sec/peak concurrency)  
+- zeros: cross-tenant, uncontrolled recursive  
+- `budget_attachment_pct`  
+- `gpu_available` (+ `gpu_count` only if true)  
+- per-harness result_class  
+- validator precedence outcome  
+- `deployment_authorized: false`  
+- `result_class` overall  
+
+## §24 Corrected `package.json` scripts
+
+Planned scripts (**docs only — do not add runtime files here**):
+
+```json
+{
+  "scripts": {
+    "xiv:62e:scale": "tsx scripts/xiv/62e/scale/orchestrator/MasterScaleOrchestrator.ts",
+    "xiv:62e:scale:smoke": "tsx scripts/xiv/62e/scale/orchestrator/MasterScaleOrchestrator.ts --profile=smoke",
+    "xiv:62e:scale:integration": "tsx scripts/xiv/62e/scale/orchestrator/MasterScaleOrchestrator.ts --profile=integration",
+    "xiv:62e:scale:acceptance": "tsx scripts/xiv/62e/scale/orchestrator/MasterScaleOrchestrator.ts --profile=acceptance",
+    "xiv:62e:scale:active-scale": "tsx scripts/xiv/62e/scale/harnesses/active-task-scale.ts",
+    "xiv:62e:scale:suite": "tsx tests/xiv/62e/scale/scale-suite.test.ts",
+    "verify:62e:scale:fast": "npm run xiv:62e:scale:smoke && npm run xiv:62e:scale:integration",
+    "verify:62e:scale:acceptance": "npm run xiv:62e:scale:acceptance"
+  }
+}
+```
+
+Aliases may also appear as `xiv verify --story 62e --scale …` later; JSON must keep `deployment_authorized:false`.
+
+## §25 Local profiles — smoke / integration / acceptance
+
+| Profile | Population / window | Purpose |
+|---------|---------------------|---------|
+| smoke | tiny (≤1k logical, seconds) | wiring + Safety Guard + evidence paths |
+| integration | medium (≤10k logical) | cross-harness + idempotency + denies |
+| acceptance | canonical targets | Scale Gate candidate (lab only) |
+
+Optional: `pathway-saturation-optional` (§16).
+
+## §26 Scale-harness test commands
+
+```bash
+# NOT RUN IN THIS PARK — contract only
+npm run xiv:62e:scale:smoke
+npm run xiv:62e:scale:integration
+npm run xiv:62e:scale:active-scale
+npm run xiv:62e:scale:suite
+npm run xiv:62e:scale:acceptance
+npm run verify:62e:scale:fast
+npm run verify:62e:scale:acceptance
+```
+
+Do **not** point these at shared infra or production.
+
+## §27 Corrected Verification Pipeline (fast vs acceptance)
+
+```
+FAST PIPELINE (PR / local)
+  SafetyGuard
+  → smoke
+  → integration
+  → active-scale concurrency proof (reduced bound)
+  → scale-suite (non-acceptance)
+  → fail-closed on any security miss
+  → evidence under test_run_id
+
+ACCEPTANCE PIPELINE (lab only; post-authorization)
+  FAST green required
+  → acceptance profile (canonical targets)
+  → optional pathway saturation (honest skip allowed)
+  → Scale Gate (§29)
+  → Scale Summary JSON
+  → still deployment_authorized=false until separate deploy gate
+```
+
+Fast ≠ acceptance. Acceptance ≠ production permission.
+
+## §28 Corrected PR Mapping PR-62E-16…24
+
+| PR | Deliverable |
+|----|-------------|
+| **PR-62E-16** | Shared scale utils + `ScaleHarnessConfig` + canonical/smoke/integration/acceptance profiles + Safety Guard |
+| **PR-62E-17** | Deterministic RNG/Population + Workload Generator classes + `expected_decision` |
+| **PR-62E-18** | Metrics Contract + Latency Histogram + Resource Sampler (`gpu_available=false` vs `0`) + Concurrency Runner |
+| **PR-62E-19** | Registry scale harness + Scheduler scale harness + evidence paths |
+| **PR-62E-20** | Active-Task scale harness + **`run-active-task-scale`** + Concurrency Proof (`observed_peak_concurrency`) |
+| **PR-62E-21** | Task-Force scale harness + gates/evidence |
+| **PR-62E-22** | Pathway scale harness + optional saturation profiles |
+| **PR-62E-23** | Fault Injection + Warm-Up/Measurement/Cooldown + Cleanup (`test_run_id` only) + Result Validator (security overrides perf) + Evidence Writer schema |
+| **PR-62E-24** | Master Scale Orchestrator (fail-closed) + Scale Summary JSON + corrected `package.json` scripts (`xiv:62e:scale`, `active-scale`, suite) + verification pipeline + Scale Gate wiring |
+
+This **SUPERSEDES** prior incomplete “PR-62E-19 = Synthetic + scale + fault + adversarial” lumping.
+
+## §29 Scale Gate (all PASS + zeros)
+
+Scale Gate PASS requires **all** of:
+
+- Safety Guard green  
+- Required harnesses (registry, scheduler, active-task, task-force, pathway) **PASS**  
+- Active-Task concurrency proof present with measured `observed_peak_concurrency`  
+- `cross_tenant_violations == 0`  
+- `uncontrolled_recursive_creation == 0`  
+- `budget_attachment_pct == 100` for active  
+- Validator: no security fails (perf cannot override)  
+- Evidence pack complete under `test_run_id`  
+- `deployment_authorized == false` still recorded  
+
+Any miss ⇒ Scale Gate FAIL. Optional saturation skip does not waive required zeros.
+
+## §30 Final Scale-Harness Flow diagram
+
+```
+                    ┌─────────────────────┐
+                    │    Safety Guard     │──FAIL──► evidence(FAIL) → stop
+                    └─────────┬───────────┘
+                              │OK
+                    ┌─────────▼───────────┐
+                    │ ScaleHarnessConfig  │
+                    │ + Deterministic pop │
+                    └─────────┬───────────┘
+                              │
+              Warm-Up ──► Measurement ──► Cooldown
+                              │
+        ┌───────────┬─────────┼─────────┬───────────┐
+        ▼           ▼         ▼         ▼           ▼
+   Registry    Scheduler  Active-Task Task-Force  Pathway
+        │           │      (+proof)      │           │
+        └───────────┴─────────┬─────────┴───────────┘
+                              ▼
+                      Fault Injection
+                              ▼
+                 Cleanup (test_run_id only)
+                              ▼
+              ResultValidator (security > perf)
+                              ▼
+                   EvidenceWriter + Summary
+                              ▼
+                         Scale Gate
+                    (all PASS + zeros)
+                              ▼
+         SCALE_TESTED → EVIDENCE_COMPLETE → INDEPENDENTLY_VERIFIED
+                    (never production; never invent PASS)
+```
+
+## Completion Rule
+
+```
+SCALE_TESTED
+  → EVIDENCE_COMPLETE
+    → INDEPENDENTLY_VERIFIED
+```
+
+Meaning:
+
+1. **SCALE_TESTED** — orchestrated harnesses executed in **isolated lab** under Safety Guard; not production; not shared-infra park runs  
+2. **EVIDENCE_COMPLETE** — full Evidence Writer pack + concurrency proof + summary + validator for `test_run_id`  
+3. **INDEPENDENTLY_VERIFIED** — separate verifier/process confirms artifacts; security zeros hold; no inferred PASS  
+
+**Not production.** Completion Rule success still leaves `deployment_authorized=false` until an explicit later deployment gate. This park remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED** and does **not** claim SCALE_TESTED / EVIDENCE_COMPLETE / INDEPENDENTLY_VERIFIED.
+
+---
+
 ## Queue Lock
 
 | Lock | Value |
@@ -1408,6 +1958,6 @@ LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); par
 
 **FULL mapping:** [`xiv-2i-ai-62e-concrete-file-command-mapping.md`](./xiv-2i-ai-62e-concrete-file-command-mapping.md)
 
-Covers: Repository Rule + read-only discovery bash; §1 Target Repository Layout; §2 architecture paths + `git diff --check`; §§3–17 `src/xiv/agents/*` module map (exports/invariants/tests/scale — **FUTURE ONLY, not created**); §18 migration proposed file + lint/reset notes (**NO `db push`**); §19 preserve `agent_civilization_rls_test.sql` + anon+JWT=NO GRANT; §§20–23 RLS suites; §§24–32 scale scripts + evidence JSON + kill-switch + manifest + `verify.ts`; §34 `package.json` script mapping; §§35–37 CI workflows; §38 git safety; §39 PR-62E-01…20; §40 Agent Execution Prompt Mapping; §41 master `verify:62e` JSON with **`deployment_authorized:false`**; Implementation Lock (not QUEUE→PRODUCTION); Final Rule.
+Covers: Repository Rule + read-only discovery bash; §1 Target Repository Layout; §2 architecture paths + `git diff --check`; §§3–17 `src/xiv/agents/*` module map (exports/invariants/tests/scale — **FUTURE ONLY, not created**); §18 migration proposed file + lint/reset notes (**NO `db push`**); §19 preserve `agent_civilization_rls_test.sql` + anon+JWT=NO GRANT; §§20–23 RLS suites; §§24–32 / §34 / §39 scale rows are **SUPERSEDED for scale-harness portion** by [COMPLETE SCALE-HARNESS MAPPING](#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion) (`scripts/xiv/62e/scale/*`, `xiv:62e:scale` + `active-scale`, **PR-62E-16…24**); §§35–37 CI workflows; §38 git safety; §40 Agent Execution Prompt Mapping; §41 master `verify:62e` JSON with **`deployment_authorized:false`**; Implementation Lock (not QUEUE→PRODUCTION); Final Rule.
 
-**Confirmation:** mapping is documented; **`src/xiv/agents/*.ts` / migrations / CI / package.json scripts were NOT created as implementation in this park.**
+**Confirmation:** mapping is documented; **`src/xiv/agents/*.ts` / migrations / CI / package.json scripts / `scripts/xiv/62e/scale/*.ts` were NOT created as implementation in this park.**

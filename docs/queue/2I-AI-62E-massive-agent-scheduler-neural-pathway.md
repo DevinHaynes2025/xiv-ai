@@ -17,7 +17,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62D PASS** + **2I-AI-62C PASS** + 
 **THEN:** **62F** Universe Federation + Constellation Control (**CONNECTED SOVEREIGN INTELLIGENCE**) → **62G** Beyond-Cloud/Space Interface → **FUTURE** **62H** Galaxy Federation
 
 **Cross-links (do not clobber):**
-- Fuller canonical architecture + Phases 0–52 — [`../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md`](../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md)
+- Fuller canonical architecture + Phases 0–52 + **COMPLETE SCALE-HARNESS MAPPING (CORRECTED)** §§1–30 — [`../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md`](../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md) (scale-harness **SUPERSEDES** prior incomplete Phases 34–41 / PR-62E-19 lump / Concrete Mapping `scripts/2i-ai-62e/scale-*`; canonical scale PRs **PR-62E-16…24**; **no** `scripts/xiv/62e/scale/*.ts` created)
 - **Concrete File & Command Mapping (FULL):** [`../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md`](../architecture/xiv-2i-ai-62e-concrete-file-command-mapping.md) — Repository Rule + §§1–41 + Implementation Lock + Final Rule; **docs only; no runtime sources created**
 - Short pointer path — [`../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md`](../architecture/xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-fabric.md)
 - Evidence placeholders — [`../../evidence/2i-ai-62e/`](../../evidence/2i-ai-62e/) (`62e-preflight.json`, manifest; all QUEUED; `deployment_authorized:false`)
@@ -27,7 +27,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-AI-62D PASS** + **2I-AI-62C PASS** + 
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to define a governed **Massive Agent Scheduler, Neural Pathway & Task Force Fabric** — logical agents → registry → demand → budget/decision → discovery → ranking (**security is a gate, not a score**) → activation → default-deny synapses → temporary task forces → race-safe scheduler → envelopes/evidence → evaluation → reputation≠authority → hibernation — with Guardian kill-switch, RLS-before-feature-logic, scale-test targets (100K/10K/1K/100/1K pathways) as **engineering targets not claims**, PR-62E-01…20 sequence, and verify JSON always `deployment_authorized:false` until an explicit later gate — L4 disabled — **NEVER INFER PASS**.
+As the XIV AI Founder, I want XIV to define a governed **Massive Agent Scheduler, Neural Pathway & Task Force Fabric** — logical agents → registry → demand → budget/decision → discovery → ranking (**security is a gate, not a score**) → activation → default-deny synapses → temporary task forces → race-safe scheduler → envelopes/evidence → evaluation → reputation≠authority → hibernation — with Guardian kill-switch, RLS-before-feature-logic, scale-test targets (100K/10K/1K/100/1K pathways) as **engineering targets not claims**, PR-62E-01…24 sequence (scale-harness **PR-62E-16…24** corrected), and verify JSON always `deployment_authorized:false` until an explicit later gate — L4 disabled — **NEVER INFER PASS**.
 
 ## Execution Objective (summary)
 
@@ -52,10 +52,24 @@ Full fidelity in architecture. All phases **QUEUED / NOT EXECUTED**.
 | 20–23 | AgentTask; Scheduler V1; Race Safety; Resource Budget |
 | 24–28 | Message Envelope; Evidence refs; Hibernation; Evaluation; Reputation≠Authority |
 | 29–33 | Guardian Hooks; Kill-Switch + Race Test; Audit/Logistics; Observability metrics |
-| 34–41 | Synthetic generator; 100K/10K/1K/100/1K pathway tests; Fault Injection; Adversarial Suite |
+| 34–41 | **SUPERSEDED stubs** → COMPLETE SCALE-HARNESS MAPPING §§1–30 (PR-62E-16…24); not executed |
 | 42–46 | Secret/Dependency scans; `evidence/2i-ai-62e/`; CI Gate; Feature Flags |
-| 47–51 | PR-62E-01…20; Ownership table; Hard Blockers; Execution State Machine; Minimum Viable Demonstration |
+| 47–51 | PR-62E-01…24 (scale **16…24** corrected); Ownership; Hard Blockers; State Machine; MVD |
 | 52 | `xiv verify` / `npm\|pnpm verify:62e` + JSON with `deployment_authorized:false` |
+
+## Scale-harness mapping (corrected)
+
+**SUPERSEDES** prior incomplete scale-harness stubs (Phases 34–41 one-liners, PR-62E-19 lump, Concrete Mapping `scripts/2i-ai-62e/scale-*` / `scale:62e:*`). Full fidelity in architecture **COMPLETE SCALE-HARNESS MAPPING** §§1–30 + Completion Rule.
+
+- Corrected Harness Tree `scripts/xiv/62e/scale/**` — **not created** in this park
+- `ScaleHarnessConfig` + Safety Guard + Deterministic RNG/Population + Workload Generator/`expected_decision`
+- Metrics / Latency Histogram / Resource Sampler (`gpu_available=false` vs `0`) / Concurrency Runner
+- Registry / Scheduler / Active-Task (`run-active-task-scale`, `observed_peak_concurrency`) / Task-Force / Pathway
+- Fault Injection; Warm-Up/Measurement/Cooldown; Cleanup (`test_run_id` only); Result Validator (security > perf); Evidence Writer; Master Scale Orchestrator fail-closed; Scale Summary JSON
+- Scripts: `xiv:62e:scale` + `active-scale` + suite; profiles smoke/integration/acceptance; fast vs acceptance pipelines
+- **PR-62E-16…24**; Scale Gate (all PASS + zeros); Completion Rule `SCALE_TESTED→EVIDENCE_COMPLETE→INDEPENDENTLY_VERIFIED` (**not production**)
+
+Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**. Never invent PASS.
 
 ## Definition of states (honesty)
 

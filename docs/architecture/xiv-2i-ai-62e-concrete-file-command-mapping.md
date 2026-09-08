@@ -26,6 +26,19 @@
 
 ---
 
+## Scale-harness supersession (CORRECTED)
+
+> **Incomplete scale-harness portion SUPERSEDED / REPLACED** by canonical **[COMPLETE SCALE-HARNESS MAPPING (CORRECTED)](./xiv-2i-ai-62e-massive-agent-scheduler-neural-pathway-task-force-fabric.md#complete-scale-harness-mapping-corrected--supersedes-incomplete-scale-harness-portion)** §§1–30 + Completion Rule in the task-force fabric doc.
+>
+> Specifically superseded here:
+> - layout rows `scripts/2i-ai-62e/scale-*.ts` / evidence `scale-*.json` one-off scripts
+> - §§24–32 / §34 `scale:62e:*` script lump
+> - §39 **PR-62E-16…20** incomplete scale numbering (hibernation/guardian as 16–18; scale lumped as 19)
+>
+> **Canonical** scale tree = `scripts/xiv/62e/scale/**` + tests + `evidence/2i-ai-62e/scale/runs/<test_run_id>/`; scripts `xiv:62e:scale` + `xiv:62e:scale:active-scale`; PR sequence **PR-62E-16…24**.
+>
+> Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**. **No runtime harness files created.** Production is not an accepted harness environment.
+
 ## Repository Rule
 
 **Rule:** Park documentation may **name** future paths and commands. Naming ≠ creating. Creating mapped runtime/migration/CI/script artifacts requires a later authorized implementation PR after **62D PASS** (+ predecessors + Deployment Gate Hardening PASS). Architecture docs ≠ migration authorization ≠ VERIFY PASS ≠ `DEPLOYMENT_AUTHORIZED`.
@@ -135,11 +148,11 @@ xiv-ai/
 │       ├── 62e_task_force_rls_test.sql                      # planned §22
 │       └── 62e_scheduler_rls_test.sql                       # planned §23
 ├── scripts/2i-ai-62e/
-│   ├── scale-100k-logical.ts
-│   ├── scale-10k-discovery.ts
-│   ├── scale-1k-active.ts
-│   ├── scale-100-task-forces.ts
-│   ├── scale-1k-pathways-per-sec.ts
+│   ├── scale-100k-logical.ts          # INCOMPLETE MAP — SUPERSEDED by scripts/xiv/62e/scale/**
+│   ├── scale-10k-discovery.ts         # INCOMPLETE MAP — SUPERSEDED
+│   ├── scale-1k-active.ts             # INCOMPLETE MAP — SUPERSEDED (see active-task-scale / run-active-task-scale)
+│   ├── scale-100-task-forces.ts       # INCOMPLETE MAP — SUPERSEDED
+│   ├── scale-1k-pathways-per-sec.ts   # INCOMPLETE MAP — SUPERSEDED
 │   ├── fault-injection.ts
 │   ├── adversarial-suite.ts
 │   ├── kill-switch-race.ts
@@ -394,6 +407,9 @@ Evidence JSON (planned): `evidence/2i-ai-62e/rls-registry.json`, `rls-pathway.js
 
 ## §24–32 Scale scripts + evidence JSON + kill-switch + manifest + `verify.ts`
 
+> **Scale-harness portion SUPERSEDED.** The one-off `scripts/2i-ai-62e/scale-*.ts` + `scale:62e:*` rows below are **historical incomplete mapping**. Canonical corrected tree/scripts/gates = task-force fabric **COMPLETE SCALE-HARNESS MAPPING** §§1,24–28 (`scripts/xiv/62e/scale/**`, `xiv:62e:scale`, `xiv:62e:scale:active-scale`, suite, fast vs acceptance). Kill-switch / manifest / `verify.ts` non-scale rows remain useful as file-mapping pointers. **Do not create either tree in this park.**
+
+
 | § | Script (FUTURE) | Evidence JSON | Intent |
 |---|-----------------|---------------|--------|
 | **§24** | `scripts/2i-ai-62e/scale-100k-logical.ts` | `evidence/2i-ai-62e/scale-100k-logical.json` | 100k logical identities; live ≈ 0 |
@@ -427,6 +443,9 @@ npm run verify:62e
 ---
 
 ## §34 `package.json` script mapping (DO NOT add keys now)
+
+> **Scale scripts CORRECTED / SUPERSEDE** prior `scale:62e:*` lump. Canonical keys (docs only): `xiv:62e:scale`, `xiv:62e:scale:smoke`, `xiv:62e:scale:integration`, `xiv:62e:scale:acceptance`, `xiv:62e:scale:active-scale`, `xiv:62e:scale:suite`, `verify:62e:scale:fast`, `verify:62e:scale:acceptance` — see COMPLETE SCALE-HARNESS MAPPING §24. Legacy `scale:62e:*` names below are non-authoritative.
+
 
 Planned keys (root and/or `services/ai/package.json`):
 
@@ -514,7 +533,7 @@ git reset --hard           # NEVER as recovery for shared tips
 
 ---
 
-## §39 PR-to-File Mapping — `PR-62E-01` … `PR-62E-20`
+## §39 PR-to-File Mapping — `PR-62E-01` … `PR-62E-24` (scale **CORRECTED**)
 
 | PR | Primary files (planned) | Focus |
 |----|-------------------------|-------|
@@ -532,12 +551,18 @@ git reset --hard           # NEVER as recovery for shared tips
 | **PR-62E-12** | `population-governor.ts` anti-explosion | Anti-agent-explosion |
 | **PR-62E-13** | `scheduler.ts` | Scheduler V1 |
 | **PR-62E-14** | `scheduler.ts` race + `budgets.ts` | Race safety + resource budget |
-| **PR-62E-15** | envelope/evidence modules (compose telemetry) | Message envelope + evidence refs |
-| **PR-62E-16** | `hibernation.ts`, `evaluation.ts` | Hibernation + evaluation + reputation≠authority |
-| **PR-62E-17** | kill-switch tests + Guardian hooks | Guardian + kill-switch race |
-| **PR-62E-18** | `telemetry.ts` + audit logistics | Audit/logistics + observability |
-| **PR-62E-19** | `scripts/2i-ai-62e/scale-*.ts`, fault, adversarial | Synthetic + scale + fault + adversarial |
-| **PR-62E-20** | workflows + `package.json` scripts + `scripts/2i-ai-62e/verify.ts` | Scans + evidence manifest + CI + verify |
+| **PR-62E-15** | envelope/evidence + hibernation/evaluation/reputation≠authority + Guardian/kill-switch + telemetry | Pre-scale product closure (envelope/evidence + former incomplete 16–18 scope) |
+| **PR-62E-16** | `scripts/xiv/62e/scale/config/*`, `safety/SafetyGuard.ts` | Scale shared utils + `ScaleHarnessConfig` + Safety Guard + profiles |
+| **PR-62E-17** | `scripts/xiv/62e/scale/rng/*`, `population/*`, `workload/*` | Deterministic RNG/Population + Workload Generator + `expected_decision` |
+| **PR-62E-18** | `scripts/xiv/62e/scale/metrics/*`, `concurrency/*` | Metrics + Latency Histogram + Resource Sampler (`gpu_available=false` vs `0`) + Concurrency Runner |
+| **PR-62E-19** | `scripts/xiv/62e/scale/harnesses/registry-scale.ts`, `scheduler-scale.ts` | Registry + Scheduler scale harnesses |
+| **PR-62E-20** | `scripts/xiv/62e/scale/harnesses/active-task-scale.ts` (`run-active-task-scale`) | Active-Task scale + `observed_peak_concurrency` proof |
+| **PR-62E-21** | `scripts/xiv/62e/scale/harnesses/task-force-scale.ts` | Task-Force scale harness |
+| **PR-62E-22** | `scripts/xiv/62e/scale/harnesses/pathway-scale.ts` + optional saturation profile | Pathway scale harness |
+| **PR-62E-23** | `fault/*`, `lifecycle/*`, `cleanup/*`, `validate/*`, `evidence/EvidenceWriter.ts` | Fault + Warm-Up/Measure/Cooldown + Cleanup(`test_run_id`) + Validator + Evidence Writer |
+| **PR-62E-24** | `orchestrator/MasterScaleOrchestrator.ts`, `summary/*`, `package.json` `xiv:62e:scale*` | Master orchestrator + Scale Summary + scripts + Scale Gate / verify wiring |
+
+> **SUPERSEDES** prior incomplete PR-62E-16…20 scale lump. Full fidelity: task-force fabric **COMPLETE SCALE-HARNESS MAPPING §28**. **Files NOT created in this park.**
 
 Each PR inherits: L4 FALSE; AUTO_* FALSE; tip-land NO unless separately authorized; never invent PASS.
 
@@ -551,8 +576,8 @@ Each PR inherits: L4 FALSE; AUTO_* FALSE; tip-land NO unless separately authoriz
 | **PR-62E-01…03 implementer** | §§3–8 | `src/xiv/agents/{types,lifecycle,capabilities,security,population-governor,registry,budgets}.ts` + tests | enable flags; db push |
 | **PR-62E-04…05 DB/RLS** | §§18–23 | migration under process; RLS tests; **preserve** civilization RLS | shared `db push` without process; weaken anon deny |
 | **PR-62E-06…14 control plane** | §§9–15 | discovery→scheduler modules | expand rights downward; skip security gate |
-| **PR-62E-15…18 honesty/obs** | §§11,16,17,31 | hibernation/eval/telemetry/kill-switch | reputation→authority; decorative dashboards |
-| **PR-62E-19…20 verify/CI** | §§24–37,41 | scripts, workflows, verify emitter | invent PASS; set `deployment_authorized:true` |
+| **PR-62E-15 honesty/obs (pre-scale closure)** | §§11,16,17,31 | hibernation/eval/telemetry/kill-switch | reputation→authority; decorative dashboards |
+| **PR-62E-16…24 scale-harness (CORRECTED)** | COMPLETE SCALE-HARNESS MAPPING §§1–30; CFM §§24–37,41 superseded for scale | `scripts/xiv/62e/scale/**`, evidence runs, orchestrator, `xiv:62e:scale*` | invent PASS; production harness; set `deployment_authorized:true`; create runtime in this park |
 | **Guardian reviewer** | all | approve/deny only | auto-override (`AUTO_GUARDIAN_OVERRIDE=false`) |
 
 Prompt stub (docs-only agents):
