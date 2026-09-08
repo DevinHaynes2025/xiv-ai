@@ -39,7 +39,7 @@ Note that **62B landed before 62A**. 62B composes the existing mission-control /
 
 This is recorded, not resolved. Any further 62-series table work should start from 62A §0.1 rather than from the raw fifteen-table list.
 
-**Open defect — Universe-blind RLS.** Agent tables carry `universe_id` but their RLS policies filter on `tenant_id` only. This was true of the nine mission-control tables and is **also true of all ten new `xiv_agent_meetings` tables**, whose policies are generated as `tenant_id::text = coalesce(auth.jwt() ->> 'tenant_id', '')`. A principal holding a valid tenant JWT can read every Universe inside that tenant, which contradicts 62A's Universe-isolation acceptance criterion. See 62A §0.2.
+**Open defect — Universe-blind RLS.** Agent tables carry `universe_id` but their RLS policies filter on `tenant_id` only. This was true of the nine mission-control tables and is **also true of all ten new `xiv_agent_meetings` tables**, whose policies are generated as `tenant_id::text = coalesce(auth.jwt() ->> 'tenant_id', '')`. A principal holding a valid tenant JWT can read every Universe inside that tenant, which contradicts 62A's Universe-isolation acceptance criterion. Eighteen tables are affected, and the leak has been reproduced against a real PostgreSQL cluster. See 62A §0.2; a fix and a static regression guard are proposed separately as the 62B Universe-scoped RLS hardening.
 
 ## Hard stops
 

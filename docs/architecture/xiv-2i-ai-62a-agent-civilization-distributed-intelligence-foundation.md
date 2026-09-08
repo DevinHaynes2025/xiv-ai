@@ -70,7 +70,9 @@ CREATE POLICY agent_meetings_tenant_isolation ON agent_meetings
 
 Every one of these tables carries a `universe_id` column, but **no policy references it** — a search for a `universe_id` predicate across the mission-control policies returns zero matches. Isolation is therefore enforced at the tenant boundary only.
 
-**This defect has since propagated.** All ten tables added by 62B's `20260908150000_xiv_agent_meetings.sql` declare `universe_id text NOT NULL` and receive a generated policy of exactly the same shape, filtering on `tenant_id` only. The Universe-blind surface is now nineteen tables rather than nine, and it grows with every migration that copies this pattern.
+**This defect has since propagated.** All ten tables added by 62B's `20260908150000_xiv_agent_meetings.sql` declare `universe_id text NOT NULL` and receive a generated policy of exactly the same shape, filtering on `tenant_id` only. The Universe-blind surface is **eighteen tables** — the eight RLS-enabled mission-control tables plus these ten — and it grows with every migration that copies this pattern. (The six `agent_cloud_workforce` tables also carry `universe_id` but are governed by `deny_all` policies, which are stricter, so they are not affected.)
+
+The leak is real, not theoretical: reproduced against PostgreSQL 16 with these migrations applied, a user holding an active membership in Universe A only, presenting a valid tenant JWT, can read a private meeting belonging to Universe B in the same tenant. A fix and a static regression guard are proposed separately as the 62B Universe-scoped RLS hardening.
 
 62A's acceptance criteria require **organization isolation and Universe isolation to be proven independently**, and §9 requires that "cross-Universe communication requires explicit authorization". **As written, a principal holding a valid tenant JWT can read every Universe inside that tenant.** Slice 1 must add Universe predicates (or an explicit, documented decision that Universe is an application-layer scope rather than an RLS scope — but the acceptance criteria as stated demand the former).
 

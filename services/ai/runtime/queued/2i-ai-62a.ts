@@ -267,10 +267,12 @@ export const OPEN_SCHEMA_DEFECTS = {
 } as const;
 
 /**
- * Tables carrying universe_id whose RLS policies filter on tenant_id only.
- * Nine from agent_mission_control plus ten from the 62B meetings migration.
+ * RLS-enabled tables carrying universe_id whose policies filter on tenant_id
+ * only: eight from agent_mission_control plus ten from the 62B meetings
+ * migration. The six agent_cloud_workforce tables also carry universe_id but
+ * use deny_all policies, which are stricter, so they are excluded.
  */
-export const UNIVERSE_BLIND_TABLE_COUNT = 19;
+export const UNIVERSE_BLIND_TABLE_COUNT = 18;
 
 export const ACCEPTANCE_CRITERIA_DEMONSTRATED = {
   organizationIsolation: false,

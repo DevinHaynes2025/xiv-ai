@@ -186,7 +186,7 @@ for (const t of [...MEETING_TABLE_FAMILIES, ...MESSAGE_TABLE_FAMILIES]) {
 // Both reconciliation defects stay open until Slice 1.0 closes them.
 assert.equal(OPEN_SCHEMA_DEFECTS.universeBlindRls, true);
 assert.equal(OPEN_SCHEMA_DEFECTS.tenantIdTypeInconsistent, true);
-assert.equal(UNIVERSE_BLIND_TABLE_COUNT, 19);
+assert.equal(UNIVERSE_BLIND_TABLE_COUNT, 18);
 
 // Nothing is demonstrated yet; never infer PASS.
 assert.equal(noAcceptanceCriteriaDemonstrated(), true);
