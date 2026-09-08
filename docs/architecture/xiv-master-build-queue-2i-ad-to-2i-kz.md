@@ -42,7 +42,7 @@ Pointer stubs (do not duplicate content):
 | **2I-IX…JU** | Developer Workspace Mesh (sibling queue) | **NOT YET LANDED** at JV–KZ authoring — **JV follows JU** when present |
 | **2I-JV…KZ** | AI Workforce Organization Series (this expansion) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 | **2I-LA-01…03** | Persistent cloud workforce → Mission Control (executable track) | **LANDED** on tip (`e2d1119`…`b93f56c`); LA-04+ still QUEUE ONLY |
-| **2I-LA-04…30** | Multi-Brain + LA-05…22 docs + **LA-16…22** queued (LA-19 mature / LA-20 creator / LA-21 product passport / LA-22 federation) + **LA-22B Global Treasury + Revenue + Contract OS V40** (queued; after LA-22 / before LA-23) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
+| **2I-LA-04…30** | Multi-Brain + LA-05…22B docs + **LA-23/24** (may still land) + **LA-25** Global Company Digital Twin + Business Hospital V40 (queued) + **LA-26 Agent University + AI Workforce Academy V50** (architecture queued; after LA-25) | **QUEUED DOCS ONLY** — **NOT STARTED** for implementation |
 
 ### HARD STOP for CEO before 2I-AD
 
@@ -3160,9 +3160,10 @@ Every phase inherits and must preserve:
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 | **QUEUED DOCS** — `xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`; **DO NOT IMPLEMENT until LA-21 PASS** |
 | **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 | **QUEUED DOCS** — `xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`; **DO NOT IMPLEMENT until LA-22 PASS**; insert after LA-22 / before LA-23 |
 | **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory | **QUEUE ONLY** — after LA-22B; may still be landing |
-| **2I-LA-24** | Global Supply Chain Digital Twin | **QUEUE ONLY** — after LA-23; may still be landing |
-| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 | **QUEUED DOCS** — `xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`; **DO NOT IMPLEMENT until LA-24 PASS** |
-| **2I-LA-26…30** | AI Agent University → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-25** is LA-26 |
+| **2I-LA-24** | Global Supply Chain Digital Twin V30 | **QUEUE ONLY** — after LA-23; may still be landing |
+| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 | **QUEUED DOCS** — `xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`; **DO NOT IMPLEMENT until LA-24 PASS**; **must PASS before LA-26 code** |
+| **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 | **QUEUED DOCS** — `xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`; **DO NOT IMPLEMENT until LA-25 PASS** |
+| **2I-LA-27…30** | Global AI Tool + Plugin Marketplace → Founder Mission Control | **QUEUE ONLY** — **NEXT after LA-26** is LA-27 |
 
 **Emphasize:** specialization ≠ instantiate hundreds of expensive agents. Prefer **logical capabilities over shared infrastructure**. Role creation is gated (capability gap → evidence → proposal → … → approval). **L4 DISABLED**.
 
@@ -3437,7 +3438,7 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–130 + permanent rules: [`xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`](./xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md) (+ founder summary [`../queue/2I-LA-25-global-company-digital-twin-business-hospital.md`](../queue/2I-LA-25-global-company-digital-twin-business-hospital.md)).
 
-**DO NOT IMPLEMENT** until **LA-24 Global Supply Chain Digital Twin PASS**. Ordering lock: **LA-23 Autonomous QA + Defensive Red/Blue Security Factory → LA-24 Global Supply Chain Digital Twin → LA-25 Global Company Digital Twin + Business Hospital V40 → LA-26 AI Agent University + Evaluation System**. Queue **AFTER LA-24**; do not interrupt LA-22B/23/24 mid-flight or active validated / deployment-critical work. Fetch tip first (~`7050e3e` LA-16…22B; LA-23/24 may still land); rebase onto tip including LA-24 when present.
+**DO NOT IMPLEMENT** until **LA-24 Global Supply Chain Digital Twin PASS**. Ordering lock: **LA-24 Global Supply Chain Digital Twin V30 → LA-25 Global Company Digital Twin + Business Hospital V40 → LA-26 Agent University + AI Workforce Academy V50 → LA-27 Global AI Tool + Plugin Marketplace**. Queue **AFTER LA-24**; do not interrupt LA-22B/23/24 mid-flight or active validated / deployment-critical work. Fetch tip first (~`7050e3e` LA-16…22B; LA-23/24 may still land); rebase onto tip including LA-24 when present.
 
 **Critical rules (permanent):** DIGITAL TWIN ≠ ACTUAL COMPANY; Company A ≠ B ≠ Global Brain; Business Hospital = business metaphor not practicing medicine; no fake COMPANY HEALTH = 97% (explain metrics/evidence/unknowns); Financial twin ≠ bank balance; Customer twin ≠ unrestricted profile; Org twin ≠ employee surveillance; AI Board ≠ legal directors; AI consensus ≠ truth/authority; Founder Twin exact label ≠ Devin; Founder Twin cannot change ownership/move money/override Guardian; Founder private finance ≠ Company Brain; Simulation ≠ future/production/authority; Simulation agent ≠ production credentials; Projected ≠ verified savings/revenue; Trillion-savings = strategic target ≠ claim; AFTER ≠ BECAUSE; Unlimited ideas ≠ unlimited execution; More agents ≠ authority; Executive offline ≠ authority expansion.
 
@@ -3449,7 +3450,27 @@ Trust label lock: [`xiv-2i-la-07-trust-privacy-legal-commerce-control-plane.md`]
 
 **Ancestors:** 2I-CC / 2I-CD foundations only. **L4 DISABLED**. **HARD STOP — no LA-25 runtime.**
 
-**NEXT after LA-25:** **2I-LA-26** AI Agent University + Evaluation System.
+**NEXT after LA-25:** **2I-LA-26** XIV Agent University + AI Workforce Academy V50.
+
+---
+
+## 2I-LA-26 — XIV AGENT UNIVERSITY + AI WORKFORCE ACADEMY V50 (queued docs)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Full contracts §§1–141 + permanent rules: [`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`](./xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md) (+ founder summary [`../queue/2I-LA-26-agent-university-ai-workforce-academy.md`](../queue/2I-LA-26-agent-university-ai-workforce-academy.md)).
+
+**DO NOT IMPLEMENT** until **LA-25 Global Company Digital Twin + Business Hospital V40 PASS**. Ordering lock: **LA-24 Global Supply Chain Digital Twin V30 → LA-25 Global Company Digital Twin + Business Hospital V40 → LA-26 Agent University + AI Workforce Academy V50 → LA-27 Global AI Tool + Plugin Marketplace**. Queue **AFTER LA-25**; do not interrupt LA-22B/LA-23/LA-24/LA-25 mid-flight or validated / deployment-critical work. Fetch tip first (LA-22B/23/24/25 may still land); rebase onto latest tip **including LA-25** when present.
+
+**Critical rules (permanent):** AGENT CREATED ≠ QUALIFIED ≠ AUTHORIZED; CERTIFICATION ≠ PERMISSION; KNOWLEDGE ≠ SKILL; REPUTATION/SENIORITY ≠ AUTHORITY; more training/agents ≠ more authority; Task force ≠ combined super-permission; Mentor ≠ admin; Badge ≠ permission; Promotion does not auto-grant permissions; Model ≠ Agent; Hardware ≠ Agent; Clone ≠ credentials; Success once ≠ universal best practice; Private company knowledge ≠ Global training; training defaults FALSE for private/Founder/customer financial data; Reward UNKNOWN/insufficient evidence — do not reward confident guessing; Security certification ≠ attack authority; every mission needs scope; Security labs = XIV-owned/sandbox/cyber range/CTF/authorized customer/verified bounty only; Financial knowledge ≠ financial action authority; “Move $10M” without auth → DENY/ESCALATE; Quantum backend ≠ advantage; Founder Twin exact label; Founder asleep ≠ authority; No uncontrolled self-rewriting of production code/weights; No unrestricted self-replication.
+
+**Feature flags (default OFF):** `AGENT_UNIVERSITY_ENABLED`, `AGENT_CERTIFICATION_ENABLED`, `AGENT_MENTORSHIP_ENABLED`, `AGENT_PROMOTION_ENABLED`, `AGENT_NIGHT_SCHOOL_ENABLED`, `AGENT_DYNAMIC_ROLE_GENERATION_ENABLED`, `AGENT_MARKETPLACE_READINESS_ENABLED`.
+
+**Release guard:** Agent University does **not** block first canary. Prioritize Agent/Skill/Evaluation/Certification Registries + Security/Authority exams. Advanced autonomous curriculum feature-gated.
+
+**Includes (document only):** Founder mission; University principle; Agent identity; University kernel + schools; Skill graph/levels/evidence; Knowledge≠skill; Curriculum + Foundation/Governance/Evidence/Unknown/Contradiction; Tool/Database/SE universities + XIV development protocol + code cert; Cybersecurity University + lab + cert tracks; Finance University + authority/CFO/Accounting certs + money-move test; Supply Chain University + warehouse/transport/procurement labs (LA-24); Sales/Negotiation/Product/Research/Quantum Research universities; Apprenticeship/Mentorship/Human experts; Knowledge exchange + no blind copy + private company + generalized lessons; Performance ledger + explainability + reputation; Promotion/demotion/quarantine/rehabilitation + cert expiration + continuous recert; Model change gate + versioning + lineage + cloning; Task-force formation/optimization/devil’s advocate/authority; Agent Manager + Chief of Staff; Workforce graph/org/economics/value/resource governor; Massive logical scale + night school; Learning pipeline + no uncontrolled rewrite; Failure/Success/Contradiction/Question universities; Creativity/Invention labs + knowledge rights; University DB tables; Exam engine + anti-memorization + adversarial exams; Control Tower + Profile UI + badges + learning report; Skill Gap Brain + Role generation; Human+AI / Developer universities; Marketplace prep (LA-27); Portability + model routing; Business outcome learning; Customer-specific training + global lesson promotion; Security regression + cert integrity + gaming + eval diversity; Release guard + flags; Checkpoint protocol + suggested commits; Completion evidence (never infer PASS); Next LA-27 Marketplace.
+
+**L4 DISABLED**. **HARD STOP — no LA-26 runtime.**
+
+**NEXT after LA-26:** **2I-LA-27** Global AI Tool + Plugin Marketplace.
 
 ---
 
@@ -4002,11 +4023,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / META_BRAIN 
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
 | **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
-| **2I-LA-24** | Supply Chain Digital Twin |
-| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
-| **2I-LA-26** | AI Agent University + Evaluation System |
-| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — after LA-22B (may still land) |
+| **2I-LA-24** | Global Supply Chain Digital Twin V30 — after LA-23 (may still land) |
+| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** (`xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`); **must PASS before LA-26** |
+| **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
@@ -4738,11 +4759,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / LEARNING_EN
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
 | **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
-| **2I-LA-24** | Supply Chain Digital Twin |
-| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
-| **2I-LA-26** | AI Agent University + Evaluation System |
-| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — after LA-22B (may still land) |
+| **2I-LA-24** | Global Supply Chain Digital Twin V30 — after LA-23 (may still land) |
+| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** (`xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`); **must PASS before LA-26** |
+| **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
@@ -5455,11 +5476,11 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 | **2I-LA-21** | Global Product Passport + Authenticity Network V20 — **QUEUED DOCS** (`xiv-2i-la-21-global-product-passport-authenticity-network-v20.md`); **DO NOT IMPLEMENT until LA-20 PASS**; `PRODUCT_PASSPORT_ENABLED=FALSE`; **Must PASS before LA-22 code** |
 | **2I-LA-22** | Global Database Federation + Data Control Tower V30 — **QUEUED DOCS** (`xiv-2i-la-22-global-database-federation-data-control-tower-v30.md`); **DO NOT IMPLEMENT until LA-21 PASS** |
 | **2I-LA-22B** | Global Treasury + Revenue + Contract OS V40 — **QUEUED DOCS** (`xiv-2i-la-22b-global-treasury-revenue-contract-os-v40.md`); **DO NOT IMPLEMENT until LA-22 PASS**; after LA-22 / before LA-23 |
-| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — **NEXT after LA-22B** |
-| **2I-LA-24** | Supply Chain Digital Twin |
-| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** |
-| **2I-LA-26** | AI Agent University + Evaluation System |
-| **2I-LA-27** | Global AI Tool + Plugin Marketplace |
+| **2I-LA-23** | Autonomous QA + Defensive Red/Blue Security Factory — after LA-22B (may still land) |
+| **2I-LA-24** | Global Supply Chain Digital Twin V30 — after LA-23 (may still land) |
+| **2I-LA-25** | Global Company Digital Twin + Business Hospital V40 — **QUEUED DOCS** (`xiv-2i-la-25-global-company-digital-twin-business-hospital-v40.md`); **must PASS before LA-26** |
+| **2I-LA-26** | XIV Agent University + AI Workforce Academy V50 — **QUEUED DOCS** (`xiv-2i-la-26-agent-university-ai-workforce-academy-v50.md`); **DO NOT IMPLEMENT until LA-25 PASS** |
+| **2I-LA-27** | Global AI Tool + Plugin Marketplace — **NEXT after LA-26** |
 | **2I-LA-28** | Universal Device + AI Chip Fabric |
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
@@ -5468,7 +5489,7 @@ Report honestly (never infer PASS): LOCAL / GITHUB / GITLAB / TREE / CURIOSITY_B
 
 **2I-LA-09 — Temporal + Causal Intelligence V10** — full contracts in `xiv-2i-la-09-temporal-causal-intelligence-v10.md` (do **not** implement until **LA-08 PASS**).
 
-**Ordering lock (docs):** LA-09 → **LA-10 Simulation** → **LA-11 Multi-Model + Universal AI Chip Router** (`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**) → **LA-12 Quantum Lab** (non-blocking for first release) → **LA-13 Nested Tool Foundry + Universe Fabric** (`xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS**) → **LA-14 Cybersecurity+Ethical Research+Forensics** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS**) → **LA-15 Legal + Product Evolution** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`; **DO NOT IMPLEMENT until LA-14 PASS**) → **LA-16 AI CFO + Banking + Wealth + Executive Org V20** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`; **DO NOT IMPLEMENT until LA-15 PASS**) → **LA-17 Personal Privacy Vault** → **LA-18 Age Assurance + Global Identity + Community Trust OS V20** → **LA-19 18+ Cultural / Naturist Business Universes V20** (`xiv-2i-la-19-mature-cultural-naturist-business-universes-v20.md`; **DO NOT IMPLEMENT until LA-18 PASS**; `MATURE_COMMUNITIES_ENABLED=FALSE`; non-blocking for core Business OS canary) → **LA-20 Creator + Influencer Business OS V20** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`; **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE`) → **LA-21 Product Passport + Authenticity Network** → **LA-22 Global Database Federation + Data Control Tower V30**. Security Center = commercial line; Business Hospital cyber dept. **LA-12 ≠ LA-16**. **LA-12 ≠ LA-22**. Non-blocking experimental depth for 30-day runway. **NEW STORY = DATA ≠ AUTHORITY.**
+**Ordering lock (docs):** LA-09 → **LA-10 Simulation** → **LA-11 Multi-Model + Universal AI Chip Router** (`xiv-2i-la-11-multi-model-universal-ai-chip-router-v10.md`; **DO NOT IMPLEMENT until LA-10 PASS**) → **LA-12 Quantum Lab** (non-blocking for first release) → **LA-13 Nested Tool Foundry + Universe Fabric** (`xiv-2i-la-13-nested-ai-tool-foundry-infinite-universe-fabric-v10.md`; **DO NOT IMPLEMENT until LA-12 PASS**) → **LA-14 Cybersecurity+Ethical Research+Forensics** (`xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`; **DO NOT IMPLEMENT until LA-13 PASS**) → **LA-15 Legal + Product Evolution** (`xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`; **DO NOT IMPLEMENT until LA-14 PASS**) → **LA-16 AI CFO + Banking + Wealth + Executive Org V20** (`xiv-2i-la-16-ai-cfo-banking-wealth-executive-organization-v20.md`; **DO NOT IMPLEMENT until LA-15 PASS**) → **LA-17 Personal Privacy Vault** → **LA-18 Age Assurance + Global Identity + Community Trust OS V20** → **LA-19 18+ Cultural / Naturist Business Universes V20** (`xiv-2i-la-19-mature-cultural-naturist-business-universes-v20.md`; **DO NOT IMPLEMENT until LA-18 PASS**; `MATURE_COMMUNITIES_ENABLED=FALSE`; non-blocking for core Business OS canary) → **LA-20 Creator + Influencer Business OS V20** (`xiv-2i-la-20-creator-influencer-business-os-v20.md`; **DO NOT IMPLEMENT until LA-19 PASS**; `CREATOR_OS_ENABLED=FALSE`) → **LA-21 Product Passport + Authenticity Network** → **LA-22 Global Database Federation + Data Control Tower V30** → **LA-22B Global Treasury + Revenue + Contract OS V40** → **LA-23 Autonomous QA + Defensive Red/Blue Security Factory** → **LA-24 Global Supply Chain Digital Twin V30** → **LA-25 Global Company Digital Twin V40** → **LA-26 Agent University + AI Workforce Academy V50** → **LA-27 Global AI Tool + Plugin Marketplace**. Security Center = commercial line; Business Hospital cyber dept. **LA-12 ≠ LA-16**. **LA-12 ≠ LA-22**. Non-blocking experimental depth for 30-day runway. **NEW STORY = DATA ≠ AUTHORITY.**
 
 ### Permanent rules (LA-08 / CEO)
 
@@ -5638,6 +5659,9 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] LA-22B critical rules encoded (not automatically a bank; funds remain with regulated parties; Founder≠corporate≠customer≠Global Brain; no autonomous money movement; potential≠active revenue; fraud signal≠fraud; ledger≠bank; intent≠settlement; draft≠executed; more agents≠financial authority; quantum finance classical baseline)
 - [x] **NEXT after LA-22:** LA-22B Global Treasury + Revenue + Contract OS V40
 - [x] **NEXT after LA-22B:** LA-23 Autonomous QA + Defensive Red/Blue Security Factory (aggressive financial-security testing before real payments)
+- [x] Ordering lock extended through **LA-24 → LA-25 → LA-26 → LA-27**; queue LA-26 **AFTER LA-25**; do not interrupt LA-22B/23/24/25 mid-flight; tip rebase when LA-25 lands
+- [x] **2I-LA-26** XIV Agent University + AI Workforce Academy V50 queued (full §§1–141 + permanent rules; docs only; after LA-25); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; Agent University does not block first canary; prioritize Agent/Skill/Evaluation/Certification Registries + Security/Authority exams; advanced autonomous curriculum feature-gated; **HARD STOP — no LA-26 runtime**; **DO NOT IMPLEMENT until LA-25 PASS**
+- [x] **NEXT after LA-26:** LA-27 Global AI Tool + Plugin Marketplace
 - [x] Ordering lock extended: **LA-20 Creator + Influencer Business OS → LA-21 Global Product Passport + Authenticity Network V20 → LA-22 Global Database Federation + Data Control Tower V30**; rebase onto tip including LA-20 when present (LA-17–20 may still land); L4 off
 - [x] **2I-LA-21** Global Product Passport + Authenticity Network V20 queued — full contracts §§1–101 + permanent rules in `xiv-2i-la-21-global-product-passport-authenticity-network-v20.md` (+ founder summary `docs/queue/2I-LA-21-global-product-passport-authenticity-network.md`); **DO NOT IMPLEMENT until LA-20 PASS**; HARD STOP no runtime; `PRODUCT_PASSPORT_ENABLED = FALSE`; QUEUED ARCHITECTURE — NOT IMPLEMENTED; no fake LIVE connectors; core canary non-blocking unless explicitly selected release-critical
 - [x] Permanent LA-06 CEO rules encoded (learning≠privilege; promotion gated; quantum advantage gate; L4 off)
@@ -5698,7 +5722,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] Ordering lock extended: **LA-23 → LA-24 → LA-25 Global Company Digital Twin + Business Hospital V40 → LA-26 Agent University**; queue AFTER LA-24; tip rebase when LA-23/24 land; L4 off
 - [x] **2I-LA-25** Global Company Digital Twin + Business Hospital V40 queued (full §§1–130 + permanent rules; docs only; after LA-24); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; flags default OFF; complete twin not first-canary blocker; **HARD STOP — no LA-25 runtime**; **DO NOT IMPLEMENT until LA-24 PASS**
 - [x] LA-25 critical rules encoded (twin≠company; Company A≠B≠Global Brain; Hospital≠medicine; no fake HEALTH=97%; Financial twin≠bank; Customer twin≠unrestricted profile; Org twin≠surveillance; AI Board≠directors; consensus≠truth; Founder Twin≠Devin / no ownership/money/Guardian override; Founder finance≠Company Brain; sim≠future/prod/authority; sim agent≠prod credentials; projected≠verified; trillion-savings=target≠claim; AFTER≠BECAUSE; ideas≠execution; more agents≠authority; executive offline≠authority)
-- [x] **NEXT after LA-25:** LA-26 AI Agent University + Evaluation System
+- [x] **NEXT after LA-25:** LA-26 XIV Agent University + AI Workforce Academy V50
 
 - [x] Ordering lock extended: **LA-16 → LA-17 Privacy Vault + Revenue + Sales Tech → LA-18 Age Assurance + Global Identity + Community Trust OS V20 → LA-19 18+ Cultural / Naturist Business Universes V20 → LA-20 Creator + Influencer Business OS V20 → LA-21 Product Passport + Authenticity Network → LA-22 Global Database Federation**; rebase onto tip including LA-19/LA-22 when present; L4 off
 - [x] **2I-LA-18** 18+ Age Assurance + Global Identity + Community Trust OS V20 queued — full contracts §§1–99 + permanent rules in `xiv-2i-la-18-age-assurance-global-identity-community-trust-os-v20.md` (+ founder summary `docs/queue/2I-LA-18-age-assurance-global-identity-community-trust.md`); **DO NOT IMPLEMENT until LA-17 PASS**; HARD STOP no runtime; core identity/security RELEASE-CRITICAL (age/auth/tenant/Universe/RLS/recovery/audit); AgeAssuranceAdapter NOT_CONFIGURED until verified; FAILED age → no activation; Twin AI_REPRESENTATION never HUMAN_FOUNDER
