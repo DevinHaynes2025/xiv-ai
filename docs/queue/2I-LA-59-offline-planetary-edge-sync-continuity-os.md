@@ -69,7 +69,9 @@ As the XIV AI Founder, I want XIV to run Offline Planetary Business Brain + Edge
 
 ## Next queue
 
-- **2I-LA-60A** Historical Business Memory + Scout Network + Storage Economy V701 → **LA-60B** Global Data Exchange + Universe Real Estate Marketplace V702
+- **2I-LA-60A** Global Historical Business Memory + Financial & Accounting Intelligence Brain + 24/7 Knowledge Scout Network + Universe Storage Economy + Neural Infrastructure Fabric V701
+- **2I-LA-60B** Global Data Exchange + Business Knowledge Economy + Universe Real Estate + Data Building Marketplace + Developer Infrastructure Economy V702
+- **2I-LA-60I** Intelligence OS Consolidation + Business Superapp V709 (former bare LA-60 Intelligence OS V700 — later)
 - **2I-LA-61…70** prepared expansion titles (as listed in architecture §181)
 
 **Do not start LA-60A from this commit.**

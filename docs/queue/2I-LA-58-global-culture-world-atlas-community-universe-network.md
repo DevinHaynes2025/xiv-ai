@@ -8,7 +8,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **LA-57 PASS** (and **LA-56 PASS**). Queue
 
 ## Prerequisite (queue ordering)
 
-Ordering: **LA-56 Global Agent-to-Agent Business Protocol Commerce Fabric V660 → LA-57 Universe Agentic OS Multi-Cloud Guardian Superstructure V670 → LA-58 Global Culture + People + Sports + Travel + Food + Business Knowledge Atlas + Community Universe Network V680 → LA-59 Offline Planetary Business Brain + Edge Intelligence Mesh + Information Supply Chain Superhighway + Global Sync & Continuity OS V690 → LA-60…**.
+Ordering: **LA-56 Global Agent-to-Agent Business Protocol Commerce Fabric V660 → LA-57 Universe Agentic OS Multi-Cloud Guardian Superstructure V670 → LA-58 Global Culture + People + Sports + Travel + Food + Business Knowledge Atlas + Community Universe Network V680 → LA-59 Offline Planetary Business Brain + Edge Intelligence Mesh + Information Supply Chain Superhighway + Global Sync & Continuity OS V690 → LA-60A → LA-60B…**.
 
 **Full contracts §§1–164:** [`docs/architecture/xiv-2i-la-58-global-culture-world-atlas-community-universe-network-v680.md`](../architecture/xiv-2i-la-58-global-culture-world-atlas-community-universe-network-v680.md).
 
@@ -59,7 +59,9 @@ Central architecture: **World → Country → City → Culture → Community →
 ## Next queue
 
 - **2I-LA-59** Offline Planetary Business Brain + Edge Intelligence Mesh + Information Supply Chain Superhighway + Global Sync & Continuity OS V690
-- **2I-LA-60** XIV Intelligence Operating System V700
+- **2I-LA-60A** Historical Business Memory Scout Network Storage Economy V701
+- **2I-LA-60B** Global Data Exchange Universe Real Estate Marketplace V702
+- **2I-LA-60I** Intelligence OS Consolidation V709 (former bare LA-60 — later)
 
 **Do not start LA-59 from this commit.**
 

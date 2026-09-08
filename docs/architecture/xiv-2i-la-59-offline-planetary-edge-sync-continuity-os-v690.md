@@ -168,7 +168,7 @@ As the XIV AI Founder, I want XIV to run **Offline Planetary Business Brain + Ed
 
 The key LA-59 transition is that XIV stops depending on “cloud = available” as an assumption. A warehouse worker, executive, developer, traveler, or community member can have a bounded XIV environment on-device; when connectivity returns, Guardian revalidates permissions before information rejoins the larger Company/Universe Brain.
 
-Next in queue is the major consolidation phase: LA-60 — XIV Intelligence Operating System V700 + Universal Business Superapp + Meta Brain Orchestrator + Global Agentic Control Plane.
+Next in queue is **LA-60A** — Global Historical Business Memory + Scout Network + Storage Economy + Neural Fabric V701 → **LA-60B** Global Data Exchange + Universe Real Estate Marketplace V702. Former bare LA-60 Intelligence OS consolidation appears later as **LA-60I V709**.
 
 ---
 
@@ -2354,19 +2354,46 @@ L4 AUTONOMY REMAINS DISABLED.
 ```
 NEXT:
 
-2I-LA-60
+2I-LA-60A
 
-XIV INTELLIGENCE OPERATING SYSTEM V700 +
-UNIVERSAL BUSINESS SUPERAPP +
-META BRAIN ORCHESTRATOR +
-GLOBAL AGENTIC CONTROL PLANE
+XIV GLOBAL HISTORICAL BUSINESS MEMORY +
+FINANCIAL & ACCOUNTING INTELLIGENCE BRAIN +
+24/7 KNOWLEDGE SCOUT NETWORK +
+UNIVERSE STORAGE ECONOMY +
+NEURAL INFRASTRUCTURE FABRIC V701
 
-MISSION:
+THEN:
+
+2I-LA-60B
+
+XIV GLOBAL DATA EXCHANGE +
+BUSINESS KNOWLEDGE ECONOMY +
+UNIVERSE REAL ESTATE +
+DATA BUILDING MARKETPLACE +
+DEVELOPER INFRASTRUCTURE ECONOMY V702
+
+RECONCILIATION:
+
+Prior bare LA-60 title "Intelligence Operating
+System V700 + Universal Business Superapp +
+Meta Brain Orchestrator + Global Agentic Control
+Plane" is NOT deleted — it shifts later to:
+
+2I-LA-60I
+
+XIV INTELLIGENCE OS CONSOLIDATION +
+BUSINESS SUPERAPP V709
+
+(Do not invent full 60C–60I docs from this LA-59
+commit. LA-60A inserts next after 59.)
+
+Former LA-60 Intelligence OS mission retained
+for LA-60I (later):
 
 Unify the architecture built across the XIV
 roadmap into one governed operating experience.
 
-Build:
+Build (LA-60I later — title pointer only here):
 
 XIV OS Kernel
 XIV Home
@@ -2422,7 +2449,7 @@ Developer SDK
 Marketplace
 Founder Command.
 
-Core XIV OS loop:
+Core XIV OS loop (LA-60I later):
 
 SENSE
 → VERIFY
@@ -2477,7 +2504,7 @@ macOS.
 
 XIV is the cross-device Agentic Business OS layer.
 
-NEXT AFTER LA-60:
+NEXT AFTER LA-60A / 60B … / 60I:
 
 LA-61 Universal Data + Media Civilization Archive V710
 
@@ -2572,6 +2599,6 @@ LA-70 XIV Business Intelligence Civilization V800
 | Flags | all listed flags default OFF; AWS/Google/Cisco LIVE + autonomy triad + PRIVATE_MATURE_MEDIA_TRAINING + L4 **FALSE** |
 | Evidence | **QUEUED / FALSE / UNKNOWN**; **DEPLOYMENT_STATE=QUEUED** |
 | Parking | tip-land on `xiv-v2` after LA-58; park `cursor/queue-2i-la-59-offline-planetary-edge-sync-continuity-4059`; never force-push / never `main` |
-| Next | **Do not start LA-60 from this commit** |
+| Next | **Do not start LA-60A from this commit** |
 
 **Commit message:** `docs(xiv): queue 2I-LA-59 Offline Planetary Edge Sync Continuity OS V690`
