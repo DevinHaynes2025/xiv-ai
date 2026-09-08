@@ -2,9 +2,9 @@
  * Static contract for Supabase SECURITY DEFINER grant hardening.
  * UNIT/SEMANTIC — not hosted advisor proof and not LIVE claim.
  *
- * LEAKED_PASSWORD_PROTECTION is Auth dashboard-only. Without screenshot/export
- * proof it stays NOT_VERIFIED (NOT_CONFIGURED / dashboard-pending) — never PASS
- * or ENABLED from SQL or agent inference.
+ * LEAKED_PASSWORD_PROTECTION is Auth dashboard-only. SQL migrations cannot
+ * enable or prove it. Status may be ENABLED only when attested via dashboard
+ * verification evidence (not SQL-proven).
  */
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -20,15 +20,15 @@ export type LeakedPasswordProtectionStatus =
   | 'NOT_CONFIGURED'
   | 'ENABLED';
 
-export const LEAKED_PASSWORD_PROTECTION: LeakedPasswordProtectionStatus = 'NOT_VERIFIED';
+/**
+ * Dashboard-attested after human enabled Attack Protection → Leaked password
+ * protection. Evidence is attestation text only — not SQL-proven.
+ */
+export const LEAKED_PASSWORD_PROTECTION: LeakedPasswordProtectionStatus = 'ENABLED';
 
-const MEMBERSHIP_HELPERS = [
-  'xiv_is_org_member',
-  'xiv_has_org_role',
-  'xiv_is_universe_member',
-  'xiv_has_universe_role',
-  'xiv_can_view_universe',
-] as const;
+/** Honest attestation source — never claim SQL/advisor proof for this control. */
+export const LEAKED_PASSWORD_PROTECTION_EVIDENCE =
+  'Supabase dashboard verified' as const;
 
 function migrationsDir() {
   const here = dirname(fileURLToPath(import.meta.url));
@@ -50,6 +50,14 @@ export function reviewSecurityDefinerGrantPolicy(input?: {
   const recon = input?.reconciliationSql ?? loadReconciliationSql();
   const harden = input?.hardeningSql ?? loadSecurityDefinerHardeningSql();
   const findings: string[] = [];
+
+  const MEMBERSHIP_HELPERS = [
+    'xiv_is_org_member',
+    'xiv_has_org_role',
+    'xiv_is_universe_member',
+    'xiv_has_universe_role',
+    'xiv_can_view_universe',
+  ] as const;
 
   for (const name of MEMBERSHIP_HELPERS) {
     if (new RegExp(`create or replace function public\\.${name}\\b`, 'i').test(recon)) {
@@ -98,8 +106,10 @@ export function reviewSecurityDefinerGrantPolicy(input?: {
     membershipHelpersSchema: 'xiv_internal' as const,
     intentionalPublicRpcs: ['xiv_create_organization', 'xiv_create_universe'] as const,
     rlsAutoEnableCallableByAnonOrAuthenticated: false as const,
+    /** SQL never proves Auth Attack Protection; dashboard attestation only. */
     leakedPasswordProtectionClaimedFixedInSql: false as const,
-    /** Never PASS/ENABLED without Supabase Auth dashboard proof. */
+    leakedPasswordProtectionEvidence: LEAKED_PASSWORD_PROTECTION_EVIDENCE,
+    /** ENABLED only via dashboard attestation — not SQL-proven. */
     LEAKED_PASSWORD_PROTECTION: LEAKED_PASSWORD_PROTECTION,
   };
 }

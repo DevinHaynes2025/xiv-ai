@@ -93,8 +93,8 @@ test('SECURITY DEFINER grant policy: helpers in xiv_internal; bootstrap RPCs int
   assert.deepEqual(review.intentionalPublicRpcs, ['xiv_create_organization', 'xiv_create_universe']);
   assert.equal(review.rlsAutoEnableCallableByAnonOrAuthenticated, false);
   assert.equal(review.leakedPasswordProtectionClaimedFixedInSql, false);
-  assert.equal(review.LEAKED_PASSWORD_PROTECTION, 'NOT_VERIFIED');
-  assert.notEqual(review.LEAKED_PASSWORD_PROTECTION, 'ENABLED');
+  assert.equal(review.LEAKED_PASSWORD_PROTECTION, 'ENABLED');
+  assert.equal(review.leakedPasswordProtectionEvidence, 'Supabase dashboard verified');
   assert.equal(supabaseSecurityHardeningDoesNotMarkLive(), true);
 });
 
