@@ -400,6 +400,29 @@ export {
   patentResearchIsFilingAuthority,
 } from './cios';
 export {
+  admitDatasetToTraining,
+  createModelRecord,
+  modelMayBypassGuardian,
+  modelMayGrantTools,
+  modelMaySelfPromote,
+  modelProviderState,
+  offlineModelMayGainAuthority,
+  openBackendIntelligenceLayer,
+  openEvaluationLab,
+  openLearningPipeline,
+  openModelProviders,
+  openModelRegistry,
+  promoteModel,
+  runModelInference,
+  smarterModelMeansMoreAuthority,
+} from './modelfoundry';
+export {
+  evaluateLocationAccess,
+  gpsAutoAvailableToEveryAgent,
+  openDefaultLocationPolicy,
+  openLocationGateway,
+} from './locationintel';
+export {
   conveneGovernedTaskForce,
   openGlobalOperationsBrain,
   openOperationsCommandCenter,

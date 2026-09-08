@@ -1,0 +1,242 @@
+/**
+ * Phase 2I-AA Model Foundry + Backend Intelligence contracts.
+ * Controlled fine-tune experiments only after safe datasets + measured benchmarks.
+ * L4 disabled. Providers remain NOT_CONFIGURED until authenticated+tested+evidence.
+ * More capability ≠ more authority. No cross-Universe training without approved logic.
+ */
+
+export type CapabilityLifecycle = 'NOT_CONFIGURED' | 'CONFIGURED' | 'PROVEN' | 'LIVE';
+
+export type ModelProviderKind =
+  | 'OPENAI'
+  | 'GEMINI'
+  | 'ANTHROPIC'
+  | 'GROK'
+  | 'GOOGLE_AI'
+  | 'LOCAL_OPEN_WEIGHT'
+  | 'FUTURE_PROVIDER';
+
+export type ModelLifecycleState =
+  | 'BASE_MODEL'
+  | 'EVALUATION_ONLY'
+  | 'RAG_ENABLED'
+  | 'PROMPT_TUNED'
+  | 'FINE_TUNE_CANDIDATE'
+  | 'FINE_TUNED'
+  | 'CANARY'
+  | 'PRODUCTION'
+  | 'DEGRADED'
+  | 'QUARANTINED'
+  | 'RETIRED';
+
+export type ModelApprovalStatus =
+  | 'UNAPPROVED'
+  | 'PENDING_REVIEW'
+  | 'APPROVED'
+  | 'REJECTED'
+  | 'REVOKED';
+
+export type DataClass =
+  | 'PUBLIC'
+  | 'INTERNAL'
+  | 'TENANT_PRIVATE'
+  | 'PERSONAL_MEMORY'
+  | 'SYNTHETIC'
+  | 'SECRET'
+  | 'BIOMETRIC';
+
+export type DatasetSourceKind =
+  | 'APPROVED_INTERACTION'
+  | 'SYNTHETIC'
+  | 'LICENSED_CORPUS'
+  | 'PUBLIC_OPEN'
+  | 'OPT_IN_PERSONAL'
+  | 'PRIVATE_COMPANY'
+  | 'UNLICENSED_COPYRIGHT'
+  | 'RAW_SECRET'
+  | 'BIOMETRIC_RAW';
+
+export type DatasetConsentState = 'NONE' | 'EXPLICIT_OPT_IN' | 'REVOKED' | 'N_A_SYNTHETIC';
+export type DatasetRightsState = 'UNKNOWN' | 'LICENSED' | 'PUBLIC_DOMAIN' | 'DENIED' | 'SYNTHETIC_OK';
+export type DatasetClassification =
+  | 'PUBLIC'
+  | 'INTERNAL'
+  | 'TENANT_SCOPED'
+  | 'PERSONAL'
+  | 'SENSITIVE'
+  | 'FORBIDDEN';
+
+export type LearningPipelineStage =
+  | 'APPROVED_DATA_SOURCES'
+  | 'INGESTION_GATEWAY'
+  | 'RIGHTS_CONSENT'
+  | 'TENANT_UNIVERSE_CLASSIFICATION'
+  | 'PII_SENSITIVE_FILTER'
+  | 'PROVENANCE'
+  | 'DATA_QUALITY'
+  | 'TRAINING_EVALUATION_REGISTRY'
+  | 'FEATURE_EMBEDDING_PIPELINE'
+  | 'RETRIEVAL_INDEX'
+  | 'MODEL_EVALUATION'
+  | 'FINE_TUNE_CANDIDATE'
+  | 'SAFETY_REGRESSION'
+  | 'HUMAN_APPROVAL'
+  | 'MODEL_REGISTRY'
+  | 'CONTROLLED_DEPLOYMENT';
+
+export type OfflineModelMode = 'ON_DEVICE_MODEL' | 'EDGE_MODEL' | 'CLOUD_MODEL' | 'HYBRID_MODEL';
+
+export type EvalMetricKind =
+  | 'ACCURACY'
+  | 'GROUNDEDNESS'
+  | 'HALLUCINATION_RATE'
+  | 'LATENCY'
+  | 'COST'
+  | 'TOOL_SUCCESS'
+  | 'POLICY_VIOLATIONS'
+  | 'CROSS_TENANT_LEAKAGE'
+  | 'UNSAFE_COMPLETION_RATE'
+  | 'BUSINESS_OUTCOME_IMPACT';
+
+export type AdminSurfaceStub =
+  | 'MODEL_REGISTRY'
+  | 'MODEL_HEALTH'
+  | 'TRAINING_DATA'
+  | 'EVALUATION_LAB'
+  | 'KNOWLEDGE_SOURCES'
+  | 'LOCATION_INTELLIGENCE'
+  | 'LOCATION_PERMISSIONS'
+  | 'GEOFENCE_RULES'
+  | 'OFFLINE_INTELLIGENCE'
+  | 'INFERENCE_COST';
+
+export type BackendEngineKind =
+  | 'TASK_ORCHESTRATOR'
+  | 'INFERENCE_GATEWAY'
+  | 'DATA_ACCESS_GATEWAY'
+  | 'TOOL_GATEWAY'
+  | 'LOCATION_GATEWAY'
+  | 'CONNECTOR_GATEWAY'
+  | 'POLICY_ENGINE'
+  | 'EVIDENCE_ENGINE'
+  | 'DECISION_ENGINE'
+  | 'OUTCOME_ENGINE'
+  | 'AUDIT_ENGINE';
+
+export type ModelSecurityControl =
+  | 'PROMPT_INJECTION_DEFENSE'
+  | 'TOOL_OUTPUT_VALIDATION'
+  | 'MODEL_DRIFT_DETECTOR'
+  | 'MODEL_POISONING_DETECTOR'
+  | 'TRAINING_DATA_INTEGRITY'
+  | 'EVAL_REGRESSION_GATE'
+  | 'SENSITIVE_DATA_LEAK_DETECTOR'
+  | 'CROSS_TENANT_LEAK_DETECTOR'
+  | 'UNSAFE_TOOL_CALL_DETECTOR'
+  | 'MODEL_QUARANTINE';
+
+export const MODEL_LIFECYCLE_STATES: readonly ModelLifecycleState[] = [
+  'BASE_MODEL',
+  'EVALUATION_ONLY',
+  'RAG_ENABLED',
+  'PROMPT_TUNED',
+  'FINE_TUNE_CANDIDATE',
+  'FINE_TUNED',
+  'CANARY',
+  'PRODUCTION',
+  'DEGRADED',
+  'QUARANTINED',
+  'RETIRED',
+] as const;
+
+export const MODEL_PROVIDER_KINDS: readonly ModelProviderKind[] = [
+  'OPENAI',
+  'GEMINI',
+  'ANTHROPIC',
+  'GROK',
+  'GOOGLE_AI',
+  'LOCAL_OPEN_WEIGHT',
+  'FUTURE_PROVIDER',
+] as const;
+
+export const LEARNING_PIPELINE: readonly LearningPipelineStage[] = [
+  'APPROVED_DATA_SOURCES',
+  'INGESTION_GATEWAY',
+  'RIGHTS_CONSENT',
+  'TENANT_UNIVERSE_CLASSIFICATION',
+  'PII_SENSITIVE_FILTER',
+  'PROVENANCE',
+  'DATA_QUALITY',
+  'TRAINING_EVALUATION_REGISTRY',
+  'FEATURE_EMBEDDING_PIPELINE',
+  'RETRIEVAL_INDEX',
+  'MODEL_EVALUATION',
+  'FINE_TUNE_CANDIDATE',
+  'SAFETY_REGRESSION',
+  'HUMAN_APPROVAL',
+  'MODEL_REGISTRY',
+  'CONTROLLED_DEPLOYMENT',
+] as const;
+
+export const EVAL_METRICS: readonly EvalMetricKind[] = [
+  'ACCURACY',
+  'GROUNDEDNESS',
+  'HALLUCINATION_RATE',
+  'LATENCY',
+  'COST',
+  'TOOL_SUCCESS',
+  'POLICY_VIOLATIONS',
+  'CROSS_TENANT_LEAKAGE',
+  'UNSAFE_COMPLETION_RATE',
+  'BUSINESS_OUTCOME_IMPACT',
+] as const;
+
+export const ADMIN_SURFACE_STUBS: readonly AdminSurfaceStub[] = [
+  'MODEL_REGISTRY',
+  'MODEL_HEALTH',
+  'TRAINING_DATA',
+  'EVALUATION_LAB',
+  'KNOWLEDGE_SOURCES',
+  'LOCATION_INTELLIGENCE',
+  'LOCATION_PERMISSIONS',
+  'GEOFENCE_RULES',
+  'OFFLINE_INTELLIGENCE',
+  'INFERENCE_COST',
+] as const;
+
+export const BACKEND_ENGINES: readonly BackendEngineKind[] = [
+  'TASK_ORCHESTRATOR',
+  'INFERENCE_GATEWAY',
+  'DATA_ACCESS_GATEWAY',
+  'TOOL_GATEWAY',
+  'LOCATION_GATEWAY',
+  'CONNECTOR_GATEWAY',
+  'POLICY_ENGINE',
+  'EVIDENCE_ENGINE',
+  'DECISION_ENGINE',
+  'OUTCOME_ENGINE',
+  'AUDIT_ENGINE',
+] as const;
+
+export const MODEL_SECURITY_CONTROLS: readonly ModelSecurityControl[] = [
+  'PROMPT_INJECTION_DEFENSE',
+  'TOOL_OUTPUT_VALIDATION',
+  'MODEL_DRIFT_DETECTOR',
+  'MODEL_POISONING_DETECTOR',
+  'TRAINING_DATA_INTEGRITY',
+  'EVAL_REGRESSION_GATE',
+  'SENSITIVE_DATA_LEAK_DETECTOR',
+  'CROSS_TENANT_LEAK_DETECTOR',
+  'UNSAFE_TOOL_CALL_DETECTOR',
+  'MODEL_QUARANTINE',
+] as const;
+
+export const RUNNABLE_MODEL_STATES: readonly ModelLifecycleState[] = [
+  'EVALUATION_ONLY',
+  'RAG_ENABLED',
+  'PROMPT_TUNED',
+  'FINE_TUNED',
+  'CANARY',
+  'PRODUCTION',
+  'DEGRADED',
+] as const;
