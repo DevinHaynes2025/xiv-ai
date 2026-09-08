@@ -1,42 +1,31 @@
-# 2I-LA-61N — XIV GLOBAL DEVELOPER + INFRASTRUCTURE CIVILIZATION + **COPILOT ENGINEERING MESH** + ENGINEERING SUPER BRAIN + SOFTWARE FACTORY CONTROL PLANE + MULTI-PROVIDER ENGINEERING WORKERS + QA / SECURITY / REVIEW FACTORIES + DEVELOPER SDK / PORTAL / COMMAND SURFACES V740
+# 2I-LA-61N — XIV GLOBAL DEVELOPER + INFRASTRUCTURE CIVILIZATION + AI SOFTWARE ENGINEERING SUPER BRAIN + GITHUB COPILOT COLLABORATION + CURSOR / COPILOT MULTI-AGENT ENGINEERING + AGENTIC CODE FACTORY + AUTONOMOUS DEBUG LAB + ENGINEERING SOCIETIES + SELF-BUILDING TOOL / PLUGIN / CONNECTOR FACTORY + XIV DEVELOPER SDK + XXL ENGINEERING COMMAND CENTER V740
 
 **Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Documentation only. **DO NOT IMPLEMENT** until **2I-LA-61M** completion gate **PASS** (and **2I-LA-61L…61A** / **2I-LA-60Z…60A** / **2I-LA-59** / prior LA-01→LA-61M / Guardian gates as applicable). **Never invent PASS** for predecessors.
-**Also blocked for code until:** LA-01 → LA-61M PASS minimum; compose **LA-30** Founder Mission Control; **LA-35A** Zero-Trust; **LA-46** Operations Control Tower; **LA-50** Super Brain; **LA-57** Guardian; **LA-59** Offline Continuity; **LA-60J** Developer Civilization adjacency; **LA-60S** Distributed Runtime; **LA-60W** Governance; **LA-61B** Developer+Entrepreneur adjacency; **LA-61K** DualEnvironmentDevelopmentOrchestrator / DevelopmentLeaseEngine / DevelopmentLockGraph / DevelopmentWorkLedger / story ledger / checkpoint evidence; **LA-61L** Brain Convergence adjacency; **LA-61M** Universal BI Protocol adjacency; Guardian; Tenant/Universe Isolation; RLS; SecretBroker; Rights Gateway; Resource Governor.
-**Queue rule:** **QUEUE AFTER LA-61M.** Ordering: **… → LA-61K Unified Enterprise Command Civilization V737 → LA-61L Brain Convergence + Commercial Intelligence V738 → LA-61M Universal Business Intelligence Protocol + External XIV Ecosystem V739 → LA-61N (this V740) → LA-61O Intelligence Economy V741**. Do **not** invent full LA-61O–61S docs (title-only NEXT). Do **not** tip-land-race in-flight **LA-61L/61M** park siblings or prior **61C/61I/61J/61K** parks / recovery WIP.
-**Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Tip-land on `xiv-v2` **only after LA-61M** and only when tip is CLEAN (`LOCAL == GITHUB == GITLAB` or `GITLAB=BLOCKED`) **and** 61M tip-landed (unlikely now — tip still ~LA-60Z); park `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`; rebase when predecessors on tip; never force-push. **Default posture: PARK ONLY**. **tip-landed=NO**.
+**Also blocked for code until:** LA-01 → LA-61M PASS minimum; compose **LA-30** Founder Mission Control; **LA-35A** Zero-Trust; **LA-46** Operations Control Tower; **LA-50** Super Brain; **LA-57** Guardian; **LA-59** Offline Continuity; **LA-60J** Developer Civilization adjacency; **LA-60S** Distributed Runtime; **LA-60W** Governance; **LA-61B** Developer+Entrepreneur adjacency; **LA-61K** DualEnvironmentDevelopmentOrchestrator / DevelopmentLeaseEngine / DevelopmentLockGraph / DevelopmentWorkLedger; **LA-61L** Brain Convergence adjacency; **LA-61M** Universal BI Protocol / ConnectorFactory adjacency; Guardian; Tenant/Universe Isolation; RLS; SecretBroker; Rights Gateway; Resource Governor.
+**Queue rule:** **QUEUE AFTER LA-61M.** Ordering: **… → LA-61K Unified Enterprise Command Civilization V737 → LA-61L Brain Convergence + Commercial Intelligence V738 → LA-61M Universal Business Intelligence Protocol + External XIV Ecosystem V739 → LA-61N (this V740) → LA-61O Intelligence Economy V741**. Do **not** invent full LA-61O–61R docs (title-only NEXT). Do **not** tip-land-race in-flight tip dirty work (~1012 files / AU→CP docs landing) or sibling park WIP. **PARK ONLY.**
+**Branch:** `xiv-v2` (never `main`). Dual remotes GitHub + GitLab. Never force-push. Tip-land on `xiv-v2` **only after LA-61M** and only when tip is CLEAN **and** no active agents — currently **BLOCKED** by screenshot evidence (global ops / setup envs / queue agents processing; ~1,012 files changed; AU→CP documentation reportedly landing). Default **PARK ONLY** on `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`. Dual-push park branch only; never force-push / never `main`.
 **Canonical path:** `docs/architecture/xiv-2i-la-61n-global-developer-infrastructure-civilization-v740.md`
 **Founder summary sibling:** [`../queue/2I-LA-61N-global-developer-infrastructure-civilization-v740.md`](../queue/2I-LA-61N-global-developer-infrastructure-civilization-v740.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md) (+ LA pointer [`xiv-master-build-queue-2i-ad-to-2i-la.md`](./xiv-master-build-queue-2i-ad-to-2i-la.md) if present)
-**Compose with:** LA-30/35A/46/50/57/59; LA-60J/60S/60W; LA-61B/61K/61L/61M; SecretBroker; Rights Gateway; RLS; Guardian; Device Trust; Offline Continuity; Dual-environment lease/lock/ledger/story ledger/checkpoint evidence (LA-61K).
-**Feeds:** **2I-LA-61O** Intelligence Economy + Agent/Tool/Algorithm/Model/Data Product Marketplace V741 (**title only**) — LA-61N supplies XIVEngineeringSuperBrainV200 / EngineeringProviderMeshV100 / CopilotEngineeringAdapterV100 / EngineeringIntelligenceRouterV100 / EngineeringCostRouterV100 / SoftwareFactoryControlPlaneV300 / EngineeringTaskPassportV100 / file leases + conflict protection / OfflineEngineeringSocietyV100 / BackgroundDebugAgentV100 / EngineeringFailureMemoryV200 / CodeRelationshipGraphV200 / ChangeImpactBrain / RepositoryIntelligenceBrainV200 / ArchitectureDecisionBrain / Mobile·XXL·Backend brains / DatabaseEngineeringSocietyV200 / AIEngineeringSocietyV200 / XIV mini model foundation / ModelEvaluationFactoryV200 / GPU society + HardwareCapabilityPassport + GPUPipelineFactory / QuantumEngineeringResearchInterface / CloudEngineeringSociety + CloudCostOptimization + EnergyAwareComputeRouter / EngineeringToolFoundryV200 / Plugin·API·Workflow factories / AutonomousTestFactoryV200 / DefensiveSecurityFactoryV200 / QACouncilV200 / UATLabV200 / PerformanceLab / FailureLabV200 / ReleaseIntelligenceBrain / CopilotReviewLaneV100 / Multi-AI Review Council / EngineeringDisagreementEngine / SoftwareFactoryMemoryV200 / XIVDeveloperSDKV300 / DeveloperSandboxV200 / marketplace prep for LA-61O / XXLEngineeringCommandCenterV300 / Mobile Engineering Command / EngineeringCostLedger / EngineeringProviderPerformance; **not** LA-61O marketplace depth; **do not invent full 61O–61S docs**. **Do not start LA-61O from this commit.**
+**Compose with:** LA-30/35A/46/50/57/59; LA-60J/60S/60W; LA-61B/61K/61L/61M; SecretBroker; Rights Gateway; RLS; Guardian; Device Trust; Offline Continuity; Dual-environment lease/lock/ledger (LA-61K); ConnectorFactory↔61M.
+**Feeds:** **2I-LA-61O** Intelligence Economy + Agent/Tool/Algorithm/Model/Plugin/Connector/Workflow/Data Product Marketplace V741 (**title only**) — LA-61N supplies RepositorySafetyGate / SafeGitSyncController / DevelopmentEnvironmentRegistryV200 / CopilotEngineeringAdapterV100 / CursorEngineeringAdapterV200 / MultiAIEngineeringCoordinatorV100 / AIFileLeaseManagerV100 / DatabaseMigrationLeaseV100 / package lock protection / SoftwareEngineeringSuperBrainV100 + agent society / RequirementToCodePipelineV200 / AIProductOwnerV200 / CodeRelationshipGraphV200 / ChangeImpactBrain / AICodeReviewCouncilV200 / AutonomousDebugLabV200 / TestGenerationSociety / Failure Memory / EngineeringLessonBrain / CodeMemoryV200 / DeveloperToolFoundryV200 / PluginFactoryV200 / ConnectorFactory↔61M / XIVDeveloperSDKV100 / DeveloperSandboxV100 / engineering societies / ComputeEngineeringSociety / ModelOptimizationLab / EngineeringCostRouter / Offline+Cloud workers / EngineeringResourceGovernor + runaway defense + cool-down / XXLEngineeringCommandCenterV100 / Mobile Engineering Command / EngineeringStoryLedgerV100 / QueueReconciliationAgentV100 (AU→CP respect) / multi-env landing / exact-commit validation / build evidence / SecurityEngineeringSocietyV200 / code provenance / DependencyLicenseAgent / SoftwareSupplyChainGraph / ArtifactIntegrityGate / ReleaseFactory / RollbackBrain / outcome learning; **not** LA-61O marketplace depth; **do not invent full 61O–61R docs**. **Do not start LA-61O from this commit.**
 
-> Docs-only queue. **QUEUE AFTER LA-61M.** Do **not** interrupt active validated / unfinished tip-land WIP, sibling **61L/61M** parks, or recovery worktrees. **No Software Factory LIVE / auto-merge / L4 / auto production deploy / offensive security / uncontrolled production modification / live Copilot·Cursor·ChatGPT repo authority in this commit.** **L4_AUTONOMY_ENABLED = FALSE**.
+> Docs-only queue. **QUEUE AFTER LA-61M.** Do **not** interrupt active validated / unfinished tip WIP, sibling parks, or recovery worktrees. **No Software Factory LIVE / auto-merge / L4 / auto production deploy / auto git pull-push / offensive security / uncontrolled production modification in this commit.** **L4_AUTONOMY_ENABLED = FALSE**.
 >
-> **Feature flags (default OFF / FALSE):** see §103. All capability flags OFF; **all `AUTO_*` = FALSE**; permanently FALSE: `AUTO_SAME_FILE_PARALLEL_EDIT`, `AUTO_CURSOR_COPILOT_SAME_FILE`, `AUTO_BRANCH_MERGE`, `AUTO_PRODUCTION_DEPLOY`, `AUTO_EXECUTIVE_APPROVAL`, `AUTO_FINANCIAL_ACTION`, `AUTO_CONTRACT_ACTION`, `AUTO_PRIVATE_DATA_PROMOTION`, `AUTO_AUTHORITY_EXPANSION`, `AUTO_GUARDIAN_OVERRIDE`, `AUTO_CODE_MERGE`, `AUTO_SCHEMA_MIGRATE`, `AUTO_PRODUCTION_HOTFIX`, `AUTO_OFFENSIVE_SECURITY`, `AUTO_TRIPLE_MODEL_FANOUT`, `L4_AUTONOMY_ENABLED`.
+> **Screenshot evidence (permanent gate inputs for this authorship):** Global operations brain may be active; setup environments active/present; queue agents still processing documentation; **~1,012 files reported changed**; **AU→CP documentation reportedly still landing**. Therefore **DO NOT** blindly pull, push, merge, reset, rebase, cherry-pick, stash, or clean the tip repository. **DIRTY + ACTIVE AGENTS → SYNC=BLOCKED**.
 >
-> **Tip note:** Prefer tip-land on `xiv-v2` **only after LA-61M** and tip CLEAN **and** 61M tip-landed (unlikely — tip still ~LA-60Z); default **PARK ONLY** on `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`. Dual-push; never force-push / never `main`. Master queue: **… → LA-61L V738 → LA-61M V739 → LA-61N (this V740) → LA-61O V741 → … → LA-61S In-House Model Civilization**; do not invent full 61O–61S docs. Sibling parks (do not clobber unique paths): **61L** / **61M**; this story uses **only** `…61n-…` unique paths + selective master-queue updates.
+> **Feature flags (default OFF / FALSE):** see §84. All capability flags OFF; **all `AUTO_*` = FALSE** including **`AUTO_GIT_PULL=FALSE`**, **`AUTO_GIT_PUSH=FALSE`**, **`AUTO_FORCE_PUSH=FALSE`**, **`AUTO_MAIN_PUSH=FALSE`**, **`AUTO_BRANCH_MERGE=FALSE`**, **`AUTO_CONFLICT_RESOLUTION=FALSE`**, **`AUTO_PRODUCTION_DEPLOY=FALSE`**, **`AUTO_SCHEMA_PRODUCTION_CHANGE=FALSE`**, **`AUTO_DATABASE_ADMIN=FALSE`**, **`AUTO_CLOUD_ROOT=FALSE`**, **`AUTO_SECURITY_EXPLOITATION=FALSE`**, **`AUTO_AUTHORITY_EXPANSION=FALSE`**, **`AUTO_GUARDIAN_OVERRIDE=FALSE`**, **`L4_AUTONOMY_ENABLED=FALSE`**.
 >
-> **Core theme (must be prominent):** **Cursor + ChatGPT + GitHub Copilot + local XIV agents = cooperating workers inside one governed engineering system via EngineeringProviderMeshV100 — NOT competing independent rewriters.**
+> **Authority honesty:** **Copilot = independent engineering capability NOT authority**; **Cursor ≠ authority**; **Builder ≠ Reviewer**; MultiAIEngineeringCoordinator + AIFileLeaseManager provide same-file collision protection — not elevated rights.
 >
-> **Mesh honesty (permanent):**
-> - **COPILOT ≠ ROOT ENGINEER**
-> - **COPILOT APPROVAL ≠ MERGE APPROVAL**
-> - **ONE TASK ≠ THREE EXPENSIVE MODEL CALLS** (cost-aware routing)
-> - Parallel **non-overlapping** work only; **same-file Cursor+Copilot blocked by default**
-> - **BUILDER ≠ REVIEWER**
-> - **AI CODE ≠ VERIFIED CODE**
-> - Provider product presence ≠ unrestricted repo authority; **do not claim Copilot/Cursor/ChatGPT integrations are active merely because products exist**
+> **1012 honesty:** **1012 FILES CHANGED ≠ 1012 VALID FILES**; also **≠ CORRUPTION** — do not infer either.
 >
 > **Core loop:**
 > ```
-> INTENT → XIVEngineeringSuperBrainV200 → EngineeringProviderMeshV100
->   → Intelligence/Cost routers → TaskPassport + file lease (61K)
->   → provider worker (Cursor | Copilot | ChatGPT | Offline XIV) slice
->   → independent validate (exact commit) → Review/QA/Security council
->   → MERGE CANDIDATE → OUTCOME → LEARN
+> INTENT → SAFETY GATE / ENV REGISTRY → SUPER BRAIN → SOCIETY/FOUNDRY → FILE/MIGRATION/LOCK LEASE → BUILD SLICE → INDEPENDENT REVIEW (≠ BUILDER) → EXACT-COMMIT VALIDATE → EVIDENCE → MERGE CANDIDATE → OUTCOME → LEARN
 > ```
 >
-> **Hard honesty (permanent — §106):** see permanent invariants. Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-61N runtime.** **Do not start LA-61O.** Providers/env states independently reported (`CURSOR=` / `COPILOT=` / `CHATGPT=` / `OFFLINE_AGENTS=`). If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**.
+> **Hard honesty (permanent — §86):** see permanent invariants. Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-61N runtime.** **Do not start LA-61O.** Providers/env states independently reported. If GitLab unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS**. **tip-landed=NO**.
 
 ---
 
@@ -44,21 +33,20 @@
 
 | Story | Title | Role |
 |-------|-------|------|
-| **2I-LA-61K** | Unified Enterprise Command Civilization V737 | Dual-env lease/lock/ledger/story ledger/checkpoint precursor (park) |
-| **2I-LA-61L** | Brain Convergence + Commercial Intelligence V738 | Brain/commercial precursor (in-flight park) |
-| **2I-LA-61M** | Universal Business Intelligence Protocol + External XIV Ecosystem V739 | **Must PASS before LA-61N code**; tip-land predecessor (in-flight park) |
-| **2I-LA-61N** | Global Developer + Infrastructure Civilization + **Copilot Engineering Mesh** V740 | **This document** |
-| **2I-LA-61O** | Intelligence Economy + Agent/Tool/Algorithm/Model/Data Product Marketplace V741 | **NEXT (title only)** |
-| **2I-LA-61P** | Mobile SaaS Distribution + Global App/Device/Enterprise Deployment Network V742 | Title only |
-| **2I-LA-61Q** | Founder Civilization Commercial Stewardship + Long-Horizon Revenue Integrity OS V743 | Title only |
-| **2I-LA-61R** | Global Continuity Mesh + Cross-Cloud Failover + Sovereign Runtime Fabric V744 | Title only |
-| **2I-LA-61S** | **In-House Model Civilization** V745 | Title only (title upgraded per this paste) |
+| **2I-LA-61K** | Unified Enterprise Command Civilization V737 | Dual-env lease/lock/ledger precursor (park) |
+| **2I-LA-61L** | Brain Convergence + Commercial Intelligence V738 | Brain/commercial precursor (park) |
+| **2I-LA-61M** | Universal Business Intelligence Protocol + External XIV Ecosystem V739 | **Must PASS before LA-61N code**; ConnectorFactory adjacency (park) |
+| **2I-LA-61N** | Global Developer + Infrastructure Civilization + Copilot Collaboration V740 | **This document** |
+| **2I-LA-61O** | Intelligence Economy + Marketplace V741 | **NEXT (title only)** |
+| **2I-LA-61P** | Global Mobile / Desktop / Enterprise Distribution + Update Civilization V742 | Title only |
+| **2I-LA-61Q** | Commercial Operating Company V743 | Title only |
+| **2I-LA-61R** | Global Business Simulation + Decision Superintelligence V744 | Title only |
 
-**Ordering lock:** **… → LA-61L V738 → LA-61M V739 → LA-61N (this V740) → LA-61O V741**; do not invent full 61O–61S docs.
+**Ordering lock:** **… → LA-61L V738 → LA-61M V739 → LA-61N (this V740) → LA-61O V741**; do not invent full 61O–61R docs.
 
-**Deployment runway:** Do **not** block first canary on Software Factory LIVE, auto-merge, auto production deploy, offensive security, live multi-provider repo writes, or L4. **L4 DISABLED**.
+**Deployment runway:** Do **not** block first canary on Software Factory LIVE, auto-merge, auto git pull/push, auto production deploy, offensive security, or L4. **L4 DISABLED**. **PARK ONLY — tip-landed=NO**.
 
-**Coordination:** Sibling agents may park **61L** / **61M** / prior **61C/61I/61J/61K** — prefer isolated unique docs; never force-push; never clobber tip dirty recovery worktrees; **no tip-land race**. **tip-landed=NO**.
+**Coordination:** Prefer one fuller 61N doc set on park branch `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059` (unique paths only). Sibling thinner 61N upgrades are **superseded** by this V740 Copilot Collaboration + Safety Gate fidelity. Never force-push; never clobber tip dirty recovery worktrees; **no tip-land / no tip sync attempted**.
 
 ---
 
@@ -66,1325 +54,1840 @@
 
 | Rule | Contract |
 |------|----------|
-| ENGINEERING SUPER BRAIN | ≠ PRODUCTION ROOT |
-| COPILOT | ≠ ROOT ENGINEER |
-| COPILOT APPROVAL | ≠ MERGE APPROVAL |
-| CURSOR / CHATGPT / COPILOT / LOCAL XIV | = MESH WORKERS (≠ COMPETING REWRITERS) |
-| ONE TASK | ≠ THREE EXPENSIVE MODEL CALLS |
-| SAME-FILE CURSOR+COPILOT | BLOCKED BY DEFAULT |
-| BUILDER | ≠ REVIEWER |
-| AI CODE | ≠ VERIFIED CODE |
-| GENERATED CODE | ≠ VALIDATED CODE |
-| GENERATED ≠ MERGED | ≠ DEPLOYED |
-| PROVIDER PRODUCT EXISTS | ≠ INTEGRATION ACTIVE |
-| PROVIDER PRESENCE | ≠ UNRESTRICTED REPO AUTHORITY |
-| LOGICAL TRILLION AGENTS | = NAMESPACE ONLY (≠ LIVE AGENTS) |
-| DEFENSIVE SECURITY | ONLY (≠ OFFENSIVE EXPLOIT AUTHORITY) |
-| BUILDER PASS | ≠ VERIFIED |
-| EXACT-COMMIT VALIDATE | REQUIRED FOR INDEPENDENT ENV |
-| PARALLEL WORK | ≠ SAME-FILE EDITING |
-| ENVIRONMENT | ≠ AUTHORITY |
-| LEASE / LOCK (61K) | REQUIRED FOR CODE SLICES |
-| MERGE CANDIDATE | ≠ MERGE AUTHORITY |
-| SOFTWARE FACTORY | ≠ UNCONTROLLED PRODUCTION MOD |
-| QUANTUM INTERFACE | = RESEARCH / EXPERIMENTAL ONLY |
-| GPU PIPELINE | ≠ UNBOUNDED COST AUTHORITY |
-| SDK / PORTAL / SANDBOX | ≠ ROOT CREDENTIALS |
-| COST OPTIMIZATION | ≠ QUALITY SACRIFICE |
-| MORE AGENTS / PROVIDERS / SOCIETIES | ≠ MORE AUTHORITY |
-| ARCHITECTURE QUEUE | ≠ IMPLEMENTATION |
-| STORY NUMBER | ≠ IMPLEMENTATION EVIDENCE |
-| CLAIMED PASS | ≠ EVIDENCE |
-| LEARNING | ≠ AUTHORITY |
-| CONNECTED | ≠ TRUSTED |
-| OFFLINE | ≠ AUTHORIZED |
-| HISTORY | IS NOT SILENTLY REWRITTEN |
+| REPOSITORY SAFETY GATE | DIRTY + ACTIVE AGENTS → SYNC=BLOCKED |
+| 1012 FILES CHANGED | ≠ 1012 VALID FILES; ≠ CORRUPTION |
+| COPILOT | ≠ AUTHORITY (independent engineering capability) |
+| CURSOR | ≠ AUTHORITY |
+| BUILDER | ≠ REVIEWER / ≠ VERIFIED |
+| MULTIPLE AI APPROVALS | ≠ VERIFIED CODE |
+| AGENT SPECIALIZATION | ≠ PERMISSION |
+| DEBUG AGENT | ≠ PRODUCTION WRITE |
+| TEST GENERATED | ≠ TEST PASSED |
+| MEMORY | ≠ CURRENT CODE |
+| GENERATED TOOL | ≠ TRUSTED TOOL |
+| SDK TOKEN | ≠ UNIVERSAL AUTHORITY |
+| SANDBOX | ≠ PRODUCTION |
+| HARDWARE BRAND | ≠ OPTIMIZATION |
+| SAVING COST | ≠ SKIPPING VALIDATION |
+| OFFLINE AGENT | ≠ CLOUD AGENT |
+| CLOUD SIMULATION | ≠ CLOUD DEPLOYMENT |
+| DOCS-ONLY | ≠ IMPLEMENTED |
+| QUEUE NAME | ≠ REPO STATE |
+| REPOSITORY ACCESS | ≠ MERGE AUTHORITY |
+| EXACT COMMIT | ≠ VERIFIED UNTIL TESTED |
+| PASS WITHOUT EVIDENCE | ≠ PASS |
+| PACKAGE | ≠ TRUSTED |
+| PRODUCTION_CANDIDATE | ≠ PRODUCTION |
+| ROLLBACK PLAN | ≠ TESTED ROLLBACK |
+| FAST CODE | ≠ GOOD CODE |
+| MORE AI CODERS | ≠ MORE AUTHORITY |
+| MORE CODE | ≠ MORE PRODUCT VALUE |
+| PARALLEL WORK | ≠ SAME-FILE EDITING (lease required) |
+| SOFTWARE ENGINEERING SUPER BRAIN | ≠ PRODUCTION ROOT |
 | L4 | DISABLED |
 | NEVER INFER PASS | Evidence QUEUED / FALSE / UNKNOWN |
+| NEVER FORCE AS DEFAULT RECOVERY | Permanent |
 
 ### Autonomy / safety flags (permanent defaults)
 
 | Flag | Default |
 |------|---------|
-| All capability `*_ENABLED` flags (§103) | **FALSE / OFF** |
-| `AUTO_SAME_FILE_PARALLEL_EDIT` | **FALSE** |
-| `AUTO_CURSOR_COPILOT_SAME_FILE` | **FALSE** |
-| `AUTO_TRIPLE_MODEL_FANOUT` | **FALSE** |
+| All capability `*_ENABLED` flags (§84) | **FALSE / OFF** |
+| `AUTO_GIT_PULL` | **FALSE** |
+| `AUTO_GIT_PUSH` | **FALSE** |
+| `AUTO_FORCE_PUSH` | **FALSE** |
+| `AUTO_MAIN_PUSH` | **FALSE** |
 | `AUTO_BRANCH_MERGE` | **FALSE** |
-| `AUTO_CODE_MERGE` | **FALSE** |
+| `AUTO_CONFLICT_RESOLUTION` | **FALSE** |
 | `AUTO_PRODUCTION_DEPLOY` | **FALSE** |
-| `AUTO_PRODUCTION_HOTFIX` | **FALSE** |
-| `AUTO_SCHEMA_MIGRATE` | **FALSE** |
-| `AUTO_EXECUTIVE_APPROVAL` | **FALSE** |
-| `AUTO_FINANCIAL_ACTION` | **FALSE** |
-| `AUTO_CONTRACT_ACTION` | **FALSE** |
-| `AUTO_PRIVATE_DATA_PROMOTION` | **FALSE** |
+| `AUTO_SCHEMA_PRODUCTION_CHANGE` | **FALSE** |
+| `AUTO_DATABASE_ADMIN` | **FALSE** |
+| `AUTO_CLOUD_ROOT` | **FALSE** |
+| `AUTO_SECURITY_EXPLOITATION` | **FALSE** |
 | `AUTO_AUTHORITY_EXPANSION` | **FALSE** |
 | `AUTO_GUARDIAN_OVERRIDE` | **FALSE** |
-| `AUTO_OFFENSIVE_SECURITY` | **FALSE** |
 | `L4_AUTONOMY_ENABLED` | **FALSE** |
 
 ---
 
 ## Founder user story
 
-As the XIV AI Founder, I want XIV to define a governed **Global Developer + Infrastructure Civilization + Copilot Engineering Mesh V740** — so **Cursor + ChatGPT + GitHub Copilot + local XIV agents** operate as **cooperating workers** inside one governed engineering system via **EngineeringProviderMeshV100** (not competing independent rewriters) — with **CopilotEngineeringAdapterV100** under the same file leases, story ledger, tests, and checkpoint evidence as LA-61K; cost-aware routing so **ONE TASK ≠ THREE EXPENSIVE MODEL CALLS**; parallel **non-overlapping** work only (**same-file Cursor+Copilot blocked by default**); **BUILDER ≠ REVIEWER**; **AI CODE ≠ VERIFIED CODE**; **COPILOT ≠ ROOT ENGINEER**; **COPILOT APPROVAL ≠ MERGE APPROVAL** — composing XIVEngineeringSuperBrainV200, EngineeringIntelligenceRouterV100, EngineeringCostRouterV100, SoftwareFactoryControlPlaneV300, EngineeringTaskPassportV100, OfflineEngineeringSocietyV100, BackgroundDebugAgentV100, EngineeringFailureMemoryV200, CodeRelationshipGraphV200, ChangeImpactBrain, RepositoryIntelligenceBrainV200, ArchitectureDecisionBrain, Mobile/XXL/Backend brains, DatabaseEngineeringSocietyV200, AIEngineeringSocietyV200, XIV mini model foundation, ModelEvaluationFactoryV200, GPU society + HardwareCapabilityPassport + GPUPipelineFactory, QuantumEngineeringResearchInterface, CloudEngineeringSociety + CloudCostOptimization + EnergyAwareComputeRouter, EngineeringToolFoundryV200, Plugin/API/Workflow factories, AutonomousTestFactoryV200, DefensiveSecurityFactoryV200, QACouncilV200, UATLabV200, PerformanceLab, FailureLabV200, ReleaseIntelligenceBrain, CopilotReviewLaneV100, Multi-AI Review Council, EngineeringDisagreementEngine, SoftwareFactoryMemoryV200, XIVDeveloperSDKV300, DeveloperSandboxV200, marketplace prep (LA-61O), XXLEngineeringCommandCenterV300, Mobile Engineering Command, EngineeringCostLedger, EngineeringProviderPerformance — without treating any provider as production root, generated as verified, product presence as integration authority, or any AUTO_* / L4 path as enabled — with evidence **QUEUED / FALSE / UNKNOWN** and **DEPLOYMENT_STATE=QUEUED**.
+As the XIV AI Founder, I want XIV to define a governed **Global Developer + Infrastructure Civilization + AI Software Engineering Super Brain + GitHub Copilot Collaboration V740** — so Repository Safety Gate + SafeGitSyncController (**DIRTY+ACTIVE AGENTS → SYNC=BLOCKED**; no blind pull/push/merge/reset/stash/clean), DevelopmentEnvironmentRegistryV200, CopilotEngineeringAdapterV100 + CursorEngineeringAdapterV200 + MultiAIEngineeringCoordinatorV100 + AIFileLeaseManagerV100 (same-file collision protection), DatabaseMigrationLeaseV100, package lock protection, SoftwareEngineeringSuperBrainV100 + Software Factory agent society, RequirementToCodePipelineV200, AIProductOwnerV200, CodeRelationshipGraphV200, ChangeImpactBrain, AICodeReviewCouncilV200, AutonomousDebugLabV200, TestGenerationSociety, Failure Memory, EngineeringLessonBrain, CodeMemoryV200, DeveloperToolFoundryV200, PluginFactoryV200, ConnectorFactory↔61M, XIVDeveloperSDKV100, DeveloperSandboxV100, Mobile/Web/Backend/Database/AI/Compute engineering societies, ModelOptimizationLab, EngineeringCostRouter, Offline/Cloud workers, EngineeringResourceGovernor + runaway defense + cool-down, XXLEngineeringCommandCenterV100, Mobile Engineering Command, EngineeringStoryLedgerV100, QueueReconciliationAgentV100 (**AU→CP respect**), multi-env landing, exact-commit validation, build evidence, SecurityEngineeringSocietyV200, code provenance, DependencyLicenseAgent, SoftwareSupplyChainGraph, ArtifactIntegrityGate, ReleaseFactory, RollbackBrain, and outcome learning operate as a docs-only queued architecture — without treating Copilot/Cursor as authority, Builder as Reviewer, 1012 changed files as either fully valid or corruption, generated as validated, or any AUTO_GIT_*/AUTO_PRODUCTION_*/L4 path as enabled — with evidence **QUEUED / FALSE / UNKNOWN** and **DEPLOYMENT_STATE=QUEUED**.
 
 Central architecture theme:
 
 ```
-INTENT → SUPER BRAIN → PROVIDER MESH → COST/INTEL ROUTERS → PASSPORT+LEASE
-  → WORKER SLICE (Cursor|Copilot|ChatGPT|Offline) → EXACT-COMMIT VALIDATE
-  → MULTI-AI REVIEW / QA / DEFENSIVE SECURITY → MERGE CANDIDATE → LEARN
+INTENT → SAFETY GATE → ENV REGISTRY / LEASES → SUPER BRAIN → SOCIETIES / FOUNDRIES → BUILD → INDEPENDENT REVIEW → EXACT-COMMIT EVIDENCE → MERGE CANDIDATE → OUTCOME → LEARN
 ```
 
-**Product promise:** Governed multi-provider engineering from palm-of-hand Mobile Engineering Command to XXLEngineeringCommandCenter — providers cooperate under leases; production modification remains leased, evidenced, and human-gated.
+**Product promise:** Governed multi-AI software engineering (Cursor + Copilot as capabilities, not authorities) from Mobile Engineering Command to XXL Engineering Command Center — with repository safety under concurrent agent load and tip dirty-tree honesty.
 
-**Full contracts §§1–107** below. Status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**. **DEPLOYMENT_STATE=QUEUED**. **tip-landed=NO**.
+**Full contracts §§1–87** below. Status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**. **DEPLOYMENT_STATE=QUEUED**. **tip-landed=NO**.
 
-**Upgrade note vs prior park (`ed350f1`):** prior V740 centered EngineeringSuperBrainV100 + Software Factory societies without Copilot mesh governance; this upgrade makes **EngineeringProviderMeshV100 + CopilotEngineeringAdapterV100 + cost/intelligence routers + Multi-AI Review Council** first-class, upgrades named contracts to V200/V300 where listed, adds provider checkpoint fields, and retitles NEXT **61S → In-House Model Civilization**. Status remains **QUEUED ARCHITECTURE — NOT IMPLEMENTED**.
+**Implementation slices (document only — §83):** 1–48 as listed below.
 
 ---
 
-## Architecture contracts (story §§1–107)
+## Architecture contracts (story §§1–87)
 
-### 1. PRIMARY MISSION
+### 1. FIRST: REPOSITORY SAFETY GATE
 
-**Named contract:** `GlobalDeveloperInfrastructureCivilizationV740` / `CopilotEngineeringMeshV100`
+**Named contract:** `RepositorySafetyGateV100`
 
-Governed AI-native software engineering civilization with a **Copilot Engineering Mesh** that expands XIV without uncontrolled production modification and without competing provider rewriters.
-DEPLOYMENT_STATE=QUEUED. Docs only. L4 DISABLED. tip-landed=NO.
+Before ANY push/pull/merge:
 
-### 2. XIVEngineeringSuperBrainV200
-
-**Named contract:** `XIVEngineeringSuperBrainV200`
-
-Routes engineering intent across mesh, passports, societies, factories, and review lanes.
-ENGINEERING SUPER BRAIN ≠ PRODUCTION ROOT.
-ENGINEERING SUPER BRAIN ≠ UNBOUNDED WRITE AUTHORITY.
-Recommend-only until leased slices + independent validation evidence exist.
-Supersedes document-name `EngineeringSuperBrainV100` from prior park wording; prior name remains glossary alias only.
-
-### 3. EngineeringProviderMeshV100
-
-**Named contract:** `EngineeringProviderMeshV100`
-
-Single governed mesh binding provider workers:
-- Cursor adapter lane
-- ChatGPT adapter lane
-- GitHub Copilot adapter lane (`CopilotEngineeringAdapterV100`)
-- Local / offline XIV agent lane
-
-**NOT** competing independent rewriters.
-PROVIDER PRODUCT EXISTS ≠ MESH MEMBERSHIP ACTIVE.
-PROVIDER PRESENCE ≠ UNRESTRICTED REPO AUTHORITY.
-Mesh membership requires TaskPassport + file lease + evidence hooks (compose LA-61K).
-
-### 4. CopilotEngineeringAdapterV100
-
-**Named contract:** `CopilotEngineeringAdapterV100`
-
-GitHub Copilot participates **under the same**:
-- file leases
-- story ledger
-- tests
-- checkpoint evidence
-
-as other LA-61K-governed workers.
-COPILOT ≠ ROOT ENGINEER.
-COPILOT APPROVAL ≠ MERGE APPROVAL.
-COPILOT SUGGESTION ≠ VERIFIED CODE.
-Do **not** claim Copilot integration is active merely because the product exists.
-
-### 5. EngineeringIntelligenceRouterV100
-
-**Named contract:** `EngineeringIntelligenceRouterV100`
-
-Routes task class → provider/society/brain based on skill fit, conflict risk, offline needs, and evidence requirements.
-INTELLIGENCE ROUTE ≠ AUTHORITY GRANT.
-Does not fan out one task to all expensive models by default.
-
-### 6. EngineeringCostRouterV100
-
-**Named contract:** `EngineeringCostRouterV100`
-
-Cost-aware routing: **ONE TASK ≠ THREE EXPENSIVE MODEL CALLS**.
-Prefer cheapest sufficient worker; escalate only on disagreement / failure / high-risk class.
-COST OPTIMIZATION ≠ QUALITY SACRIFICE.
-AUTO_TRIPLE_MODEL_FANOUT = FALSE.
-
-### 7. SoftwareFactoryControlPlaneV300
-
-**Named contract:** `SoftwareFactoryControlPlaneV300`
-
-Control plane for factory jobs, slices, leases, validation gates, and merge-candidate promotion.
-SOFTWARE FACTORY ≠ UNCONTROLLED PRODUCTION MODIFICATION.
-CONTROL PLANE ≠ ROOT CREDENTIALS.
-FACTORY JOB ≠ PRODUCTION DEPLOY.
-
-### 8. EngineeringTaskPassportV100
-
-**Named contract:** `EngineeringTaskPassportV100`
-
-Per-task passport: intent, tenant/universe, purpose, rights, provider assignment, lease ids, test plan, evidence slots, cost budget, builder vs reviewer separation.
-NO PASSPORT → NO PROVIDER WRITE LANE.
-PASSPORT ≠ MERGE AUTHORITY.
-
-### 9. FILE LEASES / CONFLICT PROTECTION (compose LA-61K)
-
-**Named contracts:** `DevelopmentLeaseEngine` / `DevelopmentLockGraph` / `DevelopmentWorkLedger` / `FileLeaseConflictGuardV100`
-
-Compose LA-61K dual-environment lease/lock/ledger.
-Parallel non-overlapping work only.
-**Same-file Cursor + Copilot blocked by default** (`AUTO_CURSOR_COPILOT_SAME_FILE=FALSE`).
-PARALLEL WORK ≠ SAME-FILE EDITING.
-LEASE REQUIRED FOR CODE SLICES.
-
-### 10. OfflineEngineeringSocietyV100
-
-**Named contract:** `OfflineEngineeringSocietyV100`
-
-Local/offline XIV engineering workers continue bounded slices without implying online provider authority.
-OFFLINE ≠ AUTHORIZED FOR PRODUCTION.
-OFFLINE WORK still requires passport + lease + later sync honesty.
-
-### 11. BackgroundDebugAgentV100
-
-**Named contract:** `BackgroundDebugAgentV100`
-
-Background debug hypotheses, log triage, and failure reproduction candidates.
-DEBUG HYPOTHESIS ≠ ROOT CAUSE CLAIM.
-BACKGROUND AGENT ≠ SILENT PRODUCTION HOTFIX.
-Compose FailureLab / FailureMemory; defensive only.
-
-### 12. EngineeringFailureMemoryV200
-
-**Named contract:** `EngineeringFailureMemoryV200`
-
-Durable memory of engineering failures, near-misses, and repair lessons.
-LEARNING ≠ AUTHORITY.
-FAILURE MEMORY ≠ AUTO REPAIR LICENSE.
-HISTORY IS NOT SILENTLY REWRITTEN.
-
-### 13. CodeRelationshipGraphV200
-
-**Named contract:** `CodeRelationshipGraphV200`
-
-Graph of modules, ownership, dependencies, and blast radius hints.
-GRAPH EDGE ≠ RUNTIME TRUTH.
-Used by ChangeImpactBrain and conflict protection.
-
-### 14. ChangeImpactBrain
-
-**Named contract:** `ChangeImpactBrainV100`
-
-Predicts blast radius of proposed slices; feeds test selection and review urgency.
-IMPACT ESTIMATE ≠ PROOF.
-HIGH IMPACT → stricter gates; still not auto-merge.
-
-### 15. RepositoryIntelligenceBrainV200
-
-**Named contract:** `RepositoryIntelligenceBrainV200`
-
-Repo topology, branch honesty, remote sync state, and ownership intelligence.
-REPO INTELLIGENCE ≠ WRITE AUTHORITY.
-GITHUB/GITLAB/LOCAL reported independently; GITLAB=BLOCKED is valid honesty.
-
-### 16. ArchitectureDecisionBrain
-
-**Named contract:** `ArchitectureDecisionBrainV100` (ADR adjacency)
-
-Architecture Decision Records + decision candidates.
-ADR PROPOSAL ≠ ACCEPTED ARCHITECTURE.
-ARCHITECTURE QUEUE ≠ IMPLEMENTATION.
-
-### 17. MOBILE ENGINEERING BRAIN / SOCIETY
-
-**Named contract:** `MobileEngineeringBrainV100` / `MobileEngineeringSocietyV200`
-
-Mobile client engineering society under mesh leases.
-MOBILE BUILD ≠ STORE RELEASE AUTHORITY.
-Palm-of-hand command may observe; authority unchanged by device.
-
-### 18. XXL ENGINEERING BRAIN / COMMAND ADJACENCY
-
-**Named contract:** `XXLEngineeringBrainV100`
-
-Large-surface engineering brain feeding XXLEngineeringCommandCenterV300.
-XXL SURFACE ≠ ROOT ENGINEER.
-Heavy compute may run elsewhere; leases still apply.
-
-### 19. BACKEND ENGINEERING BRAIN / SOCIETY
-
-**Named contract:** `BackendEngineeringBrainV100` / `BackendEngineeringSocietyV200`
-
-Services/API/backend society under passport + lease.
-BACKEND PATCH ≠ PRODUCTION HOTFIX.
-Schema changes require separate rights + AUTO_SCHEMA_MIGRATE=FALSE.
-
-### 20. DatabaseEngineeringSocietyV200
-
-**Named contract:** `DatabaseEngineeringSocietyV200`
-
-Governed DB engineering society: migrations candidates, RLS, tenancy.
-DB SOCIETY ≠ DATABASE ROOT.
-AUTO_SCHEMA_MIGRATE = FALSE.
-Document-only schema candidates in §102.
-
-### 21. AIEngineeringSocietyV200
-
-**Named contract:** `AIEngineeringSocietyV200`
-
-AI/model/prompt/tooling engineering society.
-AI SOCIETY ≠ MODEL AUTHORITY.
-PROMPT CHANGE ≠ UNBOUNDED TOOL RIGHTS.
-Compose ModelEvaluationFactoryV200 + mini model foundation.
-
-### 22. XIV MINI MODEL FOUNDATION
-
-**Named contract:** `XIVMiniModelFoundationV100`
-
-In-house / mini model training & eval foundation (prepares adjacency to **LA-61S In-House Model Civilization**).
-MINI MODEL EXISTS ≠ PRODUCTION DEFAULT.
-TRAINING CANDIDATE ≠ DEPLOYED WEIGHTS.
-Do not invent full 61S docs here.
-
-### 23. ModelEvaluationFactoryV200
-
-**Named contract:** `ModelEvaluationFactoryV200`
-
-Eval harnesses for provider/model candidates (quality, cost, disagreement rate).
-EVAL SCORE ≠ TRUTH.
-EVAL PASS ≠ MERGE AUTHORITY.
-Feeds EngineeringProviderPerformance + CostRouter.
-
-### 24. GPU SOCIETY + HardwareCapabilityPassport + GPUPipelineFactory
-
-**Named contracts:** `GPUEngineeringSocietyV200` / `HardwareCapabilityPassportV100` / `GPUPipelineFactoryV200`
-
-GPU/accelerator pipelines bound by hardware capability passports and cost governors.
-GPU PIPELINE ≠ UNBOUNDED COST AUTHORITY.
-HARDWARE PASSPORT ≠ CLUSTER ROOT.
-Compose EnergyAwareComputeRouter.
-
-### 25. QuantumEngineeringResearchInterface
-
-**Named contract:** `QuantumEngineeringResearchInterfaceV100`
-
-Research/experimental quantum interface only.
-QUANTUM INTERFACE = EXPERIMENTAL / RESEARCH ONLY.
-QUANTUM RESULT ≠ PRODUCTION DEPENDENCY.
-No production gate may require quantum success.
-
-### 26. CloudEngineeringSociety + CloudCostOptimization + EnergyAwareComputeRouter
-
-**Named contracts:** `CloudEngineeringSocietyV200` / `CloudCostOptimizationV100` / `EnergyAwareComputeRouterV100`
-
-Cloud engineering society with cost + energy-aware routing.
-CLOUD SOCIETY ≠ CLOUD ROOT.
-COST/ENERGY OPTIMIZATION ≠ QUALITY SACRIFICE.
-PROVIDER EXISTS ≠ CONNECTED.
-
-### 27. EngineeringToolFoundryV200
-
-**Named contract:** `EngineeringToolFoundryV200`
-
-Governed creation of engineering tools used by mesh workers.
-TOOL CANDIDATE ≠ TRUSTED TOOL.
-TOOL OUTPUT ≠ VERIFIED FACT.
-Injection-resistant tool I/O required before any future enablement.
-
-### 28. PLUGIN FACTORY
-
-**Named contract:** `EngineeringPluginFactoryV200`
-
-Plugin candidates for developer portal / SDK / societies.
-PLUGIN ≠ ROOT CREDENTIALS.
-PLUGIN MARKET PREP ≠ LA-61O MARKETPLACE LIVE.
-
-### 29. API FACTORY
-
-**Named contract:** `EngineeringAPIFactoryV200`
-
-API contract/factory candidates for SDK and external surfaces.
-API DRAFT ≠ PUBLIC STABLE API.
-SDK SURFACE ≠ UNRESTRICTED DATA ACCESS.
-
-### 30. WORKFLOW FACTORY
-
-**Named contract:** `EngineeringWorkflowFactoryV200`
-
-Workflow graphs for build/validate/review/release-candidate paths.
-WORKFLOW ≠ AUTONOMOUS EXECUTION LICENSE.
-All AUTO_* remain FALSE.
-
-### 31. AutonomousTestFactoryV200
-
-**Named contract:** `AutonomousTestFactoryV200`
-
-Generates/selects tests for leased slices (compose SmartTestSelection adjacency).
-GENERATED TESTS ≠ SUFFICIENT PROOF ALONE.
-TEST GREEN ON BUILDER ENV ≠ INDEPENDENT VERIFY.
-
-### 32. DefensiveSecurityFactoryV200
-
-**Named contract:** `DefensiveSecurityFactoryV200`
-
-Defensive security factory only (SAST/secret/dependency/prompt-injection posture).
-DEFENSIVE SECURITY ONLY.
-AUTO_OFFENSIVE_SECURITY = FALSE.
-SECURITY FINDING ≠ COMPROMISE WITHOUT EVIDENCE.
-No exploit / offensive tooling authority in this story.
-
-### 33. QACouncilV200
-
-**Named contract:** `QACouncilV200`
-
-Multi-party QA council over factory outputs.
-QA COUNCIL ≠ PRODUCTION ACCESS.
-BUILDER PASS ≠ QA PASS.
-Separates builder workers from reviewer workers (**BUILDER ≠ REVIEWER**).
-
-### 34. UATLabV200
-
-**Named contract:** `UATLabV200`
-
-UAT scripts/labs for human-gated acceptance candidates.
-UAT SCRIPT ≠ CUSTOMER CONSENT.
-UAT PASS ≠ PRODUCTION DEPLOY.
-
-### 35. PerformanceLab
-
-**Named contract:** `EngineeringPerformanceLabV100`
-
-Perf budgets, regressions, and cost/perf tradeoff notes.
-PERF NUMBER ≠ USER VALUE.
-PERF LAB ≠ LICENSE TO DROP SAFETY GATES.
-
-### 36. FailureLabV200
-
-**Named contract:** `FailureLabV200`
-
-Controlled failure reproduction + chaos-candidate documentation (non-prod).
-FAILURE LAB ≠ PRODUCTION CHAOS AUTHORITY.
-Feeds EngineeringFailureMemoryV200 + BackgroundDebugAgentV100.
-
-### 37. ReleaseIntelligenceBrain
-
-**Named contract:** `ReleaseIntelligenceBrainV100`
-
-Release-candidate intelligence, risk notes, and checkpoint packaging.
-RELEASE CANDIDATE ≠ PRODUCTION.
-PRODUCTION_CANDIDATE ≠ PRODUCTION.
-Never invent PASS.
-
-### 38. CopilotReviewLaneV100
-
-**Named contract:** `CopilotReviewLaneV100`
-
-Dedicated Copilot **review** lane — distinct from Copilot build adapter.
-BUILDER ≠ REVIEWER (enforced across providers).
-Same actor/provider session should not be sole builder and sole reviewer on one slice.
-COPILOT REVIEW ≠ MERGE APPROVAL.
-
-### 39. MULTI-AI REVIEW COUNCIL
-
-**Named contract:** `MultiAIReviewCouncilV100`
-
-Council combining Cursor / Copilot / ChatGPT / local XIV review opinions under disagreement engine.
-REVIEW CONSENSUS ≠ TRUTH.
-MULTI-AI APPROVAL ≠ MERGE AUTHORITY.
-Cost router still applies — council is selective, not triple-fanout default.
-
-### 40. EngineeringDisagreementEngine
-
-**Named contract:** `EngineeringDisagreementEngineV100`
-
-Records and routes provider disagreements (code, tests, risk).
-DISAGREEMENT ≠ FAILURE.
-Forced consensus without evidence is banned.
-Escalates to human/founder gates when unresolved high-risk.
-
-### 41. SoftwareFactoryMemoryV200
-
-**Named contract:** `SoftwareFactoryMemoryV200`
-
-Factory outcome memory: what worked, what failed, cost, provider performance.
-LEARNING ≠ AUTHORITY.
-MEMORY WRITE ≠ HISTORY REWRITE.
-
-### 42. XIVDeveloperSDKV300
-
-**Named contract:** `XIVDeveloperSDKV300`
-
-Developer SDK (V300) for governed engineering surfaces.
-SDK ≠ ROOT CREDENTIALS.
-SDK METHOD ≠ BYPASS LEASES.
-Supersedes prior park `XIVDeveloperSDKV200` naming; V200 remains alias.
-
-### 43. DeveloperSandboxV200
-
-**Named contract:** `DeveloperSandboxV200`
-
-Isolated sandbox for experiments and provider trials.
-SANDBOX SUCCESS ≠ PRODUCTION PROOF.
-SANDBOX ≠ UNRESTRICTED REPO WRITE.
-
-### 44. MARKETPLACE PREP (LA-61O adjacency)
-
-**Named contract:** `EngineeringMarketplacePrepV100`
-
-Prep only for Intelligence Economy marketplace (tools/agents/models/data products).
-PREP ≠ MARKETPLACE LIVE.
-Do **not** start LA-61O; do not invent full 61O docs.
-
-### 45. XXLEngineeringCommandCenterV300
-
-**Named contract:** `XXLEngineeringCommandCenterV300`
-
-Large command surface for factory/mesh observation and human gates.
-COMMAND CENTER ≠ ROOT ENGINEER.
-VIEW ≠ AUTHORITY.
-Supersedes prior `XXLEngineeringCommandV200` naming as alias.
-
-### 46. MOBILE ENGINEERING COMMAND
-
-**Named contract:** `MobileEngineeringCommandV200`
-
-Palm-of-hand engineering command / overnight briefs / alerts.
-DEVICE CHANGE ≠ AUTHORITY CHANGE.
-MOBILE APPROVAL PATH still human-gated and rights-scoped.
-
-### 47. EngineeringCostLedger
-
-**Named contract:** `EngineeringCostLedgerV100`
-
-Ledger of provider/model/compute costs per passport/slice.
-COST LEDGER ≠ BILLING SETTLEMENT CLAIM.
-Feeds CostRouter + Founder views; evidence UNKNOWN until implemented.
-
-### 48. EngineeringProviderPerformance
-
-**Named contract:** `EngineeringProviderPerformanceV100`
-
-Tracks Cursor / Copilot / ChatGPT / Offline agent quality, disagreement, rework, cost.
-PROVIDER SCORE ≠ UNRESTRICTED AUTHORITY.
-Presence of a commercial product ≠ active integration row.
-
-### 49. WEB ENGINEERING SOCIETY
-
-**Named contract:** `WebEngineeringSocietyV200`
-
-Web/frontend society under mesh leases.
-WEB GREEN ≠ MOBILE GREEN.
-Same-file conflicts blocked across providers.
-
-### 50. AGENTIC ENGINEERING SOCIETY
-
-**Named contract:** `AgenticEngineeringSocietyV200`
-
-Agent-authored engineering workflows under Resource Governor + Guardian.
-MORE AGENTS ≠ MORE AUTHORITY.
-LOGICAL AGENT NAMESPACE ≠ LIVE COUNT.
-
-### 51. DEVOPS ENGINEERING SOCIETY
-
-**Named contract:** `DevOpsEngineeringSocietyV200`
-
-CI/CD candidate pipelines, environment promotion honesty.
-PIPELINE GREEN ≠ PRODUCTION AUTHORITY.
-No auto production deploy.
-
-### 52. SafeMergeIntelligenceV200
-
-**Named contract:** `SafeMergeIntelligenceV200`
-
-Merge-candidate intelligence only.
-MERGE CANDIDATE ≠ MERGE AUTHORITY.
-AUTO_BRANCH_MERGE / AUTO_CODE_MERGE = FALSE.
-
-### 53. AgentBranchManagerV200
-
-**Named contract:** `AgentBranchManagerV200`
-
-Branch naming, isolation, and handoff records for provider workers.
-BRANCH EXISTS ≠ TIP-LAND.
-Never force-push to resolve divergence.
-
-### 54. DevelopmentConflictBrainV100
-
-**Named contract:** `DevelopmentConflictBrainV100`
-
-Detects overlapping leases, same-file Cursor+Copilot attempts, dual-env races.
-CONFLICT SIGNAL ≠ AUTO RESOLVE BY FORCE PUSH.
-Default: block overlapping writers.
-
-### 55. ExactCommitValidationContractV100
-
-**Named contract:** `ExactCommitValidationContractV100`
-
-Independent validation must target the exact commit under test.
-BUILDER PASS ≠ VERIFIED.
-ENVIRONMENT A PASS ≠ ENVIRONMENT B PASS.
-
-### 56. MultiEnvironmentDevOSV100
-
-**Named contract:** `MultiEnvironmentDevOSV100`
-
-Composes LA-61K dual-env OS: one env builds bounded slice; other validates independently.
-ENVIRONMENT ≠ AUTHORITY.
-Two environments, one ledger — not shared silent writes.
-
-### 57. CodeContinuityEngineV200
-
-**Named contract:** `CodeContinuityEngineV200`
-
-Continuity checkpoints across shifts/providers/offline sync.
-CONTINUITY CHECKPOINT ≠ MERGE.
-OFFLINE SYNC ≠ SILENT HISTORY REWRITE.
-
-### 58. EngineeringOutcomeBrainV200
-
-**Named contract:** `EngineeringOutcomeBrainV200`
-
-Outcomes → lessons → factory memory.
-OUTCOME STORY ≠ PROOF.
-CLAIMED PASS ≠ EVIDENCE.
-
-### 59. EngineeringShiftOrchestrator + Overnight Brief
-
-**Named contracts:** `EngineeringShiftOrchestratorV100` / `EngineeringOvernightBriefV300`
-
-Shift handoffs and overnight engineering briefs for founder/mobile/XXL surfaces.
-OVERNIGHT BRIEF ≠ AUTOPILOT PRODUCTION CHANGES.
-WHAT RAN ≠ WHAT MERGED.
-
-### 60. FounderEngineeringCommandV300
-
-**Named contract:** `FounderEngineeringCommandV300`
-
-Founder-facing engineering command panel.
-FOUNDER ENGINEERING COMMAND ≠ ARBITRARY CUSTOMER ACCESS.
-FOUNDER VIEW ≠ SILENT AUTHORITY EXPANSION.
-
-### 61. AUTHORITY ROUTER (compose 61K)
-
-**Named contract:** `EngineeringAuthorityRouterV100`
-
-Routes who may recommend / build / review / merge-candidate / deploy-candidate.
-AUTHORITY ROUTE ≠ AUTO APPROVAL.
-All AUTO_* FALSE.
-
-### 62. RIGHTS + PURPOSE + RLS
-
-Purpose-bound rights; RLS before any future DB apply.
-MORE DATA ≠ PERMISSION TO USE IT.
-
-### 63. SECRET + CREDENTIAL HANDLING
-
-SecretBroker only; SDK/sandbox/providers never embed root credentials.
-PROVIDER TOKEN EXISTS ≠ UNRESTRICTED REPO AUTHORITY.
-
-### 64. TENANT / UNIVERSE ISOLATION
-
-All factory/mesh records tenant+universe scoped.
-CROSS-TENANT TOOLING BANNED BY DEFAULT.
-
-### 65. OFFLINE / EDGE ADJACENCY
-
-Compose LA-59 continuity; OfflineEngineeringSocietyV100 rules.
-OFFLINE ≠ AUTHORIZED.
-
-### 66. REPOSITORY REMOTE HONESTY
-
-LOCAL / GITHUB / GITLAB independently reported.
-GITLAB=BLOCKED is valid; never claim success if unverifiable.
-
-### 67. SELECTIVE DOCS GIT ADD
-
-Only architecture/queue/master-queue docs for this story; no unrelated staged files.
-
-### 68. NON-OVERLAPPING PARK PATHS
-
-Unique `…61n-…` paths only; do not clobber 61L/61M unique docs.
-
-### 69. EVIDENCE RULES
-
-Evidence placeholders: **QUEUED / FALSE / UNKNOWN**.
-NEVER INFER PASS.
-STORY NUMBER ≠ IMPLEMENTATION EVIDENCE.
-
-### 70. LEARNING LOOP
-
-FailureMemory + FactoryMemory + ProviderPerformance → routers.
-LEARNING ≠ AUTHORITY.
-
-### 71. NON-GOALS (explicit)
-
-- Live Copilot/Cursor/ChatGPT repo write integration in this commit
-- Auto-merge / L4 / auto production deploy
-- Offensive security / exploit authority
-- Triple expensive model fanout by default
-- Same-file multi-provider editing
-- Claiming provider integrations active from product presence alone
-- Tip-land onto `xiv-v2` before LA-61M
-- Inventing full 61O–61S docs
-
-### 72. COMPOSABILITY MAP
-
-61N mesh composes: 61K leases/ledger/checkpoints; 61L/61M adjacency; 60J SDK adjacency; 60S runtime; 60W governance; Guardian; SecretBroker; Rights Gateway.
-Compose ≠ implement those stories here.
-
-### 73. FAILURE MODES (honesty)
-
-Provider outage, lease conflict, disagreement deadlock, cost overrun, false consensus, GitLab blocked, offline divergence — all reportable without inventing PASS.
-
-### 74. ABUSE RESISTANCE
-
-Prompt/tool-output injection defenses; no provider may escalate rights via text claims.
-
-### 75. PRIVACY MINIMIZATION
-
-Customer private data not used as free fine-tune fuel; AUTO_PRIVATE_DATA_PROMOTION=FALSE.
-
-### 76. AUDIT MODEL
-
-Every passport, lease, provider action, review vote, and merge-candidate emits audit candidates (document-only now).
-
-### 77. RETENTION CLASSES
-
-Cost ledger / failure memory / review ballots retention classes documented; not applied.
-
-### 78. CONFIDENCE MODEL
-
-UNKNOWN IS VALID. Low confidence → escalate, do not auto-merge.
-
-### 79. LOGICAL AGENT NAMESPACE RULE
-
-LOGICAL TRILLION AGENTS = NAMESPACE ONLY.
-LOGICAL COUNT ≠ LIVE AGENTS ≠ AUTHORITY.
-
-### 80. GENERATED vs VALIDATED vs VERIFIED
-
-AI CODE ≠ VERIFIED CODE.
-GENERATED ≠ VALIDATED ≠ MERGED ≠ DEPLOYED.
-BUILDER PASS ≠ VERIFIED.
-
-### 81. PROVIDER MESH BOUNDARY
-
-Cursor + ChatGPT + Copilot + local XIV = cooperating mesh workers.
-NOT competing independent rewriters.
-COPILOT ≠ ROOT ENGINEER.
-
-### 82. COST ROUTING BOUNDARY
-
-ONE TASK ≠ THREE EXPENSIVE MODEL CALLS.
-AUTO_TRIPLE_MODEL_FANOUT=FALSE.
-
-### 83. SAME-FILE CONFLICT BOUNDARY
-
-Same-file Cursor+Copilot blocked by default.
-AUTO_CURSOR_COPILOT_SAME_FILE=FALSE.
-AUTO_SAME_FILE_PARALLEL_EDIT=FALSE.
-
-### 84. REVIEW BOUNDARY
-
-BUILDER ≠ REVIEWER.
-COPILOT APPROVAL ≠ MERGE APPROVAL.
-MULTI-AI CONSENSUS ≠ TRUTH.
-
-### 85. SECURITY BOUNDARY
-
-DefensiveSecurityFactoryV200 only; AUTO_OFFENSIVE_SECURITY=FALSE.
-
-### 86. QUANTUM / GPU / CLOUD BOUNDARIES
-
-Quantum=research only; GPU/Cloud ≠ unbounded cost; EnergyAwareComputeRouter advisory.
-
-### 87. SDK / SANDBOX / COMMAND BOUNDARIES
-
-SDK/Sandbox/XXL/Mobile command ≠ root credentials / root engineer.
-
-### 88. TIP-LAND POLICY
-
-Default PARK ONLY on `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`.
-Tip-land only after LA-61M tip-landed + tip CLEAN + no race (currently unlikely — tip still ~LA-60Z).
-**tip-landed=NO**. Never force-push / never `main`.
-
-### 89. ENVIRONMENT POSTURE AT AUTHORSHIP
-
-Docs-only park upgrade. Runtime not started. DEPLOYMENT_STATE=QUEUED.
-Provider integration states independently UNKNOWN/FALSE — not claimed active.
-
-### 90. DUAL REMOTE POLICY
-
-Push origin + gitlab when possible; if GitLab unverifiable REPORT BLOCKED; do not claim success.
-
-### 91. PR / MR POLICY
-
-If ManagePullRequest / `gh` PR creation unavailable: **PR blocked** — report honestly; do not claim PR opened.
-
-### 92. VALIDATION PHILOSOPHY
-
-Exact-commit independent validation; never infer PASS from story numbering or provider logos.
-
-### 93. RELEASE POSTURE (30-day guard)
-
-Entire V740 Copilot Engineering Mesh plane does **not** block first canary.
-Prioritize honesty bans, AUTO_* FALSE, L4 off, defensive-only security, mesh non-overlap leases.
-
-### 94. INTERACTION WITH 61K DUAL-ENV
-
-Mesh workers inherit 61K file leases, story ledger, tests, checkpoint evidence.
-CopilotEngineeringAdapterV100 is not exempt.
-
-### 95. INTERACTION WITH 61L / 61M
-
-Adjacency only; do not clobber unique 61L/61M parks; do not invent their PASS.
-
-### 96. NAMING STABILITY
-
-Prefer names in this paste (V200/V300 where listed). Prior park names remain glossary aliases where superseded.
-
-### 97. METRIC DEFINITIONS (placeholders)
-
-Cost/token, disagreement rate, rework rate, lease conflict rate, exact-commit verify rate — placeholders UNKNOWN.
-
-### 98. THREAT MODEL SNAPSHOT
-
-Prompt injection, tool-output injection, provider impersonation, same-file race, false consensus, secret exfil via SDK — mitigations documented, not implemented.
-
-### 99. ACCEPTANCE PREVIEW (not PASS)
-
-Docs exist; flags FALSE; ordering after 61M; mesh theme prominent; checkpoint fields include CURSOR/COPILOT/CHATGPT/OFFLINE_AGENTS — **not** runtime acceptance.
-
-### 100. OPEN QUESTIONS (explicit UNKNOWN)
-
-Which provider adapters ship first; cost budgets per tenant; disagreement quorum rules; mini-model train path vs 61S — UNKNOWN.
-
-### 101. GLOSSARY + HARD STOP + SLICES
-
-**Glossary (selected):** Mesh worker; TaskPassport; Copilot adapter; Review lane; Disagreement engine; Exact-commit validate; Merge candidate; Provider performance.
-
-**HARD STOP — no LA-61N runtime.** Do not start LA-61O. Never invent PASS. tip-landed=NO.
-
-**Implementation slices (document only — DO NOT IMPLEMENT now):**
-
-SLICE 1 — XIVEngineeringSuperBrainV200
-SLICE 2 — EngineeringProviderMeshV100
-SLICE 3 — CopilotEngineeringAdapterV100 (+ Cursor/ChatGPT adapter stubs)
-SLICE 4 — EngineeringIntelligenceRouterV100
-SLICE 5 — EngineeringCostRouterV100
-SLICE 6 — SoftwareFactoryControlPlaneV300
-SLICE 7 — EngineeringTaskPassportV100
-SLICE 8 — File lease / conflict guard + AUTO_CURSOR_COPILOT_SAME_FILE
-SLICE 9 — OfflineEngineeringSocietyV100
-SLICE 10 — BackgroundDebugAgentV100
-SLICE 11 — EngineeringFailureMemoryV200
-SLICE 12 — CodeRelationshipGraphV200
-SLICE 13 — ChangeImpactBrainV100
-SLICE 14 — RepositoryIntelligenceBrainV200
-SLICE 15 — ArchitectureDecisionBrainV100
-SLICE 16 — Mobile/XXL/Backend engineering brains + societies
-SLICE 17 — DatabaseEngineeringSocietyV200
-SLICE 18 — AIEngineeringSocietyV200
-SLICE 19 — XIVMiniModelFoundationV100
-SLICE 20 — ModelEvaluationFactoryV200
-SLICE 21 — GPU society + HardwareCapabilityPassport + GPUPipelineFactory
-SLICE 22 — QuantumEngineeringResearchInterfaceV100
-SLICE 23 — Cloud society + CloudCostOptimization + EnergyAwareComputeRouter
-SLICE 24 — EngineeringToolFoundryV200
-SLICE 25 — Plugin/API/Workflow factories
-SLICE 26 — AutonomousTestFactoryV200
-SLICE 27 — DefensiveSecurityFactoryV200
-SLICE 28 — QACouncilV200
-SLICE 29 — UATLabV200
-SLICE 30 — PerformanceLab
-SLICE 31 — FailureLabV200
-SLICE 32 — ReleaseIntelligenceBrainV100
-SLICE 33 — CopilotReviewLaneV100
-SLICE 34 — MultiAIReviewCouncilV100
-SLICE 35 — EngineeringDisagreementEngineV100
-SLICE 36 — SoftwareFactoryMemoryV200
-SLICE 37 — XIVDeveloperSDKV300 + DeveloperSandboxV200
-SLICE 38 — Marketplace prep (61O adjacency only)
-SLICE 39 — XXLEngineeringCommandCenterV300 + Mobile Engineering Command
-SLICE 40 — EngineeringCostLedger + EngineeringProviderPerformance
-SLICE 41 — SafeMerge / Branch / Conflict / ExactCommit / MultiEnv OS compose
-SLICE 42 — Shift/Overnight/Founder engineering command
-SLICE 43 — Web/Agentic/DevOps societies
-SLICE 44 — Authority/Rights/Secrets/Tenant/Offline honesty
-SLICE 45 — DB foundation §102 + audit + eval honesty suites
-
-### 102. DATABASE FOUNDATION
-
-Document-only schema candidates (NOT APPLIED). AUTO_SCHEMA_MIGRATE=FALSE.
-
-| Table / object (candidate) | Purpose |
-|----------------------------|---------|
-| `eng_super_brain_intent` | XIVEngineeringSuperBrainV200 intents |
-| `eng_provider_mesh_node` | EngineeringProviderMeshV100 members |
-| `copilot_adapter_session` | CopilotEngineeringAdapterV100 sessions |
-| `cursor_adapter_session` | Cursor adapter sessions |
-| `chatgpt_adapter_session` | ChatGPT adapter sessions |
-| `offline_agent_session` | Offline/local XIV worker sessions |
-| `eng_intelligence_route` | EngineeringIntelligenceRouterV100 |
-| `eng_cost_route` | EngineeringCostRouterV100 |
-| `software_factory_control_job` | SoftwareFactoryControlPlaneV300 jobs |
-| `eng_task_passport` | EngineeringTaskPassportV100 |
-| `dev_lease` / `dev_lock` / `dev_work_ledger` | Compose 61K lease/lock/ledger |
-| `file_lease_conflict_event` | Same-file / Cursor+Copilot blocks |
-| `offline_eng_society_run` | OfflineEngineeringSocietyV100 |
-| `background_debug_case` | BackgroundDebugAgentV100 |
-| `eng_failure_memory` | EngineeringFailureMemoryV200 |
-| `code_relationship_node` | CodeRelationshipGraphV200 |
-| `change_impact_report` | ChangeImpactBrain |
-| `repo_intelligence_node` | RepositoryIntelligenceBrainV200 |
-| `architecture_decision_record` | ArchitectureDecisionBrain |
-| `mobile_eng_brain_signal` | Mobile engineering brain |
-| `xxl_eng_brain_signal` | XXL engineering brain |
-| `backend_eng_brain_signal` | Backend engineering brain |
-| `db_eng_society_membership` | DatabaseEngineeringSocietyV200 |
-| `ai_eng_society_membership` | AIEngineeringSocietyV200 |
-| `xiv_mini_model_candidate` | XIV mini model foundation |
-| `model_evaluation_run` | ModelEvaluationFactoryV200 |
-| `gpu_pipeline_candidate` | GPUPipelineFactory |
-| `hardware_capability_passport` | HardwareCapabilityPassport |
-| `quantum_research_interface_run` | QuantumEngineeringResearchInterface |
-| `cloud_eng_society_run` | CloudEngineeringSociety |
-| `cloud_cost_optimization_event` | CloudCostOptimization |
-| `energy_aware_compute_route` | EnergyAwareComputeRouter |
-| `eng_tool_foundry_artifact` | EngineeringToolFoundryV200 |
-| `eng_plugin_candidate` | Plugin factory |
-| `eng_api_candidate` | API factory |
-| `eng_workflow_candidate` | Workflow factory |
-| `autonomous_test_factory_run` | AutonomousTestFactoryV200 |
-| `defensive_security_finding` | DefensiveSecurityFactoryV200 |
-| `qa_council_case` | QACouncilV200 |
-| `uat_lab_run` | UATLabV200 |
-| `performance_lab_run` | PerformanceLab |
-| `failure_lab_case` | FailureLabV200 |
-| `release_intelligence_note` | ReleaseIntelligenceBrain |
-| `copilot_review_lane_ballot` | CopilotReviewLaneV100 |
-| `multi_ai_review_council_case` | Multi-AI Review Council |
-| `eng_disagreement_event` | EngineeringDisagreementEngine |
-| `software_factory_memory` | SoftwareFactoryMemoryV200 |
-| `developer_sdk_client` | XIVDeveloperSDKV300 |
-| `developer_sandbox_session` | DeveloperSandboxV200 |
-| `marketplace_prep_artifact` | LA-61O prep only |
-| `xxl_eng_command_center_view` | XXLEngineeringCommandCenterV300 |
-| `mobile_eng_command_view` | Mobile Engineering Command |
-| `eng_cost_ledger` | EngineeringCostLedger |
-| `eng_provider_performance` | EngineeringProviderPerformance |
-| `safe_merge_candidate` | SafeMergeIntelligenceV200 |
-| `agent_branch_record` | AgentBranchManagerV200 |
-| `exact_commit_validation` | ExactCommitValidationContractV100 |
-| `multi_env_dev_session` | MultiEnvironmentDevOSV100 |
-| `eng_shift_handoff` | EngineeringShiftOrchestrator |
-| `eng_overnight_brief` | EngineeringOvernightBriefV300 |
-| `founder_eng_command_panel` | FounderEngineeringCommandV300 |
-| `eng_audit_event` | Cross-cutting audit |
-
-All tables: tenant/universe scoped; RLS required before any future apply; no migrations in this commit.
-
-### 103. FEATURE FLAGS
-
-All capability flags default **OFF / FALSE**. **All `AUTO_*` = FALSE**. **L4_AUTONOMY_ENABLED = FALSE**.
-
-XIV_ENGINEERING_SUPER_BRAIN_V200_ENABLED
-ENGINEERING_PROVIDER_MESH_V100_ENABLED
-COPILOT_ENGINEERING_ADAPTER_V100_ENABLED
-CURSOR_ENGINEERING_ADAPTER_ENABLED
-CHATGPT_ENGINEERING_ADAPTER_ENABLED
-OFFLINE_ENGINEERING_SOCIETY_V100_ENABLED
-ENGINEERING_INTELLIGENCE_ROUTER_V100_ENABLED
-ENGINEERING_COST_ROUTER_V100_ENABLED
-SOFTWARE_FACTORY_CONTROL_PLANE_V300_ENABLED
-ENGINEERING_TASK_PASSPORT_V100_ENABLED
-FILE_LEASE_CONFLICT_GUARD_ENABLED
-BACKGROUND_DEBUG_AGENT_V100_ENABLED
-ENGINEERING_FAILURE_MEMORY_V200_ENABLED
-CODE_RELATIONSHIP_GRAPH_V200_ENABLED
-CHANGE_IMPACT_BRAIN_ENABLED
-REPOSITORY_INTELLIGENCE_BRAIN_V200_ENABLED
-ARCHITECTURE_DECISION_BRAIN_ENABLED
-MOBILE_ENGINEERING_BRAIN_ENABLED
-XXL_ENGINEERING_BRAIN_ENABLED
-BACKEND_ENGINEERING_BRAIN_ENABLED
-DATABASE_ENGINEERING_SOCIETY_V200_ENABLED
-AI_ENGINEERING_SOCIETY_V200_ENABLED
-XIV_MINI_MODEL_FOUNDATION_ENABLED
-MODEL_EVALUATION_FACTORY_V200_ENABLED
-GPU_ENGINEERING_SOCIETY_ENABLED
-HARDWARE_CAPABILITY_PASSPORT_ENABLED
-GPU_PIPELINE_FACTORY_ENABLED
-QUANTUM_ENGINEERING_RESEARCH_INTERFACE_ENABLED
-CLOUD_ENGINEERING_SOCIETY_ENABLED
-CLOUD_COST_OPTIMIZATION_ENABLED
-ENERGY_AWARE_COMPUTE_ROUTER_ENABLED
-ENGINEERING_TOOL_FOUNDRY_V200_ENABLED
-ENGINEERING_PLUGIN_FACTORY_ENABLED
-ENGINEERING_API_FACTORY_ENABLED
-ENGINEERING_WORKFLOW_FACTORY_ENABLED
-AUTONOMOUS_TEST_FACTORY_V200_ENABLED
-DEFENSIVE_SECURITY_FACTORY_V200_ENABLED
-QA_COUNCIL_V200_ENABLED
-UAT_LAB_V200_ENABLED
-PERFORMANCE_LAB_ENABLED
-FAILURE_LAB_V200_ENABLED
-RELEASE_INTELLIGENCE_BRAIN_ENABLED
-COPILOT_REVIEW_LANE_V100_ENABLED
-MULTI_AI_REVIEW_COUNCIL_ENABLED
-ENGINEERING_DISAGREEMENT_ENGINE_ENABLED
-SOFTWARE_FACTORY_MEMORY_V200_ENABLED
-XIV_DEVELOPER_SDK_V300_ENABLED
-DEVELOPER_SANDBOX_V200_ENABLED
-ENGINEERING_MARKETPLACE_PREP_ENABLED
-XXL_ENGINEERING_COMMAND_CENTER_V300_ENABLED
-MOBILE_ENGINEERING_COMMAND_ENABLED
-ENGINEERING_COST_LEDGER_ENABLED
-ENGINEERING_PROVIDER_PERFORMANCE_ENABLED
-SAFE_MERGE_INTELLIGENCE_V200_ENABLED
-AGENT_BRANCH_MANAGER_V200_ENABLED
-DEVELOPMENT_CONFLICT_BRAIN_V100_ENABLED
-EXACT_COMMIT_VALIDATION_ENABLED
-MULTI_ENVIRONMENT_DEV_OS_V100_ENABLED
-CODE_CONTINUITY_ENGINE_V200_ENABLED
-ENGINEERING_OUTCOME_BRAIN_V200_ENABLED
-ENGINEERING_SHIFT_ORCHESTRATOR_ENABLED
-ENGINEERING_OVERNIGHT_BRIEF_V300_ENABLED
-FOUNDER_ENGINEERING_COMMAND_V300_ENABLED
-WEB_ENGINEERING_SOCIETY_ENABLED
-AGENTIC_ENGINEERING_SOCIETY_ENABLED
-DEVOPS_ENGINEERING_SOCIETY_ENABLED
-
-AUTO_SAME_FILE_PARALLEL_EDIT = FALSE
-AUTO_CURSOR_COPILOT_SAME_FILE = FALSE
-AUTO_TRIPLE_MODEL_FANOUT = FALSE
-AUTO_BRANCH_MERGE = FALSE
-AUTO_CODE_MERGE = FALSE
-AUTO_PRODUCTION_DEPLOY = FALSE
-AUTO_PRODUCTION_HOTFIX = FALSE
-AUTO_SCHEMA_MIGRATE = FALSE
-AUTO_EXECUTIVE_APPROVAL = FALSE
-AUTO_FINANCIAL_ACTION = FALSE
-AUTO_CONTRACT_ACTION = FALSE
-AUTO_PRIVATE_DATA_PROMOTION = FALSE
-AUTO_AUTHORITY_EXPANSION = FALSE
-AUTO_GUARDIAN_OVERRIDE = FALSE
-AUTO_OFFENSIVE_SECURITY = FALSE
-
-L4_AUTONOMY_ENABLED = FALSE.
-
-### 104. VALIDATION MATRIX
-
-| Check | Expected (docs-only now) |
-|-------|---------------------------|
-| DEPLOYMENT_STATE | QUEUED |
-| Runtime started | FALSE |
-| tip-landed | NO / FALSE |
-| L4_AUTONOMY_ENABLED | FALSE |
-| All AUTO_* | FALSE |
-| Engineering Super Brain = production root | FALSE (banned) |
-| Copilot = root engineer | FALSE (banned) |
-| Copilot approval = merge approval | FALSE (banned) |
-| AI code = verified code | FALSE (banned) |
-| Builder = reviewer | FALSE (banned) |
-| One task = triple expensive fanout | FALSE (banned) |
-| Same-file Cursor+Copilot allowed by default | FALSE (blocked) |
-| Provider product exists ⇒ integration active | FALSE (banned inference) |
-| Provider presence ⇒ unrestricted repo authority | FALSE (banned) |
-| Generated = validated | FALSE (banned) |
-| Logical trillion agents = live | FALSE (namespace only) |
-| Offensive security enabled | FALSE |
-| Quantum production dependency | FALSE |
-| Tip-land performed | FALSE (park only) |
-| Predecessor 61M PASS | UNKNOWN / not claimed |
-| Unique paths vs 61L/61M | DOCUMENTED |
-| Selective git add only | REQUIRED |
-| Exact-commit validation contract | DOCUMENTED |
-| Dual-env lease compose (61K) | DOCUMENTED |
-| CURSOR= / COPILOT= / CHATGPT= / OFFLINE_AGENTS= fields | REQUIRED IN CHECKPOINT |
-| LOCAL/GITHUB/GITLAB honesty | REQUIRED / GITLAB=BLOCKED ok |
-| TYPECHECK/BUILD/UNIT/INTEGRATION/API/WEB/MOBILE/DB | N/A until authorized |
-| NEVER INFER PASS | HARD RULE |
-
-### 105. CHECKPOINT PROTOCOL
-
-PARK THIS STORY.
-
-WHEN EXECUTION IS AUTHORIZED:
-
+git status --short
 git branch --show-current
-
-REQUIRE:
-xiv-v2
+git rev-parse HEAD
+git remote -v
 
 git fetch origin
 git fetch gitlab
 
-REPORT:
+REPORT ONLY:
 
-ENVIRONMENT_A_BRANCH=
-ENVIRONMENT_A_COMMIT=
-ENVIRONMENT_A_TREE=
-
-ENVIRONMENT_B_BRANCH=
-ENVIRONMENT_B_COMMIT=
-ENVIRONMENT_B_TREE=
-
+CURRENT_BRANCH=
+LOCAL_HEAD=
 GITHUB_XIV_V2=
 GITLAB_XIV_V2=
+WORKTREE_CHANGED_FILE_COUNT=
+UNTRACKED_COUNT=
+STAGED_COUNT=
+UNSTAGED_COUNT=
+ACTIVE_AGENT_WORK_DETECTED=
+SAFE_TO_SYNC=YES/NO
 
-CURSOR=
-COPILOT=
-CHATGPT=
-OFFLINE_AGENTS=
+Do not modify files during this gate.
 
-PROVIDER_MESH_STATE=
-LEASE_GRAPH_STATE=
-LOCK_GRAPH_STATE=
-FACTORY_STATE=
-COST_ROUTER_STATE=
-DISAGREEMENT_ENGINE_STATE=
-SECURITY_FACTORY_MODE=DEFENSIVE_ONLY
+If active agents are still writing:
 
-Honest values for CURSOR=/COPILOT=/CHATGPT=/OFFLINE_AGENTS= include:
-UNKNOWN | ABSENT | PRESENT_NOT_INTEGRATED | INTEGRATION_QUEUED | INTEGRATION_FALSE | BLOCKED
-— **never** claim active unrestricted repo authority from product presence alone.
+SAFE_TO_SYNC=NO
 
-Determine whether environments are:
+Do not pull.
 
-SYNCHRONIZED
-DIVERGED
-ISOLATED_VALID_WORK
-BLOCKED.
+Do not push.
 
-Never overwrite valid environment work.
+Do not merge.
 
-Before parallel implementation:
+Do not reset.
 
-assign non-overlapping story/slice/file leases (compose 61K + FileLeaseConflictGuard).
-Block same-file Cursor+Copilot by default.
+Do not stash another agent's work.
 
-Run applicable validation matrix §104 suites including:
+Do not run git clean.
 
-TYPECHECK
-BUILD
-UNIT
-INTEGRATION
-API
-WEB
-MOBILE
+
+**Read-only report fields (mandatory):** `CURRENT_BRANCH`, `LOCAL_HEAD`, `GITHUB_XIV_V2`, `GITLAB_XIV_V2`, `WORKTREE_CHANGED_FILE_COUNT`, `UNTRACKED_COUNT`, `STAGED_COUNT`, `UNSTAGED_COUNT`, `ACTIVE_AGENT_WORK_DETECTED`, `SAFE_TO_SYNC=YES/NO`.
+
+
+**Gate outcome:** If active agents are writing or tree is dirty with concurrent work → `SAFE_TO_SYNC=NO` / `SYNC=BLOCKED`. No pull / push / merge / reset / stash-of-other-agent / `git clean`.
+
+
+
+### 2. 1,012-FILE CHANGE PROTECTION
+
+**Named contract:** `DirtyTreeChangeInventoryV100`
+
+Treat the current large change set as potentially
+containing concurrent valid work.
+
+Create a read-only change inventory:
+
+SOURCE FILES
+TEST FILES
+DOCS
+CONFIG
+LOCKFILES
+MIGRATIONS
+GENERATED FILES
+UNKNOWN.
+
+Identify:
+
+which story owns each change
+which environment created it
+whether files overlap
+whether changes are generated
+whether dependency files changed.
+
+1012 FILES CHANGED != 1012 VALID FILES.
+
+1012 FILES CHANGED != CORRUPTION.
+
+Do not infer either.
+
+
+**Inventory classes:** SOURCE FILES · TEST FILES · DOCS · CONFIG · LOCKFILES · MIGRATIONS · GENERATED FILES · UNKNOWN.
+
+
+**Honesty:** `1012 FILES CHANGED != 1012 VALID FILES`. `1012 FILES CHANGED != CORRUPTION`. Do not infer either.
+
+
+
+### 3. DEVELOPMENT ENVIRONMENT REGISTRY
+
+**Named contract:** `DevelopmentEnvironmentRegistryV200`
+
+Create architecture:
+
+DevelopmentEnvironmentRegistryV200.
+
+Possible workers:
+
+CURSOR
+GITHUB_COPILOT
+LOCAL_TERMINAL
+CLOUD_AGENT
+OFFLINE_AGENT
+CI_VALIDATOR
+SECURITY_VALIDATOR.
+
+Each receives:
+
+environment_id
+agent_id
+story
+slice
+branch
+base_commit
+file_scope
+authority
+lease
+validation_state.
+
+
+
+### 4. COPILOT ADAPTER
+
+**Named contract:** `CopilotEngineeringAdapterV100`
+
+Create:
+
+CopilotEngineeringAdapterV100.
+
+Copilot may assist with:
+
+code candidates
+tests
+debugging
+refactoring candidates
+documentation
+API implementation candidates
+mobile implementation
+database code candidates
+performance analysis.
+
+COPILOT != AUTHORITY.
+
+
+
+### 5. CURSOR ADAPTER
+
+**Named contract:** `CursorEngineeringAdapterV200`
+
+Create:
+
+CursorEngineeringAdapterV200.
+
+Cursor may:
+
+implement assigned slices
+research code
+debug
+test
+document
+prepare commits.
+
+CURSOR != AUTHORITY.
+
+
+
+### 6. COPILOT + CURSOR COLLABORATION
+
+**Named contract:** `MultiAIEngineeringCoordinatorV100`
+
+Create:
+
+MultiAIEngineeringCoordinatorV100.
+
+Pattern:
+
+PRODUCT OWNER
+→ ENGINEERING PLAN
+→ FILE OWNERSHIP
+→ BUILDER
+→ TESTER
+→ REVIEWER
+→ SECURITY
+→ VALIDATION
+→ COMMIT CANDIDATE.
+
+Example:
+
+Cursor = builder
+Copilot = reviewer/test generator
+
+or:
+
+Copilot = implementation candidate
+Cursor = independent validation.
+
+Do not require a fixed provider.
+
+
+**Coordination rule:** Copilot and Cursor are independent engineering capabilities under MultiAIEngineeringCoordinatorV100 — **not** authority planes. Builder path must not auto-approve reviewer path.
+
+
+
+### 7. BUILDER != REVIEWER
+
+**Named contract:** `BuilderNeReviewerInvariantV100`
+
+Where practical, use different AI workers for
+independent validation.
+
+
+
+### 8. SAME-FILE COLLISION PROTECTION
+
+**Named contract:** `AIFileLeaseManagerV100`
+
+Create:
+
+AIFileLeaseManagerV100.
+
+Before modification:
+
+STORY
+→ SLICE
+→ FILE
+→ DEPENDENCY
+→ ACTIVE LEASE CHECK
+→ WRITE LEASE.
+
+Never allow Cursor and Copilot to blindly modify
+the same protected file simultaneously.
+
+
+**Same-file collision protection:** AIFileLeaseManagerV100 leases file_scope per environment/agent/story/slice; parallel same-file edits without lease are blocked.
+
+
+
+### 9. SCHEMA / MIGRATION LOCK
+
+**Named contract:** `DatabaseMigrationLeaseV100`
+
+Create:
+
+DatabaseMigrationLeaseV100.
+
+Only one migration owner at a time for a
+dependent schema chain.
+
+
+
+### 10. PACKAGE LOCK PROTECTION
+
+**Named contract:** `PackageLockProtectionV100`
+
+Coordinate modifications to:
+
+package.json
+package-lock.json
+workspace manifests
+mobile dependencies
+AI service dependencies.
+
+
+
+### 11. SOFTWARE ENGINEERING SUPER BRAIN
+
+**Named contract:** `SoftwareEngineeringSuperBrainV100`
+
+Create:
+
+SoftwareEngineeringSuperBrainV100.
+
+Sub-brains:
+
+ArchitectureBrain
+FrontendBrain
+MobileBrain
+BackendBrain
+APIBrain
+DatabaseBrain
+CloudBrain
+SecurityBrain
+AIEngineeringBrain
+AgentEngineeringBrain
+ModelBrain
+GPUComputeBrain
+TestingBrain
+ReliabilityBrain
+PerformanceBrain
+DeveloperExperienceBrain.
+
+
+
+### 12. SOFTWARE FACTORY AGENT SOCIETY
+
+**Named contract:** `SoftwareFactoryAgentSocietyV100`
+
+Create bounded roles:
+
+AIProductOwnerAgent
+ArchitectureAgent
+ReactAgent
+ReactNativeAgent
+ExpoAgent
+TypeScriptAgent
+NodeAgent
+APIEngineerAgent
+DatabaseEngineerAgent
+SupabaseAgent
+PostgresAgent
+CloudEngineerAgent
+AWSResearchAgent
+GoogleCloudResearchAgent
+SecurityEngineerAgent
+QAAgent
+UATAgent
+PerformanceAgent
+AccessibilityAgent
+DependencyAgent
+DocumentationAgent
+ReleaseAgent
+RollbackAgent
+CodeReviewAgent
+CopilotReviewAgent
+CursorReviewAgent.
+
+
+
+### 13. AGENT SPECIALIZATION != PERMISSION
+
+**Named contract:** `AgentSpecializationNePermissionInvariantV100`
+
+Permanent.
+
+
+
+### 14. REQUIREMENT-TO-CODE PIPELINE
+
+**Named contract:** `RequirementToCodePipelineV200`
+
+Create:
+
+RequirementToCodePipelineV200.
+
+USER NEED
+→ PRODUCT REQUIREMENT
+→ USER STORY
+→ ACCEPTANCE CRITERIA
+→ ARCHITECTURE
+→ DATA CONTRACT
+→ SECURITY
+→ IMPLEMENTATION PLAN
+→ FILE LEASE
+→ CODE
+→ TEST
+→ REVIEW
+→ VALIDATION
+→ RELEASE CANDIDATE
+→ OUTCOME.
+
+
+
+### 15. AI PRODUCT OWNER
+
+**Named contract:** `AIProductOwnerV200`
+
+Expand:
+
+AIProductOwnerV200.
+
+Responsibilities:
+
+decompose stories
+detect dependencies
+define acceptance criteria
+prevent duplicate work
+rank technical debt
+connect business value to engineering.
+
+It cannot self-approve production.
+
+
+
+### 16. CODE RELATIONSHIP GRAPH
+
+**Named contract:** `CodeRelationshipGraphV200`
+
+Create:
+
+CodeRelationshipGraphV200.
+
+Map:
+
+FILE
+→ MODULE
+→ API
+→ DATABASE
+→ AGENT
+→ TOOL
+→ WORKFLOW
+→ TEST
+→ FEATURE
+→ STORY.
+
+
+
+### 17. CHANGE IMPACT BRAIN
+
+**Named contract:** `ChangeImpactBrainV100`
+
+Create:
+
+ChangeImpactBrainV100.
+
+Before code modification determine:
+
+what depends on this?
+what could break?
+what tests cover it?
+what schemas change?
+what clients consume it?
+
+
+
+### 18. AI CODE REVIEW COUNCIL
+
+**Named contract:** `AICodeReviewCouncilV200`
+
+Create:
+
+AICodeReviewCouncilV200.
+
+Potential reviewers:
+
+Cursor
+Copilot
+SecurityAgent
+DatabaseAgent
+QAAgent
+ArchitectureAgent.
+
+MULTIPLE AI APPROVALS != VERIFIED CODE.
+
+
+
+### 19. CONTRADICTION REVIEW
+
+**Named contract:** `ContradictionReviewV100`
+
+When reviewers disagree:
+
+preserve:
+
+review
+evidence
+test
+risk
+counterargument.
+
+Do not majority-vote software correctness.
+
+
+
+### 20. AUTONOMOUS DEBUG LAB
+
+**Named contract:** `AutonomousDebugLabV200`
+
+Create:
+
+AutonomousDebugLabV200.
+
+ERROR
+→ REPRODUCTION
+→ LOGS
+→ TRACE
+→ ROOT CAUSE CANDIDATES
+→ TEST
+→ FIX CANDIDATE
+→ REGRESSION
+→ SECURITY
+→ REVIEW.
+
+
+
+### 21. BACKGROUND DEBUG AGENTS
+
+**Named contract:** `BackgroundDebugAgentsV100`
+
+Use bounded offline/background agents for:
+
+type errors
+lint failures
+broken tests
+dependency conflicts
+dead code
+performance regressions
+API contract mismatches
+database query regressions.
+
+
+
+### 22. DEBUG AGENT != PRODUCTION WRITE
+
+**Named contract:** `DebugAgentNeProductionWriteInvariantV100`
+
+Permanent.
+
+
+
+### 23. TEST GENERATION SOCIETY
+
+**Named contract:** `TestGenerationSocietyV100`
+
+Create:
+
+TestGenerationSocietyV100.
+
+Specialists:
+
+UnitTestAgent
+IntegrationTestAgent
+APITestAgent
+MobileTestAgent
+DatabaseTestAgent
+RLSTestAgent
+TenantIsolationAgent
+SecurityTestAgent
+RegressionTestAgent
+PerformanceTestAgent.
+
+
+
+### 24. TEST GENERATED != TEST PASSED
+
+**Named contract:** `TestGeneratedNeTestPassedInvariantV100`
+
+Permanent.
+
+
+
+### 25. FAILURE MEMORY
+
+**Named contract:** `EngineeringFailureMemoryV100`
+
+Store validated engineering failures:
+
+error
+component
+environment
+commit
+root cause
+repair
+test
+outcome
+lesson.
+
+
+
+### 26. ENGINEERING LESSON BRAIN
+
+**Named contract:** `EngineeringLessonBrainV100`
+
+Create:
+
+EngineeringLessonBrainV100.
+
+Use previous validated failures to reduce repeated
+engineering mistakes.
+
+
+
+### 27. CODE MEMORY
+
+**Named contract:** `CodeMemoryV200`
+
+Create:
+
+CodeMemoryV200.
+
+Remember:
+
+architectural decisions
+patterns
+interfaces
+schemas
+tests
+past failures
+performance findings
+security findings.
+
+
+
+### 28. MEMORY != CURRENT CODE
+
+**Named contract:** `MemoryNeCurrentCodeInvariantV100`
+
+Repository tip remains authoritative for current
+code state.
+
+
+
+### 29. SELF-BUILDING TOOL FOUNDRY
+
+**Named contract:** `DeveloperToolFoundryV200`
+
+Create:
+
+DeveloperToolFoundryV200.
+
+Need
+→ specification
+→ tool candidate
+→ sandbox
+→ tests
+→ security
+→ evaluation
+→ approval
+→ registry.
+
+
+
+### 30. PLUGIN FACTORY
+
+**Named contract:** `PluginFactoryV200`
+
+Create:
+
+PluginFactoryV200.
+
+Plugins must preserve:
+
+tenant
+Universe
+purpose
+rights
+authority
+audit.
+
+
+
+### 31. CONNECTOR FACTORY
+
+**Named contract:** `ConnectorFactoryV200`
+
+Integrate LA-61M:
+
+ConnectorGenerator
+ConnectorTestLab
+ConnectorPassport
+ConnectorRegistry.
+
+
+**61M adjacency:** ConnectorFactoryV200 composes with LA-61M UniversalConnectorRegistry / ConnectorPassport planes — listing ≠ live connector; generated connector ≠ trusted.
+
+
+
+### 32. GENERATED TOOL != TRUSTED TOOL
+
+**Named contract:** `GeneratedToolNeTrustedToolInvariantV100`
+
+Permanent.
+
+
+
+### 33. XIV DEVELOPER SDK
+
+**Named contract:** `XIVDeveloperSDKV100`
+
+Create:
+
+XIVDeveloperSDKV100.
+
+SDK domains:
+
+identity
+Universe
+brain
+agent
+tool
+workflow
+data
+event
+connector
+control tower
+audit.
+
+
+
+### 34. SDK TOKEN != UNIVERSAL AUTHORITY
+
+**Named contract:** `SdkTokenNeUniversalAuthorityInvariantV100`
+
+Permanent.
+
+
+
+### 35. DEVELOPER SANDBOX
+
+**Named contract:** `DeveloperSandboxV100`
+
+Create:
+
+DeveloperSandboxV100.
+
+Isolated:
+
+tenant
+Universe
+data
+agents
+tools
+models
+compute.
+
+
+
+### 36. SANDBOX != PRODUCTION
+
+**Named contract:** `SandboxNeProductionInvariantV100`
+
+Permanent.
+
+
+
+### 37. MOBILE ENGINEERING SOCIETY
+
+**Named contract:** `MobileEngineeringSocietyV100`
+
+Optimize:
+
+React Native
+Expo
+Expo Router
+TypeScript
+Android
+iOS
+offline
+device capabilities
+performance
+battery
+network.
+
+
+
+### 38. WEB ENGINEERING SOCIETY
+
+**Named contract:** `WebEngineeringSocietyV100`
+
+Optimize:
+
+Next.js
+React
+TypeScript
+responsive UI
+accessibility
+performance.
+
+
+
+### 39. BACKEND ENGINEERING SOCIETY
+
+**Named contract:** `BackendEngineeringSocietyV100`
+
+Optimize:
+
+Node
+TypeScript
+APIs
+events
+agents
+security
+observability.
+
+
+
+### 40. DATABASE ENGINEERING SOCIETY
+
+**Named contract:** `DatabaseEngineeringSocietyV100`
+
+Optimize:
+
+Supabase
+Postgres
+RLS
+tenant isolation
+indexes
+queries
+migrations
+backup/restore.
+
+
+
+### 41. AI ENGINEERING SOCIETY
+
+**Named contract:** `AIEngineeringSocietyV100`
+
+Build:
+
+model router
+agent runtime
+RAG
+knowledge retrieval
+evaluation
+tool routing
+memory
+outcome learning.
+
+
+
+### 42. GPU / ACCELERATOR ENGINEERING
+
+**Named contract:** `ComputeEngineeringSocietyV100`
+
+Create:
+
+ComputeEngineeringSocietyV100.
+
+Research/test authorized capability adapters for:
+
+NVIDIA
+AMD
+Intel
+Apple
+Qualcomm
+other supported accelerators.
+
+Do not copy proprietary vendor algorithms.
+
+
+
+### 43. HARDWARE BRAND != OPTIMIZATION
+
+**Named contract:** `HardwareBrandNeOptimizationInvariantV100`
+
+Benchmark before claiming optimization.
+
+
+
+### 44. MODEL COMPILATION / OPTIMIZATION LAB
+
+**Named contract:** `ModelOptimizationLabV100`
+
+Create:
+
+ModelOptimizationLabV100.
+
+Research:
+
+quantization
+distillation
+batching
+caching
+routing
+smaller specialist models
+hardware-aware execution.
+
+
+
+### 45. COST-AWARE SOFTWARE FACTORY
+
+**Named contract:** `EngineeringCostRouterV100`
+
+Create:
+
+EngineeringCostRouterV100.
+
+Prefer:
+
+static tools before model call
+small model before large model where sufficient
+cached analysis where fresh
+local computation where safe/effective.
+
+
+
+### 46. SAVING COST != SKIPPING VALIDATION
+
+**Named contract:** `SavingCostNeSkippingValidationInvariantV100`
+
+Permanent.
+
+
+
+### 47. OFFLINE ENGINEERING AGENTS
+
+**Named contract:** `OfflineEngineeringAgentsV100`
+
+Support local bounded:
+
+code indexing
+static analysis
+test discovery
+documentation analysis
+architecture graph updates
+failure analysis.
+
+
+
+### 48. OFFLINE AGENT != CLOUD AGENT
+
+**Named contract:** `OfflineAgentNeCloudAgentInvariantV100`
+
+Capabilities differ.
+
+
+
+### 49. CLOUD ENGINEERING WORKERS
+
+**Named contract:** `CloudEngineeringWorkersV100`
+
+Use only verified cloud execution.
+
+CLOUD_WORKER_VERIFIED remains FALSE until actual
+authenticated deployment evidence exists.
+
+
+
+### 50. CLOUD SIMULATION != CLOUD DEPLOYMENT
+
+**Named contract:** `CloudSimulationNeCloudDeploymentInvariantV100`
+
+Permanent.
+
+
+
+### 51. DEVELOPMENT ENERGY GOVERNOR
+
+**Named contract:** `EngineeringResourceGovernorV100`
+
+Create:
+
+EngineeringResourceGovernorV100.
+
+Bound:
+
+CPU
+GPU
+RAM
+storage
+network
+model calls
+agent count
+cost
+time.
+
+
+
+### 52. RUNAWAY AGENT DEFENSE
+
+**Named contract:** `RunawayAgentDefenseV100`
+
+Detect:
+
+recursive task creation
+duplicate agents
+duplicate builds
+infinite retries
+test storms
+model-call storms.
+
+
+
+### 53. AGENT COOL-DOWN
+
+**Named contract:** `AgentCoolDownV100`
+
+Throttle or stop wasteful workers.
+
+
+
+### 54. XXL ENGINEERING COMMAND CENTER
+
+**Named contract:** `XXLEngineeringCommandCenterV100`
+
+Create:
+
+XXLEngineeringCommandCenterV100.
+
+Display:
+
+REPOSITORIES
+ENVIRONMENTS
+BRANCHES
+COMMITS
+STORIES
+SLICES
+AGENTS
+COPILOT
+CURSOR
+LOCKS
+BUILDS
+TESTS
+SECURITY
 DATABASE
+MOBILE
+WEB
+API
+CLOUD
+GPU
+COST
+FAILURES
+ROLLBACKS.
+
+
+
+### 55. MOBILE ENGINEERING COMMAND
+
+**Named contract:** `MobileEngineeringCommandV100`
+
+Phone surface:
+
+build status
+test status
+agent status
+blockers
+approvals
+release candidates.
+
+Do not expose secrets.
+
+
+
+### 56. DEVELOPMENT STORY LEDGER
+
+**Named contract:** `EngineeringStoryLedgerV100`
+
+Create:
+
+EngineeringStoryLedgerV100.
+
+Record:
+
+story
+status
+predecessors
+implementation evidence
+commits
+tests
+environments.
+
+
+
+### 57. DOCS-ONLY != IMPLEMENTED
+
+**Named contract:** `DocsOnlyNeImplementedInvariantV100`
+
+Permanent.
+
+
+
+### 58. CURRENT AU→CP QUEUE
+
+**Named contract:** `CurrentAuToCpQueueRespectV100`
+
+Respect existing active queue.
+
+If AU→CP is documentation-only:
+
+record it as documentation-only.
+
+Do not automatically execute those phases.
+
+
+**AU→CP respect:** QueueReconciliationAgentV100 and story ledger must respect in-flight AU→CP documentation landing; do not invent tip CLEAN while CP landing is active.
+
+
+
+### 59. QUEUE RECONCILIATION AGENT
+
+**Named contract:** `QueueReconciliationAgentV100`
+
+Create:
+
+QueueReconciliationAgentV100.
+
+Compare:
+
+documentation queue
+LA queue
+implemented code
+branch history
+dependency graph.
+
+Identify:
+
+duplicates
+missing predecessors
+numbering conflicts
+implemented vs planned.
+
+
+
+### 60. QUEUE NAME != REPO STATE
+
+**Named contract:** `QueueNameNeRepoStateInvariantV100`
+
+Permanent.
+
+
+
+### 61. SAFE PUSH/PULL CONTROLLER
+
+**Named contract:** `SafeGitSyncControllerV100`
+
+Create:
+
+SafeGitSyncControllerV100.
+
+Never run pull/push merely because requested
+without inspecting repository state first.
+
+Decision:
+
+CLEAN + SYNCHRONIZED
+→ safe candidate.
+
+DIRTY + ACTIVE AGENTS
+→ BLOCK.
+
+DIVERGED
+→ analyze.
+
+CONFLICT
+→ BLOCK + report.
+
+
+**SafeGitSyncControllerV100:** Encodes DIRTY+ACTIVE AGENTS → SYNC=BLOCKED; refuses blind pull/push/merge/reset/stash/clean; never force as default recovery (§62).
+
+
+
+### 62. NEVER USE FORCE AS DEFAULT RECOVERY
+
+**Named contract:** `NeverForceAsDefaultRecoveryInvariantV100`
+
+Permanent.
+
+
+
+### 63. MULTI-ENVIRONMENT LANDING
+
+**Named contract:** `MultiEnvironmentLandingV100`
+
+For valid parallel work:
+
+environment branch
+→ validate
+→ candidate commit
+→ compare against xiv-v2
+→ revalidate
+→ controlled landing.
+
+
+
+### 64. EXACT COMMIT VALIDATION
+
+**Named contract:** `ExactCommitValidationV100`
+
+Independent validation must identify exact commit.
+
+
+
+### 65. BUILD EVIDENCE
+
+**Named contract:** `BuildEvidenceV100`
+
+Store:
+
+command
+commit
+environment
+result
+timestamp
+test summary.
+
+
+
+### 66. "PASS" WITHOUT EVIDENCE
+
+**Named contract:** `PassWithoutEvidenceNePassInvariantV100`
+
+Do not promote.
+
+
+
+### 67. SECURITY ENGINEERING SOCIETY
+
+**Named contract:** `SecurityEngineeringSocietyV200`
+
+Create:
+
+SecurityEngineeringSocietyV200.
+
+Agents:
+
+SecretScanAgent
+DependencySecurityAgent
+PromptInjectionAgent
+ToolOutputDefenseAgent
+RLSAgent
+TenantIsolationAgent
+AuthAgent
+ConnectorSecurityAgent
+ModelSecurityAgent
+AgentSecurityAgent.
+
+
+
+### 68. DEFENSIVE SECURITY ONLY
+
+**Named contract:** `DefensiveSecurityOnlyInvariantV100`
+
+Active security testing only against:
+
+XIV-owned systems
+purpose-built labs
+explicitly authorized systems.
+
+
+
+### 69. CODE PROVENANCE
+
+**Named contract:** `CodeProvenanceV100`
+
+Track:
+
+human
+Cursor
+Copilot
+agent
+generated tool
+
+as applicable.
+
+
+
+### 70. AI-GENERATED CODE != AI-OWNED IP
+
+**Named contract:** `AiGeneratedCodeNeAiOwnedIpInvariantV100`
+
+Record provenance without inventing ownership
+claims.
+
+
+
+### 71. LICENSE INTELLIGENCE
+
+**Named contract:** `DependencyLicenseAgentV100`
+
+Create:
+
+DependencyLicenseAgentV100.
+
+Flag dependency/license risks.
+
+
+
+### 72. LICENSE CHECK != LEGAL OPINION
+
+**Named contract:** `LicenseCheckNeLegalOpinionInvariantV100`
+
+Permanent.
+
+
+
+### 73. SOFTWARE SUPPLY CHAIN GRAPH
+
+**Named contract:** `SoftwareSupplyChainGraphV100`
+
+Create:
+
+SoftwareSupplyChainGraphV100.
+
+SOURCE
+→ PACKAGE
+→ BUILD
+→ ARTIFACT
+→ SIGNATURE
+→ DEPLOYMENT
+→ RUNTIME.
+
+
+
+### 74. PACKAGE != TRUSTED
+
+**Named contract:** `PackageNeTrustedInvariantV100`
+
+Permanent.
+
+
+
+### 75. ARTIFACT INTEGRITY
+
+**Named contract:** `ArtifactIntegrityGateV100`
+
+Create:
+
+ArtifactIntegrityGateV100.
+
+Verify actual signatures/hashes where available.
+
+Never claim signed without evidence.
+
+
+
+### 76. RELEASE FACTORY
+
+**Named contract:** `ReleaseFactoryV100`
+
+Create:
+
+ReleaseFactoryV100.
+
+DEV
+→ TEST
+→ STAGING
+→ CANARY
+→ PRODUCTION_CANDIDATE
+→ PRODUCTION.
+
+
+
+### 77. PRODUCTION_CANDIDATE != PRODUCTION
+
+**Named contract:** `ProductionCandidateNeProductionInvariantV100`
+
+Permanent.
+
+
+
+### 78. ROLLBACK BRAIN
+
+**Named contract:** `RollbackBrainV100`
+
+Create:
+
+RollbackBrainV100.
+
+Before deployment determine:
+
+previous artifact
+schema compatibility
+data migration implications
+rollback procedure.
+
+
+
+### 79. ROLLBACK PLAN != TESTED ROLLBACK
+
+**Named contract:** `RollbackPlanNeTestedRollbackInvariantV100`
+
+Permanent.
+
+
+
+### 80. SOFTWARE FACTORY OUTCOME LEARNING
+
+**Named contract:** `SoftwareFactoryOutcomeLearningV100`
+
+Measure:
+
+defect rate
+build success
+test quality
+deployment failure
+rollback rate
+latency
+cost
+developer time.
+
+
+
+### 81. FAST CODE != GOOD CODE
+
+**Named contract:** `FastCodeNeGoodCodeInvariantV100`
+
+Permanent.
+
+
+
+### 82. DATABASE FOUNDATION
+
+**Named contract:** `DatabaseFoundationV740`
+
+Evaluate/create:
+
+development_environment_registry
+development_environment_leases
+ai_file_leases
+database_migration_leases
+dependency_file_leases
+
+engineering_agents
+engineering_agent_capabilities
+engineering_agent_evaluations
+
+requirement_code_links
+code_relationship_nodes
+code_relationship_edges
+change_impact_reports
+
+ai_code_reviews
+review_contradictions
+
+debug_missions
+debug_root_causes
+debug_fix_candidates
+
+generated_tests
+test_validation_runs
+
+engineering_failures
+engineering_lessons
+code_memory_records
+
+developer_tool_candidates
+plugin_candidates
+connector_candidates
+
+developer_sdk_clients
+developer_sandboxes
+
+compute_engineering_benchmarks
+model_optimization_experiments
+engineering_cost_routes
+engineering_resource_metrics
+
+engineering_story_ledger
+queue_reconciliation_reports
+
+git_sync_checks
+environment_landings
+exact_commit_validations
+build_evidence
+
+security_engineering_findings
+code_provenance
+dependency_license_findings
+
+software_supply_chain_nodes
+software_supply_chain_edges
+artifact_integrity_checks
+
+release_candidates
+release_events
+rollback_plans
+rollback_tests
+
+software_factory_outcomes
+
+engineering_audit_events.
+
+Require:
 
 RLS
-TENANT ISOLATION
-UNIVERSE ISOLATION
+tenant
+Universe
+purpose
+classification
+rights
+authority
+story
+slice
+environment
+branch
+commit
+provenance
+time
+audit.
 
-AGENT AUTHORITY
-OFFLINE AUTHORITY
-CONTROL TOWER RIGHTS
-ENGINEERING RIGHTS
-PROVIDER MESH RIGHTS
 
-DEVELOPMENT LOCK TESTS
-DUAL-ENVIRONMENT CONFLICT TESTS
-SAME-FILE CURSOR+COPILOT BLOCK TESTS
-HANDOFF TESTS
-EXACT-COMMIT VALIDATION
-COST ROUTER NON-FANOUT TESTS
-BUILDER_NE_REVIEWER TESTS
 
-PROMPT INJECTION
-TOOL OUTPUT INJECTION
-SECRET SCAN
-DEPENDENCY SCAN
-git diff --check.
+### 83. IMPLEMENTATION SLICES
 
-Commit independently valid slices only.
+**Named contract:** `ImplementationSlicesV740`
 
-Push GitHub after gates pass.
+1  Repository Safety Gate
+2  DevelopmentEnvironmentRegistry
+3  CopilotEngineeringAdapter
+4  CursorEngineeringAdapter
+5  MultiAIEngineeringCoordinator
+6  AIFileLeaseManager
+7  DatabaseMigrationLease
+8  SoftwareEngineeringSuperBrain
+9  Engineering Agent Society
+10 RequirementToCodePipeline
+11 AIProductOwner V200
+12 CodeRelationshipGraph
+13 ChangeImpactBrain
+14 AICodeReviewCouncil
+15 AutonomousDebugLab
+16 TestGenerationSociety
+17 Failure / Lesson Memory
+18 DeveloperToolFoundry
+19 PluginFactory
+20 ConnectorFactory integration
+21 XIVDeveloperSDK
+22 DeveloperSandbox
+23 Mobile Engineering Society
+24 Web Engineering Society
+25 Backend Engineering Society
+26 Database Engineering Society
+27 AI Engineering Society
+28 Compute Engineering Society
+29 ModelOptimizationLab
+30 EngineeringCostRouter
+31 Offline Engineering Agents
+32 Cloud Engineering Workers
+33 EngineeringResourceGovernor
+34 XXL Engineering Command Center
+35 Mobile Engineering Command
+36 EngineeringStoryLedger
+37 QueueReconciliationAgent
+38 SafeGitSyncController
+39 MultiEnvironmentLanding
+40 BuildEvidence
+41 SecurityEngineeringSociety
+42 CodeProvenance
+43 DependencyLicenseAgent
+44 SoftwareSupplyChainGraph
+45 ArtifactIntegrityGate
+46 ReleaseFactory
+47 RollbackBrain
+48 SoftwareFactoryOutcomeLearning.
 
-Push GitLab only after independent verification.
 
-FINAL REQUIREMENT:
+
+### 84. FEATURE FLAGS
+
+**Named contract:** `FeatureFlagsV740`
+
+DEVELOPMENT_ENVIRONMENT_REGISTRY_V200_ENABLED
+COPILOT_ENGINEERING_ADAPTER_ENABLED
+CURSOR_ENGINEERING_ADAPTER_ENABLED
+MULTI_AI_ENGINEERING_COORDINATOR_ENABLED
+
+AI_FILE_LEASE_MANAGER_ENABLED
+DATABASE_MIGRATION_LEASE_ENABLED
+
+SOFTWARE_ENGINEERING_SUPER_BRAIN_ENABLED
+ENGINEERING_AGENT_SOCIETY_ENABLED
+REQUIREMENT_TO_CODE_PIPELINE_V200_ENABLED
+AI_PRODUCT_OWNER_V200_ENABLED
+
+CODE_RELATIONSHIP_GRAPH_V200_ENABLED
+CHANGE_IMPACT_BRAIN_ENABLED
+AI_CODE_REVIEW_COUNCIL_V200_ENABLED
+
+AUTONOMOUS_DEBUG_LAB_V200_ENABLED
+TEST_GENERATION_SOCIETY_ENABLED
+ENGINEERING_LESSON_BRAIN_ENABLED
+
+DEVELOPER_TOOL_FOUNDRY_V200_ENABLED
+PLUGIN_FACTORY_V200_ENABLED
+XIV_DEVELOPER_SDK_ENABLED
+DEVELOPER_SANDBOX_ENABLED
+
+COMPUTE_ENGINEERING_SOCIETY_ENABLED
+MODEL_OPTIMIZATION_LAB_ENABLED
+ENGINEERING_COST_ROUTER_ENABLED
+ENGINEERING_RESOURCE_GOVERNOR_ENABLED
+
+XXL_ENGINEERING_COMMAND_CENTER_ENABLED
+ENGINEERING_STORY_LEDGER_ENABLED
+QUEUE_RECONCILIATION_AGENT_ENABLED
+SAFE_GIT_SYNC_CONTROLLER_ENABLED
+
+SECURITY_ENGINEERING_SOCIETY_V200_ENABLED
+CODE_PROVENANCE_ENABLED
+DEPENDENCY_LICENSE_AGENT_ENABLED
+
+SOFTWARE_SUPPLY_CHAIN_GRAPH_ENABLED
+ARTIFACT_INTEGRITY_GATE_ENABLED
+RELEASE_FACTORY_ENABLED
+ROLLBACK_BRAIN_ENABLED
+
+AUTO_GIT_PULL = FALSE
+AUTO_GIT_PUSH = FALSE
+AUTO_FORCE_PUSH = FALSE
+AUTO_MAIN_PUSH = FALSE
+AUTO_BRANCH_MERGE = FALSE
+AUTO_CONFLICT_RESOLUTION = FALSE
+AUTO_PRODUCTION_DEPLOY = FALSE
+AUTO_SCHEMA_PRODUCTION_CHANGE = FALSE
+AUTO_DATABASE_ADMIN = FALSE
+AUTO_CLOUD_ROOT = FALSE
+AUTO_SECURITY_EXPLOITATION = FALSE
+AUTO_AUTHORITY_EXPANSION = FALSE
+AUTO_GUARDIAN_OVERRIDE = FALSE
+
+L4_AUTONOMY_ENABLED = FALSE.
+
+
+
+### 85. CURRENT SAFE SYNC PROCEDURE
+
+**Named contract:** `CurrentSafeSyncProcedureV100`
+
+Because current UI reports 1,012 changed files:
+
+DO NOT PULL/PUSH FIRST.
+
+FIRST:
+
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git diff --stat
+git diff --check
+
+git fetch origin
+git fetch gitlab
+
+git rev-parse origin/xiv-v2
+
+If available:
+
+git rev-parse gitlab/xiv-v2
+
+Then report:
 
 LOCAL
-==
 GITHUB
-==
 GITLAB
+TREE
+ACTIVE AGENTS
+CHANGED FILE COUNT.
 
-and
+If tree is dirty and agents are running:
 
-TREE CLEAN
+SYNC = BLOCKED_ACTIVE_WORK.
 
-or explicitly report:
+Wait for the current agent slice to finish.
 
-GITLAB = BLOCKED.
+Then inventory/validate.
 
-NEVER INFER PASS.
+Do not destroy the work.
 
-### 106. PERMANENT INVARIANTS
 
-ENGINEERING SUPER BRAIN != PRODUCTION ROOT.
+**Current authorship posture:** Because UI may report ~1,012 changed files + active queue/setup agents: **DO NOT PULL/PUSH FIRST**. Report LOCAL/GITHUB/GITLAB/TREE/ACTIVE AGENTS/CHANGED FILE COUNT. If dirty + agents running: `SYNC = BLOCKED_ACTIVE_WORK`. Wait; inventory/validate; do not destroy work. **This 61N upgrade parks on the park branch only — tip-landed=NO; no tip sync attempted.**
 
-COPILOT != ROOT ENGINEER.
 
-COPILOT APPROVAL != MERGE APPROVAL.
 
-CURSOR + CHATGPT + COPILOT + LOCAL XIV = MESH WORKERS (NOT COMPETING REWRITERS).
+### 86. PERMANENT INVARIANTS
 
-ONE TASK != THREE EXPENSIVE MODEL CALLS.
+**Named contract:** `PermanentInvariantsV740`
 
-SAME-FILE CURSOR+COPILOT BLOCKED BY DEFAULT.
+COPILOT != AUTHORITY.
 
-BUILDER != REVIEWER.
+CURSOR != AUTHORITY.
 
-AI CODE != VERIFIED CODE.
+BUILDER != VERIFIED.
 
-GENERATED CODE != VALIDATED CODE.
+MULTIPLE AI APPROVALS != VERIFIED CODE.
 
-GENERATED != MERGED != DEPLOYED.
+AGENT SPECIALIZATION != PERMISSION.
 
-PROVIDER PRODUCT EXISTS != INTEGRATION ACTIVE.
+DEBUG AGENT != PRODUCTION WRITE.
 
-PROVIDER PRESENCE != UNRESTRICTED REPO AUTHORITY.
+TEST GENERATED != TEST PASSED.
 
-LOGICAL TRILLION AGENTS = NAMESPACE ONLY.
+MEMORY != CURRENT CODE.
 
-LOGICAL AGENT COUNT != LIVE AGENT COUNT.
+GENERATED TOOL != TRUSTED TOOL.
 
-DEFENSIVE SECURITY ONLY.
+SDK TOKEN != UNIVERSAL AUTHORITY.
 
-OFFENSIVE SECURITY != AUTHORIZED BY THIS STORY.
+SANDBOX != PRODUCTION.
 
-BUILDER PASS != VERIFIED.
+HARDWARE BRAND != OPTIMIZATION.
 
-EXACT-COMMIT VALIDATE REQUIRED FOR INDEPENDENT ENV.
+SAVING COST != SKIPPING VALIDATION.
 
-PARALLEL WORK != SAME-FILE EDITING.
+OFFLINE AGENT != CLOUD AGENT.
 
-ENVIRONMENT != AUTHORITY.
+CLOUD SIMULATION != CLOUD DEPLOYMENT.
 
-LEASE / LOCK REQUIRED FOR CODE SLICES.
+DOCS-ONLY != IMPLEMENTED.
 
-MERGE CANDIDATE != MERGE AUTHORITY.
+QUEUE NAME != REPO STATE.
 
-SOFTWARE FACTORY != UNCONTROLLED PRODUCTION MODIFICATION.
+REPOSITORY ACCESS != MERGE AUTHORITY.
 
-QUANTUM INTERFACE = RESEARCH / EXPERIMENTAL ONLY.
+EXACT COMMIT != VERIFIED UNTIL TESTED.
 
-GPU PIPELINE != UNBOUNDED COST AUTHORITY.
+PASS WITHOUT EVIDENCE != PASS.
 
-SDK / PORTAL / SANDBOX / CLI != ROOT CREDENTIALS.
-
-COMMAND CENTER != ROOT ENGINEER.
-
-REVIEW CONSENSUS != TRUTH.
-
-MULTI-AI APPROVAL != MERGE AUTHORITY.
-
-QA COUNCIL != PRODUCTION ACCESS.
-
-UAT SCRIPT != CUSTOMER CONSENT.
-
-SECURITY FINDING != COMPROMISE WITHOUT EVIDENCE.
-
-COST OPTIMIZATION != QUALITY SACRIFICE.
-
-MORE AGENTS != MORE AUTHORITY.
-
-MORE PROVIDERS != MORE AUTHORITY.
-
-MORE SOCIETIES != MORE AUTHORITY.
-
-MORE BRAINS != MORE AUTHORITY.
-
-MORE DATA != PERMISSION TO USE IT.
-
-PROVIDER EXISTS != CONNECTED.
-
-CONNECTED != TRUSTED.
-
-OFFLINE != AUTHORIZED.
-
-DEVICE CHANGE != AUTHORITY CHANGE.
-
-ARCHITECTURE QUEUE != IMPLEMENTATION.
-
-STORY NUMBER != IMPLEMENTATION EVIDENCE.
-
-CLAIMED PASS != EVIDENCE.
+PACKAGE != TRUSTED.
 
 PRODUCTION_CANDIDATE != PRODUCTION.
 
-LEARNING != AUTHORITY.
+ROLLBACK PLAN != TESTED ROLLBACK.
 
-FOUNDER ENGINEERING COMMAND != ARBITRARY CUSTOMER ACCESS.
+FAST CODE != GOOD CODE.
 
-HISTORY IS NOT SILENTLY REWRITTEN.
+MORE AI CODERS != MORE AUTHORITY.
+
+MORE CODE != MORE PRODUCT VALUE.
 
 L4 AUTONOMY REMAINS DISABLED.
 
-ALL LISTED AUTO_* REMAIN FALSE.
 
-NEVER INFER PASS.
 
-### 107. NEXT QUEUE
+### 87. NEXT QUEUE
+
+**Named contract:** `NextQueueV740`
 
 NEXT:
 
 2I-LA-61O
-Intelligence Economy +
-Agent / Tool / Algorithm / Model /
-Data Product Marketplace V741
+
+XIV INTELLIGENCE ECONOMY +
+AGENT / TOOL / ALGORITHM / MODEL /
+PLUGIN / CONNECTOR / WORKFLOW /
+DATA PRODUCT MARKETPLACE +
+DEVELOPER ECONOMY +
+ENTERPRISE PRIVATE MARKETPLACE +
+USAGE METERING + COMMERCIAL ENTITLEMENTS V741
 
 AFTER:
 
 2I-LA-61P
-XIV Mobile SaaS Distribution +
-Global App / Device / Enterprise
-Deployment Network V742
+Global Mobile / Desktop / Enterprise
+Distribution + Update Civilization V742
 
 2I-LA-61Q
-Founder Civilization Commercial Stewardship +
-Long-Horizon Revenue Integrity OS V743
+Commercial Operating Company V743
 
 2I-LA-61R
-Global Continuity Mesh +
-Cross-Cloud Failover +
-Sovereign Runtime Fabric V744
+Global Business Simulation +
+Decision Superintelligence V744
 
-2I-LA-61S
-**In-House Model Civilization** V745
 
-**Do not start LA-61O from this commit.** Do not invent full 61O–61S docs (title-only NEXT). Note: **61S title is now In-House Model Civilization** per this paste (supersedes prior Founder Civilization Control Plane title pointer for 61S in this park’s NEXT list).
 
 ---
 
-## Permanent rules (§106 complete)
+## Permanent rules (§86 complete)
 
-- ENGINEERING SUPER BRAIN != PRODUCTION ROOT.
-- COPILOT != ROOT ENGINEER; COPILOT APPROVAL != MERGE APPROVAL.
-- CURSOR + CHATGPT + COPILOT + LOCAL XIV = COOPERATING MESH WORKERS (NOT COMPETING REWRITERS).
-- ONE TASK != THREE EXPENSIVE MODEL CALLS; SAME-FILE CURSOR+COPILOT BLOCKED BY DEFAULT.
-- BUILDER != REVIEWER; AI CODE != VERIFIED CODE.
-- GENERATED != VALIDATED != MERGED != DEPLOYED.
-- PROVIDER PRODUCT EXISTS != INTEGRATION ACTIVE; PROVIDER PRESENCE != UNRESTRICTED REPO AUTHORITY.
-- LOGICAL TRILLION AGENTS = NAMESPACE ONLY.
-- DEFENSIVE SECURITY ONLY.
-- LEASE / LOCK REQUIRED; MERGE CANDIDATE != MERGE AUTHORITY.
-- SOFTWARE FACTORY != UNCONTROLLED PRODUCTION MODIFICATION.
-- ARCHITECTURE QUEUE != IMPLEMENTATION; CLAIMED PASS != EVIDENCE.
-- L4 AUTONOMY REMAINS DISABLED; ALL LISTED AUTO_* REMAIN FALSE.
-- NEVER INFER PASS.
-
----
+1. COPILOT ≠ AUTHORITY; CURSOR ≠ AUTHORITY.
+2. BUILDER ≠ REVIEWER ≠ VERIFIED; MULTIPLE AI APPROVALS ≠ VERIFIED CODE.
+3. AGENT SPECIALIZATION ≠ PERMISSION; DEBUG AGENT ≠ PRODUCTION WRITE.
+4. TEST GENERATED ≠ TEST PASSED; MEMORY ≠ CURRENT CODE; GENERATED TOOL ≠ TRUSTED TOOL.
+5. SDK TOKEN ≠ UNIVERSAL AUTHORITY; SANDBOX ≠ PRODUCTION.
+6. HARDWARE BRAND ≠ OPTIMIZATION; SAVING COST ≠ SKIPPING VALIDATION.
+7. OFFLINE AGENT ≠ CLOUD AGENT; CLOUD SIMULATION ≠ CLOUD DEPLOYMENT.
+8. DOCS-ONLY ≠ IMPLEMENTED; QUEUE NAME ≠ REPO STATE; REPOSITORY ACCESS ≠ MERGE AUTHORITY.
+9. EXACT COMMIT ≠ VERIFIED UNTIL TESTED; PASS WITHOUT EVIDENCE ≠ PASS.
+10. PACKAGE ≠ TRUSTED; PRODUCTION_CANDIDATE ≠ PRODUCTION; ROLLBACK PLAN ≠ TESTED ROLLBACK.
+11. FAST CODE ≠ GOOD CODE; MORE AI CODERS ≠ MORE AUTHORITY; MORE CODE ≠ MORE PRODUCT VALUE.
+12. 1012 FILES CHANGED ≠ 1012 VALID FILES; ≠ CORRUPTION.
+13. DIRTY + ACTIVE AGENTS → SYNC=BLOCKED; NEVER FORCE AS DEFAULT RECOVERY.
+14. SOFTWARE ENGINEERING SUPER BRAIN ≠ PRODUCTION ROOT.
+15. HISTORY is not silently rewritten; L4 DISABLED; all AUTO_* FALSE; NEVER INFER PASS; DEPLOYMENT_STATE=QUEUED.
 
 ## Docs-only gate
 
-LOCAL = GITHUB = GITLAB (or GITLAB=BLOCKED honestly); TREE = CLEAN on tip before tip-land; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**. Evidence **QUEUED / FALSE / UNKNOWN**. Never infer PASS. **HARD STOP — no LA-61N runtime.** Parking: `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`. Default **PARK ONLY** — tip-land only if tip CLEAN, **61M already tip-landed**, and no concurrent tip-land race (currently **unlikely** — tip still ~LA-60Z).
-
-**End of 2I-LA-61N V740 Copilot Engineering Mesh architecture contracts.** Status: **QUEUED ARCHITECTURE — NOT IMPLEMENTED.**
+LOCAL / GITHUB / GITLAB independently reported (or GITLAB=BLOCKED honestly); tip TREE may be DIRTY with active agents — **SYNC BLOCKED**; this park branch commit TREE = CLEAN for selective docs only; runtime **NOT** started; **DEPLOYMENT_STATE=QUEUED**; **tip-landed=NO**; **no tip sync attempted**. Evidence **QUEUED / FALSE / UNKNOWN**. Never invent PASS. **HARD STOP — no LA-61N runtime.** Parking: `cursor/queue-2i-la-61n-global-developer-infrastructure-civilization-4059`; dual-push park branch only; never force-push / never `main`.
