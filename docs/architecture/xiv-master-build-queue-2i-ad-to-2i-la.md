@@ -7,3 +7,8 @@
 Do not duplicate AD–LA / JV–KZ content here. Refine the canonical file in place. Prior AD→LA contracts (including LA-04…30, **LA-05** Knowledge Graph, **LA-06** Memory+Learning, **LA-07** Trust/Privacy/Legal/Commerce, and **LA-08** Curiosity/Contradiction full story summaries) are preserved inside the KZ document. **LA-07 remains Trust plane; LA-08 is Curiosity** (older curiosity-at-LA-07 notes superseded). **NEXT after LA-08 = LA-09 Temporal + Causal.** Do not treat this stub as a second canonical.
 
 **Sequencing note:** Architecture queue **2I-JV → 2I-KZ** follows **2I-JU** when present. If IX–JU is not yet landed, JV–KZ is appended after the latest documented architecture tip with an explicit dependency note that **JV follows JU**.
+
+Dedicated expansion:
+- LA-08 Curiosity full story: [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md)
+
+**DO NOT IMPLEMENT LA-08 until LA-07 PASS.** Curiosity is not LA-07.

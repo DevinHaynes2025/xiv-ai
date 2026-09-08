@@ -4875,6 +4875,9 @@ Every LA-07 deliverable inherits Guardian, Tenant Isolation, Universe Isolation,
 
 ## 2I-LA-08 — CURIOSITY + QUESTION + CONTRADICTION BRAIN V10 (24/7 Intelligence Challenge Network)
 
+**Full contracts (dedicated doc):** [`xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md`](./xiv-2i-la-08-curiosity-question-contradiction-brain-v10.md)
+
+
 **Status:** QUEUED (docs). Do **not** mark implemented until tested. Queue after LA-07. Do **not** interrupt active validated LA-01/02/03 work, LA-04…07 queues, or merge WIP. Do **not** implement LA-08 code until **LA-01 → LA-07** completion gates all **PASS**.
 
 **Architectural correction (supersedes prior title lists):** **2I-LA-07** remains the **Trust Control Plane** (or Trust / Trust Center plane as queued by the LA-07 docs commit). **2I-LA-08** is **Curiosity + Question + Contradiction Brain V10**. Any earlier list that placed Curiosity at LA-07 or Temporal/Causal at LA-08 is **superseded** by this correction. **NEXT after LA-08 = 2I-LA-09 Temporal + Causal Intelligence V10**.
