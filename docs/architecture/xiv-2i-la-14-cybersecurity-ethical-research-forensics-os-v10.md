@@ -11,7 +11,7 @@
 **Founder summary sibling:** [`../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md`](../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md)  
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)  
 **Compose with:** LA-05 Evidence/KG, LA-06 Memory/Learning, LA-07 Trust/Privacy/Legal/Commerce, LA-08 Curiosity, LA-09 Temporal+Causal, LA-10 Simulation Grid (security sim / cyber range), LA-11 Chip/Model Router, LA-12 Quantum+Hybrid Lab, LA-13 Nested Tool Foundry (Defensive≠Exploitation), 2I-CD Business Hospital, Agent Firewall, Data Access Gateway, Guardian.  
-**Feeds / next:** **2I-LA-15** Global Contract + Legal Intelligence Brain (incl. security research agreements / RoE / bounty contracts). Then **LA-16…LA-30** per master queue.
+**Feeds / next:** **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements / RoE / bounty contracts). Then **LA-16…LA-30** per master queue.
 
 > Docs-only queue. **QUEUE AFTER LA-13.** Ethical hacking **ONLY** against XIV-owned systems, purpose-built labs, or third-party systems with **explicit authorization and defined scope**. Learning from historical/public/licensed defensive knowledge ≠ permission to break into unrelated companies. **NO STEALING / UNAUTHORIZED ACCESS / EXTORTION / DATA EXFILTRATION / MALWARE / CREDENTIAL THEFT.** UNKNOWN scope = **NO ACTIVE TESTING**. Publicly reachable ≠ authorized. Experimental Security Center / Cyber Range depth stays **feature-flagged** and must **not** block the 30-day RELEASE-CRITICAL runway. Overnight = **XIV Deployment Shift** (≈12h continuous bounded work); **evidence-gated canary**, not date-gated. Founder Gmail brief when connector available — never claim LIVE send without evidence. **L4 DISABLED**. **Guardian above agents.**
 
@@ -27,7 +27,7 @@
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements) | **NEXT** after LA-14 |
 | **2I-LA-16…30** | Deep Finance → Founder Mission Control | QUEUE ONLY |
 
-**Ordering lock:** **LA-12 Quantum Lab → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal+Contract**.
+**Ordering lock:** **LA-12 Quantum Lab → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20**.
 
 Do not regress: Trust → Curiosity → Temporal+Causal → Simulation → Chip Router → Quantum Lab → Nested Foundry → **this Security OS** → Legal Intelligence.
 
@@ -533,10 +533,10 @@ All fields require evidence. **Never infer PASS.**
 | Architecture file §§1–66 + permanent rules | Present under `docs/architecture/` |
 | Founder queue summary | Present under `docs/queue/` |
 | Runtime Security OS / scanners / bounty / Security Center | **NOT implemented** |
-| Ordering | LA-12 → LA-13 → **LA-14 QUEUED** → LA-15 Legal+Contract |
+| Ordering | LA-12 → LA-13 → **LA-14 QUEUED** → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20 |
 | Sync | LOCAL == GITHUB == GITLAB after dual-push; TREE CLEAN |
 
-### 54. Next queue — LA-15 Legal + Contract (then LA-16…30)
+### 54. Next queue — LA-15 Legal + Product Evolution (then LA-16…30)
 
 **QUEUE ONLY — do not implement from this LA-14 docs commit.**
 
