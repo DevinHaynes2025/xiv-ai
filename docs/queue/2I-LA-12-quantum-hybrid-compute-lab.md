@@ -3,7 +3,7 @@
 **Status:** QUEUED DOCS ONLY — **NOT IMPLEMENTED**  
 **Full contracts:** [`../architecture/xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md`](../architecture/xiv-2i-la-12-quantum-hybrid-compute-lab-v10.md)  
 **Sequencing:** AFTER **2I-LA-11** Multi-Model + Universal AI Chip Intelligence Router. NEXT → **2I-LA-13** Nested AI Tool Foundry.  
-**LA-16 reserved** for deep Finance/Payments (AI CFO+Accounting OS V20, payments/banking fabric, FX, crypto payment accounting, invoicing/subscriptions, Financial Digital Twin depth, Pricing+Billing V20).
+**LA-16 queued** for AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 (deep finance/banking/wealth/exec — do not overload LA-12).
 
 ## One-liner
 

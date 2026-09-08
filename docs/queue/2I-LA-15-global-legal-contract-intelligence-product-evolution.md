@@ -6,7 +6,7 @@ HARD STOP: **DO NOT IMPLEMENT** until **2I-LA-14 PASS**. Queue **AFTER LA-14**; 
 
 ## Prerequisite (queue ordering)
 
-**2I-LA-14 Cybersecurity + Digital Forensics OS** must PASS before LA-15 code. Ordering: LA-12 Quantum Lab → LA-13 Nested Tool Foundry → **LA-14 Cybersecurity+Forensics** → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO+Payments V20**.
+**2I-LA-14 Cybersecurity + Digital Forensics OS** must PASS before LA-15 code. Ordering: LA-12 Quantum Lab → LA-13 Nested Tool Foundry → **LA-14 Cybersecurity+Forensics** → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO + Banking + Wealth + Executive Org V20**.
 
 **Full contracts (architecture §§1–69 + permanent rules):** [`docs/architecture/xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md`](../architecture/xiv-2i-la-15-global-legal-contract-intelligence-product-evolution-v10.md).
 
@@ -51,7 +51,7 @@ Agents may continuously **propose / research / challenge / prioritize / test / s
 
 ## Next queue
 
-- **2I-LA-16** AI CFO + Payments V20 (deep Finance/Payments — reserved; do not overload LA-12)
+- **2I-LA-16** AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 (do not overload LA-12)
 - Then **LA-17…LA-30** per master queue titles
 
 ## Docs-only gate

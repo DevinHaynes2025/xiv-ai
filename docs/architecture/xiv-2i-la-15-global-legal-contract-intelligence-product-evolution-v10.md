@@ -7,7 +7,7 @@
 **Founder summary sibling:** [`../queue/2I-LA-15-global-legal-contract-intelligence-product-evolution.md`](../queue/2I-LA-15-global-legal-contract-intelligence-product-evolution.md)
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)
 **Compose with:** LA-04 Meta Brain, LA-05 Evidence/KG, LA-06 Memory/Learning, LA-07 Trust + Contract/Legal/Commerce plane, LA-08 Curiosity/Contradiction, LA-09 Temporal+Causal, LA-10 Simulation Grid, LA-11 Chip/Model Router, LA-12 Quantum+Hybrid Lab + finance foundations, LA-13 Nested Tool Foundry + Universe Fabric, LA-14 Cybersecurity+Forensics (RoE / bug bounty / ethical hacking contracts), 2I-CR Agent Product Owner lineage, Tracker V2, Data Nervous System.
-**Feeds:** **2I-LA-16** AI CFO + Payments V20 (deep Finance/Payments) — LA-15 supplies obligation/contract memory and product-cost story gates; **not** payment rails or money movement.
+**Feeds:** **2I-LA-16** AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — LA-15 supplies obligation/contract memory and product-cost story gates; **not** payment rails or money movement.
 
 > Docs-only queue. **QUEUE AFTER LA-14.** Do **not** interrupt active validated LA-01–03+ / LA-09–14 docs or code work. Do **not** destabilize the 30-day deployment runway. No LegalIntelligence / ProductOwner / StoryEvolution / ContractFactory runtime in this commit. Experimental features stay **feature-gated**. **L4 DISABLED**.
 
@@ -20,9 +20,9 @@
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Universe Fabric V10 | Prior (docs) |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS | **Must PASS before LA-15 code** (may still be WIP docs — do not interrupt) |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine | **This document** |
-| **2I-LA-16** | AI CFO + Payments V20 | **NEXT** after LA-15 (deep Finance/Payments — reserved) |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **NEXT** after LA-15 |
 
-**Ordering lock:** **LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20 → LA-17…30**.
+**Ordering lock:** **LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 V20 → LA-17…30**.
 
 Do not regress: Trust → Curiosity → Temporal+Causal → Simulation → Chip Router → Quantum Lab → Foundry/Fabric → **Cybersecurity OS** → **this Legal + Product Evolution OS** → Finance/Payments depth.
 
@@ -524,7 +524,7 @@ All must DENY + AUDIT in implementation era.
 LA-14 PASS
 → LA-15 implementation may begin (still slice-gated)
 → Deep legal connectors / aggressive generation remain flagged
-→ LA-16 AI CFO + Payments V20 still QUEUE ONLY
+→ LA-16 AI CFO + Banking + Wealth + Executive Org V20 still QUEUE ONLY
 ```
 
 Do not implement LA-15 from LA-13/LA-14 docs alone without CEO gate after LA-14 PASS. Queue LA-15 docs in parallel is allowed; **code ordering follows CEO gate after LA-14 PASS**.
@@ -548,16 +548,16 @@ On LegalDataGateway or graph failure: degrade to draft-only local library, mark 
 | LOCAL / GITHUB / GITLAB SHAs | Equal on branch after dual-push; merge path is `xiv-v2` (never `main`) |
 | TREE | CLEAN |
 | Runtime Legal/APO/StoryEvolution/ContractFactory | **NOT implemented** |
-| Ordering | LA-13 → **LA-14** → **LA-15 QUEUED** → LA-16 AI CFO+Payments |
+| Ordering | LA-13 → **LA-14** → **LA-15 QUEUED** → LA-16 AI CFO + Banking + Wealth + Executive Org V20 |
 | Implementation | **DO NOT IMPLEMENT until LA-14 PASS**; do not interrupt LA-14 WIP |
 | Critical rule A–D | Explicit in this document |
 
-### 68. Next queue — LA-16 AI CFO + Payments V20 then LA-17…30
+### 68. Next queue — LA-16 AI CFO + Banking + Wealth + Executive Org V20 then LA-17…30
 
 | ID | Title |
 |----|-------|
-| **2I-LA-16** | **AI CFO + Payments V20** — deep Finance/Payments (Accounting OS depth; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing+Billing V20) — do **not** overload LA-12 |
-| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-16** | **AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** — deep finance/banking/wealth/exec — do **not** overload LA-12 |
+| **2I-LA-17** | Personal Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
 | **2I-LA-20** | Content Rights + Media Provenance |
@@ -572,7 +572,7 @@ On LegalDataGateway or graph failure: degrade to draft-only local library, mark 
 | **2I-LA-29** | Overnight AI Organization V20 |
 | **2I-LA-30** | Founder Mission Control V25 |
 
-**NEXT after LA-15:** **2I-LA-16** AI CFO + Payments V20.
+**NEXT after LA-15:** **2I-LA-16** AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20.
 
 ### 69. Permanent rules (LA-15 / CEO)
 

@@ -382,8 +382,8 @@ All fields require evidence. **Never infer PASS.**
 | **2I-LA-13** | Nested AI Tool Foundry |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine |
-| **2I-LA-16** | AI CFO + Payments V20 (deep Finance/Payments — reserved) |
-| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 |
+| **2I-LA-17** | Personal Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Mature Community Universe |
 | **2I-LA-20** | Content Rights + Media Provenance |

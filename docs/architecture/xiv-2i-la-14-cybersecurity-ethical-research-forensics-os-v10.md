@@ -11,7 +11,7 @@
 **Founder summary sibling:** [`../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md`](../queue/2I-LA-14-cybersecurity-ethical-research-forensics-os.md)  
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)  
 **Compose with:** LA-05 Evidence/KG, LA-06 Memory/Learning, LA-07 Trust/Privacy/Legal/Commerce, LA-08 Curiosity, LA-09 Temporal+Causal, LA-10 Simulation Grid (security sim / cyber range), LA-11 Chip/Model Router, LA-12 Quantum+Hybrid Lab, LA-13 Nested Tool Foundry (Defensive≠Exploitation), 2I-CD Business Hospital, Agent Firewall, Data Access Gateway, Guardian.  
-**Feeds / next:** **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements / RoE / bounty contracts). Then **LA-16…LA-30** per master queue.
+**Feeds / next:** **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine → **2I-LA-16** AI CFO + Banking + Wealth + Executive Org V20 → **LA-17** Personal Privacy Vault.
 
 > Docs-only queue. **QUEUE AFTER LA-13.** Ethical hacking **ONLY** against XIV-owned systems, purpose-built labs, or third-party systems with **explicit authorization and defined scope**. Learning from historical/public/licensed defensive knowledge ≠ permission to break into unrelated companies. **NO STEALING / UNAUTHORIZED ACCESS / EXTORTION / DATA EXFILTRATION / MALWARE / CREDENTIAL THEFT.** UNKNOWN scope = **NO ACTIVE TESTING**. Publicly reachable ≠ authorized. Experimental Security Center / Cyber Range depth stays **feature-flagged** and must **not** block the 30-day RELEASE-CRITICAL runway. Overnight = **XIV Deployment Shift** (≈12h continuous bounded work); **evidence-gated canary**, not date-gated. Founder Gmail brief when connector available — never claim LIVE send without evidence. **L4 DISABLED**. **Guardian above agents.**
 
@@ -25,9 +25,10 @@
 | **2I-LA-13** | Nested AI Tool Foundry + Infinite Universe Fabric | **Must PASS before LA-14 code** (docs queued on tip — do not interrupt validated work) |
 | **2I-LA-14** | Cybersecurity + Ethical Security Research + Digital Forensics OS V10 | **This document** |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements) | **NEXT** after LA-14 |
-| **2I-LA-16…30** | Deep Finance → Founder Mission Control | QUEUE ONLY |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | QUEUE (docs) after LA-15 |
+| **2I-LA-17…30** | Personal Privacy Vault → Founder Mission Control | QUEUE ONLY |
 
-**Ordering lock:** **LA-12 Quantum Lab → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO+Payments V20**.
+**Ordering lock:** **LA-12 Quantum Lab → LA-13 Nested Tool Foundry → LA-14 Cybersecurity+Ethical Research+Forensics → LA-15 Legal + Product Evolution → LA-16 AI CFO + Banking + Wealth + Executive Org V20 → LA-17 Personal Privacy Vault**.
 
 Do not regress: Trust → Curiosity → Temporal+Causal → Simulation → Chip Router → Quantum Lab → Nested Foundry → **this Security OS** → Legal Intelligence.
 
@@ -543,7 +544,7 @@ All fields require evidence. **Never infer PASS.**
 | ID | Title |
 |----|-------|
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine — **NEXT** (incl. security research agreements, RoE contracts, bounty terms, disclosure legal path) |
-| **2I-LA-16** | **AI CFO + Payments V20 (RESERVED)** — deep Finance/Payments; do not overload LA-12/LA-14 |
+| **2I-LA-16** | **AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20** — do not overload LA-12/LA-14 |
 | **2I-LA-17** | Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universe |
@@ -701,7 +702,7 @@ Inherited: Guardian, Tenant Isolation, Universe Isolation, Agent Firewall, Data 
 | LOCAL / GITHUB / GITLAB SHAs | Equal on branch after dual-push (rebase onto latest `xiv-v2` tip including LA-13 when landed) |
 | TREE | CLEAN |
 | Runtime Cybersecurity / Ethical Research / Forensics OS / Security Center | **NOT started / NOT implemented** |
-| Ordering | LA-12 → **LA-13** → **LA-14 QUEUED** → **LA-15 Legal + Product Evolution** → **LA-16 AI CFO+Payments V20** |
+| Ordering | LA-12 → **LA-13** → **LA-14 QUEUED** → **LA-15** → **LA-16** → **LA-17** |
 | Implementation | **DO NOT IMPLEMENT until LA-13 PASS**; do not interrupt LA-13 WIP |
 | Core ethical rule | Explicit in this document |
 

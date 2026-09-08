@@ -2,7 +2,7 @@
 
 **Status:** QUEUED DOCS ONLY — **NOT IMPLEMENTED**  
 **Full contracts:** [`../architecture/xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md`](../architecture/xiv-2i-la-14-cybersecurity-ethical-research-forensics-os-v10.md)  
-**Sequencing:** AFTER **2I-LA-13** Nested AI Tool Foundry + Infinite Universe Fabric. NEXT → **2I-LA-15** Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine (incl. security research agreements).  
+**Sequencing:** AFTER **2I-LA-13** Nested AI Tool Foundry + Infinite Universe Fabric. NEXT → **2I-LA-15** Legal + Product Evolution → **2I-LA-16** AI CFO + Banking + Wealth + Executive Org V20 → **LA-17** Personal Privacy Vault.  
 **Commercial:** Customer Security Center = premium product line; Business Hospital cybersecurity department for security triage.
 
 ## One-liner

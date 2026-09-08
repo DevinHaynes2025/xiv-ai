@@ -11,7 +11,7 @@
 **Founder summary sibling:** [`../queue/2I-LA-12-quantum-hybrid-compute-lab.md`](../queue/2I-LA-12-quantum-hybrid-compute-lab.md)  
 **Canonical master queue:** [`xiv-master-build-queue-2i-ad-to-2i-kz.md`](./xiv-master-build-queue-2i-ad-to-2i-kz.md)  
 **Compose with:** LA-05 Evidence/KG, LA-06 Memory/Learning + Quantum-ready foundations, LA-07 Trust, LA-08 Curiosity, LA-09 Temporal+Causal, LA-10 Simulation Grid, LA-11 Chip/Model Router, 2I-BO Quantum-Ready Optimization Interface, 2I-AG Information Logistics Control Tower.  
-**Feeds / reserve:** **2I-LA-13** Nested Tool Foundry (NEXT after LA-12). **2I-LA-16** reserved for deep Finance/Payments (do **not** overload LA-12 into full LA-16 depth).
+**Feeds / reserve:** **2I-LA-13** Nested Tool Foundry (NEXT after LA-12). **2I-LA-16** AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 (do **not** overload LA-12 into full LA-16 depth).
 
 > Docs-only queue. Experimental compute **separate** from production finance. Full CFO/accounting/connectors **must not block** initial canary — prioritize vault contracts, DB tracker, security, tenant isolation, basic pricing/entitlements, safe schemas; advanced connectors feature-gated. Overnight automation = **XIV Deployment Shift** (≈12h continuous bounded work); **evidence-gated canary**, not date-gated. Founder Gmail brief when connector available — never claim LIVE send without evidence. **L4 DISABLED**.
 
@@ -25,7 +25,7 @@
 | **2I-LA-11** | Multi-Model + Universal AI Chip Intelligence Router V10 | **Must PASS before LA-12 code** |
 | **2I-LA-12** | Quantum + Hybrid Compute Lab V10 (+ DB Tracker / AI CFO foundation / Private Financial Vault / tiered pricing) | **This document** |
 | **2I-LA-13** | Nested AI Tool Foundry | **NEXT** after LA-12 |
-| **2I-LA-16** | AI CFO + Accounting OS V20 / Payments+Banking Fabric / FX / Crypto payment accounting / Invoicing+Subscriptions / Financial Digital Twin depth / Pricing+Billing V20 | **RESERVED** — deep finance; not LA-12 |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 | **QUEUED DOCS** — deep finance/banking/wealth/exec; not LA-12 |
 
 Do not regress ordering: **LA-10 Simulation → LA-11 Chip/Model Router → LA-12 Quantum+Hybrid Lab (+ finance foundations) → LA-13 Nested Tool Foundry**.
 
@@ -608,8 +608,8 @@ All fields require evidence. **Never infer PASS.**
 | **2I-LA-13** | Nested AI Tool Foundry — **NEXT after LA-12** |
 | **2I-LA-14** | Cybersecurity + Digital Forensics OS |
 | **2I-LA-15** | Global Legal + Contract Intelligence OS V10 + Autonomous Product Owner + 24/7 User Story Evolution Engine |
-| **2I-LA-16** | **Deep Finance / Payments (RESERVED):** AI CFO + Accounting OS V20; payments/banking fabric; FX; crypto payment accounting; invoicing/subscriptions; Financial Digital Twin depth; Pricing + Billing V20 — **not** overloaded into LA-12 |
-| **2I-LA-17** | Privacy Vault + Private Search |
+| **2I-LA-16** | AI CFO + Banking + Wealth Intelligence + Executive Agent Organization V20 — deep finance/banking/wealth/exec (queued docs) — **not** overloaded into LA-12 |
+| **2I-LA-17** | Personal Privacy Vault + Private Search |
 | **2I-LA-18** | Age Assurance + Community Trust |
 | **2I-LA-19** | 18+ Cultural / Naturist Business Universe |
 | **2I-LA-20** | Creator Safety + Media Rights |
