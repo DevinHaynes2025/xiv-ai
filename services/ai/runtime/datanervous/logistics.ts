@@ -104,3 +104,76 @@ export function answerLogisticsTraversal(
   const lessons = nodes.filter((n) => n.stage === 'LESSON').map((n) => n.nodeId);
   return { origin, path, contradictions, lessons };
 }
+
+export type InformationLogisticsQuestion =
+  | 'WHERE_DID_THIS_COME_FROM'
+  | 'WHO_TOUCHED_THIS'
+  | 'WHAT_DECISIONS_DEPEND'
+  | 'WHAT_CONTRADICTIONS_EXIST'
+  | 'WHAT_LESSONS_RESULTED'
+  | 'WHICH_UNIVERSE_OWNS_THIS';
+
+export const INFORMATION_LOGISTICS_QUESTIONS = [
+  'WHERE_DID_THIS_COME_FROM',
+  'WHO_TOUCHED_THIS',
+  'WHAT_DECISIONS_DEPEND',
+  'WHAT_CONTRADICTIONS_EXIST',
+  'WHAT_LESSONS_RESULTED',
+  'WHICH_UNIVERSE_OWNS_THIS',
+] as const satisfies readonly InformationLogisticsQuestion[];
+
+export function listInformationLogisticsQuestions(): readonly InformationLogisticsQuestion[] {
+  return INFORMATION_LOGISTICS_QUESTIONS;
+}
+
+export function answerInformationLogisticsQuestion(input: {
+  question: InformationLogisticsQuestion;
+  nodes: readonly LogisticsNode[];
+  edges: readonly LogisticsEdge[];
+  startNodeId: string;
+}): {
+  question: InformationLogisticsQuestion;
+  answer: readonly string[];
+  surveillance: false;
+} {
+  const start = input.nodes.find((n) => n.nodeId === input.startNodeId);
+  const traversal = answerLogisticsTraversal(input.nodes, input.edges, input.startNodeId);
+  switch (input.question) {
+    case 'WHERE_DID_THIS_COME_FROM':
+      return {
+        question: input.question,
+        answer: traversal.origin ? [traversal.origin.refId] : [],
+        surveillance: false,
+      };
+    case 'WHO_TOUCHED_THIS':
+      return {
+        question: input.question,
+        answer: input.nodes.map((n) => n.refId),
+        surveillance: false,
+      };
+    case 'WHAT_DECISIONS_DEPEND':
+      return {
+        question: input.question,
+        answer: input.nodes.filter((n) => n.stage === 'DECISION').map((n) => n.nodeId),
+        surveillance: false,
+      };
+    case 'WHAT_CONTRADICTIONS_EXIST':
+      return {
+        question: input.question,
+        answer: [...traversal.contradictions],
+        surveillance: false,
+      };
+    case 'WHAT_LESSONS_RESULTED':
+      return {
+        question: input.question,
+        answer: [...traversal.lessons],
+        surveillance: false,
+      };
+    case 'WHICH_UNIVERSE_OWNS_THIS':
+      return {
+        question: input.question,
+        answer: start ? [start.universeId] : [],
+        surveillance: false,
+      };
+  }
+}

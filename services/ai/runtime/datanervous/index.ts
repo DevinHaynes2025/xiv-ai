@@ -65,14 +65,18 @@ export type {
 
 export {
   advanceLogisticsStage,
+  answerInformationLogisticsQuestion,
   answerLogisticsTraversal,
   createLogisticsNode,
   linkLogisticsNodes,
+  listInformationLogisticsQuestions,
   listInformationLogisticsStages,
   openInformationLogisticsGraph,
+  INFORMATION_LOGISTICS_QUESTIONS,
 } from './logistics';
 export type {
   InformationLogisticsGraph,
+  InformationLogisticsQuestion,
   LogisticsEdge,
   LogisticsNode,
 } from './logistics';
@@ -85,6 +89,7 @@ export {
   moreDataMeansPermissionToUseIt,
   offlineEqualsAuthorized,
   openDataNervousGrounding,
+  openDataNervousSystem,
   personalAutoPromotesToCompany,
   privateAutoPromotesToPublic,
   rawPiiPayloadsRecordedForAudit,
@@ -92,3 +97,4 @@ export {
   sourceRefsAndPermittedDerivedIntelligenceAllowed,
   wholesaleUnauthorizedCopyrightCopyingAllowed,
 } from './grounding';
+export type { DataNervousSystem } from './grounding';

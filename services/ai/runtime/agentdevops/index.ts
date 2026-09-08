@@ -41,6 +41,24 @@ export {
 export type { DeploymentGateResult, DevOpsRun } from './pipeline';
 
 export {
+  advanceContinuousBuilderStage,
+  continuousBuilderL4Enabled,
+  continuousBuilderMaySilentProdDeploy,
+  evaluateContinuousBuilderProdGate,
+  listContinuousBuilderStages,
+  openContinuousBuilder,
+  openContinuousBuilderRun,
+  passContinuousBuilderHumanGate,
+  CONTINUOUS_BUILDER_STAGES,
+} from './builder';
+export type {
+  ContinuousBuilder,
+  ContinuousBuilderProdGate,
+  ContinuousBuilderRun,
+  ContinuousBuilderStage,
+} from './builder';
+
+export {
   castReviewVote,
   evaluateHighRiskApproval,
   listCodeReviewChain,

@@ -457,16 +457,27 @@ export {
   aiTrackingEveryMovementMeansAuthorizedLineage,
   emitDataEvent,
   openDataNervousGrounding,
+  openDataNervousSystem,
   openInformationLogisticsGraph,
   traverseLineage,
+  answerInformationLogisticsQuestion,
+  listInformationLogisticsQuestions,
 } from './datanervous';
 export {
   FOUNDER_TWIN_DISCLOSURE as BRAIN_FOUNDER_TWIN_DISCLOSURE,
   founderTwinDisclosure as brainFounderTwinDisclosure,
   openFounderCouncil,
   openMultimodalKnowledgeLibrary,
+  openMultimodalKnowledgeRegistry,
   openXivBrainV4,
   promoteKnowledgeQuality,
+  openKnowledgeGraph,
+  openEvidenceGraph,
+  openDecisionGraph,
+  openOutcomeGraph,
+  openAgentCollaborationGraph,
+  openDataLineageGraph,
+  listNamedIntelligenceGraphs,
 } from './neuralbrain';
 export {
   agentMaySilentConsequentialProdDeploy,
@@ -475,6 +486,9 @@ export {
   openAgentCreativeControl,
   openCodeReviewChain,
   openDevOpsRun,
+  openContinuousBuilder,
+  evaluateContinuousBuilderProdGate,
+  continuousBuilderL4Enabled,
 } from './agentdevops';
 export {
   agentDeploymentState,
@@ -483,6 +497,8 @@ export {
   listNotConfiguredProviders,
   openFeedbackLoopV4,
   openNightShiftV3,
+  openNightShiftV4,
+  openContinuousEvolutionEngine,
   openPhase2iacInvariants,
   productionCredentialsEnabledInPhase2iac,
   stoppedBeforeNewProductionCredentials,

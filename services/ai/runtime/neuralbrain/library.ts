@@ -84,6 +84,20 @@ export function openMultimodalKnowledgeLibrary(): MultimodalKnowledgeLibrary {
   };
 }
 
+/** Registry surface over the multimodal library — same rights invariants. */
+export type MultimodalKnowledgeRegistry = MultimodalKnowledgeLibrary & {
+  registry: true;
+  rightsRequiredBeforeIndex: true;
+};
+
+export function openMultimodalKnowledgeRegistry(): MultimodalKnowledgeRegistry {
+  return {
+    ...openMultimodalKnowledgeLibrary(),
+    registry: true,
+    rightsRequiredBeforeIndex: true,
+  };
+}
+
 export function createMediaRights(input: {
   rightsId: string;
   state: MediaRightsState;

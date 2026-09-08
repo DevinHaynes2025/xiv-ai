@@ -11,6 +11,7 @@ import {
   advanceLogisticsStage,
   aiTrackingEveryMovementMeansAuthorizedLineage,
   aiTrackingEveryMovementMeansSurveillance,
+  answerInformationLogisticsQuestion,
   answerLogisticsTraversal,
   authorizedLineageObservabilityEnabled,
   buildLineage,
@@ -21,12 +22,14 @@ import {
   evaluateDataAccess,
   linkLogisticsNodes,
   listDataEventKinds,
+  listInformationLogisticsQuestions,
   listInformationLogisticsStages,
   metadataPreferredForAudit,
   moreDataMeansPermissionToUseIt,
   offlineEqualsAuthorized as dataOfflineEqualsAuthorized,
   openDataAudit,
   openDataNervousGrounding,
+  openDataNervousSystem,
   openInformationLogisticsGraph,
   personalAutoPromotesToCompany,
   privateAutoPromotesToPublic,
@@ -43,6 +46,7 @@ import {
   advanceCouncilStage,
   aiAgreementEqualsVerified,
   companyMayAutoPromoteToGlobal,
+  createIntelligenceGraphNode,
   createKnowledgeNode,
   createMediaAsset,
   createMediaRights,
@@ -51,15 +55,24 @@ import {
   extractStructuredIntelligence,
   forceArtificialConsensus,
   founderTwinDisclosure,
+  linkIntelligenceGraphNodes,
   linkKnowledgeNodes,
   listBrainLanes,
   listCouncilFlow,
   listCouncilRoles,
   listKnowledgeQualityStates,
   listMediaAssetKinds,
+  listNamedIntelligenceGraphs,
+  openAgentCollaborationGraph,
   openCouncilSession,
+  openDataLineageGraph,
+  openDecisionGraph,
+  openEvidenceGraph,
   openFounderCouncil,
+  openKnowledgeGraph,
   openMultimodalKnowledgeLibrary,
+  openMultimodalKnowledgeRegistry,
+  openOutcomeGraph,
   openXivBrainV4,
   personalMayAutoPromoteToCompany,
   privateMayAutoPromoteToPublic,
@@ -71,6 +84,7 @@ import {
   wholesaleCopyrightDatabaseCopyAllowed,
 } from './neuralbrain';
 import {
+  advanceContinuousBuilderStage,
   advanceDevOpsStage,
   agentMayDisableSecurityGates,
   agentMayExpandCredentials,
@@ -79,7 +93,10 @@ import {
   agentMaySelfApprovePrivilegedChanges,
   agentMaySilentConsequentialProdDeploy,
   castReviewVote,
+  continuousBuilderL4Enabled,
+  continuousBuilderMaySilentProdDeploy,
   creativeCapabilityEqualsProductionAuthority,
+  evaluateContinuousBuilderProdGate,
   evaluateForbiddenAction,
   evaluateHighRiskApproval,
   evaluatePrepAction,
@@ -87,12 +104,16 @@ import {
   listAgentDevOpsForbidden,
   listAgentDevOpsStages,
   listCodeReviewChain,
+  listContinuousBuilderStages,
   listCreativeCapabilities,
   moreAgentsMeansMorePermissions,
   moreIntelligenceMeansMoreAuthority,
   openAgentCreativeControl,
   openCodeReviewChain,
+  openContinuousBuilder,
+  openContinuousBuilderRun,
   openDevOpsRun,
+  passContinuousBuilderHumanGate,
   passHumanPolicyGate,
   recommendRollback,
   selfApprovePrivilegedChange,
@@ -105,6 +126,7 @@ import {
   claimBillionsOfUsers,
   claimTrillionsOfAgentsOrDatabases,
   connectedNetworkEqualsTrusted,
+  continuousEvolutionMayAutoShip,
   createVisualGraphNode,
   creativeControlEqualsProductionControl,
   darkPatternsAllowed,
@@ -122,9 +144,11 @@ import {
   nightShiftMaySilentProductionDeploy,
   offlineEqualsAuthorized,
   openContentIntelligenceEngine,
+  openContinuousEvolutionEngine,
   openFeedbackLoopV4,
   openInterfaceEvolutionEngine,
   openNightShiftV3,
+  openNightShiftV4,
   openPhase2iacInvariants,
   openVisualIntelligenceContracts,
   pluginInstalledEqualsUnrestricted,
@@ -137,8 +161,17 @@ import {
   storeExpectedOutcome,
   visualNodeExposesRequiredFields,
 } from './evolution';
+import {
+  collaborationObjectGrantsL4,
+  collaborationObjectGrantsPrivilege,
+  createCollaborationObject,
+  listAgentSocietyRoles,
+  listCollaborationObjectKinds,
+  mongoDbLifecycle,
+  openAgentSociety,
+  openAgentSocietyCollaboration,
+} from './cios';
 import { modelProviderState } from './modelfoundry';
-import { mongoDbLifecycle } from './cios';
 import { l4AutonomyEnabled as abL4, productionCredentialsEnabledInPhase2iab } from './supplygraph';
 import { agentMeshL4Enabled } from './agentmesh';
 
@@ -643,10 +676,14 @@ test('feedback loop V4 stores expected before execution', () => {
   assert.ok(cycle.newHypothesis);
 });
 
-test('night shift V3 + morning founder brief aggregates', () => {
-  const ns = openNightShiftV3();
+test('night shift V4 + morning founder brief aggregates', () => {
+  const ns = openNightShiftV4();
+  assert.equal(ns.version, 'V4');
   assert.equal(ns.silentProductionDeploy, false);
+  assert.equal(ns.morningBriefRequired, true);
+  assert.equal(ns.continuousBuilderSandboxOnlyOvernight, true);
   assert.equal(nightShiftMaySilentProductionDeploy(), false);
+  assert.equal(openNightShiftV3().silentProductionDeploy, false);
   assert.ok(listNightShiftKinds().includes('RESEARCH'));
   assert.ok(listNightShiftKinds().includes('INFORMATION_LOGISTICS'));
   assert.ok(listNightShiftKinds().includes('CONTENT_INTELLIGENCE'));
@@ -691,6 +728,8 @@ test('content intelligence requires rights; structured not dump', () => {
 test('visual intelligence contracts expose inspectable fields', () => {
   const contracts = openVisualIntelligenceContracts();
   assert.ok(listVisualGraphKinds().includes('DATA_LINEAGE'));
+  assert.ok(listVisualGraphKinds().includes('EVIDENCE'));
+  assert.ok(listVisualGraphKinds().includes('AGENT_COLLABORATION'));
   assert.ok(listVisualGraphKinds().includes('COMPANY_BRAIN'));
   assert.ok(listVisualGraphKinds().includes('UNIVERSE'));
   assert.ok(contracts.inspectableFields.includes('confidence'));
@@ -704,6 +743,152 @@ test('visual intelligence contracts expose inspectable fields', () => {
     freshness: 'CURRENT',
   });
   assert.equal(visualNodeExposesRequiredFields(node), true);
+});
+
+test('named graphs: Knowledge/Evidence/Decision/Outcome/AgentCollaboration/DataLineage', () => {
+  assert.deepEqual([...listNamedIntelligenceGraphs()], [
+    'KnowledgeGraph',
+    'EvidenceGraph',
+    'DecisionGraph',
+    'OutcomeGraph',
+    'AgentCollaborationGraph',
+    'DataLineageGraph',
+  ]);
+  for (const graph of [
+    openKnowledgeGraph(),
+    openEvidenceGraph(),
+    openDecisionGraph(),
+    openOutcomeGraph(),
+    openAgentCollaborationGraph(),
+    openDataLineageGraph(),
+  ]) {
+    assert.equal(graph.crossTenantLinksAllowed, false);
+    assert.equal(graph.l4Enabled, false);
+    assert.equal(graph.inspectable, true);
+  }
+  const a = createIntelligenceGraphNode({
+    nodeId: 'g1',
+    kind: 'EvidenceNode',
+    label: 'ev',
+    tenantId: 't1',
+    universeId: 'u1',
+  });
+  const b = createIntelligenceGraphNode({
+    nodeId: 'g2',
+    kind: 'DecisionNode',
+    label: 'dec',
+    tenantId: 't2',
+    universeId: 'u1',
+  });
+  const denied = linkIntelligenceGraphNodes({
+    edgeId: 'ge1',
+    from: a,
+    to: b,
+    relation: 'SUPPORTS',
+  });
+  assert.ok('allowed' in denied && denied.allowed === false);
+});
+
+test('data nervous system + information logistics questions', () => {
+  const dns = openDataNervousSystem();
+  assert.equal(dns.surveillanceTrackingAllowed, false);
+  assert.equal(dns.informationLogisticsGraph, true);
+  assert.equal(dns.l4Enabled, false);
+  assert.ok(listInformationLogisticsQuestions().includes('WHERE_DID_THIS_COME_FROM'));
+  assert.ok(listInformationLogisticsQuestions().includes('WHICH_UNIVERSE_OWNS_THIS'));
+  const n1 = createLogisticsNode({
+    nodeId: 'lq1',
+    stage: 'SOURCE',
+    refId: 'src-q',
+    tenantId: 't1',
+    universeId: 'u9',
+    summary: 'source',
+  });
+  const n2 = createLogisticsNode({
+    nodeId: 'lq2',
+    stage: 'DECISION',
+    refId: 'dec-q',
+    tenantId: 't1',
+    universeId: 'u9',
+    summary: 'decision',
+  });
+  const n3 = createLogisticsNode({
+    nodeId: 'lq3',
+    stage: 'LESSON',
+    refId: 'les-q',
+    tenantId: 't1',
+    universeId: 'u9',
+    summary: 'lesson',
+  });
+  const edge = linkLogisticsNodes({ edgeId: 'lqe1', from: n1, to: n2, relation: 'DECIDES' });
+  assert.ok('edgeId' in edge);
+  const q = answerInformationLogisticsQuestion({
+    question: 'WHICH_UNIVERSE_OWNS_THIS',
+    nodes: [n1, n2, n3],
+    edges: [edge as { edgeId: string; fromNodeId: string; toNodeId: string; relation: 'DECIDES' }],
+    startNodeId: 'lq1',
+  });
+  assert.equal(q.surveillance, false);
+  assert.deepEqual([...q.answer], ['u9']);
+});
+
+test('multimodal knowledge registry rights gate', () => {
+  const reg = openMultimodalKnowledgeRegistry();
+  assert.equal(reg.registry, true);
+  assert.equal(reg.rightsRequiredBeforeIndex, true);
+  assert.equal(reg.wholesaleUnauthorizedCopyAllowed, false);
+});
+
+test('continuous evolution engine composes loops; never auto-ships', () => {
+  const engine = openContinuousEvolutionEngine();
+  assert.equal(engine.feedbackLoopV4, true);
+  assert.equal(engine.nightShiftV4, true);
+  assert.equal(engine.autoShipToProduction, false);
+  assert.equal(engine.l4Enabled, false);
+  assert.equal(continuousEvolutionMayAutoShip(), false);
+});
+
+test('continuous builder pipeline + prod gate; L4 disabled', () => {
+  const builder = openContinuousBuilder();
+  assert.equal(builder.prodGateRequiresHumanPolicy, true);
+  assert.equal(builder.silentProdDeployAllowed, false);
+  assert.equal(builder.l4Enabled, false);
+  assert.equal(continuousBuilderMaySilentProdDeploy(), false);
+  assert.equal(continuousBuilderL4Enabled(), false);
+  assert.equal(listContinuousBuilderStages()[0], 'IDEA');
+  assert.ok(listContinuousBuilderStages().includes('HUMAN_POLICY_GATE'));
+  let run = openContinuousBuilderRun({ runId: 'cb1' });
+  for (let i = 0; i < 8; i++) {
+    const next = advanceContinuousBuilderStage(run);
+    assert.ok('stage' in next);
+    run = next as typeof run;
+  }
+  assert.equal(run.stage, 'HUMAN_POLICY_GATE');
+  assert.equal(evaluateContinuousBuilderProdGate(run).allowed, false);
+  run = passContinuousBuilderHumanGate(run);
+  assert.equal(evaluateContinuousBuilderProdGate(run).allowed, true);
+  assert.equal(evaluateContinuousBuilderProdGate(run).l4Enabled, false);
+});
+
+test('agent society roles + structured collaboration objects', () => {
+  const society = openAgentSociety();
+  assert.equal(society.l4Enabled, false);
+  assert.equal(society.selfGrantEnabled, false);
+  assert.ok(listAgentSocietyRoles().length >= 17);
+  const collab = openAgentSocietyCollaboration();
+  assert.equal(collab.moreAgentsMeansMorePermissions, false);
+  assert.ok(listCollaborationObjectKinds().includes('EvidencePack'));
+  assert.ok(listCollaborationObjectKinds().includes('FounderBriefItem'));
+  const obj = createCollaborationObject({
+    objectId: 'co1',
+    kind: 'DecisionProposal',
+    authorRole: 'Engineering',
+    tenantId: 't1',
+    universeId: 'u1',
+    summary: 'propose RC',
+  });
+  assert.equal(collaborationObjectGrantsPrivilege(obj), false);
+  assert.equal(collaborationObjectGrantsL4(obj), false);
 });
 
 test('providers NOT_CONFIGURED; agent deployment gated; compose with prior phases', () => {

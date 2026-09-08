@@ -62,3 +62,28 @@ export function openDataNervousGrounding() {
     productionCredentialsEnabled: false as const,
   };
 }
+
+export type DataNervousSystem = {
+  philosophy: 'authorized_data_lineage_and_observability_not_surveillance';
+  informationLogisticsGraph: true;
+  dataLineageGraph: true;
+  metadataPreferred: true;
+  surveillanceTrackingAllowed: false;
+  l4Enabled: false;
+  productionCredentialsEnabled: false;
+  productionLive: false;
+};
+
+export function openDataNervousSystem(): DataNervousSystem {
+  const grounding = openDataNervousGrounding();
+  return {
+    philosophy: grounding.philosophy,
+    informationLogisticsGraph: true,
+    dataLineageGraph: true,
+    metadataPreferred: true,
+    surveillanceTrackingAllowed: false,
+    l4Enabled: false,
+    productionCredentialsEnabled: false,
+    productionLive: false,
+  };
+}

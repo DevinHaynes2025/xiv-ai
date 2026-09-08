@@ -124,6 +124,20 @@ export {
 export type { AgentSociety, IntelligenceFabric } from './society';
 
 export {
+  collaborationObjectGrantsL4,
+  collaborationObjectGrantsPrivilege,
+  createCollaborationObject,
+  listCollaborationObjectKinds,
+  openAgentSocietyCollaboration,
+  COLLABORATION_OBJECT_KINDS,
+} from './society-collab';
+export type {
+  AgentSocietyCollaboration,
+  CollaborationObject,
+  CollaborationObjectKind,
+} from './society-collab';
+
+export {
   advanceShiftStage,
   continuousOperationWithoutBoundaries,
   executeShiftTask,

@@ -1,6 +1,6 @@
 /**
  * Phase 2I-AC Continuous Evolution barrel.
- * Feedback Loop V4 + Interface Evolution + Night Shift V3 + Content/Visual intelligence.
+ * Feedback Loop V4 + Interface Evolution + Night Shift V4 + Continuous Evolution Engine + Content/Visual intelligence.
  * Scale targets remain ENGINEERING_CAPACITY_TARGET. L4 disabled.
  */
 
@@ -55,8 +55,17 @@ export {
   listNightShiftKinds,
   nightShiftMaySilentProductionDeploy,
   openNightShiftV3,
+  openNightShiftV4,
 } from './nightshift';
-export type { MorningFounderBrief, NightShiftMission, NightShiftV3 } from './nightshift';
+export type { MorningFounderBrief, NightShiftMission, NightShiftV3, NightShiftV4 } from './nightshift';
+
+export {
+  continuousEvolutionMayAutoShip,
+  listContinuousEvolutionStages,
+  openContinuousEvolutionEngine,
+  CONTINUOUS_EVOLUTION_STAGES,
+} from './continuous';
+export type { ContinuousEvolutionEngine, ContinuousEvolutionStage } from './continuous';
 
 export {
   advanceContentStage,

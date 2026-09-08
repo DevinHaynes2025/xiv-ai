@@ -1,5 +1,6 @@
 /**
- * Night Shift V3 + Morning Founder Brief aggregates.
+ * Night Shift V4 (+ V3 compatibility) + Morning Founder Brief aggregates.
+ * Overnight research/build/QA only; never silent consequential production deploy.
  */
 
 import { NIGHT_SHIFT_KINDS, type NightShiftKind } from './types';
@@ -32,6 +33,17 @@ export type MorningFounderBrief = {
   productionDeployedOvernight: false;
 };
 
+export type NightShiftV4 = {
+  version: 'V4';
+  shifts: readonly NightShiftKind[];
+  morningBriefRequired: true;
+  silentProductionDeploy: false;
+  continuousBuilderSandboxOnlyOvernight: true;
+  l4Enabled: false;
+  productionLive: false;
+};
+
+/** @deprecated Prefer NightShiftV4 — kept for Phase 2I-AC compose compatibility. */
 export type NightShiftV3 = {
   shifts: readonly NightShiftKind[];
   silentProductionDeploy: false;
@@ -43,9 +55,22 @@ export function listNightShiftKinds(): readonly NightShiftKind[] {
   return NIGHT_SHIFT_KINDS;
 }
 
-export function openNightShiftV3(): NightShiftV3 {
+export function openNightShiftV4(): NightShiftV4 {
   return {
+    version: 'V4',
     shifts: NIGHT_SHIFT_KINDS,
+    morningBriefRequired: true,
+    silentProductionDeploy: false,
+    continuousBuilderSandboxOnlyOvernight: true,
+    l4Enabled: false,
+    productionLive: false,
+  };
+}
+
+export function openNightShiftV3(): NightShiftV3 {
+  const v4 = openNightShiftV4();
+  return {
+    shifts: v4.shifts,
     silentProductionDeploy: false,
     l4Enabled: false,
     productionLive: false,

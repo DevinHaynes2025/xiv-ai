@@ -59,6 +59,7 @@ export {
   indexingRequiresAuthorizedRights,
   listMediaAssetKinds,
   openMultimodalKnowledgeLibrary,
+  openMultimodalKnowledgeRegistry,
   wholesaleCopyrightDatabaseCopyAllowed,
 } from './library';
 export type {
@@ -71,12 +72,33 @@ export type {
   MediaRights,
   MediaSource,
   MultimodalKnowledgeLibrary,
+  MultimodalKnowledgeRegistry,
   Relationship,
   Summary,
   Topic,
   Transcript,
   Translation,
 } from './library';
+
+export {
+  createIntelligenceGraphNode,
+  linkIntelligenceGraphNodes,
+  listNamedIntelligenceGraphs,
+  namedGraphsUseKnowledgeNodeKinds,
+  openAgentCollaborationGraph,
+  openDataLineageGraph,
+  openDecisionGraph,
+  openEvidenceGraph,
+  openKnowledgeGraph,
+  openOutcomeGraph,
+  NAMED_INTELLIGENCE_GRAPH_KINDS,
+} from './graphs';
+export type {
+  IntelligenceGraphEdge,
+  IntelligenceGraphNode,
+  NamedIntelligenceGraph,
+  NamedIntelligenceGraphKind,
+} from './graphs';
 
 export {
   advanceCouncilStage,

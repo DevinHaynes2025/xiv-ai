@@ -1,6 +1,6 @@
 /**
  * Phase 2I-AC Continuous Evolution contracts.
- * Feedback Loop V4, Interface Evolution, Night Shift V3, Content Intelligence, Visual graphs.
+ * Feedback Loop V4, Interface Evolution, Night Shift V4, Content Intelligence, Visual graphs.
  */
 
 export type FeedbackLoopStage =
@@ -40,6 +40,7 @@ export type ContentIntelligenceStage =
 export type VisualGraphKind =
   | 'DATA_LINEAGE'
   | 'KNOWLEDGE'
+  | 'EVIDENCE'
   | 'AGENT_COLLABORATION'
   | 'SUPPLIER'
   | 'PRODUCT_JOURNEY'
@@ -100,6 +101,7 @@ export const CONTENT_INTELLIGENCE_STAGES = [
 export const VISUAL_GRAPH_KINDS = [
   'DATA_LINEAGE',
   'KNOWLEDGE',
+  'EVIDENCE',
   'AGENT_COLLABORATION',
   'SUPPLIER',
   'PRODUCT_JOURNEY',
