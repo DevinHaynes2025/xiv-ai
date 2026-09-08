@@ -7303,7 +7303,7 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 
 **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** Docs only. **DEPLOYMENT_STATE=QUEUED**.
 
-**DO NOT IMPLEMENT** until **62A PASS** and **Deployment Gate Hardening PASS**. Does **not** override deployment-readiness gate. Ordering: **62A → 62B (this) → 62C Historical/Cultural/Multilingual Intelligence Network (title only) → 62D…62H**. Park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-7b68`; never force-push / never `main`. No `services/ai/` dump; no migrations.
+**DO NOT IMPLEMENT** until **62A PASS** and **Deployment Gate Hardening PASS**. Does **not** override deployment-readiness gate. Ordering: **62A → 62B (this) → 62C Historical/Cultural/Multilingual Intelligence Network (title only) → 62D Distributed Device, Chip & Edge Runtime Fabric V1 (**QUEUED DOCS**) → 62E…62H**. Park `cursor/queue-2i-ai-62b-agent-meetings-human-bridge-7b68`; never force-push / never `main`. No `services/ai/` dump; no migrations.
 
 **Canonical:** [`xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`](./xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md) · queue [`../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](../queue/2I-AI-62B-agent-meetings-human-intelligence-bridge.md) · series pointer [`../queue/2I-AI-62-SERIES-POINTER.md`](../queue/2I-AI-62-SERIES-POINTER.md)
 

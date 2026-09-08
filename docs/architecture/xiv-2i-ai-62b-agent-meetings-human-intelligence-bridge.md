@@ -608,7 +608,7 @@ Report `LOCAL=` `GITHUB=` `GITLAB=` `TREE=`. GitLab unverifiable → **BLOCKED**
 - **2I-AI-62D** — Distributed Device, Chip & Edge Runtime Fabric V1 (**QUEUED DOCS**)
 - **2I-AI-62E** — Massive Agent Scheduler, Swarm Coordination & Task Force Fabric (**title only**)
 
-**Do not start 62C or 62D implementation from the 62B commit.**
+**Do not start 62C, 62D, or 62E implementation from the 62B commit.**
 
 ## Docs-only gate
 
