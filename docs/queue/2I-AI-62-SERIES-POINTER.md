@@ -1,36 +1,40 @@
 # 2I-AI-62 series pointer
 
-Status: **POINTER ONLY** — does not implement any 62\* story.
+Status: **POINTER ONLY** — does not by itself implement any 62\* story.
 Branch: `xiv-v2` (never `main`; never force-push)
+
+This series is **separate** from 2I-LA-61 (neural / developer-infrastructure track). Do not merge the two tracks into one status claim.
 
 ## Ordering lock
 
-**CURRENT: Deployment Gate Hardening → 2I-AI-62A (queued docs) → 2I-AI-62B (queued docs) → 62C → 62D → 62E → 62F → 62G → FUTURE: 62H**
+**Deployment Gate Hardening (CURRENT for staging/canary) → 62A (foundation; title-only on tip / queued-docs parks may exist) → 62B (bounded engine landed) → 62C (title only) → 62D (queued docs) → 62E (NEXT title) → 62F → 62G → FUTURE 62H**
 
 | Story | Title | State in this commit |
 |-------|-------|----------------------|
-| **Deployment Gate Hardening** | CI / security / RLS / dependency+secret scan / regression / rollback / backup-restore / worker / agent-evaluation gates | **CURRENT** — blocks staging/canary promotion. See [`DEPLOYMENT-GATE-HARDENING.md`](./DEPLOYMENT-GATE-HARDENING.md) |
-| **2I-AI-62A** | XIV Agent Civilization & Distributed Intelligence Foundation | **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — [`2I-AI-62A-agent-civilization-foundation.md`](./2I-AI-62A-agent-civilization-foundation.md) |
-| **2I-AI-62B** | Agent Meetings, Collective Reasoning & Human Intelligence Bridge | **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — [`2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](./2I-AI-62B-agent-meetings-human-intelligence-bridge.md) |
-| **2I-AI-62C** | XIV Historical, Cultural & Multilingual Intelligence Network | **NEXT (title only).** Do not start. Separates history/mythology, evidence/interpretation, belief/fact, culture/stereotype, knowledge/prediction. |
-| **2I-AI-62D** | Distributed Device & Hardware Runtime | Later (title only) |
-| **2I-AI-62E** | Massive Agent Scheduler + Task Forces | Later (title only) |
-| **2I-AI-62F** | Universe Federation + Constellations | Later (title only) |
-| **2I-AI-62G** | Beyond-Cloud / Space Interface Architecture | Later (title only) |
+| **Deployment Gate Hardening** | CI / security / RLS / scans / regression / rollback / backup / worker / agent-eval | **CURRENT** for staging/canary — [`DEPLOYMENT-GATE-HARDENING.md`](./DEPLOYMENT-GATE-HARDENING.md). Documentation ≠ PASS. |
+| **2I-AI-62A** | Agent Civilization & Distributed Intelligence Foundation | **NOT PASS.** Tip treated as title-only when landing 62B; fuller **QUEUED DOCS** may exist on parks — [`2I-AI-62A-agent-civilization-foundation.md`](./2I-AI-62A-agent-civilization-foundation.md). Bounded 62B ≠ 62A foundation complete. |
+| **2I-AI-62B** | Agent Meetings, Collective Reasoning & Human Intelligence Bridge | **BOUNDED ENGINE LANDED** (deterministic in-process + RLS schema + required tests). **NOT LIVE overnight autonomy.** — [`2I-AI-62B-agent-meetings-human-intelligence-bridge.md`](./2I-AI-62B-agent-meetings-human-intelligence-bridge.md) · runtime `services/ai/runtime/agentmeetings/` |
+| **2I-AI-62C** | Historical + Cultural + Multilingual Intelligence Network | **TITLE ONLY** — required predecessor for 62D implementation. Do not start. |
+| **2I-AI-62D** | Distributed Device, Chip & Edge Runtime Fabric V1 | **QUEUED ARCHITECTURE — NOT IMPLEMENTED** — [`2I-AI-62D-distributed-device-chip-edge-runtime-fabric.md`](./2I-AI-62D-distributed-device-chip-edge-runtime-fabric.md). Implementation still waits on 62C PASS. |
+| **2I-AI-62E** | Massive Agent Scheduler, Swarm Coordination & Task Force Fabric | **NEXT (title only).** Logical agents → activate on demand → task forces → sleep/hibernate. |
+| **2I-AI-62F** | Universe Federation & Constellations | Later (title only) |
+| **2I-AI-62G** | Beyond-Cloud + Satellite Interface | Later (title only) |
 | **2I-AI-62H** | XIV Galaxy Federation | Future (title only) |
 
 ## Relationship to 2I-LA-61\*
 
-LA-61I/61J/61K (and later) remain sibling architecture parks for neural / data / parallel-pathway work. **2I-AI-62** is the Agent Civilization foundation series. Neither series overrides Deployment Gate Hardening. Do not silently merge or discard either plane.
+LA-61\* parks (including LA-61N V740 queued docs) remain sibling architecture. Neither series overrides Deployment Gate Hardening. Do not silently merge or discard either plane.
 
 ## Hard stops
 
-- Do **not** treat this pointer as PASS, LIVE, or IMPLEMENTED.
-- Do **not** implement 62A/62B until Deployment Gate Hardening PASS (+ required predecessors); 62B also requires 62A PASS.
-- Do **not** authorize satellites, fabricated human approvals, uncontrolled autonomy, or L4 from documentation.
-- **MEETING HELD ≠ ACTION AUTHORIZED.** **CONSENSUS ≠ TRUTH.** **GUARDIAN ABOVE MEETINGS.**
+- Do **not** treat this pointer as full-series PASS, LIVE overnight autonomy, or L4.
+- **Meeting ≠ authority. Consensus ≠ truth. Overnight ≠ uncontrolled action. API names ≠ capabilities. Logical population ≠ running compute.**
+- Do **not** implement 62D until **62C + Deployment Gate** PASS (and 62A foundation honesty remains unresolved as PASS).
+- Do **not** invent full 62C docs from the 62D park.
+- **SECURITY OVERRIDES PERFORMANCE.** **OFFLINE ≠ AUTHORITY.** **DEVICE WITH APP ≠ TRUSTED INFRA.** **SATELLITE ≠ CONFIGURED.**
 - **L4 DISABLED.** All `AUTO_*` FALSE.
-
-Canonical 62A architecture: [`../architecture/xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md`](../architecture/xiv-2i-ai-62a-agent-civilization-distributed-intelligence-foundation.md)
+- Do not dump 62B into `services/ai/runtime/neural/`.
 
 Canonical 62B architecture: [`../architecture/xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md`](../architecture/xiv-2i-ai-62b-agent-meetings-human-intelligence-bridge.md)
+
+Canonical 62D architecture: [`../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric-v1.md`](../architecture/xiv-2i-ai-62d-distributed-device-chip-edge-runtime-fabric-v1.md)
