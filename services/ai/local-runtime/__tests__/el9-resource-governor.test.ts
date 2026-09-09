@@ -166,6 +166,7 @@ test('ceiling reject: workers above policy → DENY', () => {
   );
   assert.equal(decision.allowed, false);
   assert.equal(decision.action, 'DENY');
+  assert.equal(decision.state, 'DENIED');
   assert.ok(decision.reasons.some((r) => /worker/i.test(r)));
 });
 
@@ -440,15 +441,16 @@ test('cache growth above ceiling → DENY', () => {
   const decision = governTaskRequest(
     {
       taskId: 't-cache',
-      kind: 'offline_research',
+      kind: 'search',
       estimatedMemoryBytes: 16 * 1024 * 1024,
       estimatedCacheBytes: 2 * 1024 * 1024 * 1024,
       costEstimated: true,
     },
-    idleObservation({ localCacheBytes: 0 }),
+    idleObservation({ localCacheBytes: 0, memoryUsedBytes: 32 * 1024 * 1024 }),
     tightPolicy,
   );
   assert.equal(decision.action, 'DENY');
+  assert.ok(decision.reasons.some((r) => /cache/i.test(r)));
 });
 
 test('network above per-task ceiling → DENY', () => {

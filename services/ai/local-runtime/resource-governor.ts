@@ -585,7 +585,27 @@ export function governTaskRequest(
     );
   }
 
-  // Hard ceiling checks via preserved evaluator + extended dimensions
+  // Absolute single-request ceilings → hard DENY (never unlimited workers/RAM)
+  if (estimate.cpuWorkers > eff.maxWorkerCount) {
+    return deny(
+      estimate,
+      'DENIED',
+      [
+        `Estimated workers ${estimate.cpuWorkers} exceed worker ceiling ${eff.maxWorkerCount}.`,
+      ],
+      { cloudSpillover },
+    );
+  }
+  if (estimate.memoryBytes > eff.maxMemoryBytes) {
+    return deny(
+      estimate,
+      'MEMORY_LIMIT',
+      [`Estimated memory ${estimate.memoryBytes} exceeds ceiling ${eff.maxMemoryBytes}.`],
+      { cloudSpillover },
+    );
+  }
+
+  // Host pressure vs ceilings via preserved evaluator + extended dimensions
   const ceiling = evaluateResourceRequest(
     {
       concurrentTasks: observation.activeWorkers + estimate.cpuWorkers,
@@ -594,34 +614,32 @@ export function governTaskRequest(
     { maxConcurrentTasks: eff.maxWorkerCount, maxMemoryBytes: eff.maxMemoryBytes },
   );
   if (!ceiling.allowed) {
-    const memoryHit = ceiling.reasons.some((r) => /memory/i.test(r));
-    const state: GovernorState = memoryHit ? 'MEMORY_LIMIT' : 'RESOURCE_PRESSURE';
-    // Over absolute ceilings → DENY; near pressure with room to queue → QUEUE
+    // Concurrency pressure with queue room → QUEUE; otherwise DENY
     if (
-      estimate.memoryBytes > eff.maxMemoryBytes ||
-      estimate.cpuWorkers > eff.maxWorkerCount ||
-      observation.activeWorkers + estimate.cpuWorkers > eff.maxWorkerCount
+      estimate.memoryBytes <= eff.maxMemoryBytes &&
+      estimate.cpuWorkers <= eff.maxWorkerCount &&
+      observation.activeWorkers + estimate.cpuWorkers > eff.maxWorkerCount &&
+      observation.queueDepth < eff.maxQueueSize
     ) {
-      // If only concurrency pressure and queue has room, queue instead of hard deny
-      if (
-        estimate.memoryBytes <= eff.maxMemoryBytes &&
-        estimate.cpuWorkers <= eff.maxWorkerCount &&
-        observation.queueDepth < eff.maxQueueSize
-      ) {
-        return {
-          action: 'QUEUE',
-          state: 'RESOURCE_PRESSURE',
-          allowed: false,
-          reasons: [...ceiling.reasons, 'Queued until worker/memory headroom recovers.'],
-          estimate,
-          cloudSpillover,
-          stopSafeRequired: false,
-          priorityDeferred: false,
-          locks: EL9_LOCKS,
-        };
-      }
-      return deny(estimate, state, ceiling.reasons, { cloudSpillover });
+      return {
+        action: 'QUEUE',
+        state: 'RESOURCE_PRESSURE',
+        allowed: false,
+        reasons: [...ceiling.reasons, 'Queued until worker/memory headroom recovers.'],
+        estimate,
+        cloudSpillover,
+        stopSafeRequired: false,
+        priorityDeferred: false,
+        locks: EL9_LOCKS,
+      };
     }
+    const memoryHit = ceiling.reasons.some((r) => /memory/i.test(r));
+    return deny(
+      estimate,
+      memoryHit ? 'MEMORY_LIMIT' : 'RESOURCE_PRESSURE',
+      ceiling.reasons,
+      { cloudSpillover },
+    );
   }
 
   if (observation.memoryUsedBytes + estimate.memoryBytes > eff.maxMemoryBytes) {
@@ -854,24 +872,6 @@ export function governTaskRequest(
       priorityDeferred: false,
       locks: EL9_LOCKS,
     };
-  }
-
-  // Absolute hard deny for oversubscribed single-request ceilings (request alone exceeds policy)
-  if (estimate.memoryBytes > eff.maxMemoryBytes) {
-    return deny(
-      estimate,
-      'MEMORY_LIMIT',
-      [`Estimated memory ${estimate.memoryBytes} exceeds ceiling ${eff.maxMemoryBytes}.`],
-      { cloudSpillover },
-    );
-  }
-  if (estimate.cpuWorkers > eff.maxWorkerCount) {
-    return deny(
-      estimate,
-      'DENIED',
-      [`Estimated workers ${estimate.cpuWorkers} exceed ceiling ${eff.maxWorkerCount}.`],
-      { cloudSpillover },
-    );
   }
 
   return {
