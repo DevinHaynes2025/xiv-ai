@@ -140,9 +140,14 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
-    'US-CH-pred-CE',
-    preds.CE.tipProbe === 'PRESENT' && preds.CE.report === 'PRESENT',
-    `CE tip/report PRESENT (base). CG=${preds.CG.tipProbe} CF=${preds.CF.tipProbe}`,
+    'US-CH-pred-CG',
+    preds.CG.tipProbe === 'PRESENT' &&
+      preds.CG.report === 'PRESENT' &&
+      preds.CF.tipProbe === 'PRESENT' &&
+      preds.CF.report === 'PRESENT' &&
+      preds.CE.tipProbe === 'PRESENT' &&
+      preds.CE.report === 'PRESENT',
+    `CG/CF/CE tip+report PRESENT (base=CG). CG=${preds.CG.tipProbe} CF=${preds.CF.tipProbe} CE=${preds.CE.tipProbe}`,
   );
 
   // --- Department skill transcript does not grant permissions ---

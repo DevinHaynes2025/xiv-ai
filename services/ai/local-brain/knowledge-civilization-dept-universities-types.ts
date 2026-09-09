@@ -242,17 +242,21 @@ export function predecessorMap(root = repoRootFromHere()): Record<string, Predec
         ? 'PRESENT'
         : 'WAITING_DATA',
       report: has('62L_CG_DEEP_KNOWLEDGE_REFINERY_OS_REPORT.md') ? 'PRESENT' : 'MISSING',
-      note: 'Preferred CG Deep Knowledge Refinery OS tip + report. WAITING_DATA until origin tip lands.',
+      note: 'Preferred CG Deep Knowledge Refinery OS tip + report. Used as CH base when PRESENT.',
     },
     CF: {
       tipProbe:
-        hasMod('global-data-refinery-civilization-types.ts') ||
+        hasMod('data-refinery-compression-replication-types.ts') ||
+        hasMod('global-data-refinery-civilization.ts') ||
+        has('62L_CF_DATA_REFINERY_COMPRESSION_REPLICATION_REPORT.md') ||
         has('62L_CF_GLOBAL_DATA_REFINERY_CIVILIZATION_REPORT.md') ||
         has('62L_CF_REPORT.md')
           ? 'PRESENT'
           : 'WAITING_DATA',
       report:
-        has('62L_CF_GLOBAL_DATA_REFINERY_CIVILIZATION_REPORT.md') || has('62L_CF_REPORT.md')
+        has('62L_CF_DATA_REFINERY_COMPRESSION_REPLICATION_REPORT.md') ||
+        has('62L_CF_GLOBAL_DATA_REFINERY_CIVILIZATION_REPORT.md') ||
+        has('62L_CF_REPORT.md')
           ? 'PRESENT'
           : 'MISSING',
       note: 'Preferred CF after CG when CG absent.',
@@ -264,7 +268,7 @@ export function predecessorMap(root = repoRootFromHere()): Record<string, Predec
       report: has('62L_CE_KNOWLEDGE_EXCAVATION_MEMORY_LAKE_REPORT.md')
         ? 'PRESENT'
         : 'MISSING',
-      note: 'CE Knowledge Excavation / Memory Lake tip used when CG/CF WAITING_DATA.',
+      note: 'CE Knowledge Excavation / Memory Lake tip (CG/CF ancestor).',
     },
     CD: {
       tipProbe: hasMod('data-root-local-llm-archive-mesh-types.ts')
