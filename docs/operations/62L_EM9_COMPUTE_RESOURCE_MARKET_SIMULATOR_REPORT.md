@@ -18,7 +18,7 @@ Date: 2026-09-09
 | EM3 | Universal Compute Registry **PRESENT** on base |
 | EL9 | Resource Governor **PRESENT** on base |
 | Working branch | `cursor/62l-em9-compute-resource-market-simulator-4059` |
-| Tip SHA | `c0f31ecb786602fe4834b9d746df283dcab63a64` |
+| Tip SHA | `74b4d6cdfb4b62fbe26871184f096ee573c2b09f` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
