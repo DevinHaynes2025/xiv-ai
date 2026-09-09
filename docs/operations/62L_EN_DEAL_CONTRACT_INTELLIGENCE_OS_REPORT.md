@@ -4,9 +4,9 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-en-deal-contract-intelligence-os-4059`  
-Tip SHA: `a600f1760367cf517dd518a325dd96a77fa4d68e`
-Implementation SHA (feat): `c7fa79b4b979111bc3eb5f31f61e8df0861e631e`  
-Base: `cursor/62l-em10-user-access-economy-4059` @ `b1040f4124802f73fe3545f6a5e9f9da8337ce0c` (same tip as #157 Agent Compute Home Base; EM10 preferred predecessor present)  
+Tip SHA: `PENDING_REBASE_PUSH`
+Implementation SHA (feat): `8e3475be01d11435ce621ef6c3daa2a2efd995d9`  
+Base: `cursor/62l-em10-user-access-economy-4059` @ `f80e92af84aa4b15b632090c4c1197aa2885c603` (on EM9 `b3c06c7…`; rebased from prior #157-only tip `b1040f41…`)  
 SoT: **GitHub #158** — *62L-EN Deal & Contract Intelligence OS + Government Contracting Brain + AI Marketing/Negotiation Team + Historical Negotiation Memory + Proposal & Pricing War Room*  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
 
@@ -32,13 +32,17 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 | **GitHub Issue #158** | **Implementation SoT** |
 | GitLab mirror | Not resolved — coordination cite only if later found; **no number invented** |
 
+## Rebase
+
+Rebased onto newer EM10 tip `f80e92af84aa4b15b632090c4c1197aa2885c603` (preferred over #157-only `b1040f41…`). `test:62len` re-executed after rebase.
+
 ## Predecessor / base
 
 | Field | Value |
 | --- | --- |
 | Preferred base | EM10 `cursor/62l-em10-user-access-economy-4059` (**PRESENT**) |
-| Base tip SHA | `b1040f4124802f73fe3545f6a5e9f9da8337ce0c` |
-| Equivalence note | EM10 tip coincides with #157 `cursor/62l-em-agent-compute-home-base-4059` tip |
+| Base tip SHA | `f80e92af84aa4b15b632090c4c1197aa2885c603` |
+| Equivalence note | EM10 tip @ `f80e92af…` on EM9; #157 home-base commits replayed onto EM10 during EN rebase |
 | Working branch | `cursor/62l-en-deal-contract-intelligence-os-4059` |
 | Tip-land / PR / prod / DB | **NO** / **None** / **NO** / **NOT_APPLIED** |
 
