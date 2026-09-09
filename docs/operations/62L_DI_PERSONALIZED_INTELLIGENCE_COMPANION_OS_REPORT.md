@@ -7,7 +7,7 @@ Branch: `cursor/62l-di-personalized-intelligence-companion-os-4059`
 Parent / base tip: `cursor/62l-dh-adaptive-life-business-intelligence-os-4059` @ `42bd3dd6167adb6e34badf280a3f60913a86d50e` + `docs/operations/62L_DH_ADAPTIVE_LIFE_BUSINESS_INTELLIGENCE_OS_REPORT.md` (**PRESENT** on origin after WAITING_DATA poll)
 Why this base: Preference **DH → DG → DF `f9491b6` → DE → …**. DH tip+report PRESENT on origin after backoff. Soft-wire DH/DG/DF when PRESENT. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `fb2002bcc9e9c2e3fddbc4a830a5ef7584b0cec6`
+Tip SHA: `ab302ac28158aa6695be4d5523a1b2aa09581ede`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
