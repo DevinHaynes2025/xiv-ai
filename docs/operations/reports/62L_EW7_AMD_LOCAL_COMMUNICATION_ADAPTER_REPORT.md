@@ -4,6 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ew7-amd-local-communication-adapter-4059`  
+Tip SHA (feat): `f6e937f7a69c23d384a734db29565a47fb23bbe9`  
 Base: `cursor/62l-ew6-cross-chip-capability-graph-v2-4059` @ `6098668` (EW6 tip name present; committed EW6 chipgraph modules not yet on tip — soft-wired via `existsSync` park / sibling markers; presence ≠ VERIFIED)  
 SoT: **GitHub #169** — Global Operations Brain / 62L-EW Offline Research Mesh family  
 Canonical ownership: **Global Operations Brain**  
