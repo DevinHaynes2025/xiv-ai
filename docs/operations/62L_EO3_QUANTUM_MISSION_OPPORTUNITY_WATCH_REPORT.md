@@ -4,11 +4,15 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo3-quantum-mission-opportunity-watch-4059`  
-Tip SHA: `643c64b0d1c1abc496a3b7ce6f6c8295ab2569f0`  
-Implementation SHA (feat): `47c98853e2445237c3cddbe914ece8d4d1f356ce`  
-Base: `cursor/62l-eo2-government-agency-knowledge-graph-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (= EN tip on EM10; EO2 code WAITING_DATA on this lineage)  
+Tip SHA: `TIP_SHA_PENDING`  
+Implementation SHA (feat): `44fa80c4f1308ec9cd6d1c4737ec8df64ff132e2`  
+Base: `cursor/62l-eo2-government-agency-knowledge-graph-4059` @ `55db8618f1ea60c67f0e77c21dd5870c4219f100` (contains EN `880ff9c4…`; preferred over interim EO `7483943…` which lacks EN)  
 SoT soft-wire: **GitHub #159** — *62L-EO Government Quantum/AI Mission OS (umbrella)* — EO3 = Quantum Mission Opportunity Watch child  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
+
+## Rebase
+
+Rebased onto EO2 tip `55db8618…` (EN `880ff9c4…` + EO2 agency graph). Preferred over interim EO `7483943…` (rebasing onto EN; does not yet contain `880ff9c4…`) and over stale EN-only `3a141648…`. `test:62leo3` re-executed after rebase — **PASS** 10/10.
 
 ## Honesty banner
 
@@ -35,9 +39,10 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 
 | Field | Value |
 | --- | --- |
-| Preferred base | EO2 `cursor/62l-eo2-government-agency-knowledge-graph-4059` (**PRESENT** as branch; code WAITING_DATA) |
-| Fallback | EO1 / EO / EN — EO2 tip currently equals EN `3a141648…` |
-| Base tip SHA | `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` |
+| Preferred base | EO2 `cursor/62l-eo2-government-agency-knowledge-graph-4059` @ `55db8618…` (**PRESENT**; contains EN `880ff9c4…`) |
+| Skipped (interim) | EO `7483943…` — rebasing onto EN; does **not** yet contain `880ff9c4…` |
+| Prior stale base | EN/EO2 @ `3a141648…` — superseded |
+| Base tip SHA | `55db8618f1ea60c67f0e77c21dd5870c4219f100` |
 | Working branch | `cursor/62l-eo3-quantum-mission-opportunity-watch-4059` |
 | Tip-land / PR / prod / DB | **NO** / **None** / **NO** / **NOT_APPLIED** |
 
@@ -46,8 +51,8 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 | Target | Soft-wire |
 | --- | --- |
 | EO1 Government Contracts Command Center | **WAITING_DATA** on this lineage (probe only) |
-| EO2 Government Agency Knowledge Graph | **WAITING_DATA** on this lineage (probe only) |
-| EO #159 umbrella report | **WAITING_DATA** (probe only) |
+| EO2 Government Agency Knowledge Graph | **PRESENT** |
+| EO #159 umbrella report | **WAITING_DATA** (probe only; EO interim not yet on EN) |
 | EN Deal & Contract Intelligence OS (#158) | **PRESENT** |
 
 ## Core workflow (encoded)
