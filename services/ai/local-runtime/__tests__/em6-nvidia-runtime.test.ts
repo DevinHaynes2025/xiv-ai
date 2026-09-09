@@ -387,7 +387,7 @@ test('soft-wire EM4/EL8/EM5/EL9 presence probe; L4 false; Guardian intact', () =
   assert.equal(probe.em3UniversalRegistry, 'PRESENT');
   // EM4 envelope present via local-brain after rebase onto sealed EM4.
   assert.equal(probe.em4EnvelopeCandidate, 'PRESENT');
-  // EM5 soft-wires via existing onnx-windows-ml-adapter when EM5 module absent.
+  // EM5 AMD Windows ML path PRESENT after rebase onto sealed EM5.
   assert.equal(probe.em5AmdWindowsMlCandidate, 'PRESENT');
   assert.equal(probe.locks.em6.L4_AUTONOMY_ENABLED, false);
   assert.equal(probe.locks.el9.L4_AUTONOMY_ENABLED, false);

@@ -1,15 +1,15 @@
 # 62L-EM6 — NVIDIA Runtime Candidate Path Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto sealed EM4 tip — unit tests **re-executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto sealed EM5 tip — unit tests **re-executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em6-nvidia-runtime-candidate-path-4059`  
-Base: `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` @ `0c31b27d694484499c69fd9fb2eb549d80ac89e8` (sealed EM4 on EM3 `eb6e963…` + #157)  
-EM5 origin tip `7f446d4` skipped: published but **does not contain** sealed EM4 / post-#157 EM3  
-Prior bases: EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
-Rebase onto EM4: **YES**  
-Implementation SHA: `184ea813c5e75ae08d27e687109cfd2f7b37acbf` (feat, post-EM4-rebase)  
-Tip SHA: `645d9c1534f2b74603e527f99ab9c35c3c994b80`  
+Base: `cursor/62l-em5-amd-windows-ml-adapter-path-4059` @ `69753ccad6f1d3a593a4f6e545c2c286077d78a4` (sealed EM5 on EM4 `0c31b27…`)  
+Prior bases: EM4 @ `0c31b27…`; EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
+Rebase onto EM5: **YES**  
+Implementation SHA: `90db9191cf47e8cfcfdbe9c32cfd81385db283e2` (feat, post-EM5-rebase)  
+Tip SHA: `PLACEHOLDER_TIP`
+
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -125,8 +125,8 @@ cd services/ai && npm run test:local-runtime
 
 | Command | Result |
 |---|---|
-| `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM4 rebase) |
-| `npm run test:local-runtime` | **PASS** — 137/137 (includes EM4 + EM3 + EM6 + prior EL/EM; no regression) |
+| `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM5 rebase) |
+| `npm run test:local-runtime` | **PASS** — **PASS** — 152/152 (includes EM5 + EM4 + EM3 + EM6 + prior EL/EM; no regression) |
 
 NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
@@ -136,7 +136,7 @@ NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 - EM3 universal compute registry / honesty: **PRESENT**
 - EL8 model-load evidence / honesty: presence soft-wire
 - EL9 resource governor: presence + VRAM/concurrency/runtime/queue/duration ceilings
-- EM5 AMD Windows ML path: soft-wires via `onnx-windows-ml-adapter` / EM5 modules when present (EM5 tip not used as base — missing EM4 ancestry)
+- EM5 AMD Windows ML adapter path: **PRESENT** (`em5-honesty` / `amd-windows-ml-adapter-path`) after rebase onto sealed EM5
 - local-brain home-base (#157 / EM1): **PRESENT** on this base
 - Existing policy: auto high-risk blocked; consequential approval required; `canAutoExecute` false
 
