@@ -6,8 +6,8 @@ Date: 2026-09-09
 Branch: `cursor/62l-ek-windows-amd-local-cognitive-os-4059`
 Parent / base tip: `cursor/62l-ei-chip-to-cloud-cognitive-fabric-4059` @ `028edbd2c1854fc7edb8955c53536a38117f5da8` + `docs/operations/62L_EI_CHIP_TO_CLOUD_COGNITIVE_FABRIC_REPORT.md` (**PRESENT**; includes EG @ `5c6b9b0374e30a779b91b3230ecc69ab33e3d00a` + EE lineage)
 Why this base: Preference **EJ → EI → EG**. EJ **ABSENT** on origin. EI tip **PRESENT** (includes EG/EE soft-wire lineage). Soft-wire: `62L_EI_*` **PRESENT**; `62L_EG_*` **PRESENT**; `62L_EE_*` **PRESENT**; `62L_EJ_*` **ABSENT**. No tip-land onto `xiv-v2`/`main`.
-Implementation SHA: _(set at commit)_
-Tip SHA: _(set at tip)_
+Implementation SHA: `149f3232b3da38a33da249dd533ffcc7cdd331d4`
+Tip SHA: `149f3232b3da38a33da249dd533ffcc7cdd331d4`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
