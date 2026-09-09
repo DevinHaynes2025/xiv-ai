@@ -1,9 +1,8 @@
 /**
-<<<<<<< HEAD
- * 62L-EW7 — AMD Local Communication Adapter public facade + cycle runner.
+ * 62L-EW chipgraph facade — EW7 AMD Local Communication Adapter + EW8 NVIDIA Adapter Candidate.
  *
- * Connects Agent Mesh + Cross-Chip Graph to local AMD paths.
- * No separate AMD agent system. L4=false. tip-land=NO.
+ * One shared chipgraph home. No separate AMD/NVIDIA brains.
+ * L4=false. tip-land=NO. No PR unless founder asks.
  */
 
 export * from './ew7-types.ts';
@@ -11,6 +10,66 @@ export * from './compute-envelope.ts';
 export * from './compute-receipt.ts';
 export * from './resource-policy.ts';
 export * from './amd-adapter.ts';
+
+/** EW8 NVIDIA truth / runtime / benchmark (explicit — avoid clobbering EW7 names). */
+export {
+  HONESTY_BANNER as EW8_HONESTY_BANNER,
+  GITHUB_SOT_LABEL as EW8_GITHUB_SOT_LABEL,
+  GITHUB_SOT_TITLE as EW8_GITHUB_SOT_TITLE,
+  NEXT_STORY_TITLE as EW8_NEXT_STORY_TITLE,
+  FOLLOWING_STORY_TITLE as EW8_FOLLOWING_STORY_TITLE,
+  CANONICAL_FLOW as EW8_CANONICAL_FLOW,
+  NVIDIA_TRUTH_LAYERS,
+  TRUTH_STATES,
+  PREFERRED_COMPUTE_TARGETS,
+  ACTUAL_EXECUTION_DEVICES,
+  PLACEMENT_CLASSES,
+  MULTI_GPU_STATES,
+  SOFTWARE_ACCELERATION_LEVERS as EW8_SOFTWARE_ACCELERATION_LEVERS,
+  EW8_LOCKS,
+  EW8_MAY,
+  EW8_MUST_NOT,
+  assertEw8LocksIntact,
+  ew8SoftWireSnapshot,
+  nvidiaEnvironmentHonesty,
+  denySiliconOrFirmwareClaim as denyNvidiaSiliconOrFirmwareClaim,
+  satisfiesMinimumState as ew8SatisfiesMinimumState,
+  softWireHopState as ew8SoftWireHopState,
+  type NvidiaTruthLayer,
+  type TruthState as Ew8TruthState,
+  type PreferredComputeTarget,
+  type ActualExecutionDevice,
+  type PlacementClass,
+  type MultiGpuState,
+  type Ew8SoftWireSnapshot,
+} from './ew8-types.ts';
+
+export * from './nvidia-capabilities.ts';
+export * from './nvidia-runtime.ts';
+export * from './nvidia-benchmark.ts';
+
+export {
+  attemptAutonomousCloudRental,
+  attemptCloudPurchase,
+  createComputeEnvelope as createNvidiaComputeEnvelope,
+  createHomeBaseReceiptLedger as createNvidiaHomeBaseReceiptLedger,
+  defaultGpuPressure,
+  defaultNvidiaCapabilitySnapshot,
+  detectedGpuOnly,
+  documentedGpuOnly,
+  evaluateGpuResourceGovernor,
+  markCudaMissing,
+  markTensorRtMissing,
+  probeGuardianRlsUnchanged,
+  runNvidiaAdapter,
+  softWireSummary as nvidiaSoftWireSummary,
+  validateComputeEnvelope as validateNvidiaComputeEnvelope,
+  type AdapterRunResult,
+  type ComputeTaskEnvelope as NvidiaComputeTaskEnvelope,
+  type ExecutionReceipt as NvidiaExecutionReceipt,
+  type GpuGovernorDecision,
+  type GpuPressureSnapshot,
+} from './nvidia-adapter.ts';
 
 import {
   CANONICAL_FLOW,
@@ -105,7 +164,6 @@ export function runAmdLocalCommunicationAdapterCycle(input?: {
   const adapter = createAmdLocalCommunicationAdapter();
   const devices = defaultAmdDeviceTable();
 
-  // Touch adapter so cycle proves modules load (no fabricated GPU/NPU run).
   void adapter.shared;
   void devices;
 
@@ -115,11 +173,7 @@ export function runAmdLocalCommunicationAdapterCycle(input?: {
       locksIntact ? 'PASS' : 'FAIL',
       locksIntact ? 'EW7 locks intact' : 'EW7 locks violated',
     ),
-    hop(
-      'canonical_flow_encoded',
-      'PASS',
-      CANONICAL_FLOW.join(' → '),
-    ),
+    hop('canonical_flow_encoded', 'PASS', CANONICAL_FLOW.join(' → ')),
     hop(
       'no_separate_amd_agent_system',
       EW7_LOCKS.SEPARATE_AMD_AGENT_SYSTEM === false &&
@@ -218,35 +272,3 @@ export function runAmdLocalCommunicationAdapterCycle(input?: {
     guardianRlsUnchanged: true,
   };
 }
-=======
- * 62L-EW8 — NVIDIA Adapter Candidate public facade.
- * Extends chipgraph — not a parallel NVIDIA brain.
- */
-
-export * from './ew8-types.ts';
-export * from './nvidia-capabilities.ts';
-export * from './nvidia-runtime.ts';
-export * from './nvidia-benchmark.ts';
-export {
-  attemptAutonomousCloudRental,
-  attemptCloudPurchase,
-  createComputeEnvelope,
-  createHomeBaseReceiptLedger,
-  defaultGpuPressure,
-  defaultNvidiaCapabilitySnapshot,
-  detectedGpuOnly,
-  documentedGpuOnly,
-  evaluateGpuResourceGovernor,
-  markCudaMissing,
-  markTensorRtMissing,
-  probeGuardianRlsUnchanged,
-  runNvidiaAdapter,
-  softWireSummary,
-  validateComputeEnvelope,
-  type AdapterRunResult,
-  type ComputeTaskEnvelope,
-  type ExecutionReceipt,
-  type GpuGovernorDecision,
-  type GpuPressureSnapshot,
-} from './nvidia-adapter.ts';
->>>>>>> db5b7d3 (feat(62L-EW8): NVIDIA Adapter Candidate + honesty tests #169)
