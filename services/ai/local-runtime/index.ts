@@ -33,3 +33,8 @@ export * from './em6-soft-wire';
 export * from './em6-cross-vendor-benchmark-contract';
 export * from './nvidia-runtime-adapter';
 export * from './device-neutral-inference-router';
+export * from './em8-honesty';
+export * from './em8-soft-wire';
+export * from './compute-return-receipt';
+export * from './em8-home-base-ingest';
+export * from './em8-neural-pathway';
