@@ -1,0 +1,52 @@
+{
+  "dnaVersion": "0.1.0",
+  "label": "62L-EX4",
+  "title": "XIV Quantum DNA Manifest — Local Simulator Registry",
+  "sourceRights": "XIV_OWNED_SCHEMAS_RECIPES_ONLY",
+  "proprietaryClone": false,
+  "forbiddenCloneTargets": [
+    "proprietary_qpu_isa",
+    "vendor_chip_ip",
+    "closed_firmware",
+    "trade_secret_pulse_schedules",
+    "restricted_provider_sdks_without_license_review"
+  ],
+  "schemas": [
+    "circuit-model-ir.schema",
+    "simulator-registry-entry.schema",
+    "simulation-request.schema",
+    "simulation-receipt.schema",
+    "resource-estimate.schema"
+  ],
+  "recipes": [
+    "bell-pair-bounded-verification",
+    "cpu-state-vector-local",
+    "gpu-fallback-to-cpu-recorded"
+  ],
+  "runtimeContracts": [
+    "simulated-quantum-only",
+    "never-physical-qpu-verified-from-sim",
+    "truth-ladder-no-skip",
+    "reproducibility-seed-shots-circuitHash"
+  ],
+  "policies": [
+    "l4-autonomy-false",
+    "no-hidden-cot",
+    "tenant-universe-isolation",
+    "no-guardian-rls-weaken",
+    "no-wormhole-auth-bypass"
+  ],
+  "softWireTargets": [
+    "AgentMesh",
+    "EX1_OfflineQuantumMission",
+    "EX2_ClassicalBaseline",
+    "EX3_QIAlgorithmLab",
+    "CrossChipGraph",
+    "BenchmarkEvidenceLedger",
+    "XIV_HomeBase_DNA"
+  ],
+  "honesty": "SIMULATED_QUANTUM ≠ PHYSICAL_QPU_VERIFIED; DOCUMENTED ≠ VERIFIED",
+  "nextPhase": "EX5 — QPU Provider Truth Registry",
+  "githubIssue": 170,
+  "createdAt": "2026-09-09T22:40:00.000Z"
+}
