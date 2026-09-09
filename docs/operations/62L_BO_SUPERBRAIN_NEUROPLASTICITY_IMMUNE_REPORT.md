@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bm-org-neural-federation-bi-nervous-4059` @ `4a6d
 Why this base: Preferred **62L-BN** tip + report **MISSING** after fetch with backoff. **BM** tip + report **PRESENT** — **rebased onto BM** (preferred over BL/BK/BJ). **BL** @ `46ea56b` is BM ancestor.
 Implementation SHAs: `342f823`..`fc584e9` (see commit list below)
 Report SHA: `acd455c` (report body pin; tip may be later restore commit)
-Tip SHA: `19aa34cd1488c5935cb13d0940a89832f364f456`
+Tip SHA: `5a8d7a064f245efd03072067461aec530abe516e`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
