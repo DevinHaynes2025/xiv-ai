@@ -88,9 +88,10 @@ try {
   const preds = predecessorMap(repoRoot);
   check(
     'US-BO-BASE',
-    (preds.BL.tipProbe === 'PRESENT' && preds.BL.report === 'PRESENT') ||
+    (preds.BM.tipProbe === 'PRESENT' && preds.BM.report === 'PRESENT') ||
+      (preds.BL.tipProbe === 'PRESENT' && preds.BL.report === 'PRESENT') ||
       (preds.BJ.tipProbe === 'PRESENT' && preds.BJ.report === 'PRESENT'),
-    `Base gate: BL=${preds.BL.tipProbe}/${preds.BL.report}; BJ=${preds.BJ.tipProbe}/${preds.BJ.report}; BN=${preds.BN.tipProbe}/${preds.BN.report}; BM=${preds.BM.tipProbe}; BK=${preds.BK.tipProbe}/${preds.BK.report}.`,
+    `Base gate: BM=${preds.BM.tipProbe}/${preds.BM.report}; BL=${preds.BL.tipProbe}/${preds.BL.report}; BJ=${preds.BJ.tipProbe}/${preds.BJ.report}; BN=${preds.BN.tipProbe}/${preds.BN.report}; BK=${preds.BK.tipProbe}/${preds.BK.report}.`,
   );
 
   check(

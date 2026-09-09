@@ -168,7 +168,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'Preferred BM tip absent or report missing after fetch with backoff.',
+      note: 'BM tip + report used as base when BN still WAITING_DATA after fetch with backoff.',
     },
     BL: {
       tipProbe: (has('62L_BL_ORG_AGENT_UNIVERSES_TRUST_FABRIC_REPORT.md')
@@ -177,7 +177,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BL_ORG_AGENT_UNIVERSES_TRUST_FABRIC_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BL tip + report used as base when BN/BM still WAITING_DATA after fetch with backoff.',
+      note: 'BL ancestor of BM; available fallback if BM unavailable.',
     },
     BK: {
       tipProbe: (has('62L_BK_SUPERBRAIN_COEXISTENCE_CODING_MESH_REPORT.md')
