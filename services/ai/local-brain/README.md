@@ -25,6 +25,7 @@ From `services/ai`:
 - `npm run local:neuroplasticity-health` — write the 62L-BO Superbrain Neuroplasticity / Knowledge DNA / Skill Evolution / Immune System / Adaptive Layers health report.
 - `npm run local:cognitive-homeostasis-health` — write the 62L-BP Cognitive Homeostasis / Digital Genome Replication / Skill Exchange / Edge-Cloud Mesh Recovery health report.
 - `npm run local:structured-code-memory-health` — write the 62L-BR Structured Code Memory / AI Debugging Academy / Engineering Notebook / Self-Learning Workcells / Superbrain Software Knowledge Compiler health report.
+- `npm run local:engineering-university-health` — write the 62L-BS Engineering University / Test Lab / Architecture Evolution / Review Council / Memory Cortex health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
@@ -41,6 +42,7 @@ From `services/ai`:
 - `npm run test:62lbo` — 62L-BO Superbrain Neuroplasticity / Organization Knowledge DNA / Agent Skill Evolution / Global Intelligence Immune System / Adaptive Offline/Cloud Brain Layers safety tests.
 - `npm run test:62lbp` — 62L-BP Cognitive Homeostasis / Organization Digital Genome Replication / Multi-Agent Skill Exchange / Resilient Edge-Cloud Brain Mesh / Recovery Fabric safety tests.
 - `npm run test:62lbr` — 62L-BR Structured Code Memory / AI Debugging Academy / Engineering Notebook / Self-Learning Workcells / Superbrain Software Knowledge Compiler safety tests.
+- `npm run test:62lbs` — 62L-BS AI Software Engineering University / Autonomous Test Laboratory / Code Architecture Evolution / Multi-Agent Code Review Council / Superbrain Engineering Memory Cortex safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
