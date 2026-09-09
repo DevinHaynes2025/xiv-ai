@@ -450,20 +450,42 @@ try {
     ns.reason,
   );
 
-  const cycle = await runHybridSupercomputeUniverseOsCycle({
-    orgId: actor.orgId,
-    tenantId: actor.tenantId,
-    universeId: actor.universeId,
-    actor,
-    root,
-  });
+  const cycleRoot = await mkdtemp(join(tmpdir(), 'xiv-62lcr-cycle-'));
+  let cycle;
+  try {
+    cycle = await runHybridSupercomputeUniverseOsCycle({
+      orgId: actor.orgId,
+      tenantId: actor.tenantId,
+      universeId: actor.universeId,
+      actor,
+      root: cycleRoot,
+    });
+  } finally {
+    await rm(cycleRoot, { recursive: true, force: true });
+  }
+  const failedHops = cycle.hops.filter(
+    (h) =>
+      ![
+        'PASS',
+        'DENIED',
+        'REJECTED',
+        'UNAVAILABLE',
+        'BOUNDED',
+        'LOGICAL_ONLY',
+        'DEFENSIVE_ONLY',
+        'REVERSIBLE',
+        'CORRELATION_ONLY',
+        'WAITING_DATA',
+      ].includes(h.state),
+  );
   check(
     'US-CR-cycle-ok',
     cycle.ok === true &&
       cycle.hops.length === HYBRID_SUPERCOMPUTE_UNIVERSE_OS_CYCLE.length &&
       cycle.l4AutonomyEnabled === false &&
-      cycle.scale.logicalUniverses > cycle.scale.runningUniverses,
-    `hops=${cycle.hops.length}; ok=${cycle.ok}`,
+      cycle.scale.logicalUniverses > cycle.scale.runningUniverses &&
+      failedHops.length === 0,
+    `hops=${cycle.hops.length}; ok=${cycle.ok}; failed=${failedHops.map((h) => `${h.hop}:${h.state}`).join(',') || 'none'}`,
   );
 
   const health = await buildHybridSupercomputeUniverseOsHealthReport({
