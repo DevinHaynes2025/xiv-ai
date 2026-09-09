@@ -1,0 +1,88 @@
+-- 62L-BW Planetary Chip / Founder Avatar / Ethics — CANDIDATE ONLY
+-- Status: NOT_APPLIED
+-- Honesty: DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- Do NOT apply to live Supabase. No production table overload.
+-- GitHub SoT #87; GitLab coordination #21.
+
+-- BEGIN CANDIDATE (NOT_APPLIED)
+-- create table if not exists xiv_bw_chip_intelligence (
+--   id text primary key,
+--   vendor text not null,
+--   family text not null,
+--   chip_class text not null,
+--   verified_target boolean not null default false,
+--   production_authorized boolean not null default false,
+--   evidence_refs jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_founder_avatar_delegates (
+--   id text primary key,
+--   pathway_key text not null,
+--   logical_only boolean not null default true,
+--   sparse boolean not null default true,
+--   active boolean not null default false,
+--   can_impersonate_founder boolean not null default false,
+--   can_approve_deals boolean not null default false,
+--   can_move_money boolean not null default false,
+--   can_deploy_production boolean not null default false,
+--   can_publish_externally boolean not null default false,
+--   production_authorized boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_law_ethics_gates (
+--   id text primary key,
+--   dimension text not null,
+--   knowledge text not null,
+--   decision text not null,
+--   silent_pass boolean not null default false,
+--   reason text not null,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_web_sources (
+--   id text primary key,
+--   url text not null,
+--   label text not null,
+--   verified boolean not null default false,
+--   license_known boolean not null default false,
+--   consent_known boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_article_drafts (
+--   id text primary key,
+--   title text not null,
+--   status text not null default 'draft_candidate',
+--   human_gate_passed boolean not null default false,
+--   founder_gate_passed boolean not null default false,
+--   external_publish_authorized boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_device_adapters (
+--   id text primary key,
+--   device_class text not null,
+--   enrolled boolean not null default false,
+--   verified boolean not null default false,
+--   status text not null default 'unavailable',
+--   physical_control boolean not null default false,
+--   production_authorized boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bw_sparse_routes (
+--   id text primary key,
+--   from_addr text not null,
+--   to_addr text not null,
+--   activated boolean not null default false,
+--   processes_spawned int not null default 0,
+--   created_at timestamptz not null default now()
+-- );
+-- END CANDIDATE (NOT_APPLIED)
+
+-- Marker comment for operators:
+-- APPLICATION_STATUS = NOT_APPLIED
+-- LIVE_SUPABASE = false
+-- L4_AUTONOMY_ENABLED = false
