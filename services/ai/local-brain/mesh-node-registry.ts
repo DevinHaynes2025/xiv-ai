@@ -218,7 +218,7 @@ export async function discoverNodeCapabilities(input: {
   capabilities.push({
     kind: 'local_model',
     label: model.model ?? 'unconfigured',
-    availability: model.availability,
+    availability: model.availability === 'AVAILABLE' ? 'AVAILABLE' : 'UNAVAILABLE',
     evidenceRefs: [model.reason],
     observedAt,
     ttlMs,
@@ -277,7 +277,6 @@ export async function listMeshNodes(input: { tenantId: string; universeId: strin
 export function isRoutingEligible(node: MeshNodeRecord, now = Date.now()) {
   if (node.lifecycle !== 'verified') return false;
   if (!node.trustedForRouting || !node.verified || !node.authorized || !node.configured) return false;
-  if (node.lifecycle === 'quarantined' || node.lifecycle === 'revoked') return false;
   if (nodeCapabilitiesStale(node, now)) return false;
   if (node.evidenceRefs.length === 0) return false;
   return true;

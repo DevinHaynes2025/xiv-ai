@@ -83,7 +83,7 @@ export async function routeLocalFirst(input: {
     return {
       targetNodeId: null,
       mode: 'none',
-      state: offline.state,
+      state: offline.state === 'DENIED' ? 'FAIL' : offline.state,
       reason: offline.reason,
       localFirst: true,
       productionAuthorization: false,
