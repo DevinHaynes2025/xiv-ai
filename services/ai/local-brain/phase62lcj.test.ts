@@ -430,21 +430,26 @@ try {
     'Freshness-sensitive offline path → STALE/WAITING_DATA.',
   );
 
-  // --- Cycle + health report ---
+  // --- Cycle + health report (isolated root so prior story state cannot interfere) ---
+  const cycleRoot = await mkdtemp(join(tmpdir(), 'xiv-62lcj-cycle-'));
   const cycle = await runIntelligenceResourceGridApprenticeshipCycle({
     orgId: 'org-cj',
     tenantId: 'tenant-cj',
     universeId: 'univ-cj',
     actor,
-    root,
+    root: cycleRoot,
   });
+  const failedHops = cycle.hops.filter((h) => h.state === 'FAIL');
   check(
     'US-CJ-cycle-run',
     cycle.hops.length === INTELLIGENCE_RESOURCE_GRID_APPRENTICESHIP_CYCLE.length &&
-      cycle.hops.every((h) => h.state !== 'FAIL') &&
+      failedHops.length === 0 &&
       cycle.nextPhase === NEXT_PHASE_TITLE,
-    'Full cycle walks without FAIL hops.',
+    failedHops.length
+      ? `FAIL hops: ${failedHops.map((h) => `${h.hop}:${h.summary}`).join('; ')}`
+      : 'Full cycle walks without FAIL hops.',
   );
+  await rm(cycleRoot, { recursive: true, force: true });
 
   const report = await buildIntelligenceResourceGridApprenticeshipHealthReport({
     root: repoRoot,

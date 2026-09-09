@@ -146,9 +146,13 @@ export async function placeAndAccountWorkload(input: {
     return plan;
   }
 
+  const chosen: Array<{ acct: ResourceAccount; units: number }> = [];
   for (const p of input.placements) {
-    const acct = store.accounts.find((a) => a.kind === p.kind);
-    if (!acct || acct.unitsAvailable - acct.unitsReserved < p.units) {
+    const acct = store.accounts.find(
+      (a) =>
+        a.kind === p.kind && a.unitsAvailable - a.unitsReserved >= p.units,
+    );
+    if (!acct) {
       const plan: PlacementPlan = {
         id: id('place'),
         workloadId: input.workloadId,
@@ -166,11 +170,11 @@ export async function placeAndAccountWorkload(input: {
       await save(input.root, store);
       return plan;
     }
+    chosen.push({ acct, units: p.units });
   }
 
-  for (const p of input.placements) {
-    const acct = store.accounts.find((a) => a.kind === p.kind)!;
-    acct.unitsReserved += p.units;
+  for (const c of chosen) {
+    c.acct.unitsReserved += c.units;
   }
 
   const plan: PlacementPlan = {
