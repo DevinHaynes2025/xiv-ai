@@ -90,6 +90,17 @@ export async function routeLocalFirst(input: {
     };
   }
 
+  if (local.lifecycle !== 'verified' || !local.authorized || !local.configured) {
+    return {
+      targetNodeId: null,
+      mode: 'none',
+      state: 'UNAVAILABLE',
+      reason: 'Requesting local node is not configured, authorized, and verified; registered nodes are not automatically trusted.',
+      localFirst: true,
+      productionAuthorization: false,
+    };
+  }
+
   if (isRoutingEligible(local, now) && hasFreshCapability(local, input.requiredCapability, now)) {
     return {
       targetNodeId: local.id,
