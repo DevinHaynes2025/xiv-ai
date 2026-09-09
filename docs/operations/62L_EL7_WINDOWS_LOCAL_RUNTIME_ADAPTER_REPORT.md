@@ -11,7 +11,7 @@ Governed `runLocalInference(request)` adapter under `services/ai/local-runtime/*
 | Branch | `cursor/62l-el7-windows-local-runtime-adapter-4059` |
 | Predecessor (preferred) | `cursor/62l-el6-amd-npu-capability-candidate-4059` |
 | Base SHA | `cee0a57feb4963cc906c2569aeb2531a8fe4b853` (EL6 tip; includes EL5 `32bcbc36542742e17a32cd7f1075eb1801eb222c` + EM) |
-| Tip SHA | _(filled after push)_ |
+| Tip SHA | `5a913c6de2feb560015a5ba17900a93fd128f249` |
 | Rebase | **yes** — rebased EL7 onto latest origin EL6 tip |
 
 ## Core flow
