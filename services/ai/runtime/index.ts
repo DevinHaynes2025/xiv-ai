@@ -730,3 +730,29 @@ export {
   agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
+
+/** 62L-EX7 — Hybrid Classical/Quantum Router (soft entry). */
+export {
+  EX7_LOCKS,
+  assertEx7LocksIntact,
+  ex7L4AutonomyEnabled,
+  guardianRlsUnchangedByEx7,
+  selectHybridRoute,
+} from './quantum';
+
+/** 62L-EX8 — Offline Quantum Agent Team (soft entry; not a second framework). */
+export {
+  EX8_LOCKS,
+  EX8_CANONICAL_PATHWAY,
+  EX8_NEXT_PHASE_TITLE,
+  QUANTUM_TEAM_ROLES,
+  assertEx8LocksIntact,
+  ex8L4AutonomyEnabled,
+  ex8SoftWireSnapshot,
+  guardianRlsUnchangedByEx8,
+  planQuantumMission,
+  registerQuantumTeamAgent,
+  spawnChildAgent,
+  openTeamMeeting,
+  deliverReturnToHomeBase,
+} from './quantum';
