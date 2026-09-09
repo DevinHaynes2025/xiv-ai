@@ -10,6 +10,14 @@ export {
   type AgentSnapshot,
 } from './agent-router';
 export {
+  ARCHITECTURE_SECURITY_LOCK,
+  architectureQueueContext,
+  getArchitectureStory,
+  XIV_ARCHITECTURE_QUEUE,
+  type ArchitectureStory,
+  type ArchitectureStoryId,
+} from './architecture-queue';
+export {
   bindAgentPersistence,
   type AgentPersistence,
 } from './persistence';

@@ -6,6 +6,7 @@ import {
   logGeminiRequest,
   parseGeminiErrorBody,
 } from './diagnostics';
+import { architectureQueueContext } from './architecture-queue';
 import { EXECUTIVE_RESPONSE_SCHEMA, parseStructuredOutput } from './schema';
 import type { ApprovedDataContext, OrganizationContext, StructuredAgentOutput } from './types';
 
@@ -19,6 +20,8 @@ const SYSTEM_INSTRUCTION = [
   'Never move money, change payroll, terminate accounts, alter enterprise permissions, execute large purchases, or change production systems.',
   'If the user asks for those, set riskLevel to high or critical, requiresApproval to true, and do not treat the action as executed.',
   'Use only the provided mock or approved business context. Do not invent live ledger, payroll, or production-system facts.',
+  'The XIV architecture queue below is planning knowledge, not runtime authority. Never claim a queued capability is implemented, connected, approved, or available.',
+  architectureQueueContext(),
   'Return only the structured JSON object. Do not wrap it in markdown.',
 ].join(' ');
 
