@@ -7,7 +7,7 @@ Branch: `cursor/62l-df-human-centered-superbrain-ux-4059`
 Parent / base tip: `cursor/62l-de-knowledge-exchange-gateway-marketplace-4059` @ `1a5b1e1a4cd8f44aa992a058342c5337aa6bda30` + `docs/operations/62L_DE_KNOWLEDGE_EXCHANGE_GATEWAY_MARKETPLACE_REPORT.md` (**PRESENT** after WAITING_DATA poll; DE rebased onto DD)
 Why this base: Preference **DE → DD `b7ffee5` → DC → DB → DA → CZ → CY**. DE tip initially **WAITING_DATA**, then landed without report; after backoff poll DE tip+report **PRESENT** @ `1a5b1e1` (includes DD `b7ffee5` lineage). Soft-wire DE façade when PRESENT; DD soft-wire path retained for coexistence. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `d99a0555ec1aa0b8891fdc901ae5349b96b7ec69`
+Tip SHA: `035b62da75116796e9a7521b58ab61857ea50ba9`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
