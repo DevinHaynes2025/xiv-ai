@@ -7,7 +7,7 @@ Branch: `cursor/62l-dh-adaptive-life-business-intelligence-os-4059`
 Parent / base tip: `cursor/62l-dg-universal-personal-business-ai-os-4059` @ `648df2aafec18bcb896910573df0be06a5a0c9b4` + `docs/operations/62L_DG_UNIVERSAL_PERSONAL_BUSINESS_AI_OS_REPORT.md` (**PRESENT** on origin after WAITING_DATA poll)
 Why this base: Preference **DG → DF `f9491b6` → DE `1a5b1e1` → DD `b7ffee5` → DA → …**. DG tip+report PRESENT on origin @ `648df2a`. Soft-wire DG façade when PRESENT; DF soft-wire retained. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `e4ec379339e284508287ab71227ef9429f0869c0`
+Tip SHA: `d43cf7b68e797976f8dfb2c4ad423510defaa76e`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
