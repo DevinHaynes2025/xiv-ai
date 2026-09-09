@@ -4,7 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em8-compute-return-receipt-4059`  
-Tip SHA: `efca5b3e60526a12a7b255683ab87843ccbd45fd` (feat commit; branch HEAD advances with docs sync)  
+Tip SHA: `7fb0327b442dc6d2f715ba397e78d02fd4db3060`  
+Feat commit: `efca5b3e60526a12a7b255683ab87843ccbd45fd`  
 Base: EM3 tip `84cd6f3` (includes EM1 Home Base + EL9 `c834e52`)  
 Preferred predecessor `cursor/62l-em7-*`: **local pointer only** (no unique commits beyond EL9) — EM6/EM5/EM4 likewise empty of unique commits → used EM3 tip which soft-carries EM1 + registry  
 Tip-land onto `xiv-v2` / `main`: **NO**  
