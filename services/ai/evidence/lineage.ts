@@ -37,6 +37,17 @@ export function reconstructEvidence(
     (item) => item.gateId === record.gateId && item.commitSha === record.code.commitSha,
   );
   const failures = state.failures.filter((item) => item.evidenceId === record.id);
+  // "Exception only" means a person owes a decision when a gap is being carried,
+  // and owes nothing when there is no gap. Treating it as a permanently missing
+  // link would mark every healthy gate incomplete and teach readers to skip the
+  // column.
+  const openException = state.exceptions.some(
+    (item) => item.gateId === record.gateId && !item.revokedAt,
+  );
+  const approvalNeeded =
+    gate?.humanApprovalRule === 'required' ||
+    gate?.humanApprovalRule === 'ceo' ||
+    (gate?.humanApprovalRule === 'exception_only' && openException);
 
   const link = (step: string, present: boolean, detail: string): LineageLink => ({ step, present, detail });
 
@@ -72,12 +83,14 @@ export function reconstructEvidence(
     ),
     link(
       'HUMAN APPROVAL',
-      gate?.humanApprovalRule === 'none' || Boolean(approval),
-      gate?.humanApprovalRule === 'none'
-        ? 'not required for this gate'
-        : approval
-          ? `${approval.decision} by ${approval.approverId}`
-          : 'required and not yet given',
+      !approvalNeeded || Boolean(approval),
+      approval
+        ? `${approval.decision} by ${approval.approverId}`
+        : approvalNeeded
+          ? 'required and not yet given'
+          : gate?.humanApprovalRule === 'exception_only'
+            ? 'not required, because no exception has been filed against this gate'
+            : 'not required for this gate',
     ),
     link(
       'FRESHNESS',

@@ -261,6 +261,23 @@ export function assessGate(
       return done('EXCEPTION_APPROVED');
     }
     if (pendingException) return done('EXCEPTION_PENDING');
+    if (blockers > 0) {
+      reasons.push(`${blockers} unresolved blocker(s) hold this evidence below the level the gate needs`);
+      return done('EVIDENCE_PENDING');
+    }
+    // A gate short of E4 with an E3 artifact in hand is not waiting for anyone
+    // to run anything. It is waiting for a reviewer, and saying EVIDENCE_PENDING
+    // would send the owner back to work that is already done.
+    const closableByReview = passing.some((record) =>
+      atLeast(
+        effectiveLevel(record.evidenceLevel, { verifiedAtSameCommit: true, unresolvedBlockers: 0 }),
+        gate.requiredEvidenceLevel,
+      ),
+    );
+    if (closableByReview) {
+      reasons.push('only an independent review stands between the artifact and the level this gate needs');
+      return done('VERIFICATION_PENDING');
+    }
     return done('EVIDENCE_PENDING');
   }
 

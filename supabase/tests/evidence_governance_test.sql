@@ -446,6 +446,78 @@ select pg_temp.xiv_expect_value(
   $$select public.xiv_gate_state('e6000000-0000-4000-8000-00000000000c', 'c0ffee1234567890')$$,
   'ASSIGNED', 'an unproven hard blocker is not PASS');
 
+-- An E4 gate holding an E3 artifact is waiting for a reviewer, not for a test
+-- run, and says so. Reporting it as EVIDENCE_PENDING would send the owner back
+-- to work that is already done.
+insert into public.evidence_records (
+  id, universe_id, gate_id, test_run_id, repository, branch, commit_sha, environment,
+  test_suite, test_case, expected_result, actual_result, status, evidence_level,
+  executor_type, executor_id, evidence_location, evidence_hash, reproduction_command,
+  primary_owner, created_by)
+values ('e7000000-0000-4000-8000-00000000000c', 'ea000000-0000-4000-8000-00000000000a',
+        'e6000000-0000-4000-8000-00000000000c', 'e8000000-0000-4000-8000-00000000000c',
+        'xiv', 'main', 'c0ffee1234567890', 'local-postgres',
+        'rls-matrix', 'every tenant-bearing table :: cross-tenant matrix', 'DENY', 'DENY on all 39 tables',
+        'pass', 'E3', 'database', 'postgres-16', 'xiv-evidence/tenant-isolation/matrix.jsonl',
+        'bb17c0de0000000000000000000000000000000000000000000000000000beef',
+        './supabase/tests/run-local.sh',
+        'e1111111-1111-4111-8111-111111111111', 'e1111111-1111-4111-8111-111111111111');
+
+select pg_temp.xiv_expect_value(
+  $$select public.xiv_gate_state('e6000000-0000-4000-8000-00000000000c', 'c0ffee1234567890')$$,
+  'VERIFICATION_PENDING', 'an E4 gate with an unreviewed E3 artifact is waiting on a reviewer');
+
+-- Section 35 counts "no unresolved blocker" as part of E4, so an open critical
+-- failure takes the level back down and the gate with it.
+insert into public.evidence_failures (
+  id, universe_id, gate_id, test_suite, test_case, commit_sha, environment, failure, severity, owner_id)
+values ('e9000000-0000-4000-8000-00000000000c', 'ea000000-0000-4000-8000-00000000000a',
+        'e6000000-0000-4000-8000-00000000000c', 'rls-matrix',
+        'agent_meeting_messages :: DELETE ORG_A -> ORG_B', 'c0ffee1234567890', 'local-postgres',
+        'the delete crossed the tenant boundary on one run in twenty', 'critical',
+        'e1111111-1111-4111-8111-111111111111');
+
+select pg_temp.xiv_expect_value(
+  $$select public.xiv_gate_state('e6000000-0000-4000-8000-00000000000c', 'c0ffee1234567890')$$,
+  'EVIDENCE_PENDING', 'an open critical failure holds the evidence below the level the gate needs');
+
+-- Section 53: closing it takes a passing artifact at the commit that claims the
+-- fix, not a rerun and a shrug.
+select pg_temp.xiv_expect_blocked($$
+  update public.evidence_failures
+  set closed_at = now(), root_cause = 'flaky', remediation = 'ran it again'
+  where id = 'e9000000-0000-4000-8000-00000000000c'
+$$, 'closing a failure with no retest artifact');
+
+select pg_temp.xiv_expect_blocked($$
+  update public.evidence_failures
+  set closed_at = now(), root_cause = 'a missing tenant predicate', remediation = 'added the predicate',
+      fix_commit = 'ba5eba11deadbeef', retest_evidence_id = 'e7000000-0000-4000-8000-00000000000c'
+  where id = 'e9000000-0000-4000-8000-00000000000c'
+$$, 'closing a failure with a retest taken against a different commit');
+
+update public.evidence_failures
+set closed_at = now(),
+    root_cause = 'the delete policy checked membership but not the tenant of the target row',
+    remediation = 'added the tenant predicate and a matrix case that fails without it',
+    fix_commit = 'c0ffee1234567890',
+    retest_evidence_id = 'e7000000-0000-4000-8000-00000000000c',
+    verification = '500 iterations with no crossing'
+where id = 'e9000000-0000-4000-8000-00000000000c';
+
+select pg_temp.xiv_act_as('e2222222-2222-4222-8222-222222222222');
+insert into public.evidence_verifications (
+  universe_id, evidence_id, verifier_id, verifier_role, verdict, rationale, checked_commit_sha)
+values ('ea000000-0000-4000-8000-00000000000a', 'e7000000-0000-4000-8000-00000000000c',
+        'e2222222-2222-4222-8222-222222222222', 'independent security verifier', 'satisfies',
+        'reproduced the matrix on a clean database and compared the artifact hash', 'c0ffee1234567890');
+
+select pg_temp.xiv_expect_value(
+  $$select public.xiv_gate_state('e6000000-0000-4000-8000-00000000000c', 'c0ffee1234567890')$$,
+  'PASS', 'a reviewed E3 artifact with no open blocker earns E4 and passes an E4 gate');
+
+select pg_temp.xiv_act_as('e1111111-1111-4111-8111-111111111111');
+
 -- Section 39: a skipped mandatory test is not a pass, and it outranks the
 -- passing evidence sitting beside it.
 insert into public.evidence_records (

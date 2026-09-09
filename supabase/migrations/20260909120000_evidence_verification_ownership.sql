@@ -774,6 +774,60 @@ create trigger evidence_exceptions_hard_blockers
   for each row execute function public.xiv_exception_respects_hard_blockers();
 
 -- ---------------------------------------------------------------------------
+-- A failure is closed by a retest, not by a rerun (section 53)
+-- ---------------------------------------------------------------------------
+--
+-- The behaviour this is written against is entirely ordinary: a test fails,
+-- someone runs the job again, it passes, and the row is closed. What the closure
+-- has to show instead is a passing artifact taken against the commit that claims
+-- to fix it, and a cause somebody wrote down. "Could not reproduce" is how a
+-- real defect gets filed as weather.
+
+create or replace function public.xiv_failure_closure_needs_a_retest()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  retest public.evidence_records;
+begin
+  if new.closed_at is null or old.closed_at is not null then
+    return new;
+  end if;
+
+  if coalesce(btrim(new.root_cause), '') = '' or coalesce(btrim(new.remediation), '') = '' then
+    raise exception 'xiv_failure_closure_requires_cause' using errcode = 'check_violation',
+      detail = 'closing a failure requires a root cause and a remediation';
+  end if;
+
+  if new.retest_evidence_id is null or coalesce(btrim(new.fix_commit), '') = '' then
+    raise exception 'xiv_failure_closure_requires_retest' using errcode = 'check_violation',
+      detail = 'closing a failure requires a retest artifact and the commit that fixes it';
+  end if;
+
+  select * into retest from public.evidence_records e where e.id = new.retest_evidence_id;
+
+  if retest.id is null or retest.status <> 'pass' then
+    raise exception 'xiv_failure_closure_requires_retest' using errcode = 'check_violation',
+      detail = 'the retest must be a passing evidence record';
+  end if;
+
+  if retest.commit_sha <> new.fix_commit then
+    raise exception 'xiv_failure_closure_requires_retest' using errcode = 'check_violation',
+      detail = 'the retest must have been taken against the commit claimed as the fix';
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists evidence_failures_closure on public.evidence_failures;
+create trigger evidence_failures_closure
+  before update on public.evidence_failures
+  for each row execute function public.xiv_failure_closure_needs_a_retest();
+
+-- ---------------------------------------------------------------------------
 -- Freshness (section 55)
 -- ---------------------------------------------------------------------------
 --
@@ -856,6 +910,7 @@ declare
   required_rank integer;
   best_rank integer := 0;
   fresh_count integer := 0;
+  open_blockers integer := 0;
   has_exception boolean;
 begin
   select * into gate from public.release_gates g where g.id = gate_id_in;
@@ -932,7 +987,27 @@ begin
   end if;
 
   if best_rank < required_rank then
-    return case when has_exception then 'EXCEPTION_APPROVED' else 'EVIDENCE_PENDING' end;
+    if has_exception then
+      return 'EXCEPTION_APPROVED';
+    end if;
+
+    select count(*) into open_blockers
+    from public.evidence_failures f
+    where f.gate_id = gate.id
+      and f.closed_at is null
+      and f.severity in ('high', 'critical');
+
+    -- An E3 artifact under an E4 gate, with nothing outstanding against it, is
+    -- waiting for a reviewer rather than for evidence. Calling that
+    -- EVIDENCE_PENDING sends the owner back to work that is already done.
+    if open_blockers = 0
+      and best_rank = array_position(level_order, 'E3')
+      and required_rank = array_position(level_order, 'E4')
+    then
+      return 'VERIFICATION_PENDING';
+    end if;
+
+    return 'EVIDENCE_PENDING';
   end if;
 
   -- E3 and above are only meaningful once somebody who did not produce them has
