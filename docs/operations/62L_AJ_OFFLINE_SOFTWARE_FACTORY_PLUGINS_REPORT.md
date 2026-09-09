@@ -4,8 +4,9 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-aj-offline-software-factory-plugins-4059`
-Parent: `cursor/62l-ad-distributed-offline-agent-mesh-4059` @ `a4d8e55` (`docs(62L-AD): add distributed offline agent mesh operations report`)
-Implementation SHA: `28888ef` (`feat(62L-AJ): add offline software factory and governed plugin ecosystem #48`)
+Parent: `cursor/62l-ai-autonomous-research-director-4059` @ `3593c00` (`docs(62L-AI): add Autonomous Research Director operations report #47`)
+Grandparent: `cursor/62l-ad-distributed-offline-agent-mesh-4059` @ `a4d8e55`
+Implementation SHAs: `4a4dc04` (factory), `89ec619` (AI-tip intake)
 Tip-land: **NO**
 PR: **NOT CREATED**
 
@@ -13,18 +14,17 @@ PR: **NOT CREATED**
 
 | Check | Result |
 |---|---|
-| `gh issue view 48 --comments` | **BLOCKED.** GraphQL: issue number 48 could not be resolved. REST/GitHub Issues API → HTTP 403 `Resource not accessible by integration`. Exact GitHub US IDs were **not readable**. Stories were implemented in founder-paste order as `US-AJ1`..`US-AJ30`. |
-| `docs/operations/62L_AI_AUTONOMOUS_RESEARCH_DIRECTOR_REPORT.md` (Issue #47 / 62L-AI) | **MISSING** after polling remotes with backoff. Recorded `WAITING_DATA`. This child **did not merge** a missing AI tree. |
-| 62L-AH Causal World Model report | **MISSING.** `WAITING_DATA`. |
-| 62L-AG Persistent Offline Agent Society report | Local AG branch existed at the AC tip without an operations report and was **not on origin**. **Not merged.** `WAITING_DATA`. |
-| 62L-AF Universe Kernel report | **MISSING.** `WAITING_DATA`. |
-| `docs/operations/62L_AD_DISTRIBUTED_OFFLINE_AGENT_MESH_REPORT.md` | **PRESENT** on the parent tip (`a4d8e55`). Used as the latest completed predecessor with a report (AH→AG→… fallback). |
-| `docs/operations/62L_AC_OFFLINE_AGENT_RUNTIME_WORKCELLS_REPORT.md` | **PRESENT** on the AD parent chain (`034d416`). |
-| 62J Software Factory docs | Present as **QUEUED ARCHITECTURE** (`docs/architecture/xiv-2i-ai-62j-self-improvement-lab-governed-software-factory.md`). Patterns composed; 62J runtime is **not** claimed implemented. |
-| Working tree | Dedicated worktree `/tmp/62l-aj-work` from `origin/cursor/62l-ad-distributed-offline-agent-mesh-4059`. `/workspace` was detached and had unrelated dirty files; this child did not edit `/workspace`. Did not merge AE (different lineage, no AJ operations report). |
-| Gate verdict | **62L-AD CLEAR for this child.** 62L-AI/AH/AG/AF **WAITING_DATA**. Not PASS for Windows-node verification. Not FAIL-with-report. |
+| `gh issue view 48 --comments` | **BLOCKED.** GraphQL unresolved; Issues API 403. Exact GitHub US IDs **not readable**. Stories implemented as `US-AJ1`..`US-AJ30` from founder paste. |
+| `docs/operations/62L_AI_AUTONOMOUS_RESEARCH_DIRECTOR_REPORT.md` | **PRESENT** on parent `3593c00`. This child **rebased onto AI** (first AJ slice had been AD-only while AI was WAITING_DATA). |
+| `docs/operations/62L_AH_CAUSAL_WORLD_MODEL_DIGITAL_TWINS_REPORT.md` | **MISSING** on the AI parent (AI recorded AH WAITING_DATA). This child **did not merge** unfinished AH. **WAITING_DATA**. |
+| 62L-AG / 62L-AF / 62L-AE reports | **MISSING** on this AI/AD lineage. **Not merged.** `WAITING_DATA`. |
+| `docs/operations/62L_AD_DISTRIBUTED_OFFLINE_AGENT_MESH_REPORT.md` | **PRESENT** on the AI/AD chain (`a4d8e55`). |
+| `docs/operations/62L_AC_OFFLINE_AGENT_RUNTIME_WORKCELLS_REPORT.md` | **PRESENT** on the AD parent chain. |
+| 62J Software Factory docs | Present as **QUEUED ARCHITECTURE**. Patterns composed; 62J runtime is **not** claimed implemented. |
+| Working tree | Dedicated worktree `/tmp/62l-aj-work`. Rebased `origin/cursor/62l-ai-autonomous-research-director-4059`. Did not edit `/workspace`. Did not merge AE/AH in-flight trees. |
+| Gate verdict | **62L-AI CLEAR for this child.** AH/AG/AF **WAITING_DATA**. Not PASS for Windows-node verification. Not FAIL-with-report. |
 
-Honesty: this report does **not** invent PASS for Issues #32–#48. It does **not** invent PASS for Windows-node verification. It does **not** invent “released.”
+Honesty: this report does **not** invent PASS for Issues #32–#48. It does **not** invent PASS for Windows-node verification. It does **not** invent “released.” AI discoveries entering the factory remain **SUPPORTED local candidates**, never `VERIFIED_FACT`.
 
 ## Operating cycle (executed, not diagram-only)
 
@@ -32,46 +32,48 @@ Honesty: this report does **not** invent PASS for Issues #32–#48. It does **no
 Approved Story / Verified Discovery → Requirements → Architecture → Engineering Workcell → Protected Sandbox → Code → Tests → Security → API/UI Review → Evidence → Plugin Manifest → Registry → Human Release Gate → Candidate Artifact
 ```
 
-Encoded as `FACTORY_CYCLE` in `services/ai/local-brain/software-factory-types.ts` and walked by `runFactoryCycle`. Tests proved every hop ran, including crash after `code` and resume through `candidate_artifact`.
+Encoded as `FACTORY_CYCLE` in `services/ai/local-brain/software-factory-types.ts` and walked by `runFactoryCycle`.
+
+**Verified discovery** reuses 62L-AI: `acceptAiVerifiedDiscovery` requires `promoted=true`, `state=SUPPORTED`, `replicated=true`, `verifiedFact=false`. Unreplicated, flag-only, or CEO-sealed inputs are **DENIED**.
 
 **Agent-generated app = build candidate only.** Compile + tests PASS ≠ authorize deployment, publication, production DB changes, new permissions, or customer use.
 
 ## US-AJ1 .. US-AJ30
 
-GitHub issue IDs were unreadable (403). Mapping below is the founder-paste order. Confirm against founder paste of Issue #48 when the API is readable.
+GitHub issue IDs were unreadable (403). Mapping below is the founder-paste order.
 
 | Story | Status | What landed | Honesty |
 |---|---|---|---|
-| US-AJ1 Protected source sandboxes | **DONE** | `openProtectedSourceSandbox` + `evaluateSandboxIsolation` wrap `sandbox-guard`. Writes to `.env`, `../`, `/etc/passwd` refused; in-root candidate write allowed. `main` refused. | Isolation is local filesystem + path policy, not a hypervisor. |
-| US-AJ2 Agent code generation | **DONE** | `generateAgentCode` reuses `proposeStructuredPatch`. Shell proposals refused. | Structured patches only. `productionAuthorized: false`. |
-| US-AJ3 Allowlisted build/test runners | **DONE** | `runFactoryAllowlistedCommand` reuses `local-command-runner`. Real `git_status` exit 0. `rm -rf /` and model-provided shell refused. | Never executes model-provided arbitrary shell. |
-| US-AJ4 Test-first acceptance | **DONE** | Empty `testsExpected` refuses code. Allowlisted `git_status` acceptance ran with exit 0. | Full monorepo `npm test` is **not** claimed as an AJ acceptance run beyond `test:62laj` / `test:local-brain`. |
-| US-AJ5 Security review | **DONE** | Cycle hop reuses `verifySecurity` / production-lock scan. | No Guardian/RLS weaken. |
-| US-AJ6 API contracts | **DONE** | `reviewApiContract`. `publish` / production endpoint → denied. `published: false`. | Not an external API. |
-| US-AJ7 Mobile candidate profiles | **DONE** | `mobileCandidateProfile`. `storePublish: false`, `customerUseAuthorized: false`. | Not an app-store submission. |
-| US-AJ8 Desktop candidate profiles | **DONE** | `desktopCandidateProfile`. `installerPublish: false`. | Not an installer release. |
-| US-AJ9 Plugin manifests | **DONE** | `parsePluginManifest`. `production_deploy` requested → denied. `sandboxOnly: true`. | Manifest ≠ installed production plugin. |
-| US-AJ10 Governed plugin registry | **DONE** | Durable `.xiv-local/plugin-registry.json`. Status `registered_candidate`. | Not a public marketplace. |
-| US-AJ11 Permission-diff gates | **DONE** | `permissionDiffGate` + registry insert. Requesting `network` beyond granted → `PERMISSION_DIFF_DENY`. Full cycle registry hop **DENIED**. | `permissionExpansion: false`. |
-| US-AJ12 Local plugin runtime sandboxing | **DONE** | `executePluginInSandbox` only allowlisted commands. Model-provided shell refused. | No plugin network. |
-| US-AJ13 Internal tool generation | **DONE** | Maps to allowlisted commands only (`npm_typecheck` accepted; `curl` refused). | Generated tool is a candidate, not deployed. |
-| US-AJ14 Business-app templates | **DONE** | `crm` / `ledger` / `inventory` templates as structured-patch candidates. | Not customer apps. |
-| US-AJ15 Connector factories | **DONE** | `createConnectorCandidate`. Unconfigured AWS → `UNAVAILABLE`. | No live cloud connector. |
-| US-AJ16 Model-adapter factories | **DONE** | `createModelAdapter`. Observed local + Google AI Studio `UNAVAILABLE`. `cloudFallback: false`. | Unconfigured providers stay UNAVAILABLE. |
-| US-AJ17 Migration candidate gates | **DONE** | `proposeMigrationCandidate` / `applyMigrationCandidate`. RLS-disable denied. Apply always `applied: false`. | No migrations applied. |
-| US-AJ18 Release-candidate packaging | **DONE** | `packageReleaseCandidate`. Compile+tests PASS → `eligible: true`, `released: false`, `deployBlocked: true`. | RC ≠ released. |
-| US-AJ19 Compatibility matrices | **DONE** | Mobile/desktop recorded as `candidate`, not released. | Incompatible matrices cannot package as eligible. |
-| US-AJ20 Vulnerability quarantine | **DONE** | CRITICAL findings → `VULNERABILITY_QUARANTINE`. | Quarantine ≠ production incident response platform. |
-| US-AJ21 Learning loops | **DONE** | Cycle writes `appendLearning` (`permissionChange: false`, `productionChange: false`) plus `LocalCheckpointStore`. | Does not expand permissions. |
-| US-AJ22 Offline queue/resume | **DONE** | `enqueueFactoryStory` + `FactorySimulatedCrash` after `code`; recover 1 job; resume completed remaining hops. | Test evidence, not a Windows-node crash proof. |
-| US-AJ23 Requirements | **DONE** | `deriveRequirements` + Context Vault. Unapproved stories `denied` before the cycle. | `inventedFacts: false`. |
-| US-AJ24 Architecture | **DONE** | `recordArchitecture` hop. `productionAuthorization: false`. | Architecture note ≠ approved authority. |
-| US-AJ25 Engineering workcell | **DONE** | Reuses 62L-AC `runProtectedCodingWorkcell`. | No duplicate coding agent. |
-| US-AJ26 API/UI review | **DONE** | Unpublished API + UI review. Customer-facing publication refused. | Not a store listing. |
-| US-AJ27 Evidence | **DONE** | Evidence ledger event `productionAuthorization: false`. | Bundle ≠ release. |
-| US-AJ28 Human release gate | **DONE** | `humanReleaseGate({ deploy: true })` → `HUMAN_RELEASE_GATE_BLOCKS_DEPLOY`. Cycle hop state **DENIED**. Decision Gate also refuses production/publication. | Human approval in this slice still does not deploy. |
-| US-AJ29 Candidate artifact | **DONE** | Eligible candidate after compile/tests; `released: false`, `published: false`, `productionDeployed: false`, `customerUseAuthorized: false`. | Compile+tests PASS ≠ released. |
-| US-AJ30 Factory cycle + honesty locks | **DONE** | `FACTORY_HONESTY` + health CLI. L4=false. No founder impersonation. CEO-sealed non-replicating. No physical infra control. Unconfigured providers UNAVAILABLE. | Windows-node verification `NOT_TESTED`. |
+| US-AJ1 Protected source sandboxes | **DONE** | Isolation denies `.env` / `../` / `/etc/passwd`; `main` refused. | Local path policy, not a hypervisor. |
+| US-AJ2 Agent code generation | **DONE** | Structured patches via `proposeStructuredPatch`. Shell refused. | `productionAuthorized: false`. |
+| US-AJ3 Allowlisted build/test runners | **DONE** | Reuses `local-command-runner`. Real `git_status` exit 0. Model-provided shell refused. | Never executes model-provided arbitrary shell. |
+| US-AJ4 Test-first acceptance | **DONE** | Empty `testsExpected` refuses code. | Full monorepo runtime suite **NOT_TESTED** for AJ scope. |
+| US-AJ5 Security review | **DONE** | Reuses `verifySecurity`. | No Guardian/RLS weaken. |
+| US-AJ6 API contracts | **DONE** | Unpublished candidates. Publication denied. | Not an external API. |
+| US-AJ7 Mobile candidate profiles | **DONE** | `storePublish: false`. | Not an app-store submission. |
+| US-AJ8 Desktop candidate profiles | **DONE** | `installerPublish: false`. | Not an installer release. |
+| US-AJ9 Plugin manifests | **DONE** | `production_deploy` requested → denied. | Manifest ≠ published plugin. |
+| US-AJ10 Governed plugin registry | **DONE** | `.xiv-local/plugin-registry.json` `registered_candidate`. | Not a public marketplace. |
+| US-AJ11 Permission-diff gates | **DONE** | Extra `network` → `PERMISSION_DIFF_DENY`; cycle registry **DENIED**. | `permissionExpansion: false`. |
+| US-AJ12 Local plugin runtime sandboxing | **DONE** | Allowlisted commands only. | No plugin network. |
+| US-AJ13 Internal tool generation | **DONE** | Allowlisted map only (`curl` refused). | Candidate, not deployed. |
+| US-AJ14 Business-app templates | **DONE** | ledger/crm/inventory structured-patch candidates. | Not customer apps. |
+| US-AJ15 Connector factories | **DONE** | Unconfigured AWS `UNAVAILABLE`. | No live cloud connector. |
+| US-AJ16 Model-adapter factories | **DONE** | Local + Google AI Studio `UNAVAILABLE`. `cloudFallback: false`. | Unconfigured stays UNAVAILABLE. |
+| US-AJ17 Migration candidate gates | **DONE** | Apply always `applied: false`. RLS-disable denied. | No migrations applied. |
+| US-AJ18 Release-candidate packaging | **DONE** | Compile+tests PASS → `eligible: true`, `released: false`. | RC ≠ released. |
+| US-AJ19 Compatibility matrices | **DONE** | Platforms recorded as `candidate`. | Not a release matrix. |
+| US-AJ20 Vulnerability quarantine | **DONE** | CRITICAL → quarantine. | Not a production IR platform. |
+| US-AJ21 Learning loops | **DONE** | Learning ledger + checkpoint. | `permissionChange: false`. |
+| US-AJ22 Offline queue/resume | **DONE** | Crash after `code`; recover 1; resume to candidate. | Not Windows-node crash proof. |
+| US-AJ23 Requirements / verified discovery | **DONE** | Context Vault + AI discovery intake. Unapproved / unreplicated / CEO-sealed denied. SUPPORTED discovery may enter and still does not release. | `inventedFacts: false`. |
+| US-AJ24 Architecture | **DONE** | Candidate architecture hop. | Not approved authority. |
+| US-AJ25 Engineering workcell | **DONE** | Reuses AC `runProtectedCodingWorkcell`. | No duplicate coding agent. |
+| US-AJ26 API/UI review | **DONE** | Customer-facing publication refused. | Not a store listing. |
+| US-AJ27 Evidence | **DONE** | Evidence ledger `productionAuthorization: false`. | Bundle ≠ release. |
+| US-AJ28 Human release gate | **DONE** | `HUMAN_RELEASE_GATE_BLOCKS_DEPLOY` + 62L-AI `gateResearchAction({ deploy: true })` `allowed=false`. Cycle hop **DENIED**. | Human approval in this slice still does not deploy. |
+| US-AJ29 Candidate artifact | **DONE** | `eligible=true` after compile/tests; `released=false`. | Compile+tests PASS ≠ released. |
+| US-AJ30 Factory cycle + honesty | **DONE** | Health: AI report **PASS**; AH/AG/AF **WAITING_DATA**. Research Director reused; L4=false; no founder impersonation. | Windows-node **NOT_TESTED**. |
 
 ## Candidate vs release (required evidence)
 
@@ -79,32 +81,31 @@ Observed in `npm run test:62laj` (exit **0**):
 
 | Case | Result | Evidence class |
 |---|---|---|
-| Sandbox isolation | `.env` / `../` / `/etc/passwd` not written; in-root candidate file written | **PASS** (unit) |
-| Allowlist runner | Real `git_status` exit 0; `rm -rf /` denied; model-provided `curl` refused | **PASS** (unit) |
-| Permission-diff deny | `network` beyond granted → registry `denied`; cycle registry hop **DENIED** | **PASS** (unit) |
-| Release-gate blocking deploy | `HUMAN_RELEASE_GATE_BLOCKS_DEPLOY`; cycle hop **DENIED**; `released=false` | **PASS** (unit) |
-| Compile+tests PASS | Candidate `eligible=true` and `released=false` / `productionDeployed=false` | **PASS** (unit) — **not released** |
-| Invented “released” | Health `released=0` on empty store; no job sets `released: true` | **PASS** (honesty) |
-| Windows disconnected-network factory | Not run on a Windows node | **NOT_TESTED** |
-| Customer/store publication | Gate refuses; no store API called | **DENIED** / not attempted |
-| 62L-AI Research Director | Report file absent | **WAITING_DATA** |
+| Sandbox isolation | `.env` / `../` / `/etc/passwd` refused | **PASS** (unit) |
+| Allowlist runner | Real `git_status` exit 0; model shell refused | **PASS** (unit) |
+| Permission-diff deny | Extra `network` → registry DENIED | **PASS** (unit) |
+| Release-gate blocking deploy | `HUMAN_RELEASE_GATE_BLOCKS_DEPLOY`; AI research authority `allowed=false` | **PASS** (unit) |
+| Compile+tests PASS | `eligible=true`, **`released=false`** | **PASS** (unit) — **not released** |
+| AI SUPPORTED discovery intake | Factory hop PASS; still `released=false` | **PASS** (unit) |
+| Unreplicated / CEO-sealed discovery | DENIED | **PASS** (unit) |
+| Invented “released” | Health `released=0` | **PASS** (honesty) |
+| 62L-AI predecessor | Report + `research-director.ts` present | **PASS** (files on this tree) |
+| 62L-AH / AG / AF | Reports absent | **WAITING_DATA** |
+| Windows disconnected-network factory | Not run | **NOT_TESTED** |
+
+`npm run test:62lai` also exit **0** on this child (AI tests still pass after rebase).
 
 ## Reuse map (do not duplicate)
 
 | Capability | Reused module | 62L-AJ addition |
 |---|---|---|
-| Protected coding / testing / security (AC) | `coding-agent.ts`, `testing-agent.ts`, `security-verifier.ts`, `offline-workcells.ts` | Factory engineering hops + test-first gate |
-| Sandbox git/path/credential guard | `sandbox-guard.ts` | Protected source sandbox + isolation writes |
-| Local command allowlist | `local-command-runner.ts` | Factory runner refuses model-provided shell |
-| Context Vault | `context-vault.ts` | Requirements hop |
-| Decision Gate / Evidence / Learning Ledger | `decision-gate.ts`, `evidence-ledger.ts`, `learning-ledger.ts` | Release gate + evidence + learning loop |
-| Checkpoints | `checkpoint-store.ts` | Candidate checkpoint; resume via factory job store |
-| Provider / local model | `provider-fabric.ts`, `local-model.ts` | Connector + model-adapter factories (UNAVAILABLE if unconfigured) |
-| Offline Agent Runtime / mesh (AC/AD) | present on parent; **not copied** | Factory does not reimplement workcells or mesh routing |
-| 62J Software Factory | queued docs only | Honesty loop + MERGE CANDIDATE ≠ release; no 62J runtime duplication |
-| Runtime platform plugins (`runtime/platform/plugins.ts`) | **not duplicated** | Local-brain governed registry is a separate sandbox candidate plane |
-
-Not copied from 62L-AE (different lineage / no AJ report): CEO sealed vault implementation. AJ records `ceoSealedNonReplicating: true` as an honesty lock and does not replicate CEO-sealed material.
+| Autonomous Research Director (AI) | `research-director.ts`, `research-authority.ts`, `discovery-intelligence.ts` promotion contract | Verified-discovery intake + deploy deny |
+| Offline Experiment Factory (AI) | present on parent; **not copied** | Software factory is a separate candidate plane |
+| Protected coding / testing / security (AC) | `coding-agent.ts`, `testing-agent.ts`, `security-verifier.ts`, `offline-workcells.ts` | Engineering hops + test-first |
+| Sandbox / allowlist | `sandbox-guard.ts`, `local-command-runner.ts` | Isolation writes + model-shell refuse |
+| Context Vault / Decision Gate / Evidence / Learning | existing local-brain | Requirements, release gate, evidence, learning |
+| Mesh (AD) | present on parent | Not reimplemented |
+| 62J docs | queued architecture | MERGE CANDIDATE ≠ release |
 
 ## Files
 
@@ -117,7 +118,7 @@ Not copied from 62L-AE (different lineage / no AJ report): CEO sealed vault impl
 - `services/ai/local-brain/software-factory-cli.ts`
 - `services/ai/local-brain/phase62laj.test.ts`
 - `services/ai/local-brain/README.md`
-- `services/ai/package.json` (`test:62laj`, `local:factory`)
+- `services/ai/package.json` (`test:62laj`, `local:factory`; keeps `test:62lai`)
 
 ## Commands and real test exits
 
@@ -128,79 +129,44 @@ $ npx tsc --noEmit
 exit 0
 
 $ npm run test:62laj
-# tsx local-brain/phase62laj.test.ts
 62L-AJ safety tests PASS
 exit 0
 
+$ npm run test:62lai
+62L-AI safety tests PASS
+exit 0
+
 $ npm run test:local-brain
-offline-policy.test.ts PASS
-62L-E safety tests PASS
-context-vault.test.ts PASS
-agent-population.test.ts PASS
-agent-bus.test.ts PASS
-collaboration-protocol.test.ts PASS
-sandbox-guard.test.ts PASS
-coding-agent.test.ts PASS
-testing-agent.test.ts PASS
-security-verifier.test.ts PASS
-evidence-ledger.test.ts PASS
-local-dev-civilization.test.ts PASS
-62L-X safety tests PASS
-62L-Y safety tests PASS
-62L-AC safety tests PASS
-62L-AD safety tests PASS
-62L-AJ safety tests PASS
+… 62L-X/Y/AC/AD/AI/AJ safety tests PASS
 exit 0
 
 $ git diff --check
 exit 0
-
-$ npm run local:factory
-exit 0
 ```
 
-### Crash/resume evidence (from `npm run test:62laj`)
+Crash/resume: simulated crash after `code`; recovered 1 job; resume completed through `candidate_artifact`; `released` remained false.
 
-- Simulated crash after hop `code` (`FactorySimulatedCrash`)
-- `recoverInterruptedFactoryJobs` recovered **1** running job → `queued`
-- Resume completed remaining hops through `candidate_artifact`
-- `released` remained `false`
-
-### Runtime metrics (`npm run local:factory` on empty `services/ai` cwd)
-
-| Metric | Observed |
-|---|---|
-| jobs / completed / released | 0 / 0 / 0 (empty local store — not invented) |
-| localModel | `UNAVAILABLE` — `XIV_LOCAL_MODEL is not configured.` |
-| providers | all `UNAVAILABLE` (`configured=false`) |
-| predecessor.adMesh / acWorkcells / jSoftwareFactoryDocs | PASS / PASS / PASS (files present on this tree) |
-| predecessor.aiResearchDirector / ahCausalWorldModel / agAgentSociety / afUniverseKernel | **WAITING_DATA** |
-| honesty.windowsNodeVerification | `NOT_TESTED` |
-| honesty.l4AutonomyEnabled / founderImpersonation / inventedPass / tipLand | false |
-| honesty.ceoSealedNonReplicating / compileAndTestsDoNotAuthorizeRelease / agentGeneratedAppIsBuildCandidateOnly | true |
-| next | 62L-AK title only |
+Health on empty store: `jobs=0`, `released=0`, localModel `UNAVAILABLE`, all cloud providers `UNAVAILABLE`, AI predecessor **PASS**, AH/AG/AF **WAITING_DATA**, `windowsNodeVerification=NOT_TESTED`.
 
 ## Blockers / not claimed
 
-- GitHub Issue #48 unreadable (403). US IDs are founder-paste mappings pending API access.
-- 62L-AI / 62L-AH / 62L-AG / 62L-AF reports missing → `WAITING_DATA`.
-- 62L-AE hybrid edge-cloud / CEO vault **not merged** (different lineage; no AJ operations report).
+- GitHub Issue #48 unreadable (403).
+- 62L-AH / AG / AF reports missing → `WAITING_DATA`.
 - Windows disconnected-network proof **NOT_TESTED**.
-- Live local model / Ollama **UNAVAILABLE** / **NOT_TESTED**.
-- Full `npm run test:runtime` **NOT_TESTED** (out of 62L-AJ scope).
-- No plugin was published, deployed, or customer-released.
-- Draft GitHub PR: **NOT CREATED** (hard policy).
+- Live local model **UNAVAILABLE**.
+- Full `npm run test:runtime` **NOT_TESTED**.
+- No plugin published, deployed, or customer-released.
+- **NO PR** created.
 
 ## Honesty locks
 
 - `L4_AUTONOMY_ENABLED=false`
 - `AUTO_PRODUCTION_DEPLOY=false`
 - `PRODUCTION_DATABASE_WRITE=false`
-- `PRODUCTION_GIT_PUSH=false` (this child branch push is not a production git push)
+- `PRODUCTION_GIT_PUSH=false` (child branch push ≠ production git push)
 - `AUTO_PERMISSION_EXPANSION=false`
 - `AUTO_DATABASE_MIGRATION=false`
-- Unconfigured cloud/model/QPU providers remain **UNAVAILABLE**
-- Guardian/RLS not weakened; no migrations applied
+- Unconfigured providers **UNAVAILABLE**
 - No founder impersonation; CEO-sealed non-replicating
 - No physical infrastructure control
 - Agent-generated applications are **build candidates only**
@@ -210,11 +176,10 @@ exit 0
 
 ## Git
 
-- Child of committed 62L-AD tip; **did not merge main**; **did not tip-land xiv-v2**
-- Conventional commit: `feat(62L-AJ): add offline software factory and governed plugin ecosystem #48`
-- This report committed separately
-- Pushed `-u origin cursor/62l-aj-offline-software-factory-plugins-4059`
-- **NO PR** created (`gh pr create` not invoked). ManagePullRequest was not used.
+- Child of committed 62L-AI tip `3593c00`; **did not merge main**; **did not tip-land xiv-v2**
+- First AJ commits were AD-parented while AI was WAITING_DATA; this slice **rebased onto AI**
+- Pushed `-u origin cursor/62l-aj-offline-software-factory-plugins-4059` (`--force-with-lease` after rebase)
+- **NO PR** (`gh pr create` not invoked)
 
 ## NEXT
 
