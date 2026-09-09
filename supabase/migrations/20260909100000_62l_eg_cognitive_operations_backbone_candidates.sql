@@ -1,0 +1,39 @@
+-- 62L-EG Cognitive Operations Backbone candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Architecture translations: micro-agents ≠ physical atoms; wormholes = routing/cache/index;
+-- parallel universes = isolated sim branches; sim ≠ fact; marketing ≠ spend/publish;
+-- hospital ≠ clinical/physical control; energy recommend ≠ power control.
+
+-- Candidate tables only (do not auto-apply):
+-- eg_ops_backbone_registrations
+-- eg_consequential_ops_gates
+-- eg_label_access_probes
+-- eg_semiconductor_history
+-- eg_semiconductor_trends
+-- eg_compute_economics
+-- eg_compressed_micro_agents
+-- eg_synthetic_populations
+-- eg_nano_scale_targets
+-- eg_hospital_enterprise_plans
+-- eg_clinical_authority_probes
+-- eg_physical_control_probes
+-- eg_marketing_recommendations
+-- eg_marketing_publish_gates
+-- eg_marketing_claim_probes
+-- eg_federated_db_bundles
+-- eg_lakehouse_candidates
+-- eg_genome_copy_probes
+-- eg_isolated_sim_branches
+-- eg_wormhole_shortcuts
+-- eg_sim_fact_probes
+-- eg_energy_schedule_advice
+-- eg_gpu_chip_quant_analyses
+-- eg_quantum_inspired_opts
+-- eg_offline_node_probes
+-- eg_stealth_install_denials
+-- eg_twin_authority_probes
+-- eg_autonomy_boundary_probes
+
+SELECT '62L_EG_CANDIDATES_NOT_APPLIED' AS status;

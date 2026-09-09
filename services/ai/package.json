@@ -161,7 +161,9 @@
     "test:62led": "tsx local-brain/phase62led.test.ts",
     "local:data-galaxy-industry-memory-os-health": "tsx local-brain/data-galaxy-industry-memory-os-cli.ts",
     "test:62lee": "tsx local-brain/phase62lee.test.ts",
-    "local:data-nervous-system-health": "tsx local-brain/data-nervous-system-cli.ts"
+    "local:data-nervous-system-health": "tsx local-brain/data-nervous-system-cli.ts",
+    "test:62leg": "tsx local-brain/phase62leg.test.ts",
+    "local:cognitive-operations-backbone-health": "tsx local-brain/cognitive-operations-backbone-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
