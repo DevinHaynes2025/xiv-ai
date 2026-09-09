@@ -401,8 +401,9 @@ test('cycle covers matrix + gate + auto-flags + soft-wires; EN/classical present
   assert.equal(soft.enReport.present, true);
   assert.equal(soft.classicalQuantBaseline.present, true);
   assert.equal(soft.emCapabilityTruth.present, true);
-  // EO3/EO1 may be WAITING_DATA on this tip — presence ≠ VERIFIED
-  assert.equal(typeof soft.eo3Watch.present, 'boolean');
+  // Preferred predecessor EO3 watch PRESENT on this tip; presence ≠ VERIFIED
+  assert.equal(soft.eo3Watch.present, true);
+  assert.equal(soft.eo3Report.present, true);
   assert.equal(typeof soft.eo1CommandCenter.present, 'boolean');
   assert.equal(EO4_LOCKS.PRESENCE_EQ_VERIFIED, false);
 
