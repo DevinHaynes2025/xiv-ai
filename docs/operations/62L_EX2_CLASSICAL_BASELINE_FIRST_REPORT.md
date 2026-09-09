@@ -11,7 +11,8 @@
 
 | Ref | SHA |
 |-----|-----|
-| LOCAL (EX2 tip at feat) | `aecba039e7690e81486e826eed3a8ee3dc8a0330` |
+| LOCAL tip (docs) | `5b700f61930a200166c6eacf6b266c0dd0a2b2e2` |
+| Feat SHA | `aecba039e7690e81486e826eed3a8ee3dc8a0330` |
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (behind GitHub by 4 commits; merge-base = GitLab tip — not unsafe) |
 | EX1 tip `cursor/62l-ex1-offline-quantum-mission-contract-4059` | `60986682f7a6913def6da08499388aecd4acea4a` (= origin/xiv-v2; EX1 quantum modules not landed yet) |
