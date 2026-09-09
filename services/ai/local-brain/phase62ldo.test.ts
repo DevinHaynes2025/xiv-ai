@@ -197,8 +197,9 @@ try {
     'US-DO-installed-configured-not-trusted-until-verified',
     untrusted.status === 'denied' &&
       untrusted.reason === PLUGIN_NOT_TRUSTED_UNTIL_VERIFIED &&
-      installed.trustState === 'configured',
-    untrusted.reason,
+      installed.verified === false &&
+      (installed.trustState === 'configured' || installed.trustState === 'sandbox'),
+    `${untrusted.reason}; trust=${installed.trustState}`,
   );
 
   // 2) Missing scope DENIED
