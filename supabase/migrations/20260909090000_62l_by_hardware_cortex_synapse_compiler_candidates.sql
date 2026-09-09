@@ -1,0 +1,98 @@
+-- 62L-BY Hardware Cortex / Synapse Compiler — CANDIDATE ONLY
+-- Status: NOT_APPLIED
+-- Honesty: DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- Do NOT apply to live Supabase. No production table overload.
+-- GitHub SoT #89; GitLab coordination #23.
+-- Agents have no purchasing/billing authority. Lab = sandbox. Synapse = approved only.
+
+-- BEGIN CANDIDATE (NOT_APPLIED)
+-- create table if not exists xiv_by_hardware_knowledge (
+--   id text primary key,
+--   device_family text not null,
+--   vendor text not null,
+--   model text not null,
+--   labeled_verified boolean not null default false,
+--   available boolean not null default false,
+--   production_authorized boolean not null default false,
+--   freshness text not null default 'unknown',
+--   provenance jsonb not null default '[]'::jsonb,
+--   confidence text not null default 'unverified',
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_semiconductor_lab_experiments (
+--   id text primary key,
+--   title text not null,
+--   sandbox_id text not null,
+--   status text not null default 'sandboxed',
+--   production_authorized boolean not null default false,
+--   chip_deploy_authority boolean not null default false,
+--   labeled_verified boolean not null default false,
+--   provenance jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_device_runtime (
+--   id text primary key,
+--   device_id text not null,
+--   enrolled boolean not null default false,
+--   verified boolean not null default false,
+--   status text not null default 'unavailable',
+--   authority_level int not null default 0,
+--   permission_level int not null default 0,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_device_handoffs (
+--   id text primary key,
+--   from_device_id text not null,
+--   to_device_id text not null,
+--   checkpoint_id text not null,
+--   preserved_checkpoint boolean not null default true,
+--   authority_transferred boolean not null default false,
+--   permission_transferred boolean not null default false,
+--   status text not null,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_placement_decisions (
+--   id text primary key,
+--   selected_node_id text,
+--   recommendation_only boolean not null default true,
+--   purchase_authority boolean not null default false,
+--   billing_authority boolean not null default false,
+--   charge_authority boolean not null default false,
+--   cost_proxy_is_live_invoice boolean not null default false,
+--   charged boolean not null default false,
+--   purchased boolean not null default false,
+--   deployed boolean not null default false,
+--   status text not null,
+--   ranked jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_bi_stream_items (
+--   id text primary key,
+--   stream_id text not null,
+--   title text not null,
+--   labeled_verified boolean not null default false,
+--   raw_private_pooling boolean not null default false,
+--   status text not null,
+--   provenance jsonb not null default '[]'::jsonb,
+--   confidence text not null default 'unverified',
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_by_synapse_routes (
+--   id text primary key,
+--   relationship_id text not null,
+--   from_id text not null,
+--   to_id text not null,
+--   kind text not null,
+--   sparse boolean not null default true,
+--   governed boolean not null default true,
+--   privilege_expanded boolean not null default false,
+--   status text not null,
+--   created_at timestamptz not null default now()
+-- );
+-- END CANDIDATE (NOT_APPLIED)
