@@ -7,16 +7,12 @@
 
 import { createHash } from 'node:crypto';
 
-import { SEALED_REDACTION } from './ceo-sealed-vault';
 import { cortexId, readJsonFile, writeJsonFileAtomic, xivLocalPath } from './cortex-store';
 import {
   CORRELATION_NOT_CAUSATION,
   DEFENSIVE_LEAKAGE_ONLY,
-  OFFENSIVE_LEAK_HARVEST_DENIED,
   REFINERY_STAGES,
-  SEALED_COMPARTMENT_NON_LEAK,
   SIM_NOT_FACT,
-  SPYWARE_CAPABILITY_DENIED,
   UNAUTHORIZED_SOURCE_REJECTED,
   type AyEvidenceState,
   type EpistemicClass,
@@ -185,58 +181,6 @@ export function detectDefensiveLeakage(input: {
     }
   }
   return findings;
-}
-
-export function honorSealedCompartment(payload: string, sealed: boolean) {
-  const redacted = sealed ? SEALED_REDACTION : payload;
-  return {
-    payload: redacted,
-    replicating: false as const,
-    ceoSealedCompartmentalized: true as const,
-    leaked: false as const,
-    ordinaryCacheWrite: false as const,
-    telemetryWrite: false as const,
-    mediaCandidateContainsSecret: false as const,
-    stopped: sealed,
-    reason: SEALED_COMPARTMENT_NON_LEAK,
-    sealHonored: sealed ? redacted === SEALED_REDACTION : true,
-  };
-}
-
-export function attemptOffensiveLeakHarvest(_input?: { target: string }) {
-  return {
-    executed: false as const,
-    harvested: false as const,
-    spyware: false as const,
-    keylogger: false as const,
-    clipboardMonitor: false as const,
-    stolenCredentials: false as const,
-    leakedDatabaseMined: false as const,
-    state: 'DENIED' as const,
-    reason: OFFENSIVE_LEAK_HARVEST_DENIED,
-  };
-}
-
-export function refuseSpywareCapabilities() {
-  return {
-    spyware: false as const,
-    keylogger: false as const,
-    clipboardMonitor: false as const,
-    secretCapture: false as const,
-    accessBypass: false as const,
-    state: 'DENIED' as const,
-    reason: SPYWARE_CAPABILITY_DENIED,
-  };
-}
-
-export function refuseCertificationClaim() {
-  return {
-    governmentCertification: 'NOT_TESTED' as const,
-    classifiedApproval: false as const,
-    partnershipClaimed: false as const,
-    state: 'UNAVAILABLE' as const,
-    reason: 'GOVERNMENT_CERTIFICATION_NOT_CLAIMED',
-  };
 }
 
 export function moatNarrative(): MoatNarrative {
@@ -443,7 +387,6 @@ export function rejectUnauthorizedSource(authorization: SourceAuthorizationClass
   };
 }
 
-/** Sealed compartment honor — redacts sealed payloads; never replicates into ordinary caches. */
 export function honorSealedCompartment(payload: string, sealed: boolean) {
   if (!sealed) {
     return {
@@ -452,6 +395,7 @@ export function honorSealedCompartment(payload: string, sealed: boolean) {
       ordinaryCacheWrite: false as const,
       telemetryWrite: false as const,
       sealHonored: true as const,
+      replicating: false as const,
       reason: 'PAYLOAD_NOT_MARKED_SEALED',
     };
   }
@@ -461,11 +405,11 @@ export function honorSealedCompartment(payload: string, sealed: boolean) {
     ordinaryCacheWrite: false as const,
     telemetryWrite: false as const,
     sealHonored: true as const,
+    replicating: false as const,
     reason: 'SEALED_COMPARTMENT_HONORED_NON_REPLICATING',
   };
 }
 
-/** Explicit deny: offensive leak harvest is forbidden. Defensive detection only. */
 export function attemptOffensiveLeakHarvest(_input?: { target?: string }) {
   return {
     executed: false as const,
@@ -474,6 +418,9 @@ export function attemptOffensiveLeakHarvest(_input?: { target?: string }) {
     keylogger: false as const,
     clipboardMonitor: false as const,
     offensive: false as const,
+    stolenCredentials: false as const,
+    leakedDatabaseMined: false as const,
+    state: 'DENIED' as const,
     reason: DEFENSIVE_LEAKAGE_ONLY,
   };
 }
@@ -483,7 +430,10 @@ export function refuseSpywareCapabilities() {
     spyware: false as const,
     keylogger: false as const,
     clipboardMonitor: false as const,
+    secretCapture: false as const,
+    accessBypass: false as const,
     allowed: false as const,
+    state: 'DENIED' as const,
     reason: 'LEAKAGE_DEFENSE_IS_NOT_SPYWARE_KEYLOGGER_OR_CLIPBOARD_MONITOR',
   };
 }
@@ -494,6 +444,7 @@ export function refuseCertificationClaim() {
     classifiedApproval: false as const,
     partnershipClaimed: false as const,
     governmentCertificationClaimed: false as const,
+    governmentCertification: 'NOT_TESTED' as const,
     reason: 'GOVERNMENT_CERTIFICATION_NOT_CLAIMED_NOT_TESTED',
   };
 }
