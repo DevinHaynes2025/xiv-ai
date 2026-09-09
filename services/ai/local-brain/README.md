@@ -15,10 +15,12 @@ From `services/ai`:
 - `npm run local:research-health` — write the 62L-Y research highway health map.
 - `npm run local:workcells` — write the 62L-AC offline agent runtime / workcell health report.
 - `npm run local:mesh-health` — write the 62L-AD distributed offline agent mesh fleet health report.
+- `npm run local:research-director` — write the 62L-AI Autonomous Research Director health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
 - `npm run test:62lad` — 62L-AD partition, reconnect, and federation safety tests.
+- `npm run test:62lai` — 62L-AI negative-result memory, independent replication, and authority-denial tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -31,6 +33,9 @@ Executable offline operating cycle: approved story → supervisor → context va
 
 ## 62L-AD Distributed Offline Agent Mesh
 Authorized node identity, device capability discovery, safe peer discovery, local-first routing, partition-safe Agent Bus messaging, multi-node workcells (reusing 62L-AC coding/research/quant workcells), local-model federation, knowledge-pack exchange, outage reconciliation, resource governance, edge-agent mode, quarantine/revocation, and fleet health. Registered computers/models/chips/nodes are not automatically trusted. Unverified peers remain UNAVAILABLE. No physical satellite or device control beyond authorized simulated/local adapters.
+
+## 62L-AI Autonomous Research Director
+Executable offline R&D cycle: knowledge gap → research director → prior evidence → competing hypotheses → experiment candidates → risk/value ranking → offline experiment → measurement → independent replication → skeptic review → evidence promotion → world model → learning → next experiment. Offline Experiment Factory (software/data/simulation), reproducibility manifests, negative-result memory, A/B evaluation, causal challenges, multi-industry/historical/regional/quant/quantum/infrastructure/night research cells, and discovery-quality measurement. Autonomous research cannot grant permissions, deploy production, spend money, make contracts, execute trades, or control physical infrastructure. CEO-sealed records are non-replicating by default. Simulation is not verified fact. Correlation is not causation. 62L-AH world-model promotion is WAITING_DATA on this parent.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
