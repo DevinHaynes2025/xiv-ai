@@ -179,7 +179,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'Preferred BS tip cursor/62l-bs-engineering-university-memory-cortex-4059 + report; WAITING_DATA until pushed.',
+      note: 'Preferred BS tip cursor/62l-bs-engineering-university-memory-cortex-4059 used as BT base when present; report file may still be WAITING_DATA.',
     },
     BR: {
       tipProbe: (has('62L_BR_STRUCTURED_CODE_MEMORY_DEBUG_ACADEMY_REPORT.md')
@@ -207,7 +207,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BP_COGNITIVE_HOMEOSTASIS_GENOME_RECOVERY_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BP tip present on origin with report; preference selects BR tip when BR pushed ahead of BP.',
+      note: 'BP tip present on origin with report; preference selects BS/BR ahead of BP.',
     },
     BO: {
       tipProbe: (has('62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md')
@@ -216,7 +216,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BO tip available on origin; not selected when BR tip is preferred base.',
+      note: 'BO tip available on origin; not selected when BS/BR preferred base is present.',
     },
     BN: {
       tipProbe: (has('62L_BN_SUPERBRAIN_NEURAL_GROWTH_METABOLISM_REPORT.md')
