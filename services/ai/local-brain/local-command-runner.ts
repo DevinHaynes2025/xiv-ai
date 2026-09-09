@@ -19,7 +19,11 @@ export async function runAllowedLocalCommand(input: {
   cwd: string;
   timeoutMs?: number;
 }) {
+  if (!isAllowedLocalCommand(String(input.id))) {
+    throw new Error('LOCAL_COMMAND_NOT_ALLOWED');
+  }
   const spec = COMMANDS[input.id];
+  if (!spec) throw new Error('LOCAL_COMMAND_NOT_ALLOWED');
   const timeoutMs = Math.max(1_000, Math.min(input.timeoutMs ?? 120_000, 300_000));
   return new Promise<{ exitCode: number | null; stdout: string; stderr: string; timedOut: boolean; productionEffect: false }>((resolve, reject) => {
     const child = spawn(spec.command, spec.args, {

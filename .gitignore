@@ -44,6 +44,11 @@ temp/
 .xiv-local/
 **/.xiv-local/
 
+# Local model weights
+*.gguf
+*.ggml
+*.safetensors
+
 # Coverage
 coverage/
 

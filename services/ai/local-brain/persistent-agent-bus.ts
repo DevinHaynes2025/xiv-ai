@@ -2,7 +2,7 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
-import { publishAgentMessage, type AgentMessage } from './agent-bus';
+import { publishAgentMessage, type AgentMessage, type PublishAgentMessageInput } from './agent-bus';
 
 const MAX_MESSAGES = 10_000;
 
@@ -10,10 +10,14 @@ function storePath(root = process.cwd()) {
   return join(root, '.xiv-local', 'agent-messages.json');
 }
 
-async function load(path: string): Promise<AgentMessage[]> {
+function live(messages: AgentMessage[], now = Date.now()) {
+  return messages.filter((message) => !message.expiresAt || Date.parse(message.expiresAt) > now);
+}
+
+async function load(path: string, now = Date.now()): Promise<AgentMessage[]> {
   try {
     const parsed = JSON.parse(await readFile(path, 'utf8')) as unknown;
-    return Array.isArray(parsed) ? parsed as AgentMessage[] : [];
+    return Array.isArray(parsed) ? live(parsed as AgentMessage[], now) : [];
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [];
     throw error;
@@ -28,14 +32,14 @@ async function saveAtomic(path: string, messages: AgentMessage[]) {
 }
 
 export async function publishPersistentAgentMessage(
-  input: Omit<AgentMessage, 'id' | 'createdAt'>,
+  input: PublishAgentMessageInput,
   root?: string,
 ) {
   const hot = publishAgentMessage(input);
   const path = storePath(root);
-  const stored = await load(path);
+  const stored = await load(path, input.now);
   stored.push(hot);
-  await saveAtomic(path, stored.slice(-MAX_MESSAGES));
+  await saveAtomic(path, live(stored, input.now).slice(-MAX_MESSAGES));
   return hot;
 }
 
