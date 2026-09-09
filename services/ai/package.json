@@ -21,6 +21,7 @@
     "test:phase2ilb": "tsx runtime/phase2ilb.test.ts",
     "test:phase2ilc": "tsx runtime/phase2ilc.test.ts",
     "test:hosted-isolation": "tsx runtime/hosted-isolation-proof.ts",
+    "test:62lex11": "tsx runtime/phase62lex11.test.ts",
     "proof:worldbank": "tsx runtime/phase2id.worldbank.proof.ts",
     "proof:sec": "tsx runtime/phase2id2.sec.proof.ts",
     "proof:gleif": "tsx runtime/phase2ih.gleif.proof.ts",
