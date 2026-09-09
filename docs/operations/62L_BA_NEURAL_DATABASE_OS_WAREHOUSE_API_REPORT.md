@@ -7,7 +7,7 @@ Branch: `cursor/62l-ba-neural-database-os-warehouse-api-4059`
 Parent / base tip: `cursor/62l-ay-growth-media-onboarding-superbrain-refinery-4059` @ `405fd53` (`feat(62L-AY): add growth media, onboarding, super brain, data refinery #63`)
 Why this base: Preferred AZ tip (`docs/operations/62L_AZ_GLOBAL_REFINERY_MULTIBRAIN_FOUNDER_MEDIA_REPORT.md` on `cursor/62l-az-*`) remained **absent** on origin after fetch/backoff. Initial implementation based on AX @ `761044c` (best available at branch time). AY then landed on origin as a fast-forward child of that same AX tip; BA was **rebased** onto AY @ `405fd53` (AY report present). AZ still **WAITING_DATA**.
 Implementation SHA:  ()
-Report SHA: *(this file — pinned after docs commit)*
+Report SHA:  (this file)
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
