@@ -234,6 +234,233 @@ test('agent mesh: modes, offline restrictions, no new authority', () => {
   assert.equal(openLocalMemory({ memoryId: 'lm-1', tenantId: 't1', universeId: 'u1' }).encrypted, true);
 });
 
+test('agent mesh V741: handoff auth, transitions, memory scope, bounded queue', () => {
+  // 1. handoff without server authorization → DENIED
+  const handoffNoServer = createHandoff({
+    handoffId: 'h-noserver',
+    fromAgentId: 'a1',
+    toAgentId: 'a2',
+    fromTenantId: 't1',
+    toTenantId: 't1',
+    fromUniverseId: 'u1',
+    toUniverseId: 'u1',
+    serverAuthorized: false,
+  });
+  assert.equal(handoffNoServer.allowed, false);
+  if (!handoffNoServer.allowed) {
+    assert.equal(handoffNoServer.reason, 'server_authorization_required');
+  }
+
+  // 2. same-tenant/same-Universe authorized handoff → ALLOWED (no permission transfer)
+  const handoffOk = createHandoff({
+    handoffId: 'h-ok',
+    fromAgentId: 'a1',
+    toAgentId: 'a2',
+    fromTenantId: 't1',
+    toTenantId: 't1',
+    fromUniverseId: 'u1',
+    toUniverseId: 'u1',
+    serverAuthorized: true,
+  });
+  assert.equal(handoffOk.allowed, true);
+  if (handoffOk.allowed) {
+    assert.equal(handoffOk.handoff.transfersPermissions, false);
+    assert.equal(handoffOk.handoff.requiresServerAuth, true);
+    assert.equal(handoffOk.handoff.serverAuthorized, true);
+    assert.equal(handoffOk.handoff.sameTenant, true);
+    assert.equal(handoffOk.handoff.sameUniverse, true);
+  }
+
+  // 3. cross-tenant handoff → DENIED
+  const crossTenant = createHandoff({
+    handoffId: 'h-xt',
+    fromAgentId: 'a1',
+    toAgentId: 'a2',
+    fromTenantId: 't1',
+    toTenantId: 't2',
+    fromUniverseId: 'u1',
+    toUniverseId: 'u1',
+    serverAuthorized: true,
+  });
+  assert.equal(crossTenant.allowed, false);
+  if (!crossTenant.allowed) {
+    assert.equal(crossTenant.reason, 'cross_tenant_handoff_denied');
+  }
+
+  // 4. cross-Universe handoff → DENIED
+  const crossUniverse = createHandoff({
+    handoffId: 'h-xu',
+    fromAgentId: 'a1',
+    toAgentId: 'a2',
+    fromTenantId: 't1',
+    toTenantId: 't1',
+    fromUniverseId: 'u1',
+    toUniverseId: 'u2',
+    serverAuthorized: true,
+  });
+  assert.equal(crossUniverse.allowed, false);
+  if (!crossUniverse.allowed) {
+    assert.equal(crossUniverse.reason, 'cross_universe_handoff_denied');
+  }
+
+  // 5. BLOCKED → OFFLINE_LIMITED → DENIED
+  const blockedRuntime = openAgentRuntime({
+    runtimeId: 'rt-blocked',
+    tenantId: 't1',
+    universeId: 'u1',
+    agentId: 'a1',
+    mode: 'BLOCKED',
+  });
+  const blockedToOffline = transitionAgentMode({
+    runtime: blockedRuntime,
+    next: 'OFFLINE_LIMITED',
+    reauthenticated: true,
+    tenantValidated: true,
+    universeValidated: true,
+  });
+  assert.equal(blockedToOffline.allowed, false);
+
+  // BLOCKED → ONLINE without authorization → DENIED
+  const blockedToOnlineNoAuth = transitionAgentMode({
+    runtime: blockedRuntime,
+    next: 'ONLINE',
+  });
+  assert.equal(blockedToOnlineNoAuth.allowed, false);
+
+  // 6. REAUTH_REQUIRED → OFFLINE_LIMITED without reauth → DENIED
+  const reauthRuntime = openAgentRuntime({
+    runtimeId: 'rt-reauth',
+    tenantId: 't1',
+    universeId: 'u1',
+    agentId: 'a1',
+    mode: 'REAUTH_REQUIRED',
+  });
+  const reauthToOffline = transitionAgentMode({
+    runtime: reauthRuntime,
+    next: 'OFFLINE_LIMITED',
+    reauthenticated: false,
+  });
+  assert.equal(reauthToOffline.allowed, false);
+
+  // 7. valid reconnect path → ALLOWED
+  const reconnect = transitionAgentMode({
+    runtime: reauthRuntime,
+    next: 'ONLINE',
+    reauthenticated: true,
+    tenantValidated: true,
+    universeValidated: true,
+  });
+  assert.equal(reconnect.allowed, true);
+  if (reconnect.allowed) {
+    assert.equal(reconnect.runtime.mode, 'ONLINE');
+  }
+
+  // 8. local memory retains correct tenant/Universe scope
+  const mem = openLocalMemory({ memoryId: 'lm-scope', tenantId: 'tenant-A', universeId: 'univ-B' });
+  assert.equal(mem.tenantId, 'tenant-A');
+  assert.equal(mem.universeId, 'univ-B');
+  assert.equal(mem.scopedToTenant, true);
+  assert.equal(mem.scopedToUniverse, true);
+  assert.equal(mem.class, 'LOCAL_SCOPED');
+
+  // 9. oversized event queue → DENIED
+  const overflow = createEventQueue({
+    queueId: 'q-overflow',
+    runtimeId: 'rt-1',
+    maxEvents: 2,
+    events: [
+      { eventId: 'e1', signed: true, cloudOnly: false, payloadBytes: 1 },
+      { eventId: 'e2', signed: true, cloudOnly: false, payloadBytes: 1 },
+      { eventId: 'e3', signed: true, cloudOnly: false, payloadBytes: 1 },
+    ],
+  });
+  assert.equal(overflow.allowed, false);
+  if (!overflow.allowed) {
+    assert.equal(overflow.reason, 'event_queue_overflow');
+  }
+
+  const payloadOverflow = createEventQueue({
+    queueId: 'q-bytes',
+    runtimeId: 'rt-1',
+    maxEvents: 10,
+    maxPayloadBytes: 10,
+    events: [{ eventId: 'e1', signed: true, cloudOnly: false, payloadBytes: 11 }],
+  });
+  assert.equal(payloadOverflow.allowed, false);
+
+  const expired = createEventQueue({
+    queueId: 'q-exp',
+    runtimeId: 'rt-1',
+    now: 1_000,
+    events: [{ eventId: 'e1', signed: true, cloudOnly: false, payloadBytes: 1, expiresAt: 999 }],
+  });
+  assert.equal(expired.allowed, false);
+
+  // 10. unsigned event → DENIED
+  const unsigned = createEventQueue({
+    queueId: 'q-unsigned',
+    runtimeId: 'rt-1',
+    events: [{ eventId: 'e1', signed: false, cloudOnly: false }],
+  });
+  assert.equal(unsigned.allowed, false);
+
+  // 11. cloud-only offline event → DENIED
+  const cloudOnly = createEventQueue({
+    queueId: 'q-cloud',
+    runtimeId: 'rt-1',
+    events: [{ eventId: 'e1', signed: true, cloudOnly: true }],
+  });
+  assert.equal(cloudOnly.allowed, false);
+
+  // 12. L4 remains false
+  assert.equal(agentMeshL4Enabled(), false);
+  assert.equal(l4AutonomyEnabled(), false);
+  assert.equal(boundedAutonomyEnabled(), false);
+
+  // 13. offline cannot create authority
+  assert.equal(offlineCreatesAuthority(), false);
+  const offlineAuth = evaluateOfflineAction({
+    mode: 'OFFLINE_LIMITED',
+    action: 'GAIN_NEW_AUTHORITY',
+  });
+  assert.equal(offlineAuth.allowed, false);
+
+  // 14. Guardian/RLS behavior unchanged (recovery still requires Guardian; no bypass)
+  const checkpoint = createCheckpoint({
+    checkpointId: 'cp-v741',
+    runtimeId: 'rt-1',
+    tenantId: 't1',
+    universeId: 'u1',
+    lastCompletedStep: 'queue_flush',
+    evidenceRefs: ['ev-1'],
+  });
+  assert.ok(checkpoint.integrityHash.startsWith('cp-'));
+  assert.equal(checkpoint.transfersAuthority, false);
+  assert.equal(checkpoint.version, 1);
+  assert.equal(checkpoint.lastCompletedStep, 'queue_flush');
+  const recoveryNoGuardian = recoverFromCheckpoint({
+    recoveryId: 'r-nog',
+    checkpoint,
+    guardianActive: false,
+    serverAuthorized: true,
+  });
+  assert.equal(recoveryNoGuardian.allowed, false);
+  if (!recoveryNoGuardian.allowed) {
+    assert.equal(recoveryNoGuardian.reason, 'guardian_required');
+  }
+  const recoveryOk = recoverFromCheckpoint({
+    recoveryId: 'r-ok',
+    checkpoint,
+    guardianActive: true,
+    serverAuthorized: true,
+  });
+  assert.equal(recoveryOk.allowed, true);
+  if (recoveryOk.allowed) {
+    assert.equal(recoveryOk.recovery.bypassesGuardian, false);
+    assert.equal(recoveryOk.recovery.escalatesPrivilege, false);
+  }
+});
+
 test('agent mesh: sync conflicts, recovery, audit completeness, cross-Universe isolation', () => {
   assert.equal(syncMayBypassServerAuth(), false);
   assert.equal(syncMaySkipAudit(), false);
@@ -288,6 +515,7 @@ test('agent mesh: sync conflicts, recovery, audit completeness, cross-Universe i
     toTenantId: 't1',
     fromUniverseId: 'u1',
     toUniverseId: 'u2',
+    serverAuthorized: true,
   });
   assert.equal(handoffDenied.allowed, false);
 
@@ -299,6 +527,7 @@ test('agent mesh: sync conflicts, recovery, audit completeness, cross-Universe i
     toTenantId: 't1',
     fromUniverseId: 'u1',
     toUniverseId: 'u1',
+    serverAuthorized: true,
   });
   assert.equal(handoffOk.allowed, true);
   if (handoffOk.allowed) {

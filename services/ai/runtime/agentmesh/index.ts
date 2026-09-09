@@ -23,8 +23,12 @@ export {
 } from './types';
 
 export {
+  AGENT_MODE_TRANSITIONS,
+  DEFAULT_EVENT_QUEUE_MAX_EVENTS,
+  DEFAULT_EVENT_QUEUE_MAX_PAYLOAD_BYTES,
   agentMeshL4Enabled,
   capabilityEqualsPrivilege,
+  checkpointIntegrityHash,
   createCheckpoint,
   createEventQueue,
   createHandoff,
@@ -46,6 +50,7 @@ export type {
   AgentEventQueue,
   AgentHandoff,
   AgentLocalMemory,
+  AgentQueuedEvent,
   AgentRecovery,
   AgentRuntime,
 } from './runtime';
