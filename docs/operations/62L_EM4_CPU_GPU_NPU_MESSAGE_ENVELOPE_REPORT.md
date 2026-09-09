@@ -4,7 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059`  
-Tip SHA: `c06d78ca1242bf28440c4b52835aea8aa96bfeb2`  
+Tip SHA: `940dd074eb653dfafb1f28c414707807c3e1f17f`  
+Implement SHA: `46eff3ca239028c4851ea2087e84fdf0cac1af7c`  
 Base: `cursor/62l-em3-universal-compute-registry-4059` @ `185ac60c1c155661ea5618acbcf1158856ff5d0b`  
 EL9 predecessor: `c834e5242ba1a2b04e6126babbbaf695133178b1`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
