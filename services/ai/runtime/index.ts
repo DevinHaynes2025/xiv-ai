@@ -730,3 +730,15 @@ export {
   agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
+
+/** 62L-EX6 Physical QPU Execution Receipt — soft entrypoints (Agent Mesh + Home Base). */
+export {
+  createPhysicalQpuReceipt,
+  verifyPhysicalQpuReceipt,
+  reconcilePhysicalQpuReceipt,
+  createComparisonReceipt,
+  returnReceiptToHomeBase,
+  ex6L4AutonomyEnabled,
+  guardianRlsUnchangedByEx6,
+  ex6SoftWireSnapshot,
+} from './quantum/index.ts';
