@@ -16,11 +16,13 @@ From `services/ai`:
 - `npm run local:workcells` — write the 62L-AC offline agent runtime / workcell health report.
 - `npm run local:mesh-health` — write the 62L-AD distributed offline agent mesh fleet health report.
 - `npm run local:factory` — write the 62L-AJ offline software factory / plugin registry health report.
+- `npm run local:ops-planner` — write the 62L-AP enterprise operations planner / command-center health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
 - `npm run test:62lad` — 62L-AD partition, reconnect, and federation safety tests.
 - `npm run test:62laj` — 62L-AJ sandbox isolation, allowlist runner, permission-diff deny, and release-gate tests.
+- `npm run test:62lap` — 62L-AP handoff-package≠execution, decision-rights matrix, deadlock detection, and human-gate tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -36,6 +38,9 @@ Authorized node identity, device capability discovery, safe peer discovery, loca
 
 ## 62L-AJ Offline Software Factory + Governed Plugin Ecosystem
 Executable factory cycle: approved story / verified discovery → requirements → architecture → engineering workcell → protected sandbox → code → tests → security → API/UI review → evidence → plugin manifest → registry → human release gate → candidate artifact. Agent-generated apps are build candidates only. Compile+tests PASS does not authorize deployment, publication, production database changes, new permissions, or customer use. Build/test runners are allowlisted (local command runner only). Unconfigured providers remain UNAVAILABLE. L4 remains false. No founder impersonation. CEO-sealed non-replicating. No physical infrastructure control.
+
+## 62L-AP Enterprise Operations Planner + Command Center
+Executable enterprise ops loop: enterprise need → department context → KPI/evidence → workflow graph → dependency/bottleneck analysis → agent council → plan options → risk/cost/policy review → human decision → approved task package → authorized execution → outcome → learning. Cross-department workflow graphs detect deadlocks instead of executing them. Agents plan and recommend; humans own consequential decisions. An approved Action Handoff Contract package does **not** authorize spending, deploying, contacting customers, changing production systems, or other consequential actions. L4 remains false. Anti-collusion applies to inter-enterprise pricing/bids/customer targeting. CEO-sealed material stays compartmentalized. Unconfigured providers remain UNAVAILABLE. No founder impersonation.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
