@@ -384,7 +384,7 @@ try {
       health.predecessors['62L-AD'] === 'PRESENT' &&
       health.predecessors['62L-AC'] === 'PRESENT' &&
       health.predecessors['62L-AE'] === 'PRESENT' &&
-      health.predecessors['62L-AG'] === 'WAITING_DATA' &&
+      health.predecessors['62L-AG'] === 'PRESENT' &&
       health.predecessors['62L-AF'] === 'WAITING_DATA' &&
       health.windowsNodeVerification === 'NOT_TESTED' &&
       health.githubIssue46 === 'UNAVAILABLE',
