@@ -5,7 +5,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests executed — 
 Date: 2026-09-09  
 Branch: `cursor/62l-el5-amd-gpu-capability-candidate-4059`  
 Base tip: `cursor/62l-em-local-model-verification-4059` @ `a18a8823503ed2ab861e62a4c65edf8926fbdb5e` (sealed EM on founder EL `feat/62l-el-local-runtime-probe` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`)  
-Implementation SHA: `c93f13a` (feat); tip SHA after rebase/docs: `7439a94507f10b94d072c8ee9dcc2ba62663c1a4`  
+Implementation SHA: `c93f13a` (feat); tip SHA after rebase/docs: `4f89ddb56becb655b24e5e27d2c94b7aeb446866`  
 Why this base: Prefer sealed EM tip as successor of founder EL SoT; soft-wires EM local-model verification + EL probe.  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
@@ -86,13 +86,15 @@ Commands:
 
 ```bash
 cd services/ai && npm run test:62lel5
+cd services/ai && npm run test:62lem
 cd services/ai && npm run test:local-runtime
 ```
 
 | Command | Result |
 |---|---|
 | `npm run test:62lel5` | **PASS** — 18/18 |
-| `npm run test:local-runtime` | **PASS** — 24/24 (includes prior EL probe tests; no regression) |
+| `npm run test:62lem` | **PASS** — 6/6 (EM preserved after rebase) |
+| `npm run test:local-runtime` | **PASS** — 30/30 (EL + EM + EL5; no regression) |
 
 GPU VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
