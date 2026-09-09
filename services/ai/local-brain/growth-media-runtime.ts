@@ -476,6 +476,7 @@ export {
 export {
   attemptChargeFromPackageCouncil,
   attemptDeployFromPackageCouncil,
+  attemptMutateBillingFromPackageCouncil,
   checkEntitlement,
   convenePackageCouncil,
   listPackages,
@@ -495,6 +496,10 @@ export {
 export {
   checkProvenanceLicense,
   detectDefensiveLeakage,
+  honorSealedCompartment,
+  attemptOffensiveLeakHarvest,
+  refuseSpywareCapabilities,
+  refuseCertificationClaim,
   isSourceAllowed,
   listRefineryRecords,
   moatNarrative,

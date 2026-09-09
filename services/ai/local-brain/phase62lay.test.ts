@@ -408,6 +408,94 @@ try {
   );
 
   // Predecessor probes — based on AX tip; sibling AV/AW modules not merged
+  const privateExposed = rejectUnauthorizedSource('private_exposed');
+  const restricted = rejectUnauthorizedSource('restricted_system');
+  check('US-AY-REJECT-PRIVATE', privateExposed.allowed === false && privateExposed.executed === false, 'Private exposed records denied.');
+  check('US-AY-REJECT-RESTRICTED', restricted.allowed === false, 'Restricted systems denied.');
+
+  const {
+    honorSealedCompartment,
+    attemptOffensiveLeakHarvest,
+    refuseSpywareCapabilities,
+    refuseCertificationClaim,
+    attemptMutateBillingFromPackageCouncil,
+    admitOnboarding,
+  } = await import('./growth-media-runtime');
+
+  const underageAdmit = await admitOnboarding({
+    tenantId,
+    universeId,
+    channel: 'email',
+    identity: { subjectId: 'minor', declaredAgeYears: 17, email: 'teen@example.com' },
+    root,
+  });
+  check(
+    'US-AY-18-PLUS-NO-ACTIVATION',
+    underageAdmit.status === 'denied'
+      && underageAdmit.accountActivated === false
+      && underageAdmit.adultConfirmed === false
+      && underageAdmit.ageGate === 'DENIED',
+    'Failed 18+ age gate does not activate an account.',
+  );
+
+  const billing = attemptMutateBillingFromPackageCouncil();
+  check(
+    'US-AY-CHARGE-DENY',
+    charge.charged === false
+      && charge.amountCharged === 0
+      && charge.billingMutated === false
+      && billing.billingMutated === false
+      && billing.executed === false,
+    'Package councils cannot charge or mutate billing.',
+  );
+
+  const sealed = honorSealedCompartment('FOUNDER-SEALED secret token', true);
+  check(
+    'US-AY-SEALED-NON-LEAK',
+    sealed.leaked === false
+      && sealed.ordinaryCacheWrite === false
+      && sealed.telemetryWrite === false
+      && sealed.payload === '[REDACTED_SEALED]'
+      && sealed.sealHonored === true,
+    'Sealed compartments are redacted and non-replicating.',
+  );
+  const sealedMedia = await prepareMediaCandidate({
+    tenantId,
+    universeId,
+    kind: 'post',
+    title: 'Sealed leak attempt',
+    body: 'FOUNDER-SEALED payload must not publish',
+    root,
+  });
+  check(
+    'US-AY-SEALED-MEDIA',
+    sealedMedia.body === '[REDACTED_SEALED]'
+      && sealedMedia.published === false
+      && sealedMedia.autoPublished === false,
+    'Sealed payload is redacted out of media candidates.',
+  );
+
+  const offensive = attemptOffensiveLeakHarvest({ target: 'external_leaked_db' });
+  const spyware = refuseSpywareCapabilities();
+  check(
+    'US-AY-LEAKAGE-DEFENSE-NOT-SPYWARE',
+    offensive.executed === false
+      && offensive.harvested === false
+      && offensive.spyware === false
+      && offensive.keylogger === false
+      && offensive.clipboardMonitor === false
+      && spyware.spyware === false
+      && spyware.keylogger === false
+      && spyware.clipboardMonitor === false,
+    'Leakage defense is not spyware, keylogging, or offensive harvest.',
+  );
+  const cert = refuseCertificationClaim();
+  check(
+    'US-AY-NO-CERT',
+    cert.state === 'UNAVAILABLE' && cert.classifiedApproval === false && cert.partnershipClaimed === false,
+    'Government certification is not claimed.',
+  );
+
   const { probeAyPredecessorReports } = await import('./growth-media-runtime');
   const probes = probeAyPredecessorReports(repoRoot);
   const av = probes.find((p) => p.id === '62L-AV');

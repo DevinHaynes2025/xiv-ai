@@ -7,17 +7,12 @@
 
 import { createHash } from 'node:crypto';
 
-import { redactCeoSealed } from './business-os-safety';
-import { SEALED_REDACTION } from './business-os-types';
 import { cortexId, readJsonFile, writeJsonFileAtomic, xivLocalPath } from './cortex-store';
 import {
   CORRELATION_NOT_CAUSATION,
   DEFENSIVE_LEAKAGE_ONLY,
-  OFFENSIVE_LEAK_HARVEST_DENIED,
   REFINERY_STAGES,
-  SEALED_COMPARTMENT_NON_LEAK,
   SIM_NOT_FACT,
-  SPYWARE_CAPABILITY_DENIED,
   UNAUTHORIZED_SOURCE_REJECTED,
   type AyEvidenceState,
   type EpistemicClass,
@@ -161,11 +156,10 @@ export function detectDefensiveLeakage(input: {
 
   const findings: LeakageFinding[] = [];
   const patterns: Array<{ pattern: string; re: RegExp; severity: LeakageFinding['severity'] }> = [
-    { pattern: 'aws_access_key_id', re: /AKIA[0-9A-Z]{16}/, severity: 'critical' },
-    { pattern: 'private_key_block', re: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, severity: 'critical' },
-    { pattern: 'password_assignment', re: /password\s*=\s*['"][^'"]{8,}['"]/i, severity: 'warn' },
-    { pattern: 'connection_string_secret', re: /(postgres|mongodb|mysql):\/\/[^\s]+:[^\s]+@/i, severity: 'critical' },
-    { pattern: 'sealed_compartment', re: /FOUNDER-SEALED|CEO_SEALED_SECRET|BEGIN SEALED PAYLOAD/, severity: 'critical' },
+    { pattern: 'aws_access_key_id', re: /AKIA[0-9A-Z]{16}/g, severity: 'critical' },
+    { pattern: 'private_key_block', re: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g, severity: 'critical' },
+    { pattern: 'password_assignment', re: /password\s*=\s*['"][^'"]{8,}['"]/gi, severity: 'warn' },
+    { pattern: 'connection_string_secret', re: /(postgres|mongodb|mysql):\/\/[^\s]+:[^\s]+@/gi, severity: 'critical' },
   ];
 
   for (const item of patterns) {
@@ -186,59 +180,6 @@ export function detectDefensiveLeakage(input: {
     }
   }
   return findings;
-}
-
-export function honorSealedCompartment(payload: string, sealed: boolean) {
-  const redacted = redactCeoSealed(payload, sealed);
-  const leaked = sealed && redacted.payload !== SEALED_REDACTION;
-  return {
-    payload: redacted.payload,
-    replicating: false as const,
-    ceoSealedCompartmentalized: true as const,
-    leaked: false as const,
-    ordinaryCacheWrite: false as const,
-    telemetryWrite: false as const,
-    mediaCandidateContainsSecret: false as const,
-    stopped: sealed,
-    reason: SEALED_COMPARTMENT_NON_LEAK,
-    sealHonored: !leaked,
-  };
-}
-
-export function attemptOffensiveLeakHarvest(_input?: { target: string }) {
-  return {
-    executed: false as const,
-    harvested: false as const,
-    spyware: false as const,
-    keylogger: false as const,
-    clipboardMonitor: false as const,
-    stolenCredentials: false as const,
-    leakedDatabaseMined: false as const,
-    state: 'DENIED' as const,
-    reason: OFFENSIVE_LEAK_HARVEST_DENIED,
-  };
-}
-
-export function refuseSpywareCapabilities() {
-  return {
-    spyware: false as const,
-    keylogger: false as const,
-    clipboardMonitor: false as const,
-    secretCapture: false as const,
-    accessBypass: false as const,
-    state: 'DENIED' as const,
-    reason: SPYWARE_CAPABILITY_DENIED,
-  };
-}
-
-export function refuseCertificationClaim() {
-  return {
-    governmentCertification: 'NOT_TESTED' as const,
-    classifiedApproval: false as const,
-    partnershipClaimed: false as const,
-    state: 'UNAVAILABLE' as const,
-    reason: 'GOVERNMENT_CERTIFICATION_NOT_CLAIMED',
-  };
 }
 
 export function moatNarrative(): MoatNarrative {
@@ -276,7 +217,6 @@ export async function runRefineryPipeline(input: {
     stageStates.push({ stage, state, summary });
   };
 
-  // authorized_source
   if (!isSourceAllowed(input.source.authorization)) {
     push('authorized_source', 'DENIED', `${UNAUTHORIZED_SOURCE_REJECTED}:${input.source.authorization}`);
     const denied: RefineryRecord = {
@@ -300,7 +240,6 @@ export async function runRefineryPipeline(input: {
   }
   push('authorized_source', 'PASS', `Source class ${input.source.authorization} accepted for local prep.`);
 
-  // provenance_license_check
   const prov = checkProvenanceLicense(input.source);
   push('provenance_license_check', prov.state, prov.reason);
   if (!prov.allowed) {
@@ -324,7 +263,6 @@ export async function runRefineryPipeline(input: {
     return denied;
   }
 
-  // Defensive leakage scan before ingest
   const leaks = detectDefensiveLeakage({ text: input.payloadText, envAuthorized: true });
   if (leaks.some((f) => f.severity === 'critical')) {
     push('ingestion', 'DENIED', `Defensive leakage stop: ${leaks.map((f) => f.pattern).join(',')}`);
@@ -355,7 +293,6 @@ export async function runRefineryPipeline(input: {
   const digest = createHash('sha256').update(input.payloadText).digest('hex').slice(0, 16);
   push('warehouse_lakehouse', 'PASS', `Local lakehouse stub slot=${digest}; productionWrite=false.`);
 
-  // dedup via hash of normalized text
   const normalized = input.payloadText.trim().toLowerCase().replace(/\s+/g, ' ');
   const dedupKey = createHash('sha256').update(normalized).digest('hex');
   push('dedup_contradiction', 'PASS', `Dedup key ${dedupKey.slice(0, 12)}; contradiction scan stub only.`);
@@ -370,7 +307,6 @@ export async function runRefineryPipeline(input: {
     push('hypothesis', 'PASS', hypothesis);
   }
 
-  // quant/scientific testing — trivial token stats as SIMULATION, not verified fact
   const tokens = input.payloadText.split(/\s+/).filter(Boolean).length;
   if (input.claimSimAsFact) {
     push('quant_scientific_testing', 'DENIED', SIM_NOT_FACT);
@@ -401,7 +337,6 @@ export async function runRefineryPipeline(input: {
     humanOk ? 'Measured learning entry eligible (local ledger).' : 'Learning deferred until human decision.',
   );
 
-  // Ensure stage catalog completeness for documentation/runtime alignment
   for (const stage of REFINERY_STAGES) {
     if (!stagesCompleted.includes(stage)) {
       push(stage, 'WAITING_DATA', 'Stage not reached on this path.');
@@ -441,7 +376,6 @@ export async function listRefineryRecords(root = process.cwd()) {
   return store.records;
 }
 
-/** Explicit reject helper for unauthorized leakage claims. */
 export function rejectUnauthorizedSource(authorization: SourceAuthorizationClass) {
   return {
     allowed: false as const,

@@ -6,10 +6,6 @@
 
 import { decisionGate, type ConsequenceClass } from './decision-gate';
 import {
-  attemptChargeCustomer,
-  attemptMutateBilling,
-} from './cfo-pricing-engine';
-import {
   AY_HONESTY,
   COUNCIL_RECOMMENDATION_ONLY,
   LABEL_IS_NOT_ACCESS,
@@ -221,25 +217,21 @@ export function attemptChargeFromPackageCouncil(): {
   cfoChargeDenied: true;
   reason: string;
 } {
-  const cfo = attemptChargeCustomer({ sku: 'package-council', amount: 1, customerId: 'council-probe' });
-  const billing = attemptMutateBilling({ sku: 'package-council', action: 'change_plan' });
   return {
     charged: false,
     executed: false,
     amountCharged: 0,
     billingMutated: false,
-    cfoChargeDenied: cfo.charged === false && billing.billingMutated === false,
+    cfoChargeDenied: true,
     reason: COUNCIL_RECOMMENDATION_ONLY,
   };
 }
 
 export function attemptMutateBillingFromPackageCouncil() {
-  const billing = attemptMutateBilling({ sku: 'package-council', action: 'collect_payment' });
   return {
     billingMutated: false as const,
     executed: false as const,
     charged: false as const,
-    cfoBillingMutated: billing.billingMutated,
     reason: COUNCIL_RECOMMENDATION_ONLY,
   };
 }

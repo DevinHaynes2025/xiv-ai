@@ -4,10 +4,12 @@
  * Founder/exec media prep surfaces are contracts/stubs for future AZ command center.
  */
 
+import { SEALED_REDACTION } from './ceo-sealed-vault';
 import { cortexId, readJsonFile, writeJsonFileAtomic, xivLocalPath } from './cortex-store';
 import { decisionGate } from './decision-gate';
 import {
   MEDIA_NO_AUTO_PUBLISH,
+  SEALED_COMPARTMENT_NON_LEAK,
   type AyEvidenceState,
   type EpistemicClass,
 } from './growth-media-onboarding-types';
@@ -81,6 +83,9 @@ export async function prepareMediaCandidate(input: {
   if (!input.tenantId || !input.universeId) throw new Error('TENANT_AND_UNIVERSE_REQUIRED');
   if (!input.title.trim() || !input.body.trim()) throw new Error('MEDIA_TITLE_AND_BODY_REQUIRED');
 
+  const sealed = /FOUNDER-SEALED|CEO_SEALED_SECRET|BEGIN SEALED PAYLOAD/.test(input.body);
+  const body = sealed ? SEALED_REDACTION : input.body.trim();
+
   const root = input.root ?? process.cwd();
   const artifact: MediaArtifact = {
     id: cortexId('ay_media'),
@@ -88,7 +93,7 @@ export async function prepareMediaCandidate(input: {
     universeId: input.universeId,
     kind: input.kind,
     title: input.title.trim(),
-    body: input.body.trim(),
+    body,
     stage: 'candidate',
     autoPublished: false,
     published: false,
@@ -96,8 +101,10 @@ export async function prepareMediaCandidate(input: {
     epistemicClass: 'HYPOTHESIS',
     founderSurface: input.kind === 'founder_brief',
     execSurface: input.kind === 'exec_surface',
-    reviewState: 'WAITING_DATA',
-    reason: 'CANDIDATE_PREPARED_NOT_PUBLISHED',
+    reviewState: sealed ? 'DENIED' : 'WAITING_DATA',
+    reason: sealed
+      ? `${SEALED_COMPARTMENT_NON_LEAK}; sealed payload redacted and not published.`
+      : 'CANDIDATE_PREPARED_NOT_PUBLISHED',
     createdAt: nowIso(),
     updatedAt: nowIso(),
   };

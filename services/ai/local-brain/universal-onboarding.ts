@@ -4,7 +4,6 @@
  * Offline-first persistence via cortex-store JSON under `.xiv-local/`.
  */
 
-import { enforceAdultAccess } from './business-os-safety';
 import { cortexId, readJsonFile, writeJsonFileAtomic, xivLocalPath } from './cortex-store';
 import {
   AGE_GATE_DENIED,
@@ -49,7 +48,6 @@ export type OnboardingState = {
   enterpriseSeal: AyEvidenceState;
   adultConfirmed: boolean;
   offlinePersisted: true;
-  accountActivated: boolean;
   reason: string;
   createdAt: string;
   updatedAt: string;
@@ -92,24 +90,21 @@ export function ageGate(declaredAgeYears: number | undefined): {
   state: AyEvidenceState;
   reason: string;
   adultConfirmed: boolean;
-  identityPartnership: false;
-  method: 'self_attestation';
-  accountActivated: boolean;
 } {
-  const aw = enforceAdultAccess({
-    claimedAgeYears: declaredAgeYears === undefined || !Number.isFinite(declaredAgeYears) ? null : declaredAgeYears,
-    attested: declaredAgeYears !== undefined && Number.isFinite(declaredAgeYears),
-  });
-  if (!aw.allowed) {
-    const underage = typeof declaredAgeYears === 'number' && declaredAgeYears < AY_HONESTY.minimumAgeYears;
+  if (declaredAgeYears === undefined || !Number.isFinite(declaredAgeYears)) {
     return {
       allowed: false,
       state: 'DENIED',
-      reason: underage ? AGE_GATE_DENIED : aw.reason,
+      reason: 'AGE_REQUIRED_FAIL_CLOSED',
       adultConfirmed: false,
-      identityPartnership: false,
-      method: 'self_attestation',
-      accountActivated: false,
+    };
+  }
+  if (declaredAgeYears < AY_HONESTY.minimumAgeYears) {
+    return {
+      allowed: false,
+      state: 'DENIED',
+      reason: AGE_GATE_DENIED,
+      adultConfirmed: false,
     };
   }
   return {
@@ -117,9 +112,6 @@ export function ageGate(declaredAgeYears: number | undefined): {
     state: 'PASS',
     reason: 'ADULT_18_PLUS_CONFIRMED',
     adultConfirmed: true,
-    identityPartnership: false,
-    method: 'self_attestation',
-    accountActivated: false,
   };
 }
 
@@ -145,7 +137,6 @@ export function enterpriseSealCheck(input: {
       reason: ENTERPRISE_SEAL_REQUIRED,
     };
   }
-  // Stub seal verification: non-empty seal accepted as local contract only — not production auth.
   return {
     allowed: true,
     state: 'PASS',
@@ -187,7 +178,6 @@ export async function admitOnboarding(input: {
     const adapters = listChannelAdapters();
     const adapter = adapters.find((a) => a.channel === input.channel);
     if (adapter?.status === 'UNAVAILABLE') {
-      // Channel provider unconfigured: still persist pending offline-first state (stub OK).
       status = 'pending';
       identityState = 'UNAVAILABLE';
       reason = adapter.reason;
@@ -206,7 +196,6 @@ export async function admitOnboarding(input: {
     enterpriseSeal: sealState,
     adultConfirmed: age.adultConfirmed,
     offlinePersisted: true,
-    accountActivated: status === 'admitted' || status === 'pending' || status === 'completed' ? age.adultConfirmed : false,
     reason,
     createdAt: nowIso(),
     updatedAt: nowIso(),
