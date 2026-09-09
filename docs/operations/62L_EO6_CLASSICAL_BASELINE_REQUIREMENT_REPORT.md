@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo6-classical-baseline-requirement-4059`  
-Tip SHA: `(pending docs commit)`  
+Tip SHA: `b3188fbf65c28d31d40179335aa6342cb1371999`  
 Implementation SHA (feat): `53a20bbc2ed8f8f163b0056538585a3fd3128e9b`  
 Base: `cursor/62l-eo5-quantum-evidence-boundary-4059` @ `7869e39cbccc893cc8335393392257c3e40ac291` (preferred predecessor)  
 SoT: **GitHub #159** EO family — *Classical Baseline Requirement* (park-and-implement child)  
