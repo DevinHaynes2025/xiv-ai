@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep16-no-overclock-bios-rule-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `9f8127fa8dd4f3b40b2e7567f9776bd655b32a87`  
 Base: `cursor/62l-ep15-algorithm-tuning-sandbox-4059` @ `10285a757529952012a1347c760cd0229e153458`  
 Predecessor: EP15 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP16 No Overclock / BIOS Rule*  
