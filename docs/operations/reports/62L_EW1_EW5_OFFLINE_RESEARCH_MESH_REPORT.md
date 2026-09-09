@@ -7,7 +7,7 @@
 **Branch:** `cursor/62l-ew1-ew5-offline-research-mesh-4059`  
 **Base (authorized tip):** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
 **Feat tip SHA:** `ac1e6b3d4f40e912d1f6125a6dc7f39b6a97a601`  
-**Branch tip SHA:** recorded at end of this report after final docs commit / push  
+**Branch tip SHA:** `a919dba72e05daaba571d1e608e5b813f93d0428`
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened
 
@@ -152,6 +152,6 @@ Absent soft-wires would be **WAITING_DATA**, not FAIL.
 | Branch | `cursor/62l-ew1-ew5-offline-research-mesh-4059` |
 | Base SHA | `60986682f7a6913def6da08499388aecd4acea4a` |
 | Feat tip SHA | `ac1e6b3d4f40e912d1f6125a6dc7f39b6a97a601` |
-| Branch tip | see `git rev-parse origin/cursor/62l-ew1-ew5-offline-research-mesh-4059` after push |
+| Branch tip SHA | `a919dba72e05daaba571d1e608e5b813f93d0428` |
 | Tests | EW1–EW5 **PASS**; phase2iab **PASS** |
 | PR | **none** |
