@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo2-government-agency-knowledge-graph-4059`  
-Tip SHA: `(pending commit)`  
-Implementation SHA (feat): `(pending commit)`  
+Tip SHA: `e9b6f73035fe88a2750cf5e849500dfb6addae84`  
+Implementation SHA (feat): `e9b6f73035fe88a2750cf5e849500dfb6addae84`  
 Base: `cursor/62l-en-deal-contract-intelligence-os-4059` @ `880ff9c4ab008c880d9521db9aad2bc7236dc799`  
 Predecessor resolution: EO1 `cursor/62l-eo1-*` **absent**; EO umbrella `cursor/62l-eo-government-quantum-ai-mission-os-4059` **absent**; fell through to EN `cursor/62l-en-*` @ latest (`880ff9c…`; earlier notes `296f918…` / `3a14164…` rebasing lineage). EM10 not required.  
 SoT: **GitHub #159** EO family — *62L-EO2 Government Agency Knowledge Graph*  
@@ -90,7 +90,7 @@ cd services/ai && npm run test:62leo2
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62leo2` | **PENDING_EXECUTION** (fill after run) |
+| `npm run test:62leo2` | **PASS** — 11/11 (provenance; inference labels; historical≠preference; contractor≠partnership; classified excluded; no lobbying/influence/bribery/manipulation; L4=false; EN soft-wire present) |
 
 ## Next (report only — do not implement)
 
