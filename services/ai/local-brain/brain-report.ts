@@ -20,8 +20,9 @@ async function exists(path: string) {
 export async function buildBrainReport(root = process.cwd()) {
   const health = await checkLocalBrainHealth(root);
   const learning = await searchLearning('', root);
-  const checkpointStore = await exists(join(root, '.xiv-local', 'checkpoints'));
-  const taskQueue = await exists(join(root, '.xiv-local', 'tasks.json'));
+  // checkpoint-store.ts persists both queue/task and checkpoint state in one atomic file.
+  const durableBrainState = await exists(join(root, '.xiv-local', 'brain-state.json'));
+  const learningLedger = await exists(join(root, '.xiv-local', 'learning-ledger.json'));
 
   return {
     generatedAt: new Date().toISOString(),
@@ -31,8 +32,9 @@ export async function buildBrainReport(root = process.cwd()) {
     departments: BUSINESS_DEPARTMENTS.length,
     knowledgeDomainsRegistered: KNOWLEDGE_DOMAINS.length,
     recentLearningEntriesVisible: learning.length,
-    checkpointStorePresent: checkpointStore,
-    taskQueuePresent: taskQueue,
+    durableBrainStatePresent: durableBrainState,
+    taskAndCheckpointStatePresent: durableBrainState,
+    learningLedgerPresent: learningLedger,
     runtimes: ['local', 'gcp', 'azure', 'aws'].map((provider) => getRuntime(provider as 'local' | 'gcp' | 'azure' | 'aws')),
     health,
     authority: {
@@ -45,6 +47,7 @@ export async function buildBrainReport(root = process.cwd()) {
     notes: [
       'Logical agent roles are capabilities, not proof of simultaneously running processes.',
       'Learning count reflects locally readable ledger entries, not global knowledge volume.',
+      'Durable state presence means a state file exists; it does not prove a worker is currently running.',
       'Code presence is not proof that the Windows node is currently executing offline.',
     ],
   };
