@@ -7,7 +7,7 @@ Branch: `cursor/62l-ea-global-operations-intelligence-grid-4059`
 Parent / base tip: `cursor/62l-dz-supply-chain-intelligence-fabric-4059` @ `8682bac1d93ec4f9d4edc284f1c557e637a51a33` + `docs/operations/62L_DZ_SUPPLY_CHAIN_INTELLIGENCE_FABRIC_REPORT.md` (**PRESENT**)
 Why this base: Preference **DZ → DY**. Sealed DZ tip **PRESENT** (includes DY `d532301d960f75f167e038a1a7e1fd2252ac8c5f`). Soft-wire: `62L_DZ_*` **PRESENT**; `62L_DY_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHA: `d280f203573cd8ae4ec2a84b8cf413de0667bce5`
-Tip SHA: `e3ad594754bdc68c8529ab92a480c1979ebbac40`
+Tip SHA: `eaa4c5165bc86dd01a86f1acfb22bc071e08002a`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
