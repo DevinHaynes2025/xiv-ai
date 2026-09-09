@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bm-org-neural-federation-bi-nervous-4059` @ `4a6d
 Why this base: Preferred **62L-BM** tip + `docs/operations/62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md` **PRESENT** after fetch-with-backoff (initially WAITING_DATA while BM/BL/BK were still landing; rebased onto BM once pushed). BL/BK also PRESENT as BM ancestors. BJ `ecfdd9a` remains in ancestry.
 Implementation SHAs: `8fee42e`..`9f13fec` (+ docs/pin commits; see commit list)
 Report SHA: `3b3fb51cc2058f6fbe6917684c86a9fac24cc788` (report body pin; tip may be later restore commit)
-Tip SHA: `b5bdab287ffd0bc53402564f2e33c50fc22b66cb`
+Tip SHA: `a5aa120bbbd58a6a861e2f3bd3c4c777d737e894`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; no Draft PR)
 
