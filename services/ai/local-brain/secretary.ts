@@ -1,5 +1,5 @@
 import { decisionGate, type ConsequenceClass } from './decision-gate';
-import { completeLocal } from './local-model';
+import { completeWithLocalModel } from './local-model';
 import { searchLearning } from './learning-ledger';
 
 export type SecretaryRequest = {
@@ -32,7 +32,7 @@ export async function runExecutiveSecretary(request: SecretaryRequest): Promise<
   });
 
   const localMemory = related.slice(-8).map((entry) => `${entry.claimState}: ${entry.subject} — ${entry.summary}`).join('\n');
-  const result = await completeLocal([
+  const result = await completeWithLocalModel([
     'You are the XIV Executive Secretary operating in a bounded local/offline sandbox.',
     'Organize the founder/executive workload; do not impersonate a legal officer or make external commitments.',
     'Create a concise brief with headings: Summary, Priorities, Decisions Needed, Follow-ups, Evidence Notes.',

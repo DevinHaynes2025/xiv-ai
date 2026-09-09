@@ -29,8 +29,8 @@ export async function buildFounderReport(root = process.cwd()): Promise<FounderR
 
   const blockers: string[] = [];
   if (!brain.health.ok) blockers.push('Local model is not verified AVAILABLE on this node.');
-  if (!brain.checkpointStorePresent) blockers.push('Checkpoint store has not been observed on this node.');
-  if (!brain.taskQueuePresent) blockers.push('Task queue has not been observed on this node.');
+  if (!brain.durableBrainStatePresent) blockers.push('Checkpoint store has not been observed on this node.');
+  if (!brain.taskAndCheckpointStatePresent) blockers.push('Task queue has not been observed on this node.');
 
   const decisionsNeeded: string[] = [];
   if (!brain.health.ok) decisionsNeeded.push('Choose/install an approved local model and run offline verification.');

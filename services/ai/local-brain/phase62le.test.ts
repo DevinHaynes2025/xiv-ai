@@ -39,7 +39,13 @@ try {
   assert.equal(graph.edges, 1);
   assert.equal(graph.contradictions, 1);
 
-  const agent = requestAgentInstance({ role: 'coder', taskId: 'test-task', ttlMinutes: 10 });
+  const agent = requestAgentInstance({
+    role: 'coder',
+    tenantId: 'tenant-test',
+    universeId: 'universe-test',
+    taskId: 'test-task',
+    ttlMinutes: 10,
+  });
   assert.equal(agent.created, true);
   if (agent.created) {
     assert.equal(agent.instance.productionAuthorized, false);
