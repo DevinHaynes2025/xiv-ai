@@ -65,6 +65,8 @@ From `services/ai`:
 - `npm run local:deep-knowledge-refinery-os-health` — write the 62L-CG Deep Knowledge Refinery OS health report.
 - `npm run test:62lch` — 62L-CH Knowledge Civilization OS / Agent Department Universities / Historical World Model Graph / Adaptive Database-Memory Fabric / Multi-Model Expert Councils / Distributed Edge Intelligence Colony safety tests.
 - `npm run local:knowledge-civilization-dept-universities-health` — write the 62L-CH Knowledge Civilization / Dept Universities health report.
+- `npm run test:62lci` — 62L-CI Persistent Intelligence Economy / Agent Workforce Operating Ledger / World Knowledge Simulation Engine / Autonomous Database Research Lab / Local Model Evolution Academy / Global Edge Knowledge Exchange safety tests.
+- `npm run local:persistent-intelligence-economy-health` — write the 62L-CI Persistent Intelligence Economy health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
