@@ -7,8 +7,8 @@ Branch: `cursor/62l-ci-persistent-intelligence-economy-4059`
 Parent / base tip: `cursor/62l-ch-knowledge-civilization-dept-universities-4059` @ `51a79bb74a5b49f89fd3a962f260afcfcf91090b` (includes `62L_CH_KNOWLEDGE_CIVILIZATION_DEPT_UNIVERSITIES_REPORT.md`)
 Why this base: Preferred **62L-CH** tip + report. At start CH/CG were **WAITING_DATA**; scaffolded from **CF** then **rebased onto CG** `@87fdf05` when CG PRESENT; continued poll with backoff until **CH** tip + report **PRESENT** on origin (`51a79bb`), then **rebased onto CH**. Preference **CH → CG → CF → CE → CD → …** selects **CH**.
 Implementation SHAs: see `git log` (`feat` / `test` / `chore` / `docs` on this branch above CH)
-Report SHA: `REPORT_SHA_PENDING`
-Tip SHA: `TIP_SHA_PENDING`
+Report SHA: `cede4f1d744d2f46628a2b32b32b8716d1f14415`
+Tip SHA: `414cae51f87e93d41252146b3f428cb667d5f52a`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
