@@ -74,6 +74,7 @@ export {
   listXarpRoles,
   objectToProposal,
   preserveDisagreement,
+  recordDebateRound,
   resetProtocolState,
   submitProposal,
   synthesizeRecommendation,
@@ -126,12 +127,14 @@ export {
 export {
   attachTemporalContext,
   commandCenterSnapshot,
+  composeExecutiveBrief,
   culturalContextIsFact,
   evaluateMeetingKnowledge,
   reconstructMeeting,
+  speakInMeeting,
   translateUtterance,
 } from './memory';
-export type { MeetingMemory } from './memory';
+export type { MeetingMemory, OvernightSafeBrief } from './memory';
 
 export { apiNameGrantsCapability, handleMeetingApi } from './api';
 
@@ -140,3 +143,15 @@ export const OVERNIGHT_MEETINGS_LIVE = false;
 export const AUTO_MEETING_EXECUTION = false;
 export const L4_AUTONOMY_ENABLED = false;
 export const AGENT_CIVILIZATION_FOUNDATION_62A_IMPLEMENTED = false;
+
+export function agentMeetingNetworkStatus() {
+  return {
+    storyId: '2I-AI-62B' as const,
+    live: AGENT_MEETING_NETWORK_LIVE,
+    overnightLive: OVERNIGHT_MEETINGS_LIVE,
+    autoExecution: AUTO_MEETING_EXECUTION,
+    l4Enabled: L4_AUTONOMY_ENABLED,
+    predecessor62AImplemented: AGENT_CIVILIZATION_FOUNDATION_62A_IMPLEMENTED,
+    videoTransport: 'NOT_CONFIGURED' as const,
+  };
+}

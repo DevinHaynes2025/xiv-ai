@@ -1,6 +1,7 @@
 import { XivAgentCard, XivSectionHeader, XivStatusPill } from '@/components/premium';
-import { AgentPermissionBadge, AgentWorkspace } from '@/components/v4';
+import { AgentMeetingCommandStrip, AgentPermissionBadge, AgentWorkspace, OvernightIntelligenceBrief } from '@/components/v4';
 import { XivText } from '@/components/xiv/text';
+import { AGENT_MEETING_DEMO } from '@/data/agent-meetings-demo';
 import { AGENT_WORKSPACE, EXPERIENCE_AGENTS } from '@/data/premium-experience';
 
 import { PremiumDesk } from './desk';
@@ -9,6 +10,8 @@ export function PremiumAgentRoom() {
   return (
     <PremiumDesk title="AI Agent Room" subtitle="Operating workspace. Production writes stay on the governed Agents desk.">
       <XivStatusPill label="L4 disabled" tone="warning" />
+      <AgentMeetingCommandStrip {...AGENT_MEETING_DEMO.command} />
+      <OvernightIntelligenceBrief {...AGENT_MEETING_DEMO.overnight} />
       <AgentPermissionBadge level="L0" enabled />
       <AgentPermissionBadge level="L1" enabled />
       <AgentPermissionBadge level="L2" enabled />
