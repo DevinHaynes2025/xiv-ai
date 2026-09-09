@@ -7,7 +7,7 @@
 **Branch:** `cursor/62l-ex1-offline-quantum-mission-contract-4059`  
 **Base (authorized tip):** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
 **Feat tip SHA:** `5d88243a4b2f9c613be8ee37c6c113f2283b8ce3`  
-**Branch tip SHA:** \`f1eea4816464e60943d6f2149cc7ede87da14551\`   
+**Branch tip SHA:** `3e87d150c1884c6c960872d189954e92c11496e7`   
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened  
 **Quantum honesty:** No quantum advantage claimed. No consciousness/superintelligence claimed. Simulator ≠ physical QPU.
@@ -170,7 +170,7 @@ Absent soft-wires are **WAITING_DATA**, not FAIL.
 | Branch | `cursor/62l-ex1-offline-quantum-mission-contract-4059` |
 | Base SHA | `60986682f7a6913def6da08499388aecd4acea4a` |
 | Feat tip SHA | `5d88243a4b2f9c613be8ee37c6c113f2283b8ce3` |
-| Branch tip SHA | \`f1eea4816464e60943d6f2149cc7ede87da14551\` |
+| Branch tip SHA | `3e87d150c1884c6c960872d189954e92c11496e7` |
 | Tests | EX1 **PASS** (14/14 + soft-wire) |
 | PR | **none** |
 | Quantum advantage | **NOT VERIFIED** (`false`) |
