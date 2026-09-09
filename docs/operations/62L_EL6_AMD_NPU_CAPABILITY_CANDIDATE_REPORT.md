@@ -86,9 +86,9 @@ Denial coverage includes:
 | Command | Result |
 |---------|--------|
 | `npm run test:62lel6` | **pass** — 14/14 |
-| `npm run test:local-runtime` | **pass** — 20/20 (includes prior heartbeat/routing + EL6) |
+| `npm run test:local-runtime` | **pass** — 44/44 (EL5 + EM + prior + EL6 after rebase onto ) |
 
-Tip SHA at report update: see git tip on branch (post-test honesty amend/commit).
+Rebase: **yes** — EL6 commits replayed onto final EL5 tip .
 
 ## Out of scope / next
 
