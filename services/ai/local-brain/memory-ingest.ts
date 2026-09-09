@@ -4,7 +4,7 @@ import { readJsonFile, writeJsonFileAtomic, xivLocalPath } from './durable-json'
 import { hashLakeContent, ingestLakeSource } from './knowledge-lake';
 import type { MemoryPartition } from './memory-cortex';
 import { rememberCortexTrace } from './memory-cortex';
-import { recordContradiction } from './world-knowledge-graph';
+import { recordContradiction, upsertPartitionedKnowledge } from './world-knowledge-graph';
 import type { MemoryClass, MemoryPolarity, PoisonState } from './distributed-memory-types';
 
 export const MAX_MEMORY_RECORDS = 10_000;
@@ -226,6 +226,34 @@ export async function detectAndPreserveContradiction(input: {
     claim: input.claimB,
     summary: input.claimB,
     polarity: 'counterclaim',
+  });
+  await upsertPartitionedKnowledge({
+    id: first.record.id,
+    tenantId: input.tenantId,
+    universeId: input.universeId,
+    partition: input.partition,
+    type: 'claim',
+    domain: 'distributed-memory',
+    label: input.claimA.slice(0, 120),
+    summary: input.claimA,
+    claimState: 'DISPUTED',
+    sourceRefs: input.evidenceRefs,
+    classification: 'internal',
+    root: input.root,
+  });
+  await upsertPartitionedKnowledge({
+    id: second.record.id,
+    tenantId: input.tenantId,
+    universeId: input.universeId,
+    partition: input.partition,
+    type: 'claim',
+    domain: 'distributed-memory',
+    label: input.claimB.slice(0, 120),
+    summary: input.claimB,
+    claimState: 'DISPUTED',
+    sourceRefs: input.evidenceRefs,
+    classification: 'internal',
+    root: input.root,
   });
   const contradiction = await recordContradiction({
     tenantId: input.tenantId,

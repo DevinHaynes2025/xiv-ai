@@ -276,9 +276,13 @@ export async function runDistributedMemoryCycle(need: DistributedMemoryNeed) {
     classification: 'internal',
   });
   const outcomeState: EvidenceState =
-    offline.state === 'WAITING_DATA' || offline.state === 'UNAVAILABLE' || offline.state === 'DENIED'
-      ? offline.state
-      : 'PASS';
+    offline.state === 'WAITING_DATA'
+      ? 'WAITING_DATA'
+      : offline.state === 'UNAVAILABLE'
+        ? 'UNAVAILABLE'
+        : offline.state === 'DENIED'
+          ? 'FAIL'
+          : 'PASS';
   await appendEvidenceEvent({
     kind: 'evidence',
     tenantId: need.tenantId,
@@ -418,7 +422,7 @@ export async function runDistributedMemoryCycle(need: DistributedMemoryNeed) {
   await store.checkpoint({
     taskId: `62lar-${need.tenantId}`,
     at: new Date().toISOString(),
-    state: outcomeState === 'PASS' ? 'completed' : outcomeState === 'WAITING_DATA' ? 'waiting_data' : 'unavailable',
+    state: outcomeState === 'WAITING_DATA' ? 'waiting_data' : outcomeState === 'UNAVAILABLE' || outcomeState === 'FAIL' ? 'unavailable' : 'completed',
     attempt: 1,
     summary: `Distributed memory cycle hops=${hops.length}`,
     evidence: evidenceRefs,

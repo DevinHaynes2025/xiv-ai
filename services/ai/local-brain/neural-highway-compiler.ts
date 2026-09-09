@@ -215,7 +215,7 @@ export async function applyHighwayLearning(input: {
   const highway = store.highways.find(
     (item) => item.id === input.highwayId && item.tenantId === input.tenantId && item.universeId === input.universeId,
   );
-  if (!highway) return { applied: false as const, reason: 'HIGHWAY_NOT_FOUND' };
+  if (!highway) return { applied: false as const, strengthened: false as const, weight: 0, reason: 'HIGHWAY_NOT_FOUND', highway: null };
   const decision = evidenceBasedDelta(input.signals);
   if (input.signals.kind === 'agent_agreement') {
     highway.agreementCountIgnored += input.signals.agreementCount ?? 1;

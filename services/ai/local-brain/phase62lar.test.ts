@@ -197,12 +197,15 @@ try {
     },
     root,
   });
+  if (!agreement.applied && agreement.weight === undefined) throw new Error('agreement result missing weight');
   check(
     'US-AR12',
     agreementDelta.applied === false &&
       agreement.applied === false &&
       agreement.strengthened === false &&
+      typeof agreement.weight === 'number' &&
       agreement.weight === compiled.highway.weight &&
+      agreement.highway !== null &&
       agreement.highway.agreementCountIgnored >= 500,
     'Mere agent agreement does not strengthen a highway.',
   );
@@ -223,9 +226,10 @@ try {
     },
     root,
   });
+  if (!verified.applied) throw new Error('expected verified strengthen');
   check(
     'US-AR11',
-    verified.applied === true && verified.strengthened === true && verified.weight > agreement.weight,
+    verified.strengthened === true && verified.weight > (agreement.weight ?? 0),
     'Verified outcome quality strengthens the compiled highway.',
   );
 
@@ -245,6 +249,7 @@ try {
     },
     root,
   });
+  if (!correction.applied) throw new Error('expected correction weaken');
   check('US-AR11-weaken', correction.weakened === true && correction.weight < verified.weight, 'Corrections weaken the compiled highway.');
 
   await compileNeuralHighway({
