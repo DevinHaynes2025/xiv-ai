@@ -1,14 +1,15 @@
 # 62L-EM6 — NVIDIA Runtime Candidate Path Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto EM3 tip (post-#157) — unit tests **re-executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto sealed EM4 tip — unit tests **re-executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em6-nvidia-runtime-candidate-path-4059`  
-Base: `cursor/62l-em3-universal-compute-registry-4059` @ `eb6e963ac31af155225660cb2a420116e21abaff` (EM5/EM4 tips not published; EM3 preferred available tip; includes EM1 + #157 `b1040f4`)  
-Prior base: EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (superseded by rebase)  
-Rebase onto EM3: **YES**  
-Implementation SHA: `1f6b8c14e795949f1b485897c7854ec12d6c509d` (feat, post-rebase)  
-Tip SHA: `285c99680f7581b0229a74621bf1ff64b461b2c5`  
+Base: `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` @ `0c31b27d694484499c69fd9fb2eb549d80ac89e8` (sealed EM4 on EM3 `eb6e963…` + #157)  
+EM5 origin tip `7f446d4` skipped: published but **does not contain** sealed EM4 / post-#157 EM3  
+Prior bases: EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
+Rebase onto EM4: **YES**  
+Implementation SHA: `184ea813c5e75ae08d27e687109cfd2f7b37acbf` (feat, post-EM4-rebase)  
+Tip SHA: `PLACEHOLDER_TIP`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -131,11 +132,11 @@ NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
 ## Soft-wire
 
-- EM3 universal compute registry / honesty: **PRESENT** after rebase onto EM3 tip
+- EM4 signed CPU/GPU/NPU message envelope: **PRESENT** (`local-brain/em4-message-envelope*`) after rebase onto sealed EM4
+- EM3 universal compute registry / honesty: **PRESENT**
 - EL8 model-load evidence / honesty: presence soft-wire
 - EL9 resource governor: presence + VRAM/concurrency/runtime/queue/duration ceilings
-- EM4 compute envelope: presence probe (may be ABSENT until EM4 tip publishes)
-- EM5 AMD Windows ML path: soft-wires via `onnx-windows-ml-adapter` / EM5 modules when present
+- EM5 AMD Windows ML path: soft-wires via `onnx-windows-ml-adapter` / EM5 modules when present (EM5 tip not used as base — missing EM4 ancestry)
 - local-brain home-base (#157 / EM1): **PRESENT** on this base
 - Existing policy: auto high-risk blocked; consequential approval required; `canAutoExecute` false
 
