@@ -144,6 +144,7 @@ Commands: `npm run test:62lcy` (also `test:62lcx` smoke on CX base)
 - `services/ai/local-brain/agent-built-ai-service-foundry.ts`
 - `services/ai/local-brain/universe-knowledge-routing-grid.ts`
 - `services/ai/local-brain/phase62lcy.test.ts`
+- `supabase/migrations/20260909210000_62l_cy_knowledge_colony_operating_system_candidates.sql` (**NOT_APPLIED**)
 
 ## Next queue (title only)
 
