@@ -47,6 +47,7 @@ export type OnboardingState = {
   identityAdapter: AyEvidenceState;
   enterpriseSeal: AyEvidenceState;
   adultConfirmed: boolean;
+  accountActivated: boolean;
   offlinePersisted: true;
   reason: string;
   createdAt: string;
@@ -195,6 +196,7 @@ export async function admitOnboarding(input: {
     identityAdapter: identityState,
     enterpriseSeal: sealState,
     adultConfirmed: age.adultConfirmed,
+    accountActivated: status === 'admitted' || status === 'pending' || status === 'completed',
     offlinePersisted: true,
     reason,
     createdAt: nowIso(),
