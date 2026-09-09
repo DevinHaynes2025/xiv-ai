@@ -1,0 +1,48 @@
+-- 62L-EO1 Government Contracts Command Center — candidate schema only.
+-- Status: NOT_APPLIED. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- Do not apply to live Supabase. No overload of production tables.
+-- Guardian/RLS/tenant/Universe isolation unchanged when applied later.
+
+-- Candidate: tracked government opportunities
+-- CREATE TABLE IF NOT EXISTS gov_contracts_opportunities_candidate (
+--   opportunity_id text PRIMARY KEY,
+--   agency_bureau text NOT NULL,
+--   solicitation_or_notice_id text NOT NULL,
+--   contract_type text NOT NULL,
+--   naics text,
+--   psc text,
+--   due_date timestamptz,
+--   estimated_value numeric,
+--   set_aside_status text,
+--   mission_problem_statement text NOT NULL,
+--   pricing_model text,
+--   capture_owner text,
+--   proposal_owner text,
+--   technical_owner text,
+--   cfo_accountant_review text NOT NULL DEFAULT 'NOT_STARTED',
+--   legal_compliance_review text NOT NULL DEFAULT 'NOT_STARTED',
+--   probability numeric,
+--   approval_state text NOT NULL,
+--   discovery_state text NOT NULL DEFAULT 'DISCOVERED_NOT_ELIGIBLE',
+--   eligibility_confirmed boolean NOT NULL DEFAULT false,
+--   workflow_position text NOT NULL,
+--   org_id text NOT NULL,
+--   tenant_id text NOT NULL,
+--   universe_id text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+-- Candidate: quantum/AI evidence labels (no fabrication of PHYSICAL_QPU_VERIFIED)
+-- CREATE TABLE IF NOT EXISTS gov_contracts_quantum_ai_evidence_candidate (
+--   evidence_id text PRIMARY KEY,
+--   opportunity_id text NOT NULL,
+--   claim_state text NOT NULL CHECK (claim_state IN (
+--     'THEORETICAL', 'SIMULATED', 'QUANTUM_INSPIRED', 'PHYSICAL_QPU_VERIFIED'
+--   )),
+--   classical_baseline_present boolean NOT NULL DEFAULT false,
+--   fabricated boolean NOT NULL DEFAULT false,
+--   summary text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+SELECT '62L_EO1_GOVERNMENT_CONTRACTS_COMMAND_CENTER_CANDIDATES_NOT_APPLIED' AS status;
