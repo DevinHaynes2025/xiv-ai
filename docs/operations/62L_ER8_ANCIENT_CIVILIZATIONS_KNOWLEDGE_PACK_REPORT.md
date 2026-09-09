@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er8-ancient-civilizations-knowledge-pack-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `520419dfdd2d101368b9d8ae5ea8ce6e0a6df66b`  
 Base: `origin/cursor/62l-er6-historical-business-case-atlas-v2-4059` @ `27cac4e734eb0f34f9fe7a823d3c1a9b58043ede`  
 Preferred ER7 remote absent at implement time — proceeded from best available **ER6**; soft-wire WAITING_DATA for missing phases  
 Predecessor soft-wires: ER6/ER5/ER2/ER1 **PRESENT**; ER7/ER4/ER3 probe (WAITING_DATA if absent); EQ14 **WAITING_DATA** (ok)  
