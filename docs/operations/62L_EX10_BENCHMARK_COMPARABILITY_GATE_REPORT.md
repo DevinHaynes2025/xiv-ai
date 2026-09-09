@@ -2,7 +2,7 @@
 
 **Parent:** 62L-EX / Global Operations Brain / GitHub #170  
 **Branch:** `cursor/62l-ex10-benchmark-comparability-gate-4059`  
-**Feat tip SHA:** `6d8e6c8fe4f4cfd7a297f371225c2811057ceea8`  
+**Tip SHA:** `54aef965f9295dce2927819568723b009f85c0f6`  
 **L4_AUTONOMY_ENABLED:** `false`  
 **PR:** none (founder ask required)  
 **tip-land / production / merge main:** NO
