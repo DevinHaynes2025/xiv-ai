@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq11-device-neutral-workload-genome-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `0f2422fbd47cacab9fb3589b66f92bd5d4af510a`  
 Base: `cursor/62l-eq10-instruction-semantics-learning-4059` @ `f80cd2abed090d715e6e7781909a60f0d052db36`  
 Predecessor: EQ10 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ11 Device-Neutral Workload Genome*  
