@@ -13,14 +13,14 @@ Date: 2026-09-09
 
 | Field | Value |
 | --- | --- |
-| Preferred EM8 (rebased) | `cursor/62l-em8-compute-return-receipt-4059` @ `52ba42ffc3ffbb92c54ab9105429a5b7afb30edb` (newer than `f1ebf63…` / `1285e3f…`) |
-| Prior bases avoided | `f1ebf63…`, `fd86ee0…`, `84cd6f3…` |
+| Preferred EM8 (rebased) | `cursor/62l-em8-compute-return-receipt-4059` @ `3be97331f2e41b3bf8554a09a9811191267c6f41` (final; EM7 `5b8cf085…`) |
+| Prior bases avoided | `52ba42f…`, `f1ebf63…`, `fd86ee0…`, `84cd6f3…` |
 | EM7 ancestry | **PRESENT** via EM8 rebase onto EM7 `e62e0d0` / `0fee604` line |
 | EM3 / EM6 / EM8 on this tip | Registry + NVIDIA path + return receipts **PRESENT** |
 | EL9 | Resource Governor **PRESENT** |
 | Working branch | `cursor/62l-em9-compute-resource-market-simulator-4059` |
-| Tip SHA | `2cf4ef5c222729bf106c6ff5f794aa740e106540` |
-| Rebase | **YES** — onto EM8 `52ba42f` |
+| Tip SHA | _(recorded after rebase commit)_ |
+| Rebase | **YES** — onto EM8 `3be9733` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
@@ -63,7 +63,7 @@ CPU/GPU/NPU availability, model compatibility, measured latency, throughput, RAM
 | `local-runtime/__tests__/phase62lem9.test.ts` | Acceptance tests |
 | `package.json` → `test:62lem9` | Test entry |
 
-## Soft-wire (post-rebase onto EM8 `52ba42f` with EM7 ancestry)
+## Soft-wire (post-rebase onto final EM8 `3be9733` / EM7 `5b8cf08`)
 
 | Target | Result |
 | --- | --- |
