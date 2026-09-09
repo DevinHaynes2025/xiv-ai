@@ -21,7 +21,7 @@ Date: 2026-09-09
 | EM8 on this tip | Compute return receipts **PRESENT** |
 | EL9 | Resource Governor **PRESENT** |
 | Working branch | `cursor/62l-em9-compute-resource-market-simulator-4059` |
-| Tip SHA | _(recorded after rebase commit)_ |
+| Tip SHA | `16b95fbe7c12d5f641163ecb771ec9d8e18a1da2` |
 | Rebase | **YES** — onto EM8 `fd86ee0` |
 | Tip-land / PR | **NO** |
 
