@@ -445,7 +445,7 @@ try {
     'US-CE-pred-map',
     preds.BZ.tipProbe === 'PRESENT' &&
       preds.BZ.report === 'PRESENT' &&
-      preds.CD.tipProbe === 'WAITING_DATA',
+      preds.CD.tipProbe === 'PRESENT',
     `Predecessor map: CD=${preds.CD.tipProbe}/report=${preds.CD.report}, BZ=${preds.BZ.tipProbe}/report=${preds.BZ.report}, BY=${preds.BY.tipProbe}.`,
   );
 } catch (error) {
