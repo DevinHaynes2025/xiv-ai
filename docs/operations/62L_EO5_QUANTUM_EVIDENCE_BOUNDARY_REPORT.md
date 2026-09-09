@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo5-quantum-evidence-boundary-4059`  
-Tip SHA: `9ada9a9622ec3f3977ba825d8b03e0301fcb3d6d`  
+Tip SHA: `7869e39cbccc893cc8335393392257c3e40ac291`  
 Implementation SHA (feat): `bdbe76239f05313feb3cf1e1cfa230f467cd84a1`  
 Base: `cursor/62l-eo4-ai-quantum-capability-matrix-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (preferred predecessor; EO4 matrix files **WAITING_DATA** on tip — soft-wire only)  
 Fallback chain considered: EO4 → EO3 → EO2 → EO1 → EO(#159)  
@@ -139,7 +139,7 @@ Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposa
 | Field | Value |
 |---|---|
 | Branch | `cursor/62l-eo5-quantum-evidence-boundary-4059` |
-| Tip SHA | `9ada9a9622ec3f3977ba825d8b03e0301fcb3d6d` |
+| Tip SHA | `7869e39cbccc893cc8335393392257c3e40ac291` |
 | Base | EO4 @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` |
 | Report | `docs/operations/62L_EO5_QUANTUM_EVIDENCE_BOUNDARY_REPORT.md` |
 | Tests | `npm run test:62leo5` — **12/12 PASS** |
