@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bj-offline-intelligence-os-exec-cortex-4059` @ `e
 Why this base: Preferred **62L-BJ** tip + `docs/operations/62L_BJ_OFFLINE_INTELLIGENCE_OS_EXEC_CORTEX_REPORT.md` became **PRESENT** on origin after fetch/backoff (`WAITING_DATA` documented during early polls). BI / BH / BG / BF / BE remain **MISSING** as distinct pushed tips with reports. BD remains BJ’s parent and is present as ancestor.
 Implementation SHA:  ()
 Report SHA:  (this file; tip may be later pin commit)
-Tip SHA: _(pinned in follow-up docs commit)_
+Tip SHA: `a46d05b57225cd8939ac503a3ca51de98ca6a511`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
