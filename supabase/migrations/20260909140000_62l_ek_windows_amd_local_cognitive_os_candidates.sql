@@ -1,0 +1,31 @@
+-- 62L-EK Windows/AMD Local Cognitive OS candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Probe-first: AMD routing gated until probe evidence.
+-- Historical medicine ≠ clinical; quantum advantage needs baselines.
+-- Avatar automation disclosure required; conversion ≠ auto-charge.
+
+-- Candidate tables only (do not auto-apply):
+-- ek_windows_hardware_runtime_probes
+-- ek_amd_workload_routing_gates
+-- ek_model_load_verification_probes
+-- ek_offline_agent_brain_nodes
+-- ek_capability_promotion_attempts
+-- ek_silent_authority_denials
+-- ek_guardian_gates
+-- ek_neural_pathway_edges
+-- ek_neural_pathway_weight_changes
+-- ek_civilization_atlas_entries
+-- ek_historical_medicine_clinical_probes
+-- ek_quantum_experiments
+-- ek_quantum_benchmarks
+-- ek_quantum_advantage_probes
+-- ek_universal_search_answers
+-- ek_search_source_acl_probes
+-- ek_avatar_presence_records
+-- ek_avatar_delegations
+-- ek_traffic_conversion_steps
+-- ek_conversion_charge_denials
+
+SELECT '62L_EK_CANDIDATES_NOT_APPLIED' AS status;

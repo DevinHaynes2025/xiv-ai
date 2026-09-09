@@ -165,7 +165,9 @@
     "test:62leg": "tsx local-brain/phase62leg.test.ts",
     "local:cognitive-operations-backbone-health": "tsx local-brain/cognitive-operations-backbone-cli.ts",
     "test:62lei": "tsx local-brain/phase62lei.test.ts",
-    "local:chip-to-cloud-cognitive-fabric-health": "tsx local-brain/chip-to-cloud-cognitive-fabric-cli.ts"
+    "local:chip-to-cloud-cognitive-fabric-health": "tsx local-brain/chip-to-cloud-cognitive-fabric-cli.ts",
+    "test:62lek": "tsx local-brain/phase62lek.test.ts",
+    "local:windows-amd-local-cognitive-os-health": "tsx local-brain/windows-amd-local-cognitive-os-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
