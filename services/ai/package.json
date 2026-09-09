@@ -13,7 +13,8 @@
     "test:62lem": "node --import tsx --test local-runtime/__tests__/phase62lem.test.ts",
     "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts",
     "test:62lel6": "node --import tsx --test local-runtime/__tests__/amd-npu-capability.test.ts",
-    "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts"
+    "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
+    "test:62lel8": "node --import tsx --test local-runtime/__tests__/el8-model-load-evidence.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
