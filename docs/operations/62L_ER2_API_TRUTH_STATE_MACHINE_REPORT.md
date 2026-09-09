@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er2-api-truth-state-machine-4059`  
-Tip SHA: *(aligned in follow-up docs commit)*  
+Tip SHA: `6c013903d038db3f217e6f0b9d17325f206e16f5`  
 Base: `cursor/62l-er1-real-api-connection-registry-4059` @ `d949b61c6639b4ffc72981317985bfdafcc9364c`  
 Predecessor: ER1 **PRESENT**; EQ16 **PRESENT**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER2 API Truth State Machine*  
