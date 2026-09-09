@@ -82,13 +82,14 @@ test('EM1 honesty banner, core flow, L4 off, next EM2 recorded', () => {
   assert.equal(snap.l4AutonomyEnabled, false);
 });
 
-test('soft-wire local-runtime heartbeat + EL9 governor present; #157 optional', () => {
+test('soft-wire local-runtime heartbeat + EL9 governor present; #157 PRESENT', () => {
   const wire = em1SoftWireSnapshot();
   assert.equal(wire.localRuntimeHeartbeatApiPresent, true);
   assert.equal(wire.localRuntimeResourceGovernorPresent, true);
   assert.match(wire.note, /Presence soft-wire/);
-  // #157 may or may not be landed — presence is informational only.
-  assert.equal(typeof wire.em157HomeBasePresent, 'boolean');
+  // Sealed #157 EM agent compute home base (b1040f41) must be soft-wired PRESENT after rebase.
+  assert.equal(wire.em157HomeBasePresent, true);
+  assert.match(wire.em157HomeBasePathChecked, /agent-compute-home-base/);
 });
 
 test('happy path: valid child branch + signed return envelope accepted', () => {

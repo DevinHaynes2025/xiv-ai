@@ -25,17 +25,19 @@ function hereDir(): string {
 
 /**
  * Soft-wire local-runtime heartbeat + resource governor.
- * Soft-wire #157 EM home base candidates if present (landing optional).
+ * Soft-wire sealed #157 EM agent compute home base (`agent-compute-home-base.ts`).
  */
 export function em1SoftWireSnapshot(): Em1SoftWireSnapshot {
   const localRuntimeRoot = join(hereDir(), '../local-runtime');
   const heartbeatPath = join(localRuntimeRoot, 'heartbeat-api.ts');
   const governorPath = join(localRuntimeRoot, 'resource-governor.ts');
 
-  // Candidate paths for #157 EM agent compute home base if/when it lands.
+  // Canonical #157 path first (sealed on cursor/62l-em-agent-compute-home-base-4059 @ b1040f41).
   const em157Candidates = [
-    join(hereDir(), 'em-agent-compute-home-base.ts'),
     join(hereDir(), 'agent-compute-home-base.ts'),
+    join(hereDir(), 'agent-compute-home-base-runtime.ts'),
+    join(hereDir(), 'agent-compute-home-base-types.ts'),
+    join(hereDir(), 'em-agent-compute-home-base.ts'),
     join(localRuntimeRoot, 'em-agent-compute-home-base.ts'),
     join(localRuntimeRoot, 'agent-compute-home-base.ts'),
   ];
@@ -49,6 +51,6 @@ export function em1SoftWireSnapshot(): Em1SoftWireSnapshot {
     em157HomeBasePresent: existsSync(em157Hit),
     em157HomeBasePathChecked: em157Hit,
     note:
-      'Presence soft-wire only; does not imply EL9/EM/#157 VERIFIED or production authorization. L4_AUTONOMY_ENABLED=false.',
+      'Presence soft-wire only; #157 sealed tip b1040f41 soft-wired when agent-compute-home-base.ts present. Does not imply VERIFIED or production authorization. L4_AUTONOMY_ENABLED=false.',
   };
 }

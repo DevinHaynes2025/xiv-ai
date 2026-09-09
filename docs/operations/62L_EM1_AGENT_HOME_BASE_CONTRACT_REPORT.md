@@ -1,13 +1,13 @@
 # 62L-EM1 — Agent Home Base Contract Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** — denial rules **PASS** — soft-wire to local-runtime heartbeat/governor **present** — #157 EM home base soft-wire **optional / not landed** — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto sealed #157** — unit tests **executed** — denial rules **PASS** — soft-wire to local-runtime heartbeat/governor **present** — #157 EM home base soft-wire **PRESENT** — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em1-agent-home-base-contract-4059`  
-Tip SHA: `6dbf21e3d3c752a5dbc389e12d90dc7871aba5b0`  
-Branch HEAD: `6dbf21e3d3c752a5dbc389e12d90dc7871aba5b0` (report tip aligned at commit time; subsequent docs-only commits may advance HEAD by one)  
-Base: EL9 `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
-Preferred predecessor `#157` `cursor/62l-em-agent-compute-home-base-4059`: **local pointer only** (no unique commits beyond EL9; remote ref absent) — treated as EL9 tip  
+Tip SHA: `(recorded after commit)`  
+Base: sealed `#157` `cursor/62l-em-agent-compute-home-base-4059` @ `b1040f4124802f73fe3545f6a5e9f9da8337ce0c`  
+EL9 predecessor: `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
+Rebase onto #157 `b1040f41…`: **YES**  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest / L4 / silent authority / cross-org auto-move: **NOT CREATED / DENIED**  
 Production deploy / merge: **NO**
@@ -75,7 +75,7 @@ Plus: `homeBaseId`, `branchBounds` (max runtime / resource budget / task scope /
 |---|---|
 | local-runtime `heartbeat-api.ts` | **present** |
 | local-runtime `resource-governor.ts` (EL9) | **present** |
-| #157 EM agent compute home base module | **not present** on disk (optional soft-wire; remote branch absent; local pointer == EL9 tip) |
+| #157 `agent-compute-home-base.ts` (+ runtime/types) | **PRESENT** (sealed tip `b1040f41…`) |
 
 Presence soft-wire does **not** imply EL9/EM/#157 VERIFIED or production authorization.
 
@@ -104,7 +104,7 @@ Presence soft-wire does **not** imply EL9/EM/#157 VERIFIED or production authori
 cd services/ai && npm run test:62lem1
 ```
 
-**Result: PASS** — 23/23 tests passed, 0 failed (agent run 2026-09-09).
+**Result: PASS** — 23/23 tests passed, 0 failed (post-rebase onto #157 `b1040f41…`, agent run 2026-09-09).
 
 ## NOT_TESTED inventory
 
@@ -112,7 +112,7 @@ cd services/ai && npm run test:62lem1
 |---|---|
 | Live multi-node Home Base mesh | **NOT_TESTED** |
 | Production KMS / HSM envelope keys | **NOT_TESTED** (dev HMAC key id only) |
-| #157 EM compute home base landing | **NOT_LANDED** (soft-wire only) |
+| #157 EM compute home base (sealed tip soft-wire) | **PRESENT** on branch base — presence ≠ VERIFIED |
 | EM2 branch-and-return task graph | **NOT IMPLEMENTED** (next) |
 | Production authorization / tip-land / PR | **false** / not created |
 
