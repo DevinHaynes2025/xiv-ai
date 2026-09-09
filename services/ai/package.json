@@ -23,7 +23,8 @@
     "test:62lem4": "node --import tsx --test local-brain/__tests__/phase62lem4.test.ts",
     "test:62lem5": "node --import tsx --test local-runtime/__tests__/em5-amd-windows-ml-adapter.test.ts",
     "test:62lem6": "node --import tsx --test local-runtime/__tests__/em6-nvidia-runtime.test.ts",
-    "test:62lem7": "node --import tsx --test local-runtime/__tests__/em7-device-neutral-inference-router.test.ts"
+    "test:62lem7": "node --import tsx --test local-runtime/__tests__/em7-device-neutral-inference-router.test.ts",
+    "test:62lem8": "node --import tsx --test local-runtime/__tests__/em8-compute-return-receipt.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
