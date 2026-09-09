@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 import {
   redactSealedForRouting,
   SEALED_REDACTION,
-  type SealedActor,
 } from './ceo-sealed-vault';
+import type { SealedActor } from './hybrid-edge-cloud-types';
 import { readJsonFile, writeJsonFileAtomic, xivLocalPath } from './durable-json';
 import {
   APPROVED_EXCHANGE_KINDS,
