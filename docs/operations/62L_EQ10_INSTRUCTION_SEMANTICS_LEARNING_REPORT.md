@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq10-instruction-semantics-learning-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `2660e83d7ca6fe1ec7e5efb58be8e7e90bcaaf3e`  
 Base: `cursor/62l-eq9-riscv-accelerator-research-4059` @ `7ecb0dfdba6259cee5a783369b5b7933682a1734`  
 Predecessor: EQ9 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ10 Instruction-Semantics Learning*  
