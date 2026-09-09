@@ -128,7 +128,7 @@ try {
     Boolean(os.id) &&
       os.l4AutonomyEnabled === false &&
       os.tipLand === false &&
-      os.predecessorLayer === 'DT',
+      os.predecessorLayer === 'DV',
     `os=${os.id}; predecessor=${os.predecessorLayer}`,
   );
 
@@ -513,10 +513,10 @@ try {
     'honesty_and_predecessor_probe',
     honesty.banner === HONESTY_BANNER &&
       honesty.l4AutonomyEnabled === false &&
+      preds.DV.tipProbe === 'PRESENT' &&
+      preds.DU.tipProbe === 'PRESENT' &&
       preds.DT.tipProbe === 'PRESENT' &&
-      preds.DS.tipProbe === 'PRESENT' &&
-      preds.DV.tipProbe === 'WAITING_DATA' &&
-      preds.DU.tipProbe === 'WAITING_DATA',
+      preds.DS.tipProbe === 'PRESENT',
     `predecessor=${honesty.predecessorLayer}; DV=${preds.DV.tipProbe}; DU=${preds.DU.tipProbe}; DT=${preds.DT.tipProbe}`,
   );
 } finally {
