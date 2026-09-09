@@ -730,3 +730,15 @@ export {
   agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
+
+/** 62L-EX14 Offline Quantum Research Pack — soft re-export; extends knowledge, not a second system. */
+export {
+  EX14_LOCKS,
+  HONESTY_BANNER as EX14_HONESTY_BANNER,
+  assertEx14LocksIntact,
+  auditEx14SoftWires,
+  bootstrapOfflinePackRuntime,
+  buildPublicQuantumResearchPack,
+  ex14L4AutonomyEnabled,
+  guardianRlsUnchangedByEx14,
+} from './offlinepacks/index.ts';
