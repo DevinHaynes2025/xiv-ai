@@ -26,7 +26,7 @@
  * No raw GPS/camera/telemetry/trip collection without explicit opt-in
  * (privacy boundary encoded for EP family; EP1 does not collect).
  * DB candidates NOT_APPLIED. tip-land=NO. No PR from this phase.
- * Next (report only): EP2 — Cross-Vendor CPU/GPU/NPU Abstraction.
+ * Next (report only): EP2 — Cross-Vendor Capability Graph.
  */
 
 import { existsSync } from 'node:fs';
@@ -40,7 +40,7 @@ export const GITHUB_SOT_ISSUE = 160 as const;
 export const GITHUB_SOT_LABEL = '62L-EP1' as const;
 export const GITHUB_SOT_FAMILY = '62L-EP' as const;
 export const GITHUB_SOT_TITLE =
-  '62L-EP1 Virtual Chip Contract — universal compute-capability object across AMD/NVIDIA/Intel/Apple/Qualcomm/edge/cloud accelerators and future verified QPU paths (software layer above silicon; no silicon-modification claim)' as const;
+  '62L-EP1 Virtual Chip Contract — universal software-defined virtual chip contract so agents interact with heterogeneous CPU/GPU/NPU/edge/cloud/future QPU resources through one governed interface (software layer above silicon; no silicon-modification claim)' as const;
 
 /** GitLab mirror not resolved — do not invent a number. */
 export const GITLAB_MIRROR_NOTE =
@@ -49,7 +49,7 @@ export const GITLAB_MIRROR_NOTE =
 export const EP1_DB_CANDIDATES_STATUS = 'NOT_APPLIED' as const;
 
 export const NEXT_PHASE_TITLE =
-  'EP2 — Cross-Vendor CPU/GPU/NPU Abstraction — portable capability mapping and routing across AMD, NVIDIA, Intel, Apple, Qualcomm, edge, and cloud accelerators without silicon-modification claims.' as const;
+  'EP2 — Cross-Vendor Capability Graph — map public, documented AMD/NVIDIA/Intel/Apple/Qualcomm chip families, runtimes, strengths, limitations, and benchmark evidence into one searchable compute brain.' as const;
 
 /**
  * Vendor / platform families the virtual chip may represent (capability
@@ -83,9 +83,9 @@ export const VIRTUAL_CHIP_VENDOR_LABELS: Readonly<
 });
 
 /**
- * Device / accelerator classes.
+ * Device / accelerator classes (deviceType).
  */
-export const VIRTUAL_CHIP_DEVICE_CLASSES = [
+export const VIRTUAL_CHIP_DEVICE_TYPES = [
   'cpu',
   'gpu',
   'npu',
@@ -94,35 +94,49 @@ export const VIRTUAL_CHIP_DEVICE_CLASSES = [
   'qpu_path',
 ] as const;
 
-export type VirtualChipDeviceClass =
-  (typeof VIRTUAL_CHIP_DEVICE_CLASSES)[number];
+export type VirtualChipDeviceType = (typeof VIRTUAL_CHIP_DEVICE_TYPES)[number];
+
+/** @deprecated Prefer VIRTUAL_CHIP_DEVICE_TYPES / deviceType. */
+export const VIRTUAL_CHIP_DEVICE_CLASSES = VIRTUAL_CHIP_DEVICE_TYPES;
+export type VirtualChipDeviceClass = VirtualChipDeviceType;
 
 /**
- * Capability claim ladder — DETECTED ≠ VERIFIED.
+ * Required truth / verification states — DETECTED ≠ VERIFIED;
+ * NOT_TESTED remains distinct from VERIFIED/PASS.
  */
-export const VIRTUAL_CHIP_CAPABILITY_STATES = [
+export const VIRTUAL_CHIP_VERIFICATION_STATES = [
   'UNKNOWN',
   'DETECTED',
-  'CANDIDATE',
   'SUPPORTED',
   'VERIFIED',
-  'NOT_AVAILABLE',
+  'DEGRADED',
+  'UNAVAILABLE',
+  'NOT_TESTED',
 ] as const;
 
-export type VirtualChipCapabilityState =
-  (typeof VIRTUAL_CHIP_CAPABILITY_STATES)[number];
+export type VirtualChipVerificationState =
+  (typeof VIRTUAL_CHIP_VERIFICATION_STATES)[number];
+
+/** Alias used by prior EP1 surfaces. */
+export const VIRTUAL_CHIP_CAPABILITY_STATES = VIRTUAL_CHIP_VERIFICATION_STATES;
+export type VirtualChipCapabilityState = VirtualChipVerificationState;
 
 /**
- * Software-layer improvement surfaces (above silicon).
+ * Software-layer improvement surfaces (above silicon) — what the virtual
+ * chip MAY standardize/optimize. Cannot alter transistor performance,
+ * firmware, ISA internals, or vendor silicon without documented supported
+ * interface + measured evidence.
  */
 export const VIRTUAL_CHIP_SOFTWARE_CAPABILITIES = [
-  'routing',
+  'workload_placement',
+  'model_selection',
   'batching',
   'caching',
-  'quantization',
-  'scheduling',
-  'model_selection',
-  'benchmarking',
+  'quantization_policy',
+  'queue_scheduling',
+  'local_vs_edge_vs_cloud_routing',
+  'accelerator_fallback',
+  'benchmark_comparison',
   'simulation',
 ] as const;
 
@@ -130,31 +144,56 @@ export type VirtualChipSoftwareCapability =
   (typeof VIRTUAL_CHIP_SOFTWARE_CAPABILITIES)[number];
 
 /**
- * Virtual Chip Contract object fields.
+ * Virtual Chip Contract object fields (universal governed interface).
  */
 export const VIRTUAL_CHIP_CONTRACT_FIELDS = [
   'virtualChipId',
-  'vendorFamily',
-  'deviceClass',
-  'capabilityState',
-  'physicalDeviceRef',
-  'softwareLayerCapabilities',
-  'runtimeAdapters',
-  'benchmarkEvidenceRefs',
-  'quantumClaimState',
-  'siliconModificationClaimed',
-  'privacyCollectionEnabled',
-  'orgId',
-  'tenantId',
-  'universeId',
-  'evidenceState',
+  'physicalNodeId',
+  'vendor',
+  'deviceFamily',
+  'deviceType',
+  'architecture',
+  'runtime',
+  'executionProvider',
+  'supportedModels',
+  'supportedPrecisions',
+  'memoryCapacity',
+  'measuredLatency',
+  'measuredThroughput',
+  'energyProxy',
+  'costProxy',
+  'privacyClass',
+  'tenantUniverseScope',
+  'resourceLimits',
+  'heartbeat',
+  'verificationState',
+  'benchmarkRefs',
+  'lastVerifiedAt',
+  'rollbackVersion',
 ] as const;
 
 export type VirtualChipContractField =
   (typeof VIRTUAL_CHIP_CONTRACT_FIELDS)[number];
 
 /**
- * Neural compute pathway (encoded for contract linkage; EP family graph):
+ * Core flow:
+ * Agent task → Virtual Chip Contract → policy/resource checks →
+ * physical runtime → execution → return receipt → XIV Home Base
+ */
+export const VIRTUAL_CHIP_CORE_FLOW = [
+  'agent_task',
+  'virtual_chip_contract',
+  'policy_resource_checks',
+  'physical_runtime',
+  'execution',
+  'return_receipt',
+  'xiv_home_base',
+] as const;
+
+export type VirtualChipCoreFlowHop = (typeof VIRTUAL_CHIP_CORE_FLOW)[number];
+
+/**
+ * Neural compute pathway (EP family graph linkage):
  * workload → model → runtime → device → benchmark → outcome → lesson →
  * updated routing policy
  */
@@ -171,7 +210,7 @@ export const NEURAL_COMPUTE_PATHWAY = [
 
 export type NeuralComputePathwayHop = (typeof NEURAL_COMPUTE_PATHWAY)[number];
 
-/** Quantum claim ladder. */
+/** Quantum claim ladder — QPU fits same abstraction with extra labels. */
 export const QUANTUM_CLAIM_STATES = [
   'THEORETICAL',
   'SIMULATED',
@@ -181,22 +220,45 @@ export const QUANTUM_CLAIM_STATES = [
 
 export type QuantumClaimState = (typeof QUANTUM_CLAIM_STATES)[number];
 
+/**
+ * Cross-vendor example surfaces (same contract; states remain distinct).
+ * Example A: AMD Radeon GPU DETECTED + Windows ML SUPPORTED + Model X NOT_TESTED
+ * Example B: NVIDIA GPU VERIFIED + TensorRT VERIFIED + Model X benchmark PASS
+ */
+export const CROSS_VENDOR_EXAMPLE_SURFACES = [
+  'amd_radeon_gpu_detected',
+  'windows_ml_path_supported',
+  'model_x_inference_not_tested',
+  'nvidia_gpu_verified',
+  'tensorrt_runtime_verified',
+  'model_x_benchmark_pass',
+] as const;
+
 export const VIRTUAL_CHIP_CONTRACT_CYCLE = [
   'honesty_locks',
   'virtual_chip_contract_bootstrap',
   // A — Contract object
   'vendor_families_encoded',
-  'device_classes_encoded',
-  'capability_states_encoded',
+  'device_types_encoded',
+  'verification_states_encoded',
   'software_capabilities_encoded',
   'contract_fields_encoded',
+  'core_flow_encoded',
   'neural_compute_pathway_encoded',
+  'cross_vendor_examples_encoded',
   // B — Truth boundaries
   'virtual_chip_neq_silicon_modification',
+  'no_transistor_firmware_isa_claim_without_evidence',
   'detected_neq_verified',
   'verified_requires_runtime_evidence',
   'quantum_claim_ladder_enforced',
-  // C — Privacy / autonomy / isolation
+  // C — Governance
+  'no_driver_bios_firmware_changes',
+  'no_overclocking_or_thermal_bypass',
+  'no_permission_inheritance',
+  'no_automatic_cloud_purchasing',
+  'no_cross_tenant_data_movement',
+  'no_proprietary_chip_secret_ingestion',
   'no_raw_privacy_collection_without_opt_in',
   'no_autonomous_device_control',
   'guardian_rls_tenant_universe_isolation',
@@ -238,6 +300,7 @@ export type Ep1EvidenceState =
   | 'HUMAN_APPROVAL_REQUIRED'
   | 'DETECTED'
   | 'SUPPORTED'
+  | 'DEGRADED'
   | 'UNKNOWN'
   | 'THEORETICAL'
   | 'SIMULATED'
@@ -288,9 +351,13 @@ export const EP1_LOCKS = Object.freeze({
   CLAIM_MODIFY_INTEL_SILICON: false as const,
   CLAIM_MODIFY_APPLE_SILICON: false as const,
   CLAIM_MODIFY_QUALCOMM_SILICON: false as const,
+  CLAIM_ALTER_TRANSISTOR_PERFORMANCE: false as const,
+  CLAIM_ALTER_FIRMWARE_WITHOUT_DOCUMENTED_INTERFACE: false as const,
+  CLAIM_ALTER_ISA_INTERNALS_WITHOUT_EVIDENCE: false as const,
 
   // Capability honesty
   DETECTED_EQ_VERIFIED: false as const,
+  NOT_TESTED_EQ_VERIFIED: false as const,
   VERIFIED_WITHOUT_RUNTIME_EVIDENCE: false as const,
   CANDIDATE_EQ_PRODUCTION_AUTHORIZED: false as const,
 
@@ -308,6 +375,14 @@ export const EP1_LOCKS = Object.freeze({
   RAW_TRIP_COLLECTION_WITHOUT_OPT_IN: false as const,
   POOL_RAW_DRIVING_DATA: false as const,
 
+  // Governance (EP1)
+  DRIVER_BIOS_FIRMWARE_CHANGES: false as const,
+  OVERCLOCKING_OR_THERMAL_BYPASS: false as const,
+  PERMISSION_INHERITANCE: false as const,
+  AUTOMATIC_CLOUD_PURCHASING: false as const,
+  CROSS_TENANT_DATA_MOVEMENT: false as const,
+  PROPRIETARY_CHIP_SECRET_INGESTION: false as const,
+
   // Autonomy / control
   AUTO_DEVICE_CONTROL: false as const,
   AUTO_STEERING_BRAKING_THROTTLE: false as const,
@@ -318,6 +393,7 @@ export const EP1_LOCKS = Object.freeze({
   RECOMMEND_EQ_ACT: false as const,
   RECOMMEND_EQ_CONTROL: false as const,
   RECOMMEND_EQ_MODIFY_SILICON: false as const,
+  RECOMMEND_EQ_PURCHASE: false as const,
 
   // Isolation
   BYPASS_GUARDIAN_RLS_TENANT_UNIVERSE: false as const,
@@ -337,14 +413,17 @@ export const VIRTUAL_CHIP_AGENT_BOUNDS = Object.freeze({
   mayClaimSiliconModification: false as const,
   mayCollectRawPrivacySignalsWithoutOptIn: false as const,
   mayAutonomouslyControlDevice: false as const,
+  mayInheritPermissions: false as const,
+  mayAutoPurchaseCloud: false as const,
   mayRecommendOnly: true as const,
 });
 
 export const EP1_MAY = Object.freeze([
   'register_virtual_chip_contracts',
-  'label_capability_states',
+  'label_verification_states',
   'attach_software_layer_capabilities',
-  'link_runtime_adapters_candidately',
+  'run_policy_resource_checks',
+  'return_execution_receipts_to_home_base',
   'record_benchmark_evidence_refs',
   'label_quantum_claim_states',
   'encode_neural_compute_pathway_linkage',
@@ -353,9 +432,17 @@ export const EP1_MAY = Object.freeze([
 
 export const EP1_MUST_NOT = Object.freeze([
   'claim_silicon_modification',
+  'claim_alter_transistor_firmware_isa_without_evidence',
   'equate_detected_with_verified',
+  'equate_not_tested_with_verified',
   'claim_verified_without_runtime_evidence',
   'claim_quantum_hardware_without_authorized_physical_qpu',
+  'driver_bios_firmware_changes',
+  'overclocking_or_thermal_bypass',
+  'permission_inheritance',
+  'automatic_cloud_purchasing',
+  'cross_tenant_data_movement',
+  'proprietary_chip_secret_ingestion',
   'collect_raw_gps_camera_telemetry_trip_without_opt_in',
   'pool_raw_driving_data',
   'autonomous_device_control',
@@ -392,7 +479,11 @@ export function assertEp1LocksIntact(): boolean {
     EP1_LOCKS.CLAIM_MODIFY_INTEL_SILICON === false &&
     EP1_LOCKS.CLAIM_MODIFY_APPLE_SILICON === false &&
     EP1_LOCKS.CLAIM_MODIFY_QUALCOMM_SILICON === false &&
+    EP1_LOCKS.CLAIM_ALTER_TRANSISTOR_PERFORMANCE === false &&
+    EP1_LOCKS.CLAIM_ALTER_FIRMWARE_WITHOUT_DOCUMENTED_INTERFACE === false &&
+    EP1_LOCKS.CLAIM_ALTER_ISA_INTERNALS_WITHOUT_EVIDENCE === false &&
     EP1_LOCKS.DETECTED_EQ_VERIFIED === false &&
+    EP1_LOCKS.NOT_TESTED_EQ_VERIFIED === false &&
     EP1_LOCKS.VERIFIED_WITHOUT_RUNTIME_EVIDENCE === false &&
     EP1_LOCKS.CANDIDATE_EQ_PRODUCTION_AUTHORIZED === false &&
     EP1_LOCKS.AUTO_UPGRADE_QUANTUM_CLAIM_TO_PHYSICAL_QPU_VERIFIED === false &&
@@ -406,6 +497,12 @@ export function assertEp1LocksIntact(): boolean {
     EP1_LOCKS.RAW_TELEMETRY_COLLECTION_WITHOUT_OPT_IN === false &&
     EP1_LOCKS.RAW_TRIP_COLLECTION_WITHOUT_OPT_IN === false &&
     EP1_LOCKS.POOL_RAW_DRIVING_DATA === false &&
+    EP1_LOCKS.DRIVER_BIOS_FIRMWARE_CHANGES === false &&
+    EP1_LOCKS.OVERCLOCKING_OR_THERMAL_BYPASS === false &&
+    EP1_LOCKS.PERMISSION_INHERITANCE === false &&
+    EP1_LOCKS.AUTOMATIC_CLOUD_PURCHASING === false &&
+    EP1_LOCKS.CROSS_TENANT_DATA_MOVEMENT === false &&
+    EP1_LOCKS.PROPRIETARY_CHIP_SECRET_INGESTION === false &&
     EP1_LOCKS.AUTO_DEVICE_CONTROL === false &&
     EP1_LOCKS.AUTO_STEERING_BRAKING_THROTTLE === false &&
     EP1_LOCKS.AUTO_ECU_MODIFICATION === false &&
@@ -413,6 +510,7 @@ export function assertEp1LocksIntact(): boolean {
     EP1_LOCKS.RECOMMEND_EQ_ACT === false &&
     EP1_LOCKS.RECOMMEND_EQ_CONTROL === false &&
     EP1_LOCKS.RECOMMEND_EQ_MODIFY_SILICON === false &&
+    EP1_LOCKS.RECOMMEND_EQ_PURCHASE === false &&
     EP1_LOCKS.BYPASS_GUARDIAN_RLS_TENANT_UNIVERSE === false &&
     EP1_LOCKS.GUARDIAN_RLS_TENANT_UNIVERSE_ISOLATION_UNCHANGED === true &&
     EP1_LOCKS.DOCUMENTED_EQ_IMPLEMENTED === false &&
@@ -428,7 +526,9 @@ export function assertEp1LocksIntact(): boolean {
     VIRTUAL_CHIP_AGENT_BOUNDS.mayClaimSiliconModification === false &&
     VIRTUAL_CHIP_AGENT_BOUNDS.mayCollectRawPrivacySignalsWithoutOptIn ===
       false &&
-    VIRTUAL_CHIP_AGENT_BOUNDS.mayAutonomouslyControlDevice === false
+    VIRTUAL_CHIP_AGENT_BOUNDS.mayAutonomouslyControlDevice === false &&
+    VIRTUAL_CHIP_AGENT_BOUNDS.mayInheritPermissions === false &&
+    VIRTUAL_CHIP_AGENT_BOUNDS.mayAutoPurchaseCloud === false
   );
 }
 
@@ -536,17 +636,30 @@ export function isVirtualChipAgent(actor: Ep1Actor): boolean {
 }
 
 /**
- * DETECTED ≠ VERIFIED. Only VERIFIED requires runtime evidence.
+ * DETECTED ≠ VERIFIED. NOT_TESTED ≠ VERIFIED.
+ * Only VERIFIED requires runtime evidence.
  */
 export function defaultCapabilityState(opts?: {
   detected?: boolean;
-  architectureListed?: boolean;
+  supportedDocumented?: boolean;
   runtimeEvidencePresent?: boolean;
+  degraded?: boolean;
+  explicitlyUnavailable?: boolean;
+  notTested?: boolean;
+  /** @deprecated use supportedDocumented */
+  architectureListed?: boolean;
+  /** @deprecated use explicitlyUnavailable */
   explicitlyUnsupported?: boolean;
-}): VirtualChipCapabilityState {
-  if (opts?.explicitlyUnsupported) return 'NOT_AVAILABLE';
+}): VirtualChipVerificationState {
+  if (opts?.explicitlyUnavailable || opts?.explicitlyUnsupported) {
+    return 'UNAVAILABLE';
+  }
+  if (opts?.degraded) return 'DEGRADED';
   if (opts?.runtimeEvidencePresent) return 'VERIFIED';
-  if (opts?.architectureListed) return 'CANDIDATE';
+  if (opts?.notTested) return 'NOT_TESTED';
+  if (opts?.supportedDocumented || opts?.architectureListed) return 'SUPPORTED';
   if (opts?.detected) return 'DETECTED';
   return 'UNKNOWN';
 }
+
+export const defaultVerificationState = defaultCapabilityState;

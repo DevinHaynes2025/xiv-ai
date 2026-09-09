@@ -1,12 +1,18 @@
 /**
  * 62L-EP1 — Virtual Chip Contract runtime.
  *
- * Registers the universal compute-capability object (software layer above
- * silicon). DETECTED ≠ VERIFIED. No silicon-modification claims. No raw
- * privacy collection without opt-in. No autonomous device control.
+ * Core flow:
+ * Agent task → Virtual Chip Contract → policy/resource checks →
+ * physical runtime → execution → return receipt → XIV Home Base
+ *
+ * Software layer above silicon. DETECTED ≠ VERIFIED; NOT_TESTED ≠ VERIFIED.
+ * No transistor/firmware/ISA claims without documented interface + evidence.
+ * No driver/BIOS/firmware changes, overclocking, permission inheritance,
+ * auto cloud purchase, cross-tenant movement, or proprietary chip-secret ingest.
  */
 
 import {
+  CROSS_VENDOR_EXAMPLE_SURFACES,
   EP1_DB_CANDIDATES_STATUS,
   EP1_LOCKS,
   EP1_MAY,
@@ -20,15 +26,16 @@ import {
   NEXT_PHASE_TITLE,
   QUANTUM_CLAIM_STATES,
   VIRTUAL_CHIP_AGENT_BOUNDS,
-  VIRTUAL_CHIP_CAPABILITY_STATES,
   VIRTUAL_CHIP_CONTRACT_CYCLE,
   VIRTUAL_CHIP_CONTRACT_FIELDS,
-  VIRTUAL_CHIP_DEVICE_CLASSES,
+  VIRTUAL_CHIP_CORE_FLOW,
+  VIRTUAL_CHIP_DEVICE_TYPES,
   VIRTUAL_CHIP_SOFTWARE_CAPABILITIES,
   VIRTUAL_CHIP_VENDOR_FAMILIES,
   VIRTUAL_CHIP_VENDOR_LABELS,
+  VIRTUAL_CHIP_VERIFICATION_STATES,
   assertEp1LocksIntact,
-  defaultCapabilityState,
+  defaultVerificationState,
   ep1SoftWireSnapshot,
   isHumanApprover,
   isVirtualChipAgent,
@@ -38,10 +45,11 @@ import {
   type Ep1SoftWireSnapshot,
   type NeuralComputePathwayHop,
   type QuantumClaimState,
-  type VirtualChipCapabilityState,
-  type VirtualChipDeviceClass,
+  type VirtualChipCoreFlowHop,
+  type VirtualChipDeviceType,
   type VirtualChipSoftwareCapability,
   type VirtualChipVendorFamily,
+  type VirtualChipVerificationState,
 } from './virtual-chip-contract-types.ts';
 
 function nowIso(): string {
@@ -70,48 +78,103 @@ function deny(reason: string): DenialResult {
 /** Universal Virtual Chip Contract object. */
 export type VirtualChipContract = {
   virtualChipId: string;
-  vendorFamily: VirtualChipVendorFamily;
-  vendorFamilyLabel: string;
-  deviceClass: VirtualChipDeviceClass;
-  capabilityState: VirtualChipCapabilityState;
-  physicalDeviceRef: string | null;
-  softwareLayerCapabilities: VirtualChipSoftwareCapability[];
-  runtimeAdapters: string[];
-  benchmarkEvidenceRefs: string[];
-  quantumClaimState: QuantumClaimState;
-  siliconModificationClaimed: false;
-  privacyCollectionEnabled: false;
-  orgId: string;
+  physicalNodeId: string | null;
+  vendor: VirtualChipVendorFamily;
+  vendorLabel: string;
+  deviceFamily: string | null;
+  deviceType: VirtualChipDeviceType;
+  architecture: string | null;
+  runtime: string | null;
+  executionProvider: string | null;
+  supportedModels: string[];
+  supportedPrecisions: string[];
+  memoryCapacity: string | null;
+  measuredLatency: string | null;
+  measuredThroughput: string | null;
+  energyProxy: string | null;
+  costProxy: string | null;
+  privacyClass: string;
   tenantId: string;
   universeId: string;
+  orgId: string;
+  resourceLimits: string[];
+  heartbeat: string | null;
+  verificationState: VirtualChipVerificationState;
+  benchmarkRefs: string[];
+  lastVerifiedAt: string | null;
+  rollbackVersion: string | null;
+  softwareLayerCapabilities: VirtualChipSoftwareCapability[];
+  quantumClaimState: QuantumClaimState;
+  siliconModificationClaimed: false;
+  transistorFirmwareIsaAltered: false;
+  privacyCollectionEnabled: false;
+  driverBiosFirmwareChanged: false;
+  overclockOrThermalBypass: false;
+  permissionInherited: false;
+  cloudPurchased: false;
+  crossTenantDataMoved: false;
+  proprietaryChipSecretIngested: false;
   evidenceState: Ep1EvidenceState;
+  flowPosition: VirtualChipCoreFlowHop;
   neuralPathwayPosition: NeuralComputePathwayHop;
   createdAt: string;
 };
 
 export function registerVirtualChipContract(input: {
   virtualChipId: string;
-  vendorFamily: VirtualChipVendorFamily;
-  deviceClass: VirtualChipDeviceClass;
+  vendor: VirtualChipVendorFamily;
+  deviceType: VirtualChipDeviceType;
   actor: Ep1Actor;
-  physicalDeviceRef?: string | null;
+  physicalNodeId?: string | null;
+  deviceFamily?: string | null;
+  architecture?: string | null;
+  runtime?: string | null;
+  executionProvider?: string | null;
+  supportedModels?: string[];
+  supportedPrecisions?: string[];
+  memoryCapacity?: string | null;
+  measuredLatency?: string | null;
+  measuredThroughput?: string | null;
+  energyProxy?: string | null;
+  costProxy?: string | null;
+  privacyClass?: string;
+  resourceLimits?: string[];
+  heartbeat?: string | null;
+  verificationState?: VirtualChipVerificationState;
+  benchmarkRefs?: string[];
+  lastVerifiedAt?: string | null;
+  rollbackVersion?: string | null;
   softwareLayerCapabilities?: VirtualChipSoftwareCapability[];
-  runtimeAdapters?: string[];
-  benchmarkEvidenceRefs?: string[];
   quantumClaimState?: QuantumClaimState;
   detected?: boolean;
-  architectureListed?: boolean;
+  supportedDocumented?: boolean;
   runtimeEvidencePresent?: boolean;
+  notTested?: boolean;
+  /** @deprecated use vendor */
+  vendorFamily?: VirtualChipVendorFamily;
+  /** @deprecated use deviceType */
+  deviceClass?: VirtualChipDeviceType;
   /** Attempting VERIFIED without runtime evidence → DENIED. */
   claimVerifiedWithoutRuntimeEvidence?: boolean;
   /** Attempting silicon-modification claim → DENIED. */
   attemptClaimSiliconModification?: boolean;
-  /** Attempting privacy collection without opt-in → DENIED. */
+  attemptClaimAlterTransistorFirmwareIsa?: boolean;
   attemptRawPrivacyCollectionWithoutOptIn?: boolean;
+  attemptDriverBiosFirmwareChange?: boolean;
+  attemptOverclockOrThermalBypass?: boolean;
+  attemptPermissionInheritance?: boolean;
+  attemptAutomaticCloudPurchasing?: boolean;
+  attemptCrossTenantDataMovement?: boolean;
+  attemptProprietaryChipSecretIngestion?: boolean;
 }): VirtualChipContract | DenialResult {
   if (input.attemptClaimSiliconModification) {
     return deny(
-      'VIRTUAL_CHIP_NEQ_SILICON_MODIFICATION — XIV virtual chip is a software intelligence layer above physical chips; no AMD/NVIDIA/Intel/Apple/Qualcomm silicon-modification claim.',
+      'VIRTUAL_CHIP_NEQ_SILICON_MODIFICATION — software intelligence layer above physical chips; no AMD/NVIDIA/Intel/Apple/Qualcomm silicon-modification claim.',
+    );
+  }
+  if (input.attemptClaimAlterTransistorFirmwareIsa) {
+    return deny(
+      'NO_TRANSISTOR_FIRMWARE_ISA_CLAIM_WITHOUT_DOCUMENTED_INTERFACE_AND_MEASURED_EVIDENCE.',
     );
   }
   if (input.attemptRawPrivacyCollectionWithoutOptIn) {
@@ -119,20 +182,47 @@ export function registerVirtualChipContract(input: {
       'NO_RAW_PRIVACY_COLLECTION_WITHOUT_OPT_IN — no raw GPS/camera/telemetry/trip without explicit opt-in.',
     );
   }
+  if (input.attemptDriverBiosFirmwareChange) {
+    return deny('NO_DRIVER_BIOS_FIRMWARE_CHANGES.');
+  }
+  if (input.attemptOverclockOrThermalBypass) {
+    return deny('NO_OVERCLOCKING_OR_THERMAL_BYPASS.');
+  }
+  if (input.attemptPermissionInheritance) {
+    return deny('NO_PERMISSION_INHERITANCE.');
+  }
+  if (input.attemptAutomaticCloudPurchasing) {
+    return deny('NO_AUTOMATIC_CLOUD_PURCHASING.');
+  }
+  if (input.attemptCrossTenantDataMovement) {
+    return deny('NO_CROSS_TENANT_DATA_MOVEMENT.');
+  }
+  if (input.attemptProprietaryChipSecretIngestion) {
+    return deny('NO_PROPRIETARY_CHIP_SECRET_INGESTION.');
+  }
   if (input.claimVerifiedWithoutRuntimeEvidence) {
     return deny(
-      'VERIFIED_WITHOUT_RUNTIME_EVIDENCE=false — DETECTED ≠ VERIFIED; VERIFIED requires runtime evidence.',
+      'VERIFIED_WITHOUT_RUNTIME_EVIDENCE=false — DETECTED ≠ VERIFIED; NOT_TESTED ≠ VERIFIED; VERIFIED requires runtime evidence.',
     );
   }
 
-  const capabilityState = defaultCapabilityState({
-    detected: input.detected,
-    architectureListed: input.architectureListed ?? true,
-    runtimeEvidencePresent: input.runtimeEvidencePresent,
-  });
+  const vendor = input.vendor ?? input.vendorFamily;
+  const deviceType = input.deviceType ?? input.deviceClass;
+  if (!vendor || !deviceType) {
+    return deny('vendor and deviceType are required.');
+  }
+
+  const verificationState =
+    input.verificationState ??
+    defaultVerificationState({
+      detected: input.detected,
+      supportedDocumented: input.supportedDocumented ?? true,
+      runtimeEvidencePresent: input.runtimeEvidencePresent,
+      notTested: input.notTested,
+    });
 
   if (
-    capabilityState === 'VERIFIED' &&
+    verificationState === 'VERIFIED' &&
     input.runtimeEvidencePresent !== true
   ) {
     return deny(
@@ -145,46 +235,86 @@ export function registerVirtualChipContract(input: {
     quantumClaimState === 'PHYSICAL_QPU_VERIFIED' &&
     input.runtimeEvidencePresent !== true
   ) {
-    // Physical QPU still needs authorized evidence; EP1 uses runtimeEvidence
-    // as a stand-in gate when registering a QPU-path virtual chip.
     return deny(
-      'CLAIM_QUANTUM_HARDWARE_WITHOUT_AUTHORIZED_PHYSICAL_QPU — otherwise THEORETICAL | SIMULATED | QUANTUM_INSPIRED.',
+      'CLAIM_QUANTUM_HARDWARE_WITHOUT_AUTHORIZED_PHYSICAL_QPU — otherwise THEORETICAL | SIMULATED | QUANTUM_INSPIRED. No QPU treated as verified production accelerator without backend/job evidence.',
+    );
+  }
+
+  // Measured metrics remain null unless evidence refs provided — no fabrication.
+  const hasBenchmarkEvidence = (input.benchmarkRefs?.length ?? 0) > 0;
+  if (
+    (input.measuredLatency !== undefined &&
+      input.measuredLatency !== null &&
+      !hasBenchmarkEvidence) ||
+    (input.measuredThroughput !== undefined &&
+      input.measuredThroughput !== null &&
+      !hasBenchmarkEvidence)
+  ) {
+    return deny(
+      'MEASURED_METRICS_REQUIRE_BENCHMARK_REFS — no fabricated latency/throughput.',
     );
   }
 
   return {
     virtualChipId: input.virtualChipId,
-    vendorFamily: input.vendorFamily,
-    vendorFamilyLabel: VIRTUAL_CHIP_VENDOR_LABELS[input.vendorFamily],
-    deviceClass: input.deviceClass,
-    capabilityState,
-    physicalDeviceRef: input.physicalDeviceRef ?? null,
+    physicalNodeId: input.physicalNodeId ?? null,
+    vendor,
+    vendorLabel: VIRTUAL_CHIP_VENDOR_LABELS[vendor],
+    deviceFamily: input.deviceFamily ?? null,
+    deviceType,
+    architecture: input.architecture ?? null,
+    runtime: input.runtime ?? null,
+    executionProvider: input.executionProvider ?? null,
+    supportedModels: input.supportedModels ?? [],
+    supportedPrecisions: input.supportedPrecisions ?? [],
+    memoryCapacity: input.memoryCapacity ?? null,
+    measuredLatency: input.measuredLatency ?? null,
+    measuredThroughput: input.measuredThroughput ?? null,
+    energyProxy: input.energyProxy ?? null,
+    costProxy: input.costProxy ?? null,
+    privacyClass: input.privacyClass ?? 'tenant_scoped_candidate',
+    tenantId: input.actor.tenantId,
+    universeId: input.actor.universeId,
+    orgId: input.actor.orgId,
+    resourceLimits: input.resourceLimits ?? [],
+    heartbeat: input.heartbeat ?? null,
+    verificationState,
+    benchmarkRefs: input.benchmarkRefs ?? [],
+    lastVerifiedAt:
+      verificationState === 'VERIFIED'
+        ? (input.lastVerifiedAt ?? nowIso())
+        : (input.lastVerifiedAt ?? null),
+    rollbackVersion: input.rollbackVersion ?? null,
     softwareLayerCapabilities: input.softwareLayerCapabilities ?? [
       ...VIRTUAL_CHIP_SOFTWARE_CAPABILITIES,
     ],
-    runtimeAdapters: input.runtimeAdapters ?? [],
-    benchmarkEvidenceRefs: input.benchmarkEvidenceRefs ?? [],
     quantumClaimState,
     siliconModificationClaimed: false,
+    transistorFirmwareIsaAltered: false,
     privacyCollectionEnabled: false,
-    orgId: input.actor.orgId,
-    tenantId: input.actor.tenantId,
-    universeId: input.actor.universeId,
+    driverBiosFirmwareChanged: false,
+    overclockOrThermalBypass: false,
+    permissionInherited: false,
+    cloudPurchased: false,
+    crossTenantDataMoved: false,
+    proprietaryChipSecretIngested: false,
     evidenceState: 'REGISTERED',
+    flowPosition: 'virtual_chip_contract',
     neuralPathwayPosition: 'device',
     createdAt: nowIso(),
   };
 }
 
-export function labelCapabilityState(input: {
+export function labelVerificationState(input: {
   virtualChipId: string;
-  desiredState: VirtualChipCapabilityState;
+  desiredState: VirtualChipVerificationState;
   runtimeEvidencePresent?: boolean;
 }):
   | {
       virtualChipId: string;
-      capabilityState: VirtualChipCapabilityState;
+      verificationState: VirtualChipVerificationState;
       detectedEqVerified: false;
+      notTestedEqVerified: false;
     }
   | DenialResult {
   if (
@@ -192,18 +322,22 @@ export function labelCapabilityState(input: {
     input.runtimeEvidencePresent !== true
   ) {
     return deny(
-      'DETECTED_NEQ_VERIFIED — VERIFIED requires runtime evidence; DETECTED/CANDIDATE/SUPPORTED remain distinct.',
+      'DETECTED_NEQ_VERIFIED / NOT_TESTED_NEQ_VERIFIED — VERIFIED requires runtime evidence.',
     );
   }
-  if (!VIRTUAL_CHIP_CAPABILITY_STATES.includes(input.desiredState)) {
-    return deny('Invalid capability state.');
+  if (!VIRTUAL_CHIP_VERIFICATION_STATES.includes(input.desiredState)) {
+    return deny('Invalid verification state.');
   }
   return {
     virtualChipId: input.virtualChipId,
-    capabilityState: input.desiredState,
+    verificationState: input.desiredState,
     detectedEqVerified: false,
+    notTestedEqVerified: false,
   };
 }
+
+/** @deprecated Prefer labelVerificationState. */
+export const labelCapabilityState = labelVerificationState;
 
 export function labelQuantumClaim(input: {
   claimId: string;
@@ -264,6 +398,64 @@ export function attachSoftwareLayerCapabilities(input: {
   };
 }
 
+export function runPolicyResourceChecks(input: {
+  checkId: string;
+  virtualChipId: string;
+  actor: Ep1Actor;
+  attemptCrossTenant?: boolean;
+  attemptPermissionInherit?: boolean;
+}):
+  | {
+      checkId: string;
+      virtualChipId: string;
+      approved: true;
+      tenantId: string;
+      universeId: string;
+      nextHop: 'physical_runtime';
+    }
+  | DenialResult {
+  if (input.attemptCrossTenant) {
+    return deny('NO_CROSS_TENANT_DATA_MOVEMENT.');
+  }
+  if (input.attemptPermissionInherit) {
+    return deny('NO_PERMISSION_INHERITANCE.');
+  }
+  return {
+    checkId: input.checkId,
+    virtualChipId: input.virtualChipId,
+    approved: true,
+    tenantId: input.actor.tenantId,
+    universeId: input.actor.universeId,
+    nextHop: 'physical_runtime',
+  };
+}
+
+export function returnExecutionReceipt(input: {
+  receiptId: string;
+  virtualChipId: string;
+  taskId: string;
+  actor: Ep1Actor;
+  outcomeSummary: string;
+}): {
+  receiptId: string;
+  virtualChipId: string;
+  taskId: string;
+  returnedToHomeBase: true;
+  authorityGranted: false;
+  flowPosition: 'return_receipt';
+  outcomeSummary: string;
+} {
+  return {
+    receiptId: input.receiptId,
+    virtualChipId: input.virtualChipId,
+    taskId: input.taskId,
+    returnedToHomeBase: true,
+    authorityGranted: false,
+    flowPosition: 'return_receipt',
+    outcomeSummary: input.outcomeSummary,
+  };
+}
+
 export function linkNeuralComputePathway(input: {
   pathwayId: string;
   virtualChipId: string;
@@ -284,6 +476,52 @@ export function linkNeuralComputePathway(input: {
   };
 }
 
+export function encodeCrossVendorExamples(): Array<{
+  surface: (typeof CROSS_VENDOR_EXAMPLE_SURFACES)[number];
+  vendor: VirtualChipVendorFamily;
+  verificationState: VirtualChipVerificationState | 'PASS';
+  note: string;
+}> {
+  return [
+    {
+      surface: 'amd_radeon_gpu_detected',
+      vendor: 'amd',
+      verificationState: 'DETECTED',
+      note: 'AMD Radeon GPU — DETECTED (≠ VERIFIED)',
+    },
+    {
+      surface: 'windows_ml_path_supported',
+      vendor: 'amd',
+      verificationState: 'SUPPORTED',
+      note: 'Windows ML path — SUPPORTED (documented path; ≠ VERIFIED)',
+    },
+    {
+      surface: 'model_x_inference_not_tested',
+      vendor: 'amd',
+      verificationState: 'NOT_TESTED',
+      note: 'Model X inference — NOT_TESTED (distinct from VERIFIED)',
+    },
+    {
+      surface: 'nvidia_gpu_verified',
+      vendor: 'nvidia',
+      verificationState: 'VERIFIED',
+      note: 'NVIDIA GPU — VERIFIED (requires runtime evidence when claimed)',
+    },
+    {
+      surface: 'tensorrt_runtime_verified',
+      vendor: 'nvidia',
+      verificationState: 'VERIFIED',
+      note: 'TensorRT runtime — VERIFIED (requires runtime evidence when claimed)',
+    },
+    {
+      surface: 'model_x_benchmark_pass',
+      vendor: 'nvidia',
+      verificationState: 'PASS',
+      note: 'Model X benchmark — PASS (benchmark result; distinct AMD NOT_TESTED case)',
+    },
+  ];
+}
+
 export function attemptClaimSiliconModification(
   vendor: VirtualChipVendorFamily,
 ): DenialResult & { siliconModified: false } {
@@ -292,6 +530,17 @@ export function attemptClaimSiliconModification(
       `NO_SILICON_MODIFICATION_CLAIM — vendor=${vendor}; virtual chip is software layer only.`,
     ),
     siliconModified: false,
+  };
+}
+
+export function attemptClaimAlterTransistorFirmwareIsa(): DenialResult & {
+  altered: false;
+} {
+  return {
+    ...deny(
+      'NO_TRANSISTOR_FIRMWARE_ISA_CLAIM_WITHOUT_DOCUMENTED_INTERFACE_AND_MEASURED_EVIDENCE.',
+    ),
+    altered: false,
   };
 }
 
@@ -315,6 +564,42 @@ export function attemptAutonomousDeviceControl(): DenialResult & {
     ),
     controlled: false,
   };
+}
+
+export function attemptDriverBiosFirmwareChange(): DenialResult & {
+  changed: false;
+} {
+  return { ...deny('NO_DRIVER_BIOS_FIRMWARE_CHANGES'), changed: false };
+}
+
+export function attemptOverclockOrThermalBypass(): DenialResult & {
+  bypassed: false;
+} {
+  return { ...deny('NO_OVERCLOCKING_OR_THERMAL_BYPASS'), bypassed: false };
+}
+
+export function attemptPermissionInheritance(): DenialResult & {
+  inherited: false;
+} {
+  return { ...deny('NO_PERMISSION_INHERITANCE'), inherited: false };
+}
+
+export function attemptAutomaticCloudPurchasing(): DenialResult & {
+  purchased: false;
+} {
+  return { ...deny('NO_AUTOMATIC_CLOUD_PURCHASING'), purchased: false };
+}
+
+export function attemptCrossTenantDataMovement(): DenialResult & {
+  moved: false;
+} {
+  return { ...deny('NO_CROSS_TENANT_DATA_MOVEMENT'), moved: false };
+}
+
+export function attemptProprietaryChipSecretIngestion(): DenialResult & {
+  ingested: false;
+} {
+  return { ...deny('NO_PROPRIETARY_CHIP_SECRET_INGESTION'), ingested: false };
 }
 
 export function attemptAgentAutoAuthority(actor: Ep1Actor): DenialResult {
@@ -406,10 +691,11 @@ export function bootstrapVirtualChipContract(repoRoot?: string): {
   locksIntact: boolean;
   softWire: Ep1SoftWireSnapshot;
   vendors: readonly VirtualChipVendorFamily[];
-  deviceClasses: readonly VirtualChipDeviceClass[];
-  capabilityStates: readonly VirtualChipCapabilityState[];
+  deviceTypes: readonly VirtualChipDeviceType[];
+  verificationStates: readonly VirtualChipVerificationState[];
   softwareCapabilities: readonly VirtualChipSoftwareCapability[];
   contractFields: readonly string[];
+  coreFlow: readonly VirtualChipCoreFlowHop[];
   neuralPathway: readonly NeuralComputePathwayHop[];
   sot: {
     issue: typeof GITHUB_SOT_ISSUE;
@@ -427,10 +713,11 @@ export function bootstrapVirtualChipContract(repoRoot?: string): {
     locksIntact: assertEp1LocksIntact(),
     softWire: ep1SoftWireSnapshot(repoRoot),
     vendors: VIRTUAL_CHIP_VENDOR_FAMILIES,
-    deviceClasses: VIRTUAL_CHIP_DEVICE_CLASSES,
-    capabilityStates: VIRTUAL_CHIP_CAPABILITY_STATES,
+    deviceTypes: VIRTUAL_CHIP_DEVICE_TYPES,
+    verificationStates: VIRTUAL_CHIP_VERIFICATION_STATES,
     softwareCapabilities: VIRTUAL_CHIP_SOFTWARE_CAPABILITIES,
     contractFields: VIRTUAL_CHIP_CONTRACT_FIELDS,
+    coreFlow: VIRTUAL_CHIP_CORE_FLOW,
     neuralPathway: NEURAL_COMPUTE_PATHWAY,
     sot: {
       issue: GITHUB_SOT_ISSUE,
@@ -462,7 +749,7 @@ export function runVirtualChipContractCycle(input: {
     hop(
       'honesty_locks',
       assertEp1LocksIntact() ? 'PASS' : 'FAIL',
-      'EP1 locks intact including L4=false and silicon-modification denies.',
+      'EP1 locks intact including L4=false and silicon/governance denies.',
     ),
   );
   hops.push(
@@ -481,16 +768,16 @@ export function runVirtualChipContractCycle(input: {
   );
   hops.push(
     hop(
-      'device_classes_encoded',
+      'device_types_encoded',
       'PASS',
-      `${VIRTUAL_CHIP_DEVICE_CLASSES.length} device classes encoded.`,
+      `${VIRTUAL_CHIP_DEVICE_TYPES.length} device types encoded.`,
     ),
   );
   hops.push(
     hop(
-      'capability_states_encoded',
+      'verification_states_encoded',
       'PASS',
-      VIRTUAL_CHIP_CAPABILITY_STATES.join(' | '),
+      VIRTUAL_CHIP_VERIFICATION_STATES.join(' | '),
     ),
   );
   hops.push(
@@ -509,19 +796,36 @@ export function runVirtualChipContractCycle(input: {
   );
   hops.push(
     hop(
+      'core_flow_encoded',
+      'PASS',
+      VIRTUAL_CHIP_CORE_FLOW.join(' → '),
+    ),
+  );
+  hops.push(
+    hop(
       'neural_compute_pathway_encoded',
       'PASS',
       NEURAL_COMPUTE_PATHWAY.join(' → '),
     ),
   );
+  hops.push(
+    hop(
+      'cross_vendor_examples_encoded',
+      'PASS',
+      `${encodeCrossVendorExamples().length} cross-vendor example surfaces encoded.`,
+    ),
+  );
 
   const contract = registerVirtualChipContract({
     virtualChipId: 'vc-ep1-1',
-    vendorFamily: 'amd',
-    deviceClass: 'gpu',
+    vendor: 'amd',
+    deviceType: 'gpu',
+    deviceFamily: 'radeon_candidate',
+    runtime: 'windows_ml_candidate',
+    executionProvider: 'onnx_candidate',
     actor: input.actor,
-    architectureListed: true,
-    runtimeAdapters: ['onnx_candidate', 'windows_ml_candidate'],
+    supportedDocumented: true,
+    notTested: false,
   });
 
   hops.push(
@@ -533,20 +837,27 @@ export function runVirtualChipContractCycle(input: {
   );
   hops.push(
     hop(
+      'no_transistor_firmware_isa_claim_without_evidence',
+      attemptClaimAlterTransistorFirmwareIsa().state,
+      'Transistor/firmware/ISA claim without evidence DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
       'detected_neq_verified',
-      labelCapabilityState({
+      labelVerificationState({
         virtualChipId: 'vc-ep1-1',
         desiredState: 'VERIFIED',
         runtimeEvidencePresent: false,
       }).state,
-      'VERIFIED without runtime evidence DENIED (DETECTED≠VERIFIED).',
+      'VERIFIED without runtime evidence DENIED.',
     ),
   );
   hops.push(
     hop(
       'verified_requires_runtime_evidence',
       'PASS',
-      'VERIFIED requires runtime evidence.',
+      'VERIFIED requires runtime evidence; NOT_TESTED remains distinct.',
     ),
   );
   hops.push(
@@ -554,6 +865,48 @@ export function runVirtualChipContractCycle(input: {
       'quantum_claim_ladder_enforced',
       'PASS',
       QUANTUM_CLAIM_STATES.join(' | '),
+    ),
+  );
+  hops.push(
+    hop(
+      'no_driver_bios_firmware_changes',
+      attemptDriverBiosFirmwareChange().state,
+      'Driver/BIOS/firmware changes DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'no_overclocking_or_thermal_bypass',
+      attemptOverclockOrThermalBypass().state,
+      'Overclocking/thermal bypass DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'no_permission_inheritance',
+      attemptPermissionInheritance().state,
+      'Permission inheritance DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'no_automatic_cloud_purchasing',
+      attemptAutomaticCloudPurchasing().state,
+      'Automatic cloud purchasing DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'no_cross_tenant_data_movement',
+      attemptCrossTenantDataMovement().state,
+      'Cross-tenant data movement DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'no_proprietary_chip_secret_ingestion',
+      attemptProprietaryChipSecretIngestion().state,
+      'Proprietary chip-secret ingestion DENIED.',
     ),
   );
   hops.push(
@@ -581,7 +934,7 @@ export function runVirtualChipContractCycle(input: {
     hop(
       'recommend_neq_act',
       'PASS',
-      'Recommend ≠ act / control / modify silicon.',
+      'Recommend ≠ act / control / modify silicon / purchase.',
     ),
   );
   hops.push(
