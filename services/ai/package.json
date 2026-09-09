@@ -149,7 +149,9 @@
     "test:62ldw": "tsx local-brain/phase62ldw.test.ts",
     "local:supply-chain-superbrain-health": "tsx local-brain/supply-chain-superbrain-cli.ts",
     "test:62ldx": "tsx local-brain/phase62ldx.test.ts",
-    "local:autonomous-supply-chain-ops-health": "tsx local-brain/autonomous-supply-chain-ops-cli.ts"
+    "local:autonomous-supply-chain-ops-health": "tsx local-brain/autonomous-supply-chain-ops-cli.ts",
+    "test:62ldy": "tsx local-brain/phase62ldy.test.ts",
+    "local:intelligent-supply-chain-command-health": "tsx local-brain/intelligent-supply-chain-command-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
