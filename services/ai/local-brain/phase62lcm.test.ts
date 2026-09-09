@@ -452,8 +452,9 @@ try {
       healthReport.githubSoT === 103 &&
       healthReport.gitlabCoordination === 37 &&
       healthReport.productionAuthorized === false &&
-      preds.CL.tipProbe === 'PRESENT',
-    'Health report cites GitHub #103 / GitLab #37; L4=false; CL PRESENT.',
+      preds.CL.tipProbe === 'PRESENT' &&
+      preds.CL.report === 'PRESENT',
+    'Health report cites GitHub #103 / GitLab #37; L4=false; CL tip+report PRESENT.',
   );
 
   check(

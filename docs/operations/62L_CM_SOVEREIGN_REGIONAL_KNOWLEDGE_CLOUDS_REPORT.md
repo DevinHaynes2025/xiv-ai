@@ -4,10 +4,10 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-cm-sovereign-regional-knowledge-clouds-4059`
-Parent / base tip: `cursor/62l-cl-global-knowledge-server-constellation-4059` @ `b0186aa9b2bf46e017a62eba7db4c75856ac7df4` (CL tip **PRESENT**; ops report later **PRESENT** on origin after CM cut — see WAITING gates)
-Why this base: Preferred **62L-CL** tip. At start CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ** @ `a66c839`, polled with backoff until **CL** tip **PRESENT**, then **reset onto CL** `@b0186aa`. Preference **CL → CK → CJ → CI → CH → CG…** selects **CL**.
+Parent / base tip: `cursor/62l-cl-global-knowledge-server-constellation-4059` @ `1929f32b8b06c7df1974ea5cf12a1f0356f70fbd` (includes `62L_CL_GLOBAL_KNOWLEDGE_SERVER_CONSTELLATION_REPORT.md`)
+Why this base: Preferred **62L-CL** tip + report. At start CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ**, polled with backoff until **CL** tip **PRESENT**, implemented on early CL `@b0186aa`, then **rebased onto latest CL** `@1929f32` after CL report + CK rebase landed. Preference **CL → CK → CJ → CI → CH → CG…** selects **CL**.
 Implementation SHAs: see commit list below (`feat` / `chore` / `docs`)
-Tip SHA: `3f07eb593c866530f9099af1d12cceb8e53013ed`
+Tip SHA: `PENDING`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
@@ -37,11 +37,11 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 
 | Check | Result |
 |---|---|
-| CL Global Knowledge Server Constellation tip | **PRESENT** @ `b0186aa` — **used as final base**. |
-| CL ops report `62L_CL_GLOBAL_KNOWLEDGE_SERVER_CONSTELLATION_REPORT.md` | **WAITING_DATA** at CM cut → later **PRESENT** on origin (polled after implementation). Base remains CL tip `b0186aa`. |
-| CK Cognitive Infra / Mini-Cloud / History tip | **PRESENT** on origin @ `40f223d` (later tip may move); **not** used as base (CL preferred). CK modules **WAITING_DATA** on CL tip tree. |
-| CK ops report | **WAITING_DATA** / MISSING on CL tip tree. |
-| CJ Intelligence Resource Grid tip | **PRESENT** on origin (lineage not ancestor of CL); modules **WAITING_DATA** on CL tip tree. |
+| CL Global Knowledge Server Constellation tip | **PRESENT** @ `1929f32` — **used as final base after rebase**. |
+| CL ops report `62L_CL_GLOBAL_KNOWLEDGE_SERVER_CONSTELLATION_REPORT.md` | **PRESENT** on final base tip (landed during CM run; CM rebased onto CL tip+report). |
+| CK Cognitive Infra / Mini-Cloud / History tip + report | **PRESENT** (CL ancestor; modules + `62L_CK_…_REPORT.md` on tip tree). |
+| CK ops report | **PRESENT** on tip tree. |
+| CJ Intelligence Resource Grid tip + modules | **PRESENT** on tip tree (CL ancestor lineage via CK). |
 | CI Persistent Intelligence Economy tip + report | **PRESENT** (CL ancestor @ `0df88fd` lineage). |
 | CH Knowledge Civilization tip + report | **PRESENT** (CI/CL ancestor). |
 | CG Deep Knowledge Refinery OS tip + report | **PRESENT** @ `87fdf05` (ancestor). |
@@ -49,17 +49,17 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 | Dirty `/workspace` tree | Unrelated worktrees (`.wt-*`). **Not** the edit root (`/tmp/62l-cm-work`). |
 | `origin/xiv-v2` / `main` tip-land | **NO** |
 | Draft PR / ManagePullRequest | **NOT CREATED** |
-| Gate verdict | **62L-CL CLEAR for this child** (tip PRESENT). CL report WAITING_DATA. Not PASS for Issue #103 if unread. Not PASS for Windows-node verification. Not FAIL-with-report. |
+| Gate verdict | **62L-CL CLEAR for this child** (tip + report PRESENT). Not PASS for Issue #103 if unread. Not PASS for Windows-node verification. Not FAIL-with-report. |
 
 ## WAITING gates (documented)
 
 | Gate | Status |
 |---|---|
-| CL tip at start | **WAITING_DATA** → later **PRESENT** (poll with backoff; reset onto CL) |
-| CL ops report | **WAITING_DATA** at CM cut → later **PRESENT** on origin |
-| CK tip at start | **WAITING_DATA** → later **PRESENT** on origin (not selected as base) |
-| CK modules/report on CL tip tree | **WAITING_DATA** / MISSING |
-| CJ modules/report on CL tip tree | **WAITING_DATA** / MISSING |
+| CL tip at start | **WAITING_DATA** → later **PRESENT** (poll with backoff; reset onto early CL; rebased onto latest CL tip+report) |
+| CL ops report | **WAITING_DATA** at early cut → later **PRESENT**; CM rebased onto tip+report |
+| CK tip at start | **WAITING_DATA** → later **PRESENT** (CL ancestor; not selected as direct base) |
+| CK modules/report on CL tip tree | **PRESENT** after CL rebase onto CK |
+| CJ modules on CL tip tree | **PRESENT**; CJ ops report may still be MISSING |
 | GitHub Issue #103 body via `gh` | Scope taken from founder master prompt (SoT citation retained) |
 | GitLab #37 MCP | Coordination cite only; not blocking |
 | Windows-node verification | **NOT_TESTED** |
@@ -75,7 +75,7 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 
 ## Tree classification
 
-Child branch based on GitHub CL tip `b0186aa`. No caches, secrets, `.env`, `.xiv-local/`, `node_modules`, or IDE files committed. tip-land = **NO**. Never `main`. No merge onto `xiv-v2`. No live migrations. Candidate SQL remains **NOT_APPLIED**. No Guardian/RLS weaken. No permission expansion.
+Child branch rebased onto GitHub CL tip `1929f32`. No caches, secrets, `.env`, `.xiv-local/`, `node_modules`, or IDE files committed. tip-land = **NO**. Never `main`. No merge onto `xiv-v2`. No live migrations. Candidate SQL remains **NOT_APPLIED**. No Guardian/RLS weaken. No permission expansion.
 
 ## Architecture cycle (executed)
 
@@ -105,7 +105,7 @@ Encoded as `SOVEREIGN_REGIONAL_KNOWLEDGE_CLOUDS_CYCLE` in `sovereign-regional-kn
 | F. Planetary Offline Knowledge Cache Fabric | **IMPLEMENTED** + unit **VERIFIED** | Signed + enrolled install; unsigned/revoked rejected; unenrolled DENIED |
 | Windows-node / production authorization | **DOCUMENTED only** | Not claimed VERIFIED / PRODUCTION AUTHORIZED |
 | Live Supabase / DB apply | **NOT_APPLIED** | Candidate SQL commented; `LIVE_SUPABASE_APPLY=false` |
-| CL ops report on base tip | **WAITING_DATA** → **PRESENT** | Documented wait; tip modules present and `test:62lcl` PASS |
+| CL ops report on base tip | **PRESENT** | Tip+report after rebase; `test:62lcl` PASS |
 
 ## Local-first + ethics honesty
 
@@ -177,4 +177,4 @@ Regression: `npm run test:62lcl` → **PASS** (CL suite green on CM tip).
 
 ## Debrief
 
-62L-CM lands sovereign regional knowledge clouds with isolation defaults, an authorized-only archive observatory, provenance-labeled international intelligence grids, trust/policy-first route optimization over approved nodes, bounded embassy workcells without deal/spend authority, and a signed/revocable offline cache fabric for enrolled devices. Base tip is preferred CL `@b0186aa` after backoff wait; CL ops report remains WAITING_DATA. Unit tests cover all required deny/honesty stories. No tip-land, no Draft PR, no live DB apply, L4 remains false.
+62L-CM lands sovereign regional knowledge clouds with isolation defaults, an authorized-only archive observatory, provenance-labeled international intelligence grids, trust/policy-first route optimization over approved nodes, bounded embassy workcells without deal/spend authority, and a signed/revocable offline cache fabric for enrolled devices. Base tip is preferred CL `@1929f32` (tip+report) after backoff wait and rebase. Unit tests cover all required deny/honesty stories. No tip-land, no Draft PR, no live DB apply, L4 remains false.
