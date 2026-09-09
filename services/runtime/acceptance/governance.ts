@@ -571,6 +571,19 @@ export function runAc22(): AcceptanceResult {
   const capturedSecurity = securityKinds.filter((entry) => plane.audit.has((event) => event.kind === entry.kind)).length;
 
   const traceability = plane.telemetry.traceabilityRate(workloadIds, failedWorkloadIds);
+  // Measuring only fully-instrumented workloads would pass even if the
+  // traceability check stopped looking at the signals. These are the negatives:
+  // a workload with no telemetry at all, and one carrying a single signal.
+  const partiallyTraced = 'wl_partial_telemetry_probe';
+  plane.telemetry.record({
+    signal: 'resource_usage',
+    tenant: TENANT_A,
+    workloadId: partiallyTraced,
+    detail: { note: 'one signal only' },
+  });
+  const untracedDetected =
+    (plane.telemetry.traceable('wl_no_telemetry_at_all') ? 1 : 0) +
+    (plane.telemetry.traceable(partiallyTraced) ? 1 : 0);
   const activeNodes = plane.nodes.list(TENANT_A).filter((node) => node.state === 'active');
   const unknownOwnership = activeNodes.filter((node) => !plane.telemetry.ownerOf(node.nodeId)).length;
   const alertPaths = plane.telemetry.alertPaths();
@@ -595,6 +608,10 @@ export function runAc22(): AcceptanceResult {
       blocker: false,
     }),
     zero('unknown_node_ownership', 'Unknown ownership for active staging nodes', unknownOwnership, { blocker: true }),
+    zero('untraced_workloads_reported_traceable', 'Under-instrumented workloads reported as traceable', untracedDetected, {
+      blocker: true,
+      note: `a workload with no telemetry and one carrying ${1} of ${REQUIRED_WORKLOAD_SIGNALS.length} required signals both report untraceable`,
+    }),
     booleanThreshold('audit_chain_intact', 'Audit ledger hash chain intact', plane.audit.verifyChain().intact, {
       blocker: true,
     }),

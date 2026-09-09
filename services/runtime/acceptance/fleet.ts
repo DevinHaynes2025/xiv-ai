@@ -9,7 +9,7 @@ import { TENANT_A, TENANT_B, atLeast, atMost, buildFixture, catchCode, percent, 
 import type { ControlCommandKind, RuntimeNode } from '../src/types';
 
 export function runAc01(): AcceptanceResult {
-  const { plane, operatorA, operatorB, limitedA } = buildFixture();
+  const { plane, clock, operatorA, operatorB, limitedA } = buildFixture();
   const nodeIds = new Set<string>();
   const registered: string[] = [];
 
@@ -38,59 +38,99 @@ export function runAc01(): AcceptanceResult {
     if (plane.nodes.identityCount !== before) duplicateIdentities += 1;
   }
 
-  // Unknown / unauthorized enrollment attempts.
-  const unknownNodeRejections: string[] = [];
-  unknownNodeRejections.push(
-    catchCode(() => {
-      const hardware = plane.hostHardware.profile;
-      const fingerprint = NodeRegistry.nodeFingerprint({ serial: 'rogue-1', platform: hardware.classId, publicKey: 'pk_rogue' });
-      const ticket = plane.nodes.issueEnrollment({
-        principal: operatorA.principal,
-        tenant: TENANT_A,
-        fingerprint,
-        hardware,
-        capacity: { cpuMillis: 1_000, gpuMillis: 0, ramMb: 512, concurrentWorkloads: 1 },
-      });
-      // A node presenting a different fingerprint than the ticket describes.
-      return plane.nodes.register(ticket, { fingerprint: 'fp_not_the_enrolled_device' });
-    }),
-  );
-  unknownNodeRejections.push(
-    catchCode(() => {
-      const hardware = plane.hostHardware.profile;
-      const fingerprint = NodeRegistry.nodeFingerprint({ serial: 'rogue-2', platform: hardware.classId, publicKey: 'pk_rogue2' });
-      const ticket = plane.nodes.issueEnrollment({
-        principal: operatorA.principal,
-        tenant: TENANT_A,
-        fingerprint,
-        hardware,
-        capacity: { cpuMillis: 1_000, gpuMillis: 0, ramMb: 512, concurrentWorkloads: 1 },
-      });
-      return plane.nodes.register({ ...ticket, signature: `${ticket.signature.slice(0, -1)}0` }, { fingerprint });
-    }),
-  );
-  unknownNodeRejections.push(
-    catchCode(() =>
-      plane.nodes.issueEnrollment({
-        principal: limitedA.principal,
-        tenant: TENANT_A,
-        fingerprint: 'fp_unauthorized_issuer',
-        hardware: plane.hostHardware.profile,
-        capacity: { cpuMillis: 1_000, gpuMillis: 0, ramMb: 512, concurrentWorkloads: 1 },
-      }),
-    ),
-  );
-  unknownNodeRejections.push(
-    catchCode(() =>
-      plane.nodes.issueEnrollment({
-        principal: operatorA.principal,
-        tenant: TENANT_B,
-        fingerprint: 'fp_cross_tenant_enrollment',
-        hardware: plane.hostHardware.profile,
-        capacity: { cpuMillis: 1_000, gpuMillis: 0, ramMb: 512, concurrentWorkloads: 1 },
-      }),
-    ),
-  );
+  // Unknown / unauthorized enrollment attempts. Each states the code it must
+  // be refused with: counting "was refused at all" would pass on a scenario
+  // that broke for an unrelated reason.
+  const capacity = { cpuMillis: 1_000, gpuMillis: 0, ramMb: 512, concurrentWorkloads: 1 };
+  const enrollmentNegatives: { scenario: string; expect: string; run: () => string }[] = [
+    {
+      scenario: 'presented_fingerprint_does_not_match_ticket',
+      expect: 'enrollment_invalid',
+      run: () =>
+        catchCode(() => {
+          const hardware = plane.hostHardware.profile;
+          const ticket = plane.nodes.issueEnrollment({
+            principal: operatorA.principal,
+            tenant: TENANT_A,
+            fingerprint: NodeRegistry.nodeFingerprint({ serial: 'rogue-1', platform: hardware.classId, publicKey: 'pk_rogue' }),
+            hardware,
+            capacity,
+          });
+          return plane.nodes.register(ticket, { fingerprint: 'fp_not_the_enrolled_device' });
+        }),
+    },
+    {
+      scenario: 'enrollment_ticket_signature_tampered',
+      expect: 'enrollment_invalid',
+      run: () =>
+        catchCode(() => {
+          const hardware = plane.hostHardware.profile;
+          const fingerprint = NodeRegistry.nodeFingerprint({ serial: 'rogue-2', platform: hardware.classId, publicKey: 'pk_rogue2' });
+          const ticket = plane.nodes.issueEnrollment({
+            principal: operatorA.principal,
+            tenant: TENANT_A,
+            fingerprint,
+            hardware,
+            capacity,
+          });
+          return plane.nodes.register({ ...ticket, signature: `${ticket.signature.slice(0, -1)}0` }, { fingerprint });
+        }),
+    },
+    {
+      scenario: 'enrollment_ticket_expired',
+      expect: 'enrollment_invalid',
+      run: () =>
+        catchCode(() => {
+          const hardware = plane.hostHardware.profile;
+          const fingerprint = NodeRegistry.nodeFingerprint({ serial: 'rogue-3', platform: hardware.classId, publicKey: 'pk_rogue3' });
+          const ticket = plane.nodes.issueEnrollment({
+            principal: operatorA.principal,
+            tenant: TENANT_A,
+            fingerprint,
+            hardware,
+            capacity,
+          });
+          clock.advance(ticket.expiresAt - clock.now() + 1);
+          return plane.nodes.register(ticket, { fingerprint });
+        }),
+    },
+    {
+      scenario: 'unauthorized_issuer',
+      expect: 'unauthorized',
+      run: () =>
+        catchCode(() =>
+          plane.nodes.issueEnrollment({
+            principal: limitedA.principal,
+            tenant: TENANT_A,
+            fingerprint: 'fp_unauthorized_issuer',
+            hardware: plane.hostHardware.profile,
+            capacity,
+          }),
+        ),
+    },
+    {
+      scenario: 'cross_tenant_enrollment',
+      expect: 'isolation_violation',
+      run: () =>
+        catchCode(() =>
+          plane.nodes.issueEnrollment({
+            principal: operatorA.principal,
+            tenant: TENANT_B,
+            fingerprint: 'fp_cross_tenant_enrollment',
+            hardware: plane.hostHardware.profile,
+            capacity,
+          }),
+        ),
+    },
+  ];
+
+  const enrollmentResults = enrollmentNegatives.map((negative) => ({
+    scenario: negative.scenario,
+    expected: negative.expect,
+    observed: negative.run(),
+  }));
+  const wrongEnrollmentRefusals = enrollmentResults.filter((entry) => entry.observed !== entry.expected);
+  const unknownNodeRejections = enrollmentResults.map((entry) => entry.observed);
 
   // An unknown node must never receive a protected workload. A node the
   // registry never enrolled is fabricated here, matching a registered node in
@@ -190,12 +230,26 @@ export function runAc01(): AcceptanceResult {
       100,
       { blocker: true },
     ),
+    zero(
+      'enrollment_negatives_wrongly_refused',
+      'Invalid enrollments refused with the wrong reason',
+      wrongEnrollmentRefusals.length + (revokedReRegistration === 'node_revoked' ? 0 : 1),
+      {
+        blocker: true,
+        note: wrongEnrollmentRefusals.length
+          ? wrongEnrollmentRefusals
+              .map((entry) => `${entry.scenario}: expected ${entry.expected}, got ${entry.observed}`)
+              .join('; ')
+          : `${enrollmentResults.length} invalid enrollments each refused for the reason they test, and a revoked identity refused as ${revokedReRegistration}`,
+      },
+    ),
   ];
 
   return summarize('AC-01', 'Runtime Registration & Identity', thresholds, {
     nodesRegistered: registered.length,
     distinctNodeIds: nodeIds.size,
     duplicateRegistrationAttempts: duplicateAttempts,
+    enrollmentNegatives: enrollmentResults,
     rejectionCodes: unknownNodeRejections,
     revokedReRegistrationCode: revokedReRegistration,
     auditChainIntact: plane.audit.verifyChain().intact,

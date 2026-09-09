@@ -132,5 +132,6 @@ Stated here so nobody has to infer it from a passing scorecard.
   others — and requires the criteria that claim to cover that guard to turn
   FAIL. AC-18 runs it and reports the detection rate as a threshold, so a
   criterion that has quietly stopped measuring anything shows up as a surviving
-  fault instead of a pass. Four of the current thresholds were rewritten because
-  this caught them passing vacuously.
+  fault instead of a pass. Twelve of the current thresholds were rewritten
+  because this caught them passing vacuously, across AC-01, AC-02, AC-03, AC-05,
+  AC-08, AC-11, AC-12, AC-14, AC-15 and AC-22.

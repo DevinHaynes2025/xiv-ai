@@ -515,6 +515,23 @@ export function runAc15(): AcceptanceResult {
     reconstructions.push(plane.lineage.reconstruct(spec.workloadId, { approvalMandatory: true }));
   }
 
+  // Reconstructing complete chains only shows that a complete chain reads as
+  // complete. These are the negative cases: a workload that never ran, and one
+  // whose approval stage is absent while approval is mandatory.
+  const neverRan = plane.lineage.reconstruct('wl_no_lineage_at_all', { approvalMandatory: true });
+  const unapprovedSpec = workloadSpec({
+    tenant: TENANT_A,
+    hardware,
+    modelId: LOCAL_REFERENCE_MODEL_ID,
+    consequential: true,
+    sourceId: 'evidence_source_unapproved',
+  });
+  plane.engine.execute({ token: operatorA.token, spec: unapprovedSpec }, { iterations: 200 });
+  const withoutApproval = plane.lineage.reconstruct(unapprovedSpec.workloadId, { approvalMandatory: true });
+  const gapsDetected =
+    (neverRan.complete || neverRan.missingStages.length === 0 ? 1 : 0) +
+    (withoutApproval.complete || withoutApproval.approvalPresent ? 1 : 0);
+
   const complete = reconstructions.filter((entry) => entry.complete && entry.chainIntact).length;
   const orphans = reconstructions.filter((entry) => !entry.complete).length;
   const unknownModel = reconstructions.filter((entry) => entry.unknownModel).length;
@@ -537,6 +554,10 @@ export function runAc15(): AcceptanceResult {
       100,
       { blocker: true },
     ),
+    zero('lineage_gaps_undetected', 'Incomplete lineage reported as complete', gapsDetected, {
+      blocker: true,
+      note: `a workload with no lineage reported missing ${neverRan.missingStages.length} stages; one missing only its mandatory approval reported complete=${withoutApproval.complete}`,
+    }),
   ];
 
   const sample = reconstructions[0];

@@ -20,7 +20,13 @@ import {
   workloadSpec,
   zero,
 } from './harness';
-import type { HardwareClassId, RoutingDecision, RuntimeNode, WorkloadClassification } from '../src/types';
+import type {
+  HardwareClassId,
+  RoutingDecision,
+  RoutingRejectionReason,
+  RuntimeNode,
+  WorkloadClassification,
+} from '../src/types';
 
 const EMPTY_LOAD: NodeLoad = { activeWorkloads: 0, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 };
 
@@ -34,13 +40,18 @@ type RoutingScenario =
   | 'degraded_only'
   | 'budget_exhausted'
   | 'attestation_required'
-  | 'capacity_exhausted';
+  | 'capacity_exhausted'
+  | 'slots_exhausted';
 
 type ScenarioEvaluation = {
   scenario: RoutingScenario;
   expected: 'assigned' | 'rejected';
   actual: 'assigned' | 'rejected';
   reason: string;
+  /** The router's exclusion reason for the node this scenario is about. */
+  nodeReason: string | null;
+  expectedNodeReason: string | null;
+  nodeReasonCorrect: boolean;
   policyCorrect: boolean;
   securityInvalid: boolean;
   tenantInvalid: boolean;
@@ -88,6 +99,15 @@ export function runAc05(): AcceptanceResult {
     serial: 'route-tiny',
     capacity: { cpuMillis: 1_000, gpuMillis: 0, ramMb: 128, concurrentWorkloads: 1 },
   });
+  // Ample CPU and RAM, one slot. Without this the slot check is masked: the
+  // tiny node is excluded on CPU headroom before the slot count is consulted,
+  // so removing the slot check changes nothing.
+  const singleSlot = plane.onboardNode({
+    token: operatorA.token,
+    tenant: TENANT_A,
+    serial: 'route-single-slot',
+    capacity: { cpuMillis: 10_000_000, gpuMillis: 0, ramMb: 1_000_000, concurrentWorkloads: 1 },
+  });
 
   clock.advance(2_000);
 
@@ -107,7 +127,21 @@ export function runAc05(): AcceptanceResult {
     'budget_exhausted',
     'attestation_required',
     'capacity_exhausted',
+    'slots_exhausted',
   ];
+
+  // The per-node exclusion reason the router must record for the node under
+  // test. The aggregate `no_eligible_runtime` is the same whichever filter
+  // dropped the node, so asserting it would not distinguish them.
+  const expectedNodeReason: Partial<Record<RoutingScenario, RoutingRejectionReason>> = {
+    all_nodes_unavailable: 'node_unavailable',
+    tenant_mismatch: 'tenant_mismatch',
+    universe_mismatch: 'universe_mismatch',
+    degraded_only: 'node_unavailable',
+    attestation_required: 'attestation_required',
+    capacity_exhausted: 'capacity_exhausted',
+    slots_exhausted: 'capacity_exhausted',
+  };
 
   const evaluations: ScenarioEvaluation[] = [];
   const decisionMicros: number[] = [];
@@ -168,6 +202,12 @@ export function runAc05(): AcceptanceResult {
         load = () => ({ activeWorkloads: 1, cpuMillisCommitted: 900, gpuMillisCommitted: 0, ramMbCommitted: 120 });
         expected = 'rejected';
         break;
+      case 'slots_exhausted':
+        // Only the slot is gone; CPU and RAM have room to spare.
+        candidates = [fresh(singleSlot)];
+        load = () => ({ activeWorkloads: 1, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 });
+        expected = 'rejected';
+        break;
     }
 
     const spec = workloadSpec({
@@ -212,11 +252,21 @@ export function runAc05(): AcceptanceResult {
       }
     }
 
+    // For a single-candidate scenario the node under test is the only
+    // candidate, so its exclusion reason is what the scenario is about.
+    const wanted = expectedNodeReason[scenario];
+    const nodeUnderTest = candidates.length === 1 ? (candidates[0] as RuntimeNode).nodeId : null;
+    const nodeReasonCorrect =
+      !wanted || !nodeUnderTest ? true : decision.rejectedNodes[nodeUnderTest] === wanted;
+
     evaluations.push({
       scenario,
       expected,
       actual,
       reason: decision.outcome === 'rejected' ? decision.reason : `assigned:${decision.nodeId}`,
+      nodeReason: nodeUnderTest ? (decision.rejectedNodes[nodeUnderTest] ?? 'not_rejected') : null,
+      expectedNodeReason: wanted ?? null,
+      nodeReasonCorrect,
       policyCorrect: expected === actual,
       securityInvalid,
       tenantInvalid,
@@ -266,6 +316,22 @@ export function runAc05(): AcceptanceResult {
       percent(correctRejections, rejectionScenarios.length),
       100,
       { blocker: true },
+    ),
+    zero(
+      'rejections_with_wrong_reason',
+      'Nodes excluded for a different reason than the scenario tests',
+      evaluations.filter((entry) => !entry.nodeReasonCorrect).length,
+      {
+        blocker: true,
+        note: (() => {
+          const wrong = evaluations.filter((entry) => !entry.nodeReasonCorrect);
+          if (!wrong.length) {
+            const checked = [...new Set(evaluations.filter((entry) => entry.expectedNodeReason).map((entry) => entry.scenario))];
+            return `${checked.length} single-candidate scenarios each excluded their node for the reason under test`;
+          }
+          return [...new Set(wrong.map((entry) => `${entry.scenario}: expected ${entry.expectedNodeReason}, got ${entry.nodeReason}`))].join('; ');
+        })(),
+      },
     ),
   ];
 

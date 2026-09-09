@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "ranAt": "2026-09-09T23:05:50.808Z",
-    "commit": "cf7831278e443df82b89a60784f2ff6b20e258d6",
+    "ranAt": "2026-09-09T23:10:31.451Z",
+    "commit": "66f0523700adab8c7aba998d65550ae8268061c9",
     "branch": "cursor/xiv-62d-distributed-runtime-a3de",
     "nodeVersion": "v22.14.0",
     "platform": "linux-x64",
     "cpuModel": "Intel(R) Xeon(R) Processor",
     "cpuCount": 4,
     "totalMemoryMb": 16014,
-    "durationMs": 11214
+    "durationMs": 11979
   },
   "gate": "NO-GO",
   "counts": {
@@ -72,13 +72,50 @@
           "measured": "100%",
           "status": "PASS",
           "blocker": true
+        },
+        {
+          "id": "enrollment_negatives_wrongly_refused",
+          "label": "Invalid enrollments refused with the wrong reason",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "5 invalid enrollments each refused for the reason they test, and a revoked identity refused as node_revoked"
         }
       ],
       "evidence": {
         "nodesRegistered": 40,
         "distinctNodeIds": 40,
         "duplicateRegistrationAttempts": 10,
+        "enrollmentNegatives": [
+          {
+            "scenario": "presented_fingerprint_does_not_match_ticket",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "enrollment_ticket_signature_tampered",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "enrollment_ticket_expired",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "unauthorized_issuer",
+            "expected": "unauthorized",
+            "observed": "unauthorized"
+          },
+          {
+            "scenario": "cross_tenant_enrollment",
+            "expected": "isolation_violation",
+            "observed": "isolation_violation"
+          }
+        ],
         "rejectionCodes": [
+          "enrollment_invalid",
           "enrollment_invalid",
           "enrollment_invalid",
           "unauthorized",
@@ -88,7 +125,7 @@
         "auditChainIntact": true
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:39.615Z"
+      "ranAt": "2026-09-09T23:10:19.493Z"
     },
     {
       "id": "AC-02",
@@ -147,7 +184,7 @@
       ],
       "evidence": {
         "protectedExecutions": 40,
-        "attestedNodeId": "node_hdda7c9acd6d2900f",
+        "attestedNodeId": "node_h0972d0ed666a7a9c",
         "expiredAttestationStatus": "expired",
         "failedAttestationStatus": "failed",
         "quarantinedNodeState": "quarantined",
@@ -170,7 +207,7 @@
         }
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:39.638Z"
+      "ranAt": "2026-09-09T23:10:19.518Z"
     },
     {
       "id": "AC-03",
@@ -1104,7 +1141,7 @@
         }
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.184Z"
+      "ranAt": "2026-09-09T23:10:20.005Z"
     },
     {
       "id": "AC-04",
@@ -1234,7 +1271,7 @@
         "auditChainIntact": true
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.242Z"
+      "ranAt": "2026-09-09T23:10:20.065Z"
     },
     {
       "id": "AC-05",
@@ -1280,77 +1317,93 @@
           "measured": "100%",
           "status": "PASS",
           "blocker": true
+        },
+        {
+          "id": "rejections_with_wrong_reason",
+          "label": "Nodes excluded for a different reason than the scenario tests",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "7 single-candidate scenarios each excluded their node for the reason under test"
         }
       ],
       "evidence": {
         "decisions": 1000,
         "scenarioBreakdown": {
           "cpu_eligible": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "assigned"
             ]
           },
           "gpu_requested": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "edge_requested": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "all_nodes_unavailable": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "tenant_mismatch": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "universe_mismatch": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "degraded_only": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "budget_exhausted": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "budget_exhausted"
             ]
           },
           "attestation_required": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
             "reasons": [
               "no_eligible_runtime"
             ]
           },
           "capacity_exhausted": {
-            "decisions": 100,
-            "policyCorrect": 100,
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "slots_exhausted": {
+            "decisions": 90,
+            "policyCorrect": 90,
             "reasons": [
               "no_eligible_runtime"
             ]
@@ -1360,7 +1413,7 @@
         "decisionMicrosP50": 1
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.261Z"
+      "ranAt": "2026-09-09T23:10:20.085Z"
     },
     {
       "id": "AC-06",
@@ -1455,7 +1508,7 @@
           "cpu_x86_intel": {
             "label": "Intel x86-64 CPU",
             "configured": true,
-            "nodeId": "node_h394ef065430e5e0d",
+            "nodeId": "node_h210bddc651b10ed2",
             "vendor": "Intel(R) Xeon(R) Processor",
             "cores": 4,
             "accelerators": [
@@ -1546,13 +1599,13 @@
             "classId": "cpu_x86_intel",
             "name": "resource_accounting_present",
             "passed": true,
-            "detail": "cpuMillis=0.010"
+            "detail": "cpuMillis=0.011"
           }
         ],
         "referenceWorkloadExecutions": 100
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.298Z"
+      "ranAt": "2026-09-09T23:10:20.120Z"
     },
     {
       "id": "AC-07",
@@ -1625,7 +1678,7 @@
         "rejectedAssignmentCount": 7
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.302Z"
+      "ranAt": "2026-09-09T23:10:20.124Z"
     },
     {
       "id": "AC-08",
@@ -1730,7 +1783,7 @@
         "executedWorkloads": 50
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:40.323Z"
+      "ranAt": "2026-09-09T23:10:20.145Z"
     },
     {
       "id": "AC-09",
@@ -1799,13 +1852,13 @@
         "slotsAfterRegistration": 105000,
         "activatedIdentities": 200,
         "runtimeNodes": 1,
-        "registrationMs": 424,
-        "registrationsPerSecond": 235647,
-        "heapUsedMb": 67,
+        "registrationMs": 419,
+        "registrationsPerSecond": 238453,
+        "heapUsedMb": 62,
         "note": "Registration allocates a registry row only. Activation is a separate authorized act, which is what keeps 100,000 identities from implying 100,000 processes."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.250Z"
+      "ranAt": "2026-09-09T23:10:21.048Z"
     },
     {
       "id": "AC-10",
@@ -1922,14 +1975,14 @@
           }
         ],
         "offlineResult": {
-          "resultId": "offres_28f1cfac68605a503c",
-          "packageId": "offpkg_m15a54e568628fc44",
+          "resultId": "offres_28671b2ba0095a29ef",
+          "packageId": "offpkg_m091fb9aa078ca490",
           "tenant": {
             "organizationId": "org_northwind",
             "universeId": "universe_operations"
           },
-          "agentId": "agent_l5e6b6d7f2657dcd9",
-          "nodeId": "node_h6c5ddf354f992428",
+          "agentId": "agent_l25b2db39803f74f0",
+          "nodeId": "node_hc1829d3c1e88a503",
           "taskCount": 3,
           "externalActionsAttempted": 1,
           "externalActionsExecuted": 0,
@@ -1947,7 +2000,7 @@
         }
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.253Z"
+      "ranAt": "2026-09-09T23:10:21.051Z"
     },
     {
       "id": "AC-11",
@@ -2021,10 +2074,10 @@
         }
       ],
       "evidence": {
-        "meetingId": "meet_fe0f725132a0ce055",
+        "meetingId": "meet_fbfc91e606c0a7c24",
         "participants": [
-          "prin_53e9c45e7c739094b",
-          "prin_b012773d60a37405d"
+          "prin_5a04af813d29ccf1c",
+          "prin_bbb495a590ca6447f"
         ],
         "messages": 2,
         "negativeScenarios": {
@@ -2036,7 +2089,7 @@
           "cross_tenant_meeting_read": "not_found"
         },
         "integrity": {
-          "meetingId": "meet_fe0f725132a0ce055",
+          "meetingId": "meet_fbfc91e606c0a7c24",
           "participantIdentityPreserved": true,
           "messageAttributionPreserved": true,
           "evidenceProvenancePreserved": true,
@@ -2053,7 +2106,7 @@
         }
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.255Z"
+      "ranAt": "2026-09-09T23:10:21.053Z"
     },
     {
       "id": "AC-12",
@@ -2227,7 +2280,7 @@
         ]
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.296Z"
+      "ranAt": "2026-09-09T23:10:21.094Z"
     },
     {
       "id": "AC-13",
@@ -2342,7 +2395,7 @@
         ]
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.301Z"
+      "ranAt": "2026-09-09T23:10:21.099Z"
     },
     {
       "id": "AC-14",
@@ -2507,7 +2560,7 @@
         "note": "No hosted provider credentials are configured in this environment, so every hosted entry reports UNAVAILABLE and only the local deterministic runtime is invocable."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.319Z"
+      "ranAt": "2026-09-09T23:10:21.118Z"
     },
     {
       "id": "AC-15",
@@ -2561,6 +2614,15 @@
           "measured": "100%",
           "status": "PASS",
           "blocker": true
+        },
+        {
+          "id": "lineage_gaps_undetected",
+          "label": "Incomplete lineage reported as complete",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "a workload with no lineage reported missing 10 stages; one missing only its mandatory approval reported complete=false"
         }
       ],
       "evidence": {
@@ -2592,11 +2654,11 @@
           },
           {
             "stage": "agent",
-            "reference": "agent_l316961caf6039177"
+            "reference": "agent_la3cbcca738962bef"
           },
           {
             "stage": "runtime",
-            "reference": "node_he6891fa41631014d"
+            "reference": "node_h8237232b69e12212"
           },
           {
             "stage": "model",
@@ -2616,17 +2678,17 @@
           },
           {
             "stage": "approval",
-            "reference": "apr_mf7d66a6e43b5aeae"
+            "reference": "apr_maa814d1e3aec6134"
           },
           {
             "stage": "result",
             "reference": "result:wl_16s"
           }
         ],
-        "lineageChainsRecorded": 50
+        "lineageChainsRecorded": 51
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.338Z"
+      "ranAt": "2026-09-09T23:10:21.138Z"
     },
     {
       "id": "AC-16",
@@ -2727,7 +2789,7 @@
         "note": "The leak test searches the plane's own signing keys and principal tokens across every emitted record. It cannot prove the absence of secrets XIV never held."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:41.378Z"
+      "ranAt": "2026-09-09T23:10:21.177Z"
     },
     {
       "id": "AC-17",
@@ -2848,7 +2910,7 @@
         "note": "Vulnerability counts come from the npm advisory database at the time of this run and need re-running per release."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:42.826Z"
+      "ranAt": "2026-09-09T23:10:22.439Z"
     },
     {
       "id": "AC-18",
@@ -2920,7 +2982,7 @@
           "measured": "100%",
           "status": "PASS",
           "blocker": true,
-          "note": "16 guards removed one at a time, each caught by the criteria that claim to cover it"
+          "note": "23 guards removed one at a time, each caught by the criteria that claim to cover it"
         }
       ],
       "evidence": {
@@ -3100,6 +3162,83 @@
               "AC-11"
             ],
             "detected": true
+          },
+          {
+            "id": "enrollment_signature_unverified",
+            "guard": "a node may only register with a validly signed enrollment ticket",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "fingerprint_mismatch_accepted",
+            "guard": "the hardware presented at registration must match the enrollment",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "revoked_fingerprint_reenrolls",
+            "guard": "a revoked node identity cannot register again",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "router_ignores_capacity",
+            "guard": "the router does not place work on a node with no slot left",
+            "expectFailing": [
+              "AC-05"
+            ],
+            "observedFailing": [
+              "AC-05"
+            ],
+            "detected": true
+          },
+          {
+            "id": "agent_above_node_classification",
+            "guard": "an agent may not be activated on a node below its classification",
+            "expectFailing": [
+              "AC-07"
+            ],
+            "observedFailing": [
+              "AC-07"
+            ],
+            "detected": true
+          },
+          {
+            "id": "lineage_gaps_ignored",
+            "guard": "a consequential result with a missing lineage stage is incomplete",
+            "expectFailing": [
+              "AC-15"
+            ],
+            "observedFailing": [
+              "AC-15"
+            ],
+            "detected": true
+          },
+          {
+            "id": "telemetry_gaps_ignored",
+            "guard": "a workload missing a required telemetry signal is not traceable",
+            "expectFailing": [
+              "AC-22"
+            ],
+            "observedFailing": [
+              "AC-22"
+            ],
+            "detected": true
           }
         ],
         "typecheckCommand": "npx tsc --noEmit (services/runtime)",
@@ -3118,7 +3257,7 @@
           "# cancelled 0",
           "# skipped 0",
           "# todo 0",
-          "# duration_ms 557.187853"
+          "# duration_ms 549.185531"
         ],
         "registeredAcIds": [
           "AC-01",
@@ -3159,7 +3298,7 @@
         "note": "This criterion is measured by running the type checker and the unit suite inside the acceptance run, so its evidence is the output of those commands rather than a claim about them."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:50.808Z"
+      "ranAt": "2026-09-09T23:10:31.451Z"
     },
     {
       "id": "AC-19",
@@ -3280,7 +3419,7 @@
         "note": "Every call in this evidence was made over a socket against the same handler table the service exposes; there is no second in-process path."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:42.895Z"
+      "ranAt": "2026-09-09T23:10:22.511Z"
     },
     {
       "id": "AC-20",
@@ -3315,7 +3454,7 @@
           "id": "p95_admission",
           "label": "p95 admission latency",
           "target": "≤50ms",
-          "measured": "0.206ms",
+          "measured": "0.169ms",
           "status": "PASS",
           "blocker": false
         },
@@ -3323,7 +3462,7 @@
           "id": "p99_admission",
           "label": "p99 admission latency",
           "target": "≤150ms",
-          "measured": "0.402ms",
+          "measured": "0.310ms",
           "status": "PASS",
           "blocker": false
         },
@@ -3331,7 +3470,7 @@
           "id": "p95_execution",
           "label": "p95 bounded execution latency",
           "target": "≤50ms",
-          "measured": "0.834ms",
+          "measured": "0.809ms",
           "status": "PASS",
           "blocker": false
         },
@@ -3368,30 +3507,30 @@
         "completed": 1000,
         "terminated": 0,
         "errors": {},
-        "admissionWallMs": 162,
-        "executionWallMs": 432,
-        "tasksPerSecond": 2315,
+        "admissionWallMs": 153,
+        "executionWallMs": 426,
+        "tasksPerSecond": 2346,
         "admissionLatencyMs": {
-          "p50": 0.125,
-          "p95": 0.206,
-          "p99": 0.402,
-          "max": 3.844
+          "p50": 0.126,
+          "p95": 0.169,
+          "p99": 0.31,
+          "max": 3.152
         },
         "executionLatencyMs": {
-          "p50": 0.377,
-          "p95": 0.834,
-          "p99": 1.071,
-          "max": 3.165
+          "p50": 0.375,
+          "p95": 0.809,
+          "p99": 1.046,
+          "max": 2.999
         },
         "startLatencyMs": {
-          "p95": 0.161,
+          "p95": 0.134,
           "samples": 1000
         },
-        "heapUsedMb": 80,
+        "heapUsedMb": 92,
         "note": "This is one process on one host holding 1,000 bounded tasks concurrently admitted. It is a control-plane scale measurement, not a claim about a distributed fleet under production traffic, and the latency ceilings are this suite's declared 62D baselines."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:43.493Z"
+      "ranAt": "2026-09-09T23:10:23.094Z"
     },
     {
       "id": "AC-21",
@@ -3459,7 +3598,7 @@
         "note": "The only configured provider in this environment is the local deterministic runtime, whose per-token cost is 0. Hosted-provider cost attribution needs to be re-measured once a provider is configured."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:43.577Z"
+      "ranAt": "2026-09-09T23:10:23.181Z"
     },
     {
       "id": "AC-22",
@@ -3508,6 +3647,15 @@
           "blocker": true
         },
         {
+          "id": "untraced_workloads_reported_traceable",
+          "label": "Under-instrumented workloads reported as traceable",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "a workload with no telemetry and one carrying 1 of 8 required signals both report untraceable"
+        },
+        {
           "id": "audit_chain_intact",
           "label": "Audit ledger hash chain intact",
           "target": "YES",
@@ -3538,7 +3686,7 @@
           "security_event",
           "audit_lineage"
         ],
-        "telemetryEvents": 2756,
+        "telemetryEvents": 2757,
         "auditEvents": 2251,
         "tracedWorkloads": 275,
         "signalsForSampleWorkload": [
@@ -3572,14 +3720,14 @@
         ],
         "alertPaths": [
           {
-            "alertId": "alert_71p0dd78510f42e1cb2",
+            "alertId": "alert_71pb540af90af41363f",
             "name": "protected_execution_blocked",
             "channel": "ops_pager",
             "exercisedAt": 1767225600000,
             "deliveries": 1
           },
           {
-            "alertId": "alert_71q628a9137fbbf55c4",
+            "alertId": "alert_71qeae2c50557ece834",
             "name": "node_revoked",
             "channel": "security_channel",
             "exercisedAt": 1767225600000,
@@ -3588,7 +3736,7 @@
         ]
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:43.673Z"
+      "ranAt": "2026-09-09T23:10:23.278Z"
     },
     {
       "id": "AC-23",
@@ -3661,7 +3809,7 @@
           "externalActions",
           "releases"
         ],
-        "snapshotId": "snap_13ib3c859cbfd2a244c",
+        "snapshotId": "snap_13i26fa3754fcee662e",
         "snapshotRecordCount": 531,
         "workloadsBeforeRestore": 50,
         "workloadsAfterRestore": 40,
@@ -3672,7 +3820,7 @@
         "note": "RPO and RTO here are measured against this in-process runtime state on a deterministic clock. They are not a claim about hosted PostgreSQL backup behaviour."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:43.714Z"
+      "ranAt": "2026-09-09T23:10:23.318Z"
     },
     {
       "id": "AC-24",
@@ -3755,7 +3903,7 @@
         "note": "The measured rollback duration is the initial XIV baseline for this runtime layer only: it reverts in-process control-plane state, not a deployed application build."
       },
       "blockers": [],
-      "ranAt": "2026-09-09T23:05:43.733Z"
+      "ranAt": "2026-09-09T23:10:23.337Z"
     }
   ]
 }
