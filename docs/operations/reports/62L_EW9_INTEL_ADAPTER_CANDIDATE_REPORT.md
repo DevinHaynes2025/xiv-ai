@@ -7,6 +7,7 @@
 **Branch:** `cursor/62l-ew9-intel-adapter-candidate-4059`  
 **Base (authorized tip):** EW8 `origin/cursor/62l-ew8-nvidia-adapter-candidate-4059` @ `f20034add058b1213ba246296181e4e9b2efdb1d` (contains EW7 + `origin/xiv-v2`)  
 **Feat tip SHA:** `947779dc301999bc768ebc0292cad55eb774a828`  
+**Docs tip SHA:** `9819620ad4accc9d0e9729a17dcbbfb4579cf5e1`  
 **Honesty:** DOCUMENTED ≠ DETECTED ≠ SUPPORTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened
 
