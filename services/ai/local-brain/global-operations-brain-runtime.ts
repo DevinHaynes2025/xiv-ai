@@ -24,6 +24,8 @@ import {
   type BjHop,
   type BjHopRecord,
 } from './global-operations-brain-types';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export {
   BJ_LOCKS,
@@ -33,6 +35,10 @@ export {
   githubIssueSot,
   predecessorMap,
 };
+
+function repoRoot() {
+  return join(dirname(fileURLToPath(import.meta.url)), '../../..');
+}
 
 function hop(name: BjHop, state: BjEvidenceState, summary: string): BjHopRecord {
   return { hop: name, state, summary, at: new Date().toISOString() };
@@ -284,7 +290,7 @@ export async function runGlobalOperationsBrainCycle(input: BjCycleInput) {
     learning,
     tower,
     gate,
-    predecessors: predecessorMap(root),
+    predecessors: predecessorMap(repoRoot()),
     sot: githubIssueSot(),
     nextPhaseTitle: NEXT_PHASE_TITLE,
     honestyBanner: HONESTY_BANNER,
@@ -319,7 +325,7 @@ export async function buildGlobalOperationsBrainHealthReport(root = process.cwd(
     tipLand: false as const,
     megaPrBulkIncluded: false as const,
     sot: cycle.sot,
-    predecessors: cycle.predecessors,
+    predecessors: predecessorMap(repoRoot()),
     nextPhaseTitle: NEXT_PHASE_TITLE,
     hopCount: cycle.hops.length,
     wiredSubsystems: cycle.brain.registry.filter((s) => s.binding === 'wired').map((s) => s.id),
