@@ -121,6 +121,518 @@ export type PlatformClass =
 
 export type RuntimeNodeStatus = 'registered' | 'available' | 'degraded' | 'offline' | 'unconfigured_external';
 
+// ---------------------------------------------------------------------------
+// 2I-AI-62B — meetings, collective reasoning and the human intelligence bridge
+// ---------------------------------------------------------------------------
+
+// The sixteen-step meeting lifecycle from the story, in order. MEETING_STAGES in
+// meeting-engine.ts is the runtime array; this is the type it produces.
+export type MeetingLifecycleStage =
+  | 'trigger'
+  | 'created'
+  | 'participants_selected'
+  | 'context_authorized'
+  | 'evidence_collected'
+  | 'specialist_analysis'
+  | 'debate'
+  | 'contradiction_detection'
+  | 'alternatives_generated'
+  | 'risk_analysis'
+  | 'consensus_or_disagreement'
+  | 'human_checkpoint'
+  | 'decision'
+  | 'authorized_action'
+  | 'outcome'
+  | 'post_meeting_evaluation'
+  | 'knowledge_lineage';
+
+// XARP. A reasoning role is a job in the room, not a permission. Holding the
+// challenger role does not let an agent do anything it could not otherwise do;
+// it obliges the agent to try to break the leading hypothesis.
+export type XarpRole =
+  | 'investigator'
+  | 'specialist'
+  | 'challenger'
+  | 'historian'
+  | 'cultural'
+  | 'risk'
+  | 'security'
+  | 'financial'
+  | 'human_liaison'
+  | 'synthesizer';
+
+export type MeetingMode = 'interactive' | 'asynchronous';
+
+export type MeetingTriggerKind =
+  | 'human_request'
+  | 'anomaly_detected'
+  | 'scheduled_review'
+  | 'threshold_breach'
+  | 'task_force_referral';
+
+export type MeetingMessageKind =
+  | 'statement'
+  | 'question'
+  | 'challenge'
+  | 'analysis'
+  | 'synthesis'
+  | 'human_context'
+  | 'guardian_note'
+  | 'system_note';
+
+export type EvidenceDirection = 'favourable' | 'unfavourable' | 'neutral';
+
+export type ProposalStatus = 'open' | 'superseded' | 'selected' | 'rejected' | 'withdrawn';
+
+export type ObjectionSeverity = 'advisory' | 'material' | 'blocking';
+
+export type ObjectionResolutionKind =
+  | 'unresolved'
+  | 'accepted'
+  | 'rejected'
+  | 'mitigated'
+  | 'deferred_to_human';
+
+export type ProposalVote = 'support' | 'oppose' | 'abstain' | 'insufficient_evidence';
+
+export type DecisionKind = 'approved' | 'rejected' | 'postponed' | 'escalated';
+
+export type MeetingActionStatus =
+  | 'queued'
+  | 'authorized'
+  | 'executing'
+  | 'completed'
+  | 'failed'
+  | 'revoked'
+  | 'rolled_back';
+
+export type OutcomeGrade = 'successful' | 'partial' | 'unsuccessful' | 'inconclusive';
+
+// What a person told XIV, filed as what it actually is. An opinion never becomes
+// a fact by being repeated back by an agent.
+export type HumanKnowledgeCategory =
+  | 'HUMAN_OBSERVATION'
+  | 'HUMAN_EXPERIENCE'
+  | 'HUMAN_OPINION'
+  | 'HUMAN_DECISION'
+  | 'HUMAN_CORRECTION'
+  | 'HUMAN_APPROVAL';
+
+export type ControlCommand =
+  | 'pause'
+  | 'resume'
+  | 'stop'
+  | 'quarantine'
+  | 'revoke_task'
+  | 'revoke_tool'
+  | 'archive'
+  | 'escalate_to_human';
+
+export type AgentControlState = 'normal' | 'paused' | 'stopped' | 'quarantined';
+
+export type ControlSubjectKind = 'agent' | 'task_force' | 'meeting';
+
+export type EligibilityTier = 'restricted' | 'probationary' | 'standard' | 'trusted';
+
+export type ImpactLevel = 'none' | 'low' | 'medium' | 'high';
+
+export type OversightLevel = 'standard' | 'elevated' | 'high_stakes';
+
+export type DirectoryCategory =
+  | 'business'
+  | 'supply_chain'
+  | 'technology'
+  | 'professional_intelligence'
+  | 'operations'
+  | 'science'
+  | 'cultural_intelligence';
+
+export type GuardianVerdict = 'allow' | 'allow_with_conditions' | 'require_human' | 'refuse';
+
+export type BudgetDimension =
+  | 'tokens'
+  | 'compute_ms'
+  | 'gpu_ms'
+  | 'storage_bytes'
+  | 'tool_calls'
+  | 'duration_seconds'
+  | 'external_requests'
+  | 'participant_agents'
+  | 'subagents'
+  | 'messages';
+
+export type MeetingMessage = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  sequence: number;
+  speakerKind: 'agent' | 'human' | 'guardian' | 'system';
+  speakerAgentId: string | null;
+  speakerUserId: string | null;
+  operatorUserId: string | null;
+  xarpRole: XarpRole | null;
+  messageKind: MeetingMessageKind;
+  originalLanguage: string;
+  originalText: string;
+  translatedText: string | null;
+  translationLanguage: string | null;
+  interpretation: string | null;
+  translationProvenance: Record<string, unknown>;
+  culturalContext: string | null;
+  factualClaim: string | null;
+  xacpMessageId: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+// The story's evidence contract, one column per named field. Every one of these
+// is required before a claim can enter the room.
+export type MeetingEvidence = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  submittedByAgentId: string | null;
+  submittedByUserId: string | null;
+  operatorUserId: string | null;
+  xarpRole: XarpRole | null;
+  subject: string;
+  dimension: string;
+  direction: EvidenceDirection;
+  claim: string;
+  evidence: string;
+  source: string;
+  provenance: Record<string, unknown>;
+  evidenceDate: string | null;
+  confidence: number;
+  assumptions: string[];
+  counterargument: string;
+  risk: string;
+  unknowns: string[];
+  recommendation: string | null;
+  claimKind: ClaimKind;
+  knowledgeSourceId: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type MeetingProposal = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  optionKey: string;
+  title: string;
+  proposedByAgentId: string | null;
+  proposedByUserId: string | null;
+  operatorUserId: string | null;
+  xarpRole: XarpRole | null;
+  claim: string;
+  evidenceIds: string[];
+  source: string;
+  provenance: Record<string, unknown>;
+  proposalDate: string | null;
+  confidence: number;
+  assumptions: string[];
+  counterargument: string;
+  risk: string;
+  unknowns: string[];
+  recommendation: string;
+  status: ProposalStatus;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type MeetingObjection = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  proposalId: string | null;
+  raisedByAgentId: string | null;
+  raisedByUserId: string | null;
+  operatorUserId: string | null;
+  xarpRole: XarpRole | null;
+  objection: string;
+  severity: ObjectionSeverity;
+  supportingEvidenceId: string | null;
+  resolutionKind: ObjectionResolutionKind;
+  resolution: string | null;
+  resolvedByUserId: string | null;
+  resolvedAt: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type MeetingProposalVote = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  proposalId: string;
+  voterKind: 'agent' | 'human';
+  voterAgentId: string | null;
+  voterUserId: string | null;
+  operatorUserId: string | null;
+  xarpRole: XarpRole | null;
+  vote: ProposalVote;
+  rationale: string;
+  citedEvidenceIds: string[];
+  confidence: number | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type MeetingAlternative = {
+  optionKey: string;
+  title: string;
+  headline: string;
+  confidence: number;
+  supportingEvidenceIds: string[];
+};
+
+export type PreservedDisagreement = {
+  source: string;
+  position: string;
+  severity: ObjectionSeverity;
+  resolutionKind: ObjectionResolutionKind;
+};
+
+export type MeetingDecisionRecord = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  selectedProposalId: string | null;
+  xivRecommendation: string;
+  xivConfidence: number;
+  alternatives: MeetingAlternative[];
+  preservedDisagreements: PreservedDisagreement[];
+  humanDecisionRequired: boolean;
+  decisionKind: DecisionKind;
+  decidedByUserId: string;
+  rationale: string;
+  humanKnowledgeRecordId: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  decidedAt: string;
+};
+
+export type MeetingAction = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  decisionId: string | null;
+  taskId: string | null;
+  assignedAgentId: string | null;
+  action: string;
+  authorizationBasis: string;
+  requiresHumanApproval: boolean;
+  approvedBy: string | null;
+  approvedAt: string | null;
+  rollbackPlan: string | null;
+  status: MeetingActionStatus;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+  executedAt: string | null;
+  revokedAt: string | null;
+};
+
+export type MeetingOutcome = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  decisionId: string | null;
+  actionId: string | null;
+  horizonDays: number;
+  predicted: Record<string, number>;
+  observed: Record<string, number>;
+  metrics: Record<string, unknown>;
+  outcomeGrade: OutcomeGrade;
+  predictedConfidence: number | null;
+  calibrationError: number | null;
+  notes: string | null;
+  recordedByUserId: string;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  measuredAt: string;
+  createdAt: string;
+};
+
+export type MeetingBudget = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string;
+  maxTokens: number;
+  maxComputeMs: number;
+  maxGpuMs: number;
+  maxStorageBytes: number;
+  maxToolCalls: number;
+  maxDurationSeconds: number;
+  maxExternalRequests: number;
+  maxParticipantAgents: number;
+  maxSubagents: number;
+  maxMessages: number;
+  consumedTokens: number;
+  consumedComputeMs: number;
+  consumedGpuMs: number;
+  consumedStorageBytes: number;
+  consumedToolCalls: number;
+  consumedDurationSeconds: number;
+  consumedExternalRequests: number;
+  consumedSubagents: number;
+  consumedMessages: number;
+  exhausted: boolean;
+  exhaustedDimension: BudgetDimension | null;
+  terminatedAt: string | null;
+  provenance: Record<string, unknown>;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type AgentReputation = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  agentId: string;
+  accuracy: number;
+  evidenceQuality: number;
+  calibration: number;
+  taskSuccess: number;
+  humanCorrectionRate: number;
+  securityCompliance: number;
+  hallucinationRate: number;
+  costEfficiency: number;
+  latencyScore: number;
+  collaborationQuality: number;
+  sampleSize: number;
+  composite: number;
+  eligibilityTier: EligibilityTier;
+  maxImpactLevel: ImpactLevel;
+  lastEvaluatedAt: string | null;
+  provenance: Record<string, unknown>;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  auditEventId: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DirectoryEntry = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  professionKey: string;
+  category: DirectoryCategory;
+  displayName: string;
+  description: string | null;
+  oversightLevel: OversightLevel;
+  requiresHumanApproval: boolean;
+  defaultXarpRoles: XarpRole[];
+  logicalAgentCount: number;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type ControlAction = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  control: ControlCommand;
+  subjectKind: ControlSubjectKind;
+  subjectAgentId: string | null;
+  subjectTaskForceId: string | null;
+  subjectMeetingId: string | null;
+  targetTaskId: string | null;
+  targetCapabilityId: string | null;
+  reason: string;
+  issuedBy: string;
+  effective: boolean;
+  clearedBy: string | null;
+  clearedAt: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  issuedAt: string;
+};
+
+export type HumanKnowledgeRecord = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string | null;
+  userId: string;
+  category: HumanKnowledgeCategory;
+  statement: string;
+  context: string | null;
+  subjectAgentId: string | null;
+  correctsEvidenceId: string | null;
+  approvesDecisionId: string | null;
+  elevatesToFact: boolean;
+  elevatedBy: string | null;
+  confidence: number | null;
+  knowledgeSourceId: string | null;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  createdAt: string;
+};
+
+export type GuardianObservation = {
+  id: string;
+  universeId: string;
+  organizationId: string;
+  meetingId: string | null;
+  messageId: string | null;
+  subjectAgentId: string | null;
+  who: string;
+  why: string;
+  whatInformation: string;
+  owningUniverseId: string;
+  informationClassification: SecurityClassification;
+  proposedAction: string;
+  requiresHumanApproval: boolean;
+  verdict: GuardianVerdict;
+  conditions: string[];
+  policyKey: string;
+  securityClassification: SecurityClassification;
+  retentionPolicy: string;
+  provenance: Record<string, unknown>;
+  auditEventId: string | null;
+  observedAt: string;
+};
+
 export type GovernanceEventKind =
   | 'universe_created'
   | 'universe_stage_advanced'
@@ -154,7 +666,29 @@ export type GovernanceEventKind =
   | 'runtime_capability_granted'
   | 'kill_switch_engaged'
   | 'kill_switch_cleared'
-  | 'guardian_refusal';
+  | 'guardian_refusal'
+  | 'meeting_stage_advanced'
+  | 'meeting_evidence_submitted'
+  | 'meeting_proposal_recorded'
+  | 'meeting_objection_raised'
+  | 'meeting_objection_resolved'
+  | 'meeting_proposal_vote'
+  | 'meeting_synthesized'
+  | 'meeting_action_queued'
+  | 'meeting_action_authorized'
+  | 'meeting_action_revoked'
+  | 'meeting_outcome_recorded'
+  | 'meeting_budget_set'
+  | 'meeting_budget_exhausted'
+  | 'meeting_injection_detected'
+  | 'guardian_observation'
+  | 'human_knowledge_recorded'
+  | 'human_knowledge_elevated'
+  | 'agent_control_issued'
+  | 'agent_control_cleared'
+  | 'agent_reputation_updated'
+  | 'agent_directory_registered'
+  | 'overnight_cycle_completed';
 
 export type ActorContext = {
   userId: string;
@@ -206,6 +740,12 @@ export type AgentIdentity = {
   generationDepth: number;
   provenance: Record<string, unknown>;
   killSwitchEngaged: boolean;
+  // Set by a human administrator, read by every write path an agent could take.
+  // A control does not need the agent's cooperation to take effect.
+  controlState: AgentControlState;
+  controlReason: string | null;
+  controlSetBy: string | null;
+  controlSetAt: string | null;
   createdBy: string;
   createdAt: string;
   activatedAt: string | null;
@@ -273,13 +813,40 @@ export type MeetingAgendaItem = {
   detail: string;
 };
 
+// The operating time a meeting was held in. Reasoning that ignores the calendar
+// produces advice that is correct and useless: "call the Osaka plant now" at
+// 02:00 local on a public holiday.
+export type TemporalContext = {
+  location: string;
+  timeZone: string;
+  localTime: string;
+  dayOfWeek: string;
+  season: string;
+  fiscalPeriod: string;
+  businessCycle: string;
+  organizationLifecycle: UniverseLifecycleStage;
+  universeState: string;
+};
+
 export type Meeting = {
   id: string;
   universeId: string;
+  organizationId: string | null;
   taskForceId: string | null;
   title: string;
   agenda: MeetingAgendaItem[];
   status: MeetingStatus;
+  lifecycleStage: MeetingLifecycleStage;
+  triggerKind: MeetingTriggerKind;
+  triggerDetail: string | null;
+  meetingMode: MeetingMode;
+  asyncWindowStart: string | null;
+  asyncWindowEnd: string | null;
+  temporalContext: TemporalContext | null;
+  workingLanguage: string;
+  synthesis: MeetingSynthesis | null;
+  recommendationConfidence: number | null;
+  humanDecisionRequired: boolean;
   securityClassification: SecurityClassification;
   requiresHumanDecision: boolean;
   decision: string | null;
@@ -287,22 +854,57 @@ export type Meeting = {
   decidedAt: string | null;
   unresolvedDisagreements: string[];
   summary: string | null;
+  provenance: Record<string, unknown>;
+  retentionPolicy: string;
+  auditEventId: string | null;
   createdBy: string;
   createdAt: string;
+  closedAt: string | null;
   archivedAt: string | null;
 };
 
 export type MeetingParticipant = {
   id: string;
   universeId: string;
+  organizationId: string | null;
   meetingId: string;
   participantKind: 'agent' | 'human';
   agentId: string | null;
   userId: string | null;
   participantRole: MeetingParticipantRole;
+  xarpRoles: XarpRole[];
+  // The human who relays this agent's turns. An agent holds no credential, so
+  // authorship is bound to an operator; this is what makes impersonation
+  // detectable rather than merely discouraged.
+  operatorUserId: string | null;
+  speakingLanguage: string;
+  invitedBy: string | null;
   vote: MeetingVote | null;
   voteRationale: string | null;
+  provenance: Record<string, unknown>;
   joinedAt: string;
+  leftAt: string | null;
+};
+
+export type EvidenceContradiction = {
+  subject: string;
+  dimension: string;
+  favourable: string[];
+  unfavourable: string[];
+  consensusLevel: number;
+};
+
+export type MeetingSynthesis = {
+  alternatives: MeetingAlternative[];
+  recommendedOptionKey: string | null;
+  recommendation: string;
+  confidence: number;
+  preservedDisagreements: PreservedDisagreement[];
+  contradictions: EvidenceContradiction[];
+  humanDecisionRequired: boolean;
+  reasons: string[];
+  rolesPresent: XarpRole[];
+  rolesMissing: XarpRole[];
 };
 
 export type TaskForce = {
@@ -314,6 +916,10 @@ export type TaskForce = {
   humanExecutiveId: string;
   memberAgentIds: string[];
   recommendation: TaskForceRecommendation | null;
+  controlState: AgentControlState;
+  controlReason: string | null;
+  controlSetBy: string | null;
+  controlSetAt: string | null;
   createdBy: string;
   createdAt: string;
   dissolvedAt: string | null;

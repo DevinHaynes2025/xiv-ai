@@ -18,9 +18,13 @@ import type {
   MeetingAgendaItem,
   MeetingParticipant,
   MeetingParticipantRole,
+  MeetingMode,
+  MeetingTriggerKind,
   MeetingVote,
   SecurityClassification,
+  TemporalContext,
   XacpEvidenceRef,
+  XarpRole,
 } from './types';
 
 export type MeetingContributionKind = 'proposal' | 'evidence' | 'objection' | 'alternative_hypothesis' | 'question';
@@ -34,18 +38,37 @@ export function openMeeting(
     taskForceId?: string | null;
     securityClassification?: SecurityClassification;
     requiresHumanDecision?: boolean;
+    triggerKind?: MeetingTriggerKind;
+    triggerDetail?: string | null;
+    meetingMode?: MeetingMode;
+    asyncWindowStart?: string | null;
+    asyncWindowEnd?: string | null;
+    temporalContext?: TemporalContext | null;
+    workingLanguage?: string;
   },
 ): Meeting {
-  requireMember(state, actor);
+  const { universe } = requireMember(state, actor);
   assertUniverseOperable(requireUniverse(state, actor.universeId));
 
   const meeting: Meeting = {
     id: state.nextId(),
     universeId: actor.universeId,
+    organizationId: universe.organizationId,
     taskForceId: input.taskForceId ?? null,
     title: input.title,
     agenda: [...input.agenda],
     status: 'open',
+    lifecycleStage: 'created',
+    triggerKind: input.triggerKind ?? 'human_request',
+    triggerDetail: input.triggerDetail ?? null,
+    meetingMode: input.meetingMode ?? 'interactive',
+    asyncWindowStart: input.asyncWindowStart ?? null,
+    asyncWindowEnd: input.asyncWindowEnd ?? null,
+    temporalContext: input.temporalContext ?? null,
+    workingLanguage: input.workingLanguage ?? 'en',
+    synthesis: null,
+    recommendationConfidence: null,
+    humanDecisionRequired: input.requiresHumanDecision ?? true,
     securityClassification: input.securityClassification ?? 'confidential',
     requiresHumanDecision: input.requiresHumanDecision ?? true,
     decision: null,
@@ -53,8 +76,12 @@ export function openMeeting(
     decidedAt: null,
     unresolvedDisagreements: [],
     summary: null,
+    provenance: { openedBy: actor.userId, slice: '2I-AI-62A' },
+    retentionPolicy: 'retain-7y-then-review',
+    auditEventId: null,
     createdBy: actor.userId,
     createdAt: now(state),
+    closedAt: null,
     archivedAt: null,
   };
   state.meetings.push(meeting);
@@ -78,9 +105,12 @@ export function joinMeeting(
     agentId?: string | null;
     userId?: string | null;
     participantRole?: MeetingParticipantRole;
+    xarpRoles?: readonly XarpRole[];
+    operatorUserId?: string | null;
+    speakingLanguage?: string;
   },
 ): MeetingParticipant {
-  requireMember(state, actor);
+  const { universe } = requireMember(state, actor);
   const meeting = requireMeeting(state, actor.universeId, input.meetingId);
 
   if (input.participantKind === 'agent') {
@@ -101,14 +131,24 @@ export function joinMeeting(
   const participant: MeetingParticipant = {
     id: state.nextId(),
     universeId: meeting.universeId,
+    organizationId: universe.organizationId,
     meetingId: meeting.id,
     participantKind: input.participantKind,
     agentId: input.participantKind === 'agent' ? (input.agentId ?? null) : null,
     userId: input.participantKind === 'human' ? (input.userId ?? null) : null,
     participantRole: input.participantRole ?? (input.participantKind === 'human' ? 'human_supervisor' : 'contributor'),
+    xarpRoles: [...(input.xarpRoles ?? [])],
+    // An agent holds no credential, so seating one records the human who relays
+    // its turns. Defaulting to the caller is the honest choice: whoever seated
+    // the agent is accountable for what it says until that is changed.
+    operatorUserId: input.participantKind === 'agent' ? (input.operatorUserId ?? actor.userId) : null,
+    speakingLanguage: input.speakingLanguage ?? meeting.workingLanguage,
+    invitedBy: actor.userId,
     vote: null,
     voteRationale: null,
+    provenance: { seatedBy: actor.userId },
     joinedAt: now(state),
+    leftAt: null,
   };
   state.meetingParticipants.push(participant);
 
