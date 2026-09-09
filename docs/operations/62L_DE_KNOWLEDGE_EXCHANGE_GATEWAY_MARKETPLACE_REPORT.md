@@ -7,7 +7,7 @@ Branch: `cursor/62l-de-knowledge-exchange-gateway-marketplace-4059`
 Parent / base tip: `cursor/62l-dd-cognitive-service-mesh-4059` @ `b7ffee55193cb63f7b21aea544a60479ed928108` + `docs/operations/62L_DD_COGNITIVE_SERVICE_MESH_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DD → DC → DB → DA → CZ → CY `c182f7d` → CX `63e79c1` → CW `03584c6` → …**. DD tip initially **WAITING_DATA** (DD agent still landing); interim scaffold started on sealed CY `c182f7d`, then **rebased onto DD** `b7ffee5` once tip + report + modules **PRESENT**. DC/DB remain **WAITING_DATA**. DA `a5a87c6` and CZ present on origin as lineage/fallback. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `chore` / `docs`)
-Tip SHA: `6e868e95033497f11cca2fbdcd2bbf40e645a485`
+Tip SHA: `b7f10e6aafd1335f3c4cd1cbe601acad98c5a9dd`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
