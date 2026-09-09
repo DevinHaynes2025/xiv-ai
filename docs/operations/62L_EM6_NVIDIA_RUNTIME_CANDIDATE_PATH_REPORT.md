@@ -9,7 +9,7 @@ EM5 origin tip `7f446d4` skipped: published but **does not contain** sealed EM4 
 Prior bases: EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
 Rebase onto EM4: **YES**  
 Implementation SHA: `184ea813c5e75ae08d27e687109cfd2f7b37acbf` (feat, post-EM4-rebase)  
-Tip SHA: `86d49e6d2a1f6622cc694da8f60c1826f9acb8df`  
+Tip SHA: `645d9c1534f2b74603e527f99ab9c35c3c994b80`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -125,8 +125,8 @@ cd services/ai && npm run test:local-runtime
 
 | Command | Result |
 |---|---|
-| `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM3 rebase) |
-| `npm run test:local-runtime` | **PASS** — 137/137 (includes EM3 + EM6 + prior EL/EM; no regression) |
+| `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM4 rebase) |
+| `npm run test:local-runtime` | **PASS** — 137/137 (includes EM4 + EM3 + EM6 + prior EL/EM; no regression) |
 
 NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
