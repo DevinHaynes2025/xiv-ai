@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq7-arm-edge-amd-acceleration-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `e83e5d89f12e386705c7c82151cb1e49621fc467`  
 Base: `cursor/62l-eq6-architecture-capability-graph-4059` @ `83643db948251547597e3296517a5a2015ed4e1f`  
 Predecessor: EQ6 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ7 ARM Edge/Phone + AMD XIV Acceleration*  
