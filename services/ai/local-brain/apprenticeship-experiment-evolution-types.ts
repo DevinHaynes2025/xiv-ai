@@ -182,13 +182,13 @@ export function predecessorMap(root = repoRootFromHere()) {
       note: 'Preferred BS tip cursor/62l-bs-engineering-university-memory-cortex-4059 + report; WAITING_DATA until pushed.',
     },
     BR: {
-      tipProbe: (has('62L_BR_CODE_INTELLIGENCE_ENGINEERING_MEMORY_REPORT.md')
+      tipProbe: (has('62L_BR_STRUCTURED_CODE_MEMORY_DEBUG_ACADEMY_REPORT.md')
         ? 'PRESENT'
         : 'WAITING_DATA') as 'PRESENT' | 'WAITING_DATA',
-      report: has('62L_BR_CODE_INTELLIGENCE_ENGINEERING_MEMORY_REPORT.md')
+      report: has('62L_BR_STRUCTURED_CODE_MEMORY_DEBUG_ACADEMY_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'Preferred BR tip; WAITING_DATA until pushed with report.',
+      note: 'Preferred BR tip cursor/62l-br-structured-code-memory-debug-academy-4059; report may still be WAITING_DATA while tip is present.',
     },
     BQ: {
       tipProbe: (has('62L_BQ_REPORT.md') || has('62L_BQ_SOFTWARE_ENGINEERING_INTELLIGENCE_REPORT.md')
@@ -201,13 +201,13 @@ export function predecessorMap(root = repoRootFromHere()) {
       note: 'BQ tip; WAITING_DATA in preference chain.',
     },
     BP: {
-      tipProbe: (has('62L_BP_SUPERBRAIN_COGNITIVE_HOMEOSTASIS_REPORT.md')
+      tipProbe: (has('62L_BP_COGNITIVE_HOMEOSTASIS_GENOME_RECOVERY_REPORT.md')
         ? 'PRESENT'
         : 'WAITING_DATA') as 'PRESENT' | 'WAITING_DATA',
-      report: has('62L_BP_SUPERBRAIN_COGNITIVE_HOMEOSTASIS_REPORT.md')
+      report: has('62L_BP_COGNITIVE_HOMEOSTASIS_GENOME_RECOVERY_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BP tip; WAITING_DATA in preference chain.',
+      note: 'BP tip present on origin with report; preference selects BR tip when BR pushed ahead of BP.',
     },
     BO: {
       tipProbe: (has('62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md')
@@ -216,7 +216,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BO tip used as base when BS→BP still WAITING_DATA after fetch with backoff.',
+      note: 'BO tip available on origin; not selected when BR tip is preferred base.',
     },
     BN: {
       tipProbe: (has('62L_BN_SUPERBRAIN_NEURAL_GROWTH_METABOLISM_REPORT.md')
