@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq5-compiler-ir-translation-layer-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `526396634f42a44e5ebe56717e827dde8e4210fb`  
 Base: `cursor/62l-eq4-proprietary-isa-boundary-4059` @ `ca9bc962ef1764175a6f6384a451314a686d7bcd`  
 Predecessor: EQ4 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ5 Compiler/IR Translation Layer*  
