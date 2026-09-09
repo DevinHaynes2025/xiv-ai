@@ -10,6 +10,9 @@ import { cloudPeerSlots } from './cloud-peer-adapters';
 import { sealedVaultStats } from './ceo-sealed-vault';
 import { knowledgeLakeStats } from './knowledge-lake';
 import { ensureLogicalUniverse } from './logical-universe-graph';
+import { createUniverseLifecycle } from './universe-os-kernel';
+import { installCapabilityPackages } from './offline-service-fabric';
+import { DEFAULT_REPLICATION_POLICY } from './universe-os-types';
 import { parsePackageManifest, recordPackageManifest } from './package-manifest';
 import { verifyPackageIntegrity } from './package-integrity';
 import { resolvePackageDependencies } from './package-dependencies';
@@ -57,6 +60,8 @@ export async function runDeveloperPlatformCycle(input: {
   const hops: CycleHopResult[] = [];
   const store = new LocalCheckpointStore(join(root, '.xiv-local', 'brain-state.json'));
   await ensureLogicalUniverse({ tenantId: input.tenantId, universeId: input.universeId, root });
+  const kernel = await createUniverseLifecycle({ tenantId: input.tenantId, universeId: input.universeId, root });
+  const capabilityPackages = await installCapabilityPackages({ profile: 'desktop', root });
 
   const manifest = parsePackageManifest({
     tenantId: input.tenantId,
@@ -244,6 +249,9 @@ export async function runDeveloperPlatformCycle(input: {
     updateResult,
     quarantineResult,
     exported,
+    kernel,
+    capabilityPackages,
+    sealedReplication: DEFAULT_REPLICATION_POLICY.sealed_founder_priority,
     honesty: PLATFORM_HONESTY,
     installedAsAuthorized: false as const,
     authorityGranted: false as const,
@@ -298,7 +306,7 @@ export async function buildDeveloperPlatformHealthReport(input: {
       '62L-AI': reportPresent(repoRoot, 'docs/operations/62L_AI_SELF_EVOLVING_SOFTWARE_ORGANIZATION_REPORT.md') ? 'PASS' : 'WAITING_DATA',
       '62L-AH': reportPresent(repoRoot, 'docs/operations/62L_AH_REPORT.md') ? 'PASS' : 'WAITING_DATA',
       '62L-AG': reportPresent(repoRoot, 'docs/operations/62L_AG_PERSISTENT_OFFLINE_AGENT_SOCIETY_REPORT.md') ? 'PASS' : 'WAITING_DATA',
-      '62L-AF': reportPresent(repoRoot, 'docs/operations/62L_AF_UNIVERSE_KERNEL_REPORT.md') ? 'PASS' : 'WAITING_DATA',
+      '62L-AF': reportPresent(repoRoot, 'docs/operations/62L_AF_UNIVERSE_OS_KERNEL_MEMORY_REPLICATION_REPORT.md') ? 'PASS' : 'WAITING_DATA',
       '62L-AE': reportPresent(repoRoot, 'docs/operations/62L_AE_HYBRID_EDGE_CLOUD_CEO_VAULT_REPORT.md') ? 'PASS' : 'WAITING_DATA',
       '62L-AD': reportPresent(repoRoot, 'docs/operations/62L_AD_DISTRIBUTED_OFFLINE_AGENT_MESH_REPORT.md') ? 'PASS' : 'WAITING_DATA',
       '62L-AC': reportPresent(repoRoot, 'docs/operations/62L_AC_OFFLINE_AGENT_RUNTIME_WORKCELLS_REPORT.md') ? 'PASS' : 'WAITING_DATA',

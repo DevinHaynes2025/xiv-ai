@@ -3,10 +3,15 @@ import {
   redactSealedForRouting,
   SEALED_REDACTION,
 } from './ceo-sealed-vault';
+import { DEFAULT_REPLICATION_POLICY } from './universe-os-types';
 import { classificationGate } from './permission-classification-gate';
 import type { PackageClassification, PackageManifest } from './developer-platform-types';
 
 export { SEALED_REDACTION };
+
+export function sealedReplicationPolicy(classification: PackageClassification) {
+  return DEFAULT_REPLICATION_POLICY[classification];
+}
 
 export type ExportEnvelope = {
   packageId: string;
@@ -33,7 +38,8 @@ export function redactPackageExport(input: {
   replicating: false;
 } {
   const gate = classificationGate(input.manifest.classification);
-  const sealed = input.manifest.classification === 'sealed_founder_priority' || !gate.exportable;
+  const replication = sealedReplicationPolicy(input.manifest.classification);
+  const sealed = replication === 'never' || input.manifest.classification === 'sealed_founder_priority' || !gate.exportable;
   const raw = {
     packageId: input.manifest.id,
     name: input.manifest.name,

@@ -6,6 +6,7 @@ import { getRegistryRecord, listPrivateCatalog, upsertRegistryRecord, withLifecy
 import { redactPackageExport, SEALED_REDACTION } from './export-redaction';
 import { classificationGate } from './permission-classification-gate';
 import { parsePackageManifest, recordPackageManifest } from './package-manifest';
+import { DEFAULT_REPLICATION_POLICY } from './universe-os-types';
 import type { PlatformEvidenceState } from './developer-platform-types';
 
 type ExchangeStore = {
@@ -113,8 +114,9 @@ export async function sharePackageAcrossUniverses(input: {
     return { ...share, state: 'FAIL' as const };
   }
   const gate = classificationGate(record.manifest.classification);
-  if (record.manifest.classification === 'sealed_founder_priority' || !gate.replicating) {
-    if (record.manifest.classification === 'sealed_founder_priority' || record.manifest.classification === 'restricted') {
+  const replication = DEFAULT_REPLICATION_POLICY[record.manifest.classification];
+  if (replication === 'never' || record.manifest.classification === 'sealed_founder_priority' || !gate.replicating) {
+    if (replication === 'never' || record.manifest.classification === 'sealed_founder_priority' || record.manifest.classification === 'restricted') {
       const exported = redactPackageExport({ manifest: record.manifest });
       const share: UniverseShare = {
         id: `share_${randomUUID()}`,

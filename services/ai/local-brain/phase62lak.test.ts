@@ -77,7 +77,19 @@ try {
   check('US-AK4', baseline.diff.authorityGranted === false, 'Permission diff never grants authority.');
   check('US-AK5', baseline.classification.cloudRoutable === false, 'Classification gate keeps cloud routing closed.');
   check('US-AK6', baseline.compatibility.state === 'PASS' && baseline.compatibility.hostOs === 'linux', 'Linux host + CPU compatibility resolved.');
-  check('US-AK7', baseline.install.state === 'PASS' && baseline.install.authorityGranted === false, 'Transactional sandboxed install completed without granting authority.');
+  check(
+    'US-AK7',
+    baseline.install.state === 'PASS' && baseline.install.authorityGranted === false,
+    'Transactional sandboxed install completed without granting authority.',
+  );
+  check(
+    'US-AK-af-kernel',
+    baseline.kernel.cloudRequired === false &&
+      baseline.kernel.physicalAlternateUniverse === false &&
+      baseline.capabilityPackages.some((item) => item.id === 'offline_kernel') &&
+      baseline.sealedReplication === 'never',
+    'Cycle reuses AF Universe Kernel lifecycle and capability packages; sealed replication is never.',
+  );
   check('US-AK21', baseline.install.installedAsAuthorized === false, 'Install is not claimed as authorized.');
   check('US-AK22', existsSync(join(packageDir(root, baseline.manifest.id), 'README.txt')), 'Sandbox files were written under .xiv-local/packages.');
   check('US-AK23', baseline.hops.find((hop) => hop.hop === 'health_test')?.state === 'PASS', 'Post-install health/test hop ran.');
@@ -191,7 +203,7 @@ try {
       exported.leakedSealed === false,
     'Sealed/restricted export redacts payload to [REDACTED_SEALED].',
   );
-  check('US-AK28', exported.replicating === false && sealedCycle.classification.replicating === false, 'CEO-sealed packages are non-replicating.');
+  check('US-AK28', exported.replicating === false && sealedCycle.classification.replicating === false && sealedCycle.sealedReplication === 'never', 'CEO-sealed packages are non-replicating (AF kernel policy never).');
   const sealedShare = await sharePackageAcrossUniverses({
     packageId: sealedCycle.manifest.id,
     tenantId,
