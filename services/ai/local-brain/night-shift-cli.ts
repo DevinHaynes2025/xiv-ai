@@ -15,6 +15,8 @@ if (!Array.isArray(parsed)) {
   process.exit(2);
 }
 
-const report = await runNightShift(parsed as NightShiftTask[]);
+const report = await runNightShift(parsed as NightShiftTask[], {
+  resume: process.env.XIV_NIGHT_SHIFT_RESUME === 'true',
+});
 console.log(JSON.stringify(report, null, 2));
 process.exitCode = report.tasksBlocked > 0 ? 2 : 0;
