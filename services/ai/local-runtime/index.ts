@@ -35,3 +35,4 @@ export * from './em6-honesty';
 export * from './em6-soft-wire';
 export * from './em6-cross-vendor-benchmark-contract';
 export * from './nvidia-runtime-adapter';
+export * from './device-neutral-inference-router';
