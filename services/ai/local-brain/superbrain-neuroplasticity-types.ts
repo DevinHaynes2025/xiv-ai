@@ -159,7 +159,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BN_SUPERBRAIN_NEURAL_GROWTH_METABOLISM_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'Preferred BN tip cursor/62l-bn-superbrain-neural-growth-metabolism-4059 + report; WAITING_DATA until pushed with report.',
+      note: 'Preferred BN tip + report PRESENT — used as BO base.',
     },
     BM: {
       tipProbe: (has('62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md')
@@ -168,7 +168,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BM tip + report used as base when BN still WAITING_DATA after fetch with backoff.',
+      note: 'BM ancestor of BN; available when BN unavailable.',
     },
     BL: {
       tipProbe: (has('62L_BL_ORG_AGENT_UNIVERSES_TRUST_FABRIC_REPORT.md')
