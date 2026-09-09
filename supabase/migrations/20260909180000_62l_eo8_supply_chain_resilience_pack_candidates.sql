@@ -1,0 +1,51 @@
+-- 62L-EO8 Supply Chain Resilience Pack — candidate schema only.
+-- Status: NOT_APPLIED. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- Do not apply to live Supabase. No overload of production tables.
+-- L4_AUTONOMY_ENABLED=false. No autonomous purchasing / supplier switching /
+-- contract changes / physical dispatch / external communications.
+
+-- Candidate: resilience graph nodes (sandbox / advisory)
+-- CREATE TABLE IF NOT EXISTS eo8_resilience_graph_nodes_candidate (
+--   node_id text PRIMARY KEY,
+--   graph_id text NOT NULL,
+--   kind text NOT NULL,
+--   label text NOT NULL,
+--   truth_label text NOT NULL,
+--   confidence numeric,
+--   evidence_source_date timestamptz,
+--   org_id text NOT NULL,
+--   tenant_id text NOT NULL,
+--   universe_id text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+-- Candidate: sandbox scenario runs (sim ≠ fact)
+-- CREATE TABLE IF NOT EXISTS eo8_resilience_scenario_runs_candidate (
+--   run_id text PRIMARY KEY,
+--   scenario_id text NOT NULL,
+--   graph_id text NOT NULL,
+--   status text NOT NULL DEFAULT 'SANDBOX',
+--   truth_label text NOT NULL,
+--   historical_proves_next boolean NOT NULL DEFAULT false,
+--   sim_is_fact boolean NOT NULL DEFAULT false,
+--   recommend_is_act boolean NOT NULL DEFAULT false,
+--   auto_purchase boolean NOT NULL DEFAULT false,
+--   auto_supplier_switch boolean NOT NULL DEFAULT false,
+--   auto_contract_change boolean NOT NULL DEFAULT false,
+--   auto_dispatch boolean NOT NULL DEFAULT false,
+--   auto_external_comm boolean NOT NULL DEFAULT false,
+--   generated_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+-- Candidate: recovery recommendations (human-authorized; never auto-executed here)
+-- CREATE TABLE IF NOT EXISTS eo8_recovery_recommendations_candidate (
+--   option_id text PRIMARY KEY,
+--   run_id text NOT NULL,
+--   description text NOT NULL,
+--   requires_human_authorization boolean NOT NULL DEFAULT true,
+--   auto_executable boolean NOT NULL DEFAULT false,
+--   truth_label text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+SELECT '62L_EO8_SUPPLY_CHAIN_RESILIENCE_PACK_CANDIDATES_NOT_APPLIED' AS status;
