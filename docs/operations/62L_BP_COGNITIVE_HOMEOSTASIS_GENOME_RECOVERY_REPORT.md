@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bo-superbrain-neuroplasticity-immune-4059` @ `211
 Why this base: Preferred **62L-BO** tip + report **PRESENT** (latest includes BN then BM). Scaffolded from BL; rebased through BO revisions onto current BO @ `211272c`. Founder paste uses **Skill Exchange** (not Marketplace).
 Implementation SHA: `51fcd3f72af97b00f15df59c7b2bedb60f91e30b` (`feat(62L-BP): add cognitive homeostasis, genome replication, skill exchange, mesh recovery #80`)
 Report SHA: `79a29731f680fb89dc2d5f1ad0210f8a8e008682` (gate refresh on BN-backed BO)
-Tip SHA: `79a29731f680fb89dc2d5f1ad0210f8a8e008682`
+Tip SHA: `50abbddd7e5b0807090079ef2933672d31876a63`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
