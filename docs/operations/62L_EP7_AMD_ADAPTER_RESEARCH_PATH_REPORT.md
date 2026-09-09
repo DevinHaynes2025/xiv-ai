@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep7-amd-adapter-research-path-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `29821a6946e19dfb070f8c5b8026cf147b45cdd6`  
 Base: `cursor/62l-ep6-local-hardware-truth-probe-v2-4059` @ `a8d8d4dfe430f690576785c47d66066b1e15d59a`  
 Predecessor: EP6 Local Hardware Truth Probe v2 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP7 AMD Adapter Research Path*  
