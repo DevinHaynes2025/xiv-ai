@@ -1,16 +1,15 @@
 # 62L-EM7 — Device-Neutral Inference Router Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto EM6** — unit tests **re-executed** — safeguard denies + priority scoring **PASS** — soft-wires updated — **NOT** a live multi-vendor ASUS verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto EM5 (contains EM4)** — unit tests **re-executed** — soft-wires updated — **NOT** a live multi-vendor ASUS verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em7-device-neutral-inference-router-4059`  
-Tip SHA: `b94160c3168ccb1537522c55468719e28147779e`  
-Base used: `cursor/62l-em6-nvidia-runtime-candidate-path-4059` @ `5301b7cf24672d16b27adead619d02db7eaace3f`  
-EM6 lineage includes EM3 @ `eb6e963ac31af155225660cb2a420116e21abaff` (on EM1/#157)  
-Prior base (superseded): EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
-Rebase onto EM6: **YES**  
-EM5 remote: **ABSENT** at rebase time (EM5 soft-wire via onnx/AMD candidate modules on EM6 tip)  
-EM4 tip exists remotely but is **not** an ancestor of EM6 → envelope soft-wire **ABSENT** (honest)  
+Tip SHA: `PLACEHOLDER`  
+Base used: `cursor/62l-em5-amd-windows-ml-adapter-path-4059` @ `69753ccad6f1d3a593a4f6e545c2c286077d78a4`  
+EM5 contains EM4 @ `0c31b27d694484499c69fd9fb2eb549d80ac89e8`  
+EM6 tip considered (not preferred): `f91cb3c36ff3d7eba59d2b6e8a7ca43a9c867014`  
+Prior bases (superseded): EM6@`5301b7c…` → EL9@`c834e52…`  
+Rebase onto EM5: **YES**  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -22,73 +21,23 @@ Silent privacy downgrade: **FORBIDDEN**
 
 `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`
 
-## User story
+## Soft-wire (presence only — post-EM5 rebase)
 
-As XIV AI OS, one hardware-neutral router lets agents request inference without hard-coding AMD, NVIDIA, CPU, NPU, edge, or cloud paths.
-
-## Core flow (implemented)
-
-`Agent Request → Policy → Data Classification → Model Compatibility → Compute Registry → Resource Governor → Route Scoring → Execute → Return Receipt → XIV Home Base`
-
-Home Base result acceptance is **PENDING_EM8_RECEIPT** (EM8 owns compute return receipts).
-
-## Priority bands (privacy & correctness before speed)
-
-1. `LOCAL_VERIFIED_NPU_GPU`
-2. `LOCAL_VERIFIED_CPU`
-3. `AUTHORIZED_EDGE`
-4. `AUTHORIZED_CLOUD`
-
-## Scoring inputs (eligible routes only)
-
-privacy/locality, model compatibility, hardware verification state, latency evidence, available RAM/VRAM, current queue/load, reliability history, cost, energy proxy, network availability, tenant/Universe policy, fallback permissions / preference hints (non-exclusive)
-
-## Routing decision fields
-
-`selectedNode`, `selectedDevice`, `runtimeProvider`, `reasonCodes`, `estimatedLatency`, `estimatedCost`, `privacyState`, `fallbackPlan`, `evidenceRefs` (+ priorityBand, score, deniedCandidates, locks)
-
-## Critical safeguards (tested)
-
-| Safeguard | Result |
+| Target | Presence |
 |---|---|
-| NOT_TESTED / UNAVAILABLE / stale denied when verified required | **PASS** |
-| No cross-tenant data movement for faster compute | **PASS** |
-| No cloud spillover without explicit authorization | **PASS** |
-| No automatic capacity purchase | **PASS** |
-| Accelerator failure → fallback visible in receipt (EM4 soft-wire) | **PASS** |
-| No silent privacy downgrade | **PASS** |
-| Consequential tasks approval-gated on any compute path | **PASS** |
-| `L4_AUTONOMY_ENABLED=false` | **PASS** |
-
-## Soft-wire (presence only — post-EM6 rebase)
-
-| Target | Presence | Notes |
-|---|---|---|
-| EM3 Universal Compute Registry | **PRESENT** | `universal-compute-registry.ts` + `em3-honesty.ts` |
-| EM4 message envelope | **ABSENT** | EM4 tip not in EM6 ancestry; fallback visibility still enforced in EM7 decision record |
-| EM5 AMD Windows ML | **PRESENT** | via `onnx-windows-ml-adapter.ts` / `amd-gpu-capability.ts` on EM6 tip |
-| EM6 NVIDIA runtime | **PRESENT** | `nvidia-runtime-adapter.ts` + `em6-honesty.ts` / soft-wire |
-| EL9 Resource Governor | **PRESENT** | ceiling soft-wire + locks |
-| EM1 Agent Home Base | **PRESENT** | `local-brain/agent-home-base-*.ts` |
-| Prior EM honesty / capability-truth | **PRESENT** | |
+| EM3 Universal Compute Registry | **PRESENT** |
+| EM4 message envelope | **PRESENT** |
+| EM5 AMD Windows ML | **PRESENT** |
+| EM6 NVIDIA runtime | **ABSENT** (EM5 preferred; honest) |
+| EL9 Resource Governor | **PRESENT** |
+| EM1 Agent Home Base | **PRESENT** |
 
 Presence ≠ VERIFIED ≠ production authorization.
-
-## Deliverables
-
-| Artifact | Path |
-|---|---|
-| Router | `services/ai/local-runtime/device-neutral-inference-router.ts` |
-| Types | `services/ai/local-runtime/device-neutral-inference-router-types.ts` |
-| Honesty | `services/ai/local-runtime/em7-honesty.ts` |
-| Soft-wire | `services/ai/local-runtime/em7-soft-wire.ts` |
-| Tests | `services/ai/local-runtime/__tests__/em7-device-neutral-inference-router.test.ts` |
-| Script | `npm run test:62lem7` (in `services/ai`) |
 
 ## Test evidence
 
 Command: `npm run test:62lem7` (cwd `services/ai`)  
-Result after EM6 rebase: **12/12 PASS** (locks, soft-wire, safeguards, priority, vendor-neutral scoring, decision fields).
+Result after EM5 rebase: **12/12 PASS**.
 
 ## Next (do not implement here)
 
