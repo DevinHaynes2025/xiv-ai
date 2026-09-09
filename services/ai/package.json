@@ -157,7 +157,9 @@
     "test:62lea": "tsx local-brain/phase62lea.test.ts",
     "local:global-operations-intelligence-grid-health": "tsx local-brain/global-operations-intelligence-grid-cli.ts",
     "test:62leb": "tsx local-brain/phase62leb.test.ts",
-    "local:multi-model-superbrain-federation-health": "tsx local-brain/multi-model-superbrain-federation-cli.ts"
+    "local:multi-model-superbrain-federation-health": "tsx local-brain/multi-model-superbrain-federation-cli.ts",
+    "test:62led": "tsx local-brain/phase62led.test.ts",
+    "local:data-galaxy-industry-memory-os-health": "tsx local-brain/data-galaxy-industry-memory-os-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

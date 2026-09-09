@@ -1,0 +1,35 @@
+-- 62L-ED Data Galaxy & Industry Memory OS candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Trillions = future scale target only (≠ owned corpus).
+-- Genome = original XIV schemas + lawful patterns (≠ proprietary copy).
+-- Synthetic tasks labeled SYNTHETIC; sim ≠ fact; connectors unconfigured = UNAVAILABLE.
+
+-- Candidate tables only (do not auto-apply):
+-- ed_microdatabase_navs
+-- ed_provenance_highways
+-- ed_scale_claim_probes
+-- ed_historical_industry_memory
+-- ed_genome_schema_registrations
+-- ed_proprietary_copy_denials
+-- ed_oracle_compatible_contracts
+-- ed_lean_advisories
+-- ed_synthetic_task_batches
+-- ed_enterprise_connectors
+-- ed_connector_probes
+-- ed_simulation_universes
+-- ed_industry_twin_probes
+-- ed_historical_market_research
+-- ed_edge_cloud_routes
+-- ed_offline_agent_probes
+-- ed_runtime_evidence_probes
+-- ed_knowledge_tower_access
+-- ed_personal_business_firewall
+-- ed_neural_node_probes
+-- ed_self_promotion_denials
+-- ed_stealth_install_denials
+-- ed_twin_authority_probes
+-- ed_autonomy_boundary_probes
+
+SELECT '62L_ED_CANDIDATES_NOT_APPLIED' AS status;
