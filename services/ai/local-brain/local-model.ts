@@ -56,6 +56,10 @@ export async function localModelStatus(): Promise<LocalModelStatus> {
   }
 }
 
+export async function completeLocal(prompt: string): Promise<LocalModelCompletion> {
+  return completeWithLocalModel(prompt);
+}
+
 export async function completeWithLocalModel(prompt: string): Promise<LocalModelCompletion> {
   const status = await localModelStatus();
   if (status.availability !== 'AVAILABLE' || !status.model) {
