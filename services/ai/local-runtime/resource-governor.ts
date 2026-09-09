@@ -127,12 +127,15 @@ export type El9SoftWireSnapshot = {
 
 export function el9SoftWireSnapshot(): El9SoftWireSnapshot {
   const here = dirname(fileURLToPath(import.meta.url));
-  const el7AdapterPath = join(here, 'windows-local-runtime-adapter.ts');
+  // EL7 shipped as inference-adapter.ts (+ el7-soft-wire); keep legacy path as optional alias.
+  const el7LegacyPath = join(here, 'windows-local-runtime-adapter.ts');
+  const el7AdapterPath = join(here, 'inference-adapter.ts');
   const el7SoftWirePath = join(here, 'el7-soft-wire.ts');
   const el8Path = join(here, 'model-load-evidence.ts');
+  const el7AdapterPresent = existsSync(el7AdapterPath) || existsSync(el7LegacyPath);
   return {
-    el7AdapterPresent: existsSync(el7AdapterPath),
-    el7AdapterPathChecked: el7AdapterPath,
+    el7AdapterPresent,
+    el7AdapterPathChecked: existsSync(el7AdapterPath) ? el7AdapterPath : el7LegacyPath,
     el7SoftWirePresent: existsSync(el7SoftWirePath),
     el7SoftWirePathChecked: el7SoftWirePath,
     el8EvidencePresent: existsSync(el8Path),

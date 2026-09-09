@@ -508,7 +508,8 @@ test('soft-wire snapshot for EL7 adapter + EL8 evidence (presence only)', () => 
   assert.equal(typeof snap.el7SoftWirePresent, 'boolean');
   assert.equal(typeof snap.el8EvidencePresent, 'boolean');
   assert.match(snap.note, /Presence soft-wire only/);
-  // After rebase onto EL8 tip: model-load-evidence + el7-soft-wire are expected present.
+  // After rebase onto EL8 tip: model-load-evidence + EL7 soft-wire/adapter expected present.
   assert.equal(snap.el8EvidencePresent, true);
   assert.equal(snap.el7SoftWirePresent, true);
+  assert.equal(snap.el7AdapterPresent, true);
 });
