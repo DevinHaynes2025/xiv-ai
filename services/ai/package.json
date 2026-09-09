@@ -18,11 +18,9 @@
     "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
     "test:62lel8": "node --import tsx --test local-runtime/__tests__/el8-model-load-evidence.test.ts",
     "test:62lel9": "node --import tsx --test local-runtime/__tests__/el9-resource-governor.test.ts",
-<<<<<<< HEAD
-    "test:62lem1": "node --import tsx --test local-brain/phase62lem1.test.ts"
-=======
-    "test:62lem3": "node --import tsx --test local-runtime/__tests__/phase62lem3.test.ts"
->>>>>>> 13a5b6f (feat(62L-EM3): universal compute registry contracts and eligibility gates)
+    "test:62lem1": "node --import tsx --test local-brain/phase62lem1.test.ts",
+    "test:62lem3": "node --import tsx --test local-runtime/__tests__/phase62lem3.test.ts",
+    "test:62lem4": "node --import tsx --test local-brain/__tests__/phase62lem4.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
