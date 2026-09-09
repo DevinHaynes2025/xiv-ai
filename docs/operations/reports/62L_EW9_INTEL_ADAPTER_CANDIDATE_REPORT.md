@@ -6,7 +6,8 @@
 **Story:** GitHub #169 / 62L-EW Slice EW9 under Global Operations Brain  
 **Branch:** `cursor/62l-ew9-intel-adapter-candidate-4059`  
 **Base (authorized tip):** EW8 `origin/cursor/62l-ew8-nvidia-adapter-candidate-4059` @ `0728cdb045a6a9c298e2d4949759e5551fa644b6` (contains EW7 + `origin/xiv-v2`)  
-**Feat tip SHA:** `d21a28ac9ef6fed4b75405f082a5d218b3c19a73`  
+**Feat tip SHA:**   
+**Branch HEAD:** `6170d5f4f43e8971355a1527b7a37f2e7d05a809`  
 **Docs tip SHA:** `77f2af1fa6deef13b11538d0e81b26e006410112`  
 **Honesty:** DOCUMENTED ≠ DETECTED ≠ SUPPORTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened
