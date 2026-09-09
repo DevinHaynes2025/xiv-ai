@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-cm-sovereign-regional-knowledge-clouds-4059` @ `4
 Why this base: Preferred **62L-CM** tip + report. At start CM/CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ** @ `a66c839`, polled with backoff until **CL** tip **PRESENT**, reset onto CL `@b0186aa`, then **CM** tip **PRESENT** @ `72145dc` and rebased again onto CM report tip `@4a514b4`. Preference **CM → CL → CK → CJ → CI → CH…** selects **CM**.
 Implementation SHAs: `ad6f673..6e152ad` (feat/test/chore; see `git log`)
 Report SHA: `f10f2badda32d0876cb5e3ad57408ce7059befcf`
-Tip SHA: `f10f2badda32d0876cb5e3ad57408ce7059befcf`
+Tip SHA: `a3a8e6ae9adb72f78b8873871fea4b0b2bb04115`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
