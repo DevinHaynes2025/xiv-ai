@@ -7,7 +7,7 @@ Branch: `cursor/62l-cp-knowledge-supply-plugin-foundry-4059`
 Parent / base tip: `cursor/62l-co-global-knowledge-exchange-os-4059` @ `29b18b22905c8b07c8e99888aca1a80bf18a2e18` (includes `62L_CO_GLOBAL_KNOWLEDGE_EXCHANGE_OS_REPORT.md`)
 Why this base: Preference **CO → CN → CM → CL → CK → CJ `478feb135420443b647676df81cd42b868f3aad4` → …**. At start CO/CN/CM were **WAITING_DATA**; scaffolded from pushed **CL** `@b0186aa`. Polled with backoff until **CM**, **CN**, then preferred **CO** tip+report **PRESENT**; **rebased onto CO** `@29b18b2`.
 Implementation SHAs: see commit list below (`feat` / `fix` / `chore` / `docs`)
-Tip SHA: `b857fbe8b4427af542f078d12f378be7de9e7f1c`
+Tip SHA: `74f78d0431a6a6fa73729041e1bc5a25e1a69422`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
