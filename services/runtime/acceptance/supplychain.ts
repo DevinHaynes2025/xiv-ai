@@ -210,7 +210,7 @@ export function runAc16(): AcceptanceResult {
   const thresholds: Threshold[] = [
     zero('repo_secrets', 'High-confidence secret detections in repository and config', scan.criticalCount + scan.highCount, {
       blocker: true,
-      note: `${scan.scannedFiles} tracked files scanned, ${scan.placeholderMatches.length} placeholder matches excluded`,
+      note: `${scan.scannedFiles} working-tree files scanned, ${scan.placeholderMatches.length} placeholder matches excluded`,
     }),
     zero('client_bundle_credentials', 'Server credentials reachable from the client bundle', scan.clientBundleViolations.length, {
       blocker: true,

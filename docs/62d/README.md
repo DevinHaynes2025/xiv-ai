@@ -65,7 +65,7 @@ npm run typecheck      # tsc --noEmit
 npm test               # unit suite (node:test)
 npm run acceptance     # AC-01..AC-24, writes docs/62d/
 npm run verify:rls     # applies the migration to a local PostgreSQL and probes RLS
-npm run scan:secrets   # AC-16 scanner over the git-tracked tree
+npm run scan:secrets   # AC-16 scanner over the git working tree
 npm run sbom           # AC-17 component inventory + npm audit
 npm start              # the control surface on RUNTIME_PORT (default 8788)
 ```

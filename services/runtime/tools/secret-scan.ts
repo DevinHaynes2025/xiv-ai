@@ -1,7 +1,7 @@
 /**
  * AC-16 secret and credential scanner.
  *
- * Scans git-tracked files for high-confidence credential material. Rules are
+ * Scans the git working tree for high-confidence credential material. Rules are
  * deliberately narrow: each one matches a credential format that is meaningful
  * on its own, so a finding is a finding rather than a guess. Placeholder and
  * example values are excluded by an explicit allowlist, and the allowlist is
@@ -143,9 +143,18 @@ export type SecretScanReport = {
   gitignoreCoversEnv: boolean;
 };
 
-function trackedFiles(): string[] {
-  const output = execFileSync('git', ['ls-files'], { cwd: repoRoot, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
-  return output.split('\n').filter(Boolean);
+/**
+ * Covers tracked files plus untracked ones git would let you commit. Scanning
+ * only the index leaves work in progress unscanned, which is the window a
+ * credential is most likely to be sitting in.
+ */
+function scannableFiles(): string[] {
+  const output = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard'], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  return [...new Set(output.split('\n').filter(Boolean))].sort();
 }
 
 function isSkipped(file: string): boolean {
@@ -211,7 +220,7 @@ export function scanContents(
 }
 
 export function scanSecrets(): SecretScanReport {
-  const files = trackedFiles();
+  const files = scannableFiles();
   const findings: SecretFinding[] = [];
   const placeholderMatches: SecretFinding[] = [];
   const clientBundleViolations: SecretFinding[] = [];
@@ -291,7 +300,7 @@ if (invokedDirectly) {
   if (process.argv.includes('--json')) {
     console.info(JSON.stringify(report, null, 2));
   } else {
-    console.info(`[secret-scan] scanned ${report.scannedFiles} tracked files (${report.skippedFiles} skipped)`);
+    console.info(`[secret-scan] scanned ${report.scannedFiles} working-tree files (${report.skippedFiles} skipped)`);
     for (const finding of report.findings) {
       console.info(`[secret-scan] ${finding.severity.toUpperCase()} ${finding.ruleId} ${finding.file}:${finding.line} ${finding.excerpt}`);
     }

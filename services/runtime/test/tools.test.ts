@@ -1,7 +1,21 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
+import { existsSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { test } from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { buildSbom, parseAudit, SHIPPING_RUNTIMES, toCycloneDx } from '../tools/sbom';
 import { findLeakedValues, scanContents, scanSecrets, SECRET_RULES } from '../tools/secret-scan';
+
+/**
+ * Fixtures are assembled from fragments so no complete credential shape is ever
+ * spelled out in this file. The repository scan below covers the whole working
+ * tree including this test, and exempting a path would create the one place a
+ * real secret could sit unscanned.
+ */
+const fuse = (...parts: string[]) => parts.join('');
+
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
 /**
  * A scanner that never matches would report zero findings on a repository full
@@ -9,16 +23,16 @@ import { findLeakedValues, scanContents, scanSecrets, SECRET_RULES } from '../to
  */
 test('secret rules fire on synthetic credentials', () => {
   const samples: Record<string, string> = {
-    aws_access_key_id: 'const key = "AKIA1234567890ABCDEF"',
+    aws_access_key_id: `const key = "${fuse('AKIA', '1234567890ABCDEF')}"`,
     google_api_key: `const key = "AIza${'b'.repeat(35)}"`,
     openai_api_key: `const key = "sk-${'c'.repeat(40)}"`,
     anthropic_api_key: `const key = "sk-ant-${'d'.repeat(30)}"`,
-    private_key_block: '-----BEGIN RSA PRIVATE KEY-----',
+    private_key_block: fuse('-----BEGIN RSA ', 'PRIVATE KEY-----'),
     github_token: `const t = "ghp_${'e'.repeat(36)}"`,
-    slack_token: 'const t = "xoxb-1234567890-abcdefghij"',
+    slack_token: `const t = "${fuse('xoxb', '-1234567890-abcdefghij')}"`,
     generic_jwt: `const t = "eyJ${'f'.repeat(20)}.eyJ${'g'.repeat(20)}.${'h'.repeat(30)}"`,
-    assigned_secret_literal: 'const config = { client_secret: "s3cret-value-long-enough" }',
-    postgres_url_with_password: 'DATABASE_URL=postgresql://user:supersecret@db.internal:5432/app',
+    assigned_secret_literal: `const config = { ${fuse('client_sec', 'ret')}: "s3cret-value-long-enough" }`,
+    postgres_url_with_password: `DATABASE_URL=${fuse('postgresql://user', ':supersecret@db.internal:5432/app')}`,
   };
 
   for (const [ruleId, contents] of Object.entries(samples)) {
@@ -56,10 +70,44 @@ test('server credentials referenced from the client bundle are violations', () =
 
 test('the repository scan finds no live credentials', () => {
   const report = scanSecrets();
-  assert.ok(report.scannedFiles > 50, 'the scan should cover the tracked tree');
+  assert.ok(report.scannedFiles > 50, 'the scan should cover the working tree');
   assert.deepEqual(report.findings, []);
   assert.deepEqual(report.clientBundleViolations, []);
   assert.equal(report.gitignoreCoversEnv, true);
+});
+
+/**
+ * A scan limited to the index reports clean on a credential that has been
+ * written but not yet committed, which is when it is most likely to be there.
+ */
+test('the scan reaches files that are not committed yet', () => {
+  const relative = join('services/runtime', `.secret-scan-probe-${randomUUID()}.ts`);
+  const absolute = join(repoRoot, relative);
+  writeFileSync(absolute, `const key = "${fuse('AKIA', 'ABCDEFGHIJKLMNOP')}"\n`);
+  try {
+    const report = scanSecrets();
+    const hit = report.findings.find((finding) => finding.file === relative);
+    assert.ok(hit, 'an uncommitted credential was not scanned');
+    assert.equal(hit?.ruleId, 'aws_access_key_id');
+  } finally {
+    rmSync(absolute, { force: true });
+  }
+});
+
+test('the scan honours gitignore rather than walking build output', () => {
+  const ignored = join(repoRoot, 'services/runtime/node_modules/.secret-scan-probe.ts');
+  if (!existsSync(dirname(ignored))) return;
+  writeFileSync(ignored, `const key = "${fuse('AKIA', 'ABCDEFGHIJKLMNOP')}"\n`);
+  try {
+    const report = scanSecrets();
+    assert.equal(
+      report.findings.filter((finding) => finding.file.includes('.secret-scan-probe')).length,
+      0,
+      'gitignored paths should stay out of the scan',
+    );
+  } finally {
+    rmSync(ignored, { force: true });
+  }
 });
 
 test('leak detection matches only substantial values', () => {
