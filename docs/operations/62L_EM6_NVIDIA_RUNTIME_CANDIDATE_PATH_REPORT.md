@@ -9,7 +9,7 @@ EM5 origin tip `7f446d4` skipped: published but **does not contain** sealed EM4 
 Prior bases: EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
 Rebase onto EM4: **YES**  
 Implementation SHA: `184ea813c5e75ae08d27e687109cfd2f7b37acbf` (feat, post-EM4-rebase)  
-Tip SHA: `PLACEHOLDER_TIP`  
+Tip SHA: `4c48d72eb5126518aed33f46bfd9f626582b5b11`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
