@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bo-superbrain-neuroplasticity-immune-4059` @ `ebb
 Why this base: Preferred **62L-BO** tip + `62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md` **PRESENT** after fetch/backoff (initially MISSING; landed during BP work). Scaffold started from **BL** @ `46ea56b` while BO/BN/BM were WAITING_DATA, then **rebased onto BO** once available. **BN** remains **WAITING_DATA** (not on origin). **BM** tip present on origin but preference order selects **BO**. Founder paste uses **Skill Exchange** (not Marketplace).
 Implementation SHA: `96d278112a32a4a70f6548bbd055624606cd3efc` (`feat(62L-BP): add cognitive homeostasis, genome replication, skill exchange, mesh recovery #80`)
 Report SHA:  (report body)
-Tip SHA: `bf43d8d275100606ee39e51a374144a70b8a6261`
+Tip SHA: `19ee550708eb26a2196dadac5b8e39580b3075be`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
