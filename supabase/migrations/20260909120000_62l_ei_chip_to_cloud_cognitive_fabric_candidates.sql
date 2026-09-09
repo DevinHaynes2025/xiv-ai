@@ -1,0 +1,36 @@
+-- 62L-EI Chip-to-Cloud Cognitive Fabric candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Enterprise brands = INTEGRATION_CANDIDATE / UNVERIFIED_RELATIONSHIP until evidence.
+-- Historical medicine = cultural/research knowledge ≠ clinical authority.
+-- Unsigned/unenrolled events sealed deny; autonomy ≠ freight/PO/spend.
+
+-- Candidate tables only (do not auto-apply):
+-- ei_chip_cloud_fabric_registrations
+-- ei_chip_cloud_evidence_gates
+-- ei_chip_cloud_config_probes
+-- ei_healthcare_logistics_plans
+-- ei_healthcare_clinical_authority_probes
+-- ei_medical_device_control_probes
+-- ei_enterprise_brand_candidates
+-- ei_plugin_trust_scores
+-- ei_plugin_connector_probes
+-- ei_adapter_contract_probes
+-- ei_historical_medicine_entries
+-- ei_historical_medicine_clinical_probes
+-- ei_offline_medicine_packs
+-- ei_supplier_factory_nodes
+-- ei_auto_po_freight_denials
+-- ei_electronics_sc_physical_probes
+-- ei_business_system_translations
+-- ei_signed_event_records
+-- ei_event_lineage_records
+-- ei_reliability_mesh_nodes
+-- ei_neural_node_soft_wires
+-- ei_offline_reliability_probes
+-- ei_stealth_install_denials
+-- ei_twin_authority_probes
+-- ei_autonomy_boundary_probes
+
+SELECT '62L_EI_CANDIDATES_NOT_APPLIED' AS status;
