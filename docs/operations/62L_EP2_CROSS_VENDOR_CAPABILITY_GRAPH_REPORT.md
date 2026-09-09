@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep2-cross-vendor-capability-graph-4059`  
-Tip SHA: _(filled after commit)_  
+Tip SHA: `d19e91a8f49023fdfa53114323ba58436871e452`  
 Base: `cursor/62l-ep1-virtual-chip-contract-4059` @ `a02ba70c85ca369c228f122901a4623a6b4c411d`  
 Predecessor: EP1 Virtual Chip Contract **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP2 Cross-Vendor Capability Graph*  
