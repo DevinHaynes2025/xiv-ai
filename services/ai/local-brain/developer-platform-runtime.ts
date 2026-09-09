@@ -371,7 +371,7 @@ export async function demoSkillAndPacks(input: {
     packageId: skill.manifest.id,
     tenantId: input.tenantId,
     fromUniverseId: input.universeId,
-    toUniverseId: `${input.universeId}-peer`,
+    toUniverseId: `${input.universeId}-unlinked`,
     root: input.root,
   });
   const syncOnline = await syncOfflineMarketplace({
