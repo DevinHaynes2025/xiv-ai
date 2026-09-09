@@ -6,8 +6,8 @@ Date: 2026-09-09
 Branch: `cursor/62l-cj-intelligence-resource-grid-apprenticeship-4059`
 Parent / base tip: `cursor/62l-ci-persistent-intelligence-economy-4059` @ `92c71bddc939fe773b016a753c48144a543f3a85` (includes `62L_CI_PERSISTENT_INTELLIGENCE_ECONOMY_REPORT.md`)
 Why this base: Preferred **62L-CI** tip + report initially **WAITING_DATA**, then **PRESENT** after fetch-with-backoff. Scaffolded from **CF** `@5daacde` (report PRESENT) while CI/CH/CG landing; then **rebased onto CI** `@92c71bd` once tip + report **PRESENT** on origin. **CG** `@87fdf05` is CI ancestor; **CH** tip exists on origin (`cursor/62l-ch-knowledge-civilization-dept-universities-4059`) but is **not** on the CI lineage (parallel). Preference **CI → CH → CG → CF → CE `@4a902ca` → CD → BZ `@ff72b94` → …** selects **CI**.
-Implementation SHAs: `06a4aea`..`b2450f6` (feat/test/chore/docs; see `git log`)
-Tip SHA: `b2450f663ea0e626824c4c56178ca847d18899a1`
+Implementation SHAs: `06a4aea`..`30cdfda` (feat/test/chore/docs; see `git log`)
+Tip SHA: `afeca268013d218cb55706f35175fbb82fa38523`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
