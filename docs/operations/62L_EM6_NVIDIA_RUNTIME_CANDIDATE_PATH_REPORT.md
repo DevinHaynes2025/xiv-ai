@@ -8,7 +8,7 @@ Base: `cursor/62l-em3-universal-compute-registry-4059` @ `eb6e963ac31af155225660
 Prior base: EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (superseded by rebase)  
 Rebase onto EM3: **YES**  
 Implementation SHA: `1f6b8c14e795949f1b485897c7854ec12d6c509d` (feat, post-rebase)  
-Tip SHA: `8b208e22fbf02ae84df2e99ebc3199d765ebbec8`  
+Tip SHA: `285c99680f7581b0229a74621bf1ff64b461b2c5`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -107,7 +107,7 @@ Side states preserved: `DEGRADED` / `UNAVAILABLE` / `NOT_TESTED`.
 |---|---|
 | `services/ai/local-runtime/nvidia-runtime-adapter.ts` | NVIDIA adapter + gates + denies + cloud/spend + EL9 limits |
 | `services/ai/local-runtime/em6-honesty.ts` | EM6 locks + INTEGRATION_CANDIDATE |
-| `services/ai/local-runtime/em6-soft-wire.ts` | Soft-wire EM4/EL8/EM5/EL9/home-base presence |
+| `services/ai/local-runtime/em6-soft-wire.ts` | Soft-wire EM3/EM4/EL8/EM5/EL9/home-base presence |
 | `services/ai/local-runtime/em6-cross-vendor-benchmark-contract.ts` | Later benchmark contract |
 | `services/ai/local-runtime/__tests__/em6-nvidia-runtime.test.ts` | EM6 acceptance tests |
 | `services/ai/package.json` | `test:62lem6` |
@@ -131,11 +131,12 @@ NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
 ## Soft-wire
 
+- EM3 universal compute registry / honesty: **PRESENT** after rebase onto EM3 tip
 - EL8 model-load evidence / honesty: presence soft-wire
 - EL9 resource governor: presence + VRAM/concurrency/runtime/queue/duration ceilings
-- EM4 compute envelope: presence probe (may be ABSENT on park-and-implement base)
+- EM4 compute envelope: presence probe (may be ABSENT until EM4 tip publishes)
 - EM5 AMD Windows ML path: soft-wires via `onnx-windows-ml-adapter` / EM5 modules when present
-- local-brain home-base: optional presence
+- local-brain home-base (#157 / EM1): **PRESENT** on this base
 - Existing policy: auto high-risk blocked; consequential approval required; `canAutoExecute` false
 
 ## Explicit NON-claims
