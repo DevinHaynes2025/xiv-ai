@@ -147,7 +147,9 @@
     "test:62ldv": "tsx local-brain/phase62ldv.test.ts",
     "local:universal-data-industry-cortex-health": "tsx local-brain/universal-data-industry-cortex-cli.ts",
     "test:62ldw": "tsx local-brain/phase62ldw.test.ts",
-    "local:supply-chain-superbrain-health": "tsx local-brain/supply-chain-superbrain-cli.ts"
+    "local:supply-chain-superbrain-health": "tsx local-brain/supply-chain-superbrain-cli.ts",
+    "test:62ldx": "tsx local-brain/phase62ldx.test.ts",
+    "local:autonomous-supply-chain-ops-health": "tsx local-brain/autonomous-supply-chain-ops-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
