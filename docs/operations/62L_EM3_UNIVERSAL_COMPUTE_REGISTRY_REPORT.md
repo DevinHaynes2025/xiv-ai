@@ -20,7 +20,6 @@ Date: 2026-09-09
 | Working branch | `cursor/62l-em3-universal-compute-registry-4059` |
 | EM3 implement SHA (rebased) | `8de694cb4998f7ef5ebed998bd070df2323cec24` |
 | Rebase | **YES** — onto EM1 latest after #157 |
-| Branch tip SHA | `1c7e87a60321796c670461e1b6b2b4dd638a39b8` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
