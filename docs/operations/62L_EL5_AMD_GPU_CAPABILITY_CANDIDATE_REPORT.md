@@ -5,6 +5,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests executed — 
 Date: 2026-09-09  
 Branch: `cursor/62l-el5-amd-gpu-capability-candidate-4059`  
 Base tip: `origin/feat/62l-el-local-runtime-probe` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`  
+Implementation / tip SHA: `7c984a3cb0dc2707ec21520cfc138cd0a41970de`  
 Why this base: Founder EL SoT (`feat/62l-el-local-runtime-probe`) preferred; contains hardware-probe / workload-router / resource-governor / runtime-state.  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
