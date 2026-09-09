@@ -7,7 +7,7 @@ Branch: `cursor/62l-bw-planetary-chip-founder-avatar-ethics-4059`
 Parent / base tip: `cursor/62l-bu-code-research-benchmark-strategy-4059` @ `342585a1d01227301c05f9f84fa06d039081afa1` (`docs(62L-BU): restore tip SHA after align commit #85`)
 Why this base: Preferred **62L-BV** tip + report (`cursor/62l-bv-*` + `docs/operations/62L_BV_*REPORT.md`) remained **WAITING_DATA** after fetch-with-backoff (BV never queued / not present on origin). Preference **BV → BU → BT → …** therefore selects **BU** @ `342585a`.
 Implementation SHAs: see commit list below
-Tip SHA: `5225e23384d4a1aa32c7e961c85aae73b16179f0`
+Tip SHA: `1c75ebd52d83ac6fcbd2ead197307b5bfc640300`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
