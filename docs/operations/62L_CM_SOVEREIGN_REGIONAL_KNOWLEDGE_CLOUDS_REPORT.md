@@ -7,7 +7,7 @@ Branch: `cursor/62l-cm-sovereign-regional-knowledge-clouds-4059`
 Parent / base tip: `cursor/62l-cl-global-knowledge-server-constellation-4059` @ `b0186aa9b2bf46e017a62eba7db4c75856ac7df4` (CL tip **PRESENT**; ops report file **WAITING_DATA** / MISSING at CM cut)
 Why this base: Preferred **62L-CL** tip. At start CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ** @ `a66c839`, polled with backoff until **CL** tip **PRESENT**, then **reset onto CL** `@b0186aa`. Preference **CL → CK → CJ → CI → CH → CG…** selects **CL**.
 Implementation SHAs: see commit list below (`feat` / `chore` / `docs`)
-Tip SHA: `48186d63d9ae2918b699134d9c2cc20705ee58ce`
+Tip SHA: 
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
