@@ -1,13 +1,14 @@
 # 62L-EO5 — Quantum Evidence Boundary Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** — classical baseline gate **PASS** — proposal language gate **PASS** — fabrication denies **PASS** — **NOT** production authorization — **NO** tip-land / PR / ManagePullRequest / fabricated QPU access·fault-tolerance·supremacy·advantage·clearance·certification·classified access·agency endorsement / L4
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto EO4 — unit tests **executed** — classical baseline gate **PASS** — proposal language gate **PASS** — fabrication denies **PASS** — EO4 soft-wire **PRESENT** — **NOT** production authorization — **NO** tip-land / PR / ManagePullRequest / fabricated QPU access·fault-tolerance·supremacy·advantage·clearance·certification·classified access·agency endorsement / L4
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo5-quantum-evidence-boundary-4059`  
-Tip SHA: `7869e39cbccc893cc8335393392257c3e40ac291`  
-Implementation SHA (feat): `bdbe76239f05313feb3cf1e1cfa230f467cd84a1`  
-Base: `cursor/62l-eo4-ai-quantum-capability-matrix-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (preferred predecessor; EO4 matrix files **WAITING_DATA** on tip — soft-wire only)  
-Fallback chain considered: EO4 → EO3 → EO2 → EO1 → EO(#159)  
+Tip SHA: `(pending rebase docs)`  
+Implementation SHA (feat): `ae90aa1` (post-rebase; pre-rebase feat was `bdbe762`)  
+Base: `cursor/62l-eo4-ai-quantum-capability-matrix-4059` @ `4861280644caf9b182c2c2e888698bf6d6bdf9b3` (contains EO3 `b0407daa…`)  
+Rebase: **YES** — off stale EN tip `3a141648…` → onto EO4 `4861280` (preferred; contains EO3 `b0407daa`)  
+Fallback chain considered: EO4 (chosen) → EO3 `b0407daa…` → EO2 `70aa3e04…`  
 SoT: **62L-EO5** Quantum Evidence Boundary (park-and-implement child of Government Quantum/AI Mission OS)  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
 
@@ -21,7 +22,7 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 - Proposal language gated by evidence class; “quantum advantage achieved” **BLOCKED** without supporting evidence (advantage never auto-allowed)
 - No fabricate QPU access, fault-tolerant capability, quantum supremacy/advantage, security clearance, government certification, classified access, or agency endorsement
 - Quantum demos **sandboxed**; procurement claims need **current** evidence; contract submissions **human-approved**
-- Soft-wire EO4 capability matrix (presence ≠ VERIFIED)
+- Soft-wire EO4 capability matrix (presence ≠ VERIFIED) — **PRESENT** after rebase
 - DB candidates **NOT_APPLIED**
 - Tip-land / PR / ManagePullRequest / L4: **NO** / **None** / **DENIED** / **false**
 
@@ -90,13 +91,13 @@ Blocked examples: “quantum advantage achieved”, “quantum supremacy”, fau
 
 ## Soft-wire (presence ≠ VERIFIED)
 
-| Target | Soft-wire at tip |
+| Target | Soft-wire at tip (post EO4 rebase) |
 |---|---|
-| EO4 AI & Quantum Capability Matrix | **WAITING_DATA** (preferred base branch present; matrix module not landed on tip) |
-| EO4 report | **WAITING_DATA** |
-| EO3 Quantum Mission Opportunity Watch | **WAITING_DATA** |
-| EO2 Agency Knowledge Graph | **WAITING_DATA** |
-| EO1 Government Contracts Command Center | **WAITING_DATA** |
+| EO4 AI & Quantum Capability Matrix | **PRESENT** |
+| EO4 report | **PRESENT** |
+| EO3 Quantum Mission Opportunity Watch | **PRESENT** |
+| EO2 Agency Knowledge Graph | **PRESENT** |
+| EO1 Government Contracts Command Center | **WAITING_DATA** (absent on EO4 tip) |
 | EO #159 umbrella | **WAITING_DATA** |
 | Classical quant baseline (`classical-quant-benchmark.ts`) | **PRESENT** |
 | EN Deal & Contract Intelligence OS | **PRESENT** |
@@ -114,7 +115,7 @@ Blocked examples: “quantum advantage achieved”, “quantum supremacy”, fau
 
 ## Test evidence
 
-Executed on child branch (do not mark PASS without running):
+Executed on child branch after rebase onto EO4 `4861280` (do not mark PASS without running):
 
 ```text
 $ npm run test:62leo5
@@ -125,10 +126,9 @@ $ npm run test:62leo5
 # tests 12
 # pass 12
 # fail 0
-# duration_ms ~191
 ```
 
-Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposal language gate (block “quantum advantage achieved”); fabrication denies (QPU access / fault-tolerance / supremacy / advantage / clearance / certification / classified / agency endorsement); sandbox + procurement + human contract gates; L4=false; EO4 soft-wire probe; bootstrap → EO6.
+Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposal language gate; fabrication denies; sandbox + procurement + human contract gates; L4=false; EO4 soft-wire **PRESENT**; bootstrap → EO6.
 
 ## Next (do not implement)
 
@@ -139,8 +139,9 @@ Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposa
 | Field | Value |
 |---|---|
 | Branch | `cursor/62l-eo5-quantum-evidence-boundary-4059` |
-| Tip SHA | `7869e39cbccc893cc8335393392257c3e40ac291` |
-| Base | EO4 @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` |
+| Tip SHA | `(pending)` |
+| Base | EO4 @ `4861280644caf9b182c2c2e888698bf6d6bdf9b3` (has EO3 `b0407daa`) |
+| Rebase | **YES** |
 | Report | `docs/operations/62L_EO5_QUANTUM_EVIDENCE_BOUNDARY_REPORT.md` |
 | Tests | `npm run test:62leo5` — **12/12 PASS** |
 | Next | EO6 — Classical Baseline Requirement |

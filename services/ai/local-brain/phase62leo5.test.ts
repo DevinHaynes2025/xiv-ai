@@ -395,11 +395,14 @@ test('cycle covers taxonomy, baseline, language, fabrication, EO4 soft-wire hops
   }
 });
 
-test('soft-wire EO4 WAITING_DATA or PRESENT; classical baseline PRESENT on tip', () => {
+test('soft-wire EO4 PRESENT after rebase; classical baseline PRESENT on tip', () => {
   const snap = eo5SoftWireSnapshot(repoRoot);
-  // EO4 predecessor branch exists but matrix files may be WAITING_DATA — honest.
-  assert.equal(typeof snap.eo4CapabilityMatrix.present, 'boolean');
-  assert.equal(typeof snap.eo4CapabilityMatrixReport.present, 'boolean');
+  assert.equal(snap.eo4CapabilityMatrix.present, true);
+  assert.equal(snap.eo4CapabilityMatrixReport.present, true);
+  assert.match(snap.eo4CapabilityMatrix.note, /PRESENT/);
+  // EO3/EO2 also present on EO4 lineage tip
+  assert.equal(snap.eo3Watch.present, true);
+  assert.equal(snap.eo2AgencyGraph.present, true);
   assert.equal(snap.classicalQuantBaseline.present, true);
   assert.equal(snap.enDealContractOs.present, true);
 });
