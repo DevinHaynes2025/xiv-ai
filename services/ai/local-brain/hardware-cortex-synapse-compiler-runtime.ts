@@ -41,6 +41,7 @@ import {
   HONESTY_BANNER,
   NEXT_PHASE_TITLE,
   predecessorMap,
+  probeBxBwLayers,
   type ByActor,
   type ByEvidenceState,
   type ByHop,
@@ -53,6 +54,7 @@ export {
   HONESTY_BANNER,
   NEXT_PHASE_TITLE,
   predecessorMap,
+  probeBxBwLayers,
 };
 
 function hop(name: ByHop, state: ByEvidenceState, summary: string): ByHopRecord {
@@ -433,6 +435,34 @@ export async function runHardwareCortexSynapseCompilerCycle(input: ByCycleInput)
     root,
   });
 
+  const preds = predecessorMap(root);
+  const bxBw = probeBxBwLayers(root);
+
+  // Best-effort: reuse BX HAL / twin honesty when modules are on the tree.
+  let bxHalHonesty: Record<string, unknown> | null = null;
+  let bxTwinHonesty: Record<string, unknown> | null = null;
+  let bxRouteHonesty: Record<string, unknown> | null = null;
+  if (bxBw.bx === 'PRESENT') {
+    try {
+      const hal = await import('./neural-chip-hal');
+      bxHalHonesty = hal.neuralChipHalHonesty?.() ?? null;
+    } catch {
+      bxHalHonesty = null;
+    }
+    try {
+      const twin = await import('./semiconductor-digital-twin');
+      bxTwinHonesty = twin.semiconductorTwinHonesty?.() ?? null;
+    } catch {
+      bxTwinHonesty = null;
+    }
+    try {
+      const routing = await import('./planetary-superbrain-routing-cortex');
+      bxRouteHonesty = routing.routingCortexHonesty?.() ?? null;
+    } catch {
+      bxRouteHonesty = null;
+    }
+  }
+
   return {
     orgId: input.orgId,
     tenantId: input.tenantId,
@@ -445,7 +475,12 @@ export async function runHardwareCortexSynapseCompilerCycle(input: ByCycleInput)
       scheduler: economicSchedulerHonesty(),
       bi: biStreamHonesty(),
       synapse: synapseCompilerHonesty(),
+      bxHal: bxHalHonesty,
+      bxTwin: bxTwinHonesty,
+      bxRouting: bxRouteHonesty,
     },
+    predecessors: preds,
+    bxBwProbe: bxBw,
     unverifiedDeviceStatus: unverifiedDevice.status,
     l4AutonomyEnabled: BY_LOCKS.L4_AUTONOMY_ENABLED,
     nextPhase: NEXT_PHASE_TITLE,
@@ -459,6 +494,7 @@ export async function buildHardwareCortexSynapseCompilerHealthReport(input?: {
   const root = input?.root ?? process.cwd();
   const brain = await checkLocalBrainHealth(root).catch(() => null);
   const preds = predecessorMap(root);
+  const bxBw = probeBxBwLayers(root);
   return {
     phase: '62L-BY',
     honestyBanner: HONESTY_BANNER,
@@ -466,6 +502,7 @@ export async function buildHardwareCortexSynapseCompilerHealthReport(input?: {
     locks: BY_LOCKS,
     cycle: HARDWARE_CORTEX_SYNAPSE_COMPILER_CYCLE,
     predecessors: preds,
+    bxBwProbe: bxBw,
     localBrain: brain,
     githubSotIssue: 89,
     gitlabCoordinationIssue: 23,

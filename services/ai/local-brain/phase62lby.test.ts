@@ -47,6 +47,7 @@ import {
   UNVERIFIED_BI_DENIED,
   UNVERIFIED_DEVICE_UNAVAILABLE,
   predecessorMap,
+  probeBxBwLayers,
   type ByActor,
 } from './hardware-cortex-synapse-compiler-types';
 import {
@@ -468,6 +469,7 @@ try {
 
   const health = await buildHardwareCortexSynapseCompilerHealthReport({ root: repoRoot });
   const preds = predecessorMap(repoRoot);
+  const bxBw = probeBxBwLayers(repoRoot);
   check(
     'US-BY-health-predecessors',
     health.githubSotIssue === 89 &&
@@ -475,8 +477,11 @@ try {
       health.tipLand === false &&
       health.dbCandidatesApplied === false &&
       preds.BU.report === 'PRESENT' &&
-      (preds.BX.tipProbe === 'WAITING_DATA' || preds.BX.tipProbe === 'PRESENT'),
-    'Health report cites GH#89 / GL#23; BU present; BX may be WAITING_DATA.',
+      preds.BX.tipProbe === 'PRESENT' &&
+      preds.BX.report === 'PRESENT' &&
+      bxBw.bx === 'PRESENT' &&
+      bxBw.bw === 'PRESENT',
+    'Health report cites GH#89 / GL#23; preferred BX tip+report PRESENT after rebase; BW PRESENT.',
   );
 } finally {
   await rm(root, { recursive: true, force: true });

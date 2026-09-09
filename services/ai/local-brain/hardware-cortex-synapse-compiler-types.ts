@@ -322,3 +322,34 @@ export function containsForbiddenPrivateFields(payload?: Record<string, unknown>
     ),
   );
 }
+
+/**
+ * Probe preferred BX / BW modules when present on the tree (after rebase).
+ * Presence ≠ production authority.
+ */
+export function probeBxBwLayers(root = repoRootFromHere()): {
+  bx: 'PRESENT' | 'WAITING_DATA';
+  bw: 'PRESENT' | 'WAITING_DATA';
+  modules: string[];
+} {
+  const localBrain = join(root, 'services/ai/local-brain');
+  const mods = [
+    'neural-chip-os-semiconductor-twin-types.ts',
+    'neural-chip-hal.ts',
+    'semiconductor-digital-twin.ts',
+    'planetary-superbrain-routing-cortex.ts',
+    'planetary-chip-founder-avatar-ethics-types.ts',
+  ];
+  const present = mods.filter((m) => existsSync(join(localBrain, m)));
+  const bxPresent =
+    existsSync(join(localBrain, 'neural-chip-os-semiconductor-twin-types.ts')) ||
+    existsSync(join(root, 'docs/operations/62L_BX_NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_REPORT.md'));
+  const bwPresent =
+    existsSync(join(localBrain, 'planetary-chip-founder-avatar-ethics-types.ts')) ||
+    existsSync(join(root, 'docs/operations/62L_BW_PLANETARY_CHIP_FOUNDER_AVATAR_ETHICS_REPORT.md'));
+  return {
+    bx: bxPresent ? 'PRESENT' : 'WAITING_DATA',
+    bw: bwPresent ? 'PRESENT' : 'WAITING_DATA',
+    modules: present,
+  };
+}
