@@ -7,7 +7,7 @@ Branch: `cursor/62l-ch-knowledge-civilization-dept-universities-4059`
 Parent / base tip: `cursor/62l-cg-deep-knowledge-refinery-os-4059` @ `87fdf05d16bb2fe00b2bf0d39619d0a190afcaca` (includes `62L_CG_DEEP_KNOWLEDGE_REFINERY_OS_REPORT.md`)
 Why this base: Preferred **62L-CG** tip + report. At start CG/CF were **WAITING_DATA** (not on origin); scaffolded from **CE** @ `4a902ca` / `3cda9ef`, polled with backoff until **CF** (`cursor/62l-cf-data-refinery-compression-replication-4059`) and **CG** tip + report **PRESENT**, then **rebased onto CG** `@87fdf05`. Preference **CG → CF → CE → CD → CA/CB/CC → BZ → …** selects **CG**.
 Implementation SHAs: see commit list below (`feat` / `fix` / `docs`)
-Tip SHA: `2dbd742c50154748f66421beb55c82d3774734f8`
+Tip SHA: `d8de6a6964dbe4fbf90caa1b439258cc119911ce`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
