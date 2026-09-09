@@ -15,6 +15,8 @@ import {
   type ClActor,
   type CoverageClaimScope,
 } from './global-knowledge-server-constellation-types';
+import { enrollMiniCloudCell } from './mini-cloud-server-cells';
+import type { CkActor } from './cognitive-infra-mini-cloud-history-types';
 
 export type RegionalCellStatus = 'available' | 'unavailable' | 'denied' | 'isolated';
 
@@ -26,6 +28,7 @@ export type RegionalCloudServiceCell = {
   isolated: boolean;
   verified: boolean;
   buildsOnMiniCell: boolean;
+  miniCellId: string | null;
   status: RegionalCellStatus;
   reason: string;
   createdAt: string;
@@ -145,6 +148,28 @@ export async function enrollRegionalCloudServiceCell(input: {
   const store = await load(input.root);
   const constellation = store.constellations.find((c) => c.id === input.constellationId);
   const enrolled = input.enroll === true;
+  let miniCellId: string | null = null;
+  if (input.buildsOnMiniCell === true && enrolled) {
+    const ckActor: CkActor = {
+      kind: 'human_operator',
+      id: input.actor.id,
+      orgId: input.actor.orgId,
+      tenantId: input.actor.tenantId,
+      universeId: input.actor.universeId,
+      role: input.actor.role,
+      permissionLevel: input.actor.permissionLevel,
+      authorityLevel: input.actor.authorityLevel,
+    };
+    const mini = await enrollMiniCloudCell({
+      label: `${input.label}-mini`,
+      kind: 'knowledge_store',
+      enrolled: true,
+      configured: true,
+      root: input.root,
+      actor: ckActor,
+    });
+    miniCellId = mini.id;
+  }
   const cell: RegionalCloudServiceCell = {
     id: id('rcell'),
     regionCode: input.regionCode,
@@ -153,9 +178,12 @@ export async function enrollRegionalCloudServiceCell(input: {
     isolated: CL_LOCKS.REGIONAL_CELLS_ISOLATED_BY_DEFAULT,
     verified: enrolled && input.verified === true,
     buildsOnMiniCell: input.buildsOnMiniCell === true,
+    miniCellId,
     status: enrolled ? 'available' : 'unavailable',
     reason: enrolled
-      ? 'REGIONAL_CELL_ENROLLED_ISOLATED'
+      ? miniCellId
+        ? 'REGIONAL_CELL_ENROLLED_ISOLATED_ON_CK_MINI_CELL'
+        : 'REGIONAL_CELL_ENROLLED_ISOLATED'
       : UNENROLLED_REGIONAL_CELL_UNAVAILABLE,
     createdAt: new Date().toISOString(),
   };
