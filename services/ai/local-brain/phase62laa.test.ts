@@ -288,7 +288,7 @@ try {
     root,
   });
   const reproList = await listReproducibility({ tenantId, universeId, root });
-  check('US-AA17', repro.learningEntryId && reproList.some((item) => item.id === repro.id) && repro.inventedPass === false, 'Reproducibility ledger records story→files→commands→tests→learning without inventing PASS.');
+  check('US-AA17', Boolean(repro.learningEntryId) && reproList.some((item) => item.id === repro.id) && repro.inventedPass === false, 'Reproducibility ledger records story→files→commands→tests→learning without inventing PASS.');
 
   const skill = await evolveAgentSkill({
     tenantId,
