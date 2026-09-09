@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er18-research-review-board-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `db5dec0a6226dba6d70480bfe879c6d9eb6dcaf3`  
 Base: `origin/cursor/62l-er6-historical-business-case-atlas-v2-4059` @ `27cac4e734eb0f34f9fe7a823d3c1a9b58043ede`  
 Base selection: preferred **ER17→ER7** tips **absent on remote** (or placeholder-only) at implement time — proceeded from best available **ER6**; soft-wire WAITING_DATA for missing phases; **ER17/ER16 strongly soft-wired** when present  
 Predecessor soft-wires: ER6/ER5/ER2/ER1 **PRESENT**; ER17–ER7 / ER4 / ER3 may be WAITING_DATA; EQ14 may be WAITING_DATA (ok)  
