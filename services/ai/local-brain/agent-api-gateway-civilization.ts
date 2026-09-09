@@ -1,47 +1,35 @@
 /**
  * 62L-DQ Agent API Gateway Civilization —
- * Per-call authorization for API gateway. Installed-only plugins cannot invoke.
- * Registration ≠ billing/credentials/deploy.
+ * Per-call authorization API gateway for agents/plugins.
+ * API call without per-call auth → DENIED.
  */
 
 import { readJsonFile, writeJsonFileAtomic, xivLocalPath } from './durable-json';
 import {
   API_CALL_WITHOUT_AUTH_DENIED,
+  DQ_LOCKS,
   MAX_API_CALLS,
-  REGISTRATION_NO_BILLING_CREDS_DEPLOY,
   UNTRUSTED_INSTALLED_ONLY_DENIED,
   type DqActor,
+  type PermissionScope,
 } from './universal-integration-brain-types';
-import type { PermissionScope } from './plugin-civilization-os-types';
 
-export type ApiGatewayPlugin = {
+export type ApiGatewayCall = {
   id: string;
-  name: string;
-  installed: boolean;
-  verified: boolean;
-  approved: boolean;
-  scopes: PermissionScope[];
-  grantsAuthority: false;
-  grantsCredentials: false;
-  grantsBilling: false;
-  grantsDeploy: false;
-  reason: string;
-  createdAt: string;
-};
-
-export type ApiCallAttempt = {
-  id: string;
+  callerId: string;
   pluginId: string;
-  callId: string;
-  perCallAuthorized: boolean;
+  scope: PermissionScope;
+  perCallAuthToken: string | null;
+  pluginInstalled: boolean;
+  pluginTrusted: boolean;
+  pluginVerified: boolean;
   status: 'allowed' | 'denied';
   reason: string;
   at: string;
 };
 
 type Store = {
-  plugins: ApiGatewayPlugin[];
-  calls: ApiCallAttempt[];
+  calls: ApiGatewayCall[];
 };
 
 function storePath(root: string) {
@@ -49,7 +37,7 @@ function storePath(root: string) {
 }
 
 async function load(root: string): Promise<Store> {
-  return readJsonFile<Store>(storePath(root), { plugins: [], calls: [] });
+  return readJsonFile<Store>(storePath(root), { calls: [] });
 }
 
 async function save(root: string, store: Store) {
@@ -62,113 +50,79 @@ function id(prefix: string) {
 
 export function agentApiGatewayCivilizationHonesty() {
   return {
-    perCallAuthorizationRequired: true,
-    installedOnlyMayInvoke: false,
-    registrationGrantsBilling: false,
-    registrationGrantsCredentials: false,
-    registrationGrantsDeploy: false,
+    perCallAuthorizationRequired: DQ_LOCKS.PER_CALL_AUTHORIZATION_REQUIRED,
+    apiCallWithoutPerCallAuth: DQ_LOCKS.API_CALL_WITHOUT_PER_CALL_AUTH,
+    installedOnlyMayInvoke: DQ_LOCKS.INSTALLED_ONLY_PLUGIN_MAY_INVOKE,
+    installedEqTrusted: DQ_LOCKS.INSTALLED_EQ_TRUSTED,
   };
 }
 
-export async function registerGatewayPlugin(input: {
-  name: string;
-  installed?: boolean;
-  verified?: boolean;
-  approved?: boolean;
-  scopes?: PermissionScope[];
-  root: string;
-  actor: DqActor;
-}): Promise<ApiGatewayPlugin> {
-  const store = await load(input.root);
-  void input.actor;
-  if (store.plugins.length >= MAX_API_CALLS) {
-    throw new Error('MAX_API_GATEWAY_PLUGINS_REACHED');
-  }
-  const plugin: ApiGatewayPlugin = {
-    id: id('dqgwplug'),
-    name: input.name.trim(),
-    installed: input.installed === true,
-    verified: input.verified === true,
-    approved: input.approved === true,
-    scopes: input.scopes ?? ['invoke'],
-    grantsAuthority: false,
-    grantsCredentials: false,
-    grantsBilling: false,
-    grantsDeploy: false,
-    reason: REGISTRATION_NO_BILLING_CREDS_DEPLOY,
-    createdAt: new Date().toISOString(),
-  };
-  store.plugins.push(plugin);
-  await save(input.root, store);
-  return plugin;
-}
-
-export async function invokeApiGatewayCall(input: {
+export async function authorizeApiCall(input: {
+  callerId: string;
   pluginId: string;
-  callId: string;
-  perCallAuthorized: boolean;
+  scope: PermissionScope;
+  perCallAuthToken?: string | null;
+  pluginInstalled?: boolean;
+  pluginTrusted?: boolean;
+  pluginVerified?: boolean;
   root: string;
   actor: DqActor;
-}): Promise<ApiCallAttempt> {
+}): Promise<ApiGatewayCall> {
   const store = await load(input.root);
   void input.actor;
-  const plugin = store.plugins.find((p) => p.id === input.pluginId);
+  if (store.calls.length >= MAX_API_CALLS) {
+    throw new Error('MAX_API_CALLS');
+  }
+  const token = (input.perCallAuthToken ?? '').trim();
+  const installed = input.pluginInstalled === true;
+  const trusted = input.pluginTrusted === true;
+  const verified = input.pluginVerified === true;
   const now = new Date().toISOString();
 
-  const deny = async (reason: string): Promise<ApiCallAttempt> => {
-    const attempt: ApiCallAttempt = {
-      id: id('dqapicall'),
+  const deny = async (reason: string): Promise<ApiGatewayCall> => {
+    const call: ApiGatewayCall = {
+      id: id('dqapi'),
+      callerId: input.callerId,
       pluginId: input.pluginId,
-      callId: input.callId,
-      perCallAuthorized: input.perCallAuthorized,
+      scope: input.scope,
+      perCallAuthToken: token || null,
+      pluginInstalled: installed,
+      pluginTrusted: trusted,
+      pluginVerified: verified,
       status: 'denied',
       reason,
       at: now,
     };
-    if (store.calls.length >= MAX_API_CALLS) store.calls.shift();
-    store.calls.push(attempt);
+    store.calls.push(call);
     await save(input.root, store);
-    return attempt;
+    return call;
   };
 
-  if (!plugin) return deny('PLUGIN_NOT_REGISTERED');
-  if (!input.perCallAuthorized) return deny(API_CALL_WITHOUT_AUTH_DENIED);
-  if (plugin.installed && !plugin.verified) return deny(UNTRUSTED_INSTALLED_ONLY_DENIED);
-  if (!plugin.verified || !plugin.approved) return deny(UNTRUSTED_INSTALLED_ONLY_DENIED);
+  if (!token) {
+    return deny(API_CALL_WITHOUT_AUTH_DENIED);
+  }
 
-  const attempt: ApiCallAttempt = {
-    id: id('dqapicall'),
+  if (installed && !trusted && !verified) {
+    return deny(UNTRUSTED_INSTALLED_ONLY_DENIED);
+  }
+  if (!trusted && !verified) {
+    return deny(UNTRUSTED_INSTALLED_ONLY_DENIED);
+  }
+
+  const call: ApiGatewayCall = {
+    id: id('dqapi'),
+    callerId: input.callerId,
     pluginId: input.pluginId,
-    callId: input.callId,
-    perCallAuthorized: true,
+    scope: input.scope,
+    perCallAuthToken: token,
+    pluginInstalled: installed,
+    pluginTrusted: trusted,
+    pluginVerified: verified,
     status: 'allowed',
-    reason: 'API_CALL_PER_CALL_AUTHORIZED',
+    reason: 'PER_CALL_AUTH_OK_TRUSTED_PLUGIN',
     at: now,
   };
-  if (store.calls.length >= MAX_API_CALLS) store.calls.shift();
-  store.calls.push(attempt);
+  store.calls.push(call);
   await save(input.root, store);
-  return attempt;
-}
-
-export async function probeGatewayRegistrationAuthority(input: {
-  pluginId: string;
-  claimBilling?: boolean;
-  claimCredentials?: boolean;
-  claimDeploy?: boolean;
-  root: string;
-  actor: DqActor;
-}): Promise<{
-  grantsBilling: false;
-  grantsCredentials: false;
-  grantsDeploy: false;
-  reason: string;
-}> {
-  void input;
-  return {
-    grantsBilling: false,
-    grantsCredentials: false,
-    grantsDeploy: false,
-    reason: REGISTRATION_NO_BILLING_CREDS_DEPLOY,
-  };
+  return call;
 }
