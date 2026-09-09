@@ -25,3 +25,8 @@ export * from './evidence-ledger';
 export * from './el8-honesty';
 export * from './el7-soft-wire';
 export * from './verification-graduation';
+export * from './em8-honesty';
+export * from './em8-soft-wire';
+export * from './compute-return-receipt';
+export * from './em8-home-base-ingest';
+export * from './em8-neural-pathway';
