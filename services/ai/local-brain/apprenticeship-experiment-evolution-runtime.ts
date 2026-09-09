@@ -25,6 +25,7 @@ import {
   evolutionGraphHonesty,
   recordSoftwareEvolution,
 } from './superbrain-software-evolution-graph';
+import { storeEngineeringMemoryLink } from './superbrain-engineering-memory-cortex';
 import {
   APPRENTICESHIP_EXPERIMENT_EVOLUTION_CYCLE,
   BT_LOCKS,
@@ -402,6 +403,23 @@ export async function runApprenticeshipExperimentEvolutionCycle(input: BtCycleIn
       input.includeHiddenReasoningTrace ? evolution.reason : 'No hidden reasoning submitted.',
     ),
   );
+
+  // Extend BS Superbrain Engineering Memory Cortex when present.
+  if (evolution.accepted && evolution.node) {
+    await storeEngineeringMemoryLink({
+      orgId: input.orgId,
+      tenantId: input.tenantId,
+      universeId: input.universeId,
+      kind: completeResult?.negativeKnowledge ? 'failure' : 'outcome',
+      title: evolution.node.label,
+      summary: evolution.node.summary,
+      linkedIds: [evolution.node.id, ...(evolution.cortexTraceId ? [evolution.cortexTraceId] : [])],
+      evidenceRefs: evolution.node.provenance.map((p) => p.ref),
+      outcomeVerification: 'unverified',
+      actorId: 'bt-runtime',
+      root,
+    }).catch(() => undefined);
+  }
 
   // Extend BR Engineering Notebook when present: seal auditable lesson for negative knowledge.
   if (completeResult?.negativeKnowledge) {
