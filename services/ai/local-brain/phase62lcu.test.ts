@@ -131,6 +131,16 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
+    'US-CU-predecessor-CT',
+    preds.CT.tipProbe === 'PRESENT' && preds.CT.report === 'PRESENT',
+    `CT tip=${preds.CT.tipProbe} report=${preds.CT.report}`,
+  );
+  check(
+    'US-CU-predecessor-CR',
+    preds.CR.tipProbe === 'PRESENT' && preds.CR.report === 'PRESENT',
+    `CR tip=${preds.CR.tipProbe} report=${preds.CR.report}`,
+  );
+  check(
     'US-CU-predecessor-CQ',
     preds.CQ.tipProbe === 'PRESENT' && preds.CQ.report === 'PRESENT',
     `CQ tip=${preds.CQ.tipProbe} report=${preds.CQ.report}`,
@@ -140,11 +150,13 @@ try {
     preds.CP.tipProbe === 'PRESENT',
     `CP tip=${preds.CP.tipProbe} report=${preds.CP.report}`,
   );
-  // CT/CS/CR may still be WAITING_DATA — document, do not invent PRESENT.
+  // CS may remain WAITING_DATA / MISSING — do not invent PRESENT.
   check(
-    'US-CU-predecessor-CT-gate',
-    preds.CT.tipProbe === 'PRESENT' || preds.CT.tipProbe === 'WAITING_DATA',
-    `CT tip=${preds.CT.tipProbe} report=${preds.CT.report}`,
+    'US-CU-predecessor-CS-gate',
+    preds.CS.tipProbe === 'PRESENT' ||
+      preds.CS.tipProbe === 'WAITING_DATA' ||
+      preds.CS.tipProbe === 'MISSING',
+    `CS tip=${preds.CS.tipProbe} report=${preds.CS.report}`,
   );
 
   const cloud = await bootstrapCognitiveResearchCloud({
