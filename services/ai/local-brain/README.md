@@ -15,12 +15,14 @@ From `services/ai`:
 - `npm run local:knowledge-lake-health` — write the 62L-AB Knowledge Lake / Industry Memory health report.
 - `npm run local:hybrid-edge-health` — write the 62L-AE Hybrid Edge-Cloud + CEO Sealed Vault health report.
 - `npm run local:control-tower-health` — write the 62L-AN Information Control Tower / Semantic Internet Router health report.
+- `npm run local:cognitive-compiler-health` — write the 62L-AS Cognitive Compiler / Math Reasoning Fabric health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62lab` — 62L-AB Knowledge Lake / Industry Memory safety tests.
 - `npm run test:62lae` — 62L-AE Hybrid Edge-Cloud / CEO Sealed Vault / Cross-OS federation safety tests.
 - `npm run test:62lan` — 62L-AN Information Control Tower / Semantic Router / Enterprise Data Exchange safety tests.
+- `npm run test:62las` — 62L-AS Cognitive Compiler / Problem Decomposition / Math & Scientific Reasoning Fabric / OR workcell / pathway-learning-no-perm tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -29,6 +31,9 @@ Agents defined → recruited → communicating → meeting → retrieving knowle
 
 ## 62L-AB Knowledge Lake
 Durable offline Knowledge Lake, industry memory federation, multilingual original preservation, evidence graphs, hashed dedup, partitioned sparse indexing, tiered storage, and logical retrieval for huge corpora. Trillion-scale address space is a shard map — this slice does not materialize trillions of files, rows, embeddings, or agents. Unconfigured translators/cloud stay UNAVAILABLE. Evidence Promotion Gate is reused; AI agreement is not VERIFIED. 62L-Y/Z/AA reports are WAITING_DATA here.
+
+## 62L-AS Cognitive Compiler + Math & Scientific Reasoning Fabric
+Executable reasoning loop: Complex Problem → Problem Graph → Decomposition → Specialist Methods → Parallel Solving → Math/Simulation/Testing → Skeptic Review → Synthesis → Uncertainty → Decision → Outcome → Learning. Symbolic/numerical math, probability, Bayesian updates, optimization, Monte Carlo, forecasting, causal-analysis safeguards (correlation ≠ causation; sim/forecast ≠ verified fact), hypothesis tests, trade-space, algorithm selection, complexity, counterexamples, verification, calibration, sensitivity, and the AS13 Operations Research workcell (routing, scheduling, inventory, capacity, queueing, network-flow, information supply chain). AS29 Cognitive Pathway Learning records which method/agent/highway combinations produce verified results and **cannot grant permissions or expand authority**. Quantum remains classical-baseline-first; unconfigured QPU/providers stay UNAVAILABLE. 62L-AR Neural Highway Compiler report is WAITING_DATA on this parent. Reuses Quant workcell, Decision Gate, Learning Ledger, Neural Fabric, Global Brain Highways, CEO Sealed Vault, and Control Tower modules already on the tree. Does not duplicate AH/AI/AG/AO modules when they are absent.
 
 ## 62L-AN Information Control Tower + Semantic Internet Router
 Executable routing loop: Information Need → Intent Resolution → Candidate Roots → Policy Filter → Route Scoring → Semantic Translation → Authorized Query → Evidence Packet → Agent/Workflow → Outcome → Route Learning → Control Tower. Routes are scored on freshness, provenance, trust, privacy, latency, cost, offline availability, compatibility, and verified outcome quality — never popularity. Enterprise Data Exchange allows approved schemas/aggregates/benchmarks/capabilities/permissioned intelligence only. Raw cross-enterprise pooling is DENIED. CEO-sealed records stay outside ordinary exchange. Unconfigured providers remain UNAVAILABLE. 62L-AM Data Fabric and 62L-AL Edge Sync reports are WAITING_DATA on this parent.
