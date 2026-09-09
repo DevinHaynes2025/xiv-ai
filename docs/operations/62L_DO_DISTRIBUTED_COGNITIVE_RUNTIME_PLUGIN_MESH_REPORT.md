@@ -7,7 +7,7 @@ Branch: `cursor/62l-do-distributed-cognitive-runtime-plugin-mesh-4059`
 Parent / base tip: `cursor/62l-dn-universal-agent-runtime-os-4059` @ `a3d522fdd337e37fbe6d7bffa024d18628a19b3b` + `docs/operations/62L_DN_UNIVERSAL_AGENT_RUNTIME_OS_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DN → DM → DL → DK `9a61c61` → DJ `67e92f8` → …**. Remote DN tip initially **WAITING_DATA**, then landed @ `a3d522f` with report **PRESENT**. Interim implementation began on DL @ `359057d` (DN/DM still landing), then **rebased onto DN**. Soft-wire DN Universal Agent Runtime OS when PRESENT; DL/DK soft-wire fallbacks remain. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: _(filled by restore commit)_
+Tip SHA: `80f54c6a217041f5f153ec36da82a709034001e7`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
