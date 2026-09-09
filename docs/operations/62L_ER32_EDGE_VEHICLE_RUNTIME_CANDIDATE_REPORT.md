@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er32-edge-vehicle-runtime-candidate-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `0bdfb8f689506d2f6668c2a677536f6a27c476f7`  
 Base: ER14 tip `14942e18a4c22246db98d146df3f937aea5f111a` (preferred ER31→ER30→ER29→ER28 tips exist as empty stubs without deliverables; proceeded from best available ER family tip containing EQ7)  
 Soft-wire missing ER31–ER28 as **WAITING_DATA** (not FAIL). EQ7 **PRESENT**.  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER32 Edge / Vehicle Runtime Candidate*  
