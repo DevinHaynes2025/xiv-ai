@@ -9,7 +9,7 @@ Why this base: Preferred **62L-CH** tip + report remained **WAITING_DATA** (not 
 Implementation SHAs: `bb0d503`..`70833d9` (feat/test/chore; see `git log`)
 Report SHA: 
 Report SHA: `9c35e893f6bdc6085c4244888acdcc7d4c4f8d9d`
-Tip SHA: `9c69444857bb9384921aff2d4efb3e21a52f4755`
+Tip SHA: `6385168b75300385a34701971c726f6b85b70e09`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
