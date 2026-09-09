@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-br-structured-code-memory-debug-academy-4059` @ `
 Why this base: Preferred **62L-BR** tip **PRESENT** on origin after fetch with backoff (poll ~30–45s; concurrent BR/BQ/BP/BN agents were RUNNING at start). BR operations report `62L_BR_STRUCTURED_CODE_MEMORY_DEBUG_ACADEMY_REPORT.md` still **MISSING** on tip → documented **WAITING_DATA** for report-only gate; BR modules (structured code memory / notebook / compiler) **PRESENT** and extended. **BQ** tip `cursor/62l-bq-polyglot-coding-civilization-4059` @ `ecfe06f` + report **PRESENT** on origin but **not** an ancestor of BR (parallel lineage); preference order **BR → BQ → BP → BO** selects **BR**. **BP** / **BO** tips + reports are **ancestors** of this BR tip and remain available. **BN** remains **WAITING_DATA** in-tree on this base.
 Implementation SHAs: `829983e`..`a2845b9` (see commit list below)
 Report SHA: `45189e6a4ebaaf727683954a8e95290137bf0d27` (report body pin; tip may be later restore commit)
-Tip SHA: `c4ae1a84e8cd920737938d06e7375a77f58900f6`
+Tip SHA: `c78c2112a868c523450b2754307ddaf79690b423`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
