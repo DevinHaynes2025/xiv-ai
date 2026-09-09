@@ -7,7 +7,7 @@ Branch: `cursor/62l-dp-plugin-civilization-os-4059`
 Parent / base tip: `cursor/62l-do-distributed-cognitive-runtime-plugin-mesh-4059` @ `c9b226288067107e4d33056b854fc8810b25af77` + `docs/operations/62L_DO_DISTRIBUTED_COGNITIVE_RUNTIME_PLUGIN_MESH_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DO → DN → DM → DL → DK `9a61c61` → …**. Remote DO tip initially **WAITING_DATA**, then landed @ `c9b2262` with report **PRESENT**. Interim implementation began on DK @ `9a61c61` (DO/DN/DM/DL still landing), then **rebased onto DO**. Soft-wire DO Plugin Intelligence Mesh when PRESENT. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `b95616034884af0894c03e19e64cef92900f51ec`
+Tip SHA: `327cc488c33dacbc013933a1315b9b58e18af350`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
