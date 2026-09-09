@@ -4,10 +4,9 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em8-compute-return-receipt-4059`  
-Tip SHA: `9f47b2c5767480f5f5663d50aadd75deca5115b5`  
+Tip SHA: `42b9b50a8bb29081fe5134111bc4660f1d39baa2`  
 Feat commit (post-rebase): `cabe178`  
 Rebase: **YES** onto EM7 `76a1552` (EM6 `5301b7c`)  
-Feat commit: `efca5b3e60526a12a7b255683ab87843ccbd45fd`  
 Base: EM7 `cursor/62l-em7-device-neutral-inference-router-4059` @ `76a1552baa732ac2cd8df64ac277f08444cda8e5` (on EM6 `5301b7cf24672d16b27adead619d02db7eaace3f`; contains EM3 `eb6e963`)  
 Preferred predecessor `cursor/62l-em7-*`: **local pointer only** (no unique commits beyond EL9) — EM6/EM5/EM4 likewise empty of unique commits → used EM3 tip which soft-carries EM1 + registry  
 Tip-land onto `xiv-v2` / `main`: **NO**  
