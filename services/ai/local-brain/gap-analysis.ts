@@ -1,7 +1,7 @@
 import { inspectCapabilityRoot, listRootIdentities } from './root-identities';
-import { GAP_POLICY, type GapKind } from './information-supply-chain-types';
+import { GAP_POLICY, type GapKind, type IntegrationAdapterId } from './information-supply-chain-types';
 import type { TypedHighwayGraph } from './typed-highway-edges';
-import { describeIntegrationAdapter, type IntegrationAdapterId } from './database-adapters';
+import { describeIntegrationAdapter } from './database-adapters';
 
 export type GapFinding = {
   kind: GapKind;

@@ -43,11 +43,27 @@ export type SupplyChainManagerState = {
   feedback: number;
 };
 
+function emptyQueues(): Record<InformationSupplyChainHop, string[]> {
+  return {
+    source: [],
+    intake: [],
+    quality: [],
+    classification: [],
+    transformation: [],
+    storage: [],
+    routing: [],
+    delivery: [],
+    decision: [],
+    outcome: [],
+    feedback: [],
+  };
+}
+
 function emptyState(): SupplyChainManagerState {
   return {
     suppliers: [],
     inventory: [],
-    queues: Object.fromEntries(INFORMATION_SUPPLY_CHAIN.map((hop) => [hop, []])) as Record<InformationSupplyChainHop, string[]>,
+    queues: emptyQueues(),
     transformations: 0,
     routes: 0,
     destinations: [],
@@ -247,7 +263,6 @@ export async function runInformationSupplyChain(input: {
       gate,
       copyAllToOnePlace: false,
     },
-    productionAuthorization: false,
   }, root);
 
   if (lakeId) {

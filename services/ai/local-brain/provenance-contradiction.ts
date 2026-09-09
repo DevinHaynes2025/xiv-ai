@@ -128,7 +128,6 @@ export async function routeContradiction(input: {
     universeId: input.universeId,
     summary: `Contradiction routed ${input.claimA} ⟂ ${input.claimB}`,
     payload: { contradictionId: contradiction.id, forgotten: false, exploit: false },
-    productionAuthorization: false,
   }, input.root);
   return { contradiction, forgotten: false, routed: true, exploit: false };
 }
