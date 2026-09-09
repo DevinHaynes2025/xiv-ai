@@ -4,10 +4,10 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-cm-sovereign-regional-knowledge-clouds-4059`
-Parent / base tip: `cursor/62l-cl-global-knowledge-server-constellation-4059` @ `b0186aa9b2bf46e017a62eba7db4c75856ac7df4` (CL tip **PRESENT**; ops report file **WAITING_DATA** / MISSING at CM cut)
+Parent / base tip: `cursor/62l-cl-global-knowledge-server-constellation-4059` @ `b0186aa9b2bf46e017a62eba7db4c75856ac7df4` (CL tip **PRESENT**; ops report later **PRESENT** on origin after CM cut — see WAITING gates)
 Why this base: Preferred **62L-CL** tip. At start CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ** @ `a66c839`, polled with backoff until **CL** tip **PRESENT**, then **reset onto CL** `@b0186aa`. Preference **CL → CK → CJ → CI → CH → CG…** selects **CL**.
 Implementation SHAs: see commit list below (`feat` / `chore` / `docs`)
-Tip SHA: 
+Tip SHA: `909314c64dc0c52b09b757efc306bf6af91eaea3`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
@@ -38,7 +38,7 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 | Check | Result |
 |---|---|
 | CL Global Knowledge Server Constellation tip | **PRESENT** @ `b0186aa` — **used as final base**. |
-| CL ops report `62L_CL_GLOBAL_KNOWLEDGE_SERVER_CONSTELLATION_REPORT.md` | **WAITING_DATA** / MISSING on tip at CM cut (modules + `test:62lcl` present). |
+| CL ops report `62L_CL_GLOBAL_KNOWLEDGE_SERVER_CONSTELLATION_REPORT.md` | **WAITING_DATA** at CM cut → later **PRESENT** on origin (polled after implementation). Base remains CL tip `b0186aa`. |
 | CK Cognitive Infra / Mini-Cloud / History tip | **PRESENT** on origin @ `40f223d` (later tip may move); **not** used as base (CL preferred). CK modules **WAITING_DATA** on CL tip tree. |
 | CK ops report | **WAITING_DATA** / MISSING on CL tip tree. |
 | CJ Intelligence Resource Grid tip | **PRESENT** on origin (lineage not ancestor of CL); modules **WAITING_DATA** on CL tip tree. |
@@ -56,7 +56,7 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 | Gate | Status |
 |---|---|
 | CL tip at start | **WAITING_DATA** → later **PRESENT** (poll with backoff; reset onto CL) |
-| CL ops report | **WAITING_DATA** (not on CL tip at CM cut) |
+| CL ops report | **WAITING_DATA** at CM cut → later **PRESENT** on origin |
 | CK tip at start | **WAITING_DATA** → later **PRESENT** on origin (not selected as base) |
 | CK modules/report on CL tip tree | **WAITING_DATA** / MISSING |
 | CJ modules/report on CL tip tree | **WAITING_DATA** / MISSING |
@@ -105,7 +105,7 @@ Encoded as `SOVEREIGN_REGIONAL_KNOWLEDGE_CLOUDS_CYCLE` in `sovereign-regional-kn
 | F. Planetary Offline Knowledge Cache Fabric | **IMPLEMENTED** + unit **VERIFIED** | Signed + enrolled install; unsigned/revoked rejected; unenrolled DENIED |
 | Windows-node / production authorization | **DOCUMENTED only** | Not claimed VERIFIED / PRODUCTION AUTHORIZED |
 | Live Supabase / DB apply | **NOT_APPLIED** | Candidate SQL commented; `LIVE_SUPABASE_APPLY=false` |
-| CL ops report on base tip | **WAITING_DATA** | Documented; tip modules present and `test:62lcl` PASS |
+| CL ops report on base tip | **WAITING_DATA** → **PRESENT** | Documented wait; tip modules present and `test:62lcl` PASS |
 
 ## Local-first + ethics honesty
 
