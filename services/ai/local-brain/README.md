@@ -71,6 +71,8 @@ From `services/ai`:
 - `npm run local:cognitive-infra-mini-cloud-history-health` — write the 62L-CK Cognitive Infra / Mini Cloud / History health report.
 - `npm run test:62lcl` — 62L-CL Global Knowledge Server Constellation / International Archive Mining Network / Multi-Cloud Data Highway Compiler / Historical Civilization Knowledge Graph / Regional Agent Research Bureaus / Offline-Cloud Superbrain Sync Fabric safety tests.
 - `npm run local:global-knowledge-server-constellation-health` — write the 62L-CL Global Knowledge Server Constellation health report.
+- `npm run test:62lcm` — 62L-CM Sovereign Regional Knowledge Clouds / Global Archive Observatory / International Intelligence Grid / Knowledge Route Optimization / Agent Embassy Network / Planetary Offline Knowledge Cache Fabric safety tests.
+- `npm run local:sovereign-regional-knowledge-clouds-health` — write the 62L-CM Sovereign Regional Knowledge Clouds health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
