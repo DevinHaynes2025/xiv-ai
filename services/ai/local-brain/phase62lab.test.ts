@@ -344,7 +344,7 @@ try {
   check('US-AB11', pathway.twin.twinIsRealFounder === false && pathway.productionAuthorization === false && pathway.decision.humanApprovalRequired === true, 'Pathway reuses Founder Twin and Decision Gate; publication is not agent-executable.');
   check('US-AB11', pathway.logical.plan.materializedFiles === 0 && pathway.contradiction?.bothSourcesRetained === true, 'Pathway keeps logical scale honest and retains contradictions.');
   check('US-AB11', health.inventedPass === false && health.windowsNodeVerification === 'NOT_TESTED' && health.locks.L4_AUTONOMY_ENABLED === false, 'Health report does not invent PASS and keeps L4 false.');
-  check('US-AB11', health.predecessorReports['62L-Y'] === 'WAITING_DATA' && health.githubIssue39 === 'UNAVAILABLE', 'Missing Y/Z/AA reports and unread Issue #39 stay WAITING_DATA/UNAVAILABLE.');
+  check('US-AB11', health.predecessorReports['62L-Y'] === 'PRESENT' && health.githubIssue39 === 'UNAVAILABLE', '62L-Y report is present on this tree; unread Issue #39 stays UNAVAILABLE.');
 
   const offlinePathway = await runKnowledgeLakePathway({
     tenantId,

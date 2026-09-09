@@ -3,6 +3,7 @@ import { retrieveOfflineKnowledge } from './knowledge-retrieval';
 import { evaluateOfflineTask } from './offline-policy';
 import { ingestLakeSource, listLakeObjects, type KnowledgeLakeObject } from './knowledge-lake';
 import { indexLakeObject, sparseRetrieve } from './offline-intelligence-index';
+import { learnAcrossIndustries } from './historical-industry-learning';
 
 export type IndustryFederationState = 'AVAILABLE' | 'WAITING_DATA' | 'UNAVAILABLE';
 
@@ -15,6 +16,7 @@ export type IndustryMemoryRecord = {
   memoryIds: string[];
   knowledgeNodeIds: string[];
   evidenceRefs: string[];
+  historicalLessonState: 'AVAILABLE' | 'WAITING_DATA' | 'UNAVAILABLE' | 'NOT_CONSULTED';
   inventedFacts: false;
 };
 
@@ -77,6 +79,7 @@ export async function federateIndustryMemory(input: {
     memoryIds: [],
     knowledgeNodeIds: [],
     evidenceRefs: [],
+    historicalLessonState: 'NOT_CONSULTED',
     inventedFacts: false,
   };
   if (!offline.allowed) {
@@ -120,6 +123,12 @@ export async function federateIndustryMemory(input: {
     universeId: input.universeId,
     root,
   });
+  const historical = await learnAcrossIndustries({
+    tenantId: input.tenantId,
+    universeId: input.universeId,
+    question: input.query ?? `${industry} historical industry memory`,
+    root,
+  });
   const hits = sparse.hits.length ? sparse.hits : lake;
   const record: IndustryMemoryRecord = {
     industry,
@@ -133,7 +142,9 @@ export async function federateIndustryMemory(input: {
       ...hits.map((item) => `lake:${item.id}`),
       ...memories.map((item) => `mem:${item.id}`),
       ...knowledge.evidenceRefs,
+      ...historical.evidenceRefs,
     ],
+    historicalLessonState: historical.state,
     inventedFacts: false,
   };
   return {

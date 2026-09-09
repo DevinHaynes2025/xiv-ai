@@ -114,21 +114,47 @@ export async function runKnowledgeLakePathway(input: {
     evidenceRefs: [input.sourceUri],
     requiresHumanApproval: false,
   });
+  const gate = decisionGate({
+    id: `lake-decision-${bus.id}`,
+    action: `Publish ${input.industry} lake memory`,
+    consequence: 'HIGH',
+    production: false,
+    financialCommitment: false,
+    legalCommitment: false,
+    permissionChange: false,
+    externalPublication: true,
+  });
 
   if (!offline.allowed) {
     return {
       steps: KNOWLEDGE_LAKE_ARCHITECTURE,
       twin: { id: twin.id, twinIsRealFounder: false as const, authority: twin.authority },
       highwayAccepted: routed.accepted,
+      neuralFabric: fabric.stats(),
       agentBusMessageId: bus.id,
       state: offline.state === 'DENIED' ? 'UNAVAILABLE' as const : offline.state,
       ingested: null,
+      translation: null,
+      contradiction: null,
       federation: null,
+      logical: {
+        plan: planLogicalRetrieval({
+          query: input.industry,
+          estimatedRecords: input.estimatedRecords ?? LOGICAL_CORPUS_CEILING,
+        }),
+        catalogSize: 0,
+        hits: [],
+        federation: null,
+        materializedFilesCreated: 0 as const,
+        materializedEmbeddingsCreated: 0 as const,
+        materializedAgentsCreated: 0 as const,
+        inventedFacts: false as const,
+        state: 'AVAILABLE' as const,
+        reason: offline.reason,
+      },
       promotion: null,
-      logical: planLogicalRetrieval({
-        query: input.industry,
-        estimatedRecords: input.estimatedRecords ?? LOGICAL_CORPUS_CEILING,
-      }),
+      decision: gate,
+      learningId: null,
       locks: KNOWLEDGE_LAKE_LOCKS,
       productionAuthorization: false as const,
       inventedFacts: false as const,
@@ -238,16 +264,6 @@ export async function runKnowledgeLakePathway(input: {
     lakeObjectId: ingested.object.id,
     root,
   });
-  const gate = decisionGate({
-    id: `lake-decision-${bus.id}`,
-    action: `Publish ${input.industry} lake memory`,
-    consequence: 'HIGH',
-    production: false,
-    financialCommitment: false,
-    legalCommitment: false,
-    permissionChange: false,
-    externalPublication: true,
-  });
   const learning = await appendLearning({
     domain: input.industry,
     subject: 'knowledge-lake-ingest',
@@ -311,7 +327,7 @@ export async function buildKnowledgeLakeHealthReport(root = process.cwd()) {
       '62L-V': 'PRESENT',
       '62L-U': 'PRESENT',
       '62L-O': 'PRESENT',
-      '62L-Y': 'WAITING_DATA',
+      '62L-Y': 'PRESENT',
       '62L-Z': 'WAITING_DATA',
       '62L-AA': 'WAITING_DATA',
     },
