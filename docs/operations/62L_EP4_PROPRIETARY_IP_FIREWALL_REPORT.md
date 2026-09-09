@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep4-proprietary-ip-firewall-4059`  
-Tip SHA: _(filled after commit)_  
+Tip SHA: `0b0cee1c98970941cd0988c8a9d83dd1bd652bac`  
 Base: `cursor/62l-ep2-cross-vendor-capability-graph-4059` @ `63d5f61f668f4f4c4ad2efeae6d396f95ba21833`  
 Predecessor: EP2 Cross-Vendor Capability Graph **PRESENT**; EP3 **WAITING_DATA** (not landed; EP4 branched from EP2)  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP4 Proprietary-IP Firewall*  
