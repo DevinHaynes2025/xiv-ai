@@ -57,6 +57,7 @@
     "test:62leshc3": "node --import tsx --test compute-graph/phase62leshc3.test.ts",
     "test:62leshc4": "node --import tsx --test core-compute/phase62leshc4.test.ts",
     "test:62lgob166": "node --import tsx --test core-compute/phase62leshc4.test.ts",
+    "test:62lgob-local-first": "node --import tsx --test orchestration/phase62lgob-local-first.test.ts",
     "test:62les10": "node --import tsx --test local-brain/phase62les10.test.ts",
     "test:62les26": "node --import tsx --test local-brain/phase62les26.test.ts",
     "test:62les32": "node --import tsx --test local-brain/phase62les32.test.ts",
