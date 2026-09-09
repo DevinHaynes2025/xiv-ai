@@ -1,0 +1,34 @@
+-- 62L-EA Global Operations Intelligence Grid candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Grok/xAI = optional provider; unconfigured → UNAVAILABLE (no live creds).
+-- Speculative topics quarantined RESEARCH_SIM.
+-- Secure OS: denies stealth install / takeover / permission bypass / silent persistence.
+
+-- Candidate tables only (do not auto-apply):
+-- ea_ops_intelligence_probes
+-- ea_ops_recommendations
+-- ea_autonomy_boundary_denials
+-- ea_xai_provider_probes
+-- ea_multi_model_evaluations
+-- ea_provider_adapter_probes
+-- ea_vgpu_probes
+-- ea_hardware_claim_probes
+-- ea_offline_microserver_probes
+-- ea_microserver_self_promotion_attempts
+-- ea_quantum_optimizations
+-- ea_civilization_atlas_access
+-- ea_speculative_quarantines
+-- ea_symbol_translations
+-- ea_department_meetings
+-- ea_agent_department_self_promotion_attempts
+-- ea_xr_research_sessions
+-- ea_llm_on_the_go_searches
+-- ea_local_mini_server_probes
+-- ea_os_integration_denials
+-- ea_cross_os_installs
+-- ea_dz_promotion_gate_soft_wires
+-- ea_twin_authority_probes
+
+SELECT '62L_EA_CANDIDATES_NOT_APPLIED' AS status;
