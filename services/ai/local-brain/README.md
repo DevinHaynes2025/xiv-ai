@@ -14,9 +14,11 @@ From `services/ai`:
 - `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
 - `npm run local:research-health` — write the 62L-Y research highway health map.
 - `npm run local:executive-health` — write the 62L-Z Executive Cortex / Global Brain health report.
+- `npm run local:knowledge-ops-health` — write the 62L-AA Executive Memory / Knowledge Ops report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lz` — 62L-Z US-Z1..US-Z24 safety tests.
+- `npm run test:62laa` — 62L-AA US-AA1..US-AA24 safety tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -26,6 +28,9 @@ Offline Research Civilization Controller, research feedback loop, cross-industry
 
 ## 62L-Z Executive Cortex + Offline R&D
 Operational Executive Cortex walks Founder Intent → Story → Memory/Context → Department → Specialist Council → Competing Hypotheses → Evidence → Simulation → Skeptic/Security Review → Decision Options → Human Gate → Implementation Candidate → Test → Outcome → Learning → Neural Pathway Update → Debrief → Next Story. Reuses 62L-Y research civilization, knowledge packs, chip/signal/physics/quantum labs, and 62L-X Memory Cortex. Million/billion/trillion scale is logical addressable contexts, not materialized process counts. Digital Twin / agents cannot fabricate founder approval.
+
+## 62L-AA Executive Memory + Knowledge Operations
+Executive memory consolidation, founder priority graph, knowledge ops controller, evidence promotion gate (raw/parsed/claims/verified/stale/superseded/conflicts/unknowns), toolchain federation (AVAILABLE only with config+auth+runtime evidence), local-first provider selection, GitHub/GitLab evidence bridging, offline sync queues, debate memory, cross-domain routing, industry timelines, regional packs, infrastructure/hardware/signal memory, quantum knowledge ops (classical baseline; simulator ≠ QPU), reproducibility ledger, agent skill evolution, knowledge-gap detection, executive conflict resolution, debrief memory, Offline Continuity Score (% of approved workload that can genuinely run locally with models/data/hardware actually present), Global Brain ops reporting, and a safe logical-scale harness. Unconfigured cloud stays UNAVAILABLE. No tip-land. No PR from this phase.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
