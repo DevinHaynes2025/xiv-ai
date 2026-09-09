@@ -8,7 +8,7 @@ Base: `cursor/62l-em3-universal-compute-registry-4059` @ `eb6e963ac31af155225660
 Prior base: EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (superseded by rebase)  
 Rebase onto EM3: **YES**  
 Implementation SHA: `1f6b8c14e795949f1b485897c7854ec12d6c509d` (feat, post-rebase)  
-Tip SHA: `PLACEHOLDER_TIP`  
+Tip SHA: `8b208e22fbf02ae84df2e99ebc3199d765ebbec8`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
