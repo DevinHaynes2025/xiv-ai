@@ -7,7 +7,7 @@ Branch: `cursor/62l-cx-persistent-knowledge-civilization-4059`
 Parent / base tip: `cursor/62l-cw-autonomous-research-infrastructure-os-4059` @ `03584c6dc4639248191d8c12ac662977c8633abb` + `docs/operations/62L_CW_AUTONOMOUS_RESEARCH_INFRASTRUCTURE_OS_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **CW → CV `c35e474` → CU `2db3e44` → CT → CR `af878c1` → CQ `c8c10d3` → …**. CW tip initially **WAITING_DATA** (agent still landing); polled with backoff 30s–2m until tip + report + modules **PRESENT**. Rebased CX onto CW. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `docs`)
-Tip SHA: `61d6efada0dc3c9f8324251b548d83eaf2d436ef`
+Tip SHA: `dcf43e5fcb942f572449c91b05c9d4cd710758bb`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
