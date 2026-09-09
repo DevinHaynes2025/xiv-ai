@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er13-online-brain-index-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `c974e52a0112d0e9e9b945be954345c44eb6ca42`  
 Base: `cursor/62l-er3-public-data-source-registry-4059` @ `1cca6dd49db6b3060f1de42032ff4b9be003c862`  
 Preferred ER12 tip: **absent** at implement time — proceeded from best available ER3; ER12–ER4 / ER2–ER1 soft-wired as **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family  
