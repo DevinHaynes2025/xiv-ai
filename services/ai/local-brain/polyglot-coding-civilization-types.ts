@@ -190,7 +190,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BM tip landed on origin; not BQ base. In-tree report may be MISSING on BP parent.',
+      note: 'BM tip+report present on BP parent after BM-backed BO rebase; not BQ base.',
     },
     BL: {
       tipProbe: 'PRESENT' as const,
