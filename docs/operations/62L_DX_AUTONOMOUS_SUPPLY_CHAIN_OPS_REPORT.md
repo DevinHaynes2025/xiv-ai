@@ -7,7 +7,7 @@ Branch: `cursor/62l-dx-autonomous-supply-chain-ops-4059`
 Parent / base tip: `cursor/62l-dw-supply-chain-superbrain-4059` @ `c04b3a39dedfbe65d7ec69de08c01b8d934f9aea` + `docs/operations/62L_DW_SUPPLY_CHAIN_SUPERBRAIN_REPORT.md` (**PRESENT**)
 Why this base: Preference **DW → DV → DU → DT**. Newest DW tip **PRESENT** on origin (contains DV @ `fa009375b9183eb074b52b67eb58b59f28eb4128` and DU @ `b0410374c25274979a3c24a387769a0e235f069b`). Soft-wire `62L_DW_*` / `62L_DV_*` / `62L_DU_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs`)
-Tip SHA: `8f9a58fae382811845d9d7dc913b22dd2ac4b1df`
+Tip SHA: `db99dffc514d46e08cb3c60cf4120559c404368b`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
