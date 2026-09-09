@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em8-compute-return-receipt-4059`  
-Tip SHA: `(recorded after rebase commit)`  
+Tip SHA: `9f47b2c5767480f5f5663d50aadd75deca5115b5`  
 Feat commit (post-rebase): `cabe178`  
 Rebase: **YES** onto EM7 `76a1552` (EM6 `5301b7c`)  
 Feat commit: `efca5b3e60526a12a7b255683ab87843ccbd45fd`  
