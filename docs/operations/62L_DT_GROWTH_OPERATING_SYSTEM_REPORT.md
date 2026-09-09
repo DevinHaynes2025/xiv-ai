@@ -7,7 +7,7 @@ Branch: `cursor/62l-dt-growth-operating-system-4059`
 Parent / base tip: `cursor/62l-ds-revenue-intelligence-os-4059` @ `8a373b5424ae7b1e8dd6aa29427d9590ea2defad` + `docs/operations/62L_DS_REVENUE_INTELLIGENCE_OS_REPORT.md` (**PRESENT**)
 Why this base: Preference **DS → DR → DQ → DP**. Final **DS PRESENT** @ `8a373b5424ae7b1e8dd6aa29427d9590ea2defad` on final **DR** `25594448b6d52f8e48b09af8c1fc6170f9a64355` (DQ soft-wire **PRESENT** in lineage). Rebased DT commits from interim DS `e8908fb` onto final DS. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `464036cdc1a8dda9c00b47c19114d141dc44b4f4`
+Tip SHA: `f8f55b25117d5a0d8d91719d2c61683bb3bcd749`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
