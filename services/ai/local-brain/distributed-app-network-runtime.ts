@@ -33,6 +33,7 @@ import { profileLimits } from './bandwidth-resource-governor';
 import { syncPeerUniverseRecord } from './peer-universe-sync';
 import {
   activateVerifiedTransfer,
+  getTransfer,
   resumeTransfer,
   startResumableTransfer,
 } from './resumable-package-transfer';
@@ -167,7 +168,7 @@ export async function runDistributedAppNetworkCycle(input: {
     bytes: packageBytes,
     classification: 'internal',
     destinationOnline: !input.destinationOffline,
-    chunkChars: 20,
+    chunkChars: 8,
     root,
   });
 
@@ -220,7 +221,7 @@ export async function runDistributedAppNetworkCycle(input: {
       resumed = { ...resumed, transfer: resumed.transfer, received: (first.received ?? 0) + (resumed.received ?? 0) };
     }
   }
-  if (resumed?.ok && resumed.transfer.integrity === 'PASS') {
+  if (transfer.accepted && resumed?.ok && resumed.transfer.integrity === 'PASS') {
     activated = await activateVerifiedTransfer({
       transferId: transfer.transfer.id,
       tenantId: input.tenantId,
@@ -342,7 +343,13 @@ export async function runDistributedAppNetworkCycle(input: {
     relay,
     route: routeToOptionalRelay({
       relay,
-      classification: input.sealedPayload ? 'sealed_founder_priority' : 'internal',
+      classification: 'internal',
+      sealedRedacted: true,
+      isolation: false,
+    }),
+    sealedDenied: routeToOptionalRelay({
+      relay,
+      classification: 'sealed_founder_priority',
       sealedRedacted: true,
       isolation: false,
     }),
@@ -453,7 +460,14 @@ export async function runDistributedAppNetworkCycle(input: {
     sealedSkillDenied: sealedSkill.delivered === false,
     sealedPackDenied: sealedPack.delivered === false,
     sealedSyncDenied: sealedSync.synced === false,
-    transfer: transfer.accepted ? transfer.transfer : null,
+    transfer: transfer.accepted
+      ? (await getTransfer({
+          transferId: transfer.transfer.id,
+          tenantId: input.tenantId,
+          universeId: input.universeId,
+          root,
+        }))
+      : null,
     envelope: transfer.accepted ? transfer.envelope : null,
     duplicate: duplicate.accepted ? duplicate.duplicate : false,
     resumed,

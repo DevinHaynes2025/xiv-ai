@@ -120,8 +120,10 @@ try {
   check('US-AL16', cycle.profiles.desktop.nodeCannotSelfExpand === true, 'Nodes cannot expand their own resource limits.');
   check(
     'US-AL17',
-    cycle.relays.find((item) => item.relay === 'aws')?.route.state === 'UNAVAILABLE' && cycle.relays[0].fallback.continueLocal === true,
-    'Unconfigured AWS relay is UNAVAILABLE; local work continues.',
+    cycle.relays.find((item) => item.relay === 'aws')?.route.state === 'UNAVAILABLE' &&
+      cycle.relays.find((item) => item.relay === 'aws')?.sealedDenied.state === 'DENIED' &&
+      cycle.relays[0].fallback.continueLocal === true,
+    'Unconfigured AWS relay is UNAVAILABLE; sealed content is DENIED; local work continues.',
   );
   check(
     'US-AL18',

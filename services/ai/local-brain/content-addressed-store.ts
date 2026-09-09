@@ -95,7 +95,7 @@ export async function putContentAddressed(input: {
     tenantId: input.tenantId,
     universeId: input.universeId,
     kind: input.kind,
-    classification: input.classification && input.classification !== 'sealed_founder_priority' ? input.classification : 'internal',
+    classification: input.classification ?? 'internal',
     byteLength: Buffer.byteLength(bytes),
     createdAt: new Date().toISOString(),
     sealed: false,

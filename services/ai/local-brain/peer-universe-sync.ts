@@ -121,7 +121,7 @@ export async function syncPeerUniverseRecord(input: {
     ? await markInstallOrSync({
         nodeId: input.nodeId,
         tenantId: input.tenantId,
-        universeId: input.toUniverseId,
+        universeId: input.fromUniverseId,
         kind: 'sync',
         root,
       })
