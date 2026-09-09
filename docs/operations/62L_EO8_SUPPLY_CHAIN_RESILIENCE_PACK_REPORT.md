@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo8-supply-chain-resilience-pack-4059`  
-Tip SHA: `(pending commit)`  
-Implementation SHA (feat): `(pending commit)`  
+Tip SHA: `73f499cfa651dfa717b44820fa63d528068c7223`  
+Implementation SHA (feat): `73f499cfa651dfa717b44820fa63d528068c7223`  
 Base: `cursor/62l-eo6-classical-baseline-requirement-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (EO7 logistics pack **absent** on fetch → fell back to EO6 per park-and-implement predecessor rule)  
 SoT: **62L-EO8** — *Supply Chain Resilience Pack* (multi-tier graph, scenario library, truth labels, bounded agents, recovery recommendations)  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
@@ -122,7 +122,7 @@ cd services/ai && npm run test:62leo8
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62leo8` | **PASS** — (see executed run; truth labels; 14 scenarios; agent bounds; no-auto purchase/switch/contract/dispatch/comm; L4=false; sim≠fact; historical≠proof; soft-wire probes) |
+| `npm run test:62leo8` | **PASS** — 11/11 (truth labels; 14 scenarios; agent bounds; no-auto purchase/switch/contract/dispatch/comm; L4=false; sim≠fact; historical≠proof; soft-wire probes) |
 
 ## Next (report only — do not implement)
 
