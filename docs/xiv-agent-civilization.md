@@ -148,6 +148,12 @@ human decision requires a human participant in the room and becomes an
 attributable governance record, not an invisible training signal. Unresolved
 disagreements survive into the archived meeting.
 
+The room described here can hold a conversation and take a vote. Making it
+*reason* — named duties, a complete evidence contract, preserved disagreement, a
+computed human checkpoint — is 2I-AI-62B, documented in
+[`xiv-agent-meetings.md`](./xiv-agent-meetings.md). That slice extends these
+tables rather than creating a second set.
+
 ## Historical and multilingual knowledge
 
 Eras run ancient, classical, medieval, industrial, modern, digital, present. A
@@ -220,7 +226,7 @@ agent-evaluation gates. The architecture may keep growing in parallel.
 
 ## Running the tests
 
-Service layer, 88 tests, no external dependencies:
+Service layer, 151 tests across both slices, no external dependencies:
 
 ```bash
 cd services/ai
@@ -245,9 +251,9 @@ in `ROLLBACK`, so it leaves no rows behind and can be run repeatedly.
 | State | Story |
 | --- | --- |
 | Current | Deployment Gate Hardening |
-| This slice | `2I-AI-62A` Agent Civilization Foundation |
-| Next | `2I-AI-62B` Agent Meetings + Human Intelligence Bridge |
-| Then | `2I-AI-62C` Historical / Multilingual Knowledge Lineage |
+| Done | `2I-AI-62A` Agent Civilization Foundation |
+| Done | `2I-AI-62B` Agent Meetings + Human Intelligence Bridge |
+| Next | `2I-AI-62C` Historical / Multilingual Knowledge Lineage |
 | Then | `2I-AI-62D` Distributed Device & Hardware Runtime |
 | Then | `2I-AI-62E` Massive Agent Scheduler + Task Forces |
 | Then | `2I-AI-62F` Universe Federation + Constellations |
