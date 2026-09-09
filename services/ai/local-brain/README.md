@@ -15,12 +15,14 @@ From `services/ai`:
 - `npm run local:knowledge-lake-health` — write the 62L-AB Knowledge Lake / Industry Memory health report.
 - `npm run local:hybrid-edge-health` — write the 62L-AE Hybrid Edge-Cloud + CEO Sealed Vault health report.
 - `npm run local:universe-os-health` — write the 62L-AF Universe OS Kernel + memory replication health report.
+- `npm run local:marketplace-health` — write the 62L-AK Offline Developer Platform / Universe Package Manager / Local App Marketplace health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62lab` — 62L-AB Knowledge Lake / Industry Memory safety tests.
 - `npm run test:62lae` — 62L-AE Hybrid Edge-Cloud / CEO Sealed Vault / Cross-OS federation safety tests.
 - `npm run test:62laf` — 62L-AF Universe OS Kernel / offline service fabric / distributed memory replication safety tests.
+- `npm run test:62lak` — 62L-AK package integrity, permission-diff human gate, transactional rollback, sealed export redaction, and quarantine safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -29,6 +31,9 @@ Agents defined → recruited → communicating → meeting → retrieving knowle
 
 ## 62L-AB Knowledge Lake
 Durable offline Knowledge Lake, industry memory federation, multilingual original preservation, evidence graphs, hashed dedup, partitioned sparse indexing, tiered storage, and logical retrieval for huge corpora. Trillion-scale address space is a shard map — this slice does not materialize trillions of files, rows, embeddings, or agents. Unconfigured translators/cloud stay UNAVAILABLE. Evidence Promotion Gate is reused; AI agreement is not VERIFIED. 62L-Y/Z/AA reports are WAITING_DATA here.
+
+## 62L-AK Offline Developer Platform + Universe Package Manager + Local App Marketplace
+Executable package lifecycle: verified candidate → manifest → integrity → permission diff → compatibility → local install plan → human gate → sandboxed install → health/test → registry activation → usage evidence → update/rollback/quarantine. Installation never grants authority. Verified candidate ≠ deployed/published/customer-authorized. Broader permissions, restricted data, external networking, shell access, and production capabilities stop at the human gate and remain ungranted. CEO-sealed packages are non-replicating; exports are redacted with `[REDACTED_SEALED]`. Unconfigured providers stay UNAVAILABLE. Reuses 62L-AF Universe Kernel replication policy and 62L-AE CEO Sealed Vault. 62L-AJ plugin factory remains WAITING_DATA on this tree (sibling AD lineage, not merged).
 
 ## 62L-AF Universe OS Kernel + Offline Service Fabric + Distributed Memory Replication
 Logical Universe lifecycle, offline service supervision, capability packages, scoped storage, distributed memory journals, node-to-node replication with CEO-sealed non-replication by default, conflict retention, local database routing, sparse vector indexes, snapshots/restores, mobile/desktop microkernel profiles, hardware-aware scheduling, quarantine/safe mode, and an evidence-based Offline Continuity Score. AWS/Azure/Cisco remain optional UNAVAILABLE extensions — XIV boots locally without cloud. 62L-AD/AC reports are WAITING_DATA on this AE parent (not merged).
