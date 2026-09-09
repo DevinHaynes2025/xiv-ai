@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo8-supply-chain-resilience-pack-4059`  
-Tip SHA: `(pending rebase tip)`  
+Tip SHA: `7e5ad867b502c2b24080fdbdb2578909708257f1`  
 Implementation SHA (feat): `6cb0186df6666264d9f1ee5530fb4c9077112d8e`  
 Base: `cursor/62l-eo7-government-logistics-mission-pack-4059` @ `42ae524de80b7617ec7e89c1126f0bae3a0d4015` (preferred EO7 present; rebased off stale EO6@`3a141648…`)  
 SoT: **62L-EO8** — *Supply Chain Resilience Pack* (multi-tier graph, scenario library, truth labels, bounded agents, recovery recommendations)  
