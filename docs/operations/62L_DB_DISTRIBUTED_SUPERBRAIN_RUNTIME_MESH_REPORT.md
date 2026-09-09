@@ -7,7 +7,7 @@ Branch: `cursor/62l-db-distributed-superbrain-runtime-mesh-4059`
 Parent / base tip: `cursor/62l-da-superbrain-runtime-kernel-4059` @ `e8b5b7cb215e152ba9760d955d6ea47887d74e23` + `docs/operations/62L_DA_SUPERBRAIN_RUNTIME_KERNEL_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DA → CZ → CY → CX → CW `03584c6`**. DA tip initially **WAITING_DATA** (agent still landing; not on origin). Polled with backoff until DA tip + report + modules **PRESENT** @ `e8b5b7c`. CZ tip remains **WAITING_DATA** (not on origin). CY `c182f7d`, CX `63e79c1`, CW `03584c6` present in DA lineage. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `docs` / `chore`)
-Tip SHA: `3ff94f51fa39ec41893c0ddbf42065b28b3ee46b`
+Tip SHA: `9487c3d06e1d13fd134774449cf27ceaf7ba0417`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
