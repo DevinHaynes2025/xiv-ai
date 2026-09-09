@@ -4,9 +4,9 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo6-classical-baseline-requirement-4059`  
-Tip SHA: `(pending commit)`  
-Implementation SHA (feat): `(pending commit)`  
-Base: `cursor/62l-eo5-quantum-evidence-boundary-4059` @ `(pending rebase)` (preferred predecessor; else EO4 / EO3…)  
+Tip SHA: `(pending docs commit)`  
+Implementation SHA (feat): `53a20bbc2ed8f8f163b0056538585a3fd3128e9b`  
+Base: `cursor/62l-eo5-quantum-evidence-boundary-4059` @ `7869e39cbccc893cc8335393392257c3e40ac291` (preferred predecessor)  
 SoT: **GitHub #159** EO family — *Classical Baseline Requirement* (park-and-implement child)  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
 
@@ -33,7 +33,7 @@ As XIV AI OS, I want every advanced optimization, AI-agentic, or quantum experim
 
 | Field | Value |
 | --- | --- |
-| Preferred base | EO5 `cursor/62l-eo5-quantum-evidence-boundary-4059` |
+| Preferred base | EO5 `cursor/62l-eo5-quantum-evidence-boundary-4059` @ `7869e39c` |
 | Fallback | EO4 `cursor/62l-eo4-ai-quantum-capability-matrix-4059` / EO3 / … |
 | Working branch | `cursor/62l-eo6-classical-baseline-requirement-4059` |
 | Tip-land / PR / prod / DB | **NO** / **None** / **NO** / **NOT_APPLIED** |
@@ -42,9 +42,9 @@ As XIV AI OS, I want every advanced optimization, AI-agentic, or quantum experim
 
 | Target | Soft-wire |
 | --- | --- |
-| EO4 AI & Quantum Capability Matrix | probe `ai-quantum-capability-matrix*.ts` + report — **PRESENT** or **WAITING_DATA** |
-| EO5 Quantum Evidence Boundary (language gate / classical mandate) | probe `quantum-evidence-boundary*.ts` + report — **PRESENT** after EO5 rebase |
-| EM9 classical quant benchmarks | `local-runtime/classical-quant-benchmark.ts` — **PRESENT** on tip |
+| EO4 AI & Quantum Capability Matrix | probe `ai-quantum-capability-matrix*.ts` + report — **WAITING_DATA** (sibling not on tip) |
+| EO5 Quantum Evidence Boundary (language gate / classical mandate) | `quantum-evidence-boundary*.ts` + report — **PRESENT** |
+| EM9 classical quant benchmarks | `local-runtime/classical-quant-benchmark.ts` — **PRESENT** |
 | EO3 watch / #159 EO Mission OS / EN Deal OS | presence probes only |
 
 ## Problem definition fields (encoded)
@@ -113,7 +113,9 @@ Every optimization claim must be traceable to benchmark evidence. Vague claims s
 cd services/ai && npm run test:62leo6
 ```
 
-Result: **(pending execute)**
+Result: **PASS** — 10/10 executed (`# pass 10` / `# fail 0`)
+
+Covered: SoT / L4 locks / problem fields / baseline families / metrics / promotion outcomes / tradeoff honesty / promotion gate (no auto-promote) / vague “quantum-powered efficiency” deny / soft-wire EO4 WAITING_DATA + EO5/EM9 PRESENT / full comparison cycle.
 
 ## Next (do not implement)
 
