@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er2-public-open-historical-data-registry-4059`  
-Tip SHA: *(aligned in follow-up docs commit)*  
+Tip SHA: `93bc1d879bbaea5cd8dae6ff2c7c02e65945afba`  
 Base: `cursor/62l-er1-real-api-connection-registry-4059` @ `d949b61c6639b4ffc72981317985bfdafcc9364c`  
 Predecessor: ER1 **PRESENT**; EQ16 **PRESENT**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER2 Public/Open Historical Data Registry*  
