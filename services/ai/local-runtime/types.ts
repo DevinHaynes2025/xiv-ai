@@ -53,3 +53,18 @@ export type RouteDecision = {
   reason: string;
   capabilityState: CapabilityState;
 };
+
+/** Measurement-before-claim evidence grades used by 62L-EM gates. */
+export type EvidenceGrade =
+  | 'DOCUMENTED'
+  | 'IMPLEMENTED'
+  | 'VERIFIED'
+  | 'PRODUCTION_AUTHORIZED'
+  | 'NOT_APPLIED';
+
+export const EVIDENCE_GRADE_ORDER: readonly EvidenceGrade[] = [
+  'DOCUMENTED',
+  'IMPLEMENTED',
+  'VERIFIED',
+  'PRODUCTION_AUTHORIZED',
+] as const;
