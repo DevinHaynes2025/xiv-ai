@@ -13,16 +13,14 @@ Date: 2026-09-09
 
 | Field | Value |
 | --- | --- |
-| Preferred EM8 (rebased) | `cursor/62l-em8-compute-return-receipt-4059` @ `fd86ee06efb86efc94b21c05076bf88034068c8d` |
-| Prior stale base avoided | `84cd6f3…` (pre-EM8-receipt tip) |
-| EM7 | tip `0fee604…` exists; device-neutral router **ABSENT** on interim EM8 tip (EM8 still rebasing toward EM6/EM7) |
-| EM6 / EM3 newer tips | available (`5301b7c…` / `eb6e963…`) but EM8 interim preferred per order |
-| EM3 on this tip | Universal Compute Registry **PRESENT** |
-| EM8 on this tip | Compute return receipts **PRESENT** |
+| Preferred EM8 (rebased) | `cursor/62l-em8-compute-return-receipt-4059` @ `f1ebf638264d978e0771357f9cc9e2acbeba0f18` (newer than requested `1285e3f…` / interim `fd86ee0…`) |
+| Prior bases avoided | `fd86ee0…` (pre-EM7 ancestry), `84cd6f3…` (pre-EM8-receipt) |
+| EM7 ancestry | **PRESENT** via EM8 rebase onto EM7 `e62e0d0` / `0fee604` line |
+| EM3 / EM6 / EM8 on this tip | Registry + NVIDIA path + return receipts **PRESENT** |
 | EL9 | Resource Governor **PRESENT** |
 | Working branch | `cursor/62l-em9-compute-resource-market-simulator-4059` |
-| Tip SHA | `16b95fbe7c12d5f641163ecb771ec9d8e18a1da2` |
-| Rebase | **YES** — onto EM8 `fd86ee0` |
+| Tip SHA | _(recorded after rebase commit)_ |
+| Rebase | **YES** — onto EM8 `f1ebf63` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
@@ -65,14 +63,14 @@ CPU/GPU/NPU availability, model compatibility, measured latency, throughput, RAM
 | `local-runtime/__tests__/phase62lem9.test.ts` | Acceptance tests |
 | `package.json` → `test:62lem9` | Test entry |
 
-## Soft-wire (post-rebase onto EM8 `fd86ee0`)
+## Soft-wire (post-rebase onto EM8 `f1ebf63` with EM7 ancestry)
 
 | Target | Result |
 | --- | --- |
 | EM3 `universal-compute-registry.ts` | **PRESENT** |
 | EM3 honesty | **PRESENT** |
-| EM7 device-neutral router | **ABSENT** (honest; EM8 interim tip not yet rebased onto EM7) |
-| EM7 honesty | **ABSENT** |
+| EM7 device-neutral router | **PRESENT** |
+| EM7 honesty / soft-wire | **PRESENT** |
 | EM8 `compute-return-receipt.ts` | **PRESENT** |
 | EM8 honesty / soft-wire | **PRESENT** |
 | EL9 `resource-governor.ts` | **PRESENT** |
@@ -93,7 +91,7 @@ Presence soft-wire does **not** imply EM7/EM8 VERIFIED or production authorizati
 | Historical benchmarks require timestamps | **PASS** |
 | Guardian/RLS/tenant/Universe boundaries | **PASS** |
 | Quantum-inspired hook vs classical baseline; no advantage claim | **PASS** |
-| Soft-wire EM3+EM8+EL9; EM7 ABSENT-ok; L4=false | **PASS** |
+| Soft-wire EM3+EM7+EM8+EL9 PRESENT; L4=false | **PASS** |
 | Consequential recommend → human/policy gate | **PASS** |
 | Candidate return fields present | **PASS** |
 
@@ -116,7 +114,7 @@ cd services/ai && npm run test:62lem9
 | Live NVIDIA workstation capacity quotes | **NOT_TESTED** |
 | Authorized edge federation live quotes | **NOT_TESTED** |
 | Authorized cloud GPU live quotes | **NOT_TESTED** |
-| EM7 router on this interim EM8 tip | **ABSENT** |
+| EM7 router on this tip | **PRESENT** (soft-wire only; live route **NOT_TESTED**) |
 | EM8 live Home Base ingest / production | **NOT_TESTED** |
 | Production authorization / tip-land / PR | **false** / not created |
 

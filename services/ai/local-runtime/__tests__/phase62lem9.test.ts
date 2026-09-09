@@ -267,17 +267,19 @@ test('EM9 honesty locks intact; L4 false; simulation≠execute', () => {
   assert.match(NEXT_PHASE_EM10, /EM10/);
 });
 
-test('soft-wire EM3 registry + EM8 receipts + EL9 governor present; EM7 honest ABSENT-or-PRESENT', () => {
+test('soft-wire EM3+EM7+EM8+EL9 present after EM8/EM7 rebase', () => {
   const probe = probeEm9SoftWires();
   assert.equal(probe.em3Registry, 'PRESENT');
   assert.equal(probe.em3Honesty, 'PRESENT');
+  assert.equal(probe.em7Router, 'PRESENT');
+  assert.equal(probe.em7Honesty, 'PRESENT');
+  assert.equal(probe.em7SoftWire, 'PRESENT');
   assert.equal(probe.em8Receipts, 'PRESENT');
   assert.equal(probe.em8Honesty, 'PRESENT');
   assert.equal(probe.em8SoftWire, 'PRESENT');
   assert.equal(probe.el9ResourceGovernor, 'PRESENT');
   assert.equal(probe.classicalQuantBaseline, 'PRESENT');
-  assert.ok(probe.em7Router === 'PRESENT' || probe.em7Router === 'ABSENT');
-  assert.ok(probe.em7Honesty === 'PRESENT' || probe.em7Honesty === 'ABSENT');
+  assert.equal(probe.locks.em7.L4_AUTONOMY_ENABLED, false);
   assert.equal(probe.locks.em8.L4_AUTONOMY_ENABLED, false);
   assert.equal(probe.simulationExecutesWorkload, false);
   assert.equal(probe.l4AutonomyEnabled, false);
