@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er12-live-data-connector-gate-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `4224343f203813576ed133a17f3807086398b3be`  
 Base: `cursor/62l-er2-api-truth-state-machine-4059` @ `0913840` (preferred ER11–ER5 tips absent; ER2 API Truth especially relevant)  
 Predecessor soft-wires: ER2 **PRESENT**; ER1 **PRESENT**; ER11–ER3 **WAITING_DATA**; EQ16/15/13/12/EP15 **PRESENT**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER12 Live Data Connector Gate*  
