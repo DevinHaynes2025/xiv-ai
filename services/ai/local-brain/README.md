@@ -14,9 +14,11 @@ From `services/ai`:
 - `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
 - `npm run local:research-health` — write the 62L-Y research highway health map.
 - `npm run local:workcells` — write the 62L-AC offline agent runtime / workcell health report.
+- `npm run local:mesh-health` — write the 62L-AD distributed offline agent mesh fleet health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
+- `npm run test:62lad` — 62L-AD partition, reconnect, and federation safety tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -25,7 +27,10 @@ Durable local Memory Cortex, partitioned world/business knowledge, contradiction
 Offline Research Civilization Controller, research feedback loop, cross-industry historical learning, knowledge packs, signal infrastructure (simulation/interfaces), bounded quantum lab, physics research domains, planetary/galactic simulators, reflection council, offline resilience, highway health, and bounded self-improvement. Dark matter/energy are research domains only. Galactic infrastructure is simulation/research only. XIV does not claim consciousness or control physical satellites.
 
 ## 62L-AC Offline Agent Runtime + Workcells
-Executable offline operating cycle: approved story → supervisor → context vault → retrieval-before-reasoning → workcell → plan → persistent meetings → local tools → coding/research/quant/infrastructure → test→fix→retest → critique → evidence → decision gate → checkpoint → learning ledger → strategy memory → next task. Persistent workers, restart-safe workcells, dead-letter recovery, and offline→online reconciliation. L4 remains false. No physical device control. No founder impersonation. 62L-AD is not implemented here.
+Executable offline operating cycle: approved story → supervisor → context vault → retrieval-before-reasoning → workcell → plan → persistent meetings → local tools → coding/research/quant/infrastructure → test→fix→retest → critique → evidence → decision gate → checkpoint → learning ledger → strategy memory → next task. Persistent workers, restart-safe workcells, dead-letter recovery, and offline→online reconciliation. L4 remains false. No physical device control. No founder impersonation.
+
+## 62L-AD Distributed Offline Agent Mesh
+Authorized node identity, device capability discovery, safe peer discovery, local-first routing, partition-safe Agent Bus messaging, multi-node workcells (reusing 62L-AC coding/research/quant workcells), local-model federation, knowledge-pack exchange, outage reconciliation, resource governance, edge-agent mode, quarantine/revocation, and fleet health. Registered computers/models/chips/nodes are not automatically trusted. Unverified peers remain UNAVAILABLE. No physical satellite or device control beyond authorized simulated/local adapters.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
