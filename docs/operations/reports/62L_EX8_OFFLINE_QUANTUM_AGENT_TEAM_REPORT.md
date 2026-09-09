@@ -12,7 +12,7 @@
 | Ref | SHA |
 |-----|-----|
 | Feat SHA | `a2330f3a35b9c79b67abb69e1a8caea9f40d5a14` |
-| Branch tip | see `git rev-parse HEAD` on `cursor/62l-ex8-offline-quantum-agent-team-4059` after push |
+| Branch tip | `1830345ac90c23f4a40f05c9beb4894250cbcd29` |
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (lags GitHub; no invented GitLab issue #) |
 | EX7 tip `cursor/62l-ex7-hybrid-classical-quantum-router-4059` | `6e400afdb2cfed75c1c0c297632b7fec1607af13` |
