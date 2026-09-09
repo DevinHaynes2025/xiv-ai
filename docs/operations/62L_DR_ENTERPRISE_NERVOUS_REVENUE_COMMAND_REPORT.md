@@ -7,7 +7,7 @@ Branch: `cursor/62l-dr-enterprise-nervous-revenue-command-4059`
 Parent / base tip: `cursor/62l-dp-plugin-civilization-os-4059` @ `08078d1faff76826989e45e9d20a748d73f809ed` + `docs/operations/62L_DP_PLUGIN_CIVILIZATION_OS_REPORT.md` (**PRESENT**)
 Why this base: Preference **DQ → DP → DO `c9b2262` → DN `a3d522f` → DM → DL `359057d` → …**. Remote DQ tip **WAITING_DATA** (not on origin at cut; no `62L_DQ_UNIVERSAL_INTEGRATION_BRAIN_REPORT.md`). DP tip + report **PRESENT** @ `08078d1faff76826989e45e9d20a748d73f809ed` — used as base. Soft-wire DP Plugin Civilization OS when PRESENT; DO/DN soft-wire fallbacks remain. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `5a709d33d1152e5bc512a3bb0f2e7ede3cf47053`
+Tip SHA: `fa4745193dc7baca7a6347a0615efa3ab5330254`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
