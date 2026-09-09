@@ -4,7 +4,7 @@ Updated: 2026-09-09 (America/Chicago)
 
 ## Repo
 - Path: `C:\Users\Devin\xiv-ai`
-- Authorized tip: `xiv-v2` @ `65fa7a0688c63c5d07945ce7e7969185697b6434`
+- Authorized tip: branch `cursor/ey0-l-local-coding-brain` (from xiv-v2) @ `87dfb54d0182da8813446d0aa9fcacc970281cdb`
 - Remotes: GitHub `DevinHaynes2025/xiv-ai`, GitLab `xiv-ai-group/xiv-ai-project`
 
 ## What is real

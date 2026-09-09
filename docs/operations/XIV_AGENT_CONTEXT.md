@@ -3,9 +3,9 @@
 Snapshotted: 2026-09-09
 
 ## Authorized tip
-- Branch: `xiv-v2`
-- SHA: `65fa7a0688c63c5d07945ce7e7969185697b6434`
-- Story: **EY0-L** (this spine), then **EY1**
+- Branch: `cursor/ey0-l-local-coding-brain`
+- SHA: `87dfb54d0182da8813446d0aa9fcacc970281cdb`
+- Story: EY0-L complete locally; next EY1
 
 ## Read order
 1. `AGENTS.md`
