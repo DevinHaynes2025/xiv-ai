@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq8-arm-server-cloud-runtime-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `4ae3cc32bac88caac0c0d7d2fb91ccf1c8d5f3a8`  
 Base: `cursor/62l-eq7-arm-edge-amd-acceleration-4059` @ `79623fa0d923fdcf1077896087366a32a78670a1`  
 Predecessor: EQ7 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ8 ARM Server/Cloud Runtime Research*  
