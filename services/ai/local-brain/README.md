@@ -18,6 +18,8 @@ From `services/ai`:
 - `npm run local:information-economy-health` — write the 62L-AU Agentic Information Economy / Knowledge Logistics health report.
 - `npm run local:sovereign-sealed-health` — write the 62L-AX Sovereign Sealed Information Fabric / Universal UX Runtime / Cross-Platform Trust Gateway health report.
 - `npm run local:growth-media` — write the 62L-AY growth media / onboarding / super brain / refinery health report.
+- `npm run local:neural-database-health` — write the 62L-BA neural database OS / schema-index compiler / warehouse / UDA health report.
+- `npm run local:quantum-agentic-health` — write the 62L-BC Quantum-Agentic Pathway Compiler / Cognitive Memory Hierarchy / Universe Fork Memory Fabric health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
@@ -27,6 +29,8 @@ From `services/ai`:
 - `npm run test:62lau` — 62L-AU Agentic Information Economy / Knowledge Logistics / Information Bullwhip Detector safety tests.
 - `npm run test:62lax` — 62L-AX Sovereign Sealed Information Fabric / Universal UX Runtime / Cross-Platform Trust Gateway safety tests.
 - `npm run test:62lay` — 62L-AY adult-only onboarding, package label≠access, no auto-publish, authorized-source refinery, non-sentient super brain tests.
+- `npm run test:62lba` — 62L-BA production DDL/DML deny, sealed placement deny, tenant isolation, human-gate, and adapter UNAVAILABLE tests.
+- `npm run test:62lbc` — 62L-BC classical-baseline pathway competition, QPU UNAVAILABLE, founder-sealed memory deny, universe merge-plan≠auto-apply, and memory-pressure tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -44,6 +48,12 @@ Deny-by-default sealed compartments (FOUNDER-SEALED, ORGANIZATION-SEALED, GOVERN
 
 ## 62L-AY Growth Media Engine + Universal Onboarding + Offline Super Brain + Governed Data Refinery
 Adult-only (18+) onboarding across email/invite/phone/desktop/enterprise channel adapters (stubs; unconfigured = UNAVAILABLE). Under-18 denied; enterprise join requires seal. Packages Basic/Pro/Elite/Enterprise/Government/Builder expose **labeled** entitlements only — label ≠ access; packages never grant autonomy. CFO/COO/executive package councils recommend; recommendation ≠ charge/deploy. Growth Media Engine prepares post/graphic/founder/exec candidates with review gates — **no auto-publish**. Governed Data Refinery walks authorized source → provenance/license → ingest → classify → warehouse → dedup → pattern/hypothesis → quant test → evidence → BI → human decision → learning. Only authorized/public/licensed/customer-owned sources; leaked DB / stolen credentials / restricted systems rejected. Defensive leakage detection only (owned/authorized envs). Offline Super Brain is **non-sentient**: persistent memory, knowledge packs, workcells, world models, algorithms, councils, simulations, checkpoints, measured learning scored on evidence/reasoning/planning/creativity/calibration/reliability/efficiency — not consciousness. `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`. L4=false.
+
+## 62L-BA Neural Database Operating System + Schema/Index Compiler + Knowledge Warehouse + Universal Data API
+Workload-classified schema/index compilation, partition/shard simulation, cache/compression/locality policies, query planning, Universal Data Access API + adapter SDK, schema-evolution / migration dry-run / rollback candidates, RLS/ABAC mapping, sealed placement guards, defensive leakage detection, lineage, federated query plans, offline reconcile, replication/cost/perf planning, information models, tier ops, and warehouse placement. Recommendations are not production DDL/DML — human gate required. L4=false. Unconfigured adapters UNAVAILABLE. Tip-land=NO.
+
+## 62L-BC Quantum-Agentic Pathway Compiler + Cognitive Memory Hierarchy + Universe Fork Memory Fabric
+Typed cognitive memory hierarchy (DRAM working → NAND/SSD persistent → hot/warm/cold → databases/knowledge warehouse → agent memory → neural pathways → isolated Parallel Universes) with separated episodic/semantic/procedural/team memories, crash checkpointing, memory-pressure management, and compression/consolidation. Universe forks support simulation/comparison and merge **planning** only (plan ≠ auto-merge production). The Quantum-Agentic Pathway Compiler runs competing bounded routes with a **required classical baseline**; quantum simulator/QPU routes stay **UNAVAILABLE** until verified and never invent quantum-advantage or consciousness claims. Metrics are correctness, cost, latency, and calibration. Founder-sealed memory routing is deny-by-default (label ≠ access; sealed non-replicating; tenant isolation preserved). L4 remains false. Reuses AX sealed fabric, X memory cortex, and BA warehouse when present; AZ remains WAITING_DATA when absent.
 
 ## 62L-AU Agentic Information Economy + Knowledge Logistics Network
 Executable information freight loop: Information Demand → Source → Inventory → Qualification → Routing → Minimum-Necessary Transformation → Delivery → Quality Check → Decision → Outcome → Learning. Knowledge is treated as SKUs with bills of materials. Query-to-data / minimize movement is the default. AU17 Information Bullwhip Detector detects amplification of one request into repeated searches, duplicated context, unnecessary model calls, duplicate storage, and excessive traffic, then reduces that waste. Cross-enterprise exchange is aggregates/permissioned only via GIEP foundations. Raw pooling is DENIED. CEO-sealed freight does not move. L4 remains false. Unconfigured providers remain UNAVAILABLE. 62L-AT Knowledge Discovery, 62L-AM Data Fabric, 62L-AO Supply Chain Network, and 62L-AL Edge Sync reports are WAITING_DATA on this parent.
