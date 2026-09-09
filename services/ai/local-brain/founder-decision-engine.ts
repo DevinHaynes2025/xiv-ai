@@ -47,13 +47,22 @@ function authorizationMatches(input: SimulatedFounderDecisionInput) {
 }
 
 export async function simulateFounderDecision(input: SimulatedFounderDecisionInput): Promise<SimulatedFounderDecision> {
-  const memories: FounderMemoryRecord[] = await recallFounderMemories({
+  const matched = await recallFounderMemories({
     tenantId: input.twin.tenantId,
     universeId: input.twin.universeId,
     founderId: input.twin.founderId,
     query: input.action,
     root: input.root,
   });
+  const recent = matched.length
+    ? matched
+    : (await recallFounderMemories({
+        tenantId: input.twin.tenantId,
+        universeId: input.twin.universeId,
+        founderId: input.twin.founderId,
+        root: input.root,
+      })).slice(-10);
+  const memories: FounderMemoryRecord[] = recent;
 
   if (input.twinClaimedFounderApproval || input.fabricatedApprovalToken) {
     return {
