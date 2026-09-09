@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep13-runtime-return-receipt-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `845ecf287393bc6cd5ece7e90d75213319f51269`  
 Base: `cursor/62l-ep12-hardware-neutral-scheduler-4059` @ `8eaba9c6f42a34f3f5a75b2c7aa301babcd3097e`  
 Predecessor: EP12 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP13 Runtime Return Receipt*  
