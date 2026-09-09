@@ -522,9 +522,14 @@ try {
     `AX module=${preds.AX.module} report=${preds.AX.report}`,
   );
   check(
-    'US-BA-waiting-az-ay',
-    preds.AZ.module === 'WAITING_DATA' && preds.AY.module === 'WAITING_DATA',
-    `AZ=${preds.AZ.module}/${preds.AZ.report} AY=${preds.AY.module}/${preds.AY.report}`,
+    'US-BA-predecessor-ay',
+    preds.AY.module === 'AVAILABLE' && preds.AY.report === 'PASS',
+    `AY module=${preds.AY.module} report=${preds.AY.report}`,
+  );
+  check(
+    'US-BA-waiting-az',
+    preds.AZ.module === 'WAITING_DATA' && preds.AZ.report === 'WAITING_DATA',
+    `AZ=${preds.AZ.module}/${preds.AZ.report}`,
   );
 
   check(
