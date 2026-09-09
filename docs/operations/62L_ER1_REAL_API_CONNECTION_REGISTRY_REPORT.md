@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er1-real-api-connection-registry-4059`  
-Tip SHA: *(aligned in follow-up docs commit)*  
+Tip SHA: `34e11b4f0ad4816eef6b581424767db71ecc3a1e`  
 Base: `cursor/62l-eq16-software-wormhole-router-4059` @ `5805604ecd543eb2d4a70ebce93ff59fe3605d8f`  
 Predecessor: EQ16 **PRESENT**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER1 Real API Connection Registry*  
