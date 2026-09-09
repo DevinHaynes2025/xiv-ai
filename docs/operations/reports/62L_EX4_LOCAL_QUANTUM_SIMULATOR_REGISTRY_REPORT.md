@@ -4,6 +4,9 @@
 **Label:** `62L-EX4`  
 **Branch:** `cursor/62l-ex4-local-quantum-simulator-registry-4059`  
 **Base:** EX3 tip `cursor/62l-ex3-quantum-inspired-algorithm-lab-4059` @ `60986682f7a6913def6da08499388aecd4acea4a` (= `origin/xiv-v2`; EX1/EX2 same tip)  
+**Feat SHA:** `d7c76484615f925dede0ff8967efd8cb348ffdf5`  
+**Docs SHA:** `d026ac440c047c1b0ed47a6451af65a3d622e0e3`  
+**Tip SHA:** `d026ac440c047c1b0ed47a6451af65a3d622e0e3`  
 **Script:** `npm run test:62lex4`  
 **L4_AUTONOMY_ENABLED:** `false`  
 **tip-land / PR / merge main:** **NO**  
