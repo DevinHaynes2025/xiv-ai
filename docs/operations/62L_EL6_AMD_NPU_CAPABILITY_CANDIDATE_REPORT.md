@@ -2,7 +2,7 @@
 
 **Branch:** `cursor/62l-el6-amd-npu-capability-candidate-4059`  
 **Tip SHA:** `1883b01ce797d837c33d0ff02ea9ad0aa21ef8ba`  
-**Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` (aligned with `feat/62l-el-local-runtime-probe`)  
+**Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `32bcbc36542742e17a32cd7f1075eb1801eb222c` (final EL5 incl. EM)  
 **Home:** `services/ai/local-runtime/**`  
 **Status:** Candidate contracts + denial tests landed. **NPU VERIFIED claimed: NO.**  
 **Next (not implemented):** EL7 — Windows Local Runtime Adapter  
@@ -45,7 +45,7 @@ As the XIV Local Runtime, detect whether the ASUS device exposes an AMD Ryzen AI
 |--------|------|
 | `capability-truth.ts` | Shared hard progression (soft-wired from EL5) |
 | `amd-gpu-capability.ts` | EL5 GPU candidate soft-wire |
-| `gpu-benchmark.ts` | EL5 GPU benchmark recorder soft-wire |
+| `benchmark.ts` (EL5) | EL5 GPU benchmark recorder soft-wire (rebased; no duplicate) |
 | `amd-npu-capability.ts` | EL6 NPU candidate classify / refuse / degrade |
 | `npu-presence-probe.ts` | Read-only Windows + stub presence probe |
 | `npu-benchmark.ts` | Evidence / benchmark records |
@@ -77,7 +77,7 @@ Denial coverage includes:
 
 ## Soft-wire notes
 
-- EL5 GPU candidate logic is soft-wired into this branch (`amd-gpu-capability.ts`, `gpu-benchmark.ts`, shared `capability-truth.ts`).
+- EL5 GPU candidate logic is soft-wired into this branch (`amd-gpu-capability.ts`, `benchmark.ts`, shared `capability-truth.ts`, EM modules (`honesty.ts`, etc.)).
 - Workload routing remains CPU-first until an accelerator is **VERIFIED**; DETECTED NPU never wins.
 - On NPU inference failure / non-VERIFIED NPU, degrade prefers **VERIFIED GPU** (EL5 path) else **CPU**.
 
@@ -100,7 +100,7 @@ Tip SHA at report update: see git tip on branch (post-test honesty amend/commit)
 ## Return checklist
 
 - Branch: `cursor/62l-el6-amd-npu-capability-candidate-4059`
-- Base tip: `0e7ca09` on EL5 / `feat/62l-el-local-runtime-probe`
+- Base tip: `32bcbc36542742e17a32cd7f1075eb1801eb222c` on `cursor/62l-el5-amd-gpu-capability-candidate-4059` (final EL5 incl. EM)
 - Report: this file
 - NPU VERIFIED claimed: **NO**
 - Next: **EL7 — Windows Local Runtime Adapter**
