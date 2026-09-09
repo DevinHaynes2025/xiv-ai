@@ -8,7 +8,8 @@
   "scripts": {
     "start": "tsx server.ts",
     "dev": "tsx watch server.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:local-runtime": "node --import tsx --test local-runtime/__tests__/*.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
