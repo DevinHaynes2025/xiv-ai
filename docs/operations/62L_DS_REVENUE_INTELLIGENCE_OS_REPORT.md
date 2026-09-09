@@ -4,10 +4,10 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-ds-revenue-intelligence-os-4059`
-Parent / base tip: `cursor/62l-dr-enterprise-nervous-revenue-command-4059` @ `eddb46d9209d2babb7a82e128e862a00054376d0` (DR tip + report **PRESENT**). Soft-wire also sees `docs/operations/62L_DP_PLUGIN_CIVILIZATION_OS_REPORT.md` (**PRESENT** in lineage).
-Why this base: Preference **DR → DQ → DP**. Remote DR tip **PRESENT** @ `eddb46d`. DQ tip **WAITING_DATA**. Soft-wire paths: `docs/operations/62L_DR_*` **PRESENT**, `62L_DQ_*` **MISSING**, `62L_DP_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
+Parent / base tip: `cursor/62l-dr-enterprise-nervous-revenue-command-4059` @ `25594448b6d52f8e48b09af8c1fc6170f9a64355` + `docs/operations/62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md` (**PRESENT**); DP report also PRESENT in lineage. Rebased from interim DR `eddb46d` onto final DR tip.
+Why this base: Preference **DR → DQ → DP**. Final remote DR tip + report **PRESENT** @ `2559444` (rebase target). Soft-wire paths: `docs/operations/62L_DR_*` **PRESENT**, `62L_DQ_*` per DR tip tree, `62L_DP_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: _(filled after push)_
+Tip SHA: `db6f13d3875fe1dce6856941d5322eb17445f335`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
@@ -47,7 +47,7 @@ DB migration applied: **NO** (`NOT_APPLIED`; no live Supabase)
 
 | Check | Result |
 |---|---|
-| DR Enterprise Nervous + Revenue Command tip + report | **PRESENT** tip @ `eddb46d` + `62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md`. |
+| DR Enterprise Nervous + Revenue Command tip + report | **PRESENT** tip @ `2559444` + `62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md`. |
 | DQ Universal Integration Brain tip + report | **WAITING_DATA** (no `origin/cursor/62l-dq-*`; report MISSING) |
 | DP Plugin Civilization OS tip + report | **PRESENT** in DR lineage + `62L_DP_PLUGIN_CIVILIZATION_OS_REPORT.md` |
 | DO / DN / DL lineage | **PRESENT** in DP ancestry |
@@ -59,7 +59,7 @@ DB migration applied: **NO** (`NOT_APPLIED`; no live Supabase)
 
 | Gate | Status |
 |---|---|
-| DR tip + report | **PRESENT** @ `eddb46d` |
+| DR tip + report | **PRESENT** @ `2559444` |
 | DQ tip + report | **WAITING_DATA** / report **MISSING** |
 | DP tip + report | **PRESENT** (DR ancestor lineage) |
 | GitHub Issue #136 body via `gh` | Scope taken from founder master prompt (SoT citation retained) |
@@ -135,7 +135,7 @@ Commands: `npm run test:62lds` (and `test:local-brain` includes `phase62lds`).
 
 ## Soft-wire notes
 
-- Soft-wire DR mesh (preferred base @ `eddb46d`); DQ waiting; DP report PRESENT.
+- Soft-wire DR mesh (preferred base @ `2559444`); DQ waiting; DP report PRESENT.
 - Report soft-wire paths: `docs/operations/62L_DR_*` PRESENT, `62L_DQ_*` MISSING, `62L_DP_*` PRESENT.
 - Private Universes + deny-by-default + sealed deny preserved.
 
