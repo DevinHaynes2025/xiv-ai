@@ -43,3 +43,7 @@ Stop and escalate after repeated failed strategies, missing credentials, unavail
 
 ## Provider policy
 ChatGPT/Cursor/local model/Gemini/Claude are peers behind XIV-owned contracts. Provider access must be configured and verified before status becomes AVAILABLE. No provider receives authority to merge/deploy by default.
+
+## This pass
+Immediate queue items 1–10 have local implementations and tests on `chatgpt/62l-local-brain-offline`. 62L-O is scaffolding only (persistent messages, sandbox enforcement, structured patches, allowlisted tests, security verifier, evidence ledger, demand-based task forces). Company-division runtimes remain parked. Unconfigured providers stay UNAVAILABLE. Production authorization remains false.
+
