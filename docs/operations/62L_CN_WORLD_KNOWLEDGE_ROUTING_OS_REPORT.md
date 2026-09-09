@@ -6,9 +6,9 @@ Date: 2026-09-09
 Branch: `cursor/62l-cn-world-knowledge-routing-os-4059`
 Parent / base tip: `cursor/62l-cm-sovereign-regional-knowledge-clouds-4059` @ `e222ef92d2b98b16f8c8279180c6b3dd1bb7713f` (includes `62L_CM_SOVEREIGN_REGIONAL_KNOWLEDGE_CLOUDS_REPORT.md`)
 Why this base: Preferred **62L-CM** tip + report. At start CM/CL/CK were **WAITING_DATA** on origin; scaffolded briefly from **CJ** @ `a66c839`, polled with backoff until **CL** tip **PRESENT**, reset onto CL `@b0186aa`, then **CM** tip **PRESENT** @ `72145dc` and rebased again onto CM report tip `@e222ef9`. Preference **CM → CL → CK → CJ → CI → CH…** selects **CM**.
-Implementation SHAs: `ad6f673..6e152ad` (feat/test/chore; see `git log`)
-Report SHA: `f10f2badda32d0876cb5e3ad57408ce7059befcf`
-Tip SHA: `0cafe5572db3f5f3d86c397e4c5a22b95c7fdb0b`
+Implementation SHAs: `4169f5a..a452f3d` (feat/test/chore; see `git log`)
+Report SHA: `6041d7fe2f81e2675ddd09d4f1fb40743bc58a3d`
+Tip SHA: `4347e95293c9d7ab34e76af31fcf8bc585d69b39`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
