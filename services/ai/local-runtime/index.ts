@@ -25,3 +25,6 @@ export * from './evidence-ledger';
 export * from './el8-honesty';
 export * from './el7-soft-wire';
 export * from './verification-graduation';
+export * from './em3-honesty';
+export * from './em3-soft-wire';
+export * from './universal-compute-registry';
