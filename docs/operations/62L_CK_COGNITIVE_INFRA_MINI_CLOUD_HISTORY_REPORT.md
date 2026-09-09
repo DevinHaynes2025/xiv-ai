@@ -6,9 +6,9 @@ Date: 2026-09-09
 Branch: `cursor/62l-ck-cognitive-infra-mini-cloud-history-4059`
 Parent / base tip: `cursor/62l-cj-intelligence-resource-grid-apprenticeship-4059` @ `478feb135420443b647676df81cd42b868f3aad4` (includes `62L_CJ_INTELLIGENCE_RESOURCE_GRID_APPRENTICESHIP_REPORT.md`)
 Why this base: Preferred **62L-CJ** tip + report. At start CJ/CI/CH were **WAITING_DATA** (not on origin); scaffolded from **CG** `@0b0d32e` / later `@87fdf05` lineage while polling with backoff; then **rebased onto CJ** `@478feb1` once tip + report **PRESENT** on origin. **CI** `@0df88fd` / `@92c71bd` is CJ parent; **CG** `@87fdf05` is CI ancestor. **CH** tip exists on origin (`cursor/62l-ch-knowledge-civilization-dept-universities-4059`) but is **not** on the CI/CJ lineage (parallel) → documented **WAITING_DATA** in-tree. Preference **CJ → CI → CH → CG → CF `@5daacde` → CE `@4a902ca` → CD → …** selects **CJ**.
-Implementation SHAs: `024f018`..`d849fe3` (feat/test/chore; see commit list below)
+Implementation SHAs: `024f018`..`d849fe3` (feat/test/chore; docs follow)
 Report SHA: `f6a100a9450f56697613a893f6dd12b31d3ca9d3`
-Tip SHA: `653824a9200cdccecd2e2f20bb19d3ce38813c8e`
+Tip SHA: `7724e4940a4ebe5b76612501fc14e7bb630b31fb`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
