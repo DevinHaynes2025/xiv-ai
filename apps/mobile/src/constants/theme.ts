@@ -2,33 +2,72 @@ import '@/global.css';
 
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
+/**
+ * XIV AI Design System V4
+ *
+ * Elite mobile-first executive OS:
+ * - Deep navy / near-black
+ * - Bright readable type
+ * - Restrained glass
+ * - Storytelling over dashboard clutter
+ * - Distinct XIV identity (not a SaaS clone)
+ */
+
 export const Palette = {
-  void: '#011827',
-  navy: '#021D30',
-  navyDeep: '#011827',
-  navyMid: '#043451',
-  navyBand: '#075077',
-  navyElevated: '#075077',
-  navyCard: '#043451',
-  navySoft: '#043451',
-  line: 'rgba(212, 228, 240, 0.10)',
-  lineStrong: 'rgba(42, 185, 243, 0.28)',
-  accent: '#2AB9F3',
-  accentDeep: '#148FC4',
-  accentMuted: 'rgba(42, 185, 243, 0.16)',
-  glow: 'rgba(42, 185, 243, 0.38)',
-  intelligence: '#4285FF',
-  text: '#FFFFFF',
-  textMuted: '#D4E4F0',
-  textDim: '#89A8BC',
+  // Core space
+  void: '#020812',
+  black: '#00040A',
+  charcoal: '#0B1016',
+  whiteSurface: '#F4F7FB',
+  navy: '#04101F',
+  navyDeep: '#020A14',
+  navyMid: '#071A2D',
+  navyBand: '#0A2742',
+  navyElevated: '#0B2138',
+  navyCard: '#08192B',
+  navySoft: '#102A45',
+
+  // Surfaces
+  surface: 'rgba(8, 25, 43, 0.82)',
+  surfaceSoft: 'rgba(10, 32, 54, 0.68)',
+  surfaceRaised: 'rgba(12, 38, 64, 0.88)',
+  glass: 'rgba(7, 27, 47, 0.72)',
+  glassRaised: 'rgba(10, 38, 65, 0.82)',
+
+  // Borders
+  line: 'rgba(190, 220, 244, 0.10)',
+  lineSoft: 'rgba(190, 220, 244, 0.06)',
+  lineStrong: 'rgba(74, 177, 255, 0.30)',
+
+  // XIV Intelligence
+  accent: '#3DA9FF',
+  accentBright: '#6EC5FF',
+  accentDeep: '#1479D2',
+  accentMuted: 'rgba(61, 169, 255, 0.14)',
+  accentSoft: 'rgba(61, 169, 255, 0.08)',
+  intelligence: '#5A8CFF',
+  intelligenceSoft: 'rgba(90, 140, 255, 0.16)',
+  glow: 'rgba(61, 169, 255, 0.42)',
+
+  // Typography
+  text: '#F7FBFF',
+  textMuted: '#B7C9D8',
+  textDim: '#71889B',
+  textFaint: '#506577',
   white: '#FFFFFF',
-  success: '#25E5BC',
-  warning: '#F1C54B',
-  danger: '#FF6276',
-  critical: '#FF6276',
-  overlay: 'rgba(1, 24, 39, 0.78)',
-  glass: 'rgba(5, 49, 77, 0.56)',
-  glassRaised: 'rgba(7, 59, 91, 0.68)',
+
+  // Semantic states
+  success: '#2CE6B7',
+  successSoft: 'rgba(44, 230, 183, 0.12)',
+  warning: '#F4C95D',
+  warningSoft: 'rgba(244, 201, 93, 0.12)',
+  danger: '#FF667A',
+  dangerSoft: 'rgba(255, 102, 122, 0.12)',
+  critical: '#FF667A',
+
+  // Layers
+  overlay: 'rgba(1, 7, 14, 0.82)',
+  overlayStrong: 'rgba(1, 7, 14, 0.92)',
 } as const;
 
 export const Colors = {
@@ -80,13 +119,16 @@ export const Spacing = {
   five: 32,
   six: 48,
   seven: 64,
+  eight: 80,
 } as const;
 
 export const Radius = {
+  xs: 10,
   sm: 14,
   md: 18,
   lg: 22,
   xl: 28,
+  xxl: 34,
   pill: 999,
 } as const;
 
@@ -95,14 +137,20 @@ export const IconSize = {
   md: 20,
   lg: 24,
   xl: 32,
+  hero: 40,
 } as const;
 
 export const Layout = {
-  maxContentWidth: 560,
+  maxContentWidth: 600,
+  tabletMaxContentWidth: 980,
+  tabletWidth: 768,
   screenGutter: Spacing.four,
   cardGap: Spacing.three,
   minTapTarget: 44,
-  headerHeight: 56,
+  headerHeight: 58,
+  compactWidth: 360,
+  compactHeight: 800,
+  shortHeight: 720,
 } as const;
 
 export const Borders = {
@@ -120,7 +168,12 @@ export const Elevation = {
   overlay: 16,
 } as const;
 
-const iosShadow = (color: string, opacity: number, radius: number, dy: number): ViewStyle => ({
+const iosShadow = (
+  color: string,
+  opacity: number,
+  radius: number,
+  dy: number
+): ViewStyle => ({
   shadowColor: color,
   shadowOffset: { width: 0, height: dy },
   shadowOpacity: opacity,
@@ -129,23 +182,36 @@ const iosShadow = (color: string, opacity: number, radius: number, dy: number): 
 
 export const Shadows = {
   card: Platform.select<ViewStyle>({
-    ios: iosShadow('#000000', 0.22, 18, 8),
+    ios: iosShadow('#000000', 0.26, 22, 10),
     android: { elevation: Elevation.card },
     default: {},
   }),
+
   raised: Platform.select<ViewStyle>({
-    ios: iosShadow('#000000', 0.28, 22, 10),
+    ios: iosShadow('#000000', 0.34, 28, 12),
     android: { elevation: Elevation.raised },
     default: {},
   }),
+
   glow: Platform.select<ViewStyle>({
-    ios: iosShadow(Palette.accent, 0.36, 16, 0),
+    ios: iosShadow(Palette.accent, 0.32, 20, 0),
+    android: { elevation: Elevation.raised },
+    default: {},
+  }),
+
+  intelligence: Platform.select<ViewStyle>({
+    ios: iosShadow(Palette.intelligence, 0.28, 24, 0),
     android: { elevation: Elevation.raised },
     default: {},
   }),
 } as const;
 
-const hairline = Platform.select({ ios: 0.5, android: 1, default: 1 }) ?? 1;
+const hairline =
+  Platform.select({
+    ios: 0.5,
+    android: 1,
+    default: 1,
+  }) ?? 1;
 
 export const Glass: ViewStyle = {
   backgroundColor: Palette.glass,
@@ -156,19 +222,93 @@ export const Glass: ViewStyle = {
 };
 
 export const TypeScale: Record<string, TextStyle> = {
-  display: { fontSize: 34, lineHeight: 40, fontWeight: '600', letterSpacing: -0.6 },
-  title: { fontSize: 22, lineHeight: 28, fontWeight: '600', letterSpacing: -0.3 },
-  subtitle: { fontSize: 18, lineHeight: 24, fontWeight: '600' },
-  body: { fontSize: 16, lineHeight: 24, fontWeight: '400' },
-  caption: { fontSize: 13, lineHeight: 18, fontWeight: '500' },
-  label: {
+  hero: {
+    fontSize: 42,
+    lineHeight: 46,
+    fontWeight: '800',
+    letterSpacing: -1.2,
+  },
+
+  display: {
+    fontSize: 34,
+    lineHeight: 40,
+    fontWeight: '700',
+    letterSpacing: -0.8,
+  },
+
+  title: {
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: '700',
+    letterSpacing: -0.35,
+  },
+
+  pageTitle: {
+    fontSize: 26,
+    lineHeight: 32,
+    fontWeight: '700',
+    letterSpacing: -0.5,
+  },
+
+  section: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '600',
+    letterSpacing: -0.2,
+  },
+
+  card: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '600',
+  },
+
+  subtitle: {
+    fontSize: 17,
+    lineHeight: 23,
+    fontWeight: '600',
+  },
+
+  body: {
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '400',
+  },
+
+  caption: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '500',
+  },
+
+  metadata: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '500',
+    letterSpacing: 0.2,
+  },
+
+  micro: {
     fontSize: 11,
     lineHeight: 14,
     fontWeight: '600',
-    letterSpacing: 1.4,
+    letterSpacing: 0.4,
+  },
+
+  label: {
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: '700',
+    letterSpacing: 1.45,
     textTransform: 'uppercase',
   },
-  mono: { fontSize: 12, lineHeight: 16, fontFamily: Fonts.mono, fontWeight: '500' },
+
+  mono: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontFamily: Fonts.mono,
+    fontWeight: '500',
+  },
 };
 
 export const BottomTabInset = 84;

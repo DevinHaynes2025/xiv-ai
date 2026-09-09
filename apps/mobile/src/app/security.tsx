@@ -6,13 +6,35 @@ import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
 import { CheckRow } from '@/components/xiv/check-row';
 import { Icon } from '@/components/xiv/icon';
+import { OnboardingHero } from '@/components/xiv/onboarding-hero';
 import { ProgressDots } from '@/components/xiv/progress-dots';
 import { PrototypeNotice } from '@/components/xiv/prototype-notice';
 import { Screen } from '@/components/xiv/screen';
 import { XivText } from '@/components/xiv/text';
-import { useSession } from '@/hooks/use-session';
-import { Palette, Spacing } from '@/constants/theme';
+import { Palette, Radius, Spacing } from '@/constants/theme';
 import { dataPermissions, privacyControls, securitySteps } from '@/data/mock';
+import { useSession } from '@/hooks/use-session';
+
+const XIV_TWELVE = [
+  'Identity',
+  'Access',
+  'Isolation',
+  'Encryption',
+  'Device Trust',
+  'Session Integrity',
+  'Privacy',
+  'Data Boundaries',
+  'Agent Authority',
+  'Auditability',
+  'Recovery',
+  'Monitoring',
+] as const;
+
+function stepStatus(id: string) {
+  if (id === 'privacy' || id === 'permissions') return 'Configurable';
+  if (id === 'complete') return 'Preview';
+  return 'Designed';
+}
 
 export default function Security() {
   const router = useRouter();
@@ -24,6 +46,7 @@ export default function Security() {
   const [error, setError] = useState<string | null>(null);
   const step = securitySteps[index];
   const last = index === securitySteps.length - 1;
+  const total = securitySteps.length;
 
   if (!step) return null;
 
@@ -33,6 +56,7 @@ export default function Security() {
 
   return (
     <Screen
+      atmosphere="restrained"
       onBack={() => (index === 0 ? router.back() : setIndex((value) => value - 1))}
       footer={
         <Button
@@ -60,20 +84,39 @@ export default function Security() {
           }}
         />
       }>
-      <XivText variant="label" color={Palette.accent}>
-        Security setup
-      </XivText>
-      <XivText variant="display">Security is the product perimeter.</XivText>
-      <ProgressDots count={securitySteps.length} index={index} />
+      <OnboardingHero
+        markSize={40}
+        kicker="XIV Security"
+        title="Your environment starts with trust."
+        support="This walkthrough explains the designed XIV trust model and the preview controls available today."
+      />
 
-      <Card accent>
-        <View style={styles.iconWrap}>
-          <Icon name={{ ios: step.ios, android: step.android, web: step.android }} size={32} />
-        </View>
-        <XivText variant="caption" color={Palette.accent}>
-          Step {index + 1} of {securitySteps.length} · simulated
+      <View style={styles.progress}>
+        <ProgressDots count={total} index={index} />
+        <XivText variant="caption" muted>
+          Step {index + 1} of {total} · {step.title}
         </XivText>
-        <XivText variant="title">{step.title}</XivText>
+      </View>
+
+      <Card variant="accent" style={styles.panel}>
+        <View style={styles.panelHead}>
+          <View style={styles.iconWrap}>
+            <Icon name={{ ios: step.ios, android: step.android, web: step.android }} size={28} />
+          </View>
+          <View style={styles.panelMeta}>
+            <View style={styles.panelTop}>
+              <XivText variant="label" color={Palette.accent}>
+                Step {String(index + 1).padStart(2, '0')}
+              </XivText>
+              <View style={styles.status}>
+                <XivText variant="label" color={Palette.intelligence}>
+                  {stepStatus(step.id)}
+                </XivText>
+              </View>
+            </View>
+            <XivText variant="title">{step.title}</XivText>
+          </View>
+        </View>
         <XivText variant="body" muted>
           {step.detail}
         </XivText>
@@ -105,32 +148,99 @@ export default function Security() {
         {securitySteps.map((item, i) => (
           <View key={item.id} style={styles.row}>
             <View style={[styles.pip, i < index && styles.pipDone, i === index && styles.pipOn]} />
-            <XivText variant="caption" color={i <= index ? Palette.text : Palette.textDim}>
+            <XivText variant="caption" color={i === index ? Palette.text : i < index ? Palette.textMuted : Palette.textDim}>
               {item.title}
+            </XivText>
+            <XivText variant="label" color={Palette.textFaint} style={styles.rowStatus}>
+              {stepStatus(item.id)}
             </XivText>
           </View>
         ))}
       </View>
 
+      <Card style={styles.layers}>
+        <XivText variant="label" color={Palette.accent}>
+          The XIV Twelve
+        </XivText>
+        <XivText variant="subtitle">Designed security architecture</XivText>
+        <XivText variant="caption" muted>
+          Twelve intended trust layers. They describe the product model, not controls active in this preview.
+        </XivText>
+        <View style={styles.layerWrap}>
+          {XIV_TWELVE.map((layer, i) => (
+            <View key={layer} style={styles.layer}>
+              <XivText variant="label" color={Palette.accent}>
+                {String(i + 1).padStart(2, '0')}
+              </XivText>
+              <XivText variant="caption" color={Palette.textMuted} style={styles.layerLabel}>
+                {layer}
+              </XivText>
+            </View>
+          ))}
+        </View>
+        <View style={styles.implemented}>
+          <XivText variant="label" color={Palette.success}>
+            Active in this preview
+          </XivText>
+          <XivText variant="caption" muted>
+            Encrypted connection · Email credentials · Local privacy and permission selections
+          </XivText>
+        </View>
+      </Card>
+
       <PrototypeNotice text="These steps are a visual prototype. Identity, passkeys, device verification, and MFA are not implemented." />
       {error ? (
-        <XivText variant="body" color={Palette.danger}>
-          {error}
-        </XivText>
+        <Card variant="risk" accessibilityRole="alert">
+          <XivText variant="label" color={Palette.danger}>
+            Unable to continue
+          </XivText>
+          <XivText variant="body" style={styles.errorBody}>
+            {error}
+          </XivText>
+        </Card>
       ) : null}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  progress: {
+    gap: Spacing.two,
+  },
+  panel: {
+    gap: Spacing.three,
+  },
+  panelHead: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: Spacing.three,
+  },
   iconWrap: {
-    width: 56,
-    height: 56,
-    borderRadius: 18,
+    width: 52,
+    height: 52,
+    borderRadius: Radius.md,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Palette.accentMuted,
-    marginBottom: Spacing.three,
+  },
+  panelMeta: {
+    flex: 1,
+    gap: 6,
+  },
+  panelTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.two,
+    flexWrap: 'wrap',
+  },
+  status: {
+    paddingHorizontal: Spacing.two,
+    paddingVertical: 6,
+    borderRadius: Radius.pill,
+    backgroundColor: Palette.intelligenceSoft,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.lineStrong,
   },
   stack: {
     gap: Spacing.two,
@@ -139,6 +249,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
+    minHeight: 32,
+  },
+  rowStatus: {
+    marginLeft: 'auto',
   },
   pip: {
     width: 8,
@@ -151,5 +265,41 @@ const styles = StyleSheet.create({
   },
   pipDone: {
     backgroundColor: Palette.success,
+  },
+  layers: {
+    gap: Spacing.two,
+  },
+  layerWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: Spacing.two,
+    marginTop: Spacing.one,
+  },
+  layer: {
+    flexGrow: 1,
+    flexBasis: '46%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    minHeight: 40,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.two,
+    borderRadius: Radius.sm,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.line,
+    backgroundColor: Palette.surfaceSoft,
+  },
+  layerLabel: {
+    flex: 1,
+  },
+  implemented: {
+    gap: 4,
+    marginTop: Spacing.one,
+    paddingTop: Spacing.three,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: Palette.line,
+  },
+  errorBody: {
+    marginTop: Spacing.one,
   },
 });

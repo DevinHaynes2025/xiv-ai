@@ -45,3 +45,5 @@ coverage/
 
 # Local database / tooling
 .supabase/
+
+supabase/.temp/

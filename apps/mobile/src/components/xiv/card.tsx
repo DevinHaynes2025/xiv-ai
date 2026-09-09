@@ -1,8 +1,23 @@
-import { StyleSheet, View, type ViewProps } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  type ViewProps,
+} from 'react-native';
 
-import { Palette, Radius, Shadows, Spacing } from '@/constants/theme';
+import {
+  Palette,
+  Radius,
+  Shadows,
+  Spacing,
+} from '@/constants/theme';
 
-type Variant = 'default' | 'elevated' | 'accent' | 'hero' | 'action' | 'risk';
+type Variant =
+  | 'default'
+  | 'elevated'
+  | 'accent'
+  | 'hero'
+  | 'action'
+  | 'risk';
 
 type Props = ViewProps & {
   padded?: boolean;
@@ -10,8 +25,16 @@ type Props = ViewProps & {
   variant?: Variant;
 };
 
-export function Card({ padded = true, accent, variant, style, children, ...rest }: Props) {
-  const tone: Variant = variant ?? (accent ? 'accent' : 'default');
+export function Card({
+  padded = true,
+  accent,
+  variant,
+  style,
+  children,
+  ...rest
+}: Props) {
+  const tone: Variant =
+    variant ?? (accent ? 'accent' : 'default');
 
   return (
     <View
@@ -25,7 +48,8 @@ export function Card({ padded = true, accent, variant, style, children, ...rest 
         padded && styles.padded,
         style,
       ]}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </View>
   );
@@ -41,29 +65,35 @@ const styles = StyleSheet.create({
     borderColor: Palette.line,
     overflow: 'hidden',
   },
+
   accent: {
     backgroundColor: Palette.glassRaised,
     borderColor: Palette.lineStrong,
   },
+
   elevated: {
-    backgroundColor: Palette.navyElevated,
+    backgroundColor: Palette.surfaceRaised,
     borderColor: Palette.line,
     ...Shadows.card,
   },
+
   hero: {
     backgroundColor: Palette.glassRaised,
-    borderColor: 'rgba(40, 185, 242, 0.32)',
+    borderColor: Palette.lineStrong,
     borderRadius: Radius.xl,
     ...Shadows.glow,
   },
+
   action: {
-    backgroundColor: Palette.navyCard,
+    backgroundColor: Palette.surface,
     borderColor: Palette.lineStrong,
   },
+
   risk: {
-    backgroundColor: Palette.navyCard,
-    borderColor: 'rgba(255, 98, 118, 0.35)',
+    backgroundColor: Palette.surface,
+    borderColor: 'rgba(255, 102, 122, 0.34)',
   },
+
   padded: {
     padding: Spacing.four,
   },

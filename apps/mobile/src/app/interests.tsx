@@ -1,14 +1,35 @@
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/xiv/button';
+import { Card } from '@/components/xiv/card';
+import { OnboardingHero } from '@/components/xiv/onboarding-hero';
 import { Screen } from '@/components/xiv/screen';
 import { SelectableCard } from '@/components/xiv/selectable-card';
 import { XivText } from '@/components/xiv/text';
-import { useSession } from '@/hooks/use-session';
 import { Palette, Spacing } from '@/constants/theme';
 import { interests } from '@/data/mock';
+import { useSession } from '@/hooks/use-session';
+
+const INTEREST_CATEGORY: Record<string, 'Subjects' | 'Industries' | 'Opportunities'> = {
+  ai: 'Subjects',
+  technology: 'Subjects',
+  entrepreneurship: 'Subjects',
+  startups: 'Subjects',
+  'supply-chain': 'Industries',
+  retail: 'Industries',
+  manufacturing: 'Industries',
+  finance: 'Industries',
+  healthcare: 'Industries',
+  'real-estate': 'Industries',
+  marketing: 'Industries',
+  'africa-business': 'Industries',
+  wellness: 'Opportunities',
+  sustainability: 'Opportunities',
+};
+
+const CATEGORY_ORDER = ['Subjects', 'Industries', 'Opportunities'] as const;
 
 export default function Interests() {
   const router = useRouter();
@@ -18,6 +39,27 @@ export default function Interests() {
   );
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const groups = useMemo(() => {
+    const map = new Map<string, (typeof interests)[number][]>();
+    for (const item of interests) {
+      const category = INTEREST_CATEGORY[item.id] ?? 'More';
+      const list = map.get(category) ?? [];
+      list.push(item);
+      map.set(category, list);
+    }
+    const ordered: { title: string; items: (typeof interests)[number][] }[] = CATEGORY_ORDER.filter(
+      (category) => map.has(category),
+    ).map((category) => ({
+      title: category,
+      items: map.get(category) ?? [],
+    }));
+    const extra = map.get('More');
+    if (extra?.length) {
+      ordered.push({ title: 'More', items: extra });
+    }
+    return ordered;
+  }, []);
 
   const toggle = (id: string) => {
     setSelected((current) =>
@@ -42,6 +84,7 @@ export default function Interests() {
 
   return (
     <Screen
+      atmosphere="restrained"
       onBack={() => router.back()}
       footer={
         <Button
@@ -52,38 +95,59 @@ export default function Interests() {
           }}
         />
       }>
-      <XivText variant="label" color={Palette.accent}>
-        Interests
+      <OnboardingHero
+        markSize={40}
+        kicker="XIV AI"
+        title="What should XIV understand about you?"
+        support="Choose the subjects, industries, and opportunities you want your XIV environment to prioritize."
+      />
+
+      <XivText variant="caption" muted>
+        {selected.length} selected
       </XivText>
-      <XivText variant="display">What should XIV watch for you?</XivText>
-      <XivText variant="body" muted>
-        Select one or more domains. These are saved to your account and will not be duplicated.
-      </XivText>
-      <View style={styles.wrap}>
-        {interests.map((item) => (
-          <SelectableCard
-            key={item.id}
-            label={item.label}
-            selected={selected.includes(item.id)}
-            onPress={() => toggle(item.id)}
-          />
-        ))}
-      </View>
+
+      {groups.map((group) => (
+        <View key={group.title} style={styles.group}>
+          <XivText variant="label" color={Palette.textDim}>
+            {group.title}
+          </XivText>
+          <View style={styles.wrap}>
+            {group.items.map((item) => (
+              <SelectableCard
+                key={item.id}
+                label={item.label}
+                selected={selected.includes(item.id)}
+                onPress={() => toggle(item.id)}
+              />
+            ))}
+          </View>
+        </View>
+      ))}
+
       {error ? (
-        <XivText variant="body" color={Palette.danger}>
-          {error}
-        </XivText>
+        <Card variant="risk" accessibilityRole="alert">
+          <XivText variant="label" color={Palette.danger}>
+            Unable to continue
+          </XivText>
+          <XivText variant="body" style={styles.errorBody}>
+            {error}
+          </XivText>
+        </Card>
       ) : null}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  group: {
+    gap: Spacing.three,
+  },
   wrap: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: Spacing.two,
-    marginTop: Spacing.two,
+  },
+  errorBody: {
+    marginTop: Spacing.one,
   },
 });
-

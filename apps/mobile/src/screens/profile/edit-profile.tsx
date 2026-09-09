@@ -179,6 +179,9 @@ export function EditProfileScreen() {
       <SectionHeader kicker="Profession" title="How the floor should read you" />
       <Field label="Professional title" value={title} onChangeText={setTitle} placeholder="Director of Operations" />
       <Field label="Company" value={company} onChangeText={setCompany} placeholder="Optional" />
+      <XivText variant="caption" dim>
+        Company on this profile is personal identity. It does not create or authorize an organization.
+      </XivText>
       <Field label="Industry" value={industry} onChangeText={setIndustry} placeholder="Technology" />
       <Field label="Location" value={location} onChangeText={setLocation} placeholder="City or region" />
       <Field
