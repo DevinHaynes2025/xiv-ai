@@ -272,3 +272,68 @@ export function runAmdLocalCommunicationAdapterCycle(input?: {
     guardianRlsUnchanged: true,
   };
 }
+
+/** EW9 Intel truth / runtime / benchmark (explicit — avoid clobbering EW7/EW8 names). */
+export {
+  HONESTY_BANNER as EW9_HONESTY_BANNER,
+  GITHUB_SOT_LABEL as EW9_GITHUB_SOT_LABEL,
+  GITHUB_SOT_TITLE as EW9_GITHUB_SOT_TITLE,
+  NEXT_STORY_TITLE as EW9_NEXT_STORY_TITLE,
+  CANONICAL_FLOW as EW9_CANONICAL_FLOW,
+  INTEL_TRUTH_CLASSES,
+  INTEL_DEVICES,
+  DEVICE_TRUTH_STATES as EW9_DEVICE_TRUTH_STATES,
+  SOFTWARE_ACCELERATION_LEVERS as EW9_SOFTWARE_ACCELERATION_LEVERS,
+  EW9_LOCKS,
+  EW9_MAY,
+  EW9_MUST_NOT,
+  assertEw9LocksIntact,
+  ew9SoftWireSnapshot,
+  intelEnvironmentHonesty,
+  denySiliconOrFirmwareClaim as denyIntelSiliconOrFirmwareClaim,
+  satisfiesMinimumState as ew9SatisfiesMinimumState,
+  softWireHopState as ew9SoftWireHopState,
+  type IntelTruthClass,
+  type IntelDevice,
+  type DeviceTruthState as Ew9DeviceTruthState,
+  type Ew9SoftWireSnapshot,
+} from './ew9-types.ts';
+
+export * from './intel-capabilities.ts';
+export * from './intel-runtime.ts';
+export * from './intel-benchmark.ts';
+
+export {
+  createComputeEnvelope as createIntelComputeEnvelope,
+  validateComputeEnvelope as validateIntelComputeEnvelope,
+  type ComputeRequestEnvelope as IntelComputeRequestEnvelope,
+} from './intel-envelope.ts';
+
+export {
+  buildExecutionReceipt as buildIntelExecutionReceipt,
+  createHomeBaseReceiptLedger as createIntelHomeBaseReceiptLedger,
+  ingestReceipt as ingestIntelReceipt,
+  type ComputeExecutionReceipt as IntelComputeExecutionReceipt,
+} from './intel-receipt.ts';
+
+export {
+  defaultPressureForTests as defaultIntelPressureForTests,
+  evaluateResourcePolicy as evaluateIntelResourcePolicy,
+  type ResourcePolicyDecision as IntelResourcePolicyDecision,
+  type ResourcePressureSnapshot as IntelResourcePressureSnapshot,
+} from './intel-resource-policy.ts';
+
+export {
+  createIntelAdapterCandidate,
+  softWireSummary as intelSoftWireSummary,
+  type IntelAdapterCandidate,
+  type IntelAdapterExecuteInput,
+  type IntelAdapterExecuteResult,
+} from './intel-adapter.ts';
+
+export {
+  runIntelAdapterCandidateCycle,
+  type Ew9CycleResult,
+  type Ew9HopRecord,
+  type Ew9HopState,
+} from './intel-cycle.ts';

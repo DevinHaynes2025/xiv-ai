@@ -730,3 +730,11 @@ export {
   agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
+
+export {
+  runIntelAdapterCandidateCycle,
+  createIntelAdapterCandidate,
+  EW9_LOCKS,
+  assertEw9LocksIntact,
+  intelEnvironmentHonesty,
+} from './chipgraph/index.ts';

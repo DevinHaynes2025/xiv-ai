@@ -26,7 +26,8 @@
     "proof:sec": "tsx runtime/phase2id2.sec.proof.ts",
     "proof:gleif": "tsx runtime/phase2ih.gleif.proof.ts",
     "guardian:validate": "tsx runtime/guardian/validate.ts",
-    "test:62lew7": "node --import tsx --test runtime/chipgraph/phase62lew7.test.ts"
+    "test:62lew7": "node --import tsx --test runtime/chipgraph/phase62lew7.test.ts",
+    "test:62lew9": "tsx runtime/phase62lew9.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
