@@ -18,7 +18,7 @@
 | EX12 tip (`cursor/62l-ex12-quantum-pathway-graph-4059`) | `266de7bebe90c3e947f9a1946f3a2d3fcf7f7c75` |
 | EX13 base | GITHUB `origin/xiv-v2` @ `60986682…` |
 | EX13 feat SHA | `600ee73d49e4baf0aed179e356f3e2326e484505` |
-| EX13 tip (this branch) | `860d76ce669601b3f61600724e4c92e07265870b` |
+| EX13 tip (this branch) | `450eb4801a59b91221a42b2ef9e8b374c65c7f7f` |
 
 **TREE note:** Workspace `/workspace` was dirty on an unrelated GOB branch at gate time; EX13 was built in isolated worktree `/tmp/62l-ex13-work` from GITHUB `origin/xiv-v2`. LOCAL/GITLAB xiv-v2 diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`. No stop-on-dangerous-divergence beyond expected sibling soft-wire tips.
 
