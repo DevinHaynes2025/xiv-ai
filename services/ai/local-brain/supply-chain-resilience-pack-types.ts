@@ -476,6 +476,8 @@ export function eo8SoftWireSnapshot(repoRoot?: string): Eo8SoftWireSnapshot {
     ),
     eo7LogisticsPack: softWireAnyFile(
       [
+        './government-logistics-mission-pack-types.ts',
+        './government-logistics-mission-pack.ts',
         './logistics-modernization-pack-types.ts',
         './logistics-pack-types.ts',
         './eo7-logistics-pack-types.ts',

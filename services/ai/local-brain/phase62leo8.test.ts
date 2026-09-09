@@ -438,9 +438,11 @@ test('bootstrap + soft-wire EO6/EO7/EO5/#159/Home Base (presence ≠ VERIFIED)',
   assert.equal(boot.agentTeam.length, 9);
 
   const soft = eo8SoftWireSnapshot(repoRoot);
-  // On EO6 tip (EN lineage): Home Base + EN deal OS typically PRESENT; EO5/EO6/EO7/EO159 often WAITING_DATA.
+  // On EO7 tip: EO7 logistics + Home Base + EN deal OS typically PRESENT;
+  // EO5/EO6/EO159 often WAITING_DATA.
   assert.equal(typeof soft.eo6ClassicalBaseline.present, 'boolean');
-  assert.equal(typeof soft.eo7LogisticsPack.present, 'boolean');
+  assert.equal(soft.eo7LogisticsPack.present, true);
+  assert.match(soft.eo7LogisticsPack.note, /PRESENT/);
   assert.equal(typeof soft.eo5QuantumHonesty.present, 'boolean');
   assert.equal(typeof soft.eo159MissionOsRuntime.present, 'boolean');
   assert.equal(typeof soft.homeBaseRuntime.present, 'boolean');

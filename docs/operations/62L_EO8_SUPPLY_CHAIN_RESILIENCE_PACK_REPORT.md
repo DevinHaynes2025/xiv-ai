@@ -4,9 +4,9 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo8-supply-chain-resilience-pack-4059`  
-Tip SHA: `72d766f8ed91bea4ce03584c2b8bf09e55ea8c2c`  
-Implementation SHA (feat): `73f499cfa651dfa717b44820fa63d528068c7223`  
-Base: `cursor/62l-eo6-classical-baseline-requirement-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (EO7 logistics pack **absent** on fetch → fell back to EO6 per park-and-implement predecessor rule)  
+Tip SHA: `(pending rebase tip)`  
+Implementation SHA (feat): `6cb0186df6666264d9f1ee5530fb4c9077112d8e`  
+Base: `cursor/62l-eo7-government-logistics-mission-pack-4059` @ `42ae524de80b7617ec7e89c1126f0bae3a0d4015` (preferred EO7 present; rebased off stale EO6@`3a141648…`)  
 SoT: **62L-EO8** — *Supply Chain Resilience Pack* (multi-tier graph, scenario library, truth labels, bounded agents, recovery recommendations)  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
 
@@ -37,9 +37,10 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 
 | Field | Value |
 | --- | --- |
-| Preferred base | EO7 `cursor/62l-eo7-*` (**ABSENT** on fetch) |
-| Fallback base | EO6 `cursor/62l-eo6-classical-baseline-requirement-4059` (**PRESENT**) |
-| Base tip SHA | `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` |
+| Preferred base | EO7 `cursor/62l-eo7-government-logistics-mission-pack-4059` (**PRESENT**) |
+| Base tip SHA | `42ae524de80b7617ec7e89c1126f0bae3a0d4015` |
+| Prior stale base | EO6@`3a141648…` — **REBASED** onto EO7 |
+| Newest EO6 note | EO6@`0428263…` exists but EO7 preferred per follow-up; EO7 lineage predates that EO6 tip |
 | Working branch | `cursor/62l-eo8-supply-chain-resilience-pack-4059` |
 | Tip-land / PR / prod / DB | **NO** / **None** / **NO** / **NOT_APPLIED** |
 
@@ -47,8 +48,8 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 
 | Target | Soft-wire |
 | --- | --- |
-| EO6 classical baseline | **WAITING_DATA** (files absent on EO6 tip; probe encoded) |
-| EO7 logistics pack | **WAITING_DATA** (pack absent; probe encoded) |
+| EO6 classical baseline | **WAITING_DATA** (EO6 files absent on EO7 tip; probe encoded) |
+| EO7 logistics pack | **PRESENT** (`government-logistics-mission-pack-*.ts`) |
 | EO5 quantum evidence boundary | **WAITING_DATA** (honesty probe for advanced methods; classical scenarios default) |
 | EO #159 Mission OS logistics advisory | **WAITING_DATA** on this tip (sibling branch exists) |
 | #157 Home Base evidence | **PRESENT** (soft-wire attach advisory) |
@@ -122,7 +123,7 @@ cd services/ai && npm run test:62leo8
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62leo8` | **PASS** — 11/11 (truth labels; 14 scenarios; agent bounds; no-auto purchase/switch/contract/dispatch/comm; L4=false; sim≠fact; historical≠proof; soft-wire probes) |
+| `npm run test:62leo8` | **PASS** — 11/11 after EO7 rebase (truth labels; 14 scenarios; agent bounds; no-auto purchase/switch/contract/dispatch/comm; L4=false; EO7 soft-wire **PRESENT**) |
 
 ## Next (report only — do not implement)
 
