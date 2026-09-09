@@ -4,7 +4,7 @@
 **Canonical owner:** Global Operations Brain (not Enterprise OS)  
 **Branch:** `cursor/62l-gob-local-first-offline-agent-civilization-4059`  
 **Feat tip SHA:** `f35f74c9ae4167d3711e53698bec034b3918aaaf`  
-**Docs tip SHA:** _(filled at docs commit)_  
+**Docs tip SHA:** `508a05dd3f1c7159c9e5e79b7a743de3d83948bf`  
 **Date:** 2026-09-09  
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened
