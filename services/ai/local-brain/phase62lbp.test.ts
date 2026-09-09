@@ -587,9 +587,9 @@ try {
     'BL predecessor module+report AVAILABLE (ancestor).',
   );
   check(
-    'US-BP-pred-bn-waiting',
-    preds.BN.module === 'WAITING_DATA' || preds.BN.report === 'WAITING_DATA',
-    'BN in-tree module/report WAITING_DATA on this BO parent.',
+    'US-BP-pred-bn',
+    preds.BN.module === 'AVAILABLE' && preds.BN.report === 'PASS',
+    'BN predecessor module+report AVAILABLE via BO (BN-backed) base.',
   );
   check(
     'US-BP-next-title',
