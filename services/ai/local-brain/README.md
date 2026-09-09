@@ -14,11 +14,13 @@ From `services/ai`:
 - `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
 - `npm run local:knowledge-lake-health` — write the 62L-AB Knowledge Lake / Industry Memory health report.
 - `npm run local:hybrid-edge-health` — write the 62L-AE Hybrid Edge-Cloud + CEO Sealed Vault health report.
+- `npm run local:universe-os-health` — write the 62L-AF Universe OS Kernel + memory replication health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62lab` — 62L-AB Knowledge Lake / Industry Memory safety tests.
 - `npm run test:62lae` — 62L-AE Hybrid Edge-Cloud / CEO Sealed Vault / Cross-OS federation safety tests.
+- `npm run test:62laf` — 62L-AF Universe OS Kernel / offline service fabric / distributed memory replication safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -27,6 +29,9 @@ Agents defined → recruited → communicating → meeting → retrieving knowle
 
 ## 62L-AB Knowledge Lake
 Durable offline Knowledge Lake, industry memory federation, multilingual original preservation, evidence graphs, hashed dedup, partitioned sparse indexing, tiered storage, and logical retrieval for huge corpora. Trillion-scale address space is a shard map — this slice does not materialize trillions of files, rows, embeddings, or agents. Unconfigured translators/cloud stay UNAVAILABLE. Evidence Promotion Gate is reused; AI agreement is not VERIFIED. 62L-Y/Z/AA reports are WAITING_DATA here.
+
+## 62L-AF Universe OS Kernel + Offline Service Fabric + Distributed Memory Replication
+Logical Universe lifecycle, offline service supervision, capability packages, scoped storage, distributed memory journals, node-to-node replication with CEO-sealed non-replication by default, conflict retention, local database routing, sparse vector indexes, snapshots/restores, mobile/desktop microkernel profiles, hardware-aware scheduling, quarantine/safe mode, and an evidence-based Offline Continuity Score. AWS/Azure/Cisco remain optional UNAVAILABLE extensions — XIV boots locally without cloud. 62L-AD/AC reports are WAITING_DATA on this AE parent (not merged).
 
 ## 62L-AE Hybrid Edge-Cloud + CEO Sealed Vault
 Logical XIV Universes, laptop/mobile-class device nodes, cross-OS federation adapters, secure agent envelopes, store-and-forward, agentic databases, and a deny-by-default CEO Sealed Vault. AWS/Azure/Cisco stay UNAVAILABLE until detected, configured, authorized, and verified. Sealed founder-priority fields are redacted before cloud/agent routing. Ordinary agents cannot read sealed content without an explicit grant. Parallel Universes are logical policy/memory/sandbox lineages — not physical alternate universes. 62L-AD/AC reports are WAITING_DATA on this parent.
