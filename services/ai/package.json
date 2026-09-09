@@ -20,7 +20,8 @@
     "test:62lel9": "node --import tsx --test local-runtime/__tests__/el9-resource-governor.test.ts",
     "test:62lem1": "node --import tsx --test local-brain/phase62lem1.test.ts",
     "test:62lem3": "node --import tsx --test local-runtime/__tests__/phase62lem3.test.ts",
-    "test:62lem4": "node --import tsx --test local-brain/__tests__/phase62lem4.test.ts"
+    "test:62lem4": "node --import tsx --test local-brain/__tests__/phase62lem4.test.ts",
+    "test:62lem5": "node --import tsx --test local-runtime/__tests__/em5-amd-windows-ml-adapter.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
