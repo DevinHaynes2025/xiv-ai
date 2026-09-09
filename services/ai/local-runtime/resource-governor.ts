@@ -118,6 +118,8 @@ export function assertEl9LocksIntact(): boolean {
 export type El9SoftWireSnapshot = {
   el7AdapterPresent: boolean;
   el7AdapterPathChecked: string;
+  el7SoftWirePresent: boolean;
+  el7SoftWirePathChecked: string;
   el8EvidencePresent: boolean;
   el8EvidencePathChecked: string;
   note: string;
@@ -125,11 +127,14 @@ export type El9SoftWireSnapshot = {
 
 export function el9SoftWireSnapshot(): El9SoftWireSnapshot {
   const here = dirname(fileURLToPath(import.meta.url));
-  const el7Path = join(here, 'windows-local-runtime-adapter.ts');
+  const el7AdapterPath = join(here, 'windows-local-runtime-adapter.ts');
+  const el7SoftWirePath = join(here, 'el7-soft-wire.ts');
   const el8Path = join(here, 'model-load-evidence.ts');
   return {
-    el7AdapterPresent: existsSync(el7Path),
-    el7AdapterPathChecked: el7Path,
+    el7AdapterPresent: existsSync(el7AdapterPath),
+    el7AdapterPathChecked: el7AdapterPath,
+    el7SoftWirePresent: existsSync(el7SoftWirePath),
+    el7SoftWirePathChecked: el7SoftWirePath,
     el8EvidencePresent: existsSync(el8Path),
     el8EvidencePathChecked: el8Path,
     note: 'Presence soft-wire only; does not imply EL7/EL8 VERIFIED or production authorization.',

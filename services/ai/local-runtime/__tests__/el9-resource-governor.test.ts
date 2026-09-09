@@ -505,7 +505,10 @@ test('unlimited policy rejected', () => {
 test('soft-wire snapshot for EL7 adapter + EL8 evidence (presence only)', () => {
   const snap = el9SoftWireSnapshot();
   assert.equal(typeof snap.el7AdapterPresent, 'boolean');
+  assert.equal(typeof snap.el7SoftWirePresent, 'boolean');
   assert.equal(typeof snap.el8EvidencePresent, 'boolean');
   assert.match(snap.note, /Presence soft-wire only/);
-  // On this EL9-from-EL8 base tip, sibling modules may be absent — that is honest.
+  // After rebase onto EL8 tip: model-load-evidence + el7-soft-wire are expected present.
+  assert.equal(snap.el8EvidencePresent, true);
+  assert.equal(snap.el7SoftWirePresent, true);
 });
