@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto EM5 (cont
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em7-device-neutral-inference-router-4059`  
-Tip SHA: `PLACEHOLDER`  
+Tip SHA: `fd81814221b062cb970996c4b179cc008e092e16`  
 Base used: `cursor/62l-em5-amd-windows-ml-adapter-path-4059` @ `69753ccad6f1d3a593a4f6e545c2c286077d78a4`  
 EM5 contains EM4 @ `0c31b27d694484499c69fd9fb2eb549d80ac89e8`  
 EM6 tip considered (not preferred): `f91cb3c36ff3d7eba59d2b6e8a7ca43a9c867014`  
