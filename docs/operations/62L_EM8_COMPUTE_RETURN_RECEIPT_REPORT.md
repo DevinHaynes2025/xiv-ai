@@ -4,10 +4,10 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em8-compute-return-receipt-4059`  
-Tip SHA: `16b98c995056476b115f6cce7866d27a66206acb`  
-Feat commit (post-rebase): `763c5a6`  
-Rebase: **YES** onto origin EM7 ed53f61 (from e62e0d0)  
-Base: EM7 `cursor/62l-em7-device-neutral-inference-router-4059` @ `ed53f617b01485ff7aaa3282058d40b91bf480de` (origin tip; EM6 a17e6609 not yet ancestor)  
+Tip SHA: `(recorded after rebase)`  
+Feat commit (post-rebase): `50842bc`  
+Rebase: **YES** onto final EM7 `5b8cf08` (from interim `ed53f61`)  
+Base: EM7 `cursor/62l-em7-device-neutral-inference-router-4059` @ `5b8cf085f9f9fbdddfd29f1f4c4055f5c649a85b` (on sealed EM6 `a17e6609fad9319c3abe8ddb68928459cdbee0be`)  
 Preferred predecessor `cursor/62l-em7-*`: **local pointer only** (no unique commits beyond EL9) — EM6/EM5/EM4 likewise empty of unique commits → used EM3 tip which soft-carries EM1 + registry  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest / L4 / silent authority: **NOT CREATED / DENIED**  
@@ -81,7 +81,7 @@ Ingest outcome for missing/malformed: **`UNVERIFIED`** (not a compute `resultSta
 | EM3 universal compute registry | **PRESENT** |
 | EM4 envelope | **ABSENT** (honest; soft-wire only) |
 | EM5 AMD Windows ML | **PRESENT** (adapter / honesty soft-wire candidates) |
-| EM6 NVIDIA candidate | **ABSENT** (not on this EM7 tip; soft-wire honest) |
+| EM6 NVIDIA candidate | **PRESENT** |
 | EM7 device-neutral router | **PRESENT** |
 
 Presence soft-wire does **not** imply predecessors VERIFIED or production authorization.
