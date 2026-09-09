@@ -143,7 +143,9 @@
     "test:62ldt": "tsx local-brain/phase62ldt.test.ts",
     "local:growth-operating-system-health": "tsx local-brain/growth-operating-system-cli.ts",
     "test:62ldu": "tsx local-brain/phase62ldu.test.ts",
-    "local:universal-industry-intelligence-os-health": "tsx local-brain/universal-industry-intelligence-os-cli.ts"
+    "local:universal-industry-intelligence-os-health": "tsx local-brain/universal-industry-intelligence-os-cli.ts",
+    "test:62ldv": "tsx local-brain/phase62ldv.test.ts",
+    "local:universal-data-industry-cortex-health": "tsx local-brain/universal-data-industry-cortex-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
