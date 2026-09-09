@@ -21,6 +21,7 @@ PSQL_SUPERUSER="${PSQL_SUPERUSER:-postgres}"
 
 FOUNDATION_SQL="${REPO_ROOT}/supabase/migrations/20260908120000_agent_civilization_foundation.sql"
 MEETINGS_SQL="${REPO_ROOT}/supabase/migrations/20260908180000_agent_meetings_collective_reasoning.sql"
+EVIDENCE_SQL="${REPO_ROOT}/supabase/migrations/20260909120000_evidence_verification_ownership.sql"
 
 run_psql() {
   local database="$1"
@@ -60,5 +61,21 @@ else
   run_psql "${DB_NAME_62B}" -f "${MEETINGS_SQL}" >/dev/null
   run_psql "${DB_NAME_62B}" -f "${REPO_ROOT}/supabase/tests/agent_meetings_rls_test.sql"
 fi
+
+# The evidence layer and the RLS matrix both need the full schema, so they run
+# last against the database that has every migration applied.
+echo "[xiv-sql] 62D governance — evidence, verification and ownership"
+EVIDENCE_DB="${DB_NAME_62B}"
+if [[ -n "${DATABASE_URL:-}" ]]; then
+  EVIDENCE_DB="${DB_NAME}"
+fi
+run_psql "${EVIDENCE_DB}" -f "${EVIDENCE_SQL}" >/dev/null
+# Applied twice on purpose: the founder applies migrations by hand in the
+# Supabase SQL editor, so every one of them has to stay re-runnable.
+run_psql "${EVIDENCE_DB}" -f "${EVIDENCE_SQL}" >/dev/null
+run_psql "${EVIDENCE_DB}" -f "${REPO_ROOT}/supabase/tests/evidence_governance_test.sql"
+
+echo "[xiv-sql] section 40 — the RLS evidence matrix over every tenant-bearing table"
+run_psql "${EVIDENCE_DB}" -f "${REPO_ROOT}/supabase/tests/rls_matrix_test.sql"
 
 echo "[xiv-sql] all SQL tests passed"

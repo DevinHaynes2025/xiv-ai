@@ -18,6 +18,34 @@ begin;
 
 set local role postgres;
 
+select set_config('xiv.suite', '62A-agent-civilization-rls', true);
+
+-- Evidence emission (sections 34, 39, 40, 52).
+--
+-- The harness prints one line per expectation it evaluates, so the artifact is
+-- produced by the database that did the checking rather than by a wrapper
+-- inferring "everything passed" from psql exiting zero. Each line carries the
+-- identity that was acting, the operation, what was expected and what actually
+-- happened, which is the minimum section 40 asks of an RLS result. The
+-- collector in services/ai/evidence/collect.ts parses these into evidence
+-- records; a human reading the psql output sees the same information.
+create or replace function pg_temp.xiv_evidence(
+  label text, expected text, actual text, status text, kind text
+)
+returns void
+language plpgsql
+as $$
+begin
+  raise notice 'XIV-EVIDENCE|%|%|%|%|%|%',
+    coalesce(current_setting('xiv.suite', true), 'unknown'),
+    replace(label, '|', '/'),
+    expected,
+    actual,
+    status,
+    kind;
+end;
+$$;
+
 create or replace function pg_temp.xiv_expect_rows(query text, expected bigint, label text)
 returns void
 language plpgsql
@@ -27,8 +55,14 @@ declare
 begin
   execute format('select count(*) from (%s) as counted', query) into actual;
   if actual <> expected then
+    perform pg_temp.xiv_evidence(label, expected || ' rows', actual || ' rows', 'fail',
+      case when expected = 0 then 'negative' else 'positive' end);
     raise exception 'XIV RLS TEST FAILED: % (expected % rows, saw %)', label, expected, actual;
   end if;
+  -- Expecting zero rows is a visibility denial, which is section 52 evidence:
+  -- the proof that XIV refused, not that it worked.
+  perform pg_temp.xiv_evidence(label, expected || ' rows', actual || ' rows', 'pass',
+    case when expected = 0 then 'negative' else 'positive' end);
 end;
 $$;
 
@@ -48,13 +82,16 @@ begin
     get diagnostics affected = row_count;
   exception
     when insufficient_privilege or check_violation or raise_exception then
+      perform pg_temp.xiv_evidence(label, 'DENIED', 'DENIED (refused)', 'pass', 'negative');
       return;
   end;
 
   if affected = 0 then
+    perform pg_temp.xiv_evidence(label, 'DENIED', 'DENIED (no row visible)', 'pass', 'negative');
     return;
   end if;
 
+  perform pg_temp.xiv_evidence(label, 'DENIED', 'ALLOWED (' || affected || ' rows)', 'fail', 'negative');
   raise exception 'XIV RLS TEST FAILED: % changed % row(s) but must be blocked', label, affected;
 end;
 $$;

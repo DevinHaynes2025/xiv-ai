@@ -18,6 +18,28 @@ begin;
 
 set local role postgres;
 
+select set_config('xiv.suite', '62B-agent-meetings-rls', true);
+
+-- See the note on the same function in agent_civilization_rls_test.sql. The
+-- harness emits one evidence line per expectation so the artifact comes from
+-- the database rather than from a wrapper reading an exit code.
+create or replace function pg_temp.xiv_evidence(
+  label text, expected text, actual text, status text, kind text
+)
+returns void
+language plpgsql
+as $$
+begin
+  raise notice 'XIV-EVIDENCE|%|%|%|%|%|%',
+    coalesce(current_setting('xiv.suite', true), 'unknown'),
+    replace(label, '|', '/'),
+    expected,
+    actual,
+    status,
+    kind;
+end;
+$$;
+
 create or replace function pg_temp.xiv_expect_rows(query text, expected bigint, label text)
 returns void
 language plpgsql
@@ -27,8 +49,12 @@ declare
 begin
   execute format('select count(*) from (%s) as counted', query) into actual;
   if actual <> expected then
+    perform pg_temp.xiv_evidence(label, expected || ' rows', actual || ' rows', 'fail',
+      case when expected = 0 then 'negative' else 'positive' end);
     raise exception 'XIV MEETING TEST FAILED: % (expected % rows, saw %)', label, expected, actual;
   end if;
+  perform pg_temp.xiv_evidence(label, expected || ' rows', actual || ' rows', 'pass',
+    case when expected = 0 then 'negative' else 'positive' end);
 end;
 $$;
 
@@ -48,13 +74,16 @@ begin
   exception
     when insufficient_privilege or check_violation or raise_exception
       or not_null_violation or foreign_key_violation or unique_violation then
+      perform pg_temp.xiv_evidence(label, 'DENIED', 'DENIED (refused)', 'pass', 'negative');
       return;
   end;
 
   if affected = 0 then
+    perform pg_temp.xiv_evidence(label, 'DENIED', 'DENIED (no row visible)', 'pass', 'negative');
     return;
   end if;
 
+  perform pg_temp.xiv_evidence(label, 'DENIED', 'ALLOWED (' || affected || ' rows)', 'fail', 'negative');
   raise exception 'XIV MEETING TEST FAILED: % changed % row(s) but must be blocked', label, affected;
 end;
 $$;
@@ -68,8 +97,10 @@ declare
 begin
   execute query into actual;
   if actual is distinct from expected then
+    perform pg_temp.xiv_evidence(label, expected, coalesce(actual, 'null'), 'fail', 'positive');
     raise exception 'XIV MEETING TEST FAILED: % (expected %, saw %)', label, expected, coalesce(actual, 'null');
   end if;
+  perform pg_temp.xiv_evidence(label, expected, coalesce(actual, 'null'), 'pass', 'positive');
 end;
 $$;
 

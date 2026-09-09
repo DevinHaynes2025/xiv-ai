@@ -81,7 +81,35 @@ export type GovernanceCode =
   | 'reputation_impact_not_eligible'
   | 'directory_profession_unknown'
   | 'directory_high_stakes_requires_approval'
-  | 'outcome_requires_measurement';
+  | 'outcome_requires_measurement'
+  // 2I-AI-62D governance — evidence, verification and ownership
+  | 'gate_unknown'
+  | 'gate_key_duplicate'
+  | 'gate_unassigned'
+  | 'evidence_record_unknown'
+  | 'evidence_contract_field_missing'
+  | 'evidence_level_overclaimed'
+  | 'evidence_commit_required'
+  | 'evidence_commit_mismatch'
+  | 'evidence_immutable'
+  | 'evidence_contains_secret'
+  | 'evidence_skipped_is_not_pass'
+  | 'evidence_reuse_requires_impact_analysis'
+  | 'verifier_must_be_independent'
+  | 'verifier_already_recorded'
+  | 'approver_must_be_independent'
+  | 'approval_requires_human'
+  | 'approval_cannot_be_automated'
+  | 'exception_unknown'
+  | 'exception_hard_blocker_not_waivable'
+  | 'exception_requires_expiry'
+  | 'exception_requires_compensating_control'
+  | 'exception_requires_human_approver'
+  | 'failure_unknown'
+  | 'failure_closure_requires_retest'
+  | 'brief_classification_overstated'
+  | 'manifest_run_duplicate'
+  | 'manifest_hash_mismatch';
 
 export class GovernanceError extends Error {
   readonly code: GovernanceCode;

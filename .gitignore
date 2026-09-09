@@ -45,3 +45,12 @@ coverage/
 
 # Local database / tooling
 .supabase/
+
+# Generated evidence packages.
+#
+# Not committed, and the reason is section 38 rather than tidiness. A package is
+# bound to the exact commit it was taken against, so committing it would produce
+# a new commit that the package no longer proves anything about. Evidence is
+# published as a build artifact against the commit it describes; a copy checked
+# into the tree would be stale the moment it landed.
+xiv-evidence/
