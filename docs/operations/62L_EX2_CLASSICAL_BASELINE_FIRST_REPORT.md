@@ -11,7 +11,7 @@
 
 | Ref | SHA |
 |-----|-----|
-| LOCAL tip (docs) | `5b700f61930a200166c6eacf6b266c0dd0a2b2e2` |
+| LOCAL tip (docs) | `4bfbf567d18dc3960e9e7b61b48fe6c10e29e180` |
 | Feat SHA | `aecba039e7690e81486e826eed3a8ee3dc8a0330` |
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (behind GitHub by 4 commits; merge-base = GitLab tip — not unsafe) |
