@@ -370,7 +370,7 @@ test('H: Digital Twin ≠ founder; recommend ≠ charge/deploy/spend/sign', () =
   }
 });
 
-test('soft-wire EM1/EM10/#157 PRESENT on base; EN WAITING_DATA or PRESENT; classical baseline PRESENT', () => {
+test('soft-wire EM1/EM10/#157 + EN PRESENT on EO2/EN base; classical baseline PRESENT', () => {
   const snap = eoSoftWireSnapshot(repoRoot);
   assert.equal(snap.em1HomeBase.present, true);
   assert.equal(snap.em10UserAccessEconomy.present, true);
@@ -379,8 +379,10 @@ test('soft-wire EM1/EM10/#157 PRESENT on base; EN WAITING_DATA or PRESENT; class
   assert.equal(snap.classicalQuantBaseline.present, true);
   assert.equal(snap.em157HomeBase.present, true);
   assert.equal(snap.starlinkAdapterSurface.present, true);
-  // EN landed on sibling branch — absent on EM10 tip is honest WAITING_DATA
-  assert.equal(snap.enDealContractRuntime.present, false);
+  // Rebased onto EO2 tip containing sealed EN #158
+  assert.equal(snap.enDealContractRuntime.present, true);
+  assert.equal(snap.enDealContractOs.present, true);
+  assert.equal(snap.enReport.present, true);
 });
 
 test('bootstrap cycle completes with locks intact + CFO denies encoded', () => {
