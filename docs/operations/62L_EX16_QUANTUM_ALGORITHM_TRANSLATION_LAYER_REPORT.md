@@ -24,6 +24,7 @@
 | EX15 tip (local branch) | `60986682…` (= xiv-v2; **not pushed** to origin; WIP under `.wt-ex15` only) |
 | EX15 on origin | **absent** — not a safe descendant tip to soft-wire as base |
 | EX16 base | GITHUB `origin/xiv-v2` @ `60986682…` |
+| EX16 tip (this branch) | `470a0a542320414dd2b2bdc350d8698a4d846d5b` (feat) |
 | STOP on divergence? | **NO** — EX15 not pushed; parallel child from authorized GITHUB base; soft-wire predecessors via `existsSync` |
 | Worktree | `/tmp/62l-ex16-work` (workspace dirty/contested) |
 
