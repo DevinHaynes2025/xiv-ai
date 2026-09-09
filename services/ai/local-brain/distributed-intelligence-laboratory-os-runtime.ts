@@ -43,6 +43,10 @@ import {
   knowledgeExpansionHonesty,
 } from './scientific-knowledge-expansion-engine';
 import {
+  bootstrapCognitiveResearchCloud,
+  cognitiveResearchCloudHonesty,
+} from './cognitive-research-cloud';
+import {
   CV_LOCKS,
   DISTRIBUTED_INTELLIGENCE_LABORATORY_OS_CYCLE,
   HONESTY_BANNER,
@@ -101,11 +105,28 @@ export async function runDistributedIntelligenceLaboratoryOsCycle(input: CvCycle
     ),
   );
 
+  const cuCloud = await bootstrapCognitiveResearchCloud({
+    orgId: input.orgId,
+    tenantId: input.tenantId,
+    root,
+    actor: {
+      kind: 'human_operator',
+      id: actor.id,
+      orgId: input.orgId,
+      tenantId: input.tenantId,
+      universeId: input.universeId,
+      role: actor.role,
+      permissionLevel: actor.permissionLevel,
+      authorityLevel: actor.authorityLevel,
+    },
+  });
   hops.push(
     hop(
       'lab_os_bootstrap',
-      'IMPLEMENTED',
-      'Distributed Intelligence Laboratory OS façade coordinating A–G subsystems',
+      cuCloud && cognitiveResearchCloudHonesty().l4AutonomyEnabled === false
+        ? 'IMPLEMENTED'
+        : 'FAIL',
+      `Lab OS façade over CU cognitive research cloud id=${cuCloud.id}`,
     ),
   );
 
