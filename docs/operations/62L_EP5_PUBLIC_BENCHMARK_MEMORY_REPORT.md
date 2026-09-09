@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep5-public-benchmark-memory-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `db7954730bf3abc7ef742827bfcc698712cc729b`  
 Base: `cursor/62l-ep4-proprietary-ip-firewall-4059` @ `756c93c1d3d9249fc59a180759469c9951d01c23`  
 Predecessor: EP4 Proprietary-IP Firewall **PRESENT**; EP3 **WAITING_DATA** (not landed)  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP5 Public Benchmark Memory*  
