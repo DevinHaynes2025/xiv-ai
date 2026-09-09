@@ -5,8 +5,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 Date: 2026-09-09  
 Branch: `cursor/62l-em10-user-access-economy-4059`  
 Tip SHA: `af86ff58d4661dc3f84834ef4955ad4ff23d1113`  
-Base: EM9 `cursor/62l-em9-compute-resource-market-simulator-4059` @ `b3c06c7db17e2c07bbefd0cb04c8f6e5f8b5a5d6`  
-Predecessor preference: **origin EM9** @ `b3c06c7` (includes EM8 `fd86ee0`; newer EM8 `1285e3f8` not yet in EM9) — **rebased onto EM9**  
+Base: EM9 `cursor/62l-em9-compute-resource-market-simulator-4059` @ `0ecec28f5370118b8d39d7706566eb2b7dc4e49c`  
+Predecessor preference: **sealed origin EM9** @ `0ecec28` (on EM8 `f1ebf638`) — **rebased onto sealed EM9**
 Prior #157-only base: superseded by EM9 rebase (EM10 commits replayed with `--onto`; #157 soft-wire optional / absent on this tip)  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest / L4 / auto-bind legal contracts / fake savings claims: **NOT CREATED / DENIED**  
@@ -24,7 +24,7 @@ Production deploy / merge: **NO**
 - High enterprise pricing (e.g. $300k/mo) requires proportional value / cost-to-serve evidence — else `RECOMMENDATION_BLOCKED`
 - Contracts, discounts, credits, exclusivity, custom terms → human approval (advisory only; still not a legal bind)
 - Different tiers **cannot** weaken privacy or tenant isolation
-- Soft-wire EM9 market sim (**present**), EM1 home base (**present**), #157 affordability / ambition≠valuation (optional / **absent** on this tip; local value/cost gate still applies)
+- Soft-wire EM9 market sim (**present**), EM1 home base (**present**), #157 affordability / ambition≠valuation (**present** on sealed EM9 tip)
 - EM11 (Pricing Catalog Contract) **not implemented** on this branch
 
 ## User story
@@ -63,9 +63,9 @@ As XIV AI OS, I want a tiered access model so consumers, employees, entrepreneur
 |---|---|
 | EM9 compute resource market simulator | **present** |
 | EM1 agent home base contract | **present** |
-| #157 `affordabilityGuard` / CFO council surface | **absent** (optional soft-wire; local EM10 value/cost + affordability gate applies) |
-| #157 ambition≠valuation tracker | **absent** (EM10 lock `AMBITION_EQ_VALUATION=false` still holds) |
-| #157 `agent-compute-home-base` module | **absent** |
+| #157 `affordabilityGuard` / CFO council surface | **present** |
+| #157 ambition≠valuation tracker | **present** |
+| #157 `agent-compute-home-base` module | **present** |
 | EL9 `resource-governor.ts` | **present** |
 
 ## Acceptance criteria checklist
@@ -100,7 +100,7 @@ cd services/ai && npm run test:62lem10
 | Production SLA measurement | **NOT_TESTED** |
 | EM9 market simulator landing | **present** on base (soft-wire; not EM9 VERIFIED) |
 | EM1 home base on this lineage | **present** on base (soft-wire; not EM1 VERIFIED) |
-| #157 agent compute home base | **absent** on EM9 tip (optional soft-wire) |
+| #157 agent compute home base | **present** on sealed EM9 tip (soft-wire) |
 | EM11 Pricing Catalog Contract | **NOT IMPLEMENTED** (next) |
 | Production authorization / tip-land / PR | **false** / not created |
 | Legal contract execution | **DENIED** from pricing engine |

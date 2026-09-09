@@ -59,15 +59,13 @@ test('EM10 honesty banner, core rule, L4 off, next EM11 recorded', () => {
   assert.equal(snap.locksIntact, true);
 });
 
-test('soft-wire EM9 + EM1 present on this base; #157 optional', () => {
+test('soft-wire EM9 + EM1 + #157 present on sealed EM9 base', () => {
   const wire = em10SoftWire();
-  // Rebased onto origin EM9 — market simulator + EM1 home base should be present.
   assert.equal(wire.em9MarketSimulator.present, true);
   assert.equal(wire.em1HomeBase.present, true);
-  // #157 may or may not be landed on this lineage — presence is informational only.
-  assert.equal(typeof wire.em157AffordabilityGuard.present, 'boolean');
-  assert.equal(typeof wire.em157AmbitionTracker.present, 'boolean');
-  assert.equal(typeof wire.em157HomeBaseModule.present, 'boolean');
+  assert.equal(wire.em157AffordabilityGuard.present, true);
+  assert.equal(wire.em157AmbitionTracker.present, true);
+  assert.equal(wire.em157HomeBaseModule.present, true);
   assert.equal(wire.el9ResourceGovernor.present, true);
   assert.equal(wire.l4AutonomyEnabled, false);
   assert.match(wire.note, /Presence soft-wire/);
