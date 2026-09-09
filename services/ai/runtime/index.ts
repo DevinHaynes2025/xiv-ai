@@ -424,7 +424,10 @@ export {
 } from './locationintel';
 export {
   agentMeshL4Enabled,
+  createOfflineResearchMission,
   evaluateOfflineAction,
+  evaluateResearchSource,
+  ewL4AutonomyEnabled,
   offlineCreatesAuthority,
   openAgentRuntime,
   synchronizeAgentMesh,

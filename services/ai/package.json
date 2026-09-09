@@ -16,6 +16,7 @@
     "test:phase2iz": "tsx runtime/phase2iz.test.ts",
     "test:phase2iaa": "tsx runtime/phase2iaa.test.ts",
     "test:phase2iab": "tsx runtime/phase2iab.test.ts",
+    "test:62lew1-ew5": "tsx runtime/phase62lew1ew5.test.ts",
     "test:phase2iac": "tsx runtime/phase2iac.test.ts",
     "test:phase2ila": "tsx runtime/phase2ila.test.ts",
     "test:phase2ilb": "tsx runtime/phase2ilb.test.ts",
