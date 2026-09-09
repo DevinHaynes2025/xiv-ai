@@ -4,9 +4,10 @@
 **Worktree:** `/tmp/ai62k-park` (canonical 62L worktree; `/workspace` was detached on `xiv-v2` with unrelated LA-61J/61K dirty files and was **not** edited)
 **Branch:** `chatgpt/62l-local-brain-offline`
 **Verified tip before this report commit:** `6a71ae4a573d4fc971e16c7a483126c44b60961e`
+**GitHub implementation SHA (includes this report):** `3324a10e066f171b993976c203e1260d243b7986` (re-verified 2026-09-09T02:12Z; follow-up amendment on this file)
 **Date (UTC):** 2026-09-09
 **Deploy / production push / Supabase migrate / RLS expansion:** **not performed**
-**62L-P Development Civilization:** **not implemented** (NEXT only)
+**62L-P / 62L-V / 62L-W:** **not implemented** (STOP)
 
 ## Anti-conflict
 
@@ -30,7 +31,12 @@ The **1,257 file count is not this branch’s working tree.**
 | Ignored `services/ai/node_modules` | **904 files** | `gitignored`. Not committed. Not 1,257. |
 | `/workspace` (xiv-v2 detached) | **6** | Unrelated LA-61J/61K docs. Left untouched. |
 
-**Conclusion:** the “1,257-file mystery” is the **parent agent’s recorded session diff**, not a 62L dirty tree of generated caches. The 62L branch itself is a bounded Local Brain source+docs delta (~82 files), not a thousand-file rewrite.
+**Conclusion:** two overlapping explanations, neither of which is generated-cache churn:
+
+1. Parent dashboard `filesChanged: 1257` is session-level, not `git status` on 62L.
+2. **Reproduced 2026-09-09T02:12Z:** pointing local branch `chatgpt/62l-local-brain-offline` at GitLab coordination SHA `e93a722` (sparse Replit checkpoint; GitHub is SoT) while the worktree still contains the GitHub Local Brain tree produces **~1,358** `git status` paths (Added/Modified). That is index vs sparse GitLab HEAD, **not** new product files. Restored with `git reset --hard origin/chatgpt/62l-local-brain-offline` → **0 dirty** at `3324a10`. **Do not commit that illusion.**
+
+GitLab `chatgpt/62l-local-brain-offline` (`e93a722`) does **not** contain this report until a coordination-only copy is pushed; GitHub tip already has `docs/operations/62L_O_VERIFICATION_REPORT.md`.
 
 ## Categorization of the 62L delta (vs merge-base, including this gate’s pending files)
 
@@ -208,3 +214,16 @@ npx tsx /tmp/62lo-verify/gate.ts                          # exit 1 before TTL fi
 - No invented PASS.
 - No deploy, no production push, no Supabase migration apply, no RLS/permission expansion.
 - Stopped before implementing 62L-P.
+
+## Re-verification 2026-09-09T02:12Z (Issue #30 follow-up)
+
+GitHub `origin/chatgpt/62l-local-brain-offline` already contained this path at `3324a10`. Working tree restored to that tip (**0 dirty**). GitLab coordination host was missing the file (Issue #30 looks there). No caches/secrets committed. No 62L-P/V/W feature work.
+
+Re-executed on disk Local Brain tree:
+
+```text
+cd /tmp/ai62k-park/services/ai && npm run typecheck        # exit 0
+cd /tmp/ai62k-park/services/ai && npm run test:local-brain  # exit 0
+cd /tmp/ai62k-park/services/ai && npm run test:62le        # exit 0
+git reset --hard origin/chatgpt/62l-local-brain-offline     # restored from false 1358-file dirty tree; not committed
+```
