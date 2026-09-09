@@ -7,7 +7,7 @@ Branch: `cursor/62l-cu-cognitive-research-cloud-4059`
 Parent / base tip: `cursor/62l-ct-ai-research-civilization-os-4059` @ `1ce4d110326bf8727637f5dedf8c19756567c1b4` (includes `62L_CT_AI_RESEARCH_CIVILIZATION_OS_REPORT.md`)
 Why this base: Preference **CT → CS → CR → CQ → CP `e5e53b8` → CO → …**. At start CT/CS/CR were **WAITING_DATA**; scaffolded from pushed **CQ** `@c8c10d3`. Polled with backoff; **CR** tip+report landed first → rebased onto CR `@af878c1`. Preferred **CT** tip+report later **PRESENT** → **rebased onto CT** `@1ce4d11`. CS tip remained absent / WAITING_DATA (not blocking CT-based CU).
 Implementation SHAs: see commit list (`feat` / `chore` / `docs` / `test`)
-Tip SHA: `61c83da1ba0b8e3ea623235b82d8e8d4c3aa544b`
+Tip SHA: `ab0cf081012c6c67d8f359f87fb6123b688eeeb0`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
