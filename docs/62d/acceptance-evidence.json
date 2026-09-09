@@ -1,0 +1,3909 @@
+{
+  "metadata": {
+    "ranAt": "2026-09-09T23:10:31.451Z",
+    "commit": "66f0523700adab8c7aba998d65550ae8268061c9",
+    "branch": "cursor/xiv-62d-distributed-runtime-a3de",
+    "nodeVersion": "v22.14.0",
+    "platform": "linux-x64",
+    "cpuModel": "Intel(R) Xeon(R) Processor",
+    "cpuCount": 4,
+    "totalMemoryMb": 16014,
+    "durationMs": 11979
+  },
+  "gate": "NO-GO",
+  "counts": {
+    "PASS": 23,
+    "FAIL": 0,
+    "PARTIAL": 1,
+    "UNVERIFIED": 0
+  },
+  "results": [
+    {
+      "id": "AC-01",
+      "title": "Runtime Registration & Identity",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "unique_node_id",
+          "label": "Unique node_id",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "tenant_binding",
+          "label": "Organization/Universe binding",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "duplicate_identities",
+          "label": "Duplicate active node identities",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unknown_nodes_with_protected_work",
+          "label": "Unknown nodes receiving protected workloads",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "absent from the registry, trust gate refused as attestation_required, router excluded the node as attestation_required"
+        },
+        {
+          "id": "revoked_nodes_with_new_work",
+          "label": "Revoked nodes receiving new workloads",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "re-registration refused as node_revoked; as sole candidate the router excluded the node as node_unavailable"
+        },
+        {
+          "id": "registration_audit_coverage",
+          "label": "Registration events in audit lineage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "enrollment_negatives_wrongly_refused",
+          "label": "Invalid enrollments refused with the wrong reason",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "5 invalid enrollments each refused for the reason they test, and a revoked identity refused as node_revoked"
+        }
+      ],
+      "evidence": {
+        "nodesRegistered": 40,
+        "distinctNodeIds": 40,
+        "duplicateRegistrationAttempts": 10,
+        "enrollmentNegatives": [
+          {
+            "scenario": "presented_fingerprint_does_not_match_ticket",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "enrollment_ticket_signature_tampered",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "enrollment_ticket_expired",
+            "expected": "enrollment_invalid",
+            "observed": "enrollment_invalid"
+          },
+          {
+            "scenario": "unauthorized_issuer",
+            "expected": "unauthorized",
+            "observed": "unauthorized"
+          },
+          {
+            "scenario": "cross_tenant_enrollment",
+            "expected": "isolation_violation",
+            "observed": "isolation_violation"
+          }
+        ],
+        "rejectionCodes": [
+          "enrollment_invalid",
+          "enrollment_invalid",
+          "enrollment_invalid",
+          "unauthorized",
+          "isolation_violation"
+        ],
+        "revokedReRegistrationCode": "node_revoked",
+        "auditChainIntact": true
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:19.493Z"
+    },
+    {
+      "id": "AC-02",
+      "title": "Runtime Attestation",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "protected_on_attested",
+          "label": "Protected workloads on required-attested nodes",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "expired_attestation_executions",
+          "label": "Expired-attestation protected executions",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "failed_attestation_executions",
+          "label": "Failed-attestation protected executions",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "quarantined_node_executions",
+          "label": "Quarantined-node protected executions",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "attestation_in_lineage",
+          "label": "Attestation state recorded with workload lineage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "trust_gate_refuses_directly",
+          "label": "Trust gate refuses ineligible nodes when called directly",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "expired=attestation_required, failed=attestation_required, quarantined=node_unavailable"
+        }
+      ],
+      "evidence": {
+        "protectedExecutions": 40,
+        "attestedNodeId": "node_h0972d0ed666a7a9c",
+        "expiredAttestationStatus": "expired",
+        "failedAttestationStatus": "failed",
+        "quarantinedNodeState": "quarantined",
+        "directAttemptCodes": {
+          "expired": "attestation_required",
+          "failed": "attestation_required",
+          "quarantined": "node_unavailable"
+        },
+        "trustPolicy": {
+          "protectedClassifications": [
+            "confidential",
+            "restricted"
+          ],
+          "maxAttestationAgeMs": 3600000,
+          "requiredMeasurements": [
+            "boot_chain",
+            "runtime_image",
+            "policy_bundle"
+          ]
+        }
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:19.518Z"
+    },
+    {
+      "id": "AC-03",
+      "title": "Tenant & Universe Isolation",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "cross_tenant_negative_tests",
+          "label": "Cross-tenant negative tests passed (control plane)",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "cross_universe_negative_tests",
+          "label": "Cross-Universe negative tests passed (control plane)",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_cross_tenant_reads",
+          "label": "Unauthorized cross-tenant reads",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_cross_tenant_writes",
+          "label": "Unauthorized cross-tenant writes",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_cross_universe_access",
+          "label": "Unauthorized cross-Universe reads/writes",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "rls_validated_tables",
+          "label": "Tenant-bearing tables with validated RLS",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "executed on PostgreSQL 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)"
+        },
+        {
+          "id": "rls_negative_suite",
+          "label": "Database cross-tenant/universe negative suite passed",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "undocumented_bypass_paths",
+          "label": "Privileged bypass paths without documented justification",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "2 registered paths (backup_restore, fleet_health) each carry a justification and approver; an unregistered path was refused as bypass_unjustified"
+        }
+      ],
+      "evidence": {
+        "controlPlaneTests": [
+          {
+            "name": "node_of_other_org_not_readable",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "not_readable"
+          },
+          {
+            "name": "workload_of_other_org_not_readable",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "not_readable"
+          },
+          {
+            "name": "agent_of_other_org_not_readable",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "not_readable"
+          },
+          {
+            "name": "node_list_scoped_to_own_org",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "1 nodes"
+          },
+          {
+            "name": "audit_ledger_scoped_to_own_org",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "10 events"
+          },
+          {
+            "name": "require_of_other_org_node_throws",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "unknown_node"
+          },
+          {
+            "name": "meeting_of_other_org_not_readable",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "write_node_into_other_org_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "isolation_violation"
+          },
+          {
+            "name": "enrollment_for_other_org_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "workload_submitted_into_other_org_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "agent_activation_on_other_org_node_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "approval_across_org_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "offline_package_across_org_refused",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "control_command_across_org_rejected",
+            "kind": "cross_tenant_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "other_universe_node_not_readable",
+            "kind": "cross_universe_read",
+            "passed": true,
+            "observed": "not_readable"
+          },
+          {
+            "name": "other_universe_workload_not_readable",
+            "kind": "cross_universe_read",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "other_universe_audit_not_readable",
+            "kind": "cross_universe_read",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "routing_never_selects_other_universe_node",
+            "kind": "cross_universe_read",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "routing_never_selects_other_org_node_in_same_universe",
+            "kind": "cross_tenant_read",
+            "passed": true,
+            "observed": "same universe, different organization"
+          },
+          {
+            "name": "workload_into_other_universe_refused",
+            "kind": "cross_universe_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "write_into_other_universe_refused",
+            "kind": "cross_universe_write",
+            "passed": true,
+            "observed": "checked"
+          },
+          {
+            "name": "agent_key_reuse_across_universes_is_distinct",
+            "kind": "cross_universe_write",
+            "passed": true,
+            "observed": "checked"
+          }
+        ],
+        "controlPlaneDeniedReads": 9,
+        "controlPlaneDeniedWrites": 3,
+        "documentedBypassPaths": [
+          {
+            "pathId": "backup_restore",
+            "justification": "Backup and restore must read every tenant row to produce a consistent snapshot.",
+            "approvedByPrincipalId": "founder",
+            "reviewedAt": 1767225600000
+          },
+          {
+            "pathId": "fleet_health",
+            "justification": "Fleet health reporting needs node states across tenants to detect unowned nodes.",
+            "approvedByPrincipalId": "founder",
+            "reviewedAt": 1767225600000
+          }
+        ],
+        "undocumentedBypassRefusalCode": "bypass_unjustified",
+        "databaseRls": {
+          "status": "verified",
+          "reason": "executed against local postgresql with supabase auth shim",
+          "database": "xiv_rls_check",
+          "postgresVersion": "16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)",
+          "checks": [
+            {
+              "category": "cross_tenant_read",
+              "name": "nodes_visible_to_own_tenant",
+              "expectation": "rows=1",
+              "observed": "rows=1",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "nodes_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_read",
+              "name": "nodes_of_other_universe_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "agents_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "workloads_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "lineage_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "audit_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "usage_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "offline_packages_of_other_org_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "memberships_of_other_user_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "join_cannot_leak_other_org_rows",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_read",
+              "name": "subquery_cannot_leak_other_org_rows",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "insert_node_into_other_org_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_write",
+              "name": "insert_node_into_other_universe_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "insert_workload_into_other_org_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "insert_audit_into_other_org_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "membership_self_grant_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "update_other_org_node_affects_nothing",
+              "expectation": "affected=0",
+              "observed": "affected=0",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_write",
+              "name": "update_other_universe_node_affects_nothing",
+              "expectation": "affected=0",
+              "observed": "affected=0",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "update_own_node_succeeds",
+              "expectation": "affected=1",
+              "observed": "affected=1",
+              "passed": true
+            },
+            {
+              "category": "cross_tenant_write",
+              "name": "reparent_own_node_to_other_org_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_read",
+              "name": "same_org_other_universe_nodes_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_read",
+              "name": "same_org_other_universe_workloads_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_read",
+              "name": "same_org_own_universe_visible",
+              "expectation": "rows=1",
+              "observed": "rows=1",
+              "passed": true
+            },
+            {
+              "category": "cross_universe_write",
+              "name": "same_org_insert_into_other_universe_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "nodes_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "workloads_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "agents_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "lineage_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "audit_invisible",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_membership",
+              "name": "insert_node_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "no_session",
+              "name": "nodes_invisible_without_jwt",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "no_session",
+              "name": "workloads_invisible_without_jwt",
+              "expectation": "rows=0",
+              "observed": "rows=0",
+              "passed": true
+            },
+            {
+              "category": "anon",
+              "name": "anon_select_nodes_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "anon",
+              "name": "anon_select_workloads_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "anon",
+              "name": "anon_select_audit_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "anon",
+              "name": "anon_select_model_registry_denied",
+              "expectation": "denied",
+              "observed": "denied:42501",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_agent_assignments",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_agents",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_attestations",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_audit_events",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_control_commands",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_lineage",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_memberships",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_model_registry",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_nodes",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_offline_packages",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_releases",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_usage",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "rls_enabled_and_forced:xiv_runtime_workloads",
+              "expectation": "enabled+forced",
+              "observed": "enabled+forced",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_agent_assignments",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_agents",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_attestations",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_audit_events",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_control_commands",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_lineage",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_memberships",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_nodes",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_offline_packages",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_usage",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "tenant_columns_not_null:xiv_runtime_workloads",
+              "expectation": "organization_id+universe_id not null",
+              "observed": "organization_id=not_null,universe_id=not_null",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_agent_assignments",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_agent_assignments_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_agents",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_agents_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_attestations",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_attestations_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_audit_events",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_audit_events_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_control_commands",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_control_commands_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_lineage",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_lineage_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_memberships",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_memberships_select_own",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_model_registry",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_model_registry_select_authenticated",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_nodes",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_nodes_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_offline_packages",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_offline_packages_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_releases",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_releases_select_authenticated",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_usage",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_usage_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "select_policy_present:xiv_runtime_workloads",
+              "expectation": "has select policy",
+              "observed": "xiv_runtime_workloads_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_agent_assignments",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_agents",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_attestations",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_audit_events",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_control_commands",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_lineage",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_memberships",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_model_registry",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_nodes",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_offline_packages",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_releases",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_usage",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "no_anon_or_public_grants:xiv_runtime_workloads",
+              "expectation": "no privileges",
+              "observed": "no privileges",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_agent_assignments",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_agent_assignments_insert_tenant,xiv_runtime_agent_assignments_select_tenant,xiv_runtime_agent_assignments_update_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_agents",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_agents_insert_tenant,xiv_runtime_agents_select_tenant,xiv_runtime_agents_update_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_attestations",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_attestations_insert_tenant,xiv_runtime_attestations_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_audit_events",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_audit_events_insert_tenant,xiv_runtime_audit_events_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_control_commands",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_control_commands_insert_tenant,xiv_runtime_control_commands_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_lineage",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_lineage_insert_tenant,xiv_runtime_lineage_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_memberships",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_memberships_select_own",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_nodes",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_nodes_insert_tenant,xiv_runtime_nodes_select_tenant,xiv_runtime_nodes_update_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_offline_packages",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_offline_packages_insert_tenant,xiv_runtime_offline_packages_select_tenant,xiv_runtime_offline_packages_update_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_usage",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_usage_insert_tenant,xiv_runtime_usage_select_tenant",
+              "passed": true
+            },
+            {
+              "category": "structure",
+              "name": "policies_tenant_scoped:xiv_runtime_workloads",
+              "expectation": "membership-scoped or owner-scoped policies",
+              "observed": "xiv_runtime_workloads_insert_tenant,xiv_runtime_workloads_select_tenant,xiv_runtime_workloads_update_tenant",
+              "passed": true
+            }
+          ],
+          "totals": {
+            "total": 98,
+            "passed": 98,
+            "failed": 0,
+            "crossTenantNegativePassRate": 1,
+            "crossUniverseNegativePassRate": 1,
+            "unauthorizedCrossTenantReads": 0,
+            "unauthorizedCrossTenantWrites": 0,
+            "unauthorizedCrossUniverseAccess": 0,
+            "tablesWithValidatedRls": 13,
+            "tablesWithoutValidatedRls": 0
+          }
+        }
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.005Z"
+    },
+    {
+      "id": "AC-04",
+      "title": "Workload Authorization",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "authenticated_requester",
+          "label": "Workloads with authenticated requester",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "tenant_context",
+          "label": "Workloads with Organization/Universe context",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "policy_decision",
+          "label": "Workloads with policy decision",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_executions",
+          "label": "Unauthorized workload executions",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "capability_escalations",
+          "label": "Capability-escalation successes during negative testing",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "13 negative scenarios each refused for the reason they test"
+        },
+        {
+          "id": "guardian_bypasses",
+          "label": "Guardian bypasses",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "acceptedWorkloads": 120,
+        "negativeScenarios": [
+          {
+            "scenario": "unauthenticated_requester",
+            "reason": "unauthenticated_requester",
+            "expected": "unauthenticated_requester"
+          },
+          {
+            "scenario": "missing_token",
+            "reason": "unauthenticated_requester",
+            "expected": "unauthenticated_requester"
+          },
+          {
+            "scenario": "tenant_mismatch",
+            "reason": "tenant_mismatch",
+            "expected": "tenant_mismatch"
+          },
+          {
+            "scenario": "empty_tenant_context",
+            "reason": "tenant_mismatch",
+            "expected": "tenant_mismatch"
+          },
+          {
+            "scenario": "capability_escalation_protected",
+            "reason": "capability_missing",
+            "expected": "capability_missing"
+          },
+          {
+            "scenario": "capability_escalation_control",
+            "reason": "capability_missing",
+            "expected": "capability_missing"
+          },
+          {
+            "scenario": "classification_above_ceiling",
+            "reason": "classification_above_principal_ceiling",
+            "expected": "classification_above_principal_ceiling"
+          },
+          {
+            "scenario": "approval_required_but_absent",
+            "reason": "approval_required",
+            "expected": "approval_required"
+          },
+          {
+            "scenario": "agent_cannot_self_approve",
+            "reason": "agent_approval_refused",
+            "expected": "agent_approval_refused"
+          },
+          {
+            "scenario": "grant_replay_refused",
+            "reason": "grant_replay_refused",
+            "expected": "grant_replay_refused"
+          },
+          {
+            "scenario": "forged_grant_refused",
+            "reason": "forged_grant_refused",
+            "expected": "forged_grant_refused"
+          },
+          {
+            "scenario": "grant_repointed_to_other_tenant_node",
+            "reason": "guardian_refused_foreign_node",
+            "expected": "guardian_refused_foreign_node"
+          },
+          {
+            "scenario": "unbounded_budget_refused",
+            "reason": "missing_hard_termination_limit",
+            "expected": "missing_hard_termination_limit"
+          }
+        ],
+        "guardianDeniedAttempts": 3,
+        "auditChainIntact": true
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.065Z"
+    },
+    {
+      "id": "AC-05",
+      "title": "Compute Routing",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "policy_correct_routing",
+          "label": "Policy-correct routing",
+          "target": "≥99.9%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "security_invalid_routing",
+          "label": "Security-invalid routing",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "tenant_invalid_routing",
+          "label": "Tenant-invalid routing",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unsupported_hardware_execution",
+          "label": "Unsupported-hardware execution",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "correct_rejection",
+          "label": "Correct rejection when no eligible runtime exists",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "rejections_with_wrong_reason",
+          "label": "Nodes excluded for a different reason than the scenario tests",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "7 single-candidate scenarios each excluded their node for the reason under test"
+        }
+      ],
+      "evidence": {
+        "decisions": 1000,
+        "scenarioBreakdown": {
+          "cpu_eligible": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "assigned"
+            ]
+          },
+          "gpu_requested": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "edge_requested": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "all_nodes_unavailable": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "tenant_mismatch": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "universe_mismatch": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "degraded_only": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "budget_exhausted": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "budget_exhausted"
+            ]
+          },
+          "attestation_required": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "capacity_exhausted": {
+            "decisions": 91,
+            "policyCorrect": 91,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          },
+          "slots_exhausted": {
+            "decisions": 90,
+            "policyCorrect": 90,
+            "reasons": [
+              "no_eligible_runtime"
+            ]
+          }
+        },
+        "decisionMicrosP95": 1,
+        "decisionMicrosP50": 1
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.085Z"
+    },
+    {
+      "id": "AC-06",
+      "title": "Hardware Portability",
+      "status": "PARTIAL",
+      "thresholds": [
+        {
+          "id": "completion_rate",
+          "label": "Supported-runtime completion rate",
+          "target": "≥99%",
+          "measured": "100%",
+          "status": "PASS",
+          "note": "100/100 bounded reference workloads completed on 1 configured class(es)"
+        },
+        {
+          "id": "contract_tests",
+          "label": "Contract-test pass rate",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "security_policy_consistency",
+          "label": "Security-policy consistency across configured classes",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "silent_substitution",
+          "label": "Silent model/runtime substitution",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "tolerance_violations",
+          "label": "Result differences outside defined workload tolerance",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unconfigured_classes",
+          "label": "Hardware classes with no configured runtime",
+          "target": "explicitly UNAVAILABLE",
+          "measured": "UNCONFIGURED",
+          "status": "UNCONFIGURED",
+          "note": "cpu_x86_amd, cpu_arm64, gpu_nvidia, gpu_apple, edge_arm32, mobile_ios, mobile_android — no runtime adapter exists for these classes in this release, so they are reported UNAVAILABLE and cannot be scheduled. Intel/AMD/NVIDIA/Apple/mobile coverage needs those runtimes to be configured and re-measured."
+        }
+      ],
+      "evidence": {
+        "hostDetection": {
+          "classId": "cpu_x86_intel",
+          "profile": {
+            "classId": "cpu_x86_intel",
+            "vendor": "Intel(R) Xeon(R) Processor",
+            "cores": 4,
+            "ramMb": 16014,
+            "accelerators": [
+              "avx2"
+            ]
+          }
+        },
+        "configuredClasses": [
+          "cpu_x86_intel"
+        ],
+        "unavailableClasses": [
+          "cpu_x86_amd",
+          "cpu_arm64",
+          "gpu_nvidia",
+          "gpu_apple",
+          "edge_arm32",
+          "mobile_ios",
+          "mobile_android"
+        ],
+        "allKnownClasses": [
+          "cpu_x86_intel",
+          "cpu_x86_amd",
+          "cpu_arm64",
+          "gpu_nvidia",
+          "gpu_apple",
+          "edge_arm32",
+          "mobile_ios",
+          "mobile_android"
+        ],
+        "perClass": {
+          "cpu_x86_intel": {
+            "label": "Intel x86-64 CPU",
+            "configured": true,
+            "nodeId": "node_h210bddc651b10ed2",
+            "vendor": "Intel(R) Xeon(R) Processor",
+            "cores": 4,
+            "accelerators": [
+              "avx2"
+            ],
+            "runs": 100,
+            "referenceValue": 25197364.884317,
+            "referenceChecksum": "71c492aeb66870ccd24e869735070bc765abad3be37ff680a3e6b859716366ee",
+            "distinctResults": 1,
+            "resultTolerance": 0.000001
+          },
+          "cpu_x86_amd": {
+            "label": "AMD x86-64 CPU",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "cpu_arm64": {
+            "label": "ARM64 / Apple silicon CPU",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "gpu_nvidia": {
+            "label": "NVIDIA GPU",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "gpu_apple": {
+            "label": "Apple GPU (Metal)",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "edge_arm32": {
+            "label": "ARM32 edge device",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "mobile_ios": {
+            "label": "iOS mobile runtime",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          },
+          "mobile_android": {
+            "label": "Android mobile runtime",
+            "configured": false,
+            "status": "UNAVAILABLE",
+            "reason": "no_runtime_adapter_configured",
+            "executionAttemptCode": "hardware_unavailable"
+          }
+        },
+        "contractResults": [
+          {
+            "classId": "cpu_x86_intel",
+            "name": "reference_workload_deterministic",
+            "passed": true,
+            "detail": "7c67065450fc"
+          },
+          {
+            "classId": "cpu_x86_intel",
+            "name": "reference_workload_seed_sensitive",
+            "passed": true,
+            "detail": "distinct"
+          },
+          {
+            "classId": "cpu_x86_intel",
+            "name": "model_substitution_refused",
+            "passed": true,
+            "detail": "refused"
+          },
+          {
+            "classId": "cpu_x86_intel",
+            "name": "accelerator_claims_bounded",
+            "passed": true,
+            "detail": "avx2"
+          },
+          {
+            "classId": "cpu_x86_intel",
+            "name": "resource_accounting_present",
+            "passed": true,
+            "detail": "cpuMillis=0.011"
+          }
+        ],
+        "referenceWorkloadExecutions": 100
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.120Z"
+    },
+    {
+      "id": "AC-07",
+      "title": "Agent Runtime Assignment",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "valid_assignments",
+          "label": "Valid agent/runtime assignments",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_node_assignment",
+          "label": "Assignment to unauthorized node",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "{\"unauthorized_principal\":\"unauthorized\",\"cross_tenant_node\":\"unauthorized\",\"cross_tenant_agent\":\"unauthorized\",\"classification_above_node_policy\":\"unauthorized\",\"protected_agent_on_unattested_node\":\"unauthorized\",\"revoked_node\":\"unauthorized\",\"agent_principal_without_capability\":\"unauthorized\"}"
+        },
+        {
+          "id": "assignment_outside_tenant",
+          "label": "Assignment outside tenant/Universe",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "assignment_above_classification",
+          "label": "Assignment exceeding classification policy",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "identity_retained",
+          "label": "Agent identity retained across legitimate runtime movement",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "assignment_lineage",
+          "label": "Runtime assignment lineage recorded",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "validAssignments": 60,
+        "movements": 20,
+        "negativeScenarios": {
+          "unauthorized_principal": "unauthorized",
+          "cross_tenant_node": "unauthorized",
+          "cross_tenant_agent": "unauthorized",
+          "classification_above_node_policy": "unauthorized",
+          "protected_agent_on_unattested_node": "unauthorized",
+          "revoked_node": "unauthorized",
+          "agent_principal_without_capability": "unauthorized"
+        },
+        "unauthorizedActivationCount": 3,
+        "rejectedAssignmentCount": 7
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.124Z"
+    },
+    {
+      "id": "AC-08",
+      "title": "Resource Governance",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "resource_policy",
+          "label": "Workloads with resource policy",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "hard_limit_enforcement",
+          "label": "Tested hard-limit enforcement",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "12 dimensions each refused with their own code"
+        },
+        {
+          "id": "quota_bypasses",
+          "label": "Unauthorized quota bypasses",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "recursive_agent_creation",
+          "label": "Infinite/recursive agent creation",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "stopped at depth 4 with recursion_limit"
+        },
+        {
+          "id": "unbounded_model_loops",
+          "label": "Unbounded model-call loops",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "stopped after 5 calls with budget_exceeded"
+        },
+        {
+          "id": "beyond_hard_termination",
+          "label": "Workloads continuing beyond mandatory hard termination limit",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "controls": [
+          "cpuMillis",
+          "gpuMillis",
+          "ramMb",
+          "storageMb",
+          "networkKb",
+          "modelCalls",
+          "modelTokens",
+          "maxDurationMs",
+          "maxAgents",
+          "maxTasks",
+          "maxCostUsd"
+        ],
+        "enforcementCodes": {
+          "cpuMillis": "budget_exceeded",
+          "gpuMillis": "budget_exceeded",
+          "ramMb": "budget_exceeded",
+          "storageMb": "budget_exceeded",
+          "networkKb": "budget_exceeded",
+          "modelCalls": "budget_exceeded",
+          "modelTokens": "budget_exceeded",
+          "maxAgents": "budget_exceeded",
+          "maxTasks": "budget_exceeded",
+          "maxCostUsd": "budget_exceeded",
+          "maxDurationMs": "budget_exceeded",
+          "hardTerminationMs": "hard_termination"
+        },
+        "inadmissibleBudgets": {
+          "above_ceiling": "quota_exceeded",
+          "infinite": "quota_exceeded",
+          "negative": "quota_exceeded",
+          "duration_above_hard_limit": "quota_exceeded"
+        },
+        "mandatoryHardTerminationMs": 900000,
+        "maxAgentSpawnDepth": 4,
+        "quotaAdmissionCodes": [
+          "no_error",
+          "no_error",
+          "quota_exceeded",
+          "quota_exceeded",
+          "quota_exceeded"
+        ],
+        "executedWorkloads": 50
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:20.145Z"
+    },
+    {
+      "id": "AC-09",
+      "title": "Massive Logical-Agent Architecture",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "registered_identities",
+          "label": "Logical agent identities registered",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "identity_collisions",
+          "label": "Logical identities sharing an identifier or slot",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "115624 identifiers minted with no repeat"
+        },
+        {
+          "id": "cross_tenant_collisions",
+          "label": "Identity keys resolving across tenants",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "5000 identical keys registered in two organizations"
+        },
+        {
+          "id": "registry_integrity_failures",
+          "label": "Registry integrity failures",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "permanent_runtime_per_agent",
+          "label": "Requirement for one permanent runtime per logical agent",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "105200 identities held on 1 runtime nodes with 200 active"
+        },
+        {
+          "id": "unauthorized_activation",
+          "label": "Unauthorized activation",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "target": 100000,
+        "registered": 105200,
+        "crossTenantRegistered": 5000,
+        "duplicateKeyRefusalCode": "duplicate_identity",
+        "refusedDuplicateKeys": 1,
+        "identifiersMinted": 115624,
+        "slotsAfterRegistration": 105000,
+        "activatedIdentities": 200,
+        "runtimeNodes": 1,
+        "registrationMs": 419,
+        "registrationsPerSecond": 238453,
+        "heapUsedMb": 62,
+        "note": "Registration allocates a registry row only. Activation is a separate authorized act, which is what keeps 100,000 identities from implying 100,000 processes."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.048Z"
+    },
+    {
+      "id": "AC-10",
+      "title": "Offline Work Packages",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "packages_validated",
+          "label": "Signed/validated offline packages",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "permission_expansion",
+          "label": "Offline permission expansion",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "issuer expansion refused as permission_expansion; 1 task expansions refused"
+        },
+        {
+          "id": "unauthorized_external_actions",
+          "label": "Unauthorized external actions while offline",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "1 external attempts refused"
+        },
+        {
+          "id": "expired_packages_accepted",
+          "label": "Expired packages accepted",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "tampered_packages_accepted",
+          "label": "Tampered packages accepted",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "offline_lineage",
+          "label": "Offline results with complete lineage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "reauthentication_before_sync",
+          "label": "Reauthentication before protected synchronization",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "sync_accepted_with_reauth",
+          "label": "Reauthenticated synchronization accepted",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "sync_replay_refused",
+          "label": "Replayed synchronization refused",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "packagesIssued": 25,
+        "sessionOutcomes": [
+          {
+            "taskKey": "offline-1",
+            "executed": true,
+            "refusedReason": null,
+            "externalActionExecuted": false
+          },
+          {
+            "taskKey": "offline-2",
+            "executed": true,
+            "refusedReason": null,
+            "externalActionExecuted": false
+          },
+          {
+            "taskKey": "offline-3",
+            "executed": false,
+            "refusedReason": "permission_expansion",
+            "externalActionExecuted": false
+          },
+          {
+            "taskKey": "offline-4",
+            "executed": false,
+            "refusedReason": "external_action_not_granted",
+            "externalActionExecuted": false
+          },
+          {
+            "taskKey": "offline-5",
+            "executed": true,
+            "refusedReason": null,
+            "externalActionExecuted": false
+          }
+        ],
+        "offlineResult": {
+          "resultId": "offres_28671b2ba0095a29ef",
+          "packageId": "offpkg_m091fb9aa078ca490",
+          "tenant": {
+            "organizationId": "org_northwind",
+            "universeId": "universe_operations"
+          },
+          "agentId": "agent_l25b2db39803f74f0",
+          "nodeId": "node_hc1829d3c1e88a503",
+          "taskCount": 3,
+          "externalActionsAttempted": 1,
+          "externalActionsExecuted": 0,
+          "lineageComplete": true,
+          "producedAt": 1767225600000
+        },
+        "tamperedCode": "package_invalid",
+        "expiredCode": "package_expired",
+        "offlineMetrics": {
+          "issued": 26,
+          "permissionExpansionAttempts": 2,
+          "unauthorizedExternalAttempts": 1,
+          "tamperedRejections": 1,
+          "expiredRejections": 1
+        }
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.051Z"
+    },
+    {
+      "id": "AC-11",
+      "title": "Offline Meeting Integrity",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "participant_identity",
+          "label": "Participant identity preserved",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "message_attribution",
+          "label": "Message attribution preserved",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "evidence_provenance",
+          "label": "Evidence provenance preserved",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unapproved_consequential_actions",
+          "label": "Consequential external actions executed without approval",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "fabricated_approvals",
+          "label": "Fabricated human approvals",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_participants",
+          "label": "Unauthorized meeting participants",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "roster_signature_intact",
+          "label": "Meeting roster signature intact, and a tampered roster detected",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true,
+          "note": "signed roster verified; a roster with an injected attendee reported rosterIntact=false"
+        },
+        {
+          "id": "approved_action_authorized",
+          "label": "Consequential action allowed only after a verified human approval",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "meetingId": "meet_fbfc91e606c0a7c24",
+        "participants": [
+          "prin_5a04af813d29ccf1c",
+          "prin_bbb495a590ca6447f"
+        ],
+        "messages": 2,
+        "negativeScenarios": {
+          "foreign_participant_on_roster": "isolation_violation",
+          "message_from_non_participant": "unauthorized",
+          "message_citing_unknown_evidence": "malformed",
+          "agent_fabricated_approval": "unauthorized",
+          "consequential_action_without_approval": "approval_required",
+          "cross_tenant_meeting_read": "not_found"
+        },
+        "integrity": {
+          "meetingId": "meet_fbfc91e606c0a7c24",
+          "participantIdentityPreserved": true,
+          "messageAttributionPreserved": true,
+          "evidenceProvenancePreserved": true,
+          "unauthorizedParticipants": 0,
+          "fabricatedApprovals": 0,
+          "consequentialActionsWithoutApproval": 0,
+          "rosterIntact": true
+        },
+        "meetingMetrics": {
+          "meetings": 2,
+          "unauthorizedParticipantAttempts": 2,
+          "fabricatedApprovalAttempts": 1,
+          "unapprovedActionAttempts": 1
+        }
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.053Z"
+    },
+    {
+      "id": "AC-12",
+      "title": "Failure Recovery",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "failures_detected",
+          "label": "Failure detected",
+          "target": "≥99%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "safe_terminal_state",
+          "label": "Safe terminal state or authorized recovery",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "duplicate_external_actions",
+          "label": "Duplicate consequential external actions",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "85 side effects performed for 85 distinct actions across 30 deduplicated retries"
+        },
+        {
+          "id": "cross_tenant_recovery",
+          "label": "Cross-tenant recovery",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "5 cross-tenant recovery attempts refused"
+        },
+        {
+          "id": "corrupt_checkpoints_accepted",
+          "label": "Corrupted checkpoints accepted",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "5 corrupt checkpoints refused on integrity verification"
+        },
+        {
+          "id": "recovery_audit_coverage",
+          "label": "Recovery events represented in audit lineage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "scenariosRun": 110,
+        "failureOutcomes": 110,
+        "recoveredOnAnotherNode": 55,
+        "failureKinds": [
+          "node_loss",
+          "process_failure",
+          "timeout",
+          "network_interruption",
+          "resource_budget_exhausted"
+        ],
+        "detectionMsMax": 0.001,
+        "externalActionsExecuted": 85,
+        "externalActionSideEffectsPerformed": 85,
+        "externalActionDuplicateAttempts": 30,
+        "scenarioSample": [
+          {
+            "scenario": "scenario-1",
+            "kind": "node_loss",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          },
+          {
+            "scenario": "scenario-2",
+            "kind": "node_loss",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "failed",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-3",
+            "kind": "process_failure",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          },
+          {
+            "scenario": "scenario-4",
+            "kind": "process_failure",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "failed",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-5",
+            "kind": "timeout",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          },
+          {
+            "scenario": "scenario-6",
+            "kind": "timeout",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "terminated",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-7",
+            "kind": "network_interruption",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          },
+          {
+            "scenario": "scenario-8",
+            "kind": "network_interruption",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "failed",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-9",
+            "kind": "resource_budget_exhausted",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          },
+          {
+            "scenario": "scenario-10",
+            "kind": "resource_budget_exhausted",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "terminated",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-11",
+            "kind": "node_loss",
+            "stage": "mid_execution",
+            "detected": true,
+            "terminal": "failed",
+            "recovered": false
+          },
+          {
+            "scenario": "scenario-12",
+            "kind": "node_loss",
+            "stage": "before_start",
+            "detected": true,
+            "terminal": "recovered",
+            "recovered": true
+          }
+        ]
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.094Z"
+    },
+    {
+      "id": "AC-13",
+      "title": "Kill Switch",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "ack_p95",
+          "label": "Control request acknowledged (p95)",
+          "target": "≤2000ms",
+          "measured": "0.001ms",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "new_work_prevented",
+          "label": "New work prevented after effective revocation",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "protected_started_on_revoked",
+          "label": "Protected workload started on revoked node",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "16 revoked nodes each offered as the only candidate, excluded as node_unavailable"
+        },
+        {
+          "id": "control_audit_coverage",
+          "label": "Kill/quarantine event audit coverage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "stop_task_effective",
+          "label": "STOP TASK terminated the running task",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "stop_agent_effective",
+          "label": "STOP AGENT deactivated the agent",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "stop_agent_stops_work",
+          "label": "STOP AGENT terminated the agent workload",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "stop_meeting_effective",
+          "label": "STOP MEETING closed the meeting",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "pause_node_effective",
+          "label": "PAUSE NODE removed the node from scheduling",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "quarantine_node_effective",
+          "label": "QUARANTINE NODE blocked the node",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "revoke_node_irreversible",
+          "label": "REVOKE NODE cannot be cleared",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "commandsIssued": 36,
+        "ackLatencyP95Ms": 0.001,
+        "ackLatencyP50Ms": 0.001,
+        "revokedNodes": 16,
+        "revokedRoutingReasons": [
+          "node_unavailable"
+        ],
+        "commandKindsExercised": [
+          "STOP_TASK",
+          "STOP_AGENT",
+          "STOP_MEETING",
+          "PAUSE_NODE",
+          "QUARANTINE_NODE",
+          "REVOKE_NODE"
+        ]
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.099Z"
+    },
+    {
+      "id": "AC-14",
+      "title": "Model Authorization",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "model_calls_attributable",
+          "label": "Model calls attributable to model_id",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unregistered_model_usage",
+          "label": "Unregistered model usage",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unapproved_substitution",
+          "label": "Unapproved model substitution",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "unresolvable=model_unavailable, adapter returning another id=model_substitution, matching id=no_error"
+        },
+        {
+          "id": "evaluation_gate_present",
+          "label": "Required evaluation gate present",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unavailable_treated_available",
+          "label": "Model/provider unavailable but treated as available",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unusable_models_refused_by_reason",
+          "label": "Unusable models refused with the wrong reason",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "unregistered=model_unregistered, unapproved=model_unapproved, ungated=model_unapproved, unconfiguredProvider=model_unavailable, classificationMismatch=model_unapproved"
+        },
+        {
+          "id": "unusable_models_admitted",
+          "label": "Unusable models admitted or committed to a node",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "each refused at admission with no node committed"
+        }
+      ],
+      "evidence": {
+        "invocations": 60,
+        "blockedScenarios": {
+          "unregistered": {
+            "code": "model_unregistered",
+            "admitted": false,
+            "nodeCommitted": false
+          },
+          "unapproved": {
+            "code": "model_unapproved",
+            "admitted": false,
+            "nodeCommitted": false
+          },
+          "ungated": {
+            "code": "model_unapproved",
+            "admitted": false,
+            "nodeCommitted": false
+          },
+          "unconfiguredProvider": {
+            "code": "model_unavailable",
+            "admitted": false,
+            "nodeCommitted": false
+          },
+          "classificationMismatch": {
+            "code": "model_unapproved",
+            "admitted": false,
+            "nodeCommitted": false
+          }
+        },
+        "registryInventory": [
+          {
+            "modelId": "xiv-local-reference-1",
+            "provider": "xiv_local",
+            "availability": "available",
+            "approved": true,
+            "providerConfigured": true,
+            "evaluationGate": "eval_local_reference_1"
+          },
+          {
+            "modelId": "gemini-hosted-unconfigured",
+            "provider": "gemini",
+            "availability": "unapproved",
+            "approved": false,
+            "providerConfigured": false,
+            "evaluationGate": null
+          },
+          {
+            "modelId": "openai-hosted-unconfigured",
+            "provider": "openai",
+            "availability": "unapproved",
+            "approved": false,
+            "providerConfigured": false,
+            "evaluationGate": null
+          },
+          {
+            "modelId": "anthropic-hosted-unconfigured",
+            "provider": "anthropic",
+            "availability": "unapproved",
+            "approved": false,
+            "providerConfigured": false,
+            "evaluationGate": null
+          },
+          {
+            "modelId": "unapproved-model-1",
+            "provider": "xiv_local",
+            "availability": "unapproved",
+            "approved": false,
+            "providerConfigured": true,
+            "evaluationGate": "eval_x"
+          },
+          {
+            "modelId": "ungated-model-1",
+            "provider": "xiv_local",
+            "availability": "ungated",
+            "approved": true,
+            "providerConfigured": true,
+            "evaluationGate": null
+          },
+          {
+            "modelId": "unconfigured-provider-model-1",
+            "provider": "gemini",
+            "availability": "unavailable",
+            "approved": true,
+            "providerConfigured": false,
+            "evaluationGate": "eval_y"
+          },
+          {
+            "modelId": "internal-only-model-1",
+            "provider": "xiv_local",
+            "availability": "available",
+            "approved": true,
+            "providerConfigured": true,
+            "evaluationGate": "eval_z"
+          }
+        ],
+        "note": "No hosted provider credentials are configured in this environment, so every hosted entry reports UNAVAILABLE and only the local deterministic runtime is invocable."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.118Z"
+    },
+    {
+      "id": "AC-15",
+      "title": "Information Logistics & Provenance",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "lineage_fields_populated",
+          "label": "Required lineage fields populated",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "orphan_consequential_results",
+          "label": "Orphan consequential results",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unknown_model",
+          "label": "Unknown model for consequential result",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unknown_runtime",
+          "label": "Unknown runtime for consequential result",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "missing_approval",
+          "label": "Missing approval record where approval is mandatory",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "reconstructable_chain",
+          "label": "Consequential results with an intact reconstructable chain",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "lineage_gaps_undetected",
+          "label": "Incomplete lineage reported as complete",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "a workload with no lineage reported missing 10 stages; one missing only its mandatory approval reported complete=false"
+        }
+      ],
+      "evidence": {
+        "consequentialResults": 50,
+        "requiredStages": [
+          "source",
+          "classification",
+          "organization_universe",
+          "agent",
+          "model",
+          "runtime",
+          "transformation",
+          "meeting_task",
+          "recommendation",
+          "result"
+        ],
+        "sampleChain": [
+          {
+            "stage": "source",
+            "reference": "evidence_source_0"
+          },
+          {
+            "stage": "classification",
+            "reference": "internal"
+          },
+          {
+            "stage": "organization_universe",
+            "reference": "org_northwind/universe_operations"
+          },
+          {
+            "stage": "agent",
+            "reference": "agent_la3cbcca738962bef"
+          },
+          {
+            "stage": "runtime",
+            "reference": "node_h8237232b69e12212"
+          },
+          {
+            "stage": "model",
+            "reference": "xiv-local-reference-1"
+          },
+          {
+            "stage": "transformation",
+            "reference": "normalize_and_summarize_0"
+          },
+          {
+            "stage": "meeting_task",
+            "reference": "task_board_0"
+          },
+          {
+            "stage": "recommendation",
+            "reference": "recommendation_0"
+          },
+          {
+            "stage": "approval",
+            "reference": "apr_maa814d1e3aec6134"
+          },
+          {
+            "stage": "result",
+            "reference": "result:wl_16s"
+          }
+        ],
+        "lineageChainsRecorded": 51
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.138Z"
+    },
+    {
+      "id": "AC-16",
+      "title": "Secret & Credential Handling",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "repo_secrets",
+          "label": "High-confidence secret detections in repository and config",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "305 working-tree files scanned, 1 placeholder matches excluded"
+        },
+        {
+          "id": "client_bundle_credentials",
+          "label": "Server credentials reachable from the client bundle",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "runtime_log_leaks",
+          "label": "Secrets exposed through runtime logs and telemetry",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "transcript_leaks",
+          "label": "Secrets exposed through agent meeting transcripts",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "credential_propagation",
+          "label": "Credential propagation between runtimes without authorization",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "rotation_tested",
+          "label": "Rotation procedure documented and tested",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true,
+          "note": "docs/62d/SECRET-ROTATION.md; rotation invalidates prior offline packages and enrollment tickets while newly issued ones verify"
+        },
+        {
+          "id": "env_ignored",
+          "label": "Environment files excluded from version control",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS"
+        },
+        {
+          "id": "env_example_values",
+          "label": "Example env files containing real values",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "scanner": "services/runtime/tools/secret-scan.ts",
+        "scannedFiles": 305,
+        "skippedFiles": 27,
+        "findings": [],
+        "placeholderMatchesExcluded": 1,
+        "runtimeSurfacesScanned": {
+          "audit": 103219,
+          "telemetry": 61465,
+          "lineage": 89821,
+          "cost": 5756,
+          "workloads": 22140,
+          "nodes": 647,
+          "externalActions": 7801,
+          "fleetHealth": 228
+        },
+        "logLeaks": {},
+        "nodeFacingPayloadLeaks": {},
+        "rotation": {
+          "previousPackageCode": "package_invalid",
+          "previousTicketCode": "enrollment_invalid",
+          "newPackageCode": "no_error",
+          "audited": true,
+          "auditCarriesKeyMaterial": 0
+        },
+        "note": "The leak test searches the plane's own signing keys and principal tokens across every emitted record. It cannot prove the absence of secrets XIV never held."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:21.177Z"
+    },
+    {
+      "id": "AC-17",
+      "title": "Dependency & Supply Chain",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "analysis_coverage",
+          "label": "Shipping runtimes with dependency analysis",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "critical_high_vulnerabilities",
+          "label": "Critical/high vulnerabilities in shipping dependency paths",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "14 moderate advisories remain and are listed in the evidence"
+        },
+        {
+          "id": "sbom_generated",
+          "label": "Component inventory generated for shipping runtimes",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unpinned_sources",
+          "label": "Unpinned or unverifiable dependency sources",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unreviewed_additions",
+          "label": "Unreviewed direct dependency additions on this branch",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "4 direct additions vs origin/main, reviewed in docs/62d/DEPENDENCY-REVIEW.md"
+        }
+      ],
+      "evidence": {
+        "tool": "services/runtime/tools/sbom.ts (lockfile inventory + npm audit)",
+        "runtimes": [
+          {
+            "runtime": "apps/mobile",
+            "components": 882,
+            "direct": 31,
+            "withIntegrity": 882,
+            "audit": {
+              "available": true,
+              "vulnerabilities": {
+                "critical": 0,
+                "high": 0,
+                "moderate": 14,
+                "low": 0,
+                "info": 0
+              },
+              "total": 14,
+              "advisories": []
+            }
+          },
+          {
+            "runtime": "services/ai",
+            "components": 42,
+            "direct": 5,
+            "withIntegrity": 42,
+            "audit": {
+              "available": true,
+              "vulnerabilities": {
+                "critical": 0,
+                "high": 0,
+                "moderate": 0,
+                "low": 0,
+                "info": 0
+              },
+              "total": 0,
+              "advisories": []
+            }
+          },
+          {
+            "runtime": "services/runtime",
+            "components": 32,
+            "direct": 3,
+            "withIntegrity": 32,
+            "audit": {
+              "available": true,
+              "vulnerabilities": {
+                "critical": 0,
+                "high": 0,
+                "moderate": 0,
+                "low": 0,
+                "info": 0
+              },
+              "total": 0,
+              "advisories": []
+            }
+          }
+        ],
+        "componentsTotal": 956,
+        "componentsPinned": 956,
+        "nonRegistrySources": [],
+        "addedDirectDependencies": [
+          "@types/node",
+          "tsx",
+          "typescript",
+          "version"
+        ],
+        "comparedAgainst": "origin/main",
+        "note": "Vulnerability counts come from the npm advisory database at the time of this run and need re-running per release."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:22.439Z"
+    },
+    {
+      "id": "AC-18",
+      "title": "Build & Change Integrity",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "typecheck_errors",
+          "label": "Type errors in the runtime package",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "tsc --noEmit exited 0 with no diagnostics"
+        },
+        {
+          "id": "unit_pass_rate",
+          "label": "Unit test pass rate",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unit_failures",
+          "label": "Failing unit tests",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "skipped_tests",
+          "label": "Skipped or pending tests",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "a skipped test is not evidence, so the suite is required to run every case"
+        },
+        {
+          "id": "ac_coverage",
+          "label": "Acceptance criteria with a registered evidence producer",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "verification_scripts",
+          "label": "Verification entry points wired into the package",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "lockfile_coverage",
+          "label": "Shipping runtimes with a committed lockfile",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "seeded_fault_detection",
+          "label": "Seeded runtime faults the acceptance suite detects",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "23 guards removed one at a time, each caught by the criteria that claim to cover it"
+        }
+      ],
+      "evidence": {
+        "mutationCheck": [
+          {
+            "id": "isolation_cross_tenant_read",
+            "guard": "tenant store refuses a read from another tenant",
+            "expectFailing": [
+              "AC-03"
+            ],
+            "observedFailing": [
+              "AC-03"
+            ],
+            "detected": true
+          },
+          {
+            "id": "router_ignores_organization",
+            "guard": "router excludes nodes belonging to another organization",
+            "expectFailing": [
+              "AC-03"
+            ],
+            "observedFailing": [
+              "AC-03"
+            ],
+            "detected": true
+          },
+          {
+            "id": "attestation_gate_open",
+            "guard": "protected work requires a passing, unexpired attestation",
+            "expectFailing": [
+              "AC-02"
+            ],
+            "observedFailing": [
+              "AC-02"
+            ],
+            "detected": true
+          },
+          {
+            "id": "capability_check_removed",
+            "guard": "a workload may not request capabilities its principal lacks",
+            "expectFailing": [
+              "AC-04"
+            ],
+            "observedFailing": [
+              "AC-04"
+            ],
+            "detected": true
+          },
+          {
+            "id": "unbounded_budget_admitted",
+            "guard": "a workload without a finite hard-termination limit is refused",
+            "expectFailing": [
+              "AC-04"
+            ],
+            "observedFailing": [
+              "AC-04"
+            ],
+            "detected": true
+          },
+          {
+            "id": "hard_termination_never_fires",
+            "guard": "a workload past its hard-termination limit is killed",
+            "expectFailing": [
+              "AC-08"
+            ],
+            "observedFailing": [
+              "AC-08"
+            ],
+            "detected": true
+          },
+          {
+            "id": "unapproved_model_invocable",
+            "guard": "only approved, gated, configured models may be invoked",
+            "expectFailing": [
+              "AC-14"
+            ],
+            "observedFailing": [
+              "AC-14"
+            ],
+            "detected": true
+          },
+          {
+            "id": "model_substitution_allowed",
+            "guard": "the runtime may not substitute a different model",
+            "expectFailing": [
+              "AC-14"
+            ],
+            "observedFailing": [
+              "AC-14"
+            ],
+            "detected": true
+          },
+          {
+            "id": "expired_offline_package_accepted",
+            "guard": "an expired offline work package is refused",
+            "expectFailing": [
+              "AC-10"
+            ],
+            "observedFailing": [
+              "AC-10"
+            ],
+            "detected": true
+          },
+          {
+            "id": "corrupt_snapshot_restored",
+            "guard": "a snapshot whose digest does not match is refused",
+            "expectFailing": [
+              "AC-23"
+            ],
+            "observedFailing": [
+              "AC-23"
+            ],
+            "detected": true
+          },
+          {
+            "id": "kill_switch_stops_blocking",
+            "guard": "a paused, quarantined or revoked node stays out of scheduling",
+            "expectFailing": [
+              "AC-13"
+            ],
+            "observedFailing": [
+              "AC-13"
+            ],
+            "detected": true
+          },
+          {
+            "id": "external_action_replayed",
+            "guard": "an external action is executed once even across a recovery",
+            "expectFailing": [
+              "AC-12"
+            ],
+            "observedFailing": [
+              "AC-12"
+            ],
+            "detected": true
+          },
+          {
+            "id": "cost_overrun_unauthorized",
+            "guard": "a workload over its cost budget continues only with authorization",
+            "expectFailing": [
+              "AC-21"
+            ],
+            "observedFailing": [
+              "AC-21"
+            ],
+            "detected": true
+          },
+          {
+            "id": "agent_key_collision_allowed",
+            "guard": "one agent key resolves to one agent inside a tenant",
+            "expectFailing": [
+              "AC-09"
+            ],
+            "observedFailing": [
+              "AC-09"
+            ],
+            "detected": true
+          },
+          {
+            "id": "api_capability_check_removed",
+            "guard": "the control surface refuses a caller lacking the route capability",
+            "expectFailing": [
+              "AC-19"
+            ],
+            "observedFailing": [
+              "AC-19"
+            ],
+            "detected": true
+          },
+          {
+            "id": "meeting_roster_unverified",
+            "guard": "a meeting roster that was tampered with fails verification",
+            "expectFailing": [
+              "AC-11"
+            ],
+            "observedFailing": [
+              "AC-11"
+            ],
+            "detected": true
+          },
+          {
+            "id": "enrollment_signature_unverified",
+            "guard": "a node may only register with a validly signed enrollment ticket",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "fingerprint_mismatch_accepted",
+            "guard": "the hardware presented at registration must match the enrollment",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "revoked_fingerprint_reenrolls",
+            "guard": "a revoked node identity cannot register again",
+            "expectFailing": [
+              "AC-01"
+            ],
+            "observedFailing": [
+              "AC-01"
+            ],
+            "detected": true
+          },
+          {
+            "id": "router_ignores_capacity",
+            "guard": "the router does not place work on a node with no slot left",
+            "expectFailing": [
+              "AC-05"
+            ],
+            "observedFailing": [
+              "AC-05"
+            ],
+            "detected": true
+          },
+          {
+            "id": "agent_above_node_classification",
+            "guard": "an agent may not be activated on a node below its classification",
+            "expectFailing": [
+              "AC-07"
+            ],
+            "observedFailing": [
+              "AC-07"
+            ],
+            "detected": true
+          },
+          {
+            "id": "lineage_gaps_ignored",
+            "guard": "a consequential result with a missing lineage stage is incomplete",
+            "expectFailing": [
+              "AC-15"
+            ],
+            "observedFailing": [
+              "AC-15"
+            ],
+            "detected": true
+          },
+          {
+            "id": "telemetry_gaps_ignored",
+            "guard": "a workload missing a required telemetry signal is not traceable",
+            "expectFailing": [
+              "AC-22"
+            ],
+            "observedFailing": [
+              "AC-22"
+            ],
+            "detected": true
+          }
+        ],
+        "typecheckCommand": "npx tsc --noEmit (services/runtime)",
+        "typecheckExitCode": 0,
+        "typecheckTail": [],
+        "unitCommand": "node --import tsx --test test/audit-lineage.test.ts test/crypto.test.ts test/external-actions.test.ts test/governor.test.ts test/isolation.test.ts test/models.test.ts test/server.test.ts test/tools.test.ts (services/runtime)",
+        "unitTests": 57,
+        "unitPassed": 57,
+        "unitFailed": 0,
+        "unitSkipped": 0,
+        "unitTail": [
+          "# tests 57",
+          "# suites 0",
+          "# pass 57",
+          "# fail 0",
+          "# cancelled 0",
+          "# skipped 0",
+          "# todo 0",
+          "# duration_ms 549.185531"
+        ],
+        "registeredAcIds": [
+          "AC-01",
+          "AC-02",
+          "AC-03",
+          "AC-04",
+          "AC-05",
+          "AC-06",
+          "AC-07",
+          "AC-08",
+          "AC-09",
+          "AC-10",
+          "AC-11",
+          "AC-12",
+          "AC-13",
+          "AC-14",
+          "AC-15",
+          "AC-16",
+          "AC-17",
+          "AC-18",
+          "AC-19",
+          "AC-20",
+          "AC-21",
+          "AC-22",
+          "AC-23",
+          "AC-24"
+        ],
+        "missingAcIds": [],
+        "requiredScripts": [
+          "typecheck",
+          "test",
+          "acceptance",
+          "scan:secrets",
+          "sbom",
+          "verify:rls",
+          "verify:mutations"
+        ],
+        "note": "This criterion is measured by running the type checker and the unit suite inside the acceptance run, so its evidence is the output of those commands rather than a claim about them."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:31.451Z"
+    },
+    {
+      "id": "AC-19",
+      "title": "Runtime Control Surface Contract",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "documented_routes_answered",
+          "label": "Documented routes implemented and answering",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unimplemented_documented_routes",
+          "label": "Documented routes without an implementation",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthenticated_refused",
+          "label": "Unauthenticated and forged-token requests refused",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "capability_refused",
+          "label": "Requests without the required capability refused",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "cross_tenant_api_reads",
+          "label": "Cross-tenant data returned through the API",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "malformed_handled",
+          "label": "Malformed and hostile inputs handled with a typed refusal",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "server_errors",
+          "label": "Unhandled 5xx responses across the contract suite",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "contract_header",
+          "label": "Responses carrying the contract version",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "typed_errors",
+          "label": "Error responses carrying a stable error code",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "response_secret_leaks",
+          "label": "Signing material or tokens present in API responses",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "contract_self_describing",
+          "label": "Route inventory published by the service matches the implementation",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS"
+        }
+      ],
+      "evidence": {
+        "transport": "real HTTP over 127.0.0.1 on an ephemeral port",
+        "contractVersion": "62d.1",
+        "documentedRoutes": 14,
+        "callsMade": 57,
+        "failedExpectations": [
+          {
+            "name": "cross-tenant attest",
+            "status": 403,
+            "expected": 404
+          }
+        ],
+        "statusDistribution": {
+          "200": 13,
+          "201": 4,
+          "202": 1,
+          "400": 3,
+          "401": 24,
+          "403": 8,
+          "404": 2,
+          "405": 1,
+          "413": 1
+        },
+        "note": "Every call in this evidence was made over a socket against the same handler table the service exposes; there is no second in-process path."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:22.511Z"
+    },
+    {
+      "id": "AC-20",
+      "title": "Runtime Performance & Scale",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "concurrent_admission",
+          "label": "Bounded synthetic tasks concurrently admitted",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "completion_rate",
+          "label": "Bounded synthetic tasks completed",
+          "target": "≥99%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "error_rate",
+          "label": "Task error rate under load",
+          "target": "≤1%",
+          "measured": "0%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "p95_admission",
+          "label": "p95 admission latency",
+          "target": "≤50ms",
+          "measured": "0.169ms",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "p99_admission",
+          "label": "p99 admission latency",
+          "target": "≤150ms",
+          "measured": "0.310ms",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "p95_execution",
+          "label": "p95 bounded execution latency",
+          "target": "≤50ms",
+          "measured": "0.809ms",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "unbounded_tasks",
+          "label": "Tasks running past the hard termination limit",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "leaked_leases",
+          "label": "Budget leases still open after the run",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "unauthorized_executions",
+          "label": "Executions without a guardian clearance under load",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "concurrentTasks": 1000,
+        "nodes": 8,
+        "admitted": 1000,
+        "rejections": {},
+        "completed": 1000,
+        "terminated": 0,
+        "errors": {},
+        "admissionWallMs": 153,
+        "executionWallMs": 426,
+        "tasksPerSecond": 2346,
+        "admissionLatencyMs": {
+          "p50": 0.126,
+          "p95": 0.169,
+          "p99": 0.31,
+          "max": 3.152
+        },
+        "executionLatencyMs": {
+          "p50": 0.375,
+          "p95": 0.809,
+          "p99": 1.046,
+          "max": 2.999
+        },
+        "startLatencyMs": {
+          "p95": 0.134,
+          "samples": 1000
+        },
+        "heapUsedMb": 92,
+        "note": "This is one process on one host holding 1,000 bounded tasks concurrently admitted. It is a control-plane scale measurement, not a claim about a distributed fleet under production traffic, and the latency ceilings are this suite's declared 62D baselines."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:23.094Z"
+    },
+    {
+      "id": "AC-21",
+      "title": "Cost Governance",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "usage_records",
+          "label": "Workloads with compute-usage record",
+          "target": "≥99.9%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "model_cost_metadata",
+          "label": "Model calls with attributable cost/usage metadata",
+          "target": "≥99%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "unauthorized_over_budget_continuation",
+          "label": "Budget-exceeding workloads permitted to continue without policy authorization",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "over-budget model call refused as budget_exceeded"
+        },
+        {
+          "id": "unattributed_spend",
+          "label": "Unattributed staging compute spend",
+          "target": "≤1%",
+          "measured": "0%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "anomaly_coverage",
+          "label": "Cost anomaly alert coverage for configured resources",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "authorized_overrun_allowed",
+          "label": "Authorized overrun is permitted to continue",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS"
+        }
+      ],
+      "evidence": {
+        "workloads": 300,
+        "usageRecords": 300,
+        "refusedOverBudgetContinuations": 1,
+        "attributionRate": 1,
+        "spendByTenant": {
+          "org_northwind::universe_operations": 0
+        },
+        "modelInvocations": 300,
+        "note": "The only configured provider in this environment is the local deterministic runtime, whose per-token cost is 0. Hosted-provider cost attribution needs to be re-measured once a provider is configured."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:23.181Z"
+    },
+    {
+      "id": "AC-22",
+      "title": "Observability",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "critical_events",
+          "label": "Critical runtime events captured",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "security_event_coverage",
+          "label": "Security-event audit coverage",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "traceability",
+          "label": "Test workload traceability",
+          "target": "≥99.9%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "275 workloads, of which 25 failed and must also carry an error signal"
+        },
+        {
+          "id": "alert_paths_exercised",
+          "label": "Critical alert path successfully exercised",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": false
+        },
+        {
+          "id": "unknown_node_ownership",
+          "label": "Unknown ownership for active staging nodes",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "untraced_workloads_reported_traceable",
+          "label": "Under-instrumented workloads reported as traceable",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "a workload with no telemetry and one carrying 1 of 8 required signals both report untraceable"
+        },
+        {
+          "id": "audit_chain_intact",
+          "label": "Audit ledger hash chain intact",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "requiredSignals": [
+          "health",
+          "workload_state",
+          "agent",
+          "model",
+          "runtime",
+          "resource_usage",
+          "error",
+          "security_event",
+          "audit_lineage"
+        ],
+        "requiredPerWorkloadSignals": [
+          "health",
+          "workload_state",
+          "agent",
+          "model",
+          "runtime",
+          "resource_usage",
+          "security_event",
+          "audit_lineage"
+        ],
+        "telemetryEvents": 2757,
+        "auditEvents": 2251,
+        "tracedWorkloads": 275,
+        "signalsForSampleWorkload": [
+          "audit_lineage",
+          "workload_state",
+          "runtime",
+          "health",
+          "agent",
+          "security_event",
+          "model",
+          "resource_usage"
+        ],
+        "criticalKinds": [
+          "node_registered",
+          "attestation_passed",
+          "workload_authorized",
+          "guardian_cleared",
+          "routing_assigned",
+          "budget_attached",
+          "usage_recorded",
+          "workload_started",
+          "workload_completed",
+          "model_invoked"
+        ],
+        "securityKinds": [
+          "protected_execution_blocked",
+          "workload_authorization_denied",
+          "cross_tenant_read_denied",
+          "guardian_denied",
+          "control_revoke_node_acknowledged"
+        ],
+        "alertPaths": [
+          {
+            "alertId": "alert_71pb540af90af41363f",
+            "name": "protected_execution_blocked",
+            "channel": "ops_pager",
+            "exercisedAt": 1767225600000,
+            "deliveries": 1
+          },
+          {
+            "alertId": "alert_71qeae2c50557ece834",
+            "name": "node_revoked",
+            "channel": "security_channel",
+            "exercisedAt": 1767225600000,
+            "deliveries": 1
+          }
+        ]
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:23.278Z"
+    },
+    {
+      "id": "AC-23",
+      "title": "Backup & Restore",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "backup_policy_coverage",
+          "label": "Required data included in backup policy",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "restore_tests",
+          "label": "Successful restore test before canary",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true,
+          "note": "1 restore exercise(s) completed in this run"
+        },
+        {
+          "id": "restore_integrity",
+          "label": "Restore integrity validation for required test dataset",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "lost_committed_records",
+          "label": "Lost committed test records",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "procedure_documented",
+          "label": "Restore procedure documented and matching the implementation",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true,
+          "note": "docs/62d/BACKUP-RESTORE.md names every command and table this run exercised"
+        },
+        {
+          "id": "corrupt_snapshot_accepted",
+          "label": "Corrupted snapshots accepted",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "requiredTables": [
+          "nodes",
+          "workloads",
+          "attestations",
+          "approvals",
+          "agents",
+          "agentAssignments",
+          "lineage",
+          "audit",
+          "usage",
+          "checkpoints",
+          "externalActions",
+          "releases"
+        ],
+        "snapshotId": "snap_13i26fa3754fcee662e",
+        "snapshotRecordCount": 531,
+        "workloadsBeforeRestore": 50,
+        "workloadsAfterRestore": 40,
+        "measuredRpoMs": 60000,
+        "measuredRtoMs": 0,
+        "committedTestRecords": 40,
+        "corruptSnapshotRefusalCode": "checkpoint_corrupt",
+        "note": "RPO and RTO here are measured against this in-process runtime state on a deterministic clock. They are not a claim about hosted PostgreSQL backup behaviour."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:23.318Z"
+    },
+    {
+      "id": "AC-24",
+      "title": "Rollback",
+      "status": "PASS",
+      "thresholds": [
+        {
+          "id": "rehearsal_completed",
+          "label": "Rollback rehearsal completed",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "previous_version_recoverable",
+          "label": "Previous known-good application/runtime version recoverable",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true
+        },
+        {
+          "id": "no_destructive_dependency",
+          "label": "Rollback path free of destructive dependency",
+          "target": "YES",
+          "measured": "YES",
+          "status": "PASS",
+          "blocker": true,
+          "note": "destructive version rollback refused as malformed"
+        },
+        {
+          "id": "unauthorized_data_loss",
+          "label": "Unauthorized data loss during rehearsal",
+          "target": "0",
+          "measured": "0",
+          "status": "PASS",
+          "blocker": true,
+          "note": "the rollback target held 286 records and 286 came back; post-target writes are reverted by design and are not counted here"
+        },
+        {
+          "id": "config_lineage",
+          "label": "Configuration/version lineage retained",
+          "target": "100%",
+          "measured": "100%",
+          "status": "PASS",
+          "blocker": true
+        }
+      ],
+      "evidence": {
+        "versions": [
+          {
+            "version": "62d.1.0",
+            "configHash": "21a4ac72e01e18166e631d68b06f415da76ff100a355255f72fe21de72d0fa41",
+            "previousVersion": null,
+            "destructiveMigration": false
+          },
+          {
+            "version": "62d.1.0",
+            "configHash": "21a4ac72e01e18166e631d68b06f415da76ff100a355255f72fe21de72d0fa41",
+            "previousVersion": "62d.1.1",
+            "destructiveMigration": false
+          },
+          {
+            "version": "62d.2.0-destructive",
+            "configHash": "49d4ef8c7a8aa07a072f16f25299127f21270d8c617956421b28a0147ce5a6f1",
+            "previousVersion": "62d.1.0",
+            "destructiveMigration": true
+          }
+        ],
+        "fromVersion": "62d.1.1",
+        "toVersion": "62d.1.0",
+        "destructiveVersion": "62d.2.0-destructive",
+        "destructiveRollbackRefusalCode": "malformed",
+        "measuredRollbackDurationMs": 0,
+        "expectedRecords": 286,
+        "observedRecords": 286,
+        "workloadsBeforeRollback": 35,
+        "workloadsAfterRollback": 25,
+        "note": "The measured rollback duration is the initial XIV baseline for this runtime layer only: it reverts in-process control-plane state, not a deployed application build."
+      },
+      "blockers": [],
+      "ranAt": "2026-09-09T23:10:23.337Z"
+    }
+  ]
+}

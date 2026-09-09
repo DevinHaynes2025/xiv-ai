@@ -1,0 +1,24 @@
+{
+  "name": "@xiv/runtime",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "acceptance": "tsx acceptance/run.ts",
+    "scan:secrets": "tsx tools/secret-scan.ts",
+    "sbom": "tsx tools/sbom.ts",
+    "verify:rls": "tsx tools/rls-verify.ts",
+    "verify:mutations": "tsx tools/mutation-check.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.5",
+    "typescript": "~5.9.2"
+  }
+}

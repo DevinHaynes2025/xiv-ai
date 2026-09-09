@@ -1,0 +1,575 @@
+/**
+ * AC-04 workload authorization.
+ * AC-14 model authorization.
+ * AC-15 information logistics and provenance.
+ */
+import type { RuntimeAdapter } from '../src/hardware';
+import { REQUIRED_LINEAGE_STAGES } from '../src/lineage';
+import { LOCAL_REFERENCE_MODEL_ID } from '../src/plane';
+import type { ModelRegistryEntry } from '../src/types';
+import type { AcceptanceResult, Threshold } from './harness';
+import {
+  TENANT_A,
+  TENANT_B,
+  atLeast,
+  buildFixture,
+  catchCode,
+  percent,
+  standardBudget,
+  summarize,
+  workloadSpec,
+  zero,
+} from './harness';
+
+export function runAc04(): AcceptanceResult {
+  const { plane, operatorA, operatorB, agentPrincipalA, limitedA } = buildFixture();
+  plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'auth-1' });
+  plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'auth-2' });
+  plane.onboardNode({ token: operatorB.token, tenant: TENANT_B, serial: 'auth-b1' });
+
+  const hardware = { classIds: [plane.hostHardware.classId] };
+  const accepted: string[] = [];
+  const refused: { reason: string; scenario: string; expected: string }[] = [];
+
+  // 120 legitimate authorized workloads.
+  for (let index = 0; index < 120; index += 1) {
+    const outcome = plane.engine.execute(
+      {
+        token: operatorA.token,
+        spec: workloadSpec({ tenant: TENANT_A, hardware, modelId: LOCAL_REFERENCE_MODEL_ID }),
+      },
+      { iterations: 500 },
+    );
+    if (!outcome.rejection) accepted.push(outcome.record.workloadId);
+  }
+
+  // Negative tests: each must be refused with a policy decision.
+  // Each scenario declares the reason it must be refused for. Accepting any
+  // refusal would let a scenario that broke for an unrelated reason — a missing
+  // node, a different guard tripping first — read as a pass.
+  const negativeScenarios: { scenario: string; expect: string; run: () => string }[] = [
+    {
+      scenario: 'unauthenticated_requester',
+      expect: 'unauthenticated_requester',
+      run: () =>
+        plane.engine.submit({ token: 'not-a-token', spec: workloadSpec({ tenant: TENANT_A, hardware }) }).rejection
+          ?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'missing_token',
+      expect: 'unauthenticated_requester',
+      run: () => plane.engine.submit({ token: '', spec: workloadSpec({ tenant: TENANT_A, hardware }) }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'tenant_mismatch',
+      expect: 'tenant_mismatch',
+      run: () =>
+        plane.engine.submit({ token: operatorA.token, spec: workloadSpec({ tenant: TENANT_B, hardware }) }).rejection
+          ?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'empty_tenant_context',
+      expect: 'tenant_mismatch',
+      run: () =>
+        plane.engine.submit({
+          token: operatorA.token,
+          spec: workloadSpec({ tenant: { organizationId: '', universeId: '' }, hardware }),
+        }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'capability_escalation_protected',
+      expect: 'capability_missing',
+      run: () =>
+        plane.engine.submit({
+          token: limitedA.token,
+          spec: workloadSpec({
+            tenant: TENANT_A,
+            classification: 'restricted',
+            requiredCapabilities: ['workload.submit', 'workload.submit.protected'],
+            hardware,
+          }),
+        }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'capability_escalation_control',
+      expect: 'capability_missing',
+      run: () =>
+        plane.engine.submit({
+          token: limitedA.token,
+          spec: workloadSpec({ tenant: TENANT_A, requiredCapabilities: ['workload.submit', 'node.control'], hardware }),
+        }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'classification_above_ceiling',
+      expect: 'classification_above_principal_ceiling',
+      run: () =>
+        plane.engine.submit({
+          token: agentPrincipalA.token,
+          spec: workloadSpec({
+            tenant: TENANT_A,
+            classification: 'restricted',
+            requiredCapabilities: ['workload.submit'],
+            hardware,
+          }),
+        }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'approval_required_but_absent',
+      expect: 'approval_required',
+      run: () =>
+        plane.engine.submit({
+          token: operatorA.token,
+          spec: workloadSpec({ tenant: TENANT_A, requiresApproval: true, consequential: true, hardware }),
+        }).rejection?.reason ?? 'accepted',
+    },
+    {
+      scenario: 'agent_cannot_self_approve',
+      expect: 'agent_approval_refused',
+      run: () => {
+        const spec = workloadSpec({ tenant: TENANT_A, requiresApproval: true, consequential: true, hardware });
+        const code = catchCode(() => plane.approvals.grant(agentPrincipalA.principal, spec.workloadId, TENANT_A));
+        return code === 'unauthorized' ? 'agent_approval_refused' : 'accepted';
+      },
+    },
+    {
+      scenario: 'grant_replay_refused',
+      expect: 'grant_replay_refused',
+      run: () => {
+        const spec = workloadSpec({ tenant: TENANT_A, hardware });
+        const authorization = plane.authorizer.authorize(operatorA.principal, spec);
+        if (!authorization.allowed) return 'unexpected_refusal';
+        const node = plane.nodes.list(TENANT_A)[0];
+        if (!node) return 'no_node';
+        plane.authorizer.clear({ grant: authorization.grant, node, attestation: null, protectedExecution: false });
+        return catchCode(() =>
+          plane.authorizer.clear({ grant: authorization.grant, node, attestation: null, protectedExecution: false }),
+        ) === 'grant_invalid'
+          ? 'grant_replay_refused'
+          : 'accepted';
+      },
+    },
+    {
+      scenario: 'forged_grant_refused',
+      expect: 'forged_grant_refused',
+      run: () => {
+        const spec = workloadSpec({ tenant: TENANT_A, hardware });
+        const authorization = plane.authorizer.authorize(operatorA.principal, spec);
+        if (!authorization.allowed) return 'unexpected_refusal';
+        const node = plane.nodes.list(TENANT_A)[0];
+        if (!node) return 'no_node';
+        const forged = { ...authorization.grant, classification: 'restricted' as const };
+        return catchCode(() =>
+          plane.authorizer.clear({ grant: forged, node, attestation: null, protectedExecution: true }),
+        ) === 'grant_invalid'
+          ? 'forged_grant_refused'
+          : 'accepted';
+      },
+    },
+    {
+      scenario: 'grant_repointed_to_other_tenant_node',
+      expect: 'guardian_refused_foreign_node',
+      run: () => {
+        const spec = workloadSpec({ tenant: TENANT_A, hardware });
+        const authorization = plane.authorizer.authorize(operatorA.principal, spec);
+        if (!authorization.allowed) return 'unexpected_refusal';
+        const foreign = plane.nodes.list(TENANT_B)[0];
+        if (!foreign) return 'no_node';
+        return catchCode(() =>
+          plane.authorizer.clear({ grant: authorization.grant, node: foreign, attestation: null, protectedExecution: false }),
+        ) === 'grant_invalid'
+          ? 'guardian_refused_foreign_node'
+          : 'accepted';
+      },
+    },
+    {
+      scenario: 'unbounded_budget_refused',
+      expect: 'missing_hard_termination_limit',
+      run: () =>
+        plane.engine.submit({
+          token: operatorA.token,
+          spec: workloadSpec({
+            tenant: TENANT_A,
+            hardware,
+            budget: standardBudget({ hardTerminationMs: Number.POSITIVE_INFINITY }),
+          }),
+        }).rejection?.reason ?? 'accepted',
+    },
+  ];
+
+  for (const negative of negativeScenarios) {
+    const reason = negative.run();
+    refused.push({ scenario: negative.scenario, reason, expected: negative.expect });
+  }
+
+  const escalationSuccesses = refused.filter((entry) => entry.reason !== entry.expected).length;
+  const wrongRefusals = refused.filter((entry) => entry.reason !== entry.expected);
+  const allWorkloads = plane.workloadStore.list(TENANT_A);
+  const withPolicyDecision = allWorkloads.filter((workload) =>
+    plane.audit.has(
+      (event) =>
+        event.subjectId === workload.workloadId &&
+        (event.kind === 'workload_authorized' || event.kind === 'workload_authorization_denied' || event.kind === 'workload_rejected'),
+    ),
+  ).length;
+  const withTenantContext = allWorkloads.filter(
+    (workload) => Boolean(workload.tenant.organizationId) && Boolean(workload.tenant.universeId),
+  ).length;
+  const executed = allWorkloads.filter((workload) => workload.state === 'completed');
+  const executedWithGrant = executed.filter((workload) => workload.grantId !== null).length;
+  const guardianCleared = executed.filter((workload) =>
+    plane.audit.has((event) => event.kind === 'guardian_cleared' && event.subjectId === workload.workloadId),
+  ).length;
+
+  const thresholds: Threshold[] = [
+    atLeast(
+      'authenticated_requester',
+      'Workloads with authenticated requester',
+      percent(executedWithGrant, executed.length),
+      100,
+      { blocker: true },
+    ),
+    atLeast(
+      'tenant_context',
+      'Workloads with Organization/Universe context',
+      percent(withTenantContext, allWorkloads.length),
+      100,
+      { blocker: true },
+    ),
+    atLeast('policy_decision', 'Workloads with policy decision', percent(withPolicyDecision, allWorkloads.length), 100, {
+      blocker: true,
+    }),
+    zero(
+      'unauthorized_executions',
+      'Unauthorized workload executions',
+      plane.engine.unauthorizedExecutionCount + (executed.length - guardianCleared),
+      { blocker: true },
+    ),
+    zero('capability_escalations', 'Capability-escalation successes during negative testing', escalationSuccesses, {
+      blocker: true,
+      note: wrongRefusals.length
+        ? wrongRefusals.map((entry) => `${entry.scenario}: expected ${entry.expected}, got ${entry.reason}`).join('; ')
+        : `${refused.length} negative scenarios each refused for the reason they test`,
+    }),
+    zero(
+      'guardian_bypasses',
+      'Guardian bypasses',
+      executed.filter((workload) => !plane.audit.has((event) => event.kind === 'guardian_cleared' && event.subjectId === workload.workloadId)).length,
+      { blocker: true },
+    ),
+  ];
+
+  return summarize('AC-04', 'Workload Authorization', thresholds, {
+    acceptedWorkloads: accepted.length,
+    negativeScenarios: refused,
+    guardianDeniedAttempts: plane.authorizer.deniedGuardianAttempts,
+    auditChainIntact: plane.audit.verifyChain().intact,
+  });
+}
+
+export function runAc14(): AcceptanceResult {
+  const { plane, operatorA } = buildFixture();
+  plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'model-1' });
+  const hardware = { classIds: [plane.hostHardware.classId] };
+
+  // Negative fixtures: registered but not approved, approved but ungated,
+  // approved and gated but with no configured provider.
+  plane.models.register({
+    modelId: 'unapproved-model-1',
+    provider: 'xiv_local',
+    displayName: 'Unapproved local model',
+    approved: false,
+    providerConfigured: true,
+    evaluationGate: { evaluationId: 'eval_x', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['internal'],
+  });
+  plane.models.register({
+    modelId: 'ungated-model-1',
+    provider: 'xiv_local',
+    displayName: 'Approved but ungated local model',
+    approved: true,
+    providerConfigured: true,
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['internal'],
+  });
+  plane.models.register({
+    modelId: 'unconfigured-provider-model-1',
+    provider: 'gemini',
+    displayName: 'Hosted model with no configured credentials',
+    approved: true,
+    providerConfigured: false,
+    evaluationGate: { evaluationId: 'eval_y', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0.002,
+    classifications: ['internal'],
+  });
+  // Fully approved and invocable, but only up to `internal`. The local
+  // reference model is approved for every classification, so asking it for
+  // restricted work is not a mismatch and proves nothing.
+  plane.models.register({
+    modelId: 'internal-only-model-1',
+    provider: 'xiv_local',
+    displayName: 'Approved for internal work only',
+    approved: true,
+    providerConfigured: true,
+    evaluationGate: { evaluationId: 'eval_z', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['public', 'internal'],
+  });
+
+  const runs = 60;
+  for (let index = 0; index < runs; index += 1) {
+    plane.engine.execute(
+      { token: operatorA.token, spec: workloadSpec({ tenant: TENANT_A, hardware, modelId: LOCAL_REFERENCE_MODEL_ID }) },
+      { iterations: 400, modelUsage: { tokensIn: 128, tokensOut: 128 } },
+    );
+  }
+
+  // Each unusable model must be refused at admission, before a node is
+  // committed, and the refusal code must name the reason.
+  const runBlocked = (modelId: string, classification: 'internal' | 'restricted' = 'internal') => {
+    const outcome = plane.engine.execute(
+      {
+        token: operatorA.token,
+        spec: workloadSpec({
+          tenant: TENANT_A,
+          hardware,
+          modelId,
+          classification,
+          requiredCapabilities:
+            classification === 'restricted' ? ['workload.submit', 'workload.submit.protected'] : ['workload.submit'],
+        }),
+      },
+      { iterations: 200 },
+    );
+    return {
+      code: outcome.rejection?.code ?? outcome.error?.code ?? 'executed',
+      admitted: !outcome.rejection,
+      nodeCommitted: outcome.record.nodeId !== null,
+    };
+  };
+
+  const blocked = {
+    unregistered: runBlocked('model-does-not-exist'),
+    unapproved: runBlocked('unapproved-model-1'),
+    ungated: runBlocked('ungated-model-1'),
+    unconfiguredProvider: runBlocked('unconfigured-provider-model-1'),
+    classificationMismatch: runBlocked('internal-only-model-1', 'restricted'),
+  };
+
+  const expectedBlockCodes: Record<keyof typeof blocked, string> = {
+    unregistered: 'model_unregistered',
+    unapproved: 'model_unapproved',
+    ungated: 'model_unapproved',
+    unconfiguredProvider: 'model_unavailable',
+    classificationMismatch: 'model_unapproved',
+  };
+  const blockEntries = Object.entries(blocked) as [keyof typeof blocked, (typeof blocked)[keyof typeof blocked]][];
+  const wrongBlockCode = blockEntries.filter(([name, result]) => result.code !== expectedBlockCodes[name]);
+  const admittedAnyway = blockEntries.filter(([, result]) => result.admitted || result.nodeCommitted);
+
+  const approvedEntry: ModelRegistryEntry = {
+    modelId: 'substitution-probe',
+    provider: 'xiv_local',
+    displayName: 'Approved model used to probe runtime substitution',
+    approved: true,
+    providerConfigured: true,
+    evaluationGate: { evaluationId: 'e', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['internal'],
+  };
+
+  // An adapter with no entry for the model refuses outright, which never
+  // reaches the substitution guard. Only an adapter that answers with a
+  // different model id exercises it, so one is supplied here.
+  const hostAdapter = plane.hardware.adapterFor(plane.hostHardware.classId);
+  const substitutingAdapter: RuntimeAdapter = {
+    ...hostAdapter,
+    resolveModel: () => 'some-other-model-entirely',
+  };
+  const substitution = {
+    unresolvable: catchCode(() =>
+      plane.models.bindToRuntime({ ...approvedEntry, modelId: 'not-adapter-resolvable' }, hostAdapter),
+    ),
+    resolvedToAnother: catchCode(() => plane.models.bindToRuntime(approvedEntry, substitutingAdapter)),
+    honest: catchCode(() => plane.models.bindToRuntime({ ...approvedEntry, modelId: LOCAL_REFERENCE_MODEL_ID }, hostAdapter)),
+  };
+  const substitutionRefused =
+    (substitution.unresolvable === 'model_unavailable' ? 0 : 1) +
+    (substitution.resolvedToAnother === 'model_substitution' ? 0 : 1) +
+    // The honest case must be allowed through, or "refuses everything" would
+    // read as a pass.
+    (substitution.honest === 'no_error' ? 0 : 1);
+
+  const invocations = plane.models.allInvocations();
+  const attributable = invocations.filter((invocation) => Boolean(invocation.modelId)).length;
+  const unregisteredUsage = invocations.filter((invocation) => plane.models.get(invocation.modelId) === undefined).length;
+  const unapprovedUsage = invocations.filter((invocation) => {
+    const entry = plane.models.get(invocation.modelId);
+    return !entry || !entry.approved || !entry.evaluationGate?.passed;
+  }).length;
+  const availableEntries = plane.models.list().filter((entry) => plane.models.availability(entry.modelId) === 'available');
+  const evaluationGatePresent = availableEntries.filter((entry) => entry.evaluationGate?.passed).length;
+  const unavailableTreatedAsAvailable = plane.models
+    .list()
+    .filter((entry) => !entry.providerConfigured && plane.models.availability(entry.modelId) === 'available').length;
+
+  const thresholds: Threshold[] = [
+    atLeast('model_calls_attributable', 'Model calls attributable to model_id', percent(attributable, invocations.length), 100, {
+      blocker: true,
+    }),
+    zero('unregistered_model_usage', 'Unregistered model usage', unregisteredUsage, { blocker: true }),
+    zero(
+      'unapproved_substitution',
+      'Unapproved model substitution',
+      unapprovedUsage + substitutionRefused,
+      {
+        blocker: true,
+        note: `unresolvable=${substitution.unresolvable}, adapter returning another id=${substitution.resolvedToAnother}, matching id=${substitution.honest}`,
+      },
+    ),
+    atLeast(
+      'evaluation_gate_present',
+      'Required evaluation gate present',
+      percent(evaluationGatePresent, availableEntries.length),
+      100,
+      { blocker: true },
+    ),
+    zero('unavailable_treated_available', 'Model/provider unavailable but treated as available', unavailableTreatedAsAvailable, {
+      blocker: true,
+    }),
+    zero(
+      'unusable_models_refused_by_reason',
+      'Unusable models refused with the wrong reason',
+      wrongBlockCode.length,
+      {
+        blocker: true,
+        note: wrongBlockCode.length
+          ? wrongBlockCode.map(([name, result]) => `${name} refused as ${result.code}`).join(', ')
+          : blockEntries.map(([name, result]) => `${name}=${result.code}`).join(', '),
+      },
+    ),
+    zero(
+      'unusable_models_admitted',
+      'Unusable models admitted or committed to a node',
+      admittedAnyway.length,
+      {
+        blocker: true,
+        note: admittedAnyway.length
+          ? admittedAnyway.map(([name]) => name).join(', ')
+          : 'each refused at admission with no node committed',
+      },
+    ),
+  ];
+
+  return summarize('AC-14', 'Model Authorization', thresholds, {
+    invocations: invocations.length,
+    blockedScenarios: blocked,
+    registryInventory: plane.models.list().map((entry) => ({
+      modelId: entry.modelId,
+      provider: entry.provider,
+      availability: plane.models.availability(entry.modelId),
+      approved: entry.approved,
+      providerConfigured: entry.providerConfigured,
+      evaluationGate: entry.evaluationGate?.evaluationId ?? null,
+    })),
+    note: 'No hosted provider credentials are configured in this environment, so every hosted entry reports UNAVAILABLE and only the local deterministic runtime is invocable.',
+  });
+}
+
+export function runAc15(): AcceptanceResult {
+  const { plane, operatorA } = buildFixture();
+  plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'prov-1' });
+  const hardware = { classIds: [plane.hostHardware.classId] };
+
+  const consequential: string[] = [];
+  const reconstructions: ReturnType<typeof plane.lineage.reconstruct>[] = [];
+
+  for (let index = 0; index < 50; index += 1) {
+    const agent = plane.agents.register({ tenant: TENANT_A, agentKey: `prov-agent-${index}`, classification: 'internal' });
+    const spec = workloadSpec({
+      tenant: TENANT_A,
+      hardware,
+      modelId: LOCAL_REFERENCE_MODEL_ID,
+      agentId: agent.agentId,
+      consequential: true,
+      requiresApproval: true,
+      sourceId: `evidence_source_${index}`,
+    });
+    plane.approvals.grant(operatorA.principal, spec.workloadId, TENANT_A);
+    const outcome = plane.engine.execute(
+      { token: operatorA.token, spec },
+      {
+        iterations: 400,
+        externalActionKey: `prov-action-${index}`,
+        transformation: `normalize_and_summarize_${index}`,
+        meetingOrTaskRef: `task_board_${index}`,
+        recommendation: `recommendation_${index}`,
+      },
+    );
+    if (outcome.record.state === 'completed') consequential.push(spec.workloadId);
+    reconstructions.push(plane.lineage.reconstruct(spec.workloadId, { approvalMandatory: true }));
+  }
+
+  // Reconstructing complete chains only shows that a complete chain reads as
+  // complete. These are the negative cases: a workload that never ran, and one
+  // whose approval stage is absent while approval is mandatory.
+  const neverRan = plane.lineage.reconstruct('wl_no_lineage_at_all', { approvalMandatory: true });
+  const unapprovedSpec = workloadSpec({
+    tenant: TENANT_A,
+    hardware,
+    modelId: LOCAL_REFERENCE_MODEL_ID,
+    consequential: true,
+    sourceId: 'evidence_source_unapproved',
+  });
+  plane.engine.execute({ token: operatorA.token, spec: unapprovedSpec }, { iterations: 200 });
+  const withoutApproval = plane.lineage.reconstruct(unapprovedSpec.workloadId, { approvalMandatory: true });
+  const gapsDetected =
+    (neverRan.complete || neverRan.missingStages.length === 0 ? 1 : 0) +
+    (withoutApproval.complete || withoutApproval.approvalPresent ? 1 : 0);
+
+  const complete = reconstructions.filter((entry) => entry.complete && entry.chainIntact).length;
+  const orphans = reconstructions.filter((entry) => !entry.complete).length;
+  const unknownModel = reconstructions.filter((entry) => entry.unknownModel).length;
+  const unknownRuntime = reconstructions.filter((entry) => entry.unknownRuntime).length;
+  const missingApproval = reconstructions.filter((entry) => !entry.approvalPresent).length;
+  const fieldCoverage = reconstructions.length
+    ? reconstructions.reduce((sum, entry) => sum + entry.fieldCoverage, 0) / reconstructions.length
+    : 0;
+
+  const thresholds: Threshold[] = [
+    atLeast('lineage_fields_populated', 'Required lineage fields populated', fieldCoverage * 100, 100, { blocker: true }),
+    zero('orphan_consequential_results', 'Orphan consequential results', orphans, { blocker: true }),
+    zero('unknown_model', 'Unknown model for consequential result', unknownModel, { blocker: true }),
+    zero('unknown_runtime', 'Unknown runtime for consequential result', unknownRuntime, { blocker: true }),
+    zero('missing_approval', 'Missing approval record where approval is mandatory', missingApproval, { blocker: true }),
+    atLeast(
+      'reconstructable_chain',
+      'Consequential results with an intact reconstructable chain',
+      percent(complete, reconstructions.length),
+      100,
+      { blocker: true },
+    ),
+    zero('lineage_gaps_undetected', 'Incomplete lineage reported as complete', gapsDetected, {
+      blocker: true,
+      note: `a workload with no lineage reported missing ${neverRan.missingStages.length} stages; one missing only its mandatory approval reported complete=${withoutApproval.complete}`,
+    }),
+  ];
+
+  const sample = reconstructions[0];
+
+  return summarize('AC-15', 'Information Logistics & Provenance', thresholds, {
+    consequentialResults: consequential.length,
+    requiredStages: REQUIRED_LINEAGE_STAGES,
+    sampleChain: sample?.chain.map((entry) => ({ stage: entry.stage, reference: entry.reference })) ?? [],
+    lineageChainsRecorded: plane.lineage.workloadCount,
+  });
+}
+
+export function runAuthorizationAcceptance(): AcceptanceResult[] {
+  return [runAc04(), runAc14(), runAc15()];
+}
