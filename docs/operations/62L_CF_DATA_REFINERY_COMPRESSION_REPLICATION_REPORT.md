@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-ce-knowledge-excavation-memory-lake-4059` @ `4a90
 Why this base: Preferred **62L-CE** tip + report initially **WAITING_DATA** (CE/CD still landing). Scaffolded from **BZ** @ `ff72b94`, then **rebased onto CE** `@4a902ca` once tip + report **PRESENT** on origin (CD `@3f5156d`/`ac3fb8c` lineage is CE ancestor; CA/CB/CC absent / WAITING_DATA). Preference **CE → CD → CA/CB/CC → BZ → BY → BX → BW → BU → …** selects **CE**.
 Implementation SHAs: `3ff27a9`..`4414611` (feat/test/chore commits; see commit list below)
 Report SHA: `5c3202eaf9891dec8a10c1012c4a9cd31ee73c5a`
-Tip SHA: `9323d513a4573b8eabc18910f60e55943a967b21`
+Tip SHA: `2f345d3c82d3dc1dcbd6e77f1f575bca18e1bfb2`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
