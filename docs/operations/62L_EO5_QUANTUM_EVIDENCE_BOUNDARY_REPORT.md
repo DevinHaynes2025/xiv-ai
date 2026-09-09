@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto EO4 — uni
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo5-quantum-evidence-boundary-4059`  
-Tip SHA: `(pending rebase docs)`  
-Implementation SHA (feat): `ae90aa1` (post-rebase; pre-rebase feat was `bdbe762`)  
+Tip SHA: `5ca6f24f9dc57b4d999913a1d1c4c7d518d367e4`  
+Implementation SHA (feat): `ae90aa1745591cb980c0b1ec8e570def02c80678` (post-rebase; pre-rebase feat was `bdbe762`) (post-rebase; pre-rebase feat was `bdbe762`)  
 Base: `cursor/62l-eo4-ai-quantum-capability-matrix-4059` @ `4861280644caf9b182c2c2e888698bf6d6bdf9b3` (contains EO3 `b0407daa…`)  
 Rebase: **YES** — off stale EN tip `3a141648…` → onto EO4 `4861280` (preferred; contains EO3 `b0407daa`)  
 Fallback chain considered: EO4 (chosen) → EO3 `b0407daa…` → EO2 `70aa3e04…`  
@@ -139,7 +139,7 @@ Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposa
 | Field | Value |
 |---|---|
 | Branch | `cursor/62l-eo5-quantum-evidence-boundary-4059` |
-| Tip SHA | `(pending)` |
+| Tip SHA | `5ca6f24f9dc57b4d999913a1d1c4c7d518d367e4` |
 | Base | EO4 @ `4861280644caf9b182c2c2e888698bf6d6bdf9b3` (has EO3 `b0407daa`) |
 | Rebase | **YES** |
 | Report | `docs/operations/62L_EO5_QUANTUM_EVIDENCE_BOUNDARY_REPORT.md` |
