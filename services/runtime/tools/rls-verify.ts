@@ -151,7 +151,9 @@ export function verifyRls(): RlsVerification {
   return verification;
 }
 
-if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/^.*\//, ''))) {
+const invokedDirectly = process.argv[1] ? resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
+
+if (invokedDirectly) {
   const result = verifyRls();
   if (process.argv.includes('--json')) {
     console.info(JSON.stringify(result, null, 2));
