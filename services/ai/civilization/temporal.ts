@@ -1,4 +1,4 @@
-import type { UniverseLifecycleStage } from './types';
+import type { TemporalContext, UniverseLifecycleStage } from './types';
 
 export type DayPhase = 'overnight' | 'early_morning' | 'business_hours' | 'evening';
 export type Season = 'winter' | 'spring' | 'summer' | 'autumn';
@@ -70,6 +70,44 @@ export function describeOperatingTime(instant: Date, options?: OperatingTimeOpti
     holidayName,
     calendarSystem: options?.calendarSystem ?? 'gregorian',
     region: options?.region ?? 'unspecified',
+  };
+}
+
+const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
+
+// The operating time a meeting is held in, in the shape a meeting record stores.
+// Meetings keep this rather than only a timestamp so that a recommendation can be
+// read back with the calendar it was made against: "recommend calling the plant"
+// means something different at 02:00 on a holiday than at 10:00 on a Tuesday.
+export function temporalContextFor(
+  instant: Date,
+  input: {
+    location: string;
+    timeZone: string;
+    utcOffsetMinutes: number;
+    organizationLifecycle: UniverseLifecycleStage;
+    businessCycle?: string;
+    universeState?: string;
+    options?: OperatingTimeOptions;
+  },
+): TemporalContext {
+  const operating = describeOperatingTime(instant, {
+    ...input.options,
+    region: input.options?.region ?? input.location,
+    utcOffsetMinutes: input.utcOffsetMinutes,
+  });
+  const local = new Date(instant.getTime() + input.utcOffsetMinutes * 60_000);
+
+  return {
+    location: input.location,
+    timeZone: input.timeZone,
+    localTime: local.toISOString().slice(11, 16),
+    dayOfWeek: DAY_NAMES[operating.dayOfWeek],
+    season: operating.season,
+    fiscalPeriod: operating.fiscalPeriodLabel,
+    businessCycle: input.businessCycle ?? operating.dayPhase,
+    organizationLifecycle: input.organizationLifecycle,
+    universeState: input.universeState ?? input.organizationLifecycle,
   };
 }
 

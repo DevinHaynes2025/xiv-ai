@@ -45,6 +45,7 @@ export function createCivilization(options?: { clock?: Clock; nextId?: IdFactory
       registry.registerAgent(state, actor, input),
     grantCapability: (actor: ActorContext, input: Parameters<typeof registry.grantCapability>[2]) =>
       registry.grantCapability(state, actor, input),
+    listCapabilities: (actor: ActorContext) => visibleTo(state, actor, state.capabilities),
     authorizeRelationship: (actor: ActorContext, input: Parameters<typeof registry.authorizeRelationship>[2]) =>
       registry.authorizeRelationship(state, actor, input),
     discoverAgents: (actor: ActorContext, input: Parameters<typeof registry.discoverAgents>[2]) =>
