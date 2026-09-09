@@ -45,3 +45,6 @@ coverage/
 
 # Local database / tooling
 .supabase/
+
+# Generated evidence packages (services/ai/evidence, story section 39)
+xiv-evidence/
