@@ -28,3 +28,7 @@ export * from './verification-graduation';
 export * from './em3-honesty';
 export * from './em3-soft-wire';
 export * from './universal-compute-registry';
+export * from './em6-honesty';
+export * from './em6-soft-wire';
+export * from './em6-cross-vendor-benchmark-contract';
+export * from './nvidia-runtime-adapter';
