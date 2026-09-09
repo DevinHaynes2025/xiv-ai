@@ -7,7 +7,7 @@ Branch: `cursor/62l-dy-intelligent-supply-chain-command-4059`
 Parent / base tip: `cursor/62l-dx-autonomous-supply-chain-ops-4059` @ `6e9cab90665fd6a221f97a92263076a75f5c0775` + `docs/operations/62L_DX_AUTONOMOUS_SUPPLY_CHAIN_OPS_REPORT.md` (**PRESENT**)
 Why this base: Preference **DX → DW → DV**. Sealed DX tip **PRESENT** (includes DW `c04b3a39dedfbe65d7ec69de08c01b8d934f9aea` ← DV `fa009375b9183eb074b52b67eb58b59f28eb4128`). Soft-wire: `62L_DX_*` **PRESENT**; `62L_DW_*` **PRESENT**; `62L_DV_*` **PRESENT**. DY rebased onto DX. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: feat `6476af5718659f0dd3eb98dd81958bb30c91a60b` (rebased onto DX `6e9cab9`); docs `10272451352a19056fb85bbb4a8f9ec98c9d8e2e`
-Tip SHA: `10272451352a19056fb85bbb4a8f9ec98c9d8e2e`
+Tip SHA: `799dcc91c6fa6f428b944372880e89ecb28c635b`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
