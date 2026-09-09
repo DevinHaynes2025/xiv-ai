@@ -5,7 +5,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests executed — 
 Date: 2026-09-09  
 Branch: `cursor/62l-el5-amd-gpu-capability-candidate-4059`  
 Base tip: `cursor/62l-em-local-model-verification-4059` @ `a18a8823503ed2ab861e62a4c65edf8926fbdb5e` (sealed EM on founder EL `feat/62l-el-local-runtime-probe` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`)  
-Implementation SHA: `c93f13a` (feat); tip SHA after rebase/docs: _(set on push)_  
+Implementation SHA: `c93f13a` (feat); tip SHA after rebase/docs: `7439a94507f10b94d072c8ee9dcc2ba62663c1a4`  
 Why this base: Prefer sealed EM tip as successor of founder EL SoT; soft-wires EM local-model verification + EL probe.  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
