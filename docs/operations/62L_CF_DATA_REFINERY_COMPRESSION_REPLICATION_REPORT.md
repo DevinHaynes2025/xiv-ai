@@ -7,8 +7,8 @@ Branch: `cursor/62l-cf-data-refinery-compression-replication-4059`
 Parent / base tip: `cursor/62l-ce-knowledge-excavation-memory-lake-4059` @ `4a902cac3d38bb128e83a81e3e33f909abc63ea6` (includes `62L_CE_KNOWLEDGE_EXCAVATION_MEMORY_LAKE_REPORT.md`)
 Why this base: Preferred **62L-CE** tip + report initially **WAITING_DATA** (CE/CD still landing). Scaffolded from **BZ** @ `ff72b94`, then **rebased onto CE** `@4a902ca` once tip + report **PRESENT** on origin (CD `@3f5156d`/`ac3fb8c` lineage is CE ancestor; CA/CB/CC absent / WAITING_DATA). Preference **CE → CD → CA/CB/CC → BZ → BY → BX → BW → BU → …** selects **CE**.
 Implementation SHAs: `3ff27a9`..`4414611` (feat/test/chore commits; see commit list below)
-Report SHA: *(this commit)*
-Tip SHA: *(restored after align)*
+Report SHA: 
+Tip SHA: 
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
