@@ -7,7 +7,7 @@ Branch: `cursor/62l-dt-growth-operating-system-4059`
 Parent / base tip: `cursor/62l-dr-enterprise-nervous-revenue-command-4059` @ `eddb46d9209d2babb7a82e128e862a00054376d0` + `docs/operations/62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md` (**PRESENT**)
 Why this base: Preference **DS → DR → DQ → DP**. Remote **DS WAITING_DATA**. **DR PRESENT** @ `eddb46d` (preferred over sealed DQ `383e6ce`). Soft-wire DQ report when PRESENT on tip (currently **MISSING** on DR lineage); DS report **MISSING**. Rebased DT commits from DP `08078d1` onto DR. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `bae14ba5f0b8bffd82aa829d22df7e587e4446a7`
+Tip SHA: `29725294ac64e8450782256459eb2023a1eb5a3c`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
