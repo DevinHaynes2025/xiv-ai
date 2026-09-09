@@ -1,0 +1,71 @@
+-- 62L-BU Code Research / Benchmark / Strategy — CANDIDATE ONLY
+-- Status: NOT_APPLIED
+-- Honesty: DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- Do NOT apply to live Supabase. No production table overload.
+-- GitHub SoT #85; GitLab coordination #19.
+
+-- BEGIN CANDIDATE (NOT_APPLIED)
+-- create table if not exists xiv_bu_research_comparisons (
+--   id text primary key,
+--   org_id text not null,
+--   tenant_id text not null,
+--   universe_id text not null,
+--   kind text not null,
+--   title text not null,
+--   labeled_verified boolean not null default false,
+--   production_authorized boolean not null default false,
+--   provenance jsonb not null default '[]'::jsonb,
+--   confidence text not null default 'unverified',
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bu_benchmark_runs (
+--   id text primary key,
+--   suite_id text not null,
+--   language_key text not null,
+--   status text not null,
+--   labeled_verified boolean not null default false,
+--   production_block_authority boolean not null default false,
+--   scores jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bu_pattern_genome (
+--   id text primary key,
+--   key text not null,
+--   kind text not null check (kind in ('pattern', 'anti_pattern')),
+--   version int not null,
+--   negative_knowledge boolean not null default false,
+--   retained boolean not null default true,
+--   discarded boolean not null default false,
+--   provenance jsonb not null default '[]'::jsonb,
+--   confidence text not null default 'unverified',
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bu_strategy_recommendations (
+--   id text primary key,
+--   title text not null,
+--   recommendation_only boolean not null default true,
+--   production_mandate boolean not null default false,
+--   auto_deploy boolean not null default false,
+--   priorities jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bu_university_foundry_candidates (
+--   id text primary key,
+--   target text not null,
+--   kind text not null,
+--   status text not null default 'sandboxed_gated_candidate',
+--   gate_passed boolean not null default false,
+--   production_promoted boolean not null default false,
+--   permission_escalation boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+-- END CANDIDATE (NOT_APPLIED)
+
+-- Marker comment for operators:
+-- APPLICATION_STATUS = NOT_APPLIED
+-- LIVE_SUPABASE = false
+-- L4_AUTONOMY_ENABLED = false

@@ -45,6 +45,8 @@ From `services/ai`:
 - `npm run test:62lbr` — 62L-BR Structured Code Memory / AI Debugging Academy / Engineering Notebook / Self-Learning Workcells / Superbrain Software Knowledge Compiler safety tests.
 - `npm run test:62lbs` — 62L-BS AI Software Engineering University / Autonomous Test Laboratory / Code Architecture Evolution / Multi-Agent Code Review Council / Superbrain Engineering Memory Cortex safety tests.
 - `npm run test:62lbt` — 62L-BT AI Engineering Apprenticeship Network / Continuous Code Experiment Factory / Architecture Puzzle Laboratory / Cross-Language Refactoring Engine / Superbrain Software Evolution Graph safety tests.
+- `npm run test:62lbu` — 62L-BU Code Research Institute / Benchmark Arena / Compiler Intelligence / Pattern Genome / Strategy Cortex safety tests.
+- `npm run local:code-research-benchmark-health` — write the 62L-BU Code Research / Benchmark / Strategy health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -96,6 +98,9 @@ Logical XIV Universes, laptop/mobile-class device nodes, cross-OS federation ada
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency. 62L-Y is not implemented here.
+
+## 62L-BU AI Code Research Institute + Automated Benchmark Arena + Cross-Language Compiler Intelligence + Software Design Pattern Genome + Superbrain Engineering Strategy Cortex
+Compare algorithms/runtimes/compilers/build systems/architecture/design patterns across **verified** languages only; study ABI/FFI/portability with provenance + confidence. Automated Benchmark Arena runs bounded benchmarks and labels regressions with evidence — **no** auto production block authority. Unverified toolchains stay **UNAVAILABLE** / not VERIFIED. Compiler adapter intelligence is VERIFIED only with proof. Pattern genome retains anti-patterns as negative knowledge. Strategy cortex emits **recommendations** (not deploy mandates). Findings feed Engineering University / Tool Foundry as **sandboxed gated candidates** only. Skill/tool candidates do not escalate permissions. `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`. L4=false. DB candidates **NOT_APPLIED**. Base prefers **BT** tip + report (then BS). Extends BT apprenticeship/experiment/evolution and BS Engineering University / Memory Cortex layers. GitHub #85 SoT; GitLab #19 coordination only. Next: 62L-BV — AI Systems Architecture Institute + Distributed Build Intelligence + Runtime Optimization Laboratory + Cross-Platform Compatibility Matrix + Superbrain Technical Planning Engine.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
