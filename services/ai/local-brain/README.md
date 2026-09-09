@@ -17,12 +17,14 @@ From `services/ai`:
 - `npm run local:mesh-health` — write the 62L-AD distributed offline agent mesh fleet health report.
 - `npm run local:agent-society` — write the 62L-AG persistent agent-society founder report.
 - `npm run local:causal-world` — write the 62L-AH causal world model / digital twin health report.
+- `npm run local:supply-chain` — write the 62L-AO global agentic supply-chain network health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
 - `npm run test:62lad` — 62L-AD partition, reconnect, and federation safety tests.
 - `npm run test:62lag` — 62L-AG US-AG1..US-AG22 safety tests (society cycle, evaluation vs baselines, sealed compartments).
 - `npm run test:62lah` — 62L-AH causal world model, digital twin, fact-vs-sim, and sealed-pack federation tests.
+- `npm run test:62lao` — 62L-AO sharing-gate isolation, anti-collusion denies, human-gate, and sim≠fact tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -38,6 +40,9 @@ Executable causal loop: approved story → world-model query → evidence retrie
 
 ## 62L-AD Distributed Offline Agent Mesh
 Authorized node identity, device capability discovery, safe peer discovery, local-first routing, partition-safe Agent Bus messaging, multi-node workcells (reusing 62L-AC coding/research/quant workcells), local-model federation, knowledge-pack exchange, outage reconciliation, resource governance, edge-agent mode, quarantine/revocation, and fleet health. Registered computers/models/chips/nodes are not automatically trusted. Unverified peers remain UNAVAILABLE. No physical satellite or device control beyond authorized simulated/local adapters.
+
+## 62L-AO Global Agentic Supply Chain Network
+Executable supply-chain loop: business need → supply/demand/capacity signals → sharing gate → network twin → bottleneck/risk analysis → agent council → scenario → human gate → recommendation → outcome → SLA/cost/resilience learning. Governed digital-twin entities (supplier, carrier, warehouse, plant, inventory, order, shipment, demand, capacity, exception, lead time, service level, risk) reuse 62L-AH industry twins. Enterprise universes stay isolated; federation is allowlisted operational summaries only. Anti-collusion denies coordinated pricing, bid rigging, market allocation, and CSI exchange. Agents recommend; humans own purchases, contracts, and trades. Simulations and forecasts stay separate from verified facts. 62L-AN Information Control Tower and 62L-AM Information Supply Chain remain WAITING_DATA on this AH parent. L4 remains false. Unconfigured providers stay UNAVAILABLE. 62L-AP is not implemented here.
 
 ## 62L-AG Persistent Offline Agent Society
 Persistent agent registries, department councils, bounded evidence-first debates, safe parallel workcells, coding/testing/security and research/skeptic loops, evaluation harnesses that compare candidates to stored baselines, calibration, strategy reputation, skill evolution, self-improvement sandboxes, restart continuity, CEO-priority gating, and privacy compartments. Intelligence is demonstrated against baselines (evidence quality, factual support, test success, calibration, correction rate, latency, resource use). More agents is not treated as smarter. On this AH child, AD mesh and the AE sealed-vault module are present; 62L-AF Universe Kernel remains WAITING_DATA. L4 remains false. No founder impersonation. Unconfigured providers stay UNAVAILABLE.
