@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bq-polyglot-coding-civilization-4059` @ `534d45a9
 Why this base: Preferred **62L-BQ** tip + report landed after fetch/backoff (`WAITING_DATA` documented during early polls while BQ/BP/BO/BN/BM were still arriving). Scaffold started from **BL** @ `46ea56b`, interim rebase onto **BP** @ `99d3e5d`, then cherry-pick onto settled **BQ** @ `534d45a` once tip+report stabilized. Ignore older title previews that called BR “Autonomous Software Civilization Sandbox…” — founder Issue **#82** paste is authoritative.
 Implementation SHA: `c5f03f4e7c4bdf514b3f38a9089ce7b6fd2bdd06` (`feat(62L-BR): add structured code memory, debug academy, notebook, workcells, compiler #82`)
 Report SHA: `20583975d5f93567e2f400799d5c684393876ba6`
-Tip SHA: `ea59b866deaf0a8d2bc0363e4575b8fbac06523c`
+Tip SHA: `895a17886eb6022e56ecb7adff5b7528dbb934b4`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
