@@ -6,7 +6,7 @@
 **Base:** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a` (EW1–EW5 tip `cursor/62l-ew1-ew5-offline-research-mesh-4059` was at same SHA; soft-wired)  
 **Feat SHA:** `285dc2b95d8df28d75d35754d6b5cd0e95bd7ae2`
 **Docs SHA:** `e17e43af2979ac038abab50c63f79839eb2e9e41`
-**Tip SHA:** `e17e43af2979ac038abab50c63f79839eb2e9e41`
+**Tip SHA:** `2773934726df1228e65fdbe0702511b362ee587c`
 **Script:** `npm run test:62lew6`  
 **L4_AUTONOMY_ENABLED:** `false`  
 **tip-land / PR / merge main:** **NO**  
