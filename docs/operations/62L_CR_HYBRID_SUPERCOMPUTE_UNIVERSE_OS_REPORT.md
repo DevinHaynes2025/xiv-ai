@@ -7,7 +7,7 @@ Branch: `cursor/62l-cr-hybrid-supercompute-universe-os-4059`
 Parent / base tip: `cursor/62l-cq-offline-universe-quantum-genome-4059` @ `c8c10d36c78308ef126d3d8a10ce30b9c0f98ea7` (includes `62L_CQ_OFFLINE_UNIVERSE_QUANTUM_GENOME_REPORT.md`)
 Why this base: Preference **CQ → CP → CO `29b18b2` → CN → CM → CL → CK → CJ → …**. At start CQ tip+report were **WAITING_DATA** (CQ agent still landing); scaffolded from pushed **CP** `@e5e53b8`. Polled with backoff until preferred **CQ** tip+report **PRESENT**; **reset onto CQ** `@c8c10d3`.
 Implementation SHAs: see commit list below (`feat` / `chore` / `docs` / `fix`)
-Tip SHA: `c3cf8e2f78fa97abe6f446032e5536c103062ee7`
+Tip SHA: `9af5d4facf5b06b9946a68b2a789eecedb22baab`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
