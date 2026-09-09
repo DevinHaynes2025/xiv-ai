@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er6-historical-business-case-atlas-v2-4059`  
-Tip SHA: `TIP_SHA_PLACEHOLDER`  
+Tip SHA: `fe88d4a9dbdaf1bf3ec51391aa7a414533c28d1c`  
 Base: `cursor/62l-er5-global-historical-knowledge-ingestion-4059` @ `cf52f31ab4bf33a85e6db2a7e9d186e7ef1234b0`  
 Predecessor selection: ER5 **PRESENT** locally after mid-flight land (`cf52f31`); ER4 remote **absent** / incomplete → soft-wire ER4/ER3 as **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER6 Historical Business Case Atlas v2*  
