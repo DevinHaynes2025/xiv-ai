@@ -18,7 +18,7 @@
 | EX10 tip `cursor/62l-ex10-benchmark-comparability-gate-4059` | `60986682f7a6913def6da08499388aecd4acea4a` (= GITHUB xiv-v2; no EX10 feat commits yet) |
 | EX9 tip | `60986682f7a6913def6da08499388aecd4acea4a` (= GITHUB xiv-v2) |
 | EX11 base | EX10 tip = GITHUB `origin/xiv-v2` |
-| EX11 tip (this branch) | see `git rev-parse HEAD` after push |
+| EX11 tip (this branch) | `193c3e2ef6fa625b1262dcb788a4747742b1ba3e` |
 
 **TREE note:** LOCAL/GITLAB `xiv-v2` diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`. EX10 branch exists locally but has no feature commits (empty tip). EX6–EX9 similarly sit on GITHUB xiv-v2 with sibling worktree drafts only — soft-wired via `existsSync`, not merged. EX1/EX2/EX4/EX5 have separate pushed child tips; no stop-on-divergence (parallel child branches off the same authorized base, not conflicting Sot claims). Workspace `/workspace` was dirty on an unrelated GOB branch; EX11 built in isolated worktree `/tmp/62l-ex11-work`.
 
@@ -62,11 +62,13 @@ Mission → Experiment → Execution Receipt → Benchmark → Comparison → **
 ## Soft-wire (presence ≠ VERIFIED)
 
 Probes: EX1–EX10, Agent Mesh, audit, orchestration evidence ledger, local-runtime evidence ledger, EO5 boundary, persistence, Guardian.  
-Sibling paths include `.wt-ex*`, `/tmp/62l-ex*-work`, `/tmp/62l-eo5-work`. Absent → `WAITING_DATA` (not FAIL).
+Sibling paths include `.wt-ex*`, `/tmp/62l-ex*-work`, `/tmp/62l-eo5-work`. Absent → `WAITING_DATA` (not FAIL).  
+Observed on test run: soft-wire `present=8` / `waiting=9` (all `PRESENT_UNVERIFIED` or `WAITING_DATA`; `anyVerified=false`).
 
 ## Tests
 
-Command: `cd services/ai && npm run test:62lex11`
+Command: `cd services/ai && npm run test:62lex11`  
+Result: **all required honesty tests passed** (18/18 + soft-wire/scale/claim/compression smokes).
 
 | # | Case | Result |
 |---|------|--------|
