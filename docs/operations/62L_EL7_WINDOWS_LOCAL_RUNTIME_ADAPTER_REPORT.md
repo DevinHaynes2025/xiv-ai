@@ -11,7 +11,7 @@ Governed `runLocalInference(request)` adapter under `services/ai/local-runtime/*
 | Branch | `cursor/62l-el7-windows-local-runtime-adapter-4059` |
 | Predecessor | `cursor/62l-el5-amd-gpu-capability-candidate-4059` (= `origin/feat/62l-el-local-runtime-probe`) |
 | Base SHA | `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` |
-| Tip SHA | _(filled after push)_ |
+| Tip SHA | `43abe9b` _(updated after test commit)_ |
 | EL6 | **absent** — branched from EL5 |
 
 ## Core flow
@@ -53,8 +53,8 @@ Each response `evidence` includes: model ID/version, execution provider, start/e
 
 | Suite | Command | Result |
 | --- | --- | --- |
-| EL7 adapter | `npm run test:62lel7` | _(pending execution)_ |
-| Local-runtime regression | `npm run test:local-runtime` | _(pending execution)_ |
+| EL7 adapter | `npm run test:62lel7` | **PASS** (11/11 executed) |
+| Local-runtime regression | `npm run test:local-runtime` | **PASS** (17/17 executed; includes EL7 + EL heartbeat/router/governor) |
 
 ## VERIFIED skip
 
