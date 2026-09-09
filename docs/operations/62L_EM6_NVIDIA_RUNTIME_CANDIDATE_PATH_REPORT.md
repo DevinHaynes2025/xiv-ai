@@ -6,7 +6,7 @@ Date: 2026-09-09
 Branch: `cursor/62l-em6-nvidia-runtime-candidate-path-4059`  
 Base: `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (EM5 absent at park-and-implement; EM4/EM3 soft-wire only)  
 Implementation SHA:  (feat)
-Tip SHA: `76be0cdd6eb7136b13f73eda75b7727563aecbd3`  
+Tip SHA: `012f68233fdd176d503ecda188fdbe95fe83e629`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
