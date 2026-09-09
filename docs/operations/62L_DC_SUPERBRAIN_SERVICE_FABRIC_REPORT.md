@@ -7,7 +7,7 @@ Branch: `cursor/62l-dc-superbrain-service-fabric-4059`
 Parent / base tip: `cursor/62l-db-distributed-superbrain-runtime-mesh-4059` @ `be8c12f0fe6e1c0232a05190b5690e097443e729` + `docs/operations/62L_DB_DISTRIBUTED_SUPERBRAIN_RUNTIME_MESH_REPORT.md` (**PRESENT** after WAITING_DATA poll + rebase)
 Why this base: Preference **DB → DA → CZ → CY → CX `63e79c18de1b1569d74fba088e76fe8fbdbab58e` → CW `03584c6` → …**. DB tip initially **WAITING_DATA**; interim scaffold on CY then DA; after backoff poll DB tip + report + modules **PRESENT** → **rebased onto DB** `be8c12f`. DA present in DB lineage (earlier tip `e8b5b7c`). CZ tip **PRESENT** on origin as sibling of DA/DB cut path but may be absent from DB ancestry modules. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `chore` / `docs`)
-Tip SHA: *(filled after final docs align commit)*
+Tip SHA: `8301d85e2de56af79700214923f3e91cd3ca3687`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Explicit founder locks honored: **no PR / no merge / no production deployment / no database migration applied**
