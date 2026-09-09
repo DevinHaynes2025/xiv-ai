@@ -9,10 +9,10 @@ Governed `runLocalInference(request)` adapter under `services/ai/local-runtime/*
 | Field | Value |
 | --- | --- |
 | Branch | `cursor/62l-el7-windows-local-runtime-adapter-4059` |
-| Predecessor | `cursor/62l-el5-amd-gpu-capability-candidate-4059` (= `origin/feat/62l-el-local-runtime-probe`) |
-| Base SHA | `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` |
-| Tip SHA | `248da56f4a71c72d460ff22853bb49042f0b97b9` |
-| EL6 | **absent** — branched from EL5 |
+| Predecessor (preferred) | `cursor/62l-el6-amd-npu-capability-candidate-4059` |
+| Base SHA | `d36b38852efbe35c0d342255be77084c444a1fe0` (EL6 tip; includes EL5 `32bcbc36542742e17a32cd7f1075eb1801eb222c` + EM) |
+| Tip SHA | _(filled after push)_ |
+| Rebase | **yes** — rebased EL7 onto latest origin EL6 tip |
 
 ## Core flow
 
@@ -35,7 +35,7 @@ Governed `runLocalInference(request)` adapter under `services/ai/local-runtime/*
 - Never auto-download models without explicit authorization channel
 - Never auto-install drivers/runtimes
 - Never bypass **auth.ts**, **Guardian**, **RLS**, **tenant**, or **Universe** (soft-wire deny when signals absent)
-- Preserve EL heartbeat / resource-governor / probe router invariants
+- Preserve EL heartbeat / resource-governor / probe / EL5–EL6 invariants
 - Prefer **VERIFIED** providers only; GPU/NPU stay **NOT_TESTED** until measured evidence
 - Fall back safely to CPU for routing; return **UNAVAILABLE** if inference cannot truthfully succeed
 - Distinguish **LOCAL** / **HYBRID** / **CLOUD** truthfully
@@ -49,12 +49,12 @@ Each response `evidence` includes: model ID/version, execution provider, start/e
 
 **VERIFIED** requires actual model load + successful bounded inference on that provider **and** `measuredEvidencePresent=true` on the registry entry. Unit tests that claim VERIFIED without that fixture boundary are denied (`VERIFIED_SKIP_DENIED`). Default paths remain **NOT_TESTED** / **UNAVAILABLE**.
 
-## Test results (executed)
+## Test results (executed post-rebase)
 
 | Suite | Command | Result |
 | --- | --- | --- |
 | EL7 adapter | `npm run test:62lel7` | **PASS** (11/11 executed) |
-| Local-runtime regression | `npm run test:local-runtime` | **PASS** (17/17 executed; includes EL7 + EL heartbeat/router/governor) |
+| Local-runtime regression | `npm run test:local-runtime` | **PASS** (55/55 executed; EL6+EL5+EM+EL7+probe) |
 
 ## VERIFIED skip
 
