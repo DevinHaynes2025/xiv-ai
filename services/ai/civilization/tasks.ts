@@ -1,3 +1,4 @@
+import { assertAgentControllable, assertTaskForceControllable } from './controls';
 import { refuse } from './errors';
 import { assertAgentOperable, assertUniverseOperable } from './guardian';
 import { requireActiveAgent } from './registry';
@@ -46,6 +47,10 @@ export function formTaskForce(
     humanExecutiveId: input.humanExecutiveId,
     memberAgentIds: [...input.memberAgentIds],
     recommendation: null,
+    controlState: 'normal',
+    controlReason: null,
+    controlSetBy: null,
+    controlSetAt: null,
     createdBy: actor.userId,
     createdAt: now(state),
     dissolvedAt: null,
@@ -115,15 +120,22 @@ export function queueTask(
   requireMember(state, actor);
   assertUniverseOperable(requireUniverse(state, actor.universeId));
 
+  // Checked before the shape of the request, because a halted agent should be
+  // told it is halted rather than told to fix a rollback plan for work it will
+  // never be allowed to take.
+  if (input.assignedAgentId) {
+    const agent = requireAgent(state, actor.universeId, input.assignedAgentId);
+    assertAgentControllable(state, agent.id);
+    assertAgentOperable(agent);
+  }
+  if (input.taskForceId) {
+    assertTaskForceControllable(state, input.taskForceId);
+  }
+
   const requiresHumanApproval = input.requiresHumanApproval ?? true;
   const rollbackPlan = input.rollbackPlan?.trim() ?? '';
   if (requiresHumanApproval && !rollbackPlan) {
     refuse('task_rollback_plan_missing', input.title);
-  }
-
-  if (input.assignedAgentId) {
-    const agent = requireAgent(state, actor.universeId, input.assignedAgentId);
-    assertAgentOperable(agent);
   }
 
   const budget = universeBudget(state, actor.universeId);

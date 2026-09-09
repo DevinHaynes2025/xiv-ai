@@ -1,12 +1,22 @@
+import { commandCenter } from './command-center';
 import * as compute from './compute';
+import * as controls from './controls';
+import * as directory from './directory';
+import * as governor from './governor';
+import * as guardianObserver from './guardian-observer';
+import * as humanKnowledge from './human-knowledge';
 import * as knowledge from './knowledge';
+import * as engine from './meeting-engine';
 import * as meetings from './meetings';
+import * as overnight from './overnight';
 import * as registry from './registry';
+import * as reputation from './reputation';
 import { createState, visibleTo, type CivilizationState, type Clock, type IdFactory } from './store';
 import * as tasks from './tasks';
+import * as temporal from './temporal';
 import * as universe from './universe';
 import * as xacp from './xacp';
-import type { ActorContext, GovernanceEvent } from './types';
+import type { ActorContext, GovernanceEvent, ImpactLevel } from './types';
 
 export type Civilization = ReturnType<typeof createCivilization>;
 
@@ -35,6 +45,7 @@ export function createCivilization(options?: { clock?: Clock; nextId?: IdFactory
       registry.registerAgent(state, actor, input),
     grantCapability: (actor: ActorContext, input: Parameters<typeof registry.grantCapability>[2]) =>
       registry.grantCapability(state, actor, input),
+    listCapabilities: (actor: ActorContext) => visibleTo(state, actor, state.capabilities),
     authorizeRelationship: (actor: ActorContext, input: Parameters<typeof registry.authorizeRelationship>[2]) =>
       registry.authorizeRelationship(state, actor, input),
     discoverAgents: (actor: ActorContext, input: Parameters<typeof registry.discoverAgents>[2]) =>
@@ -116,6 +127,93 @@ export function createCivilization(options?: { clock?: Clock; nextId?: IdFactory
     requestCompute: (actor: ActorContext, input: Parameters<typeof compute.requestCompute>[2]) =>
       compute.requestCompute(state, actor, input),
     listRuntimeNodes: (actor: ActorContext) => compute.listRuntimeNodes(state, actor),
+
+    // --- 2I-AI-62B — meetings, collective reasoning, human intelligence bridge
+
+    convene: (actor: ActorContext, input: Parameters<typeof engine.convene>[2]) =>
+      engine.convene(state, actor, input),
+    advanceStage: (actor: ActorContext, input: Parameters<typeof engine.advanceStage>[2]) =>
+      engine.advanceStage(state, actor, input),
+    seat: (actor: ActorContext, input: Parameters<typeof engine.seat>[2]) => engine.seat(state, actor, input),
+    speak: (actor: ActorContext, input: Parameters<typeof engine.speak>[2]) => engine.speak(state, actor, input),
+    submitEvidence: (actor: ActorContext, input: Parameters<typeof engine.submitEvidence>[2]) =>
+      engine.submitEvidence(state, actor, input),
+    proposeOption: (actor: ActorContext, input: Parameters<typeof engine.proposeOption>[2]) =>
+      engine.proposeOption(state, actor, input),
+    raiseObjection: (actor: ActorContext, input: Parameters<typeof engine.raiseObjection>[2]) =>
+      engine.raiseObjection(state, actor, input),
+    resolveObjection: (actor: ActorContext, input: Parameters<typeof engine.resolveObjection>[2]) =>
+      engine.resolveObjection(state, actor, input),
+    castVote: (actor: ActorContext, input: Parameters<typeof engine.castVote>[2]) =>
+      engine.castVote(state, actor, input),
+    detectContradictions: (actor: ActorContext, meetingId: string) =>
+      engine.detectContradictions(state, actor, meetingId),
+    synthesize: (actor: ActorContext, input: Parameters<typeof engine.synthesize>[2]) =>
+      engine.synthesize(state, actor, input),
+    escalateMeeting: (actor: ActorContext, input: Parameters<typeof engine.escalate>[2]) =>
+      engine.escalate(state, actor, input),
+    decide: (actor: ActorContext, input: Parameters<typeof engine.decide>[2]) => engine.decide(state, actor, input),
+    queueAction: (actor: ActorContext, input: Parameters<typeof engine.queueAction>[2]) =>
+      engine.queueAction(state, actor, input),
+    authorizeAction: (actor: ActorContext, input: Parameters<typeof engine.authorizeAction>[2]) =>
+      engine.authorizeAction(state, actor, input),
+    executeAction: (actor: ActorContext, input: Parameters<typeof engine.executeAction>[2]) =>
+      engine.executeAction(state, actor, input),
+    revokeAction: (actor: ActorContext, input: Parameters<typeof engine.revokeAction>[2]) =>
+      engine.revokeAction(state, actor, input),
+    recordMeetingOutcome: (actor: ActorContext, input: Parameters<typeof engine.recordOutcome>[2]) =>
+      engine.recordOutcome(state, actor, input),
+    reconstructMeeting: (actor: ActorContext, meetingId: string) => engine.reconstruct(state, actor, meetingId),
+    transcript: (actor: ActorContext, meetingId: string) => engine.transcript(state, actor, meetingId),
+    roleCoverage: (actor: ActorContext, meetingId: string) => engine.roleCoverage(state, actor, meetingId),
+    listDecisions: (actor: ActorContext) => engine.listDecisions(state, actor),
+    listMeetingActions: (actor: ActorContext) => engine.listActions(state, actor),
+    listMeetingOutcomes: (actor: ActorContext) => engine.listOutcomes(state, actor),
+
+    setMeetingBudget: (actor: ActorContext, input: Parameters<typeof governor.setMeetingBudget>[2]) =>
+      governor.setMeetingBudget(state, actor, input),
+    readMeetingBudget: (actor: ActorContext, meetingId: string) =>
+      governor.readMeetingBudget(state, actor, meetingId),
+
+    recordHumanKnowledge: (actor: ActorContext, input: Parameters<typeof humanKnowledge.recordHumanKnowledge>[2]) =>
+      humanKnowledge.recordHumanKnowledge(state, actor, input),
+    elevateToFact: (actor: ActorContext, input: Parameters<typeof humanKnowledge.elevateToFact>[2]) =>
+      humanKnowledge.elevateToFact(state, actor, input),
+    listHumanKnowledge: (actor: ActorContext) => humanKnowledge.listHumanKnowledge(state, actor),
+
+    observe: (actor: ActorContext, input: Parameters<typeof guardianObserver.observe>[2]) =>
+      guardianObserver.observe(state, actor, input),
+    listObservations: (actor: ActorContext) => guardianObserver.listObservations(state, actor),
+
+    issueControl: (actor: ActorContext, input: Parameters<typeof controls.issueControl>[2]) =>
+      controls.issueControl(state, actor, input),
+    clearControl: (actor: ActorContext, input: Parameters<typeof controls.clearControl>[2]) =>
+      controls.clearControl(state, actor, input),
+    listControls: (actor: ActorContext) => controls.listControls(state, actor),
+
+    registerProfession: (actor: ActorContext, input: Parameters<typeof directory.registerProfession>[2]) =>
+      directory.registerProfession(state, actor, input),
+    seedDirectory: (actor: ActorContext) => directory.seedDirectory(state, actor),
+    setLogicalPopulation: (actor: ActorContext, input: Parameters<typeof directory.setLogicalPopulation>[2]) =>
+      directory.setLogicalPopulation(state, actor, input),
+    listDirectory: (actor: ActorContext) => directory.listDirectory(state, actor),
+
+    recordReputationSignals: (actor: ActorContext, input: Parameters<typeof reputation.recordSignals>[2]) =>
+      reputation.recordSignals(state, actor, input),
+    learnFromOutcome: (actor: ActorContext, input: Parameters<typeof reputation.learnFromOutcome>[2]) =>
+      reputation.learnFromOutcome(state, actor, input),
+    readReputation: (actor: ActorContext, agentId: string) => reputation.readReputation(state, actor, agentId),
+    listReputations: (actor: ActorContext) => reputation.listReputations(state, actor),
+    assignmentEligibility: (actor: ActorContext, input: { agentId: string; impactLevel: ImpactLevel }) =>
+      reputation.assignmentEligibility(state, actor, input),
+
+    openOvernightMeeting: (actor: ActorContext, input: Parameters<typeof overnight.openOvernightMeeting>[2]) =>
+      overnight.openOvernightMeeting(state, actor, input),
+    overnightBrief: (actor: ActorContext, window: overnight.OvernightWindow) =>
+      overnight.overnightBrief(state, actor, window),
+
+    describeOperatingTime: temporal.describeOperatingTime,
+    commandCenter: (actor: ActorContext) => commandCenter(state, actor),
 
     auditTrail: (actor: ActorContext): GovernanceEvent[] => visibleTo(state, actor, state.governanceEvents),
   };

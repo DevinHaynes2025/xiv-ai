@@ -5,13 +5,27 @@ import type {
   AgentEvaluation,
   AgentIdentity,
   AgentRelationship,
+  AgentReputation,
   AgentTask,
+  ControlAction,
+  DirectoryEntry,
   GovernanceEvent,
   GovernanceEventKind,
+  GuardianObservation,
+  HumanKnowledgeRecord,
   KnowledgeLineageRecord,
   KnowledgeSource,
   Meeting,
+  MeetingAction,
+  MeetingBudget,
+  MeetingDecisionRecord,
+  MeetingEvidence,
+  MeetingMessage,
+  MeetingObjection,
+  MeetingOutcome,
   MeetingParticipant,
+  MeetingProposal,
+  MeetingProposalVote,
   ResourceBudget,
   RuntimeCapability,
   RuntimeNode,
@@ -41,6 +55,21 @@ export const CIVILIZATION_TABLES = [
   'runtime_nodes',
   'runtime_capabilities',
   'agent_governance_events',
+  // 2I-AI-62B
+  'agent_meeting_messages',
+  'agent_meeting_evidence',
+  'agent_meeting_proposals',
+  'agent_meeting_objections',
+  'agent_meeting_votes',
+  'agent_meeting_decisions',
+  'agent_meeting_actions',
+  'agent_meeting_outcomes',
+  'agent_meeting_budgets',
+  'agent_reputation',
+  'agent_directory',
+  'agent_control_actions',
+  'human_knowledge_records',
+  'guardian_observations',
 ] as const;
 
 export type CivilizationTable = (typeof CIVILIZATION_TABLES)[number];
@@ -68,6 +97,20 @@ export type CivilizationState = {
   runtimeNodes: RuntimeNode[];
   runtimeCapabilities: RuntimeCapability[];
   governanceEvents: GovernanceEvent[];
+  meetingMessages: MeetingMessage[];
+  meetingEvidence: MeetingEvidence[];
+  meetingProposals: MeetingProposal[];
+  meetingObjections: MeetingObjection[];
+  meetingVotes: MeetingProposalVote[];
+  meetingDecisions: MeetingDecisionRecord[];
+  meetingActions: MeetingAction[];
+  meetingOutcomes: MeetingOutcome[];
+  meetingBudgets: MeetingBudget[];
+  reputations: AgentReputation[];
+  directory: DirectoryEntry[];
+  controlActions: ControlAction[];
+  humanKnowledge: HumanKnowledgeRecord[];
+  guardianObservations: GuardianObservation[];
 };
 
 function defaultIdFactory(): IdFactory {
@@ -100,7 +143,27 @@ export function createState(options?: { clock?: Clock; nextId?: IdFactory }): Ci
     runtimeNodes: [],
     runtimeCapabilities: [],
     governanceEvents: [],
+    meetingMessages: [],
+    meetingEvidence: [],
+    meetingProposals: [],
+    meetingObjections: [],
+    meetingVotes: [],
+    meetingDecisions: [],
+    meetingActions: [],
+    meetingOutcomes: [],
+    meetingBudgets: [],
+    reputations: [],
+    directory: [],
+    controlActions: [],
+    humanKnowledge: [],
+    guardianObservations: [],
   };
+}
+
+// The organization always comes from the universe rather than the caller, which
+// is the same rule xiv_apply_organization enforces in the database.
+export function organizationOf(state: CivilizationState, universeId: string): string {
+  return requireUniverse(state, universeId).organizationId;
 }
 
 export function now(state: CivilizationState) {
