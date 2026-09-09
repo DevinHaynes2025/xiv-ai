@@ -17,7 +17,7 @@ Governed AMD Windows ML / ONNX Runtime adapter path under `services/ai/local-run
 | Base used | sealed `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` @ `0c31b27…` (EM3 `eb6e963…`) |
 | Base SHA | `0c31b27d694484499c69fd9fb2eb549d80ac89e8` |
 | Implement SHA | `37614e2afbda27d4648f24f95e2704ea40e9a0a8` |
-| Tip SHA | `PLACEHOLDER` |
+| Tip SHA | `08f0d869f06d6a5b76b0817fa9dfa412342bdcd7` |
 | Rebase onto sealed EM4 | **YES** |
 | Tip-land / PR | **NO** |
 | `L4_AUTONOMY_ENABLED` | `false` |
