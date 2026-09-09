@@ -8,7 +8,10 @@ export type StoryPersona =
   | 'supplier'
   | 'customer'
   | 'government_operator'
-  | 'researcher';
+  | 'researcher'
+  | 'engineer'
+  | 'manufacturer'
+  | 'operator';
 
 export type StoryDomain =
   | 'business'
@@ -22,7 +25,17 @@ export type StoryDomain =
   | 'government'
   | 'health_wellness'
   | 'culture'
-  | 'technology';
+  | 'technology'
+  | 'chip_manufacturing'
+  | 'data_centers'
+  | 'quantum_research'
+  | 'information_logistics'
+  | 'automotive'
+  | 'motorsport'
+  | 'aviation'
+  | 'electric_mobility'
+  | 'home_technology'
+  | 'infrastructure';
 
 export type UserStory = {
   id: string;
@@ -35,8 +48,13 @@ export type UserStory = {
   generated: true;
 };
 
-const personas: StoryPersona[] = ['consumer','employee','manager','executive','founder','investor','supplier','customer','government_operator','researcher'];
-const domains: StoryDomain[] = ['business','finance','supply_chain','operations','people','security','knowledge','community','government','health_wellness','culture','technology'];
+const personas: StoryPersona[] = [
+  'consumer','employee','manager','executive','founder','investor','supplier','customer','government_operator','researcher','engineer','manufacturer','operator',
+];
+const domains: StoryDomain[] = [
+  'business','finance','supply_chain','operations','people','security','knowledge','community','government','health_wellness','culture','technology',
+  'chip_manufacturing','data_centers','quantum_research','information_logistics','automotive','motorsport','aviation','electric_mobility','home_technology','infrastructure',
+];
 const goals = [
   'understand what changed',
   'find the next best action',
@@ -48,6 +66,10 @@ const goals = [
   'detect risk before it becomes an incident',
   'learn from prior outcomes',
   'protect private organization data',
+  'optimize a bounded resource plan',
+  'trace supplier and infrastructure dependencies',
+  'compare a classical baseline with an experimental algorithm',
+  'model capacity without claiming unverified infrastructure',
 ];
 
 function hashSeed(value: number) {
@@ -56,6 +78,12 @@ function hashSeed(value: number) {
   x ^= x >>> 17;
   x ^= x << 5;
   return Math.abs(x);
+}
+
+function riskFor(domain: StoryDomain): UserStory['risk'] {
+  if (['finance','government','health_wellness','aviation','automotive','motorsport','electric_mobility','chip_manufacturing','infrastructure'].includes(domain)) return 'high';
+  if (['security','data_centers','quantum_research','information_logistics'].includes(domain)) return 'medium';
+  return 'low';
 }
 
 export function storyAt(index: number): UserStory {
@@ -75,8 +103,10 @@ export function storyAt(index: number): UserStory {
       'Unavailable or stale data is labeled instead of invented.',
       'High-consequence actions require the applicable approval gate.',
       'Offline behavior is deterministic: local-capable work continues; remote-only work waits.',
+      'Infrastructure, vehicle, aviation and manufacturing outputs remain advisory/simulation-only unless separately authorized.',
+      'Quantum research requires a reproducible classical baseline and makes no unverified quantum-advantage claim.',
     ],
-    risk: domain === 'finance' || domain === 'government' || domain === 'health_wellness' ? 'high' : domain === 'security' ? 'medium' : 'low',
+    risk: riskFor(domain),
     generated: true,
   };
 }
