@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-cg-deep-knowledge-refinery-os-4059` @ `87fdf05d16
 Why this base: Preferred **62L-CH** tip + report remained **WAITING_DATA** (not on origin). **62L-CG** tip + report **PRESENT** on origin after fetch-with-backoff; used as final base. Earlier scaffold considered **CF** `@f4a93e3` while CG landing, then **rebased onto CG** `@87fdf05`. Preference **CH → CG → CF → CE → CD → …** selects **CG**.
 Implementation SHAs: `bb0d503`..`70833d9` (feat/test/chore; see `git log`)
 Report SHA: `9c35e893f6bdc6085c4244888acdcc7d4c4f8d9d`
-Tip SHA: `TIP_PENDING`
+Tip SHA: `62238e868e7c8a940ad8f4d8bf14c31de66f0ad9`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
