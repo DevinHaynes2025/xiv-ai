@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-el9-resource-governor-4059`  
-Tip SHA: `a31df895bfc4b3578e92aca4df8afabb7ce90514`  
+Tip SHA: `0c9db2b3cd02c8dd9454b498f670007a61edf366`  
 Base: `cursor/62l-el8-model-load-evidence-4059` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` (EL8 tip at branch creation; preferred predecessor; EL8-* preferred over EL7/EL6/feat probe)  
 Why this base: Founder EL9 SoT prefers EL8 → else EL7 → else EL6/EL5 → else feat/EL/EM. EL8 branch existed; used as predecessor.  
 Tip-land onto `xiv-v2` / `main`: **NO**  
@@ -116,7 +116,7 @@ cd services/ai && npm run typecheck
 
 | Command | Result | When (UTC) |
 |---|---|---|
-| `npm run test:62lel9` | **PASS** — 27/27 | 2026-09-09 after tip `a31df89` |
+| `npm run test:62lel9` | **PASS** — 27/27 | 2026-09-09 after tip `0c9db2b` |
 | `npm run test:local-runtime` | **PASS** — 33/33 | same run |
 | `npm run typecheck` | **PASS** | 2026-09-09T13:44:18Z |
 
