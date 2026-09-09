@@ -171,7 +171,8 @@ export type PredecessorId =
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 const PREDECESSOR_MODULES: Record<PredecessorId, string> = {
-  BJ: 'offline-intelligence-os-exec-cortex.ts',
+  /** BJ lands as Global Operations Brain façade (not a mega-merge of PR #38). */
+  BJ: 'global-operations-brain-runtime.ts',
   BI: 'enterprise-os-dev-control-plane.ts',
   BH: 'offline-research-civilization.ts',
   BG: 'trillion-path-runtime.ts',
@@ -256,17 +257,28 @@ export function bj191kGateStatus(cwd = process.cwd()): {
   bjModule: 'AVAILABLE' | 'WAITING_DATA';
   swallowUnsafeBulk: false;
   megaMergeAllowed: false;
+  megaPrBulkIncluded: false;
+  attributionUnsafeFor191kAsOnePr: true;
+  bjChildDeltaClass: 'CLEAN_ADAPTER_TIP_UNDER_191K';
   classification: string;
+  inheritanceNote: string;
 } {
+  const bjReport = predecessorReportState(cwd, 'BJ');
+  const bjModule = predecessorModuleState('BJ');
   return {
-    bjReport: predecessorReportState(cwd, 'BJ'),
-    bjModule: predecessorModuleState('BJ'),
+    bjReport,
+    bjModule,
     swallowUnsafeBulk: false,
     megaMergeAllowed: false,
+    megaPrBulkIncluded: false,
+    attributionUnsafeFor191kAsOnePr: true,
+    bjChildDeltaClass: 'CLEAN_ADAPTER_TIP_UNDER_191K',
     classification:
-      predecessorReportState(cwd, 'BJ') === 'WAITING_DATA'
+      bjReport === 'WAITING_DATA'
         ? 'BJ tip/report absent — 191K gate WAITING_DATA; no bulk inherited; coexistence adapters only'
-        : 'BJ present — classify inherited delta before any adapter; never mega-merge',
+        : 'BJ present — Draft PR #38 ~191K/+200K vs main classified ATTRIBUTION_UNSAFE by BJ; BK inherits classification, excludes mega-bulk, uses coexistence adapters only',
+    inheritanceNote:
+      'BJ measured PR #38 vs main (~200K adds) as mostly pre-existing xiv-v2 docs/runtime/mobile stubs. BJ child tip vs BD is a clean ~2K adapter set. BK does not re-import the mega-delta.',
   };
 }
 

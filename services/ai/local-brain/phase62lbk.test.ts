@@ -456,9 +456,15 @@ try {
     'US-BK-predecessors',
     preds.BD.module === 'AVAILABLE' &&
       preds.BD.report === 'PASS' &&
-      (bj.bjReport === 'WAITING_DATA' || bj.bjReport === 'PASS') &&
-      bj.megaMergeAllowed === false,
-    'BD parent present; BJ 191K gate recorded without mega-merge.',
+      preds.BJ.module === 'AVAILABLE' &&
+      preds.BJ.report === 'PASS' &&
+      bj.bjReport === 'PASS' &&
+      bj.bjModule === 'AVAILABLE' &&
+      bj.megaMergeAllowed === false &&
+      bj.megaPrBulkIncluded === false &&
+      bj.attributionUnsafeFor191kAsOnePr === true &&
+      bj.swallowUnsafeBulk === false,
+    'BJ+BD present; 191K mega-bulk excluded; ATTRIBUTION_UNSAFE inherited; coexistence adapters only.',
   );
 
   check(
