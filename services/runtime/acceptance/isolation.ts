@@ -325,8 +325,14 @@ export function runAc03(): AcceptanceResult {
     zero(
       'undocumented_bypass_paths',
       'Privileged bypass paths without documented justification',
-      undocumentedJustifications,
-      { blocker: true, note: `undocumented path use refused as ${undocumentedBypass}` },
+      // Counting only the registered paths would be satisfied by an empty
+      // registry, so an undocumented path that was *not* refused counts as one
+      // in use.
+      undocumentedJustifications + (undocumentedBypass === 'bypass_unjustified' ? 0 : 1),
+      {
+        blocker: true,
+        note: `${documentedPaths.length} registered paths (${documentedPaths.map((path) => path.pathId).join(', ')}) each carry a justification and approver; an unregistered path was refused as ${undocumentedBypass}`,
+      },
     ),
   ];
 

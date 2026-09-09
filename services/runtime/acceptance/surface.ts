@@ -98,10 +98,19 @@ export function runAc18(): AcceptanceResult {
   const lockfiles = SHIPPING_RUNTIMES.filter((runtime) => existsSync(join(repoRoot, runtime, 'package-lock.json')));
 
   const thresholds: Threshold[] = [
-    zero('typecheck_errors', 'Type errors in the runtime package', typecheckErrors, {
-      blocker: true,
-      note: typecheck.ok ? 'tsc --noEmit clean' : 'tsc --noEmit reported failures',
-    }),
+    zero(
+      'typecheck_errors',
+      'Type errors in the runtime package',
+      // A compiler that never started emits no `error TS` lines, so counting
+      // only those would report a clean typecheck for a run that did not happen.
+      typecheck.ok ? typecheckErrors : Math.max(1, typecheckErrors),
+      {
+        blocker: true,
+        note: typecheck.ok
+          ? 'tsc --noEmit exited 0 with no diagnostics'
+          : `tsc --noEmit exited ${typecheck.code}: ${typecheck.output.split('\n').filter(Boolean).slice(-1)[0] ?? 'no output'}`,
+      },
+    ),
     atLeast('unit_pass_rate', 'Unit test pass rate', percent(passed, Math.max(1, tests)), 100, { blocker: true }),
     zero('unit_failures', 'Failing unit tests', failed, { blocker: true }),
     zero('skipped_tests', 'Skipped or pending tests', skipped, {
