@@ -22,6 +22,7 @@
     "../../services/ai/**/*.ts"
   ],
   "exclude": [
+    "../../services/ai/**/*.test.ts",
     "../../services/ai/server.ts",
     "../../services/ai/gemini-provider.ts",
     "../../services/ai/auth.ts",
