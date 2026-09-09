@@ -16,7 +16,7 @@ Date: 2026-09-09
 | Preferred EL base | `origin/feat/62l-el-local-runtime-probe` |
 | Base tip SHA | `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` |
 | Working branch | `cursor/62l-em-local-model-verification-4059` |
-| EM tip SHA | `3dd9d480b1f35dcc47d301c99271f24d30496284` |
+| EM tip SHA | `a9e5dfe78b2f2d0966b8733ae5bf51747ce9f79b` |
 | EL inheritance | Truth states, read-only probe, CPU-first router, heartbeat freshness, resource governor preserved |
 | EK honesty soft-wire | Optional presence check for `local-brain/windows-amd-local-cognitive-os-types.ts` (does not imply EK VERIFIED) |
 
