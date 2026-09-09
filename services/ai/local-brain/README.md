@@ -17,12 +17,14 @@ From `services/ai`:
 - `npm run local:mesh-health` — write the 62L-AD distributed offline agent mesh fleet health report.
 - `npm run local:factory` — write the 62L-AJ offline software factory / plugin registry health report.
 - `npm run local:ops-planner` — write the 62L-AP enterprise operations planner / command-center health report.
+- `npm run local:universal-runtime` — write the 62L-AV universal runtime / algorithm foundry / polyglot fabric / CFO health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
 - `npm run test:62lad` — 62L-AD partition, reconnect, and federation safety tests.
 - `npm run test:62laj` — 62L-AJ sandbox isolation, allowlist runner, permission-diff deny, and release-gate tests.
 - `npm run test:62lap` — 62L-AP handoff-package≠execution, decision-rights matrix, deadlock detection, and human-gate tests.
+- `npm run test:62lav` — 62L-AV vehicle-control deny, unverified hardware UNAVAILABLE, CFO no-charge, and algorithm-selection honesty tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -41,6 +43,9 @@ Executable factory cycle: approved story / verified discovery → requirements �
 
 ## 62L-AP Enterprise Operations Planner + Command Center
 Executable enterprise ops loop: enterprise need → department context → KPI/evidence → workflow graph → dependency/bottleneck analysis → agent council → plan options → risk/cost/policy review → human decision → approved task package → authorized execution → outcome → learning. Cross-department workflow graphs detect deadlocks instead of executing them. Agents plan and recommend; humans own consequential decisions. An approved Action Handoff Contract package does **not** authorize spending, deploying, contacting customers, changing production systems, or other consequential actions. L4 remains false. Anti-collusion applies to inter-enterprise pricing/bids/customer targeting. CEO-sealed material stays compartmentalized. Unconfigured providers remain UNAVAILABLE. No founder impersonation.
+
+## 62L-AV Universal Runtime + Algorithm Foundry + Polyglot Data Fabric + CFO Product & Pricing Engine
+Device portability profiles for Windows/ASUS-class PCs, Linux, x86-64, ARM64, Apple Silicon, Android, iOS, servers, and approved edge/embedded. Hardware is **UNAVAILABLE until actually verified** — this host may mark linux/x86-64/server AVAILABLE from `os.platform()`/`os.arch()` evidence and must not invent AVAILABLE for other classes. Vehicle integration is authorized data/infotainment/business interfaces only; steering, braking, and other vehicle control are **DENIED**. Algorithm Foundry offers classical baselines (graph, constrained routing, network flow, scheduling, inventory/EOQ, 2-var LP, 0-1 knapsack, statistics, probability, z-score anomaly, SMA forecast, linear ranking, RLE, SHA-256 dedup) and does **not** invent optimality. Polyglot Data Fabric probes PostgreSQL, SQLite, vector, object, document, graph, time-series, cache, and search slots; unverified engines stay UNAVAILABLE. The CFO loop is cost modeling → package design → offline/hybrid/live bundles → pricing scenarios → margins → break-even → sensitivity → human approval. CFO agents recommend; they **cannot charge customers or alter billing**. L4 remains false. CEO-sealed compartmentalized. Providers UNAVAILABLE until verified. No founder impersonation. No invented partnerships.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
