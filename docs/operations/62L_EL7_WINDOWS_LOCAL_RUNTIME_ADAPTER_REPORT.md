@@ -11,7 +11,7 @@ Governed `runLocalInference(request)` adapter under `services/ai/local-runtime/*
 | Branch | `cursor/62l-el7-windows-local-runtime-adapter-4059` |
 | Predecessor | `cursor/62l-el5-amd-gpu-capability-candidate-4059` (= `origin/feat/62l-el-local-runtime-probe`) |
 | Base SHA | `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` |
-| Tip SHA | `4fd2798765659710f7be4774c499f36540929c76` |
+| Tip SHA | `88404149878cf948f7a92ae5386440ed95725996` |
 | EL6 | **absent** — branched from EL5 |
 
 ## Core flow
