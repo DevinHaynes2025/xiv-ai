@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er5-global-historical-knowledge-ingestion-4059`  
-Tip SHA: `TBD_FEAT_SHA`  
+Tip SHA: `c1ec64412825f9e7c71399352a3809b182d42848`  
 Base: `origin/cursor/62l-er2-api-truth-state-machine-4059` @ `09138402a4f4922cc45ca4128b3d8c378e5e4a18`  
 Predecessor: ER2 **PRESENT**; ER1 **PRESENT**; ER4 **WAITING_DATA** (or soft PRESENT if types/runtime on disk; presence ≠ VERIFIED); ER3 **WAITING_DATA**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER5 Global Historical Knowledge Ingestion Pipeline*  
