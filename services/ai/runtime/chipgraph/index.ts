@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * 62L-EW7 — AMD Local Communication Adapter public facade + cycle runner.
  *
  * Connects Agent Mesh + Cross-Chip Graph to local AMD paths.
@@ -217,3 +218,35 @@ export function runAmdLocalCommunicationAdapterCycle(input?: {
     guardianRlsUnchanged: true,
   };
 }
+=======
+ * 62L-EW8 — NVIDIA Adapter Candidate public facade.
+ * Extends chipgraph — not a parallel NVIDIA brain.
+ */
+
+export * from './ew8-types.ts';
+export * from './nvidia-capabilities.ts';
+export * from './nvidia-runtime.ts';
+export * from './nvidia-benchmark.ts';
+export {
+  attemptAutonomousCloudRental,
+  attemptCloudPurchase,
+  createComputeEnvelope,
+  createHomeBaseReceiptLedger,
+  defaultGpuPressure,
+  defaultNvidiaCapabilitySnapshot,
+  detectedGpuOnly,
+  documentedGpuOnly,
+  evaluateGpuResourceGovernor,
+  markCudaMissing,
+  markTensorRtMissing,
+  probeGuardianRlsUnchanged,
+  runNvidiaAdapter,
+  softWireSummary,
+  validateComputeEnvelope,
+  type AdapterRunResult,
+  type ComputeTaskEnvelope,
+  type ExecutionReceipt,
+  type GpuGovernorDecision,
+  type GpuPressureSnapshot,
+} from './nvidia-adapter.ts';
+>>>>>>> db5b7d3 (feat(62L-EW8): NVIDIA Adapter Candidate + honesty tests #169)
