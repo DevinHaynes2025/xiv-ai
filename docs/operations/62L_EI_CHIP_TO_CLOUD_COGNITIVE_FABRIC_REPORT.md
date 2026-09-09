@@ -7,7 +7,7 @@ Branch: `cursor/62l-ei-chip-to-cloud-cognitive-fabric-4059`
 Parent / base tip: `cursor/62l-eg-cognitive-operations-backbone-4059` @ `5c6b9b0374e30a779b91b3230ecc69ab33e3d00a` + `docs/operations/62L_EG_COGNITIVE_OPERATIONS_BACKBONE_REPORT.md` (**PRESENT**; includes EE @ `963de65c053be8697468cfb1501d4da6df9dc816`)
 Why this base: Preference **EH → EG → EE**. EH **ABSENT** on origin. EG tip **PRESENT** (includes EE lineage). Soft-wire: `62L_EH_*` **ABSENT**; `62L_EG_*` **PRESENT**; `62L_EE_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHA: `650e17b13f53bd3356e06cd274f87017c4e1f6c6`
-Tip SHA: `650e17b13f53bd3356e06cd274f87017c4e1f6c6`
+Tip SHA: `2e2dda230b3ca9533873b4c6b9bf63fb47a8bcc4`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
