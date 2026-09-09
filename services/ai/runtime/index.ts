@@ -718,3 +718,14 @@ export {
   summarizeExecutiveHealth,
 } from './runtime';
 export type { AgentRuntime, AgentRuntimeOptions, GovernedRequest } from './runtime';
+
+export {
+  AGENT_CIVILIZATION_FOUNDATION_62A_IMPLEMENTED,
+  AGENT_MEETING_NETWORK_LIVE,
+  AUTO_MEETING_EXECUTION,
+  L4_AUTONOMY_ENABLED as AGENT_MEETING_L4_AUTONOMY_ENABLED,
+  OVERNIGHT_MEETINGS_LIVE,
+  openMeetingNetwork,
+  meetingNetworkLive,
+} from './agentmeetings';
+export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
