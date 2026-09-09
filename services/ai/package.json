@@ -24,7 +24,8 @@
     "proof:worldbank": "tsx runtime/phase2id.worldbank.proof.ts",
     "proof:sec": "tsx runtime/phase2id2.sec.proof.ts",
     "proof:gleif": "tsx runtime/phase2ih.gleif.proof.ts",
-    "guardian:validate": "tsx runtime/guardian/validate.ts"
+    "guardian:validate": "tsx runtime/guardian/validate.ts",
+    "test:62lex15": "tsx --test runtime/history/phase62lex15.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

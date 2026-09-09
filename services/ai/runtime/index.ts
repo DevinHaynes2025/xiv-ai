@@ -730,3 +730,17 @@ export {
   agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';
+
+/** 62L-EX15 Historical Quantum & Computing Atlas — soft re-export. */
+export {
+  HONESTY_BANNER as EX15_HONESTY_BANNER,
+  EX15_LOCKS,
+  QUANTUM_ADVANTAGE_VERIFIED as EX15_QUANTUM_ADVANTAGE_VERIFIED,
+  assertEx15LocksIntact,
+  ex15L4AutonomyEnabled,
+  guardianRlsUnchangedByEx15,
+  createAtlasStore,
+  ingestHistoricalEvent,
+  queryOfflineAtlas,
+  ex15SoftWireSnapshot,
+} from './history/index.ts';
