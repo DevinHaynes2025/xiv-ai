@@ -12,6 +12,12 @@ From `services/ai`:
 - `npm run local:night -- <approved-task-file.json>` — run a bounded Night Shift task set. Set `XIV_NIGHT_SHIFT_RESUME=true` to resume a checkpoint.
 - `npm run local:founder-report` — write the Founder Morning Brain Report (includes operational worker state).
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
+- `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
+
+## Operational transition
+Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
+
+62L-V extends this with: Founder → Digital Twin → Global Brain Highway → Departments → Agent Teams → Tools/Models → Knowledge → Debate → Decision → Build → Test → Evidence → Outcome → Learning → Debrief → Next Story. The twin cannot fabricate founder approval, sign, spend, hire/fire, or impersonate the founder externally. "Trillions of Devins" means addressable logical contexts/pathways, not running programs.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
