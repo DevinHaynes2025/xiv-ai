@@ -4,9 +4,9 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-bu-code-research-benchmark-strategy-4059`
-Parent / base tip: `cursor/62l-bs-engineering-university-memory-cortex-4059` @ `39da70c4c33058647222ca71c517081c064d3c4d` (`docs(62L-BS): restore tip SHA after align commit #83` lineage; tip includes `62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md`)
-Why this base: Preferred **62L-BT** tip + `62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md` **MISSING** on origin after fetch/backoff (**WAITING_DATA**). Next preference **62L-BS** tip + report **PRESENT** — selected as base. Scaffold started briefly from **BR** @ `980a6e2`/`bd1a6fa` while BT/BS were landing, then **rebased onto BS** once available. **BQ** tip present on origin (parallel polyglot honesty lineage) but preference **BT → BS → BR → BQ** selects **BS**.
-Implementation SHAs: `169faf7`..`5822718` (feat commits; see commit list below)
+Parent / base tip: `cursor/62l-bt-apprenticeship-experiment-evolution-graph-4059` @ `7ccb44becabc20a979f3342405a3e8dc32ac9665` (`docs(62L-BT): restore tip SHA after align commit #84` lineage; includes `62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md`)
+Why this base: Preferred **62L-BT** tip + report initially **WAITING_DATA**; scaffolded from **BR** then rebased onto **BS** @ `39da70c` when BS landed; **rebased onto BT** once BT tip + report **PRESENT** on origin. Preference **BT → BS → BR → BQ** selects **BT**.
+Implementation SHAs: `bd17209`..`c271ee3` (feat commits; see commit list below)
 Report SHA: `6bfddffd41065c4c6cd90c7b0ab895477f4e2433` (report body)
 Tip SHA: `102a9fb986baf36c17785bd765e6261428703a50`
 Tip-land: **NO**
@@ -38,8 +38,8 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 
 | Check | Result |
 |---|---|
-| BT Apprenticeship / Experiment / Evolution Graph tip + report | **WAITING_DATA** — remote ref absent after fetch/backoff (30s–2m slices; concurrent BT agent still landing). |
-| BS Engineering University / Memory Cortex tip + report | **PRESENT** @ `39da70c` + `62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md`. **Used as base after rebase.** |
+| BT Apprenticeship / Experiment / Evolution Graph tip + report | **PRESENT** @ `7ccb44b` + `62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md`. **Used as final base after rebase.** |
+| BS Engineering University / Memory Cortex tip + report | **PRESENT** @ `39da70c` + report (BT ancestor; intermediate base before BT rebase). |
 | BR Structured Code Memory / Debug Academy tip + report | Tip **PRESENT** @ `bd1a6fa` (BS ancestor). Report may be MISSING/PRESENT on tip; modules PRESENT. Initial scaffold base while BS landing. |
 | BQ Polyglot Coding Civilization tip + report | Tip **PRESENT** on origin @ `534d45a` (not selected; BS preferred). Polyglot VERIFIED-only-with-proof honesty reused conceptually. |
 | BP Cognitive Homeostasis tip + report | Tip **PRESENT** on origin @ `5723785` (not selected). |
@@ -52,7 +52,7 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 | Dirty `/workspace` tree | Unrelated AY WIP / worktrees. **Not** the edit root. Dedicated worktree `/tmp/62l-bu-work`. |
 | `origin/xiv-v2` / `main` tip-land | **NO** |
 | Draft PR / ManagePullRequest | **NOT CREATED** |
-| Gate verdict | **62L-BS CLEAR for this child** (BT remains **WAITING_DATA**). Not PASS for Issue #85 if unread. Not PASS for Windows-node verification. Not FAIL-with-report. |
+| Gate verdict | **62L-BT CLEAR for this child** (BS/BR/BQ also PRESENT). Not PASS for Issue #85 if unread. Not PASS for Windows-node verification. Not FAIL-with-report. |
 
 ## Brain change-set gate (inherited mega-delta)
 
@@ -60,11 +60,12 @@ PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not
 |---|---|
 | Draft GitHub PR #38 / ~191K–200K vs `main` | **ATTRIBUTION_UNSAFE** — **NOT SWALLOWED**. |
 | BS tip vs BR | Focused Engineering University / Test Lab / Architecture Evolution / Review Council / Memory Cortex + **NOT_APPLIED** candidate SQL. **Safe to inherit.** |
-| BU tip vs BS | Focused code research / benchmark arena / compiler intelligence / pattern genome / strategy cortex / university-foundry feedback only. **No mega-delta swallow.** |
+| BU tip vs BT | Focused code research / benchmark arena / compiler intelligence / pattern genome / strategy cortex / university-foundry feedback only. **No mega-delta swallow.** |
+| BT tip vs BS | Focused apprenticeship / experiment factory / puzzle lab / refactor / evolution graph. **Safe to inherit.** |
 
 ## Tree classification
 
-Isolated worktree rebased onto GitHub BS tip `39da70c`. No caches, secrets, `.env`, `.xiv-local/`, `node_modules`, or IDE files committed. tip-land = **NO**. Never `main`. No merge onto `xiv-v2`. No live migrations. Candidate SQL remains **NOT_APPLIED**. No Guardian/RLS weaken. No permission expansion.
+Isolated worktree rebased onto GitHub BT tip `7ccb44b` (after intermediate BS base). No caches, secrets, `.env`, `.xiv-local/`, `node_modules`, or IDE files committed. tip-land = **NO**. Never `main`. No merge onto `xiv-v2`. No live migrations. Candidate SQL remains **NOT_APPLIED**. No Guardian/RLS weaken. No permission expansion.
 
 ## Architecture cycle (executed)
 
@@ -135,7 +136,7 @@ Command: `npm run test:62lbu` (also `test:62lbs`, `test:62lbr` smoke)
 | US-BU-honesty-helpers | **PASS** |
 | US-BU-cycle-run | **PASS** |
 | US-BU-health-report | **PASS** |
-| US-BU-predecessor-map | **PASS** (BT=WAITING_DATA, BS=PRESENT, BR=PRESENT) |
+| US-BU-predecessor-map | **PASS** (BT=PRESENT, BS=PRESENT, BR=PRESENT) |
 | 62L-BS suite (inherited) | **PASS** |
 | 62L-BR suite (inherited) | **PASS** |
 
@@ -154,7 +155,7 @@ Verdict: focused unit tests **PASS**. Not a Windows-node verification pass. Not 
 
 | Gate | Status |
 |---|---|
-| 62L-BT tip + report | **WAITING_DATA** |
+| 62L-BT tip + report | **PRESENT** (final base) |
 | Windows-node verification | **NOT_TESTED** / **WAITING_DATA** |
 | Production authorization | **DENIED** / not granted |
 | Live Supabase apply | **NOT_APPLIED** |
@@ -166,4 +167,4 @@ Verdict: focused unit tests **PASS**. Not a Windows-node verification pass. Not 
 
 ## Debrief
 
-62L-BU landed on preferred available predecessor **BS** after BT remained **WAITING_DATA** through fetch/backoff. The slice implements research compare, honest UNAVAILABLE benchmarks, proof-gated compiler labels, a pattern genome that keeps anti-patterns, a recommendation-only strategy cortex, and sandboxed University/Tool Foundry feedback without permission escalation. Honesty locks hold: measured ≠ mandate, VERIFIED requires proof, L4 stays false, and mega-PR bulk was not imported. No tip-land onto `xiv-v2`/`main`; no Draft PR.
+62L-BU initially scaffolded on BR, rebased onto BS while BT was WAITING_DATA, then **rebased onto preferred BT** once it landed with report. The slice implements research compare, honest UNAVAILABLE benchmarks, proof-gated compiler labels, a pattern genome that keeps anti-patterns, a recommendation-only strategy cortex, and sandboxed University/Tool Foundry feedback without permission escalation. Honesty locks hold: measured ≠ mandate, VERIFIED requires proof, L4 stays false, and mega-PR bulk was not imported. No tip-land onto `xiv-v2`/`main`; no Draft PR.
