@@ -1,7 +1,7 @@
 /**
  * XARP — XIV Agent Reasoning Protocol.
  * Evidence before consensus. Disagreements are preserved.
- * Agents do not vote merely because another model was persuasive.
+ * State lives on the meeting network — rooms do not share ledgers.
  */
 
 import { advanceStage, charge, getMeeting, isSeated, type MeetingNetwork } from './engine';
@@ -25,18 +25,8 @@ function allow<T>(value: T): Allow<T> {
   return { ok: true, value, audited: true };
 }
 
-const proposals = new Map<string, MeetingProposal[]>();
-const objections = new Map<string, MeetingObjection[]>();
-const votes = new Map<string, MeetingVote[]>();
-const options = new Map<string, OptionProfile[]>();
-const decisions = new Map<string, MeetingDecision[]>();
-
 export function resetProtocolState(): void {
-  proposals.clear();
-  objections.clear();
-  votes.clear();
-  options.clear();
-  decisions.clear();
+  // State is per MeetingNetwork. Kept for test compatibility.
 }
 
 export function listXarpRoles(): readonly XarpRole[] {
@@ -66,9 +56,9 @@ export function submitProposal(
     organizationId: meeting.value.organizationId,
     universeId: meeting.value.universeId,
   };
-  const list = proposals.get(meetingId) ?? [];
+  const list = net.proposals.get(meetingId) ?? [];
   list.push(proposal);
-  proposals.set(meetingId, list);
+  net.proposals.set(meetingId, list);
   advanceStage(net, meetingId, 'SPECIALIST_ANALYSIS');
   return allow(proposal);
 }
@@ -83,7 +73,7 @@ export function objectToProposal(
   const meeting = getMeeting(net, meetingId, actor);
   if (!meeting.ok) return meeting;
   if (!isSeated(net, meetingId, actor.actorId)) return deny('unseated_objection_denied');
-  const found = (proposals.get(meetingId) ?? []).some((p) => p.proposalId === proposalId);
+  const found = (net.proposals.get(meetingId) ?? []).some((p) => p.proposalId === proposalId);
   if (!found) return deny('proposal_not_found');
   const spend = charge(net, meetingId, { tokens: 40, compute: 1 });
   if (!spend.ok) return spend;
@@ -96,9 +86,9 @@ export function objectToProposal(
     universeId: meeting.value.universeId,
     statement,
   };
-  const list = objections.get(meetingId) ?? [];
+  const list = net.objections.get(meetingId) ?? [];
   list.push(objection);
-  objections.set(meetingId, list);
+  net.objections.set(meetingId, list);
   advanceStage(net, meetingId, 'CONTRADICTION_DETECTION');
   return allow(objection);
 }
@@ -113,12 +103,9 @@ export function voteOnProposal(
   const meeting = getMeeting(net, meetingId, actor);
   if (!meeting.ok) return meeting;
   if (!isSeated(net, meetingId, actor.actorId)) return deny('unseated_vote_denied');
-  const proposal = (proposals.get(meetingId) ?? []).find((p) => p.proposalId === proposalId);
+  const proposal = (net.proposals.get(meetingId) ?? []).find((p) => p.proposalId === proposalId);
   if (!proposal) return deny('proposal_not_found');
   if (!proposal.evidence.length) return deny('vote_without_evidence_denied');
-  if (stance === 'support' && actor.actorId !== proposal.actorId && proposal.evidence.length === 0) {
-    return deny('echo_chamber_vote_denied');
-  }
   const spend = charge(net, meetingId, { tokens: 10, compute: 1 });
   if (!spend.ok) return spend;
   const vote: MeetingVote = {
@@ -131,9 +118,9 @@ export function voteOnProposal(
     stance,
     evidenceBacked: true,
   };
-  const list = votes.get(meetingId) ?? [];
+  const list = net.votes.get(meetingId) ?? [];
   list.push(vote);
-  votes.set(meetingId, list);
+  net.votes.set(meetingId, list);
   return allow(vote);
 }
 
@@ -146,7 +133,7 @@ export function preserveDisagreement(
   const meeting = getMeeting(net, meetingId, actor);
   if (!meeting.ok) return meeting;
   const preserved: OptionProfile[] = profiles.map((p) => ({ ...p, preserved: true as const }));
-  options.set(meetingId, preserved);
+  net.options.set(meetingId, preserved);
   advanceStage(net, meetingId, 'CONSENSUS_OR_DISAGREEMENT');
   return allow(preserved);
 }
@@ -162,12 +149,12 @@ export function synthesizeRecommendation(
   if (!meeting.ok) return meeting;
   if (!isSeated(net, meetingId, actor.actorId)) return deny('unseated_synthesis_denied');
   const evidence = net.evidence.get(meetingId) ?? [];
-  const props = proposals.get(meetingId) ?? [];
+  const props = net.proposals.get(meetingId) ?? [];
   if (!evidence.length && !props.length) return deny('synthesis_requires_evidence');
   const spend = charge(net, meetingId, { tokens: 120, compute: 3 });
   if (!spend.ok) return spend;
   const decision: MeetingDecision = {
-    decisionId: `dec:${meetingId}`,
+    decisionId: `dec:${meetingId}:${(net.decisions.get(meetingId) ?? []).length + 1}`,
     meetingId,
     organizationId: meeting.value.organizationId,
     universeId: meeting.value.universeId,
@@ -177,31 +164,56 @@ export function synthesizeRecommendation(
     humanApproved: false,
     sourceKind: 'machine_inference',
   };
-  const list = decisions.get(meetingId) ?? [];
+  const list = net.decisions.get(meetingId) ?? [];
   list.push(decision);
-  decisions.set(meetingId, list);
+  net.decisions.set(meetingId, list);
   advanceStage(net, meetingId, 'HUMAN_CHECKPOINT');
   return allow(decision);
 }
 
-export function listProposals(meetingId: string): readonly MeetingProposal[] {
-  return proposals.get(meetingId) ?? [];
+export function recordDebateRound(
+  net: MeetingNetwork,
+  meetingId: string,
+  actor: Actor,
+  kind: 'SPECIALIST_ANALYSIS' | 'CHALLENGE' | 'ALTERNATIVES' | 'RISK',
+  notes: string,
+): Allow<{ kind: typeof kind }> | Deny {
+  const meeting = getMeeting(net, meetingId, actor);
+  if (!meeting.ok) return meeting;
+  if (!isSeated(net, meetingId, actor.actorId)) return deny('unseated_debate_denied');
+  const list = net.debateRounds.get(meetingId) ?? [];
+  list.push({ meetingId, kind, actorId: actor.actorId, notes });
+  net.debateRounds.set(meetingId, list);
+  const stage =
+    kind === 'CHALLENGE'
+      ? 'AGENT_DEBATE'
+      : kind === 'ALTERNATIVES'
+        ? 'ALTERNATIVES_GENERATED'
+        : kind === 'RISK'
+          ? 'RISK_ANALYSIS'
+          : 'SPECIALIST_ANALYSIS';
+  advanceStage(net, meetingId, stage);
+  return allow({ kind });
 }
 
-export function listObjections(meetingId: string): readonly MeetingObjection[] {
-  return objections.get(meetingId) ?? [];
+export function listProposals(net: MeetingNetwork, meetingId: string): readonly MeetingProposal[] {
+  return net.proposals.get(meetingId) ?? [];
 }
 
-export function listVotes(meetingId: string): readonly MeetingVote[] {
-  return votes.get(meetingId) ?? [];
+export function listObjections(net: MeetingNetwork, meetingId: string): readonly MeetingObjection[] {
+  return net.objections.get(meetingId) ?? [];
 }
 
-export function listOptions(meetingId: string): readonly OptionProfile[] {
-  return options.get(meetingId) ?? [];
+export function listVotes(net: MeetingNetwork, meetingId: string): readonly MeetingVote[] {
+  return net.votes.get(meetingId) ?? [];
 }
 
-export function listDecisions(meetingId: string): readonly MeetingDecision[] {
-  return decisions.get(meetingId) ?? [];
+export function listOptions(net: MeetingNetwork, meetingId: string): readonly OptionProfile[] {
+  return net.options.get(meetingId) ?? [];
+}
+
+export function listDecisions(net: MeetingNetwork, meetingId: string): readonly MeetingDecision[] {
+  return net.decisions.get(meetingId) ?? [];
 }
 
 export function consensusEqualsTruth(): false {
@@ -209,12 +221,13 @@ export function consensusEqualsTruth(): false {
 }
 
 export function recordHumanDecision(
+  net: MeetingNetwork,
   meetingId: string,
   decision: MeetingDecision,
 ): MeetingDecision {
-  const list = (decisions.get(meetingId) ?? []).map((d) =>
+  const list = (net.decisions.get(meetingId) ?? []).map((d) =>
     d.decisionId === decision.decisionId ? decision : d,
   );
-  decisions.set(meetingId, list);
+  net.decisions.set(meetingId, list);
   return decision;
 }

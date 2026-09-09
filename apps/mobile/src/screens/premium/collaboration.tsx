@@ -10,9 +10,12 @@ import {
   EventDiscussion,
   EventDetail,
   IntroductionCard,
+  AgentMeetingCommandStrip,
+  DisagreementPack,
   MeetingDetail,
   MeetingPreparation,
   MeetingRoomShell,
+  OvernightIntelligenceBrief,
   MessageBubble,
   MessageComposer,
   MixerCard,
@@ -27,6 +30,7 @@ import {
   UpcomingMeetingCard,
 } from '@/components/v4';
 import { useSession } from '@/context/session';
+import { AGENT_MEETING_DEMO } from '@/data/agent-meetings-demo';
 import { premiumAd, premiumHome } from '@/data/premium-demo';
 import {
   CONVERSATIONS,
@@ -106,8 +110,11 @@ export function PremiumMeetings() {
   const home = osHome(session.experience);
 
   return (
-    <PremiumDesk title="Meetings" subtitle="Preparation intelligence. Video is visual-only.">
+    <PremiumDesk title="Meetings" subtitle="Preparation intelligence. Video is visual-only. Agent rooms stay governed.">
       <XivStatusPill label="Video provider NOT_CONFIGURED" tone="warning" />
+      <AgentMeetingCommandStrip {...AGENT_MEETING_DEMO.command} />
+      <OvernightIntelligenceBrief {...AGENT_MEETING_DEMO.overnight} />
+      <DisagreementPack {...AGENT_MEETING_DEMO.disagreement} />
       <UpcomingMeetingCard title={MEETING_PREP.title} when={MEETING_PREP.when} kind={MEETING_PREP.kind} />
       <XivSectionHeader kicker="Kinds" title="Meeting types" />
       {MEETING_KINDS.map((kind) => (

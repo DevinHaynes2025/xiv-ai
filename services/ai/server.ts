@@ -12,6 +12,7 @@ import {
   mediaComplete,
   mediaStatus,
 } from './business-api';
+import { agentMeetingNetworkStatus } from './runtime/agentmeetings';
 import { runExecutiveTurn } from './executive-turn';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
@@ -151,6 +152,12 @@ const server = createServer((req, res) => {
       if (req.method === 'GET' && url.pathname === '/v1/business/health') {
         const user = await verifyAccessToken(req.headers.authorization);
         json(res, 200, await businessHealth(user.id));
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/agent-meetings/status') {
+        await verifyAccessToken(req.headers.authorization);
+        json(res, 200, agentMeetingNetworkStatus());
         return;
       }
 

@@ -9,15 +9,18 @@ import { boundedAutonomyEnabled } from './authority';
 import {
   AGENT_CIVILIZATION_FOUNDATION_62A_IMPLEMENTED,
   AGENT_MEETING_NETWORK_LIVE,
+  agentMeetingNetworkStatus,
   AUTO_MEETING_EXECUTION,
   L4_AUTONOMY_ENABLED,
   OVERNIGHT_MEETINGS_LIVE,
   advanceTaskForce,
   apiNameGrantsCapability,
   applyControl,
+  attachTemporalContext,
   authorizeContext,
   collectEvidence,
   commandCenterSnapshot,
+  composeExecutiveBrief,
   consensusEqualsTruth,
   createMeeting,
   culturalContextIsFact,
@@ -45,6 +48,7 @@ import {
   preserveDisagreement,
   queueAuthorizedAction,
   reconstructMeeting,
+  recordDebateRound,
   recordHumanKnowledge,
   recordOutcome,
   recommendTaskForce,
@@ -56,6 +60,7 @@ import {
   seedExampleDirectory,
   selectParticipants,
   sleepTaskForce,
+  speakInMeeting,
   spawnUnrestrictedSubagent,
   submitProposal,
   synthesizeRecommendation,
@@ -111,7 +116,7 @@ function openSupplyRoom(net: MeetingNetwork) {
     createdAt: '2026-09-08T20:00:00.000Z',
   });
   assert.equal(created.ok, true);
-  seedExampleDirectory('org_a', 'universe_a');
+  seedExampleDirectory(net, 'org_a', 'universe_a');
   const coordinator = actor({ actorId: 'exec-coord', kind: 'agent' });
   const supply = actor({ actorId: 'supply-chain', kind: 'agent' });
   const finance = actor({ actorId: 'finance', kind: 'agent' });
@@ -141,6 +146,8 @@ test('grounding: L4 off; 62A not claimed implemented; meeting network not LIVE',
   assert.equal(OVERNIGHT_MEETINGS_LIVE, false);
   assert.equal(AUTO_MEETING_EXECUTION, false);
   assert.equal(AGENT_CIVILIZATION_FOUNDATION_62A_IMPLEMENTED, false);
+  assert.equal(agentMeetingNetworkStatus().live, false);
+  assert.equal(agentMeetingNetworkStatus().videoTransport, 'NOT_CONFIGURED');
   assert.equal(apiNameGrantsCapability(), false);
   assert.equal(consensusEqualsTruth(), false);
   assert.equal(guardianIsSubordinateToMeeting(), false);
@@ -369,23 +376,37 @@ test('human knowledge classification is not universal truth', () => {
 test('overnight brief executes zero unauthorized actions', () => {
   resetAll();
   const net = openMeetingNetwork();
-  const brief = runOvernightSession(net, 'org_a', {
-    meetingsCompleted: 13,
-    issuesInvestigated: 41,
-    opportunitiesIdentified: 7,
-    anomaliesDetected: 4,
-    decisionsRequiringApproval: 2,
-  });
+  const ceo = actor({ actorId: 'ceo-human', kind: 'human', admin: true });
+  const brief = runOvernightSession(net, ceo, [
+    {
+      id: 'lead-time',
+      title: 'Supplier lead-time anomaly',
+      claim: 'Median inbound lead time rose 2 days',
+      source: 'erp.purchase_orders',
+      provenance: 'po:overnight',
+    },
+    {
+      id: 'promo',
+      title: 'Regional demand opportunity',
+      claim: 'Q3 promo lift may require stock',
+      source: 'demand.forecast',
+      provenance: 'fc:overnight',
+    },
+  ]);
   assert.equal(brief.unauthorizedActionsExecuted, 0);
   assert.equal(overnightEqualsUncontrolledAction(), false);
-  assert.equal(brief.meetingsCompleted, 13);
+  assert.equal(brief.meetingsCompleted, 2);
+  assert.equal(brief.decisionsRequiringApproval, 2);
+  assert.equal(brief.anomaliesDetected, 1);
+  assert.equal(brief.opportunitiesIdentified, 1);
+  assert.ok([...net.actions.values()].every((list) => list.every((a) => a.executed === false)));
 });
 
 test('definition of done: CEO problem → task force → debate → human approval → queued action → memory', () => {
   resetAll();
   const net = openMeetingNetwork();
   const ceo = actor({ actorId: 'ceo-human', kind: 'human', admin: true, displayName: 'CEO' });
-  seedExampleDirectory('org_a', 'universe_a');
+  seedExampleDirectory(net, 'org_a', 'universe_a');
   const force = recommendTaskForce(net, ceo, {
     taskForceId: 'tf-inventory',
     problem: 'Inventory disruption',
@@ -457,8 +478,8 @@ test('definition of done: CEO problem → task force → debate → human approv
   });
   assert.equal(learning.performedWell, true);
   assert.equal(learning.learningClass, 'Outcome-Based Agent Learning');
-  advanceTaskForce('tf-inventory', 'EVALUATE');
-  sleepTaskForce('tf-inventory');
+  advanceTaskForce(net, 'tf-inventory', 'EVALUATE');
+  sleepTaskForce(net, 'tf-inventory');
   const memory = reconstructMeeting(net, 'mtg-dod');
   assert.ok(memory);
   assert.equal(memory?.approval, true);
@@ -481,12 +502,12 @@ test('definition of done: CEO problem → task force → debate → human approv
     provenance: ' mill-line:osaka',
   });
   assert.equal(culturalContextIsFact(utterance), false);
-  const degraded = updateReputation('inventory', { accuracy: 0.2, hallucinationRate: 0.5 });
+  const degraded = updateReputation(net, 'inventory', { accuracy: 0.2, hallucinationRate: 0.5 });
   assert.equal(degraded?.eligibleForHighImpact, false);
   assert.equal(degraded?.authorityExpanded, false);
   const snap = commandCenterSnapshot(net, ceo);
   assert.equal(snap.logicalPopulationEqualsActiveCompute, false);
-  assert.ok(listDirectory('org_a', 'universe_a').length >= 20);
+  assert.ok(listDirectory(net, 'org_a', 'universe_a').length >= 20);
 });
 
 test('API names do not grant cross-tenant capability', () => {
@@ -497,3 +518,54 @@ test('API names do not grant cross-tenant capability', () => {
   const get = handleMeetingApi(net, 'GET', '/meetings/mtg-supply', outsider);
   assert.equal(get.ok, false);
 });
+
+test('meeting networks do not share proposal or directory ledgers', () => {
+  resetAll();
+  const a = openMeetingNetwork();
+  const b = openMeetingNetwork();
+  openSupplyRoom(a);
+  const ceoB = actor({ actorId: 'ceo-b', kind: 'human', organizationId: 'org_b', universeId: 'universe_b', admin: true });
+  createMeeting(b, {
+    meetingId: 'mtg-b',
+    actor: ceoB,
+    title: 'Other org',
+    purpose: 'private',
+    trigger: 'test',
+  });
+  assert.equal(a.meetings.has('mtg-supply'), true);
+  assert.equal(b.meetings.has('mtg-supply'), false);
+  assert.equal(listDirectory(a, 'org_a', 'universe_a').length >= 20, true);
+  assert.equal(listDirectory(b, 'org_a', 'universe_a').length, 0);
+});
+
+test('multilingual speech, temporal context, debate rounds, and executive brief', () => {
+  resetAll();
+  const net = openMeetingNetwork();
+  const { ceo, supply } = openSupplyRoom(net);
+  const spoken = speakInMeeting(net, 'mtg-supply', supply, {
+    originalLanguage: 'de',
+    originalText: 'Die Lieferzeit steigt',
+    translation: 'Lead time is rising',
+    interpretation: 'Operational delay signal, not a confirmed stockout',
+    provenance: 'plant:hamburg',
+  });
+  assert.equal(spoken.ok, true);
+  if (spoken.ok) assert.equal(culturalContextIsFact(spoken.value), false);
+  const temporal = attachTemporalContext(net, 'mtg-supply', ceo, {
+    location: 'Dallas',
+    time: '09:54',
+    season: 'Summer',
+    businessPeriod: 'Q3',
+    organizationLifecycle: 'Growth',
+    universeState: 'Operational',
+  });
+  assert.equal(temporal.ok, true);
+  assert.equal(recordDebateRound(net, 'mtg-supply', supply, 'SPECIALIST_ANALYSIS', 'Inbound risk').ok, true);
+  const brief = composeExecutiveBrief(net, ceo);
+  assert.equal(brief.live, false);
+  assert.equal(brief.overnight.unauthorizedActionsExecuted, 0);
+  const memory = reconstructMeeting(net, 'mtg-supply');
+  assert.deepEqual(memory?.languages, ['de']);
+  assert.equal(memory?.temporal?.location, 'Dallas');
+});
+

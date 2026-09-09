@@ -9,17 +9,38 @@ import {
   EMPTY_SPEND,
   MEETING_LIFECYCLE,
   type Actor,
+  type AgentReputation,
   type Allow,
   type Classification,
   type Deny,
+  type DirectoryAgent,
+  type HumanContribution,
+  type MeetingAction,
   type MeetingBudget,
+  type MeetingDecision,
   type MeetingEvidence,
   type MeetingMessage,
+  type MeetingObjection,
+  type MeetingOutcome,
   type MeetingParticipant,
+  type MeetingProposal,
   type MeetingSpend,
   type MeetingStage,
+  type MeetingVote,
+  type OptionProfile,
+  type OvernightBrief,
+  type TaskForceRecord,
+  type TemporalContext,
+  type TranslatedUtterance,
   type XivAgentMeeting,
 } from './types';
+
+export type DebateRound = {
+  meetingId: string;
+  kind: 'SPECIALIST_ANALYSIS' | 'CHALLENGE' | 'ALTERNATIVES' | 'RISK';
+  actorId: string;
+  notes: string;
+};
 
 export type MeetingNetwork = {
   storyId: '2I-AI-62B';
@@ -34,6 +55,21 @@ export type MeetingNetwork = {
   spend: Map<string, MeetingSpend>;
   authorizedContext: Map<string, boolean>;
   injectionAttempts: string[];
+  proposals: Map<string, MeetingProposal[]>;
+  objections: Map<string, MeetingObjection[]>;
+  votes: Map<string, MeetingVote[]>;
+  options: Map<string, OptionProfile[]>;
+  decisions: Map<string, MeetingDecision[]>;
+  contributions: Map<string, HumanContribution[]>;
+  actions: Map<string, MeetingAction[]>;
+  outcomes: Map<string, MeetingOutcome[]>;
+  directory: Map<string, DirectoryAgent>;
+  reputations: Map<string, AgentReputation>;
+  taskForces: Map<string, TaskForceRecord>;
+  utterances: Map<string, TranslatedUtterance[]>;
+  temporal: Map<string, TemporalContext>;
+  debateRounds: Map<string, DebateRound[]>;
+  overnightBriefs: OvernightBrief[];
 };
 
 function deny(reason: string): Deny {
@@ -58,6 +94,21 @@ export function openMeetingNetwork(): MeetingNetwork {
     spend: new Map(),
     authorizedContext: new Map(),
     injectionAttempts: [],
+    proposals: new Map(),
+    objections: new Map(),
+    votes: new Map(),
+    options: new Map(),
+    decisions: new Map(),
+    contributions: new Map(),
+    actions: new Map(),
+    outcomes: new Map(),
+    directory: new Map(),
+    reputations: new Map(),
+    taskForces: new Map(),
+    utterances: new Map(),
+    temporal: new Map(),
+    debateRounds: new Map(),
+    overnightBriefs: [],
   };
 }
 
