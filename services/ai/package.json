@@ -124,7 +124,7 @@
     "local:human-centered-superbrain-ux-health": "tsx local-brain/human-centered-superbrain-ux-cli.ts",
     "test:62ldj": "tsx local-brain/phase62ldj.test.ts",
     "local:personal-intelligence-command-os-health": "tsx local-brain/personal-intelligence-command-os-cli.ts",
-    "test:62ldk": "tsx local-brain/phase62ldk.test.ts && tsx local-brain/phase62ldm.test.ts",
+    "test:62ldk": "tsx local-brain/phase62ldk.test.ts",
     "local:unified-intelligence-experience-os-health": "tsx local-brain/unified-intelligence-experience-os-cli.ts",
     "test:62ldm": "tsx local-brain/phase62ldm.test.ts",
     "local:global-neural-transit-civilization-atlas-health": "tsx local-brain/global-neural-transit-civilization-atlas-os-cli.ts",
