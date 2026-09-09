@@ -5,8 +5,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 Date: 2026-09-09  
 Branch: `cursor/62l-em10-user-access-economy-4059`  
 Tip SHA: `d502dcd616581bf5834e71bc854e74ef1df8d68d`  
-Base: EM9 `cursor/62l-em9-compute-resource-market-simulator-4059` @ `d1b0c5d13e46f9f70d267c953060d65ce7fb8d65`  
-Predecessor preference: **origin EM9** (landed) → else EM8 → else #157 `b1040f41…` — **rebased onto EM9**  
+Base: EM9 `cursor/62l-em9-compute-resource-market-simulator-4059` @ `b3c06c7db17e2c07bbefd0cb04c8f6e5f8b5a5d6`  
+Predecessor preference: **origin EM9** @ `b3c06c7` (includes EM8 `fd86ee0`; newer EM8 `1285e3f8` not yet in EM9) — **rebased onto EM9**  
 Prior #157-only base: superseded by EM9 rebase (EM10 commits replayed with `--onto`; #157 soft-wire optional / absent on this tip)  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest / L4 / auto-bind legal contracts / fake savings claims: **NOT CREATED / DENIED**  
