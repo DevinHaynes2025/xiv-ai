@@ -18,6 +18,8 @@ From `services/ai`:
 - `npm run local:information-economy-health` — write the 62L-AU Agentic Information Economy / Knowledge Logistics health report.
 - `npm run local:sovereign-sealed-health` — write the 62L-AX Sovereign Sealed Information Fabric / Universal UX Runtime / Cross-Platform Trust Gateway health report.
 - `npm run local:growth-media` — write the 62L-AY growth media / onboarding / super brain / refinery health report.
+- `npm run local:neural-database-health` — write the 62L-BA Neural Database OS / warehouse / Universal Data API health report.
+- `npm run local:cognitive-memory-health` — write the 62L-BD Cognitive Memory Chip / Agent Neural Bus / Universe Knowledge Router / Offline Brain Fabric health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
@@ -27,6 +29,8 @@ From `services/ai`:
 - `npm run test:62lau` — 62L-AU Agentic Information Economy / Knowledge Logistics / Information Bullwhip Detector safety tests.
 - `npm run test:62lax` — 62L-AX Sovereign Sealed Information Fabric / Universal UX Runtime / Cross-Platform Trust Gateway safety tests.
 - `npm run test:62lay` — 62L-AY adult-only onboarding, package label≠access, no auto-publish, authorized-source refinery, non-sentient super brain tests.
+- `npm run test:62lba` — 62L-BA Neural Database OS / schema-index compiler / warehouse / Universal Data API safety tests.
+- `npm run test:62lbd` — 62L-BD Cognitive Memory Chip / Agent Neural Bus / Universe Knowledge Router / Persistent Offline Brain Fabric safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -44,6 +48,12 @@ Deny-by-default sealed compartments (FOUNDER-SEALED, ORGANIZATION-SEALED, GOVERN
 
 ## 62L-AY Growth Media Engine + Universal Onboarding + Offline Super Brain + Governed Data Refinery
 Adult-only (18+) onboarding across email/invite/phone/desktop/enterprise channel adapters (stubs; unconfigured = UNAVAILABLE). Under-18 denied; enterprise join requires seal. Packages Basic/Pro/Elite/Enterprise/Government/Builder expose **labeled** entitlements only — label ≠ access; packages never grant autonomy. CFO/COO/executive package councils recommend; recommendation ≠ charge/deploy. Growth Media Engine prepares post/graphic/founder/exec candidates with review gates — **no auto-publish**. Governed Data Refinery walks authorized source → provenance/license → ingest → classify → warehouse → dedup → pattern/hypothesis → quant test → evidence → BI → human decision → learning. Only authorized/public/licensed/customer-owned sources; leaked DB / stolen credentials / restricted systems rejected. Defensive leakage detection only (owned/authorized envs). Offline Super Brain is **non-sentient**: persistent memory, knowledge packs, workcells, world models, algorithms, councils, simulations, checkpoints, measured learning scored on evidence/reasoning/planning/creativity/calibration/reliability/efficiency — not consciousness. `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`. L4=false.
+
+## 62L-BA Neural Database OS + Schema/Index Compiler + Distributed Knowledge Warehouse + Universal Data API
+Recommendation-only schema/index/partition/cache/compression/migration/rollback planning with human decision gate before any production alter. Automatic production DDL/DML is denied. Sealed-data placement is guarded; federated queries are permissioned; offline reconcile does not invent live providers. Adapters remain UNAVAILABLE until configured/authorized/verified. L4=false. See `docs/operations/62L_BA_NEURAL_DATABASE_OS_WAREHOUSE_API_REPORT.md`.
+
+## 62L-BD Cognitive Memory Chip + Agent Neural Bus + Universe Knowledge Router + Persistent Offline Brain Fabric
+Portable software-defined Cognitive Memory Chip for ordinary CPUs/GPUs/NPUs/DRAM/NAND (and future **verified** hardware only): bounded context allocation, agent/model memory, intelligent caching, and persistent brain snapshots. Custom silicon is **not** required. No consciousness/sentience claims. Agent Neural Bus lets specialized agents exchange evidence, tasks, and results while preserving Universe isolation and **hard-denying authority transfer** between agents. Universe Knowledge Router provides permission-controlled routes and logical “wormholes” (optimized permissioned routes — **not** trust/auth bypasses) with Founder-sealed deny-by-default from ordinary Universes, cloud, peers, telemetry, and training paths. Persistent Offline Brain Fabric supports true offline boot, snapshot restore, and degraded-operation contracts without inventing live provider availability. `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`. L4 remains false. Official 62L-BB Adaptive Compute Fabric Scheduler and 62L-BC Self-Optimizing Software Compiler tips remain WAITING_DATA on this BA parent; a park/quantum `62l-bc-*` tip is **not** treated as official BC.
 
 ## 62L-AU Agentic Information Economy + Knowledge Logistics Network
 Executable information freight loop: Information Demand → Source → Inventory → Qualification → Routing → Minimum-Necessary Transformation → Delivery → Quality Check → Decision → Outcome → Learning. Knowledge is treated as SKUs with bills of materials. Query-to-data / minimize movement is the default. AU17 Information Bullwhip Detector detects amplification of one request into repeated searches, duplicated context, unnecessary model calls, duplicate storage, and excessive traffic, then reduces that waste. Cross-enterprise exchange is aggregates/permissioned only via GIEP foundations. Raw pooling is DENIED. CEO-sealed freight does not move. L4 remains false. Unconfigured providers remain UNAVAILABLE. 62L-AT Knowledge Discovery, 62L-AM Data Fabric, 62L-AO Supply Chain Network, and 62L-AL Edge Sync reports are WAITING_DATA on this parent.
