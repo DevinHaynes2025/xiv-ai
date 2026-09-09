@@ -56,11 +56,19 @@ export type {
 } from './runtime';
 
 export {
+  AGENT_MESH_RECONNECT_STAGES,
   auditSyncEvent,
+  detectSyncConflict,
+  listAgentMeshReconnectStages,
   listAgentMeshSyncStages,
   recoverFromCheckpoint,
+  resetSyncIdempotencyLedger,
   resolveConflict,
+  syncMayBypassGuardian,
   syncMayBypassServerAuth,
+  syncMayIgnoreRevocation,
   syncMaySkipAudit,
   synchronizeAgentMesh,
+  validateCheckpointForRecovery,
 } from './sync';
+export type { SyncReplayReceipt } from './sync';

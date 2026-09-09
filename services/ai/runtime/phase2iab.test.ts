@@ -14,7 +14,9 @@ import {
   createCheckpoint,
   createEventQueue,
   createHandoff,
+  detectSyncConflict,
   evaluateOfflineAction,
+  listAgentMeshReconnectStages,
   listAgentRuntimeModes,
   listOfflineForbiddenActions,
   offlineCreatesAuthority,
@@ -23,11 +25,15 @@ import {
   openCloudMemory,
   openLocalMemory,
   recoverFromCheckpoint,
+  resetSyncIdempotencyLedger,
   resolveConflict,
+  syncMayBypassGuardian,
   syncMayBypassServerAuth,
+  syncMayIgnoreRevocation,
   syncMaySkipAudit,
   synchronizeAgentMesh,
   transitionAgentMode,
+  validateCheckpointForRecovery,
 } from './agentmesh';
 import {
   applyPersonalization,
@@ -565,6 +571,151 @@ test('agent mesh: sync conflicts, recovery, audit completeness, cross-Universe i
   });
   assert.equal(audit.complete, true);
   assert.equal(audit.audited, true);
+});
+
+test('agent mesh V741 slice2: sync reconnect, revocation, stale checkpoint, idempotency', () => {
+  resetSyncIdempotencyLedger();
+  assert.equal(syncMayBypassGuardian(), false);
+  assert.equal(syncMayIgnoreRevocation(), false);
+  assert.ok(listAgentMeshReconnectStages().includes('REAUTH'));
+  assert.ok(listAgentMeshReconnectStages().includes('SERVER_AUTHORIZATION'));
+  assert.equal(listAgentMeshReconnectStages()[0], 'RECONNECT');
+
+  // Revocation-first
+  const revoked = synchronizeAgentMesh({
+    authenticated: true,
+    deviceValidated: true,
+    tenantValidated: true,
+    universeValidated: true,
+    conflictResolved: true,
+    serverAuthorized: true,
+    auditEnabled: true,
+    revoked: true,
+    syncId: 'sync-revoked',
+  });
+  assert.equal(revoked.allowed, false);
+  if (!revoked.allowed) {
+    assert.equal(revoked.reason, 'agent_revoked');
+    assert.equal(revoked.stage, 'RECONNECT');
+  }
+
+  // Conflict detection helpers
+  const tenantConflict = detectSyncConflict({
+    conflictId: 'dc1',
+    localTenantId: 't1',
+    serverTenantId: 't2',
+    localUniverseId: 'u1',
+    serverUniverseId: 'u1',
+  });
+  assert.equal(tenantConflict.conflict, true);
+  if (tenantConflict.conflict) {
+    assert.equal(tenantConflict.kind, 'TENANT_MISMATCH');
+  }
+
+  const staleDetect = detectSyncConflict({
+    conflictId: 'dc2',
+    localTenantId: 't1',
+    serverTenantId: 't1',
+    localUniverseId: 'u1',
+    serverUniverseId: 'u1',
+    localCheckpointVersion: 1,
+    serverCheckpointVersion: 3,
+  });
+  assert.equal(staleDetect.conflict, true);
+  if (staleDetect.conflict) {
+    assert.equal(staleDetect.kind, 'STALE_CHECKPOINT');
+  }
+
+  const staleResolved = resolveConflict({
+    conflictId: 'c-stale',
+    kind: 'STALE_CHECKPOINT',
+    localAuthorized: true,
+    serverAuthorized: true,
+  });
+  assert.equal(staleResolved.allowed, true);
+  if (staleResolved.allowed) {
+    assert.equal(staleResolved.conflict.resolution, 'DROP_UNAUTHORIZED');
+  }
+
+  // Stale checkpoint recovery rejected
+  const checkpoint = createCheckpoint({
+    checkpointId: 'cp-stale',
+    runtimeId: 'rt-1',
+    tenantId: 't1',
+    universeId: 'u1',
+    version: 1,
+  });
+  assert.equal(validateCheckpointForRecovery(checkpoint).valid, true);
+  const staleRecovery = recoverFromCheckpoint({
+    recoveryId: 'r-stale',
+    checkpoint,
+    guardianActive: true,
+    serverAuthorized: true,
+    serverMinVersion: 2,
+  });
+  assert.equal(staleRecovery.allowed, false);
+  if (!staleRecovery.allowed) {
+    assert.equal(staleRecovery.reason, 'stale_checkpoint_rejected');
+  }
+
+  // Tampered checkpoint integrity
+  const tampered = { ...checkpoint, integrityHash: 'cp-deadbeef' };
+  assert.equal(validateCheckpointForRecovery(tampered).valid, false);
+  const tamperedRecovery = recoverFromCheckpoint({
+    recoveryId: 'r-tamp',
+    checkpoint: tampered,
+    guardianActive: true,
+    serverAuthorized: true,
+  });
+  assert.equal(tamperedRecovery.allowed, false);
+
+  // Idempotent / replay-safe sync
+  const first = synchronizeAgentMesh({
+    authenticated: true,
+    deviceValidated: true,
+    tenantValidated: true,
+    universeValidated: true,
+    conflictResolved: true,
+    serverAuthorized: true,
+    auditEnabled: true,
+    syncId: 'sync-idem-1',
+  });
+  assert.equal(first.allowed, true);
+  if (first.allowed) {
+    assert.equal(first.receipt.applied, true);
+    assert.equal(first.receipt.duplicate, false);
+    assert.equal(first.receipt.idempotent, true);
+    assert.equal(first.receipt.replaySafe, true);
+  }
+  const replay = synchronizeAgentMesh({
+    authenticated: true,
+    deviceValidated: true,
+    tenantValidated: true,
+    universeValidated: true,
+    conflictResolved: true,
+    serverAuthorized: true,
+    auditEnabled: true,
+    syncId: 'sync-idem-1',
+  });
+  assert.equal(replay.allowed, true);
+  if (replay.allowed) {
+    assert.equal(replay.receipt.duplicate, true);
+    assert.equal(replay.receipt.applied, false);
+  }
+
+  // Audit completeness + Guardian not bypassed
+  const audit = auditSyncEvent({
+    eventId: 'ae-s2',
+    actor: 'a1',
+    tenantId: 't1',
+    universeId: 'u1',
+    action: 'RECONNECT_SYNC',
+    stage: 'AUDIT',
+  });
+  assert.equal(audit.complete, true);
+  assert.equal(audit.guardianBypassed, false);
+  assert.equal(agentMeshL4Enabled(), false);
+  assert.equal(offlineCreatesAuthority(), false);
 });
 
 test('connector fabric: required fields, permissions, rate limits, secret leakage', () => {
