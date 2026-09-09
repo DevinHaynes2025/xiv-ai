@@ -14,6 +14,7 @@ import {
   recoverInterruptedFactoryJobs,
   resumeFactoryJob,
   runFactoryCycle,
+  acceptAiVerifiedDiscovery,
   type FactoryStory,
 } from './software-factory-runtime';
 import {
@@ -284,6 +285,66 @@ try {
   }, root);
   check('US-AJ23', deniedStory.state === 'denied' && deniedStory.released === false, 'Unapproved stories never enter the factory cycle.');
 
+  const unverifiedFlag = await enqueueFactoryStory({
+    id: 'flag-only',
+    tenantId,
+    universeId,
+    title: 'Flag without AI payload',
+    objective: 'Must not skip 62L-AI promotion.',
+    approved: false,
+    verifiedDiscovery: true,
+  }, root);
+  check('US-AJ23', unverifiedFlag.state === 'denied', 'verifiedDiscovery flag without 62L-AI SUPPORTED payload is denied.');
+
+  const unreplicated = acceptAiVerifiedDiscovery({
+    summary: 'Unreplicated experiment',
+    promoted: false,
+    state: 'UNVERIFIED',
+    verifiedFact: false,
+    replicated: false,
+  });
+  const sealed = acceptAiVerifiedDiscovery({
+    summary: 'CEO sealed',
+    promoted: true,
+    state: 'SUPPORTED',
+    verifiedFact: false,
+    replicated: true,
+    sealed: { classification: 'ceo_sealed' },
+  });
+  const supported = acceptAiVerifiedDiscovery({
+    summary: 'Replicated local software finding',
+    promoted: true,
+    state: 'SUPPORTED',
+    verifiedFact: false,
+    replicated: true,
+  });
+  check('US-AJ23', unreplicated.accepted === false && sealed.accepted === false && supported.accepted === true, 'Factory accepts only 62L-AI SUPPORTED replicated discovery; CEO-sealed and unreplicated stay out.');
+
+  const discoveryCycle = await runFactoryCycle({
+    story: {
+      id: 'US-AJ23-discovery',
+      tenantId,
+      universeId,
+      title: 'Discovery-backed candidate',
+      objective: 'Build a sandbox candidate from a 62L-AI supported discovery.',
+      approved: false,
+      discovery: {
+        summary: 'Replicated local software finding',
+        promoted: true,
+        state: 'SUPPORTED',
+        verifiedFact: false,
+        replicated: true,
+      },
+      files: candidateFiles,
+      testsExpected: ['git_status'],
+      testRunner: alwaysPassRunner,
+      grantedPermissions: ['read_local_docs', 'write_sandbox_files', 'run_allowlisted_tests'],
+      pluginPermissions: ['read_local_docs', 'write_sandbox_files', 'run_allowlisted_tests'],
+    },
+    root,
+  });
+  check('US-AJ23', hopState(discoveryCycle, 'approved_story_or_verified_discovery') === 'PASS' && discoveryCycle.candidate?.released === false, '62L-AI supported discovery may enter the factory and still does not release.');
+
   const story: FactoryStory = {
     id: 'US-AJ-cycle',
     tenantId,
@@ -358,8 +419,9 @@ try {
 
   const health = await buildFactoryHealthReport({ tenantId, universeId, root: repoRoot });
   check('US-AJ30', health.honesty.l4AutonomyEnabled === false && health.honesty.founderImpersonation === false && health.honesty.inventedPass === false && health.honesty.tipLand === false, 'Health report honesty locks remain false.');
-  check('US-AJ30', health.predecessor.adMesh === 'PASS' && health.predecessor.acWorkcells === 'PASS', 'AD/AC predecessor reports are present on this child.');
-  check('US-AJ30', health.predecessor.aiResearchDirector === 'WAITING_DATA' && health.predecessor.ahCausalWorldModel === 'WAITING_DATA' && health.predecessor.agAgentSociety === 'WAITING_DATA' && health.predecessor.afUniverseKernel === 'WAITING_DATA', 'AI/AH/AG/AF reports are WAITING_DATA (not invented PASS).');
+  check('US-AJ30', health.predecessor.adMesh === 'PASS' && health.predecessor.acWorkcells === 'PASS' && health.predecessor.aiResearchDirector === 'PASS' && health.predecessor.aiModules === 'PASS', 'AD/AC/AI predecessor reports and AI modules are present on this child.');
+  check('US-AJ30', health.predecessor.ahCausalWorldModel === 'WAITING_DATA' && health.predecessor.agAgentSociety === 'WAITING_DATA' && health.predecessor.afUniverseKernel === 'WAITING_DATA', 'AH/AG/AF reports remain WAITING_DATA (not invented PASS).');
+  check('US-AJ30', health.researchDirector.l4AutonomyEnabled === false && health.researchDirector.canFabricateFounderApproval === false, 'Reused 62L-AI Research Director cannot fabricate founder approval; L4=false.');
   check('US-AJ16', health.localModel.availability === 'UNAVAILABLE' || health.localModel.availability === 'PASS', `Health localModel=${health.localModel.availability}; unconfigured stays UNAVAILABLE.`);
   check('US-AJ30', health.next.startsWith('62L-AK'), 'NEXT title is 62L-AK only.');
   check('US-AJ29', health.released === 0, 'Health report does not invent released artifacts on the repo root store.');

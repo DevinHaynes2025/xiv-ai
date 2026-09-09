@@ -4,6 +4,7 @@ import { verifySecurity } from './security-verifier';
 import { runTestingAgent, type TestingAgentRunner } from './testing-agent';
 import { readApprovedContext } from './context-vault';
 import { decisionGate } from './decision-gate';
+import { refuseSealedReplication } from './research-authority';
 import type { AllowedLocalCommand } from './local-command-runner';
 import type { ProtectedSandbox } from './software-factory-sandbox';
 
@@ -32,6 +33,47 @@ export type ApiContract = {
   published: false;
   productionEndpoint: false;
 };
+
+export type FactoryDiscoveryIntake = {
+  summary: string;
+  promoted: boolean;
+  state: 'SUPPORTED' | 'UNVERIFIED' | 'REVIEW_REQUIRED';
+  verifiedFact: false;
+  replicated: boolean;
+  sealed?: unknown;
+};
+
+export function acceptAiVerifiedDiscovery(input: FactoryDiscoveryIntake) {
+  const sealed = refuseSealedReplication(input.sealed ?? {});
+  if (!sealed.allowed) {
+    return {
+      accepted: false as const,
+      reason: sealed.reason,
+      source: 'verified_discovery' as const,
+      ceoSealedNonReplicating: true as const,
+    };
+  }
+  if (input.verifiedFact) {
+    return {
+      accepted: false as const,
+      reason: 'Factory refuses invented VERIFIED_FACT. 62L-AI never assigns verified fact.',
+      source: 'verified_discovery' as const,
+    };
+  }
+  if (!input.promoted || input.state !== 'SUPPORTED' || !input.replicated) {
+    return {
+      accepted: false as const,
+      reason: 'Discovery is not independently replicated and promoted by 62L-AI. Factory input DENIED.',
+      source: 'verified_discovery' as const,
+    };
+  }
+  return {
+    accepted: true as const,
+    source: 'verified_discovery' as const,
+    reason: '62L-AI supported local discovery may enter the factory as a build-candidate input only. Not a release.',
+    productionAuthorization: false as const,
+  };
+}
 
 export function deriveRequirements(input: {
   storyId: string;

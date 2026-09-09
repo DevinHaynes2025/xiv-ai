@@ -9,7 +9,9 @@ import { appendLearning } from './learning-ledger';
 import { localModelStatus } from './local-model';
 import { providerSlots } from './provider-fabric';
 import { cortexId, readJsonFile, writeJsonFileAtomic, xivLocalPath } from './cortex-store';
-import { deriveRequirements, generateAgentCode, recordArchitecture, reviewApiContract, reviewApiUi, reviewSecurityCandidate, runEngineeringWorkcell, runTestFirstAcceptance } from './software-factory-engineering';
+import { createResearchDirector } from './research-director';
+import { gateResearchAction } from './research-authority';
+import { deriveRequirements, generateAgentCode, recordArchitecture, reviewApiContract, reviewApiUi, reviewSecurityCandidate, runEngineeringWorkcell, runTestFirstAcceptance, acceptAiVerifiedDiscovery, type FactoryDiscoveryIntake } from './software-factory-engineering';
 import { executePluginInSandbox, generateInternalTool, parsePluginManifest, registerGovernedPlugin, type PluginPermission } from './software-factory-plugins';
 import { applyMigrationCandidate, businessAppTemplate, compatibilityMatrix, createConnectorCandidate, createModelAdapter, desktopCandidateProfile, humanReleaseGate, mobileCandidateProfile, packageReleaseCandidate, proposeMigrationCandidate, quarantineVulnerability } from './software-factory-candidates';
 import { evaluateSandboxIsolation, openProtectedSourceSandbox, runFactoryAllowlistedCommand, writeSandboxCandidateFile } from './software-factory-sandbox';
@@ -28,6 +30,7 @@ import type { AllowedLocalCommand } from './local-command-runner';
 import type { TestingAgentRunner } from './testing-agent';
 
 export { FACTORY_CYCLE, FACTORY_HONESTY, FactorySimulatedCrash };
+export type { FactoryDiscoveryIntake };
 
 export type FactoryStory = {
   id: string;
@@ -37,6 +40,7 @@ export type FactoryStory = {
   objective: string;
   approved: boolean;
   verifiedDiscovery?: boolean;
+  discovery?: FactoryDiscoveryIntake;
   contextPath?: string;
   branch?: string;
   files?: PatchFileChange[];
@@ -82,6 +86,24 @@ function storePath(root: string) {
   return xivLocalPath(root, 'software-factory.json');
 }
 
+function factoryIntake(story: FactoryStory) {
+  if (story.approved) {
+    return { admitted: true as const, reason: 'Approved story accepted.', source: 'approved_story' as const };
+  }
+  if (story.discovery) {
+    const discovery = acceptAiVerifiedDiscovery(story.discovery);
+    return { admitted: discovery.accepted, reason: discovery.reason, source: 'verified_discovery' as const };
+  }
+  if (story.verifiedDiscovery) {
+    return {
+      admitted: false as const,
+      reason: 'verifiedDiscovery=true without a 62L-AI SUPPORTED promotion payload is not factory input.',
+      source: 'verified_discovery' as const,
+    };
+  }
+  return { admitted: false as const, reason: 'Story is neither approved nor a 62L-AI verified discovery.', source: 'approved_story' as const };
+}
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -111,6 +133,7 @@ function record(hop: FactoryHop, state: FactoryEvidenceState, summary: string): 
 
 export async function enqueueFactoryStory(story: FactoryStory, root = process.cwd()) {
   const state = await readJsonFile(storePath(root), EMPTY);
+  const intake = factoryIntake(story);
   const job: FactoryJob = {
     id: cortexId('factory'),
     storyId: story.id,
@@ -118,11 +141,11 @@ export async function enqueueFactoryStory(story: FactoryStory, root = process.cw
     universeId: story.universeId,
     title: story.title,
     objective: story.objective,
-    state: story.approved || story.verifiedDiscovery ? 'queued' : 'denied',
+    state: intake.admitted ? 'queued' : 'denied',
     completedHops: [],
-    hopRecords: story.approved || story.verifiedDiscovery
+    hopRecords: intake.admitted
       ? []
-      : [record('approved_story_or_verified_discovery', 'DENIED', 'Story is neither approved nor a verified discovery.')],
+      : [record('approved_story_or_verified_discovery', 'DENIED', intake.reason)],
     candidate: null,
     released: false,
     productionDeployed: false,
@@ -195,12 +218,13 @@ export async function runFactoryCycle(input: {
 
   try {
     if (!skip('approved_story_or_verified_discovery')) {
-      if (!story.approved && !story.verifiedDiscovery) {
+      const intake = factoryIntake(story);
+      if (!intake.admitted) {
         job.state = 'denied';
-        await finishHop('approved_story_or_verified_discovery', 'DENIED', 'Unapproved work is not a factory input.');
+        await finishHop('approved_story_or_verified_discovery', 'DENIED', intake.reason);
         return job;
       }
-      await finishHop('approved_story_or_verified_discovery', 'PASS', story.approved ? 'Approved story accepted.' : 'Verified discovery accepted as factory input.');
+      await finishHop('approved_story_or_verified_discovery', 'PASS', intake.reason);
     }
 
     if (!skip('requirements')) {
@@ -417,6 +441,7 @@ export async function runFactoryCycle(input: {
 
     if (!skip('human_release_gate')) {
       const gate = humanReleaseGate({ artifact: packed.artifact, deploy: true });
+      const research = gateResearchAction({ action: 'production_deploy', deploy: true, production: true });
       const decision = decisionGate({
         id: job.id,
         action: 'production_deploy',
@@ -430,7 +455,7 @@ export async function runFactoryCycle(input: {
       await finishHop(
         'human_release_gate',
         'DENIED',
-        `${gate.reason}. decisionGate.executableByAgent=${decision.executableByAgent}.`,
+        `${gate.reason}. researchAuthority.allowed=${research.allowed}. decisionGate.executableByAgent=${decision.executableByAgent}.`,
       );
     }
 
@@ -515,6 +540,7 @@ export async function buildFactoryHealthReport(input: {
   const predecessorFile = (relative: string): FactoryEvidenceState =>
     existsSync(join(repoRoot, relative)) ? 'PASS' : 'WAITING_DATA';
 
+  const director = createResearchDirector({ tenantId: input.tenantId, universeId: input.universeId });
   return {
     generatedAt: new Date().toISOString(),
     tenantId: input.tenantId,
@@ -523,6 +549,12 @@ export async function buildFactoryHealthReport(input: {
     jobs: jobs.length,
     completed: jobs.filter((item) => item.state === 'completed').length,
     released: jobs.filter((item) => item.released).length,
+    researchDirector: {
+      id: director.id,
+      l4AutonomyEnabled: director.l4AutonomyEnabled,
+      canFabricateFounderApproval: director.canFabricateFounderApproval,
+      productionAuthorization: director.productionAuthorization,
+    },
     localModel: {
       availability: model.availability === 'AVAILABLE' ? 'PASS' : 'UNAVAILABLE',
       reason: model.reason,
@@ -536,10 +568,11 @@ export async function buildFactoryHealthReport(input: {
       adMesh: predecessorFile('docs/operations/62L_AD_DISTRIBUTED_OFFLINE_AGENT_MESH_REPORT.md'),
       acWorkcells: predecessorFile('docs/operations/62L_AC_OFFLINE_AGENT_RUNTIME_WORKCELLS_REPORT.md'),
       aiResearchDirector: predecessorFile('docs/operations/62L_AI_AUTONOMOUS_RESEARCH_DIRECTOR_REPORT.md'),
-      ahCausalWorldModel: predecessorFile('docs/operations/62L_AH_CAUSAL_WORLD_MODEL_REPORT.md'),
+      ahCausalWorldModel: predecessorFile('docs/operations/62L_AH_CAUSAL_WORLD_MODEL_DIGITAL_TWINS_REPORT.md'),
       agAgentSociety: predecessorFile('docs/operations/62L_AG_PERSISTENT_OFFLINE_AGENT_SOCIETY_REPORT.md'),
       afUniverseKernel: predecessorFile('docs/operations/62L_AF_UNIVERSE_KERNEL_REPORT.md'),
       jSoftwareFactoryDocs: predecessorFile('docs/architecture/xiv-2i-ai-62j-self-improvement-lab-governed-software-factory.md'),
+      aiModules: existsSync(join(repoRoot, 'services/ai/local-brain/research-director.ts')) ? 'PASS' : 'WAITING_DATA',
     },
     honesty: {
       ...FACTORY_HONESTY,
@@ -561,6 +594,7 @@ export {
   generateAgentCode,
   generateInternalTool,
   humanReleaseGate,
+  acceptAiVerifiedDiscovery,
   mobileCandidateProfile,
   openProtectedSourceSandbox,
   packageReleaseCandidate,
