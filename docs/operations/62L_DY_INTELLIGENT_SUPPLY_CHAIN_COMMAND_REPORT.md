@@ -7,7 +7,7 @@ Branch: `cursor/62l-dy-intelligent-supply-chain-command-4059`
 Parent / base tip: `cursor/62l-dv-universal-data-industry-cortex-4059` @ `fa009375b9183eb074b52b67eb58b59f28eb4128` + `docs/operations/62L_DV_UNIVERSAL_DATA_INDUSTRY_CORTEX_REPORT.md` (**PRESENT**)
 Why this base: Preference **DX → DW → DV → DU → DT**. Origin `cursor/62l-dx-*` / `cursor/62l-dw-*` **absent**. Soft-wire: `62L_DX_*` **WAITING_DATA** (partial untracked DX tip files may appear on disk; report **MISSING** until committed); `62L_DW_*` **WAITING_DATA**; `62L_DV_*` **PRESENT**; `62L_DU_*` / `62L_DT_*` **PRESENT** (ancestors). No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: feat `b30eba2abf84aad3d9596710c88e32e617e7e1c8`; docs pin `9067623abdf52e56b1ecfd4ff210e96abe9637a6`
-Tip SHA: `9067623abdf52e56b1ecfd4ff210e96abe9637a6`
+Tip SHA: `dad0f5863b26bf76ca0a644984bb1ba0a42ece46`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
