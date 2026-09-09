@@ -5,9 +5,9 @@
 **Date:** 2026-09-09  
 **Story:** GitHub #170 / 62L-EX Offline Quantum-Inspired Agent Brain (child: EX14) under Global Operations Brain  
 **Branch:** `cursor/62l-ex14-offline-quantum-research-pack-4059`  
-**Branch tip SHA:** `66272b3183c6a9b279b83153fbb2f16fd0d5bf86` (prefer `git rev-parse HEAD`)  
-**Feat SHA:** `834661be47e5c762f6660c744dc6b93a4be090b5`  
-**Base:** authorized GitHub `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
+**Branch tip SHA:** (see latest commit; prefer `git rev-parse HEAD`)  
+**Feat SHA:** `2a541c0a` (rebased onto EX13 tip; original pre-rebase feat `834661be`)  
+**Base:** EX13 tip `cursor/62l-ex13-quantum-pathway-plasticity-4059` @ `ba31c28a…` (descendant of GitHub `origin/xiv-v2` @ `60986682…`)  
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened; no force-push; no illicit ingest; no dark-web public index; no credential harvest; no Guardian/RLS weaken; no hidden CoT; no fabricated provenance; no unsupported quantum/SI claims
 
@@ -21,11 +21,11 @@
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (lags GitHub; no invented GitLab issue #) |
 | TREE | LOCAL≠GITHUB tip; GITHUB tip authorized; GITLAB lags |
-| EX13 tip on origin | **ABSENT** (`cursor/62l-ex13-quantum-pathway-plasticity-4059` not pushed) |
-| EX13 local ref | points at xiv-v2 only (no feat commits) — soft-wire WAITING_DATA / sibling probe only |
-| Base decision | **origin/xiv-v2** (EX13 not pushed / not a descendant tip with modules) |
+| EX13 tip on origin | **PRESENT** @ `ba31c28ae8e128fdd88db3fdd2640815261d1a8f` (descends xiv-v2) |
+| EX13 soft-base | **YES** — EX14 rebased onto EX13 tip after push appearance (safe; no tip-land) |
+| Base decision | **EX13 tip** (authorized soft-base); ancestor = GitHub `origin/xiv-v2` |
 | Worktree | `/workspace/.wt-ex14` isolated (parent workspace dirty) |
-| STOP on divergence? | **NO** — authorized base = GitHub xiv-v2; soft-wire EX1–EX13 |
+| STOP on divergence? | **NO** — EX13+EX14 sibling stack; soft-wire honesty retained |
 
 ---
 
@@ -67,9 +67,8 @@ Authorized Source → Rights Check → Provenance → Parse/Normalize → Dedupl
 
 ### Soft-wired (not copied / not a second framework)
 
-- EX1–EX13 quantum modules via `existsSync` — absent → WAITING_DATA
+- EX13 lifecycle/plasticity (`runtime/lifecycle/*`) soft-wired PRESENT_UNVERIFIED on this tip after soft-base; presence ≠ VERIFIED
 - Agent Mesh / knowledge / feedback / audit / guardian / persistence — PRESENT_UNVERIFIED on tip where present
-- EX13 lifecycle/feedback: integrate if modules appear; do not block forever
 - Guardian — present; **unchanged** (no RLS/schema mutation)
 - DB candidates: **NOT_APPLIED**
 

@@ -696,11 +696,16 @@ export function auditEx14SoftWires(): SoftWireSnapshot {
     ),
     ex13PathwayPlasticity: firstExisting(
       [
+        // EX13 tip places plasticity under runtime/lifecycle (not a second framework).
+        join(AI_ROOT, 'runtime', 'lifecycle', 'plasticity-bridge.ts'),
+        join(AI_ROOT, 'runtime', 'lifecycle', 'feedback.ts'),
+        join(AI_ROOT, 'runtime', 'lifecycle', 'index.ts'),
         join(quantum, 'pathway-plasticity.ts'),
         join(quantum, 'plasticity.ts'),
         join(quantum, 'lifecycle-feedback.ts'),
+        '/tmp/62l-ex13-work/services/ai/runtime/lifecycle/plasticity-bridge.ts',
         '/tmp/62l-ex13-work/services/ai/runtime/quantum/pathway-plasticity.ts',
-        join(WORKSPACE_PARENT, '.wt-ex13', 'services', 'ai', 'runtime', 'quantum', 'pathway-plasticity.ts'),
+        join(WORKSPACE_PARENT, '.wt-ex13', 'services', 'ai', 'runtime', 'lifecycle', 'plasticity-bridge.ts'),
         // EQ15 plasticity is a related soft-wire candidate only — still ≠ EX13 VERIFIED.
         join(AI_ROOT, 'local-brain', 'pathway-plasticity.ts'),
         join(WORKSPACE_PARENT, 'services', 'ai', 'local-brain', 'pathway-plasticity.ts'),
