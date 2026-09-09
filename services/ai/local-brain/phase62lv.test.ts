@@ -295,8 +295,8 @@ try {
     testCommands: ['git_diff_check'],
     runner,
   });
-  check('US-V-pipeline', story.pipeline.join(' → ') === GLOBAL_BRAIN_PIPELINE.join(' → ') && story.productionAuthorization === false && story.founderApprovalFabricated === false && story.decision.kind === 'SIMULATED_RECOMMENDATION' && story.twin.authority === 'SIMULATED_ONLY', 'Orchestrator preserves Founder → Twin → Highway → … → Next Story without fabricated approval.');
-  check('US-V-pipeline-status', story.civilization.productionAuthorization === false && story.cloud.cloud === 'UNAVAILABLE' && story.population.runningProgramsAreNotTrillions, 'Pipeline keeps providers honest and population sparse.');
+  check('US-V-pipeline', story.status !== 'DENIED' && 'decision' in story && story.pipeline.join(' → ') === GLOBAL_BRAIN_PIPELINE.join(' → ') && story.productionAuthorization === false && story.founderApprovalFabricated === false && story.decision.kind === 'SIMULATED_RECOMMENDATION' && story.twin.authority === 'SIMULATED_ONLY', 'Orchestrator preserves Founder → Twin → Highway → … → Next Story without fabricated approval.');
+  check('US-V-pipeline-status', story.status !== 'DENIED' && 'civilization' in story && story.civilization.productionAuthorization === false && story.cloud.cloud === 'UNAVAILABLE' && story.population.runningProgramsAreNotTrillions, 'Pipeline keeps providers honest and population sparse.');
 
   const fabricateStory = twinAct({ twin: story.twin, action: 'approve as founder the production cut', kind: 'fabricate_founder_approval' });
   check('US-V-no-fake-approval', fabricateStory.allowed === false, 'Pipeline twin still cannot fabricate founder approval.');

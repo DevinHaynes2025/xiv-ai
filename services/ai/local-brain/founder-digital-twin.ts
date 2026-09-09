@@ -57,7 +57,9 @@ const twins = new Map<string, FounderDigitalTwin>();
 
 function isForbidden(kind: TwinActInput['kind'], action: string, impersonate?: boolean): TwinForbiddenAction | null {
   if (impersonate) return 'impersonate_founder_external';
-  if (kind && (TWIN_FORBIDDEN_ACTIONS as readonly string[]).includes(kind)) return kind;
+  if (kind && (TWIN_FORBIDDEN_ACTIONS as readonly string[]).includes(kind)) {
+    return kind as TwinForbiddenAction;
+  }
   const needle = action.toLowerCase();
   if (/\b(approve as founder|fabricate.{0,12}approval|forged approval)\b/.test(needle)) return 'fabricate_founder_approval';
   if (/\b(sign(s|ed|ing)? (the )?contract|execute the agreement)\b/.test(needle)) return 'sign_contract';
