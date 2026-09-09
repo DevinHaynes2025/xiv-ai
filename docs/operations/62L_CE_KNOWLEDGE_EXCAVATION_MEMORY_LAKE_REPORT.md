@@ -6,8 +6,8 @@ Date: 2026-09-09
 Branch: `cursor/62l-ce-knowledge-excavation-memory-lake-4059`
 Parent / base tip: `cursor/62l-cd-data-root-local-llm-archive-mesh-4059` @ `3f5156d` (includes `62L_CD_DATA_ROOT_LOCAL_LLM_ARCHIVE_MESH_REPORT.md`)
 Why this base: Preferred **62L-CD** tip + report initially **WAITING_DATA** (fetch-with-backoff). Scaffolded from **BZ** @ `ff72b947ee513694531c5fd4fa36c8e3447f2232` while CD landing; then **rebased onto CD** `@3f5156d` once tip + report **PRESENT** on origin (CC/CB/CA remained WAITING_DATA). Preference **CD → CC → CB → CA → BZ → …** selects **CD**.
-Implementation SHAs: `c7644ae`..`a9cffb1` (feat/fix/docs; see `git log`)
-Tip SHA: `ea7b0b6e210633668c9e623d56425db9c54ebe96`
+Implementation SHAs: `c7644ae`..`3cda9ef` (feat/fix/docs; see `git log`)
+Tip SHA: `3cda9ef0fd7617cff29bce329f92c34861491b2e`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
