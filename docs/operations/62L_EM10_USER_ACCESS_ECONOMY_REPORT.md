@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em10-user-access-economy-4059`  
-Tip SHA: `add1f63500a98961afb75c3f61d210ec14c01048`  
+Tip SHA: `a24a11bc46a1a0ae0a9360867d936087f4504ff6`  
 Base: `#157` `cursor/62l-em-agent-compute-home-base-4059` @ `b1040f4124802f73fe3545f6a5e9f9da8337ce0c`  
 Preferred predecessor `cursor/62l-em9-*`: **branch exists** (`cursor/62l-em9-compute-resource-market-simulator-4059`) but **no unique EM9 deliverables** beyond EM3 tip `84cd6f3` — treated as not-landed; soft-wire optional; fall-through to #157 home-base tip  
 Tip-land onto `xiv-v2` / `main`: **NO**  
