@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo5-quantum-evidence-boundary-4059`  
-Tip SHA: `(pending commit)`  
-Implementation SHA (feat): `(pending commit)`  
+Tip SHA: `bdbe76239f05313feb3cf1e1cfa230f467cd84a1`  
+Implementation SHA (feat): `bdbe76239f05313feb3cf1e1cfa230f467cd84a1`  
 Base: `cursor/62l-eo4-ai-quantum-capability-matrix-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (preferred predecessor; EO4 matrix files **WAITING_DATA** on tip — soft-wire only)  
 Fallback chain considered: EO4 → EO3 → EO2 → EO1 → EO(#159)  
 SoT: **62L-EO5** Quantum Evidence Boundary (park-and-implement child of Government Quantum/AI Mission OS)  
@@ -114,10 +114,21 @@ Blocked examples: “quantum advantage achieved”, “quantum supremacy”, fau
 
 ## Test evidence
 
+Executed on child branch (do not mark PASS without running):
+
 ```text
-(command output recorded after execution — see commit follow-up)
-npm run test:62leo5
+$ npm run test:62leo5
+
+> @xiv/ai@0.0.1 test:62leo5
+> node --import tsx --test local-brain/phase62leo5.test.ts
+
+# tests 12
+# pass 12
+# fail 0
+# duration_ms ~191
 ```
+
+Coverage: evidence taxonomy; artifact contract; classical baseline gate; proposal language gate (block “quantum advantage achieved”); fabrication denies (QPU access / fault-tolerance / supremacy / advantage / clearance / certification / classified / agency endorsement); sandbox + procurement + human contract gates; L4=false; EO4 soft-wire probe; bootstrap → EO6.
 
 ## Next (do not implement)
 
@@ -128,9 +139,9 @@ npm run test:62leo5
 | Field | Value |
 |---|---|
 | Branch | `cursor/62l-eo5-quantum-evidence-boundary-4059` |
-| Tip SHA | `(pending)` |
+| Tip SHA | `bdbe76239f05313feb3cf1e1cfa230f467cd84a1` (feat; docs tip refreshed after this commit) |
 | Base | EO4 @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` |
 | Report | `docs/operations/62L_EO5_QUANTUM_EVIDENCE_BOUNDARY_REPORT.md` |
-| Tests | `npm run test:62leo5` |
+| Tests | `npm run test:62leo5` — **12/12 PASS** |
 | Next | EO6 — Classical Baseline Requirement |
 | PR | **NO** |
