@@ -14,11 +14,11 @@ Date: 2026-09-09
 | Field | Value |
 | --- | --- |
 | Preferred EM2 | `cursor/62l-em2-*` — **ABSENT** at implement time |
-| Preferred EM1 | `cursor/62l-em1-agent-home-base-contract-4059` present as branch name but tip still EL9 (no EM1 commits landed yet) |
+| Preferred EM1 | `cursor/62l-em1-agent-home-base-contract-4059` — at EM3 base-selection time tip was still EL9; EM1 later landed on remote (`b963ca8…`) after EM3 branched |
 | Home-base #157 | `cursor/62l-em-agent-compute-home-base-4059` — also at EL9 tip (parallel agent still running) |
 | Effective base | EL9 `c834e5242ba1a2b04e6126babbbaf695133178b1` |
 | Working branch | `cursor/62l-em3-universal-compute-registry-4059` |
-| EM3 tip SHA | `ce2bb5a1748b38e4f8e9a5be4c51d78780b2dbe6` |
+| EM3 implement SHA | `13a5b6f348cba29343c282eb7406f4fa36e98b62` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
@@ -87,7 +87,7 @@ cd services/ai && npm run test:62lem3
 | Founder ASUS live node registry | **NOT_TESTED** |
 | Live AMD/NVIDIA/Intel/Apple acceleration | **NOT_TESTED** |
 | Authorized cloud capacity live | **NOT_TESTED** |
-| EM1 / EM2 landed predecessor content | **ABSENT / not yet committed** (EM2 absent; EM1 tip=EL9) |
+| EM1 / EM2 predecessor at EM3 base time | **EM2 ABSENT**; EM1 branch name present but tip=EL9 — EM3 based on EL9. EM1 later landed separately. |
 | Production authorization / tip-land / PR | **false** / not created |
 
 ## Next (do not implement here)
