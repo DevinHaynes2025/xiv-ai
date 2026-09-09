@@ -149,6 +149,10 @@ create table if not exists public.evidence_records (
 
   evidence_location text not null,
   evidence_hash text not null,
+  -- The command that regenerates the artifact. Section 35 separates an
+  -- automated result from system-generated verified evidence partly on whether
+  -- a third party can run it again, so it is a column rather than a note.
+  reproduction_command text null,
 
   primary_owner uuid not null references auth.users (id) on delete restrict,
   reviewer uuid null references auth.users (id) on delete set null,
@@ -539,6 +543,101 @@ create trigger evidence_records_secret_scan
   for each row execute function public.xiv_evidence_rejects_secrets();
 
 -- ---------------------------------------------------------------------------
+-- Evidence levels are earned, not claimed (section 35)
+-- ---------------------------------------------------------------------------
+--
+-- Saying "this is E4" is itself an E0 claim, so the level a row may carry is
+-- checked against what the row actually has. E4 in particular can never be
+-- written: it requires an independent reviewer, who by definition has not
+-- looked at the artifact at the moment it is inserted. A record reaches E4 by
+-- being verified, which is what xiv_evidence_effective_level computes below.
+
+create or replace function public.xiv_evidence_level_is_earned()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.evidence_level = 'E4' then
+    raise exception 'xiv_evidence_level_overclaimed' using errcode = 'check_violation',
+      detail = 'E4 is earned by independent verification and cannot be written directly';
+  end if;
+
+  if new.evidence_level in ('E2', 'E3', 'E4') and length(coalesce(new.commit_sha, '')) < 7 then
+    raise exception 'xiv_evidence_level_overclaimed' using errcode = 'check_violation',
+      detail = 'an automated result must identify the exact source revision';
+  end if;
+
+  if new.evidence_level = 'E3' then
+    if new.executor_type not in ('ci', 'database', 'runtime') then
+      raise exception 'xiv_evidence_level_overclaimed' using errcode = 'check_violation',
+        detail = 'E3 requires a system-generated artifact, not an agent or human account of one';
+    end if;
+    if coalesce(new.artifact_hash, new.evidence_hash, '') = '' then
+      raise exception 'xiv_evidence_level_overclaimed' using errcode = 'check_violation',
+        detail = 'E3 requires a hashed artifact';
+    end if;
+    if coalesce(btrim(new.reproduction_command), '') = '' then
+      raise exception 'xiv_evidence_level_overclaimed' using errcode = 'check_violation',
+        detail = 'E3 requires a command a third party can re-run';
+    end if;
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists evidence_records_level_earned on public.evidence_records;
+create trigger evidence_records_level_earned
+  before insert or update on public.evidence_records
+  for each row execute function public.xiv_evidence_level_is_earned();
+
+-- The level a record has actually reached, which is its stored level plus the
+-- step that only somebody else can grant.
+create or replace function public.xiv_evidence_effective_level(record_id uuid)
+returns text
+language plpgsql
+stable
+security invoker
+set search_path = public
+as $$
+declare
+  rec public.evidence_records;
+  blockers integer;
+begin
+  select * into rec from public.evidence_records e where e.id = record_id;
+  if rec.id is null then
+    return 'E0';
+  end if;
+  if rec.evidence_level <> 'E3' then
+    return rec.evidence_level;
+  end if;
+
+  select count(*) into blockers
+  from public.evidence_failures f
+  where f.gate_id = rec.gate_id
+    and f.closed_at is null
+    and f.severity in ('high', 'critical');
+
+  if blockers > 0 then
+    return 'E3';
+  end if;
+
+  if exists (
+    select 1 from public.evidence_verifications v
+    where v.evidence_id = rec.id
+      and v.verdict = 'satisfies'
+      and v.checked_commit_sha = rec.commit_sha
+  ) then
+    return 'E4';
+  end if;
+
+  return 'E3';
+end;
+$$;
+
+-- ---------------------------------------------------------------------------
 -- Separation of duties (section 36)
 -- ---------------------------------------------------------------------------
 --
@@ -799,7 +898,7 @@ begin
     return 'UNASSIGNED';
   end if;
 
-  select count(*), coalesce(max(array_position(level_order, e.evidence_level)), 0)
+  select count(*), coalesce(max(array_position(level_order, public.xiv_evidence_effective_level(e.id))), 0)
     into fresh_count, best_rank
   from public.evidence_records e
   where e.gate_id = gate.id
@@ -925,6 +1024,7 @@ grant select, insert on table public.evidence_revalidations to authenticated;
 grant select, insert on table public.evidence_manifests to authenticated;
 
 grant execute on function public.xiv_evidence_freshness(uuid) to authenticated;
+grant execute on function public.xiv_evidence_effective_level(uuid) to authenticated;
 grant execute on function public.xiv_gate_state(uuid, text) to authenticated;
 
 drop policy if exists release_gates_select_member on public.release_gates;
