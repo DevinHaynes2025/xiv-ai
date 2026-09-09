@@ -1,5 +1,5 @@
-import { readFile, stat } from 'node:fs/promises';
-import { resolve, relative } from 'node:path';
+import { readFile, realpath, stat } from 'node:fs/promises';
+import { isAbsolute, relative, resolve, sep } from 'node:path';
 
 export type ContextRecord = {
   path: string;
@@ -14,13 +14,24 @@ const DENIED_SEGMENTS = ['.env', '.git', 'node_modules', '.xiv-local'];
 
 function inside(root: string, target: string) {
   const rel = relative(root, target);
-  return rel !== '..' && !rel.startsWith(`..${process.platform === 'win32' ? '\\' : '/'}`) && !resolve(rel).startsWith('..');
+  return rel === '' || (!rel.startsWith(`..${sep}`) && rel !== '..' && !isAbsolute(rel));
 }
 
 export async function readApprovedContext(repoRoot: string, requestedPath: string): Promise<ContextRecord> {
-  const root = resolve(repoRoot);
-  const target = resolve(root, requestedPath);
-  if (!inside(root, target)) throw new Error('CONTEXT_PATH_OUTSIDE_REPO');
+  const resolvedRoot = resolve(repoRoot);
+  const resolvedTarget = resolve(resolvedRoot, requestedPath);
+  if (!inside(resolvedRoot, resolvedTarget)) throw new Error('CONTEXT_PATH_OUTSIDE_REPO');
+
+  const requestedNormalized = relative(resolvedRoot, resolvedTarget).replaceAll('\\', '/');
+  if (DENIED_SEGMENTS.some((segment) => requestedNormalized.split('/').includes(segment) || requestedNormalized === segment)) {
+    throw new Error('CONTEXT_PATH_DENIED');
+  }
+
+  // Resolve filesystem links after the lexical containment check. A symlink inside
+  // the repo must never be able to expose a file outside the approved repository.
+  const root = await realpath(resolvedRoot);
+  const target = await realpath(resolvedTarget);
+  if (!inside(root, target)) throw new Error('CONTEXT_SYMLINK_OUTSIDE_REPO');
 
   const normalized = relative(root, target).replaceAll('\\', '/');
   if (DENIED_SEGMENTS.some((segment) => normalized.split('/').includes(segment) || normalized === segment)) {
