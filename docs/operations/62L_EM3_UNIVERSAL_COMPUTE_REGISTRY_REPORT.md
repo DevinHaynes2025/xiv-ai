@@ -18,6 +18,7 @@ Date: 2026-09-09
 | Home-base #157 | `cursor/62l-em-agent-compute-home-base-4059` — also at EL9 tip (parallel agent still running) |
 | Effective base | EL9 `c834e5242ba1a2b04e6126babbbaf695133178b1` |
 | Working branch | `cursor/62l-em3-universal-compute-registry-4059` |
+| EM3 tip SHA | `ce2bb5a1748b38e4f8e9a5be4c51d78780b2dbe6` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
