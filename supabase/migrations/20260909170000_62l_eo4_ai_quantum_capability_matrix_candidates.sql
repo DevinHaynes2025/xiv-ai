@@ -1,0 +1,38 @@
+-- 62L-EO4 AI & Quantum Capability Matrix — CANDIDATE schema only.
+-- Status: NOT_APPLIED. Do not run against production.
+-- Honesty: DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- L4_AUTONOMY_ENABLED=false. No tip-land / PR from this phase.
+
+-- Candidate table for capability matrix rows (parked; not applied).
+-- CREATE TABLE IF NOT EXISTS eo4_ai_quantum_capability_matrix (
+--   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   org_id uuid NOT NULL,
+--   tenant_id uuid NOT NULL,
+--   universe_id uuid NOT NULL,
+--   requirement_id text NOT NULL,
+--   capability_name text NOT NULL,
+--   xiv_module_service text NOT NULL,
+--   evidence_state text NOT NULL CHECK (evidence_state IN ('VERIFIED','SUPPORTED','CANDIDATE','NOT_AVAILABLE')),
+--   hardware_runtime_dependency text,
+--   benchmark_test_evidence text,
+--   classical_baseline text,
+--   security_compliance_dependencies text,
+--   staffing_partner_dependency text,
+--   data_requirements text,
+--   known_limitations text,
+--   prototype_readiness text,
+--   production_readiness text,
+--   evidence_owner text,
+--   last_verified_date timestamptz,
+--   quantum_evidence_state text CHECK (
+--     quantum_evidence_state IS NULL OR quantum_evidence_state IN (
+--       'PHYSICAL_QPU_VERIFIED','SIMULATED','QUANTUM_INSPIRED','THEORETICAL'
+--     )
+--   ),
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+--
+-- RLS / Guardian / tenant / Universe policies: UNCHANGED — do not alter here.
+-- AUTO_SUBMISSION remains denied at application layer.
+
+SELECT '62l_eo4_ai_quantum_capability_matrix_candidates_NOT_APPLIED' AS status;
