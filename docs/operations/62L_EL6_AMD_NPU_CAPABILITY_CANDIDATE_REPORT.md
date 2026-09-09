@@ -1,7 +1,7 @@
 # 62L-EL6 — AMD NPU Capability Candidate Report
 
 **Branch:** `cursor/62l-el6-amd-npu-capability-candidate-4059`  
-**Tip SHA:** `2662193065de4e6100d62ead2dccfd9be9793c23`  
+**Tip SHA:** (see branch HEAD after this docs pin commit)  
 **Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `32bcbc36542742e17a32cd7f1075eb1801eb222c` (final EL5 incl. EM)  
 **Home:** `services/ai/local-runtime/**`  
 **Status:** Candidate contracts + denial tests landed. **NPU VERIFIED claimed: NO.**  
@@ -86,9 +86,9 @@ Denial coverage includes:
 | Command | Result |
 |---------|--------|
 | `npm run test:62lel6` | **pass** — 14/14 |
-| `npm run test:local-runtime` | **pass** — 44/44 (EL5 + EM + prior + EL6 after rebase onto ) |
+| `npm run test:local-runtime` | **pass** — 44/44 (EL5 + EM + prior + EL6 after rebase onto 32bcbc36) |
 
-Rebase: **yes** — EL6 commits replayed onto final EL5 tip .
+Rebase: **yes** — EL6 commits replayed onto final EL5 tip 32bcbc36542742e17a32cd7f1075eb1801eb222c.
 
 ## Out of scope / next
 
