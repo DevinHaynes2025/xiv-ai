@@ -440,9 +440,9 @@ try {
       honesty.l4AutonomyEnabled === false &&
       preds.DS.tipProbe === 'PRESENT' &&
       preds.DR.tipProbe === 'PRESENT' &&
-      preds.DP.tipProbe === 'PRESENT' &&
-      preds.DQ.tipProbe === 'WAITING_DATA',
-    `predecessor=${honesty.predecessorLayer}; DS=${preds.DS.tipProbe}; DR=${preds.DR.tipProbe}`,
+      preds.DQ.tipProbe === 'PRESENT' &&
+      preds.DP.tipProbe === 'PRESENT',
+    `predecessor=${honesty.predecessorLayer}; DS=${preds.DS.tipProbe}; DR=${preds.DR.tipProbe}; DQ=${preds.DQ.tipProbe}`,
   );
 } finally {
   await rm(root, { recursive: true, force: true });
