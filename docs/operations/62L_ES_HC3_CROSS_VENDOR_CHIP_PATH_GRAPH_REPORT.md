@@ -4,7 +4,7 @@
 **Label:** `62L-ES-HC3`  
 **Branch:** `cursor/62l-es-hc3-cross-vendor-chip-path-graph-4059`  
 **Feat SHA:** `e3e5e67347984e2b4293717a2f7d17e5a6d01457`  
-**Tip SHA:** `e3e5e67347984e2b4293717a2f7d17e5a6d01457` (aligned after docs commit)  
+**Tip SHA:** `e3e5e67347984e2b4293717a2f7d17e5a6d01457`  
 **Script:** `npm run test:62leshc3` (distinct from productization `test:62les3`)  
 **L4_AUTONOMY_ENABLED:** `false`  
 **tip-land / PR:** **NO**  
