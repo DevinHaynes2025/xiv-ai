@@ -1,7 +1,7 @@
 # 62L-EL6 — AMD NPU Capability Candidate Report
 
 **Branch:** `cursor/62l-el6-amd-npu-capability-candidate-4059`  
-**Tip SHA:** (see branch HEAD after this docs pin commit)  
+**Tip SHA:** `c59d026533f5c7ac75b533b79f728726ddbec976`  
 **Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `32bcbc36542742e17a32cd7f1075eb1801eb222c` (final EL5 incl. EM)  
 **Home:** `services/ai/local-runtime/**`  
 **Status:** Candidate contracts + denial tests landed. **NPU VERIFIED claimed: NO.**  
