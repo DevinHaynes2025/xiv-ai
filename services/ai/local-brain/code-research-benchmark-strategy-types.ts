@@ -222,13 +222,15 @@ export function predecessorMap(root = repoRootFromHere()): Record<string, Predec
 
   return {
     BT: {
-      tipProbe: has('62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md')
-        ? 'PRESENT'
-        : 'WAITING_DATA',
+      tipProbe:
+        has('62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md') ||
+        hasMod('apprenticeship-experiment-evolution-types.ts')
+          ? 'PRESENT'
+          : 'WAITING_DATA',
       report: has('62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md')
         ? 'PRESENT'
         : 'MISSING',
-      note: 'Preferred BT tip + report; WAITING_DATA until pushed. Extends apprenticeship/experiment layers when present.',
+      note: 'Preferred BT tip + report used as BU base when present. Extends apprenticeship/experiment/evolution layers.',
     },
     BS: {
       tipProbe:
