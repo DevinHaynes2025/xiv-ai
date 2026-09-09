@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep18-quantum-inspired-compute-lab-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `937ffffcca0f0e87e67a0653bb2c387a9274a4c1`  
 Base: `cursor/62l-ep17-classical-quant-baseline-lab-4059` @ `5c58f48e6fdc725acdf4a029ebc3a80bc032a0de`  
 Predecessor: EP17 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP18 Quantum-Inspired Compute Lab*  
