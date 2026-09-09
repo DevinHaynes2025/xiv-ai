@@ -7,7 +7,7 @@
 **Branch:** `cursor/62l-ex6-physical-qpu-execution-receipt-4059`  
 **Base (authorized tip):** EX5 tip `cursor/62l-ex5-qpu-provider-truth-registry-4059` @ `60986682f7a6913def6da08499388aecd4acea4a` (= `origin/xiv-v2`)  
 **Feat tip SHA:** `9f75ecb98ce705377bd0a8d16b405af0ae9f9b8d`  
-**Branch tip SHA:** `e0072e51a7859e01e1bc9fadb784446e0d7f6690`  
+**Branch tip SHA:** `64d4ff59dec0829b6e3d790e130b141b92ce9e90`  
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened  
 **Quantum honesty:** COMPLETED ≠ VERIFIED. Simulator/mock ≠ PHYSICAL_QPU_VERIFIED. Physical execution ≠ quantum advantage. No consciousness/superintelligence claimed.
@@ -180,7 +180,7 @@ Absent soft-wires are **WAITING_DATA**, not FAIL.
 | Branch | `cursor/62l-ex6-physical-qpu-execution-receipt-4059` |
 | Base SHA | `60986682f7a6913def6da08499388aecd4acea4a` |
 | Feat tip SHA | `9f75ecb98ce705377bd0a8d16b405af0ae9f9b8d` |
-| Branch tip SHA | `e0072e51a7859e01e1bc9fadb784446e0d7f6690` |
+| Branch tip SHA | `64d4ff59dec0829b6e3d790e130b141b92ce9e90` |
 | Tests | EX6 **PASS** (16/16 + soft-wire) |
 | PR | **none** |
 | Physical QPU verified | **false** (NOT_TESTED) |
