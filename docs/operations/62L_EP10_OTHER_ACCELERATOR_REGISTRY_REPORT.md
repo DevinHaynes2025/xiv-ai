@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep10-other-accelerator-registry-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `fbda3d2b2a3c726b0ac4f7c1f4b3d9dd8b06de6d`  
 Base: `cursor/62l-ep9-intel-adapter-research-path-4059` @ `db15280f67fe45414dc9fe260f7d0ee6dfd0a019`  
 Predecessor: EP9 Intel Adapter Research Path **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP10 Other Accelerator Registry*  
