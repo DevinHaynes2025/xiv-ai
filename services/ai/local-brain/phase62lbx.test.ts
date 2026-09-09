@@ -504,8 +504,45 @@ try {
   check(
     'US-BX-predecessor-map',
     preds.BU.tipProbe === 'PRESENT' &&
-      (preds.BW.tipProbe === 'WAITING_DATA' || preds.BW.tipProbe === 'PRESENT'),
+      preds.BW.tipProbe === 'PRESENT' &&
+      (preds.BW.report === 'PRESENT' || preds.BW.report === 'MISSING'),
     `BU=${preds.BU.tipProbe}/${preds.BU.report}; BW=${preds.BW.tipProbe}/${preds.BW.report}.`,
+  );
+
+  // Live BW avatar deny still holds on this tree
+  const { activateSparseFounderAvatar, attemptFounderAvatarAction } = await import(
+    './founder-avatar-delegate-universe'
+  );
+  const { BW_LOCKS } = await import('./planetary-chip-founder-avatar-ethics-types');
+  const bwActor = {
+    kind: 'founder_avatar_delegate' as const,
+    id: 'avatar-bx-test',
+    orgId: 'org-bx',
+    tenantId: 'tenant-bx',
+    universeId: 'univ-bx',
+    role: 'founder_avatar',
+    permissionLevel: 0,
+    authorityLevel: 0,
+  };
+  const avatar = await activateSparseFounderAvatar({
+    pathwayKey: 'bx-test',
+    actor: bwActor,
+    root,
+  });
+  const denyPublish = avatar.delegate
+    ? await attemptFounderAvatarAction({
+        delegateId: avatar.delegate.id,
+        action: 'external_publish',
+        actor: bwActor,
+        root,
+      })
+    : { accepted: true };
+  check(
+    'US-BX-bw-avatar-publish-denied',
+    BW_LOCKS.AVATAR_EXTERNAL_PUBLISH === false &&
+      BW_LOCKS.FOUNDER_SEALED_DENY_BY_DEFAULT === true &&
+      denyPublish.accepted === false,
+    'BW founder-avatar external publish DENIED; sealed deny-by-default holds.',
   );
 
   check(
