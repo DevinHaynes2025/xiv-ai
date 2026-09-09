@@ -7,7 +7,7 @@ Branch: `cursor/62l-dd-cognitive-service-mesh-4059`
 Parent / base tip: `cursor/62l-da-superbrain-runtime-kernel-4059` @ `a5a87c60a5a319b8d5c911e46a251f0973931e97` + `docs/operations/62L_DA_SUPERBRAIN_RUNTIME_KERNEL_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DC → DB → DA → CZ → CY → CX `63e79c1` → CW `03584c6`**. DC Superbrain Service Fabric tip **WAITING_DATA** (not on origin). DB Superbrain Control Plane tip **WAITING_DATA** (not on origin). DA tip + report **PRESENT** after backoff poll — **used as base** (rebased from interim CY scaffold). CZ tip later **PRESENT** on origin but DA is preferred predecessor. CY `c182f7d` present in lineage. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs`)
-Tip SHA: `24ba716ec55e2e4fa8973241f1350df464a23674`
+Tip SHA: `5ad6cfa9ec980c750ec9311ea94bbb086bf7cf8f`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
