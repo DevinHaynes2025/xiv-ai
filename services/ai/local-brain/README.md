@@ -63,6 +63,8 @@ From `services/ai`:
 - `npm run local:data-refinery-compression-replication-health` — write the 62L-CF Data Refinery / Compression / Replication health report.
 - `npm run test:62lcg` — 62L-CG Deep Knowledge Refinery OS / Research Universities / Archive Graph Federation / Storage-Index Compiler / Multi-Model Reasoning / Edge Deployment Orchestrator safety tests.
 - `npm run local:deep-knowledge-refinery-os-health` — write the 62L-CG Deep Knowledge Refinery OS health report.
+- `npm run test:62lci` — 62L-CI Persistent Intelligence Economy / Agent Workforce Operating Ledger / World Knowledge Simulation Engine / Autonomous Database Research Lab / Local Model Evolution Academy / Global Edge Knowledge Exchange safety tests.
+- `npm run local:persistent-intelligence-economy-health` — write the 62L-CI Persistent Intelligence Economy health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
