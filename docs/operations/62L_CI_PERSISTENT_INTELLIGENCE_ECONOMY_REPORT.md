@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-ch-knowledge-civilization-dept-universities-4059`
 Why this base: Preferred **62L-CH** tip + report. At start CH/CG were **WAITING_DATA**; scaffolded from **CF** then **rebased onto CG** `@87fdf05` when CG PRESENT; continued poll with backoff until **CH** tip + report **PRESENT** on origin (`51a79bb`), then **rebased onto CH**. Preference **CH → CG → CF → CE → CD → …** selects **CH**.
 Implementation SHAs: see `git log` (`feat` / `test` / `chore` / `docs` on this branch above CH)
 Report SHA: `cede4f1d744d2f46628a2b32b32b8716d1f14415`
-Tip SHA: `04bd178404da71e9e1280461e111cc817c46afb8`
+Tip SHA: `a9efaecd1ca6c5c496b2a09398a95e1bcf3ddaf7`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
