@@ -37,7 +37,13 @@ import {
   type RouteEndpoint,
 } from './planetary-superbrain-routing-cortex';
 import {
+  activateSparseFounderAvatar,
+  attemptFounderAvatarAction,
+  founderAvatarHonesty,
+} from './founder-avatar-delegate-universe';
+import {
   BX_LOCKS,
+  FOUNDER_AVATAR_SEALED_DENY,
   HONESTY_BANNER,
   NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_CYCLE,
   NEXT_PHASE_TITLE,
@@ -48,6 +54,8 @@ import {
   type BxHop,
   type BxHopRecord,
 } from './neural-chip-os-semiconductor-twin-types';
+import { BW_LOCKS } from './planetary-chip-founder-avatar-ethics-types';
+import type { BwActor } from './planetary-chip-founder-avatar-ethics-types';
 
 export {
   BX_LOCKS,
@@ -314,11 +322,50 @@ export async function runNeuralChipOsSemiconductorTwinCycle(input: BxCycleInput)
   );
 
   const bw = probeBwFounderAvatarEthics(root);
+  const bwActor: BwActor = {
+    kind: 'founder_avatar_delegate',
+    id: 'avatar-bx-probe',
+    orgId: input.orgId,
+    tenantId: input.tenantId,
+    universeId: input.universeId,
+    role: 'founder_avatar',
+    permissionLevel: 0,
+    authorityLevel: 0,
+  };
+  const avatar = await activateSparseFounderAvatar({
+    pathwayKey: 'bx-probe-pathway',
+    actor: bwActor,
+    root,
+  });
+  const publishDeny = avatar.delegate
+    ? await attemptFounderAvatarAction({
+        delegateId: avatar.delegate.id,
+        action: 'external_publish',
+        actor: bwActor,
+        root,
+      })
+    : { accepted: true as const, reason: 'NO_DELEGATE' };
+  const impersonateDeny = avatar.delegate
+    ? await attemptFounderAvatarAction({
+        delegateId: avatar.delegate.id,
+        action: 'impersonate_founder',
+        actor: bwActor,
+        root,
+      })
+    : { accepted: true as const, reason: 'NO_DELEGATE' };
   hops.push(
     hop(
       'founder_avatar_sealed_deny_probe',
-      bw.sealedDenyHolds && bw.learningIsPermission === false ? 'PASS' : 'FAIL',
-      `bw=${bw.status}; modules=${bw.modules.join(',') || 'none'}`,
+      bw.sealedDenyHolds &&
+        bw.learningIsPermission === false &&
+        BW_LOCKS.FOUNDER_SEALED_DENY_BY_DEFAULT === true &&
+        BW_LOCKS.LEARNING_IS_PERMISSION === false &&
+        publishDeny.accepted === false &&
+        impersonateDeny.accepted === false &&
+        founderAvatarHonesty().externalPublish === false
+        ? 'PASS'
+        : 'FAIL',
+      `${FOUNDER_AVATAR_SEALED_DENY}; bw=${bw.status}; report=${bw.report}; publish=${publishDeny.reason}; impersonate=${impersonateDeny.reason}`,
     ),
   );
 

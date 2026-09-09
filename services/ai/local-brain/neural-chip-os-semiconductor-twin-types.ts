@@ -350,13 +350,16 @@ export function probeBwFounderAvatarEthics(root = repoRootFromHere()): {
   sealedDenyHolds: true;
   learningIsPermission: false;
   status: 'PRESENT' | 'WAITING_DATA';
+  report: 'PRESENT' | 'MISSING';
 } {
   const localBrain = join(root, 'services/ai/local-brain');
   const candidates = [
     'planetary-chip-founder-avatar-ethics-types.ts',
-    'founder-avatar-ethics.ts',
-    'planetary-chip-os.ts',
-    'founder-avatar-runtime.ts',
+    'planetary-chip-intelligence-fabric.ts',
+    'founder-avatar-delegate-universe.ts',
+    'law-ethics-governance.ts',
+    'universal-device-plugin-neural-mesh.ts',
+    'sparse-neural-routing-fabric.ts',
   ];
   const modules = candidates.filter((f) => existsSync(join(localBrain, f)));
   const reportPresent = existsSync(
@@ -367,6 +370,7 @@ export function probeBwFounderAvatarEthics(root = repoRootFromHere()): {
     modules,
     sealedDenyHolds: true,
     learningIsPermission: false,
-    status: reportPresent || modules.length > 0 ? (reportPresent ? 'PRESENT' : 'WAITING_DATA') : 'WAITING_DATA',
+    status: modules.length > 0 || reportPresent ? 'PRESENT' : 'WAITING_DATA',
+    report: reportPresent ? 'PRESENT' : 'MISSING',
   };
 }
