@@ -6,6 +6,7 @@ Date: 2026-09-09
 Branch: `cursor/62l-ar-distributed-memory-neural-highway-compiler-4059`
 Parent: `cursor/62l-an-information-control-tower-semantic-router-4059` @ `dfe542b` (`docs(62l-an): record implementation SHAs on control tower report #52`)
 Implementation SHA: `0891277` (`fix(62L-AR): upsert knowledge nodes before contradiction edges #56`; feat `6262538`)
+Report SHA: `ca60111c75d28fe2160abefa067e510b7aa197ff` (this file)
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
