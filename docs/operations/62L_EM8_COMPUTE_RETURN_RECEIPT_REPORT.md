@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em8-compute-return-receipt-4059`  
-Tip SHA: `(recorded after rebase)`  
+Tip SHA: `87578e676fffe822653597fb0c045317f5ab1ce3`  
 Feat commit (post-rebase): `50842bc`  
 Rebase: **YES** onto final EM7 `5b8cf08` (from interim `ed53f61`)  
 Base: EM7 `cursor/62l-em7-device-neutral-inference-router-4059` @ `5b8cf085f9f9fbdddfd29f1f4c4055f5c649a85b` (on sealed EM6 `a17e6609fad9319c3abe8ddb68928459cdbee0be`)  
