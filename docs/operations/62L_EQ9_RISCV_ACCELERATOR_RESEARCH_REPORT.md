@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq9-riscv-accelerator-research-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `cfd4518234009ae11d84ba80fed2ebe01c72411e`  
 Base: `cursor/62l-eq8-arm-server-cloud-runtime-4059` @ `b745e7d12249d27c8ea216820bb7cb05e5dff6d4`  
 Predecessor: EQ8 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ9 RISC-V Accelerator Research*  
