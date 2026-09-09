@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep12-hardware-neutral-scheduler-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `818b76d1eefbf3698ab7cb6c64f214174a58de7d`  
 Base: `cursor/62l-ep10-other-accelerator-registry-4059` @ `60d50a77f367d50d70a8f6e7e8f30a1fd8a612e0`  
 Predecessor: EP10 **PRESENT**; EP11 Task Envelope **WAITING_DATA** (not landed on remote)  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP12 Hardware-Neutral Scheduler*  
