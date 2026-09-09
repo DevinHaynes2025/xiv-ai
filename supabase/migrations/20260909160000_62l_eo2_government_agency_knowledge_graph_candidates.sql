@@ -1,0 +1,47 @@
+-- 62L-EO2 Government Agency Knowledge Graph — candidate schema only.
+-- Status: NOT_APPLIED. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- Do not apply to live Supabase. No overload of production tables.
+-- Authorized/public/licensed data only. Classified procurement excluded unless authorized.
+
+-- Candidate: agency knowledge graph nodes (provenance-backed)
+-- CREATE TABLE IF NOT EXISTS government_agency_kg_nodes_candidate (
+--   node_id text PRIMARY KEY,
+--   kind text NOT NULL,
+--   official_name text NOT NULL,
+--   agency_bureau_hierarchy jsonb NOT NULL DEFAULT '[]',
+--   mission_and_public_priorities jsonb NOT NULL DEFAULT '[]',
+--   program_names jsonb NOT NULL DEFAULT '[]',
+--   procurement_vehicles jsonb NOT NULL DEFAULT '[]',
+--   naics_psc_associations jsonb NOT NULL DEFAULT '[]',
+--   public_budget_program_references jsonb NOT NULL DEFAULT '[]',
+--   historical_solicitations jsonb NOT NULL DEFAULT '[]',
+--   public_award_history jsonb NOT NULL DEFAULT '[]',
+--   incumbent_contractor_context jsonb NOT NULL DEFAULT '[]',
+--   set_aside_patterns jsonb NOT NULL DEFAULT '[]',
+--   contracting_office text,
+--   source_url_or_reference text NOT NULL,
+--   source_date text NOT NULL,
+--   freshness text NOT NULL,
+--   confidence numeric NOT NULL,
+--   evidence_class text NOT NULL,
+--   leadership_change_timestamp timestamptz,
+--   leadership_change_is_permanent boolean NOT NULL DEFAULT false,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+-- Candidate: inferred edges with PUBLIC_EVIDENCE | HYPOTHESIS | UNKNOWN labels
+-- CREATE TABLE IF NOT EXISTS government_agency_kg_edges_candidate (
+--   edge_id text PRIMARY KEY,
+--   from_node_id text NOT NULL,
+--   to_node_id text NOT NULL,
+--   relation text NOT NULL,
+--   inference_label text NOT NULL,
+--   source_url_or_reference text NOT NULL,
+--   source_date text NOT NULL,
+--   freshness text NOT NULL,
+--   confidence numeric NOT NULL,
+--   evidence_class text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+SELECT '62L_EO2_GOVERNMENT_AGENCY_KNOWLEDGE_GRAPH_CANDIDATES_NOT_APPLIED' AS status;
