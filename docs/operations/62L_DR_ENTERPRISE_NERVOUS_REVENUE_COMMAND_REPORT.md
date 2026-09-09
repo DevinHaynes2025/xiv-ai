@@ -7,7 +7,7 @@ Branch: `cursor/62l-dr-enterprise-nervous-revenue-command-4059`
 Parent / base tip: `cursor/62l-dq-universal-integration-brain-4059` @ `383e6ce206848c56025b7f399a29cd27484f3511` + `docs/operations/62L_DQ_UNIVERSAL_INTEGRATION_BRAIN_REPORT.md` (**PRESENT** after WAITING_DATA poll + rebase)
 Why this base: Preference **DQ → DP → DO `c9b2262` → DN `a3d522f` → DM → DL `359057d` → …**. Remote DQ tip initially **WAITING_DATA**; interim implementation based on DP @ `08078d1`, then **rebased onto DQ**. Soft-wire DQ Universal Integration Brain when PRESENT; DP/DO soft-wire fallbacks remain. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `7f9805f24107b8be006aa15ac9a9dc542bc5a552`
+Tip SHA: `d25712f4fb669d8d3633738820ae6e5790630873`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
