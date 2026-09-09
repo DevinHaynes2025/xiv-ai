@@ -12,14 +12,19 @@ From `services/ai`:
 - `npm run local:night -- <approved-task-file.json>` — run a bounded Night Shift task set. Set `XIV_NIGHT_SHIFT_RESUME=true` to resume a checkpoint.
 - `npm run local:founder-report` — write the Founder Morning Brain Report (includes operational worker state).
 - `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
+- `npm run local:knowledge-lake-health` — write the 62L-AB Knowledge Lake / Industry Memory health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
+- `npm run test:62lab` — 62L-AB Knowledge Lake / Industry Memory safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
 
 62L-V extends this with: Founder → Digital Twin → Global Brain Highway → Departments → Agent Teams → Tools/Models → Knowledge → Debate → Decision → Build → Test → Evidence → Outcome → Learning → Debrief → Next Story. The twin cannot fabricate founder approval, sign, spend, hire/fire, or impersonate the founder externally. "Trillions of Devins" means addressable logical contexts/pathways, not running programs.
+
+## 62L-AB Knowledge Lake
+Durable offline Knowledge Lake, industry memory federation, multilingual original preservation, evidence graphs, hashed dedup, partitioned sparse indexing, tiered storage, and logical retrieval for huge corpora. Trillion-scale address space is a shard map — this slice does not materialize trillions of files, rows, embeddings, or agents. Unconfigured translators/cloud stay UNAVAILABLE. Evidence Promotion Gate is reused; AI agreement is not VERIFIED. 62L-Y/Z/AA reports are WAITING_DATA here.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency. 62L-Y is not implemented here.
