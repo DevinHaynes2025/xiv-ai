@@ -18,7 +18,7 @@
 | EX10 tip `cursor/62l-ex10-benchmark-comparability-gate-4059` | `60986682f7a6913def6da08499388aecd4acea4a` (= GITHUB xiv-v2; no EX10 feat commits yet) |
 | EX9 tip | `60986682f7a6913def6da08499388aecd4acea4a` (= GITHUB xiv-v2) |
 | EX11 base | EX10 tip = GITHUB `origin/xiv-v2` |
-| EX11 tip (this branch) | `193c3e2ef6fa625b1262dcb788a4747742b1ba3e` |
+| EX11 tip (this branch) | `53f29c70d82a0e86ce8ce8799d4e336a961e0340` (feat `193c3e2ef6fa625b1262dcb788a4747742b1ba3e`) |
 
 **TREE note:** LOCAL/GITLAB `xiv-v2` diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`. EX10 branch exists locally but has no feature commits (empty tip). EX6–EX9 similarly sit on GITHUB xiv-v2 with sibling worktree drafts only — soft-wired via `existsSync`, not merged. EX1/EX2/EX4/EX5 have separate pushed child tips; no stop-on-divergence (parallel child branches off the same authorized base, not conflicting Sot claims). Workspace `/workspace` was dirty on an unrelated GOB branch; EX11 built in isolated worktree `/tmp/62l-ex11-work`.
 
