@@ -110,20 +110,24 @@ export async function runKnowledgeSupplyPluginFoundryCycle(input: CpCycleInput) 
   });
   hops.push(hop('supply_chain_bootstrap', 'PASS', chain.id));
 
+  const cycleTagReuse = `etl-compress-cycle-${Date.now().toString(36)}`;
+  const cycleTagSandbox = `research-synth-cycle-${Date.now().toString(36)}`;
+  const cycleTagElevated = `elevated-ops-cycle-${Date.now().toString(36)}`;
+
   const approved = await registerApprovedPlugin({
     name: 'approved-etl',
-    capabilityTag: 'etl-compress',
+    capabilityTag: cycleTagReuse,
     root,
     actor,
   });
   const reuseGap = await identifyCapabilityGap({
-    capabilityTag: 'etl-compress',
+    capabilityTag: cycleTagReuse,
     root,
     actor,
   });
   const reuseBuild = await buildSandboxPlugin({
     name: 'duplicate-etl',
-    capabilityTag: 'etl-compress',
+    capabilityTag: cycleTagReuse,
     root,
     actor,
   });
@@ -141,7 +145,7 @@ export async function runKnowledgeSupplyPluginFoundryCycle(input: CpCycleInput) 
 
   const sandbox = await buildSandboxPlugin({
     name: 'new-research-tool',
-    capabilityTag: 'research-synth',
+    capabilityTag: cycleTagSandbox,
     elevatedPermissions: true,
     root,
     actor,
@@ -172,7 +176,7 @@ export async function runKnowledgeSupplyPluginFoundryCycle(input: CpCycleInput) 
     chainId: chain.id,
     kind: 'plugin',
     name: 'registered-only',
-    capabilityTag: 'research-synth',
+    capabilityTag: cycleTagSandbox,
     root,
     actor,
   });
@@ -260,10 +264,10 @@ export async function runKnowledgeSupplyPluginFoundryCycle(input: CpCycleInput) 
     ),
   );
 
-  // Reset a fresh sandbox for self-assign denial (elevated + unpromoted)
+  // Fresh sandbox for self-assign denial (elevated + unpromoted)
   const unpromoted = await buildSandboxPlugin({
     name: 'elevated-sandbox',
-    capabilityTag: 'elevated-ops',
+    capabilityTag: cycleTagElevated,
     elevatedPermissions: true,
     forceDuplicate: true,
     root,

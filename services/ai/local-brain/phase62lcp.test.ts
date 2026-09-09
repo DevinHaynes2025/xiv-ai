@@ -441,21 +441,26 @@ try {
     sealed.reason,
   );
 
-  const cycle = await runKnowledgeSupplyPluginFoundryCycle({
-    orgId: actor.orgId,
-    tenantId: actor.tenantId,
-    universeId: actor.universeId,
-    actor,
-    root,
-  });
-  check(
-    'US-CP-cycle-runtime',
-    cycle.ok === true &&
-      cycle.hops.length === KNOWLEDGE_SUPPLY_PLUGIN_FOUNDRY_CYCLE.length &&
-      cycle.l4AutonomyEnabled === false &&
-      cycle.nextPhase === NEXT_PHASE_TITLE,
-    `hops=${cycle.hops.length} ok=${cycle.ok}`,
-  );
+  const cycleRoot = await mkdtemp(join(tmpdir(), 'xiv-62lcp-cycle-'));
+  try {
+    const cycle = await runKnowledgeSupplyPluginFoundryCycle({
+      orgId: actor.orgId,
+      tenantId: actor.tenantId,
+      universeId: actor.universeId,
+      actor,
+      root: cycleRoot,
+    });
+    check(
+      'US-CP-cycle-runtime',
+      cycle.ok === true &&
+        cycle.hops.length === KNOWLEDGE_SUPPLY_PLUGIN_FOUNDRY_CYCLE.length &&
+        cycle.l4AutonomyEnabled === false &&
+        cycle.nextPhase === NEXT_PHASE_TITLE,
+      `hops=${cycle.hops.length} ok=${cycle.ok}`,
+    );
+  } finally {
+    await rm(cycleRoot, { recursive: true, force: true });
+  }
 
   const health = await buildKnowledgeSupplyPluginFoundryHealthReport({ root: repoRoot });
   check(
