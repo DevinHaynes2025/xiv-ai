@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em10-user-access-economy-4059`  
-Tip SHA: `932ef0b7f817a9db1e6bfc34995e57cf763a461b`  
+Tip SHA: `cb1e5ed314ce88084dc5f4e4c66d00e0f6532d73`  
 Base: EM9 `cursor/62l-em9-compute-resource-market-simulator-4059` @ `6fe720c7916feac985c3c5ef6c2bc6a035d5ed1f`  
 Predecessor preference: **final origin EM9** @ `6fe720c7` (on sealed EM8 `3be97331`) — **rebased onto EM9**
 Prior #157-only base: superseded by EM9 rebase (EM10 commits replayed with `--onto`; #157 soft-wire optional / absent on this tip)  
