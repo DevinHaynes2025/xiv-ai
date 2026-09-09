@@ -1,6 +1,6 @@
 # 62L-EM5 — AMD Windows ML Adapter Path Report
 
-Status: **IMPLEMENTED on child branch** — unit tests **executed** — **NOT** a live ASUS/Windows AMD verification pass — **NOT** production authorization — no tip-land / PR / ManagePullRequest / DB apply
+Status: **IMPLEMENTED on child branch** — **rebased onto sealed EM4 tip** — unit tests **re-executed** — **NOT** a live ASUS/Windows AMD verification pass — **NOT** production authorization — no tip-land / PR / ManagePullRequest / DB apply
 
 Date: 2026-09-09
 
@@ -14,10 +14,11 @@ Governed AMD Windows ML / ONNX Runtime adapter path under `services/ai/local-run
 | --- | --- |
 | Branch | `cursor/62l-em5-amd-windows-ml-adapter-path-4059` |
 | Predecessor preference | `cursor/62l-em4-*` → else EM3 / EM1 → else EL9 |
-| Base used | `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` tip (= EM3 tip; EM4 WIP not yet committed) |
-| Base SHA | `185ac60c1c155661ea5618acbcf1158856ff5d0b` |
-| Implement SHA | `aafa37377f698a15e30fef9eba8a0a1454c053bf` |
-| Tip SHA | `aafa37377f698a15e30fef9eba8a0a1454c053bf` |
+| Base used | sealed `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` @ `0c31b27…` (EM3 `eb6e963…`) |
+| Base SHA | `0c31b27d694484499c69fd9fb2eb549d80ac89e8` |
+| Implement SHA | `37614e2afbda27d4648f24f95e2704ea40e9a0a8` |
+| Tip SHA | `PLACEHOLDER` |
+| Rebase onto sealed EM4 | **YES** |
 | Tip-land / PR | **NO** |
 | `L4_AUTONOMY_ENABLED` | `false` |
 
@@ -40,12 +41,12 @@ Governed AMD Windows ML / ONNX Runtime adapter path under `services/ai/local-run
 
 `adapterId`, `runtimeVersion`, `windowsMlState`, `onnxRuntimeState`, `deviceId`, `cpuState`, `gpuState`, `npuState`, `supportedModels`, `lastVerifiedAt`, `benchmarkEvidence`, `fallbackPolicy`, `resourceLimits`
 
-## Soft-wire (presence at implement time)
+## Soft-wire (presence post-EM4 rebase)
 
 | Target | Result |
 | --- | --- |
 | EM3 universal compute registry | **PRESENT** (on base) |
-| EM4 message envelope | **ABSENT** on base (park-and-implement; types exist as sibling WIP only) |
+| EM4 message envelope | **PRESENT** (after rebase onto sealed EM4 tip) |
 | EL7 inference adapter | **PRESENT** |
 | EL8 model-load / silent-fallback | **PRESENT** |
 | EL9 resource governor | **PRESENT** |
@@ -81,7 +82,7 @@ AMD GPU or NPU becomes **VERIFIED** only after a real bounded local inference su
 | Suite | Command | Result |
 | --- | --- | --- |
 | EM5 adapter | `npm run test:62lem5` | **PASS** (15/15) |
-| Local-runtime regression | `npm run test:local-runtime` | **PASS** (133/133; includes EM3 + EL5–EL9 + EM + EM5) |
+| Local-runtime regression | `npm run test:local-runtime` | **PASS** (133/133 post-rebase; EM4 soft-wire PRESENT) |
 
 ## Next (do not implement)
 
