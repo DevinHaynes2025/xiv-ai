@@ -7,8 +7,8 @@ Branch: `cursor/62l-bu-code-research-benchmark-strategy-4059`
 Parent / base tip: `cursor/62l-bt-apprenticeship-experiment-evolution-graph-4059` @ `7ccb44becabc20a979f3342405a3e8dc32ac9665` (`docs(62L-BT): restore tip SHA after align commit #84` lineage; includes `62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md`)
 Why this base: Preferred **62L-BT** tip + report initially **WAITING_DATA**; scaffolded from **BR** then rebased onto **BS** @ `39da70c` when BS landed; **rebased onto BT** once BT tip + report **PRESENT** on origin. Preference **BT → BS → BR → BQ** selects **BT**.
 Implementation SHAs: `bd17209`..`c271ee3` (feat commits; see commit list below)
-Report SHA: `6bfddffd41065c4c6cd90c7b0ab895477f4e2433` (report body)
-Tip SHA: `102a9fb986baf36c17785bd765e6261428703a50`
+Report SHA: `376582eb52d3aa5eb012d8e8e89d9cd7a2abd9b2` (report body)
+Tip SHA: `05b7c65ac8aada8834a1caa3df9ba3cac4a83c5c`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
