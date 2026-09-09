@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep14-adaptive-benchmark-ledger-4059`  
-Tip SHA: *(aligned on commit)*  
-Base: `cursor/62l-ep13-runtime-return-receipt-4059` @ `85d397f`  
+Tip SHA: `f322b9e242cad6a2cda916fc42d5d436ba1d96b6`  
+Base: `cursor/62l-ep13-runtime-return-receipt-4059` @ `85d397f62aa1247bac66499ba2c1b9e25f1fa3cb`  
 Predecessor: EP13 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP14 Adaptive Benchmark Ledger*  
 Note: `gh issue view 160` unresolved in this agent environment; issue number retained from founder SoT statement.  
