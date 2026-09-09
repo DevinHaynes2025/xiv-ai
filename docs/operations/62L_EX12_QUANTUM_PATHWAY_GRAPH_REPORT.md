@@ -17,7 +17,7 @@
 | EX11 tip (`cursor/62l-ex11-quantum-evidence-ledger-4059`) | `60986682f7a6913def6da08499388aecd4acea4a` |
 | EX12 base | EX11 tip = GITHUB `origin/xiv-v2` |
 | EX12 feat SHA | `8819d7c5defece43ca97e470ae6130b07b8060d0` |
-| EX12 tip (this branch) | `1c3ae38b494ecfafa5d87be687c63c413b434dd3` |
+| EX12 tip (this branch) | `TIP_PLACEHOLDER` |
 
 **TREE note:** Workspace `/workspace` was dirty on an unrelated GOB branch at gate time; EX12 was built in isolated worktree `/tmp/62l-ex12-work` from the EX11 tip. LOCAL/GITLAB xiv-v2 diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`.
 
