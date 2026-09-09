@@ -4,9 +4,9 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests executed — 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-el5-amd-gpu-capability-candidate-4059`  
-Base tip: `origin/feat/62l-el-local-runtime-probe` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`  
-Implementation / tip SHA: `7c984a3cb0dc2707ec21520cfc138cd0a41970de`  
-Why this base: Founder EL SoT (`feat/62l-el-local-runtime-probe`) preferred; contains hardware-probe / workload-router / resource-governor / runtime-state.  
+Base tip: `cursor/62l-em-local-model-verification-4059` @ `a18a8823503ed2ab861e62a4c65edf8926fbdb5e` (sealed EM on founder EL `feat/62l-el-local-runtime-probe` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`)  
+Implementation SHA: `c93f13a` (feat); tip SHA after rebase/docs: _(set on push)_  
+Why this base: Prefer sealed EM tip as successor of founder EL SoT; soft-wires EM local-model verification + EL probe.  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -77,7 +77,7 @@ Side states preserved: `DEGRADED` / `UNAVAILABLE` / `NOT_TESTED`.
 | `services/ai/local-runtime/workload-router.ts` | CPU-first + `routeAfterGpuFailure` |
 | `services/ai/local-runtime/types.ts` | EL truth set constant |
 | `services/ai/local-runtime/__tests__/el5-amd-gpu-capability.test.ts` | EL5 acceptance tests |
-| `services/ai/package.json` | `test:62lel5` + existing `test:local-runtime` |
+| `services/ai/package.json` | `test:62lel5` + `test:62lem` + `test:local-runtime` |
 | `docs/operations/62L_EL5_AMD_GPU_CAPABILITY_CANDIDATE_REPORT.md` | This report |
 
 ## Tests
