@@ -1,0 +1,163 @@
+{
+  "mesh_id": "xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c",
+  "status": "QUEUED_ARCHITECTURE_NOT_IMPLEMENTED",
+  "deployment_state": "QUEUED",
+  "l4_autonomy_enabled": false,
+  "gitlab": "BLOCKED",
+  "evidence_class_of_this_document": "E0",
+  "tbd_is_not_pass": true,
+  "queue_lock": {
+    "current": "2I-AI-62D",
+    "current_state": "QUEUED_ARCHITECTURE_NOT_IMPLEMENTED",
+    "next": "2I-AI-62E",
+    "next_state": "PARKED_DO_NOT_IMPLEMENT_FROM_THIS_COMMIT",
+    "after_62e_title_only": "2I-AI-62F Universe Federation"
+  },
+  "principle": "Code proves implementation. Tests measure behavior. Evidence proves the tests occurred. Independent verification establishes confidence. Human authority accepts consequential risk.",
+  "park_branch": "cursor/queue-2i-ai-62d-test-evidence-verification-ownership-104c",
+  "overlay_doc": "docs/architecture/xiv-2i-ai-62d-test-evidence-verification-ownership-104c.md",
+  "mesh_doc": "docs/architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md",
+  "scopes": ["104c", "4059", "7b68", "0a18", "8048"],
+  "file_lease": {
+    "this_agent_owns": [
+      "docs/architecture/xiv-2i-ai-62d-test-evidence-verification-ownership-104c.md",
+      "docs/architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md",
+      "docs/architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.json",
+      "docs/queue/2I-AI-62D-test-evidence-verification-ownership-104c.md"
+    ],
+    "this_agent_will_not_edit": [
+      "cursor/queue-2i-ai-62d-distributed-device-edge-runtime-4059",
+      "cursor/queue-2i-ai-62d-distributed-device-chip-edge-runtime-104c",
+      "cursor/queue-2i-ai-62d-distributed-device-edge-runtime-7b68",
+      "cursor/xiv-distributed-runtime-fabric-62d-0a18",
+      "cursor/62l-es6-acceptance-criteria-test-evidence-4059",
+      "cursor/62l-es10-draft-pr-mr-evidence-packager-4059",
+      "cursor/queue-2i-ai-62b-universe-rls-hardening-8048",
+      "cursor/queue-2i-ai-62e-massive-agent-scheduler-task-force-104c",
+      "xiv-v2",
+      "main"
+    ]
+  },
+  "roles": {
+    "evidence_contract_owner": "104c-overlay",
+    "acceptance_criteria_author": "4059-fabric-AC-01-AC-24",
+    "runtime_implementer": "0a18-pr-21",
+    "ac_evidence_generator": "62L-ES6",
+    "draft_evidence_collector": "62L-ES10",
+    "builder": "cursor-agent",
+    "independent_verifier": "must-not-be-same-process-as-owner",
+    "copilot_verifier_rule": "cursor-builder-neq-copilot-verifier",
+    "human_approver": "ceo-or-authorized-human",
+    "guardian": "policy-deny-only-cannot-self-grant"
+  },
+  "observed_shas": {
+    "xiv-v2": "d2fe307c6ddbcdcb8710cb7a716c9c148d24e9d6",
+    "62d-104c-fabric": "7d2ab08176e76c2c015996ec090416ee2fc92b77",
+    "62d-4059": "437b7567ed5f7bc66c83acf108df3be9f90e4b4c",
+    "62d-7b68": "82424cc734ec44c362626554246d69f9f3bef10f",
+    "62d-0a18": "4fbe56573179e15142115649a5fb9a29131e0cad",
+    "62e-104c": "b5b97a3c7f34be681f5c28f775db7e3e9ea82888",
+    "62b-rls-8048": "7e52a532b975510f8d3c8c92a87b1b500df6581e",
+    "62c-104c": "3cb379d58d53f05b7779a00c66d9f38c197e44c4",
+    "62c-schema-8048": "8eb0f4f8cc2e13978155236c8ae7a04f93896b5c",
+    "62a-slice": "0005e1f5bb65aa8167249d7cbbb35e87c8a82e32",
+    "61n-copilot-104c": "d0b87f1d29c68fed3723091a7a8ce6183cb20ac6",
+    "es6": "ac1a3af6571b20e8042e0301c11ce3a4613e76d5",
+    "es10": "b3be8b6f5aa3bf790e48079cf0d37d395c36733c",
+    "note": "Evidence for commit A does not prove commit B. Re-fetch before treating as current."
+  },
+  "ac_map": [
+    {"id": "AC-01", "title": "Runtime Registration", "overlay": ["s37-runtime-identity", "s42"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-02", "title": "Attestation", "overlay": ["s37-attestation", "s42"], "min_strength": "E3", "now": "UNPROVEN", "hardware": "UNAVAILABLE"},
+    {"id": "AC-03", "title": "Tenant / Universe Isolation", "critical": true, "overlay": ["s40", "s41", "s52"], "min_strength": "E4", "now": "UNPROVEN"},
+    {"id": "AC-04", "title": "Workload Authorization", "overlay": ["s41", "s52"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-05", "title": "Compute Routing", "overlay": ["s37-routing"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-06", "title": "Hardware Portability", "overlay": ["s37-intel-amd-nvidia"], "min_strength": "E3", "now": "UNAVAILABLE"},
+    {"id": "AC-07", "title": "Agent Runtime Assignment", "overlay": ["s41"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-08", "title": "Resource Governance", "overlay": ["s37-governor", "s44"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-09", "title": "Massive Logical-Agent Scale", "overlay": ["compose-62E"], "min_strength": "E2", "now": "UNPROVEN", "do_not_implement_62e": true},
+    {"id": "AC-10", "title": "Offline Work Packages", "overlay": ["s42", "s52"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-11", "title": "Offline Meeting Integrity", "overlay": ["compose-62B", "s41"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-12", "title": "Failure Recovery", "overlay": ["s37", "s53"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-13", "title": "Kill Switch", "overlay": ["s37-kill-switch"], "min_strength": "E4", "now": "UNPROVEN"},
+    {"id": "AC-14", "title": "Model Authorization", "overlay": ["s45"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-15", "title": "Information Logistics", "overlay": ["s51", "compose-62C"], "min_strength": "E4", "now": "UNPROVEN"},
+    {"id": "AC-16", "title": "Secret & Credential Safety", "overlay": ["s47"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-17", "title": "Dependency Security", "overlay": ["s48"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-18", "title": "Mobile Regression", "overlay": ["s46"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-19", "title": "Web / API Regression", "overlay": ["s57"], "min_strength": "E3", "now": "UNPROVEN"},
+    {"id": "AC-20", "title": "Performance", "overlay": ["s43"], "min_strength": "E2", "now": "UNPROVEN"},
+    {"id": "AC-21", "title": "Cost Governance", "overlay": ["s44", "compose-62E"], "min_strength": "E2", "now": "UNPROVEN"},
+    {"id": "AC-22", "title": "Observability", "overlay": ["s60"], "min_strength": "E2", "now": "UNPROVEN"},
+    {"id": "AC-23", "title": "Backup & Restore", "overlay": ["s49"], "min_strength": "E4", "now": "UNPROVEN"},
+    {"id": "AC-24", "title": "Rollback", "overlay": ["s50"], "min_strength": "E4", "now": "UNPROVEN"}
+  ],
+  "es6_result_to_gate": {
+    "NOT_TESTED": {"max_strength": "E0", "founder_brief": "UNPROVEN", "may_pass": false},
+    "WAITING_DATA": {"max_strength": "E0", "founder_brief": "UNAVAILABLE", "may_pass": false, "note": "soft-wire absence is not FAIL"},
+    "BLOCKED": {"max_strength": "E0", "founder_brief": "BLOCKED", "may_pass": false},
+    "PARTIAL": {"max_strength": "E1", "founder_brief": "OBSERVED", "may_pass": false},
+    "STALE": {"freshness": "STALE", "founder_brief": "OBSERVED", "may_pass": false},
+    "FAIL": {"persists_after_green_rerun": true, "founder_brief": "FAIL"},
+    "REGRESSED": {"persists_after_green_rerun": true, "founder_brief": "FAIL"},
+    "PASS_child_branch_same_process": {"max_strength": "E2", "founder_brief": "OBSERVED", "may_e4": false, "tip_land": false},
+    "PASS_ci_signed_independent_verifier_exact_commit": {"max_strength": "E4", "founder_brief": "VERIFIED", "requires_independent_verifier": true}
+  },
+  "es6_field_map": {
+    "testId": "test_case",
+    "requirementId": "acceptance_criterion_id",
+    "owner": "primary_owner",
+    "environment": "environment",
+    "expectedOutput": "expected_result",
+    "measurableThreshold": "expected_result",
+    "evidenceArtifact": "evidence_location",
+    "timestamp": "completed_at",
+    "result": "status",
+    "failureClass": "xiv_failure_records",
+    "retestState": "freshness_or_failure_retest"
+  },
+  "es10": {
+    "role": "collector",
+    "max_strength": "E2",
+    "is_independent_verifier": false,
+    "may_merge": false,
+    "unrun_tests_are_not_pass": true,
+    "next_human_gate": "ES11"
+  },
+  "pr21_0a18": {
+    "classification": "OBSERVED_ON_PARK_BRANCH",
+    "vs_tip": "UNPROVEN",
+    "e4": false,
+    "tests_to_ac": {
+      "identity.test.ts": ["AC-01", "AC-02"],
+      "tenancy.test.ts": ["AC-03"],
+      "hardware-lanes.test.ts": ["AC-06"],
+      "budget.test.ts": ["AC-08"],
+      "kill-switch.test.ts": ["AC-13"],
+      "offline.test.ts": ["AC-10", "AC-11"],
+      "mobile.test.ts": ["AC-18"],
+      "model-routing.test.ts": ["AC-14"],
+      "recovery.test.ts": ["AC-12"],
+      "device-network.test.ts": ["AC-07"],
+      "security-lock.test.ts": ["security-lock"],
+      "definition-of-done.test.ts": ["s61"]
+    },
+    "hardware_intel_amd_nvidia": "UNAVAILABLE_FIXTURES_ARE_NOT_ATTESTATION"
+  },
+  "pr18_62b_rls": {
+    "classification": "OBSERVED_ON_PARK_BRANCH",
+    "satisfies_ac03_e4": false,
+    "do_not_apply_migration_from_this_commit": true
+  },
+  "do_not_interrupt": [
+    "#166 Core Compute Agent Infra",
+    "#165 Chip Path Graph Code",
+    "Deployment Gate Hardening"
+  ],
+  "xiv_evidence_tree": "NOT_CREATED_UNAVAILABLE_NOT_PASS",
+  "auto_flags": {
+    "AUTO_PRODUCTION_DEPLOY": false,
+    "AUTO_PERMISSION_EXPANSION": false,
+    "L4_AUTONOMY_ENABLED": false
+  }
+}

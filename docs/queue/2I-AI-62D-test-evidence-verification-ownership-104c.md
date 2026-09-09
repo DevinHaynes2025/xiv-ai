@@ -6,7 +6,9 @@ Park: `cursor/queue-2i-ai-62d-test-evidence-verification-ownership-104c`. Target
 
 Architecture: [`docs/architecture/xiv-2i-ai-62d-test-evidence-verification-ownership-104c.md`](../architecture/xiv-2i-ai-62d-test-evidence-verification-ownership-104c.md)
 
-Unique overlay for 62D evidence governance. Does **not** clobber sibling 62D fabric parks or concurrent evidence/AC agents.
+Sibling handshake (cite, do not rewrite): [`docs/architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md`](../architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md) · JSON: [`…-mesh-104c.json`](../architecture/xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.json)
+
+Unique overlay for 62D evidence governance. Does **not** clobber sibling 62D fabric parks, 4059 AC-01…AC-24, ES6/ES10, 0a18 runtime, or concurrent evidence/AC agents. Cursor builder ≠ Copilot verifier.
 
 ## Queue lock
 
@@ -29,3 +31,5 @@ VERIFIED / OBSERVED / REPORTED / UNPROVEN / BLOCKED / UNAVAILABLE. Never upgrade
 ## Docs-only gate
 
 GITLAB=BLOCKED. No `xiv-evidence/` tree created. Intel/AMD/NVIDIA = UNAVAILABLE until attested. Never infer PASS.
+
+4059 ACs remain TBD. ES6 `NOT_TESTED`/`WAITING_DATA` ≠ PASS. ES10 = collector not verifier. PR #21 tests = OBSERVED on park branch. PR #18 RLS = OBSERVED, not E4. Do not interrupt #166 Core Compute / Deployment Gate Hardening. Next title only after 62E: **62F Universe Federation**.

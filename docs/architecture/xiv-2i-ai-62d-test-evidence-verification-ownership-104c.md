@@ -8,7 +8,9 @@
 **Park branch:** `cursor/queue-2i-ai-62d-test-evidence-verification-ownership-104c`  
 **Unique overlay** for 62D §§33–61. Does **not** rewrite sibling 62D fabric parks (`-104c` fabric PR, `-4059`, `-7b68`) or the concurrent “Add 62D evidence ownership docs” / “62d acceptance criteria” agents.
 
-**Compose with:** 62D XUR/XHAL/XCR fabric · 62C Information Logistics / lineage · 62E cost/active-agent measurements (queued) · 62B meetings engine on `xiv-v2` (do not rewrite) · Guardian · RLS · Deployment Gate Hardening.
+**Compose with:** 62D XUR/XHAL/XCR fabric · 4059 AC-01…AC-24 (verify, do not replace) · 62L-ES6/ES10 (child-branch parks) · 0a18 runtime tests (OBSERVED) · 62C Information Logistics / lineage · 62E cost/active-agent measurements (queued) · 62B meetings engine on `xiv-v2` (do not rewrite) · Guardian · RLS · Deployment Gate Hardening.
+
+**Sibling handshake:** [`xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md`](./xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.md) · machine: [`xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.json`](./xiv-2i-ai-62d-evidence-agent-collaboration-mesh-104c.json)
 
 **Founder summary:** [`../queue/2I-AI-62D-test-evidence-verification-ownership-104c.md`](../queue/2I-AI-62D-test-evidence-verification-ownership-104c.md)
 
@@ -430,8 +432,13 @@ Tenant-bearing tables require RLS. Architecture documentation does not authorize
 
 | Path | Action |
 |------|--------|
-| this file | **created** (unique `-104c`) |
-| queue card | **created** (unique `-104c`) |
+| this file | unique `-104c` overlay |
+| collaboration mesh + JSON | **created** (unique `-104c`) |
+| queue card | unique `-104c` |
+| 4059 fabric / AC-01…AC-24 | **not modified** (cited) |
+| ES6 / ES10 TypeScript | **not modified** (mapped) |
+| 0a18 runtime / PR #21 | **not modified** (classified OBSERVED) |
+| 62B RLS PR #18 | **not modified** (classified OBSERVED) |
 | sibling 62D fabric docs | **not modified** |
 | 62B meetings / `xiv-v2` tip | **not modified** |
 | 62E park | **not modified** |
