@@ -169,7 +169,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BP_COGNITIVE_HOMEOSTASIS_GENOME_RECOVERY_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'Preferred BP tip cursor/62l-bp-cognitive-homeostasis-genome-recovery-4059 used as BQ base.',
+      note: 'Preferred BP tip cursor/62l-bp-cognitive-homeostasis-genome-recovery-4059 used as BQ base (rebased onto latest BP after BN-backed BO gate refresh).',
     },
     BO: {
       tipProbe: 'PRESENT' as const,
@@ -183,7 +183,7 @@ export function predecessorMap(root = repoRootFromHere()) {
       report: has('62L_BN_SUPERBRAIN_NEURAL_GROWTH_METABOLISM_REPORT.md')
         ? ('PRESENT' as const)
         : ('MISSING' as const),
-      note: 'BN tip landed on origin; growth rules (demand-proven, reject redundant) reused in architecture expansion. In-tree report may be MISSING on BP parent.',
+      note: 'BN tip+report present on BP parent after BN-backed BO rebase; growth rules reused in architecture expansion.',
     },
     BM: {
       tipProbe: 'PRESENT' as const,
