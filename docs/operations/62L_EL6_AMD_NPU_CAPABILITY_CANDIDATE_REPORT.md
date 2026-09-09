@@ -82,7 +82,12 @@ Denial coverage includes:
 
 ## Test results (this agent run)
 
-Recorded after commit+push readiness; see agent return for live pass/fail counts.
+| Command | Result |
+|---------|--------|
+| `npm run test:62lel6` | **pass** — 14/14 |
+| `npm run test:local-runtime` | **pass** — 20/20 (includes prior heartbeat/routing + EL6) |
+
+Tip SHA at report update: see git tip on branch (post-test honesty amend/commit).
 
 ## Out of scope / next
 
