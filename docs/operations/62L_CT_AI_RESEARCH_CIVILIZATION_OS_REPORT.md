@@ -7,7 +7,7 @@ Branch: `cursor/62l-ct-ai-research-civilization-os-4059`
 Parent / base tip: `cursor/62l-cr-hybrid-supercompute-universe-os-4059` @ `af878c11572417ab76b82c5d7ebd378f3fd6a043` (includes `62L_CR_HYBRID_SUPERCOMPUTE_UNIVERSE_OS_REPORT.md`)
 Why this base: Preference **CS → CR → CQ → CP `e5e53b87cfe71a0fbeef2545918a846edf76196d` → CO `29b18b2` → …**. At start CS/CR/CQ were **WAITING_DATA**; scaffolded from pushed **CP** `@e5e53b8`. Polled with backoff until **CQ** tip+report **PRESENT** (`c8c10d3`); rebased onto CQ. Continued poll until preferred **CR** tip+report **PRESENT** (`af878c1`); **rebased onto CR**. **CS** remains **WAITING_DATA** (no `cursor/62l-cs-*` + `62L_CS_*REPORT.md` on origin at close).
 Implementation SHAs: see commit list below (`feat` / `test` / `chore` / `docs`)
-Tip SHA: `TIP_SHA_PLACEHOLDER`
+Tip SHA: `eb21b0532262c7b13befc3433f0de34a7463b10e`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
