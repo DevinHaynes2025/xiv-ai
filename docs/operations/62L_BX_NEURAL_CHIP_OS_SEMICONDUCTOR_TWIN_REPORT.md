@@ -7,7 +7,7 @@ Branch: `cursor/62l-bx-neural-chip-os-semiconductor-twin-4059`
 Parent / base tip: `cursor/62l-bw-planetary-chip-founder-avatar-ethics-4059` @ `dde6e7aa5bc05e61d0a24105a4c0b24edc8d9c5c` (includes `62L_BW_PLANETARY_CHIP_FOUNDER_AVATAR_ETHICS_REPORT.md`)
 Why this base: Preferred **62L-BW** tip + report initially **WAITING_DATA**; scaffolded from **BU** @ `342585a` then **rebased onto BW** once tip + modules landed; rebased again when BW report + align tip **PRESENT** on origin. Preference **BW → BV → BU → BT → …** selects **BW**.
 Implementation SHAs: see commit list below
-Tip SHA: `1944fc6f4bbd9556d4d3f789877488b518b96e07`
+Tip SHA: `53bdb4cde149949831a1da0658ab7c873f5fe8c6`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
