@@ -132,6 +132,7 @@ test('2. optimization workload preserves constraints', () => {
         domainClass: 'JOB_SCHEDULING',
         constraintCount: 42,
       },
+      counts: { variables: 30, constraints: 42, objectives: 1 },
       optimization: {
         variableCount: 30,
         constraintCount: 42,

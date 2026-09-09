@@ -216,14 +216,23 @@ export function buildQuantumWorkloadGenome(
     return primitives;
   }
 
+  // Prefer explicit optimization / problemDefinition constraint counts when
+  // provided so optimization workloads preserve constraint semantics.
   const counts = {
-    variables: input.counts?.variables ?? input.optimization?.variableCount ?? input.sizes?.n ?? 0,
+    variables:
+      input.optimization?.variableCount ??
+      input.counts?.variables ??
+      input.sizes?.n ??
+      0,
     constraints:
-      input.counts?.constraints ??
       input.optimization?.constraintCount ??
       input.problemDefinition.constraintCount ??
+      input.counts?.constraints ??
       0,
-    objectives: input.counts?.objectives ?? input.optimization?.objectiveCount ?? 1,
+    objectives:
+      input.optimization?.objectiveCount ??
+      input.counts?.objectives ??
+      1,
   };
 
   const optimization: OptimizationGenomeProperties | null = input.optimization

@@ -139,11 +139,12 @@ export function filterHardwareCandidates(input: {
   const rejectedUnverified: HardwareClass[] = [];
 
   for (const item of input.filter.available) {
-    if (!input.profile.eligibleHardware.includes(item.class)) continue;
+    // VERIFIED requirement excludes unverified hardware even if offered.
     if (input.filter.requireVerified && !item.verified) {
       rejectedUnverified.push(item.class);
       continue;
     }
+    if (!input.profile.eligibleHardware.includes(item.class)) continue;
     // Ignore vendorLabel for selection — genome/needs first.
     accepted.push(item.class);
   }
