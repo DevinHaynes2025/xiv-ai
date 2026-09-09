@@ -1,0 +1,20 @@
+{
+  "$id": "xiv://dna/agent-contract",
+  "title": "AgentContract",
+  "type": "object",
+  "required": [
+    "agentId",
+    "agentType",
+    "homeUniverseId",
+    "tenantId",
+    "missionId",
+    "taskId",
+    "allowedTools",
+    "allowedDataClasses",
+    "computeBudget",
+    "storageBudget",
+    "returnPath",
+    "expiry",
+    "revocationState"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$id": "xiv://dna/offline-pack",
+  "title": "OfflinePackManifest",
+  "type": "object",
+  "required": [
+    "packId",
+    "packVersion",
+    "rights",
+    "hash",
+    "revocationState",
+    "tenantScope"
+  ]
+}

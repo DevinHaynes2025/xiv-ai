@@ -1,0 +1,63 @@
+{
+  "dnaVersion": "1.0.0",
+  "schemas": [
+    "agent-contract.schema.json",
+    "message-envelope.schema.json",
+    "checkpoint.schema.json",
+    "offline-pack.schema.json",
+    "storage-object.schema.json"
+  ],
+  "ontologies": [
+    "kg-pathway.ontology.json",
+    "task-class.ontology.json",
+    "compute-truth.ontology.json"
+  ],
+  "skills": [
+    "local-search.skill.json",
+    "knowledge-retrieval.skill.json",
+    "code-analysis.skill.json",
+    "task-planning.skill.json",
+    "evidence-review.skill.json"
+  ],
+  "workflows": [
+    "offline-research.workflow.json",
+    "checkpoint-resume.workflow.json",
+    "sync-revocation-first.workflow.json"
+  ],
+  "policies": [
+    "tenant-universe-isolation.policy.json",
+    "replication-governance.policy.json",
+    "no-hidden-cot.policy.json",
+    "l4-autonomy-false.policy.json"
+  ],
+  "runtimeContracts": [
+    "local-worker.contract.json",
+    "heartbeat.contract.json",
+    "return-receipt.contract.json",
+    "compute-adapter.contract.json"
+  ],
+  "compatibility": {
+    "minOrchestration": "1.0.0",
+    "platforms": [
+      "linux",
+      "windows",
+      "darwin"
+    ]
+  },
+  "sourceRights": "XIV_OWNED_PORTABLE_ONLY",
+  "tests": [
+    "phase62lgob-local-first.test.ts"
+  ],
+  "createdAt": "2026-09-09T22:16:50.791Z",
+  "rollbackVersion": null,
+  "forbiddenCloneTargets": [
+    "vendor_proprietary_databases",
+    "private_infrastructure",
+    "trade_secrets",
+    "firmware",
+    "restricted_source",
+    "private_chip_ip",
+    "cross_tenant_customer_data"
+  ],
+  "hash": "4dccbc297c02d847cbff7893dc3d038981a7e08e10360d619a5abab4d3dac04a"
+}

@@ -1,0 +1,18 @@
+{
+  "$id": "xiv://dna/message-envelope",
+  "title": "MessageEnvelope",
+  "type": "object",
+  "required": [
+    "messageId",
+    "missionId",
+    "taskId",
+    "senderAgentId",
+    "receiverAgentId",
+    "tenantId",
+    "homeUniverseId",
+    "purpose",
+    "dataClass",
+    "payloadType",
+    "signatureHash"
+  ]
+}
