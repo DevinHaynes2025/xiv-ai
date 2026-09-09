@@ -1,5 +1,5 @@
-import { CommandCenter } from '@/screens/command';
+import { PremiumHome } from '@/screens/premium';
 
-export default function BusinessCommand() {
-  return <CommandCenter />;
+export default function BusinessHome() {
+  return <PremiumHome />;
 }

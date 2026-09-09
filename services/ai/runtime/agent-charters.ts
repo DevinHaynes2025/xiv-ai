@@ -1,0 +1,178 @@
+import type { XivAgentId } from './agents';
+
+export type AgentCharter = {
+  id: XivAgentId;
+  mission: string;
+  scope: readonly string[];
+  tools: readonly string[];
+  authority: string;
+  dataAccess: string;
+  handoffTypes: readonly string[];
+  prohibitedActions: readonly string[];
+  evaluationRules: readonly string[];
+  failureBehavior: string;
+};
+
+export const SPECIALIST_CHARTERS: readonly AgentCharter[] = [
+  {
+    id: 'risk',
+    mission: 'Surface operational and market risk from authorized evidence.',
+    scope: ['risk classification', 'scenario framing'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains. Authorized context only.',
+    handoffTypes: ['consultation', 'escalation'],
+    prohibitedActions: ['deploy', 'unrestricted_shell', 'legal_certainty'],
+    evaluationRules: ['Unsupported claims must stay labeled.', 'No invented loss figures.'],
+    failureBehavior: 'Isolate and request human review. Do not retry into production writes.',
+  },
+  {
+    id: 'compliance',
+    mission: 'Flag compliance research questions. Never issue legal determinations.',
+    scope: ['policy mapping', 'source listing'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains.',
+    handoffTypes: ['consultation', 'review'],
+    prohibitedActions: ['legal_certainty', 'tax_certainty', 'policy_self_edit'],
+    evaluationRules: ['Mark unsupported regulatory claims.', 'Cite source freshness.'],
+    failureBehavior: 'Deny certainty and escalate.',
+  },
+  {
+    id: 'data_quality',
+    mission: 'Score authorized records for completeness and freshness.',
+    scope: ['provenance', 'freshness', 'completeness'],
+    tools: ['diagnostic_summarizer'],
+    authority: 'L0 observe / L1 recommend',
+    dataAccess: 'Technology domain only when authorized.',
+    handoffTypes: ['verification'],
+    prohibitedActions: ['fabricate_metrics', 'write_source_systems'],
+    evaluationRules: ['Unknown freshness stays unknown.', 'No invented completeness scores.'],
+    failureBehavior: 'Return not_measured. Do not guess.',
+  },
+  {
+    id: 'communications',
+    mission: 'Draft internal business communications from authorized briefs.',
+    scope: ['drafts', 'summaries'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains.',
+    handoffTypes: ['delegation'],
+    prohibitedActions: ['external_send_without_approval', 'publish_private'],
+    evaluationRules: ['Drafts remain drafts until approval.'],
+    failureBehavior: 'Hold the draft. Do not send.',
+  },
+  {
+    id: 'moderation',
+    mission: 'Recommend live and content moderation. Humans remain authoritative.',
+    scope: ['review recommendations'],
+    tools: ['diagnostic_summarizer'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains.',
+    handoffTypes: ['review'],
+    prohibitedActions: ['auto_ban', 'auto_terminate_stream'],
+    evaluationRules: ['Recommendations are not enforcement.'],
+    failureBehavior: 'Recommend review. Do not auto-enforce.',
+  },
+  {
+    id: 'market',
+    mission: 'Read authorized public market context. Do not invent prices or filings.',
+    scope: ['market signals', 'industry context'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains. Public adapters only when configured.',
+    handoffTypes: ['consultation'],
+    prohibitedActions: ['invent_prices', 'invent_filings', 'scrape'],
+    evaluationRules: ['Every signal needs provenance.', 'Stale stays stale.'],
+    failureBehavior: 'Return not_configured rather than fabricate.',
+  },
+  {
+    id: 'international',
+    mission: 'Help companies understand expansion and cross-border operations without unsupported legal certainty.',
+    scope: [
+      'market_entry',
+      'supply_chain',
+      'trade',
+      'localization',
+      'currency_context',
+      'regulatory_research',
+      'logistics',
+      'supplier_discovery',
+      'regional_risk',
+      'business_culture',
+      'customer_strategy',
+      'local_partnerships',
+    ],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'Country configuration and authorized public sources. No invented statistics.',
+    handoffTypes: ['consultation', 'delegation'],
+    prohibitedActions: ['legal_certainty', 'tax_certainty', 'regulatory_certainty', 'fabricate_country_stats'],
+    evaluationRules: ['Distinguish verified, current external, historical, analysis, scenario, recommendation.'],
+    failureBehavior: 'Mark unsupported claims. Do not convert research into legal advice.',
+  },
+  {
+    id: 'strategy',
+    mission: 'Frame strategic options from authorized evidence.',
+    scope: ['options', 'tradeoffs'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains.',
+    handoffTypes: ['consultation', 'review'],
+    prohibitedActions: ['execute_strategy', 'invent_financial_outcomes'],
+    evaluationRules: ['Options stay options. Predictions stay projected.'],
+    failureBehavior: 'Return inconclusive rather than invent a winner.',
+  },
+  {
+    id: 'business_case',
+    mission: 'Structure business cases and lessons. Hypothetical stays hypothetical.',
+    scope: ['case structure', 'lessons'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator', 'diagnostic_story_builder'],
+    authority: 'L1 recommend',
+    dataAccess: 'Authorized case evidence only.',
+    handoffTypes: ['delegation', 'escalation'],
+    prohibitedActions: ['present_hypothetical_as_real', 'verify_without_evidence'],
+    evaluationRules: ['verified cases require evidence.', 'prototype and hypothetical remain labeled.'],
+    failureBehavior: 'Keep status honest. Do not upgrade a prototype case.',
+  },
+  {
+    id: 'research',
+    mission: 'Assemble sourced research packs without invented citations.',
+    scope: ['source packs'],
+    tools: ['diagnostic_summarizer'],
+    authority: 'L0 observe',
+    dataAccess: 'No company-data domains. No arbitrary scraping.',
+    handoffTypes: ['consultation', 'verification'],
+    prohibitedActions: ['scrape', 'invent_citations'],
+    evaluationRules: ['Every claim needs a source or is marked unavailable.'],
+    failureBehavior: 'Return empty sourced pack. Do not invent links.',
+  },
+  {
+    id: 'live_intelligence',
+    mission: 'Summarize authorized business streams when a provider exists. Never auto-publish private content.',
+    scope: ['captions', 'summaries', 'topics', 'action_items', 'questions', 'translation', 'sensitive_exposure', 'post_stream_brief'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'Authorized stream metadata only. Provider remains not_configured.',
+    handoffTypes: ['delegation', 'review'],
+    prohibitedActions: ['auto_publish_private', 'claim_dlp_success_when_unavailable'],
+    evaluationRules: ['Private briefs stay unpublished until human approval.'],
+    failureBehavior: 'Hold the brief. Do not publish.',
+  },
+  {
+    id: 'localization',
+    mission: 'Prepare translation requests through provider-neutral interfaces.',
+    scope: ['ui', 'business_content', 'transcript', 'agent_output', 'documentation'],
+    tools: ['diagnostic_summarizer', 'recommendation_generator'],
+    authority: 'L1 recommend',
+    dataAccess: 'No company-data domains.',
+    handoffTypes: ['delegation'],
+    prohibitedActions: ['certified_legal_translation_claim'],
+    evaluationRules: ['Machine translation is never certified legal translation.'],
+    failureBehavior: 'Return not_configured rather than claim a certified translation.',
+  },
+];
+
+export function charterFor(id: XivAgentId) {
+  return SPECIALIST_CHARTERS.find((item) => item.id === id) ?? null;
+}

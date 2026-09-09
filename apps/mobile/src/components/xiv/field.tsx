@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TextInput, StyleSheet, type TextInputProps, View } from 'react-native';
 
 import { Palette, Radius, Spacing } from '@/constants/theme';
@@ -8,7 +9,9 @@ type Props = TextInputProps & {
   label: string;
 };
 
-export function Field({ label, style, ...rest }: Props) {
+export function Field({ label, style, onFocus, onBlur, ...rest }: Props) {
+  const [focused, setFocused] = useState(false);
+
   return (
     <View style={styles.field}>
       <XivText variant="caption" muted>
@@ -17,7 +20,15 @@ export function Field({ label, style, ...rest }: Props) {
       <TextInput
         placeholderTextColor={Palette.textDim}
         {...rest}
-        style={[styles.input, style]}
+        onFocus={(event) => {
+          setFocused(true);
+          onFocus?.(event);
+        }}
+        onBlur={(event) => {
+          setFocused(false);
+          onBlur?.(event);
+        }}
+        style={[styles.input, focused && styles.focused, style]}
       />
     </View>
   );
@@ -36,5 +47,9 @@ const styles = StyleSheet.create({
     color: Palette.text,
     paddingHorizontal: Spacing.three,
     fontSize: 16,
+  },
+  focused: {
+    borderColor: Palette.accent,
+    backgroundColor: Palette.surfaceRaised,
   },
 });

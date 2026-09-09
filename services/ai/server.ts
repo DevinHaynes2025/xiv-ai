@@ -4,6 +4,14 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { ServiceError, verifyAccessToken } from './auth';
+import {
+  businessExecutiveBrief,
+  businessHealth,
+  businessSourceStatus,
+  mediaAuthorize,
+  mediaComplete,
+  mediaStatus,
+} from './business-api';
 import { runExecutiveTurn } from './executive-turn';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
@@ -131,6 +139,55 @@ const server = createServer((req, res) => {
 
       if (req.method === 'GET' && url.pathname === '/health') {
         json(res, 200, { ok: true, agent: 'executive_agent' });
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/business/source/status') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        json(res, 200, await businessSourceStatus(user.id));
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/business/health') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        json(res, 200, await businessHealth(user.id));
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/business/executive-brief') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        json(res, 200, await businessExecutiveBrief(user.id));
+        return;
+      }
+
+      if (req.method === 'POST' && url.pathname === '/v1/media/authorize') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        const raw = await readBody(req);
+        let parsed: Record<string, unknown> = {};
+        if (raw.trim()) {
+          try {
+            parsed = JSON.parse(raw) as Record<string, unknown>;
+          } catch {
+            throw new ServiceError('malformed', 400, 'The request could not be read.');
+          }
+        }
+        if (typeof parsed.storagePath === 'string') {
+          throw new ServiceError('malformed', 400, 'Arbitrary storage paths are not accepted.');
+        }
+        json(res, 200, mediaAuthorize(user.id, parsed));
+        return;
+      }
+
+      if (req.method === 'POST' && url.pathname === '/v1/media/complete') {
+        await verifyAccessToken(req.headers.authorization);
+        json(res, 403, mediaComplete());
+        return;
+      }
+
+      const mediaStatusMatch = /^\/v1\/media\/([^/]+)\/status$/.exec(url.pathname);
+      if (req.method === 'GET' && mediaStatusMatch) {
+        await verifyAccessToken(req.headers.authorization);
+        json(res, 200, mediaStatus(decodeURIComponent(mediaStatusMatch[1] ?? '')));
         return;
       }
 

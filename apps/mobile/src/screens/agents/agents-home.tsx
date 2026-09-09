@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { ActionApprovalCard } from '@/components/agents/action-approval-card';
 import { AgentActivityList } from '@/components/agents/agent-activity-list';
+import { AgentRuntimeStatus } from '@/components/agents/runtime-status';
 import { StructuredResultCard } from '@/components/agents/structured-result';
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
@@ -78,6 +79,8 @@ export function AgentsHome() {
   return (
     <ExperienceScreen title="Agent Command" subtitle="An AI workforce, not a tool wall." atmosphere="cinematic">
       <PrototypeNotice text="One agent is ACTIVE for this workspace when Gemini is wired. Every other card is COMING SOON — no extra model is called. Builder Agent is not implemented." />
+
+      <AgentRuntimeStatus />
 
       {snapshot ? (
         <Card variant="hero" style={styles.live}>

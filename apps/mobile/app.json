@@ -8,9 +8,12 @@
     "scheme": "xivai",
     "userInterfaceStyle": "dark",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.xivai.mobile",
+      "supportsTablet": true
     },
     "android": {
+      "package": "com.xivai.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#021D30",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

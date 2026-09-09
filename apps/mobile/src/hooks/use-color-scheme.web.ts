@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useColorScheme as useRNColorScheme } from 'react-native';
 
 /**
- * To support static rendering, this value needs to be re-calculated on the client side for web
+ * XIV AI uses a dark-first interface.
+ *
+ * On web, React Native's color-scheme hook provides the current
+ * client preference. During static rendering, fall back to dark
+ * rather than introducing hydration-only React state.
  */
 export function useColorScheme() {
-  const [hasHydrated, setHasHydrated] = useState(false);
-
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
   const colorScheme = useRNColorScheme();
 
-  if (hasHydrated) {
-    return colorScheme;
-  }
-
-  return 'light';
+  return colorScheme ?? 'dark';
 }

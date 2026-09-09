@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useSession } from '@/context/session';
 import { BottomTabInset, Layout, Palette, Radius, Spacing } from '@/constants/theme';
+import { useAdaptiveSurface } from '@/lib/adaptive-surface';
 import { experiences } from '@/data/mock';
 
 import { type Atmosphere, CinematicBackdrop } from './cinematic-backdrop';
@@ -27,11 +28,12 @@ export function ExperienceScreen({
 }: Props) {
   const insets = useSafeAreaInsets();
   const { session } = useSession();
+  const { maxContentWidth } = useAdaptiveSurface();
   const current = experiences.find((item) => item.id === session.experience);
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
+      style={[styles.root, { maxWidth: maxContentWidth }]}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <CinematicBackdrop atmosphere={atmosphere} />
       <Header

@@ -1,0 +1,12 @@
+export { billionUserClaim, billionUserReady, SCALE_CAPABILITIES } from './horizon';
+export { scaleEvidenceNumericScore, scaleReadinessScorecard } from './scorecard';
+export { loadTestPlan, loadTestsHavePassed } from './load-test';
+export type { ScaleCapability, ScaleHorizon } from './horizon';
+export { routeTenantShard, shardingIsEnabled } from './sharding';
+export { createEventBus, eventHasCorrelationId } from './event-bus';
+export type { RuntimeEvent, RuntimeEventType } from './event-bus';
+export { decideOverload, maySilentlyDrop, protectCriticalSecurityWork, workPriority } from './backpressure';
+export type { OverloadAction, WorkPriority } from './backpressure';
+export { buildCacheKey, privateCacheRequiresTenant } from './cache';
+export { createRateLimitRule, unlimitedRateLimitAllowed } from './rate-limit';
+export type { RateLimitDimension, RateLimitRule } from './rate-limit';

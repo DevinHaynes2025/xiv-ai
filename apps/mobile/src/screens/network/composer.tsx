@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
 import { Chip } from '@/components/xiv/chip';
-import { EmptyState } from '@/components/xiv/empty-state';
+import { MediaDraftCard } from '@/components/media/media-draft-card';
 import { ExperienceScreen } from '@/components/xiv/experience-screen';
 import { Field } from '@/components/xiv/field';
 import { PrototypeNotice } from '@/components/xiv/prototype-notice';
@@ -12,6 +12,7 @@ import { SectionHeader } from '@/components/xiv/section-header';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
 import { useSession } from '@/context/session';
+import type { MediaDraft } from '../../../../../services/ai/runtime/media';
 import {
   composeAudiences,
   composeIndustries,
@@ -28,6 +29,7 @@ export function NetworkComposer() {
   const [company, setCompany] = useState('');
   const [context, setContext] = useState('');
   const [held, setHeld] = useState(false);
+  const [mediaDraft, setMediaDraft] = useState<MediaDraft | null>(null);
 
   const selected = composeKinds.find((item) => item.id === kind) ?? composeKinds[0];
   const mediaKind = kind === 'video' || kind === 'image';
@@ -55,11 +57,11 @@ export function NetworkComposer() {
       </XivText>
 
       {mediaKind ? (
-        <EmptyState
-          title={kind === 'video' ? 'Video prototype only' : 'Image prototype only'}
-          body="Media upload and storage are not connected. A live composer would attach a file here. This preview will not pick, store, or stream media, and it will not pretend a file was uploaded."
-          ios={kind === 'video' ? 'video' : 'photo'}
-          android={kind === 'video' ? 'videocam' : 'image'}
+        <MediaDraftCard
+          ownerId={session.userId || 'anonymous'}
+          source="client"
+          draft={mediaDraft}
+          onChange={(next) => setMediaDraft(next)}
         />
       ) : null}
 
