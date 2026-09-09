@@ -7,9 +7,8 @@ Branch: `cursor/62l-ci-persistent-intelligence-economy-4059`
 Parent / base tip: `cursor/62l-cg-deep-knowledge-refinery-os-4059` @ `87fdf05d16bb2fe00b2bf0d39619d0a190afcaca` (includes `62L_CG_DEEP_KNOWLEDGE_REFINERY_OS_REPORT.md`)
 Why this base: Preferred **62L-CH** tip + report remained **WAITING_DATA** (not on origin). **62L-CG** tip + report **PRESENT** on origin after fetch-with-backoff; used as final base. Earlier scaffold considered **CF** `@f4a93e3` while CG landing, then **rebased onto CG** `@87fdf05`. Preference **CH → CG → CF → CE → CD → …** selects **CG**.
 Implementation SHAs: `bb0d503`..`70833d9` (feat/test/chore; see `git log`)
-Report SHA: 
 Report SHA: `9c35e893f6bdc6085c4244888acdcc7d4c4f8d9d`
-Tip SHA: `6385168b75300385a34701971c726f6b85b70e09`
+Tip SHA: `TIP_PENDING`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
