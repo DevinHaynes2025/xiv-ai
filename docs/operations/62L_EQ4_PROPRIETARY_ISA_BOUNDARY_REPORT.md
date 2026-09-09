@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq4-proprietary-isa-boundary-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `915c2c8046b69be92c58ecf3fbb57e953fcdb071`  
 Base: `cursor/62l-eq3-riscv-open-isa-knowledge-pack-4059` @ `1bc691e0fa4978afa0a7718605c8e74666f6c2c9`  
 Predecessor: EQ3 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ4 Proprietary ISA Boundary*  
