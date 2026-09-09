@@ -1,0 +1,33 @@
+-- 62L-EE Data Nervous System candidate schema
+-- NOT_APPLIED — no live Supabase apply; founder must authorize separately.
+-- DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- No contract / payment / public launch / tip-land authorization implied.
+-- Provenance + reliability evidence required; sync ≠ auto-migrate; sim ≠ fact.
+-- Peer review ≠ auto-grant / ≠ auto-prod publish; DB ops recommend ≠ migrate.
+
+-- Candidate tables only (do not auto-apply):
+-- ee_nervous_pathways
+-- ee_pathway_stages
+-- ee_consequential_promotions
+-- ee_db_health_recommendations
+-- ee_offline_cloud_syncs
+-- ee_data_slo_advisories
+-- ee_historical_learning_events
+-- ee_temporal_graph_edges
+-- ee_pathway_outcome_links
+-- ee_lean_experiments
+-- ee_algorithm_benchmarks
+-- ee_industry_twin_templates
+-- ee_twin_sim_runs
+-- ee_knowledge_candidates
+-- ee_peer_review_events
+-- ee_continuity_probes
+-- ee_failure_simulations
+-- ee_offline_node_probes
+-- ee_security_boundary_tests
+-- ee_launch_reliability_probes
+-- ee_stealth_install_denials
+-- ee_twin_authority_probes
+-- ee_autonomy_boundary_probes
+
+SELECT '62L_EE_CANDIDATES_NOT_APPLIED' AS status;
