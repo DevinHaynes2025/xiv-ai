@@ -48,7 +48,8 @@ import {
   type CjHopRecord,
 } from './intelligence-resource-grid-apprenticeship-types';
 
-/** Optional CF/CE continuity — present on preferred base tip; never softens CJ locks. */
+/** Optional CI/CF/CE continuity — present on preferred base tip; never softens CJ locks. */
+import { CI_LOCKS } from './persistent-intelligence-economy-types';
 import { CF_LOCKS } from './data-refinery-compression-replication-types';
 import { CE_LOCKS } from './knowledge-excavation-memory-lake-types';
 
@@ -496,12 +497,15 @@ export async function buildIntelligenceResourceGridApprenticeshipHealthReport(in
       localCloudModelFederation: 'IMPLEMENTED',
       universalEdgeRuntimeMesh: 'IMPLEMENTED',
     },
-    cfCeContinuity: {
+    ciCfCeContinuity: {
+      ciL4: CI_LOCKS.L4_AUTONOMY_ENABLED,
+      ciAutonomousSpending: CI_LOCKS.AUTONOMOUS_SPENDING,
+      ciRunningVerifiedWithoutHeartbeat: CI_LOCKS.RUNNING_VERIFIED_WITHOUT_HEARTBEAT,
       cfL4: CF_LOCKS.L4_AUTONOMY_ENABLED,
       ceL4: CE_LOCKS.L4_AUTONOMY_ENABLED,
       cfSealedSilentCloudFallback: CF_LOCKS.SEALED_SILENT_CLOUD_FALLBACK,
       ceSoulResurrectionClaims: CE_LOCKS.SOUL_RESURRECTION_CLAIMS,
-      note: 'CJ extends CF/CE locks; does not soften them. CI/CH/CG may remain WAITING_DATA.',
+      note: 'CJ extends CI/CF/CE locks; does not soften them. CH may remain WAITING_DATA on this lineage.',
     },
     nextPhase: NEXT_PHASE_TITLE,
     productionAuthorized: false,

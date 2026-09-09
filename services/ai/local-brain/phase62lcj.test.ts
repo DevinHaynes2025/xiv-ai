@@ -462,9 +462,11 @@ try {
       report.productionAuthorized === false &&
       report.githubSoT === 100 &&
       report.gitlabCoordination === 34 &&
+      preds.CI.tipProbe === 'PRESENT' &&
+      preds.CI.report === 'PRESENT' &&
       preds.CF.tipProbe === 'PRESENT' &&
       preds.CF.report === 'PRESENT',
-    'Health report exposes locks, SoT cites, CF predecessor PRESENT.',
+    'Health report exposes locks, SoT cites, CI+CF predecessors PRESENT.',
   );
 } catch (err) {
   failures.push(`UNCAUGHT: ${(err as Error).message}`);
