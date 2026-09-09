@@ -13,7 +13,11 @@
     "test:62lem": "node --import tsx --test local-runtime/__tests__/phase62lem.test.ts",
     "test:62lem-home": "node --import tsx --test local-brain/phase62lem157.test.ts",
     "test:62lem157": "node --import tsx --test local-brain/phase62lem157.test.ts",
+<<<<<<< HEAD
     "test:62lem10": "node --import tsx --test local-brain/phase62lem10.test.ts",
+=======
+    "test:62len": "node --import tsx --test local-brain/phase62len.test.ts",
+>>>>>>> 8e3475b (feat(62L-EN): Deal & Contract Intelligence OS for GitHub #158)
     "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts",
     "test:62lel6": "node --import tsx --test local-runtime/__tests__/amd-npu-capability.test.ts",
     "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
