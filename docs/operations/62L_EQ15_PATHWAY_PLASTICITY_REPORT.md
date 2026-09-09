@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq15-pathway-plasticity-4059`  
-Tip SHA: *(aligned in follow-up docs commit)*  
+Tip SHA: `f8bc76b2866f8d17d43b2a7af4fd28bfad40f6b8`  
 Base: `cursor/62l-eq13-architecture-return-receipt-4059` @ `51db6cd7eac6901226981c5989c7ae6ef980e28f`  
 Predecessor: EQ13 **PRESENT**; EQ14 **WAITING_DATA** (intentionally not yet parked)  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ15 Pathway Plasticity*  
