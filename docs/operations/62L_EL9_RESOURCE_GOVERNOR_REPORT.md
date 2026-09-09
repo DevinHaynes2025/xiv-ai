@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto latest EL8 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-el9-resource-governor-4059`  
-Tip SHA: `(see branch HEAD after push)`  
+Tip SHA: `4c97b26eab02f27cb3060be2cce277c2177135f8`  
 Base: `cursor/62l-el8-model-load-evidence-4059` @ `4447be8d25e2af2337af5add0a0d015ea6fb9067` (preferred; EL8 interim tip after rebase onto EL7 `0777b506775c5215a8c60a030a984fe0c2f4b3de`)  
 Prior base (pre-nudge): `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
