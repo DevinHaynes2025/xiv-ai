@@ -386,11 +386,11 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
-    'US-CI-predecessor-cf-or-better',
-    preds.CF.tipProbe === 'PRESENT' ||
+    'US-CI-predecessor-ch-or-better',
+    preds.CH.tipProbe === 'PRESENT' ||
       preds.CG.tipProbe === 'PRESENT' ||
-      preds.CH.tipProbe === 'PRESENT',
-    `Predecessor probe CF=${preds.CF.tipProbe} CG=${preds.CG.tipProbe} CH=${preds.CH.tipProbe}`,
+      preds.CF.tipProbe === 'PRESENT',
+    `Predecessor probe CH=${preds.CH.tipProbe} CG=${preds.CG.tipProbe} CF=${preds.CF.tipProbe}`,
   );
 
   const cycle = await runPersistentIntelligenceEconomyCycle({

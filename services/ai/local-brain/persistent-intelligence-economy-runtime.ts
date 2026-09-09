@@ -55,7 +55,8 @@ import {
   type CiHopRecord,
 } from './persistent-intelligence-economy-types';
 
-/** Optional CG/CF/CE/CD continuity — present on preferred base tip; never softens CI locks. */
+/** Optional CH/CG/CF/CE/CD continuity — present on preferred base tip; never softens CI locks. */
+import { CH_LOCKS } from './knowledge-civilization-dept-universities-types';
 import { CG_LOCKS } from './deep-knowledge-refinery-os-types';
 import { CF_LOCKS } from './data-refinery-compression-replication-types';
 import { CE_LOCKS } from './knowledge-excavation-memory-lake-types';
@@ -98,6 +99,7 @@ export async function runPersistentIntelligenceEconomyCycle(input: CiCycleInput)
         CI_LOCKS.MODEL_EVOLUTION_GRANTS_PERMISSION === false &&
         CI_LOCKS.HIDDEN_DEVICE_DEPLOY === false &&
         CI_LOCKS.SEALED_SILENT_CLOUD_FALLBACK === false &&
+        CH_LOCKS.L4_AUTONOMY_ENABLED === false &&
         CG_LOCKS.L4_AUTONOMY_ENABLED === false &&
         CF_LOCKS.L4_AUTONOMY_ENABLED === false &&
         CE_LOCKS.L4_AUTONOMY_ENABLED === false &&
@@ -455,14 +457,15 @@ export async function buildPersistentIntelligenceEconomyHealthReport(input?: {
       localModelEvolutionAcademy: 'IMPLEMENTED',
       globalEdgeKnowledgeExchange: 'IMPLEMENTED',
     },
-    cgCfCeCdContinuity: {
+    chCgCfCeCdContinuity: {
+      chL4: CH_LOCKS.L4_AUTONOMY_ENABLED,
       cgL4: CG_LOCKS.L4_AUTONOMY_ENABLED,
       cfL4: CF_LOCKS.L4_AUTONOMY_ENABLED,
       ceL4: CE_LOCKS.L4_AUTONOMY_ENABLED,
       cdL4: CD_LOCKS.L4_AUTONOMY_ENABLED,
       cfSealedSilentCloudFallback: CF_LOCKS.SEALED_SILENT_CLOUD_FALLBACK,
       cdMeshWriteDenyByDefault: CD_LOCKS.DB_WRITE_DENIED_BY_DEFAULT,
-      note: 'CI extends CG/CF/CE/CD locks; does not soften them.',
+      note: 'CI extends CH/CG/CF/CE/CD locks; does not soften them.',
     },
     nextPhase: NEXT_PHASE_TITLE,
   };
