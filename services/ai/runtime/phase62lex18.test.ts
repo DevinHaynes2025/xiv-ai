@@ -114,7 +114,7 @@ function registerFreshCompatible(inputPayload = 'payload-compatible'): XivWormho
     dataClass: 'INTERNAL',
     purpose: 'research',
     freshness: 'FRESH',
-    ttlExpiryIso: '2026-09-10T00:00:00.000Z',
+    ttlExpiryIso: '2026-09-12T00:00:00.000Z',
     evidenceRefs: ['ev-1'],
     highwayState: 'MEASURED',
     confidence: 0.7,

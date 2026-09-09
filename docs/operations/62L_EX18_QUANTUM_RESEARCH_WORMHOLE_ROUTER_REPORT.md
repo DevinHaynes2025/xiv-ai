@@ -19,10 +19,10 @@
 | GITHUB TREE | `4d5e3c29c1e9b15e135b7c085095fd0306d03af5` |
 | EX17 local branch tip | `60986682…` (= xiv-v2; **no pushed EX17 feat yet**) |
 | EX18 base | GITHUB `origin/xiv-v2` @ `60986682…` |
-| EX18 feat SHA | _(filled after feat commit)_ |
-| EX18 tip | _(filled after tip commit)_ |
+| EX18 feat SHA | `05c10479d798b09da9f2f75f0f2a0e45a8a74091` |
+| EX18 tip | _(see tip commit after this report)_ |
 
-**TREE / divergence note:** Workspace `/workspace` was dirty/contested; EX18 built in isolated worktree `/tmp/62l-ex18-work`. LOCAL/GITLAB xiv-v2 lag GITHUB. EX17 concurrent branch pattern exists but tip was not a safe descendant with validated fabric code → soft-wire EX17 via `existsSync` (`WAITING_DATA` until present). Do not block forever waiting for merge onto xiv-v2.
+**TREE / divergence note:** Workspace `/workspace` was dirty/contested; EX18 built in isolated worktree `/tmp/62l-ex18-work`. LOCAL/GITLAB xiv-v2 lag GITHUB. At gate time EX17 tip equaled xiv-v2 (not a safe validated descendant) → base = GITHUB `origin/xiv-v2`. Soft-wire EX17 via `existsSync` against sibling worktree `/tmp/62l-ex17-work` when present (`PRESENT_UNVERIFIED`; presence ≠ VERIFIED). Do not block forever waiting for merge onto xiv-v2.
 
 ## Mission honesty
 
@@ -42,12 +42,14 @@
 
 ## Soft-wire honesty (EX1–EX17)
 
-| Probe | Disposition rule |
-|-------|------------------|
-| EX1–EX16 sibling tips / quantum / offlinepacks / history / ir | `PRESENT_UNVERIFIED` if `existsSync`, else `WAITING_DATA` |
-| EX17 compute-fabric | Soft-wire; typically `WAITING_DATA` until EX17 lands |
-| Agent Mesh / Guardian / evidence / pathway / plasticity | Soft-wire; presence ≠ VERIFIED |
-| compute-fabric/, quantum/, agentmesh/, pathway/evidence | Integrate when present; never duplicate |
+Observed at test time (presence ≠ VERIFIED):
+
+| Disposition | Probes |
+|-------------|--------|
+| `PRESENT_UNVERIFIED` | agentMesh, computeFabric (sibling EX17 worktree), evidence, pathway, plasticity, guardian, ex1–ex17 |
+| `WAITING_DATA` | `quantum/` on EX18 tip (not merged to xiv-v2) |
+
+Rules: `existsSync` only; absent → `WAITING_DATA` (not FAIL); never duplicate identity/Guardian/RLS/routing/evidence/tenant systems.
 
 ## Implementation
 
@@ -73,7 +75,7 @@ cd services/ai && npm run test:62lex18
 
 | Command | Result |
 |---------|--------|
-| `npm run test:62lex18` | _(filled after execution)_ |
+| `npm run test:62lex18` | **PASS** — 21/21 (20 required + setup); executed locally; auth never bypassed; L4=false; Guardian hash unchanged |
 
 ## Governance locks
 
