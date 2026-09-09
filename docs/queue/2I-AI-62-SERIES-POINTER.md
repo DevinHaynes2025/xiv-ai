@@ -52,3 +52,9 @@ recommended resolution is the `xiv_` prefix, consistent with the rest of the ser
 - A shared GPU host ≠ a shared Universe.
 - TBD ≠ PASS. UNCONFIGURED ≠ supported. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED.
 - Do not build a ninth compute router; eight already exist.
+- E0 (a claim with no artifact) can never satisfy an acceptance criterion.
+- REPORTED never becomes VERIFIED without evidence.
+- Evidence for commit A does not prove commit B without impact analysis.
+- A skipped mandatory test is not a PASS.
+- Automation may collect, calculate and recommend. It never approves.
+- Nothing in this series is currently E3 or VERIFIED; see the 62D evidence audit.
