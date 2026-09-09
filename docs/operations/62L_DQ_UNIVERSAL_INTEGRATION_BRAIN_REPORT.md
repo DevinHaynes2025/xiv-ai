@@ -7,7 +7,7 @@ Branch: `cursor/62l-dq-universal-integration-brain-4059`
 Parent / base tip: `cursor/62l-dp-plugin-civilization-os-4059` @ `08078d1faff76826989e45e9d20a748d73f809ed` + `docs/operations/62L_DP_PLUGIN_CIVILIZATION_OS_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DP → DO → DN → DM → DL → DK → …**. Remote DP tip initially **WAITING_DATA**, then landed @ `08078d1` with report **PRESENT**. Soft-wire DP Plugin Civilization OS when PRESENT (reuses DP `ACTION_RISK_CLASSES` / `evaluateActionRisk`). No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `fix` / `docs`)
-Tip SHA: `814b5b119dc6a9fa7b6aedd675baf73b57a19b52`
+Tip SHA: `d41fbbd00668e6a06c27d5c1f4a6e927c41ee2a2`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
