@@ -17,6 +17,7 @@
 | EX4 tip (`cursor/62l-ex4-local-quantum-simulator-registry-4059`) | `60986682f7a6913def6da08499388aecd4acea4a` |
 | EX1 / EX2 / EX3 tips | `60986682f7a6913def6da08499388aecd4acea4a` (aligned) |
 | EX5 base | EX4 tip = GITHUB `origin/xiv-v2` |
+| EX5 tip (this branch) | `dc9e9b7c89d6744b96cfee26c7cb5adee70306bd` |
 
 **TREE note:** Workspace `/workspace` was dirty on an unrelated GOB branch at gate time; EX5 was built in an isolated worktree from the EX4 tip. LOCAL/GITLAB xiv-v2 diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`. Predecessor EX1–EX4 tips were identical — no stop-on-divergence.
 
