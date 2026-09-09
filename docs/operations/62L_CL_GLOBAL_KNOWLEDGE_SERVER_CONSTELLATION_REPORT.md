@@ -6,9 +6,9 @@ Date: 2026-09-09
 Branch: `cursor/62l-cl-global-knowledge-server-constellation-4059`
 Parent / base tip: `cursor/62l-ck-cognitive-infra-mini-cloud-history-4059` @ `7724e4940a4ebe5b76612501fc14e7bb630b31fb` (includes `62L_CK_COGNITIVE_INFRA_MINI_CLOUD_HISTORY_REPORT.md`)
 Why this base: Preferred **62L-CK** tip + report. At start CK/CJ/CI/CH were **WAITING_DATA**; scaffolded from local **CH** tip then **rebased onto CI** `@0df88fd` when CI tip+report PRESENT; continued poll with backoff until **CJ** tip+report PRESENT and **CK** tip PRESENT (report briefly WAITING_DATA); then **rebased onto CK** `@d849fe3` and again onto CK tip+report `@7724e49`. Preference **CK → CJ → CI → CH → CG → CF `@5daacde` → CE `@4a902ca` → …** selects **CK**. Regional cells build on CK `mini-cloud-server-cells`.
-Implementation SHAs: `16d3c5a`..`72d6068` (+ follow-up mini-cell wire / report commits)
-Report SHA: 
-Tip SHA: 
+Implementation SHAs: `16d3c5a`..`33854b9` (feat commits; see commit list below)
+Report SHA: `9db94121c5a64aaceb47c88291b4478e87f526b4`
+Tip SHA: `PENDING`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
