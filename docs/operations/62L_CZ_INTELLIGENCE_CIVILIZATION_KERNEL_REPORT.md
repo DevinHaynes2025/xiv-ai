@@ -7,7 +7,7 @@ Branch: `cursor/62l-cz-intelligence-civilization-kernel-4059`
 Parent / base tip: `cursor/62l-cy-knowledge-colony-operating-system-4059` @ `c182f7def309fac49fc1e74f921ca8c09b729a02` + `docs/operations/62L_CY_KNOWLEDGE_COLONY_OPERATING_SYSTEM_REPORT.md` (**PRESENT**)
 Why this base: Preference **CY → CX → CW → CV `c35e474` → CU `2db3e44` → CT → CR → CQ → …**. CY tip **PRESENT** on origin at preferred SHA with report; used as base. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `chore` / `docs`)
-Tip SHA: `8da65d5507d48ae1498b66f3a6d5fda70143ee9e`
+Tip SHA: `ad9ea2e627e73dc9b2387c959269efdc03baa85a`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deployment: **NOT TRIGGERED**
