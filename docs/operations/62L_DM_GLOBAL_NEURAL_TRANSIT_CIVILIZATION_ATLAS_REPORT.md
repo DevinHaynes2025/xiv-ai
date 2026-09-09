@@ -7,7 +7,7 @@ Branch: `cursor/62l-dm-global-neural-transit-civilization-atlas-4059`
 Parent / base tip: `cursor/62l-dl-neural-transportation-os-4059` @ `359057d06e3a660bb840f00e0162688b895b4f82` + `docs/operations/62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **DL → DK → DJ → DI → DH → DG → DF → …**. Remote DL tip initially **WAITING_DATA**, then landed; rebased DM onto DL @ `359057d`. Soft-wire DL neural transportation when PRESENT; soft-wire DK neural highway / Experience OS when PRESENT. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `0de5584af1bf5b8d1687670c6cd666b90fd390b4`
+Tip SHA: `47e263852d453d46c4e28472bde3e10a801f50a1`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
