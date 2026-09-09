@@ -23,6 +23,7 @@
     "test:62lep4": "node --import tsx --test local-brain/phase62lep4.test.ts",
     "test:62lep5": "node --import tsx --test local-brain/phase62lep5.test.ts",
     "test:62lep6": "node --import tsx --test local-brain/phase62lep6.test.ts",
+    "test:62lep7": "node --import tsx --test local-brain/phase62lep7.test.ts",
     "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts",
     "test:62lel6": "node --import tsx --test local-runtime/__tests__/amd-npu-capability.test.ts",
     "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
