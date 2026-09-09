@@ -31,3 +31,7 @@ export * from './universal-compute-registry';
 export * from './em5-honesty';
 export * from './em5-soft-wire';
 export * from './amd-windows-ml-adapter-path';
+export * from './em6-honesty';
+export * from './em6-soft-wire';
+export * from './em6-cross-vendor-benchmark-contract';
+export * from './nvidia-runtime-adapter';
