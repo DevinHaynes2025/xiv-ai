@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq6-architecture-capability-graph-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `0fd21ec8ff649c4dd9a265fabcb51581392e0db4`  
 Base: `cursor/62l-eq5-compiler-ir-translation-layer-4059` @ `9ca074c15cfc24b6c9f047ec0adfc5959f78b1d1`  
 Predecessor: EQ5 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ6 Architecture Capability Graph*  
