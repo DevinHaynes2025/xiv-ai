@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er26-avatar-provenance-drawer-4059`  
-Tip SHA: `TIP_SHA_PLACEHOLDER`  
+Tip SHA: `266aec4ea87e71b8064a0a3710729fbdf348ea2a`  
 Base: `cursor/62l-er22-historical-avatar-contract-4059` @ `1855355ad7a84adf33f3cd4fceb415991ee6012d` (best available progressive tip; preferred ER25→ER24→ER23 tips absent at implement time)  
 Predecessor soft-wires: ER22 Historical Avatar Contract + report **PRESENT**; ER25 / ER24 / ER23 **WAITING_DATA** (ok; presence ≠ VERIFIED); ER2 / ER1 **PRESENT**; ER4 rights **WAITING_DATA**  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER26 Avatar Provenance Drawer*  
