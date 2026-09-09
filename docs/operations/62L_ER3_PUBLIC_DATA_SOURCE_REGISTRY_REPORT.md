@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er3-public-data-source-registry-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `d70260fdb633cdbc1bec263a405705e252edb733`  
 Base: `cursor/62l-ep10-other-accelerator-registry-4059` @ `60d50a77f367d50d70a8f6e7e8f30a1fd8a612e0`  
 Predecessor: No ER1/ER2 tip present; EP10 Other Accelerator Registry **PRESENT**; EP4 IP Firewall soft-wired for rights adjacency  
 SoT: **GitHub 62L-ER family** — provisional letter-order candidate `#161` after EP `#160`; `gh issue view 161` **unresolved** in this environment — **no confirmed issue number invented**; founder may supply authoritative SoT  
