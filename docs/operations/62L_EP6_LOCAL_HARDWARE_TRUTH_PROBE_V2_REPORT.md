@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep6-local-hardware-truth-probe-v2-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `00cbdfdda66ad17d077d5b9c8dd0871cb350b833`  
 Base: `cursor/62l-ep5-public-benchmark-memory-4059` @ `ebffa2e96053a9070bfd61af2f4800c4dc889754`  
 Predecessor: EP5 Public Benchmark Memory **PRESENT**; EP3 **WAITING_DATA** (not landed)  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP6 Local Hardware Truth Probe v2*  
