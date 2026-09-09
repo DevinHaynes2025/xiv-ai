@@ -7,7 +7,7 @@ Branch: `cursor/62l-cy-knowledge-colony-operating-system-4059`
 Parent / base tip: `cursor/62l-cx-persistent-knowledge-civilization-4059` @ `63e79c18de1b1569d74fba088e76fe8fbdbab58e` + `docs/operations/62L_CX_PERSISTENT_KNOWLEDGE_CIVILIZATION_REPORT.md` (**PRESENT** after WAITING_DATA poll)
 Why this base: Preference **CX → CW → CV `c35e474` → CU `2db3e44` → CT `1ce4d11` → CR `af878c1` → CQ → …**. CX tip initially **WAITING_DATA** (CX agent still landing on CW); polled with backoff 30s–2m until tip + report + modules **PRESENT**. Interim scaffold started on CW `03584c6`, then **rebased onto CX** `63e79c1`. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `chore` / `docs`)
-Tip SHA: `8691d4283dc99c55baea304c80d35d9dcc3259c2`
+Tip SHA: `70e2083fbaa244b6949874131fe3ecc29618b736`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
