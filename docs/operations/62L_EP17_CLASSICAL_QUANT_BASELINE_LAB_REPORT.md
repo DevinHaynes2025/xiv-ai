@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep17-classical-quant-baseline-lab-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `b4ca06b2ad64db909e2313425de9ce3f9065f886`  
 Base: `cursor/62l-ep16-no-overclock-bios-rule-4059` @ `39d54b73bf83695789881878967317d06b8f9bc8`  
 Predecessor: EP16 **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP17 Classical Quant Baseline Lab*  
