@@ -55,6 +55,10 @@ export function populationStats() {
   };
 }
 
+export function resetAgentPopulation() {
+  instances.clear();
+}
+
 export function requestAgentInstance(input: {
   role: MeshAgentRole;
   tenantId: string;
@@ -62,18 +66,24 @@ export function requestAgentInstance(input: {
   taskId?: string;
   ttlMinutes?: number;
   lineage?: string[];
+  now?: number;
 }) {
   if (!input.tenantId || !input.universeId) return { created: false as const, reason: 'Tenant and Universe are required.' };
   const lineage = input.lineage ?? [];
   if (lineage.length > MAX_LINEAGE_DEPTH) return { created: false as const, reason: 'Agent lineage depth budget reached.' };
   if (new Set(lineage).size !== lineage.length) return { created: false as const, reason: 'Recursive agent lineage denied.' };
 
+  reapExpiredAgents(input.now ?? Date.now());
   const all = listAgentInstances();
   const reusable = all.find((agent) => agent.role === input.role && agent.tenantId === input.tenantId && agent.universeId === input.universeId && agent.state === 'HIBERNATING');
   if (reusable) {
+    if (all.filter(active).length >= MAX_ACTIVE_INSTANCES) return { created: false as const, reason: 'Global local-agent active budget reached.' };
+    if (all.filter((agent) => agent.role === input.role && active(agent)).length >= MAX_INSTANCES_PER_ROLE) {
+      return { created: false as const, reason: `Per-role active budget reached for ${input.role}.` };
+    }
     reusable.state = 'READY';
     reusable.taskId = input.taskId;
-    reusable.expiresAt = new Date(Date.now() + Math.max(5, Math.min(input.ttlMinutes ?? 30, 240)) * 60_000).toISOString();
+    reusable.expiresAt = new Date((input.now ?? Date.now()) + Math.max(5, Math.min(input.ttlMinutes ?? 30, 240)) * 60_000).toISOString();
     return { created: false as const, reused: true as const, instance: reusable, reason: 'Reused hibernating specialist.' };
   }
   if (all.length >= MAX_REGISTERED_INSTANCES) return { created: false as const, reason: 'Global registered-agent budget reached.' };
@@ -81,7 +91,7 @@ export function requestAgentInstance(input: {
   if (all.filter((agent) => agent.role === input.role && active(agent)).length >= MAX_INSTANCES_PER_ROLE) return { created: false as const, reason: `Per-role active budget reached for ${input.role}.` };
 
   const ttl = Math.max(5, Math.min(input.ttlMinutes ?? 30, 240));
-  const now = Date.now();
+  const now = input.now ?? Date.now();
   const instance: AgentInstance = {
     id: `agent_${randomUUID()}`,
     role: input.role,

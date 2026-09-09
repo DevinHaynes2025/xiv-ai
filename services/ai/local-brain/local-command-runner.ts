@@ -10,6 +10,10 @@ const COMMANDS: Record<AllowedLocalCommand, { command: string; args: string[] }>
   npm_test: { command: 'npm', args: ['test', '--', '--runInBand'] },
 };
 
+export function isAllowedLocalCommand(id: string): id is AllowedLocalCommand {
+  return Object.prototype.hasOwnProperty.call(COMMANDS, id);
+}
+
 export async function runAllowedLocalCommand(input: {
   id: AllowedLocalCommand;
   cwd: string;

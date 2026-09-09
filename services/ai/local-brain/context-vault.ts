@@ -19,7 +19,7 @@ function inside(root: string, target: string) {
 
 export async function readApprovedContext(repoRoot: string, requestedPath: string): Promise<ContextRecord> {
   const resolvedRoot = resolve(repoRoot);
-  const resolvedTarget = resolve(resolvedRoot, requestedPath);
+  const resolvedTarget = resolve(resolvedRoot, requestedPath.replaceAll('\\', '/'));
   if (!inside(resolvedRoot, resolvedTarget)) throw new Error('CONTEXT_PATH_OUTSIDE_REPO');
 
   const requestedNormalized = relative(resolvedRoot, resolvedTarget).replaceAll('\\', '/');
