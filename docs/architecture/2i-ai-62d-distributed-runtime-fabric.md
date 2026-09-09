@@ -43,6 +43,10 @@ services/ai/runtime/
 
 Run it with `npm install && npm test` in `services/ai`. `npm run typecheck` covers the same tree.
 
+Story sections 33-61 cover a different subject — how anyone knows the guarantees below actually hold —
+and are implemented in `services/ai/evidence` and documented in
+[2i-ai-62d-evidence-governance.md](./2i-ai-62d-evidence-governance.md).
+
 ---
 
 ## 1. XUR — the universal runtime
