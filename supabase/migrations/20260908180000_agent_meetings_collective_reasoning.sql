@@ -1112,16 +1112,20 @@ begin
     end if;
   end if;
 
-  if tg_table_name = 'agent_meeting_participants' and new.participant_kind = 'agent' then
-    select count(*) into agent_count
-    from public.agent_meeting_participants p
-    where p.meeting_id = new.meeting_id
-      and p.participant_kind = 'agent'
-      and p.left_at is null
-      and p.id <> new.id;
+  -- Nested rather than combined: plpgsql evaluates every operand of an AND, and
+  -- new.participant_kind does not exist on the message row.
+  if tg_table_name = 'agent_meeting_participants' then
+    if new.participant_kind = 'agent' then
+      select count(*) into agent_count
+      from public.agent_meeting_participants p
+      where p.meeting_id = new.meeting_id
+        and p.participant_kind = 'agent'
+        and p.left_at is null
+        and p.id <> new.id;
 
-    if agent_count + 1 > budget.max_participant_agents then
-      raise exception 'xiv_meeting_participant_budget_exceeded' using errcode = 'check_violation';
+      if agent_count + 1 > budget.max_participant_agents then
+        raise exception 'xiv_meeting_participant_budget_exceeded' using errcode = 'check_violation';
+      end if;
     end if;
   end if;
 
