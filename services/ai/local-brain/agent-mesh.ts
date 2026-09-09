@@ -1,4 +1,4 @@
-import { completeLocal } from './local-model';
+import { completeWithLocalModel } from './local-model';
 
 export type MeshAgentRole =
   | 'architect'
@@ -21,24 +21,7 @@ export type MeshAgentRole =
   | 'workflow_planner';
 
 export const MESH_AGENT_ROLES: readonly MeshAgentRole[] = [
-  'architect',
-  'coder',
-  'tester',
-  'security',
-  'researcher',
-  'business_analyst',
-  'finance_analyst',
-  'supply_chain_analyst',
-  'operations_analyst',
-  'culture_historian',
-  'evidence_verifier',
-  'skeptic',
-  'executive_synthesizer',
-  'executive_secretary',
-  'decision_strategist',
-  'knowledge_curator',
-  'memory_librarian',
-  'workflow_planner',
+  'architect','coder','tester','security','researcher','business_analyst','finance_analyst','supply_chain_analyst','operations_analyst','culture_historian','evidence_verifier','skeptic','executive_synthesizer','executive_secretary','decision_strategist','knowledge_curator','memory_librarian','workflow_planner',
 ] as const;
 
 export type MeshMessage = {
@@ -82,11 +65,7 @@ export function createMeeting(objective: string, roles: MeshAgentRole[], maxRoun
 export async function runLocalMeeting(meeting: MeshMeeting) {
   for (let round = 0; round < meeting.maxRounds; round += 1) {
     for (const role of meeting.roles) {
-      const transcript = meeting.messages
-        .slice(-24)
-        .map((message) => `${message.from}: ${message.content}`)
-        .join('\n');
-
+      const transcript = meeting.messages.slice(-24).map((message) => `${message.from}: ${message.content}`).join('\n');
       const prompt = [
         'You are a bounded XIV AI specialist operating in an offline/local sandbox.',
         `Role: ${role}`,
@@ -100,18 +79,22 @@ export async function runLocalMeeting(meeting: MeshMeeting) {
         transcript ? `Prior meeting transcript:\n${transcript}` : 'No prior messages.',
       ].join('\n\n');
 
-      const result = await completeLocal(prompt);
-      meeting.messages.push({
-        id: id('msg'),
-        meetingId: meeting.id,
-        from: role,
-        to: 'all',
-        content: result.text,
-        createdAt: new Date().toISOString(),
-        evidenceRefs: [],
-      });
+      try {
+        const result = await completeWithLocalModel(prompt);
+        meeting.messages.push({ id: id('msg'), meetingId: meeting.id, from: role, to: 'all', content: result.text, createdAt: new Date().toISOString(), evidenceRefs: [] });
+      } catch (error) {
+        meeting.messages.push({
+          id: id('msg'),
+          meetingId: meeting.id,
+          from: role,
+          to: 'all',
+          content: `UNAVAILABLE: ${error instanceof Error ? error.message : 'local model unavailable'}`,
+          createdAt: new Date().toISOString(),
+          evidenceRefs: [],
+        });
+        return { ...meeting, runtimeState: 'UNAVAILABLE' as const };
+      }
     }
   }
-
-  return meeting;
+  return { ...meeting, runtimeState: 'COMPLETED' as const };
 }
