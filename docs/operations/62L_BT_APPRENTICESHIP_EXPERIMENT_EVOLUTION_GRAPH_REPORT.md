@@ -6,9 +6,9 @@ Date: 2026-09-09
 Branch: `cursor/62l-bt-apprenticeship-experiment-evolution-graph-4059`
 Parent / base tip: `cursor/62l-bs-engineering-university-memory-cortex-4059` @ `39da70c4c33058647222ca71c517081c064d3c4d` (`docs(62L-BS): restore tip SHA after align commit #83`)
 Why this base: Preferred **62L-BS** tip + `docs/operations/62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md` **PRESENT** after fetch with backoff (earlier polls: BS missing → briefly BR tip without report → BS landed with report). Preference order BS → BR → BQ → BP → BO … satisfied by **BS**.
-Implementation SHAs: `2fc805a7d28694c3a9fbf303f22a796515a8d2fc`..`f1f63e9e52a00b516a71e4d974c1b43272b2e1eb` (after rebase onto BS; see commit list below)
+Implementation SHAs: `2fc805a7d28694c3a9fbf303f22a796515a8d2fc`..`ed22a5fd5ec5d0636f46a03f37a304ffad7770f1` (after rebase onto BS; see commit list below)
 Report SHA: `773c7e34e3236c6090aa86bb9374b0b69d5253ac`
-Tip SHA: `f1f63e9e52a00b516a71e4d974c1b43272b2e1eb`
+Tip SHA: `ed22a5fd5ec5d0636f46a03f37a304ffad7770f1`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
