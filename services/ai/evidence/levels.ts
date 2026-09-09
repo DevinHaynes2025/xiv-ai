@@ -100,12 +100,38 @@ export function assessLevel(
 }
 
 // A record is stored at the level it earned. Claiming more is refused so that
-// the ladder cannot be climbed by assertion.
+// the ladder cannot be climbed by assertion. Claiming less is allowed and is
+// sometimes the right thing to do: a collector that is unsure whether its
+// artifact really counts as system-generated should say E2 and let a human
+// argue it up.
 export function assertLevelClaim(claimed: EvidenceLevel, assessment: LevelAssessment) {
+  if (claimed === 'E4') {
+    refuse(
+      'evidence_level_overclaimed',
+      'E4 is earned by independent verification and cannot be claimed when the record is written',
+    );
+  }
   if (rankOf(claimed) > rankOf(assessment.achieved)) {
     refuse(
       'evidence_level_overclaimed',
       `claimed ${claimed} but the artifact reaches ${assessment.achieved}: ${assessment.reasons.join('; ')}`,
     );
   }
+}
+
+// The level a record has actually reached: what it was stored at, plus the one
+// step that only somebody else can grant. This mirrors
+// xiv_evidence_effective_level in the migration exactly, and the two must stay
+// in step — a gate that passes in the service and not in the database, or the
+// other way round, is worse than no gate at all.
+export function effectiveLevel(
+  stored: EvidenceLevel,
+  context: {
+    verifiedAtSameCommit: boolean;
+    unresolvedBlockers: number;
+  },
+): EvidenceLevel {
+  if (stored !== 'E3') return stored;
+  if (context.unresolvedBlockers > 0) return 'E3';
+  return context.verifiedAtSameCommit ? 'E4' : 'E3';
 }

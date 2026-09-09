@@ -1,6 +1,6 @@
 import { refuse } from '../civilization/errors';
 import { freshnessOf } from './freshness';
-import { atLeast, assessLevel, rankOf } from './levels';
+import { atLeast, effectiveLevel, rankOf } from './levels';
 import {
   requireGate,
   requireMember,
@@ -173,12 +173,15 @@ export function assessGate(
 
   const verificationsFor = (recordId: string) => state.verifications.filter((v) => v.evidenceId === recordId);
 
+  const blockers = unresolvedBlockersFor(state, gate);
   const passing = live.filter((record) => record.status === 'pass' && freshnessOf(state, record) === 'VALID');
   const achievedLevel = passing.reduce<EvidenceLevel | null>((best, record) => {
-    const achieved = assessLevel(record, {
-      verifications: verificationsFor(record.id),
-      unresolvedBlockers: unresolvedBlockersFor(state, gate),
-    }).achieved;
+    const achieved = effectiveLevel(record.evidenceLevel, {
+      verifiedAtSameCommit: verificationsFor(record.id).some(
+        (v) => v.verdict === 'satisfies' && v.checkedCommitSha === commitSha,
+      ),
+      unresolvedBlockers: blockers,
+    });
     if (!best || rankOf(achieved) > rankOf(best)) return achieved;
     return best;
   }, null);

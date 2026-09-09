@@ -1,7 +1,7 @@
 import { refuse } from '../civilization/errors';
 import { freshnessOf } from './freshness';
 import { assessGate, unresolvedBlockersFor } from './ownership';
-import { assessLevel, rankOf } from './levels';
+import { effectiveLevel, rankOf } from './levels';
 import { requireMember, type EvidenceState } from './store';
 import type { BriefClassification, EvidenceActor, ReadinessRow } from './types';
 
@@ -82,10 +82,10 @@ export function classifyForBrief(
   // E0 and E1 are somebody's account of what happened. That is REPORTED, and it
   // is the rung most claims in a young system actually sit on.
   const strongestRank = usable.reduce((best, record) => {
-    const achieved = assessLevel(record, {
-      verifications: state.verifications.filter((v) => v.evidenceId === record.id),
+    const achieved = effectiveLevel(record.evidenceLevel, {
+      verifiedAtSameCommit: false,
       unresolvedBlockers: unresolvedBlockersFor(state, gate),
-    }).achieved;
+    });
     return Math.max(best, rankOf(achieved));
   }, -1);
 
