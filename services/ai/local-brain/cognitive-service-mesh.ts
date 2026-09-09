@@ -167,7 +167,7 @@ export async function bootstrapCognitiveServiceMesh(input: {
             universeId: input.universeId,
             root: input.root,
             actor: {
-              kind: 'kernel_curator',
+              kind: 'superbrain_kernel_curator',
               id: input.actor.id,
               orgId: input.orgId,
               tenantId: input.tenantId,
