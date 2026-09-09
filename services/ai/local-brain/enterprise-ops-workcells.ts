@@ -28,7 +28,7 @@ export type ConnectorProbe = {
 
 const CONNECTORS: Array<{ name: string; module: string; report: string }> = [
   { name: 'supply_chain_ao', module: 'supply-chain-network.ts', report: 'docs/operations/62L_AO_GLOBAL_AGENTIC_SUPPLY_CHAIN_NETWORK_REPORT.md' },
-  { name: 'control_tower_an', module: 'control-tower.ts', report: 'docs/operations/62L_AN_INFORMATION_CONTROL_TOWER_REPORT.md' },
+  { name: 'control_tower_an', module: 'control-tower.ts', report: 'docs/operations/62L_AN_INFORMATION_CONTROL_TOWER_SEMANTIC_ROUTER_REPORT.md' },
   { name: 'causal_twins_ah', module: 'causal-world-types.ts', report: 'docs/operations/62L_AH_CAUSAL_WORLD_MODEL_DIGITAL_TWINS_REPORT.md' },
   { name: 'agent_society_ag', module: 'agent-society-runtime.ts', report: 'docs/operations/62L_AG_PERSISTENT_OFFLINE_AGENT_SOCIETY_REPORT.md' },
   { name: 'universe_kernel_af', module: 'universe-os-kernel.ts', report: 'docs/operations/62L_AF_UNIVERSE_OS_KERNEL_MEMORY_REPLICATION_REPORT.md' },

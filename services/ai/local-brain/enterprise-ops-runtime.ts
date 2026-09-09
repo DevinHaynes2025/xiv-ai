@@ -543,7 +543,7 @@ export async function buildOpsHealthReport(input: {
     })),
     predecessor: {
       aoSupplyChain: predecessorFile('docs/operations/62L_AO_GLOBAL_AGENTIC_SUPPLY_CHAIN_NETWORK_REPORT.md'),
-      anControlTower: predecessorFile('docs/operations/62L_AN_INFORMATION_CONTROL_TOWER_REPORT.md'),
+      anControlTower: predecessorFile('docs/operations/62L_AN_INFORMATION_CONTROL_TOWER_SEMANTIC_ROUTER_REPORT.md'),
       amDataFabric: predecessorFile('docs/operations/62L_AM_INFORMATION_SUPPLY_CHAIN_DATA_FABRIC_REPORT.md'),
       alAppNetwork: predecessorFile('docs/operations/62L_AL_DISTRIBUTED_APP_NETWORK_EDGE_SYNC_REPORT.md'),
       akMarketplace: predecessorFile('docs/operations/62L_AK_OFFLINE_DEVELOPER_PLATFORM_MARKETPLACE_REPORT.md'),
