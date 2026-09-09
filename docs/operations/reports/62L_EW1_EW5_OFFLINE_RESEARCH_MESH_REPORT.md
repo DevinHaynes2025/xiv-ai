@@ -6,10 +6,12 @@
 **Story:** GitHub #169 / 62L-EW Slice EW1–EW5 under Global Operations Brain  
 **Branch:** `cursor/62l-ew1-ew5-offline-research-mesh-4059`  
 **Base (authorized tip):** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
-**Feat tip SHA:** 
-**Docs tip SHA:** `ac1e6b3d4f40e912d1f6125a6dc7f39b6a97a601`  
+**Feat tip SHA:** `ac1e6b3d4f40e912d1f6125a6dc7f39b6a97a601`  
+**Docs tip SHA:** `212ba8dae3046bd5f5900416dfb7430f00a04de8`  
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened
+
+---
 
 ---
 
@@ -153,5 +155,6 @@ Absent soft-wires would be **WAITING_DATA**, not FAIL.
 | Branch | `cursor/62l-ew1-ew5-offline-research-mesh-4059` |
 | Base SHA | `60986682f7a6913def6da08499388aecd4acea4a` |
 | Feat tip SHA | `ac1e6b3d4f40e912d1f6125a6dc7f39b6a97a601` |
+| Docs tip SHA | `212ba8dae3046bd5f5900416dfb7430f00a04de8` |
 | Tests | EW1–EW5 **PASS**; phase2iab **PASS** |
 | PR | **none** |
