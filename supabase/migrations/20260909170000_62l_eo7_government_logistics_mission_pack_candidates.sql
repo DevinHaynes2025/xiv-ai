@@ -1,0 +1,48 @@
+-- 62L-EO7 Government Logistics Mission Pack — candidate schema only.
+-- Status: NOT_APPLIED. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- Do not apply to live Supabase. No overload of production tables.
+-- No fabricated mission data. No classified-data assumptions.
+-- Agents have no purchasing / dispatch / contract authority.
+
+-- Candidate: logistics mission problem records
+-- CREATE TABLE IF NOT EXISTS government_logistics_missions_candidate (
+--   mission_id text PRIMARY KEY,
+--   agency_organization_scope text NOT NULL,
+--   assets_facilities jsonb NOT NULL DEFAULT '[]',
+--   suppliers jsonb NOT NULL DEFAULT '[]',
+--   inventory jsonb NOT NULL DEFAULT '[]',
+--   routes jsonb NOT NULL DEFAULT '[]',
+--   capacity jsonb NOT NULL DEFAULT '[]',
+--   lead_times jsonb NOT NULL DEFAULT '[]',
+--   service_targets jsonb NOT NULL DEFAULT '[]',
+--   cost_constraints jsonb NOT NULL DEFAULT '[]',
+--   risk_factors jsonb NOT NULL DEFAULT '[]',
+--   data_rights text NOT NULL,
+--   baseline_kpis jsonb NOT NULL DEFAULT '[]',
+--   scenario_assumptions jsonb NOT NULL DEFAULT '[]',
+--   approval_state text NOT NULL,
+--   mission_areas jsonb NOT NULL DEFAULT '[]',
+--   evidence_class text NOT NULL,
+--   assumptions_exposed jsonb NOT NULL DEFAULT '[]',
+--   uncertainty_notes jsonb NOT NULL DEFAULT '[]',
+--   compliance_note text NOT NULL DEFAULT 'solicitation_specific',
+--   org_id text NOT NULL,
+--   tenant_id text NOT NULL,
+--   universe_id text NOT NULL,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+-- Candidate: agent evidence returns to Home Base (advisory only)
+-- CREATE TABLE IF NOT EXISTS government_logistics_agent_evidence_candidate (
+--   evidence_id text PRIMARY KEY,
+--   mission_id text NOT NULL,
+--   agent_role text NOT NULL,
+--   evidence_summary text NOT NULL,
+--   returned_to_home_base boolean NOT NULL DEFAULT true,
+--   automatic_purchasing boolean NOT NULL DEFAULT false,
+--   automatic_dispatch boolean NOT NULL DEFAULT false,
+--   automatic_contract_authority boolean NOT NULL DEFAULT false,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+SELECT '62L_EO7_GOVERNMENT_LOGISTICS_MISSION_PACK_CANDIDATES_NOT_APPLIED' AS status;
