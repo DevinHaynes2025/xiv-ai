@@ -18,6 +18,7 @@ From `services/ai`:
 - `npm run local:factory` — write the 62L-AJ offline software factory / plugin registry health report.
 - `npm run local:ops-planner` — write the 62L-AP enterprise operations planner / command-center health report.
 - `npm run local:universal-runtime` — write the 62L-AV universal runtime / algorithm foundry / polyglot fabric / CFO health report.
+- `npm run local:business-os` — write the 62L-AW universal app runtime / business OS / control-tower / ecosystem health report.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 - `npm run test:62lac` — 62L-AC US-AC1..US-AC24 safety tests (operating cycle, crash/restart, dead-letter).
@@ -25,6 +26,7 @@ From `services/ai`:
 - `npm run test:62laj` — 62L-AJ sandbox isolation, allowlist runner, permission-diff deny, and release-gate tests.
 - `npm run test:62lap` — 62L-AP handoff-package≠execution, decision-rights matrix, deadlock detection, and human-gate tests.
 - `npm run test:62lav` — 62L-AV vehicle-control deny, unverified hardware UNAVAILABLE, CFO no-charge, and algorithm-selection honesty tests.
+- `npm run test:62law` — 62L-AW ATC/highway-control deny, vehicle-control deny, 18+ gate, unverified runtime UNAVAILABLE, and marketplace charge deny tests.
 
 ## 62L-X Memory Cortex
 Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
@@ -46,6 +48,9 @@ Executable enterprise ops loop: enterprise need → department context → KPI/e
 
 ## 62L-AV Universal Runtime + Algorithm Foundry + Polyglot Data Fabric + CFO Product & Pricing Engine
 Device portability profiles for Windows/ASUS-class PCs, Linux, x86-64, ARM64, Apple Silicon, Android, iOS, servers, and approved edge/embedded. Hardware is **UNAVAILABLE until actually verified** — this host may mark linux/x86-64/server AVAILABLE from `os.platform()`/`os.arch()` evidence and must not invent AVAILABLE for other classes. Vehicle integration is authorized data/infotainment/business interfaces only; steering, braking, and other vehicle control are **DENIED**. Algorithm Foundry offers classical baselines (graph, constrained routing, network flow, scheduling, inventory/EOQ, 2-var LP, 0-1 knapsack, statistics, probability, z-score anomaly, SMA forecast, linear ranking, RLE, SHA-256 dedup) and does **not** invent optimality. Polyglot Data Fabric probes PostgreSQL, SQLite, vector, object, document, graph, time-series, cache, and search slots; unverified engines stay UNAVAILABLE. The CFO loop is cost modeling → package design → offline/hybrid/live bundles → pricing scenarios → margins → break-even → sensitivity → human approval. CFO agents recommend; they **cannot charge customers or alter billing**. L4 remains false. CEO-sealed compartmentalized. Providers UNAVAILABLE until verified. No founder impersonation. No invented partnerships.
+
+## 62L-AW Universal App Runtime + Business Infrastructure OS + Virtual Control Towers + Extensible Ecosystem Platform
+Executable architecture cycle: XIV OS Kernel → Local/Cloud LLMs → Agent Society → Algorithm Foundry → Database Fabric → Information Highways → Logistics Core → Virtual Control Towers → Industry Apps → Developer SDK → Marketplace → Businesses + Employees + Consumers → Learning. Logistics and safety sit at the core; freight, transportation marketplaces, e-commerce, banking operations support, warehouses, brick-and-mortar, infrastructure planning, and enterprise ops are layers on top. A Virtual Control Tower is a **business operations interface**, not physical air-traffic control or highway vehicle control. Vehicle/device access is authorized business/data interfaces only. The ecosystem adds a third-party developer SDK (reusing the AJ plugin manifest gate), XIV App Marketplace listings, platform-fee/revenue-share contract recommendations, offline/hybrid/live tiers, organization digital-twin homepages, consumer/employee community surfaces, multilingual catalog slots, and an **18+ access policy**. Marketplace and CFO agents recommend; they **cannot charge or alter billing** without human authority. Unverified desktop/mobile/server/edge targets stay **UNAVAILABLE**. Unconfigured ERP/bank/POS/WMS/cloud/transport stay **UNAVAILABLE**. XIV is a bridge and operating intelligence layer — it does not replace those systems on day one and does not invent partnerships. L4 remains false. CEO-sealed compartmentalized. No founder impersonation.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
