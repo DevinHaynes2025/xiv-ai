@@ -126,7 +126,7 @@ cd services/ai && npm run test:local-runtime
 | Command | Result |
 |---|---|
 | `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM5 rebase) |
-| `npm run test:local-runtime` | **PASS** — **PASS** — 152/152 (includes EM5 + EM4 + EM3 + EM6 + prior EL/EM; no regression) |
+| `npm run test:local-runtime` | **PASS** — 152/152 (includes EM5 + EM4 + EM3 + EM6 + prior EL/EM; no regression) |
 
 NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 
