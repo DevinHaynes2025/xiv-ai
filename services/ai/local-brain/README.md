@@ -67,6 +67,8 @@ From `services/ai`:
 - `npm run local:persistent-intelligence-economy-health` — write the 62L-CI Persistent Intelligence Economy health report.
 - `npm run test:62lcj` — 62L-CJ Intelligence Resource Grid / Apprenticeship Network / Historical Reconstruction / Retrieval-Memory Lab / Model Federation / Edge Runtime Mesh safety tests.
 - `npm run local:intelligence-resource-grid-apprenticeship-health` — write the 62L-CJ Intelligence Resource Grid / Apprenticeship health report.
+- `npm run test:62lck` — 62L-CK Cognitive Infrastructure Grid / Mini Cloud Server Cells / Authorized Server-DB Federation / Global Historical Pathway Mining / Agent Operating Companies / Distributed Device Intelligence Fabric safety tests.
+- `npm run local:cognitive-infra-mini-cloud-history-health` — write the 62L-CK Cognitive Infra / Mini Cloud / History health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
