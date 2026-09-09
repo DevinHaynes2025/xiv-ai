@@ -28,10 +28,12 @@ import {
   PHYSICAL_PRODUCT_CONTRACT_PACK_CYCLE,
   PHYSICAL_PRODUCT_FAMILIES,
   PHYSICAL_SOLUTION_RECORD_FIELDS,
+  PHYSICAL_CONTRACT_READY_ACCEPTANCE_ITEMS,
   QUANTUM_CLAIM_STATES,
   SUPPLY_CHAIN_INTELLIGENCE_DIMENSIONS,
   assertEo10LocksIntact,
   eo10SoftWireSnapshot,
+  type PhysicalContractReadyEvidence,
   type Eo10Actor,
 } from './physical-product-contract-pack-types.ts';
 
@@ -115,11 +117,21 @@ test('product families + solution fields + lifecycle + SC/pricing dims encoded',
 
   for (const field of [
     'requirementId',
+    'programId',
+    'agencyCustomer',
+    'requirementIds',
+    'productCategory',
     'productFamily',
     'BOM',
+    'approvedSuppliers',
     'supplierGraph',
+    'countryRegionOfOrigin',
+    'leadTimes',
+    'manufacturingCapacity',
+    'qualityStandards',
     'manufacturingMethod',
     'qualityRequirements',
+    'edgeOfflineRequirements',
     'testingRequirements',
     'firmwareSoftwareDependencies',
     'computeRequirements',
@@ -291,6 +303,83 @@ test('pricing: dimensions structure-only; fabricated cost/savings denied', () =>
   assert.equal(sc.dimensions.length, 12);
 });
 
+test('contract-ready evidence gate: VERIFIED without evidence denied', () => {
+  const denied = registerPhysicalSolutionRecord({
+    requirementId: 'req-evidence-1',
+    productFamily: 'edge_ai_appliances',
+    actor: architect,
+    attemptContractReadyRepresentationWithoutEvidence: true,
+  });
+  assert.equal('denied' in denied && denied.denied, true);
+});
+
+test('contract-ready evidence gate: VERIFIED when all required evidence present', () => {
+  const evidence: PhysicalContractReadyEvidence = {
+    verifiedBomEvidencePresent: true,
+    supplierAvailabilityEvidencePresent: true,
+    unitCostEstimateEvidencePresent: true,
+    prototypeTestEvidencePresent: true,
+    manufacturingFeasibilityEvidencePresent: true,
+    qualityInspectionPlanEvidencePresent: true,
+    secureFirmwareSoftwareUpdatePlanEvidencePresent: true,
+    packagingTransportationPlanEvidencePresent: true,
+    warrantySupportAssumptionsEvidencePresent: true,
+    acceptanceTestProcedureEvidencePresent: true,
+    rollbackRecallPlanEvidencePresent: true,
+  };
+
+  const verified = registerPhysicalSolutionRecord({
+    requirementId: 'req-verified-1',
+    productFamily: 'edge_ai_appliances',
+    actor: architect,
+    programId: 'prog-verified-1',
+    agencyCustomer: 'Agency/X',
+    requirementIds: ['req-verified-1', 'req-verified-2'],
+    approvedSuppliers: ['sup-1'],
+    contractReadyEvidence: evidence,
+  });
+
+  assert.equal('denied' in verified, false);
+  if (!('denied' in verified)) {
+    assert.equal(verified.evidenceState, 'VERIFIED');
+    assert.equal(typeof verified.unitCost, 'string');
+    assert.match(verified.unitCost ?? '', /UNIT_COST_ESTIMATE_EVIDENCED/i);
+    assert.ok(verified.acceptanceCriteria.includes('verified_bom'));
+  }
+});
+
+test('truth boundary: claiming origin/lead-times/supplier availability without evidence denied', () => {
+  const originDenied = registerPhysicalSolutionRecord({
+    requirementId: 'req-origin-1',
+    productFamily: 'sensors_telemetry_hardware',
+    actor: architect,
+    countryRegionOfOrigin: 'US',
+  });
+  assert.equal('denied' in originDenied && originDenied.denied, true);
+
+  const leadTimesDenied = registerPhysicalSolutionRecord({
+    requirementId: 'req-lead-1',
+    productFamily: 'ruggedized_compute_devices',
+    actor: architect,
+    leadTimes: ['12-18 weeks'],
+  });
+  assert.equal(
+    'denied' in leadTimesDenied && leadTimesDenied.denied,
+    true,
+  );
+
+  const supplierDenied = registerPhysicalSolutionRecord({
+    requirementId: 'req-supp-1',
+    productFamily: 'networking_communications_equipment',
+    actor: architect,
+    approvedSuppliers: ['supplier-a'],
+  });
+  assert.equal(
+    'denied' in supplierDenied && supplierDenied.denied,
+    true,
+  );
+});
+
 test('agent team bounded; evidence to Home Base; no auto authority', () => {
   assert.equal(PHYSICAL_PRODUCT_AGENT_TEAM.length, 10);
   assert.equal(PHYSICAL_PRODUCT_AGENT_BOUNDS.automaticAuthority, false);
@@ -417,6 +506,7 @@ test('cycle covers pack surfaces + bootstrap; register solution record', () => {
   for (const required of [
     'product_families_encoded',
     'solution_record_fields_encoded',
+    'contract_ready_acceptance_criteria_encoded',
     'physical_product_lifecycle_encoded',
     'supply_chain_intelligence_encoded',
     'pricing_dimensions_encoded',

@@ -30,6 +30,7 @@ import {
   PHYSICAL_PRODUCT_AGENT_TEAM,
   PHYSICAL_PRODUCT_CONTRACT_LIFECYCLE,
   PHYSICAL_PRODUCT_CONTRACT_PACK_CYCLE,
+  PHYSICAL_CONTRACT_READY_ACCEPTANCE_ITEMS,
   PHYSICAL_PRODUCT_FAMILIES,
   PHYSICAL_PRODUCT_FAMILY_LABELS,
   PHYSICAL_SOLUTION_RECORD_FIELDS,
@@ -47,8 +48,10 @@ import {
   type HighConsequenceLiveControlDomain,
   type PhysicalPricingDimension,
   type PhysicalProductAgentRole,
+  type PhysicalContractReadyAcceptanceItem,
   type PhysicalProductFamily,
   type PhysicalProductLifecycleHop,
+  type PhysicalContractReadyEvidence,
   type QuantumClaimState,
   type SafetyCertClaimLabel,
   type SupplyChainIntelligenceDimension,
@@ -79,13 +82,23 @@ function deny(reason: string): DenialResult {
 
 /** Physical solution record — contract surface for a mapped hardware product. */
 export type PhysicalSolutionRecord = {
+  programId: string;
+  agencyCustomer: string;
   requirementId: string;
+  requirementIds: string[];
+  productCategory: string | null;
   productFamily: PhysicalProductFamily;
   productFamilyLabel: string;
   BOM: string[];
+  approvedSuppliers: string[];
   supplierGraph: string[];
+  countryRegionOfOrigin: string | null;
+  leadTimes: string[];
+  manufacturingCapacity: string | null;
+  qualityStandards: string[];
   manufacturingMethod: string | null;
   qualityRequirements: string[];
+  edgeOfflineRequirements: string | null;
   testingRequirements: string[];
   firmwareSoftwareDependencies: string[];
   computeRequirements: string;
@@ -96,8 +109,8 @@ export type PhysicalSolutionRecord = {
   warranty: string | null;
   spares: string[];
   lifecycle: PhysicalProductLifecycleHop;
-  unitCost: null;
-  volumePricing: null;
+  unitCost: string | null;
+  volumePricing: string | null;
   acceptanceCriteria: string[];
   evidenceState: Eo10EvidenceState;
   pricingFiguresFabricated: false;
@@ -120,10 +133,25 @@ export function registerPhysicalSolutionRecord(input: {
   requirementId: string;
   productFamily: PhysicalProductFamily;
   actor: Eo10Actor;
+  programId?: string;
+  agencyCustomer?: string;
+  requirementIds?: string[];
+  productCategory?: string | null;
   BOM?: string[];
+  approvedSuppliers?: string[];
   supplierGraph?: string[];
+  countryRegionOfOrigin?: string | null;
+  originCountryRegionEvidencePresent?: boolean;
+  leadTimes?: string[];
+  leadTimesEvidencePresent?: boolean;
+  manufacturingCapacity?: string | null;
+  manufacturingCapacityEvidencePresent?: boolean;
+  qualityStandards?: string[];
+  qualityStandardsEvidencePresent?: boolean;
   manufacturingMethod?: string | null;
   qualityRequirements?: string[];
+  edgeOfflineRequirements?: string | null;
+  edgeOfflineRequirementsEvidencePresent?: boolean;
   testingRequirements?: string[];
   firmwareSoftwareDependencies?: string[];
   computeRequirements?: string;
@@ -134,6 +162,9 @@ export function registerPhysicalSolutionRecord(input: {
   warranty?: string | null;
   spares?: string[];
   acceptanceCriteria?: string[];
+  /** If set, deny any contract-ready/VERIFIED representation without evidence. */
+  attemptContractReadyRepresentationWithoutEvidence?: boolean;
+  contractReadyEvidence?: PhysicalContractReadyEvidence;
   /** Attempting to invent numeric unit/volume costs → DENIED. */
   attemptFabricateCostFigures?: boolean;
 }): PhysicalSolutionRecord | DenialResult {
@@ -143,14 +174,147 @@ export function registerPhysicalSolutionRecord(input: {
     );
   }
 
+  if (input.attemptContractReadyRepresentationWithoutEvidence) {
+    return deny(
+      'CONTRACT_READY_VERIFIED_WITHOUT_EVIDENCE — cannot represent physical product as contract-ready/VERIFIED without full evidence.',
+    );
+  }
+
+  const evidence = input.contractReadyEvidence ?? {
+    verifiedBomEvidencePresent: false,
+    supplierAvailabilityEvidencePresent: false,
+    unitCostEstimateEvidencePresent: false,
+    prototypeTestEvidencePresent: false,
+    manufacturingFeasibilityEvidencePresent: false,
+    qualityInspectionPlanEvidencePresent: false,
+    secureFirmwareSoftwareUpdatePlanEvidencePresent: false,
+    packagingTransportationPlanEvidencePresent: false,
+    warrantySupportAssumptionsEvidencePresent: false,
+    acceptanceTestProcedureEvidencePresent: false,
+    rollbackRecallPlanEvidencePresent: false,
+  };
+
+  const missingAcceptanceEvidence: string[] = [];
+  const addMissing = (
+    present: boolean,
+    item: PhysicalContractReadyAcceptanceItem,
+  ) => {
+    if (!present) missingAcceptanceEvidence.push(item);
+  };
+
+  addMissing(
+    evidence.verifiedBomEvidencePresent,
+    'verified_bom',
+  );
+  addMissing(
+    evidence.supplierAvailabilityEvidencePresent,
+    'supplier_availability_evidence',
+  );
+  addMissing(
+    evidence.unitCostEstimateEvidencePresent,
+    'unit_cost_estimate',
+  );
+  addMissing(
+    evidence.prototypeTestEvidencePresent,
+    'prototype_test_evidence',
+  );
+  addMissing(
+    evidence.manufacturingFeasibilityEvidencePresent,
+    'manufacturing_feasibility',
+  );
+  addMissing(
+    evidence.qualityInspectionPlanEvidencePresent,
+    'quality_inspection_plan',
+  );
+  addMissing(
+    evidence.secureFirmwareSoftwareUpdatePlanEvidencePresent,
+    'secure_firmware_software_update_plan',
+  );
+  addMissing(
+    evidence.packagingTransportationPlanEvidencePresent,
+    'packaging_transportation_plan',
+  );
+  addMissing(
+    evidence.warrantySupportAssumptionsEvidencePresent,
+    'warranty_support_assumptions',
+  );
+  addMissing(
+    evidence.acceptanceTestProcedureEvidencePresent,
+    'acceptance_test_procedure',
+  );
+  addMissing(
+    evidence.rollbackRecallPlanEvidencePresent,
+    'rollback_recall_plan',
+  );
+
+  const allRequiredEvidencePresent = missingAcceptanceEvidence.length === 0;
+
+  const originClaimPresent = input.countryRegionOfOrigin !== undefined;
+  if (
+    originClaimPresent &&
+    input.countryRegionOfOrigin !== null &&
+    input.originCountryRegionEvidencePresent !== true
+  ) {
+    return deny('CLAIM_COUNTRY_OF_ORIGIN_WITHOUT_EVIDENCE.');
+  }
+
+  if (
+    input.leadTimes !== undefined &&
+    input.leadTimes.length > 0 &&
+    input.leadTimesEvidencePresent !== true
+  ) {
+    return deny('CLAIM_LEAD_TIMES_WITHOUT_EVIDENCE.');
+  }
+
+  if (
+    input.manufacturingCapacity !== undefined &&
+    input.manufacturingCapacity !== null &&
+    input.manufacturingCapacityEvidencePresent !== true
+  ) {
+    return deny('CLAIM_MANUFACTURING_CAPACITY_WITHOUT_EVIDENCE.');
+  }
+
+  if (
+    input.qualityStandards !== undefined &&
+    input.qualityStandards.length > 0 &&
+    input.qualityStandardsEvidencePresent !== true
+  ) {
+    return deny('CLAIM_QUALITY_STANDARDS_WITHOUT_EVIDENCE.');
+  }
+
+  if (
+    input.edgeOfflineRequirements !== undefined &&
+    input.edgeOfflineRequirements !== null &&
+    input.edgeOfflineRequirementsEvidencePresent !== true
+  ) {
+    return deny('CLAIM_EDGE_OFFLINE_REQUIREMENTS_WITHOUT_EVIDENCE.');
+  }
+
+  if (
+    (input.approvedSuppliers?.length ?? 0) > 0 &&
+    evidence.supplierAvailabilityEvidencePresent !== true
+  ) {
+    return deny('APPROVED_SUPPLIERS_WITHOUT_SUPPLIER_AVAILABILITY_EVIDENCE.');
+  }
+
   return {
+    programId: input.programId ?? `prog-${input.requirementId}`,
+    agencyCustomer: input.agencyCustomer ?? 'agency/customer candidate',
     requirementId: input.requirementId,
+    requirementIds: input.requirementIds ?? [input.requirementId],
+    productCategory: input.productCategory ?? null,
     productFamily: input.productFamily,
     productFamilyLabel: PHYSICAL_PRODUCT_FAMILY_LABELS[input.productFamily],
     BOM: input.BOM ?? [],
+    approvedSuppliers: input.approvedSuppliers ?? [],
     supplierGraph: input.supplierGraph ?? [],
+    countryRegionOfOrigin: input.countryRegionOfOrigin ?? null,
+    leadTimes: input.leadTimes ?? [],
+    manufacturingCapacity: input.manufacturingCapacity ?? null,
+    qualityStandards: input.qualityStandards ?? [],
     manufacturingMethod: input.manufacturingMethod ?? null,
     qualityRequirements: input.qualityRequirements ?? [],
+    edgeOfflineRequirements: input.edgeOfflineRequirements ?? null,
     testingRequirements: input.testingRequirements ?? [],
     firmwareSoftwareDependencies: input.firmwareSoftwareDependencies ?? [],
     computeRequirements:
@@ -164,10 +328,15 @@ export function registerPhysicalSolutionRecord(input: {
     warranty: input.warranty ?? null,
     spares: input.spares ?? [],
     lifecycle: 'contract_requirement',
-    unitCost: null,
+    unitCost: evidence.unitCostEstimateEvidencePresent
+      ? 'UNIT_COST_ESTIMATE_EVIDENCED (no numeric fabrication)'
+      : null,
     volumePricing: null,
-    acceptanceCriteria: input.acceptanceCriteria ?? [],
-    evidenceState: 'REGISTERED',
+    acceptanceCriteria: input.acceptanceCriteria ?? [
+      ...PHYSICAL_CONTRACT_READY_ACCEPTANCE_ITEMS,
+      ...missingAcceptanceEvidence.map((m) => `missing:${m}`),
+    ],
+    evidenceState: allRequiredEvidencePresent ? 'VERIFIED' : 'CANDIDATE',
     pricingFiguresFabricated: false,
     orgId: input.actor.orgId,
     tenantId: input.actor.tenantId,

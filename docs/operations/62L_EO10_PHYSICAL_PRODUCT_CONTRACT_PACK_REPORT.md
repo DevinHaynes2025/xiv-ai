@@ -44,9 +44,15 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 
 ## Solution record fields
 
-`requirementId`, `productFamily`, `BOM`, `supplierGraph`, `manufacturingMethod`, `qualityRequirements`, `testingRequirements`, `firmwareSoftwareDependencies`, `computeRequirements`, `securityRequirements`, `packaging`, `transportation`, `maintenance`, `warranty`, `spares`, `lifecycle`, `unitCost`, `volumePricing`, `acceptanceCriteria`, `evidenceState`
+`requirementId`, `programId`, `agencyCustomer`, `requirementIds`, `productCategory`, `productFamily`, `BOM`, `approvedSuppliers`, `supplierGraph`, `countryRegionOfOrigin`, `leadTimes`, `manufacturingCapacity`, `qualityStandards`, `manufacturingMethod`, `qualityRequirements`, `edgeOfflineRequirements`, `testingRequirements`, `firmwareSoftwareDependencies`, `computeRequirements`, `securityRequirements`, `packaging`, `transportation`, `maintenance`, `warranty`, `spares`, `lifecycle`, `unitCost`, `volumePricing`, `acceptanceCriteria`, `evidenceState`
 
-(`unitCost` / `volumePricing` remain **null** until evidenced — no fabricated figures.)
+(`unitCost` / `volumePricing` remain **null** unless evidence provides them; when evidenced, `unitCost` is a **non-numeric label** to avoid fabricated numeric figures.)
+
+### Contract-ready truth boundary (evidence gate)
+
+`evidenceState` becomes **VERIFIED** only when *every* required contract-ready evidence item is present (verified BOM, supplier availability evidence, unit-cost estimate evidence, prototype/test evidence, manufacturing feasibility evidence, quality/inspection plan evidence, secure firmware/software update plan evidence, packaging/transport plan evidence, warranty/support assumptions evidence, acceptance-test procedure evidence, and rollback/recall plan evidence).
+
+`acceptanceCriteria` encodes the required items and records any missing evidence as `missing:<item>`.
 
 ## Core lifecycle (encoded)
 

@@ -87,11 +87,21 @@ export const PHYSICAL_PRODUCT_FAMILY_LABELS: Readonly<
  */
 export const PHYSICAL_SOLUTION_RECORD_FIELDS = [
   'requirementId',
+  'programId',
+  'agencyCustomer',
+  'requirementIds',
+  'productCategory',
   'productFamily',
   'BOM',
+  'approvedSuppliers',
   'supplierGraph',
+  'countryRegionOfOrigin',
+  'leadTimes',
+  'manufacturingCapacity',
+  'qualityStandards',
   'manufacturingMethod',
   'qualityRequirements',
+  'edgeOfflineRequirements',
   'testingRequirements',
   'firmwareSoftwareDependencies',
   'computeRequirements',
@@ -110,6 +120,41 @@ export const PHYSICAL_SOLUTION_RECORD_FIELDS = [
 
 export type PhysicalSolutionRecordField =
   (typeof PHYSICAL_SOLUTION_RECORD_FIELDS)[number];
+
+/**
+ * Contract-ready acceptance criteria evidence — cannot represent
+ * contract-ready/VERIFIED state without every required evidence item.
+ */
+export const PHYSICAL_CONTRACT_READY_ACCEPTANCE_ITEMS = [
+  'verified_bom',
+  'supplier_availability_evidence',
+  'unit_cost_estimate',
+  'prototype_test_evidence',
+  'manufacturing_feasibility',
+  'quality_inspection_plan',
+  'secure_firmware_software_update_plan',
+  'packaging_transportation_plan',
+  'warranty_support_assumptions',
+  'acceptance_test_procedure',
+  'rollback_recall_plan',
+] as const;
+
+export type PhysicalContractReadyAcceptanceItem =
+  (typeof PHYSICAL_CONTRACT_READY_ACCEPTANCE_ITEMS)[number];
+
+export type PhysicalContractReadyEvidence = {
+  verifiedBomEvidencePresent: boolean;
+  supplierAvailabilityEvidencePresent: boolean;
+  unitCostEstimateEvidencePresent: boolean;
+  prototypeTestEvidencePresent: boolean;
+  manufacturingFeasibilityEvidencePresent: boolean;
+  qualityInspectionPlanEvidencePresent: boolean;
+  secureFirmwareSoftwareUpdatePlanEvidencePresent: boolean;
+  packagingTransportationPlanEvidencePresent: boolean;
+  warrantySupportAssumptionsEvidencePresent: boolean;
+  acceptanceTestProcedureEvidencePresent: boolean;
+  rollbackRecallPlanEvidencePresent: boolean;
+};
 
 /**
  * Core lifecycle:
@@ -247,6 +292,8 @@ export const PHYSICAL_PRODUCT_CONTRACT_PACK_CYCLE = [
   // A — Product families + solution record fields
   'product_families_encoded',
   'solution_record_fields_encoded',
+  // A2 — Contract readiness acceptance criteria (evidence gate)
+  'contract_ready_acceptance_criteria_encoded',
   // B — Lifecycle
   'physical_product_lifecycle_encoded',
   'contract_requirement',
