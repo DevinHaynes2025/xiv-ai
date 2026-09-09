@@ -120,7 +120,10 @@ export class EvidenceLedger {
   private readonly evidence = new Map<string, StoredEvidence>();
   private readonly order: string[] = [];
   private readonly verifications = new Map<string, VerificationRecord>();
-  private readonly approvals = new Map<string, { approverId: string; decision: 'approved' | 'rejected'; note: string; at: string }>();
+  private readonly approvals = new Map<
+    GateId,
+    { approverId: string; evidenceId: string; decision: 'approved' | 'rejected'; note: string; at: string }
+  >();
   private readonly assignments = new Map<GateId, GateAssignment>();
   private readonly exceptions = new Map<string, ExceptionRecord>();
   private readonly failures = new Map<string, FailureRecord>();
@@ -388,8 +391,21 @@ export class EvidenceLedger {
     };
     this.verifications.set(input.evidenceId, verification);
     record.reviewer = actor.actorId;
+    record.level = this.levelOf(input.evidenceId);
 
-    record.level = assessLevel({
+    return { ok: true, verification, level: record.level };
+  }
+
+  /**
+   * Strength is re-derived on every read rather than trusted from the stored
+   * field. `record.level` is a convenience for anyone serializing the record;
+   * writing `E4` into it does not make a gate pass.
+   */
+  private levelOf(evidenceId: string): EvidenceLevel {
+    const stored = this.evidence.get(evidenceId);
+    if (!stored) return 'E0';
+    const record = stored.record;
+    return assessLevel({
       commit: record.commit,
       executorType: record.executorType,
       artifactHash: record.artifactHash,
@@ -397,14 +413,24 @@ export class EvidenceLedger {
       payload: record.payload,
       status: record.status,
       reproducibleCommand: stored.reproducibleCommand,
-      verification,
+      verification: this.verifications.get(evidenceId) ?? null,
       primaryOwner: record.primaryOwner,
       unresolvedBlockers: this.unresolvedBlockersFor(record.acceptanceCriterionId),
     });
-    // The chain covers the recorded facts, so re-derived strength does not
-    // rewrite history; it is recomputed from the same inputs on demand.
+  }
 
-    return { ok: true, verification, level: record.level };
+  /**
+   * A gate is only as strong as its weakest supporting record, so the reported
+   * level is the minimum. Taking the maximum would let one strong artifact
+   * carry several weak ones.
+   */
+  private gateLevel(records: readonly EvidenceRecord[]): EvidenceLevel {
+    let weakest: EvidenceLevel = 'E4';
+    for (const record of records) {
+      const level = this.levelOf(record.evidenceId);
+      if (EVIDENCE_LEVEL_RANK[level] < EVIDENCE_LEVEL_RANK[weakest]) weakest = level;
+    }
+    return records.length === 0 ? 'E0' : weakest;
   }
 
   getVerification(evidenceId: string): VerificationRecord | null {
@@ -453,6 +479,7 @@ export class EvidenceLedger {
 
     this.approvals.set(input.gateId, {
       approverId: actor.actorId,
+      evidenceId: input.evidenceId,
       decision: input.decision,
       note: input.note,
       at: this.timestamp(),
@@ -501,10 +528,13 @@ export class EvidenceLedger {
       return evidenceDeny('automation_cannot_approve', 'an exception is a documented human decision');
     }
     // Section 54: some conditions are not exception candidates at any severity.
-    if (input.unwaivable) {
+    // The caller may declare one, but the evidence on file is also inspected,
+    // because an exception request is exactly where someone would omit it.
+    const unwaivable = input.unwaivable ?? this.detectUnwaivable(input.criterion);
+    if (unwaivable) {
       return evidenceDeny(
         'exception_not_permitted',
-        `${input.unwaivable} can never be waived by exception; it blocks release outright`,
+        `${unwaivable} can never be waived by exception; it blocks release outright`,
       );
     }
     if (!input.compensatingControl.trim()) {
@@ -531,6 +561,47 @@ export class EvidenceLedger {
     };
     this.exceptions.set(exception.exceptionId, exception);
     return { ok: true, exception };
+  }
+
+  /**
+   * Reads the current evidence for a criterion and reports the section 54 hard
+   * blocker it demonstrates, if any. This is deliberately about what the
+   * evidence shows rather than which gate it belongs to: an exception on the
+   * RLS gate can be reasonable, but not while a probe on file shows one tenant
+   * reading another's rows.
+   */
+  private detectUnwaivable(criterion: GateId): UnwaivableCondition | null {
+    for (const record of this.currentEvidence(criterion)) {
+      const payload = record.payload;
+      switch (payload.kind) {
+        case 'rls':
+          if (payload.probes.some((probe) => probe.expected === 'deny' && probe.actual === 'allow')) {
+            return 'cross_tenant_exposure';
+          }
+          break;
+        case 'negative':
+          if (payload.probes.some((probe) => probe.actual === 'allowed')) {
+            return criterion === 'kill_switch' ? 'cannot_stop_dangerous_workload' : 'guardian_bypass';
+          }
+          break;
+        case 'secret_scan':
+          if (
+            payload.findings.some(
+              (finding) =>
+                finding.remediationState === 'open' && (finding.severity === 'critical' || finding.severity === 'high'),
+            )
+          ) {
+            return 'exposed_production_secret';
+          }
+          break;
+        case 'agent_security':
+          if (payload.unauthorizedGrants > 0) return 'unauthorized_production_action';
+          break;
+        default:
+          break;
+      }
+    }
+    return null;
   }
 
   reviewException(
@@ -633,6 +704,12 @@ export class EvidenceLedger {
     }
     const retest = this.evidence.get(input.retestEvidenceId);
     if (!retest) return evidenceDeny('evidence_unknown', `unknown retest evidence ${input.retestEvidenceId}`);
+    if (retest.record.acceptanceCriterionId !== failure.criterion) {
+      return evidenceDeny(
+        'failure_unresolved',
+        `retest evidence ${input.retestEvidenceId} covers ${retest.record.acceptanceCriterionId}, not ${failure.criterion}`,
+      );
+    }
     if (retest.record.status !== 'pass') {
       return evidenceDeny('failure_unresolved', `retest evidence ${input.retestEvidenceId} did not pass`);
     }
@@ -797,7 +874,7 @@ export class EvidenceLedger {
     const missingCategories = definition.requiredCategories.filter(
       (category) => !records.some((record) => record.payload.kind === category),
     );
-    const strongest = gateLevel(records);
+    const strongest = this.gateLevel(records);
     const levelSatisfied =
       EVIDENCE_LEVEL_RANK[strongest] >= EVIDENCE_LEVEL_RANK[definition.requiredEvidence] &&
       canSatisfyCriterion(strongest);
@@ -825,7 +902,11 @@ export class EvidenceLedger {
 
     if (definition.humanApproval === 'required' || definition.humanApproval === 'named_human') {
       const approval = this.approvals.get(criterion);
-      if (!approval) return 'VERIFICATION_PENDING';
+      // An approval is given to a specific artifact. Once that artifact has
+      // been superseded, the approval does not carry forward to whatever
+      // replaced it.
+      const stillCurrent = approval && records.some((record) => record.evidenceId === approval.evidenceId);
+      if (!approval || !stillCurrent) return 'VERIFICATION_PENDING';
       if (approval.decision === 'rejected') return 'FAIL';
     }
 
@@ -844,7 +925,7 @@ export class EvidenceLedger {
       return {
         criterion,
         owner: assignment.owner,
-        evidenceLevel: records.length > 0 ? gateLevel(records) : 'E0',
+        evidenceLevel: records.length > 0 ? this.gateLevel(records) : 'E0',
         requiredEvidence: definition.requiredEvidence,
         threshold: describeThreshold(definition.threshold),
         result: this.gateState(criterion),
@@ -891,7 +972,7 @@ export class EvidenceLedger {
       return { criterion, status: 'UNAVAILABLE', basis: 'evidence exists but a change invalidated it' };
     }
     if (state === 'PASS' || state === 'EXCEPTION_APPROVED') {
-      const level = gateLevel(records);
+      const level = this.gateLevel(records);
       const independentlyVerified = records.some((record) => {
         const verification = this.verifications.get(record.evidenceId);
         return verification?.verdict === 'satisfies' && verification.verifierId !== record.primaryOwner;
@@ -901,7 +982,7 @@ export class EvidenceLedger {
       }
       return { criterion, status: 'OBSERVED', basis: `${level} evidence without independent verification` };
     }
-    const level = gateLevel(records);
+    const level = this.gateLevel(records);
     if (level === 'E0') return { criterion, status: 'REPORTED', basis: 'claim only' };
     return { criterion, status: 'OBSERVED', basis: `${level} evidence, gate state ${state}` };
   }
@@ -919,6 +1000,9 @@ export class EvidenceLedger {
     input: { criterion: GateId; status: FounderBriefStatus },
   ): EvidenceResult<{ status: FounderBriefStatus }> {
     if (!GATES[input.criterion]) return evidenceDeny('gate_unknown', `unknown gate ${input.criterion}`);
+    if (actor.actorType !== 'human') {
+      return evidenceDeny('automation_cannot_approve', 'a reported status is something a person says, not a job');
+    }
     const derived = this.founderBriefStatus(input.criterion).status;
     const strength: Readonly<Record<FounderBriefStatus, number>> = {
       UNAVAILABLE: 0,
@@ -954,7 +1038,7 @@ export class EvidenceLedger {
         evidenceId: record.evidenceId,
         criterion: record.acceptanceCriterionId,
         category: record.payload.kind,
-        level: record.level,
+        level: this.levelOf(record.evidenceId),
         status: record.status,
         artifactHash: record.artifactHash,
         evidenceHash: record.evidenceHash,
@@ -1017,18 +1101,6 @@ export class EvidenceLedger {
   }
 }
 
-/**
- * A gate is only as strong as its weakest supporting record, so the reported
- * level is the minimum. Taking the maximum would let one strong artifact carry
- * several weak ones.
- */
-function gateLevel(records: readonly EvidenceRecord[]): EvidenceLevel {
-  let weakest: EvidenceLevel = 'E4';
-  for (const record of records) {
-    if (EVIDENCE_LEVEL_RANK[record.level] < EVIDENCE_LEVEL_RANK[weakest]) weakest = record.level;
-  }
-  return records.length === 0 ? 'E0' : weakest;
-}
 
 function describeThreshold(threshold: (typeof GATES)[GateId]['threshold']): string {
   switch (threshold.kind) {

@@ -29,7 +29,7 @@ be tested before anything depends on them.
 | `runtime-bridge.ts` | 41, 42, 44, 51, 52 | Reading evidence out of a live `RuntimeFabric` run |
 | `collect.ts`, `ndjson-reporter.mjs` | 39 | The CI evidence package generator |
 
-Run the suite with `npm test --prefix services/ai` (117 tests, 41 of them for this layer) and produce
+Run the suite with `npm test --prefix services/ai` (125 tests, 49 of them for this layer) and produce
 a package with `npm run evidence --prefix services/ai`.
 
 ---
@@ -70,9 +70,14 @@ all real evidence fields — are not. A detector that cries wolf teaches people 
 
 E3 is the default minimum for a release gate and E4 is required for the security, tenancy, provenance,
 rollback, backup and canary gates. Recording the same criterion by hand tops out at E2 even when the
-observation is honest, because nothing about it is independently reproducible. A level is recomputed
-when a verification arrives, so E3 becomes E4 at the moment a second person confirms it and not
-before.
+observation is honest, because nothing about it is independently reproducible.
+
+The level is re-derived on every read, not stored and trusted. The `level` field on a record is a
+convenience for anyone serializing it; writing `E4` into it does not move the gate. This also means
+strength falls when the surrounding facts change: E4 requires no open blocker, so a critical failure
+opened after verification pulls the level back to E3 at the same moment it pulls the gate to `FAIL`.
+A gate's level is the minimum across its supporting records rather than the maximum, so one strong
+artifact cannot carry several weak ones.
 
 ## 36-37. Ownership
 
@@ -89,6 +94,9 @@ The separation is enforced rather than described:
 - On a release-critical gate, the person who verified cannot also approve.
 - Verification is recorded once. A second reviewer cannot overwrite the first.
 - A verifier outside the record's tenant scope is refused.
+- An approval is given to a specific artifact. When later evidence supersedes that artifact the
+  approval does not carry forward, and the gate returns to `VERIFICATION_PENDING` until the
+  replacement is approved on its own terms.
 
 ## 38. Exact-commit evidence
 
@@ -156,18 +164,26 @@ not pass its gate. The payload is the evidence, so the payload decides.
 ## 53. Failure evidence
 
 A failure record names the test, criterion, commit, environment, severity and owner. It closes only
-when a different person supplies passing retest evidence bound to the fix commit. An open critical or
-high failure holds its gate at `FAIL` even when the evidence on file passed, and the owner cannot
-close their own failure.
+when a different person supplies passing retest evidence for the same criterion, bound to the stated
+fix commit. An open critical or high failure holds its gate at `FAIL` even when the evidence on file
+passed, and the owner cannot close their own failure.
 
 ## 54. Exceptions
 
 An exception needs a risk, a reason, a scope, a compensating control, an owner, an expiry and a
 different person to approve it. Missing controls and past expiries are refused. Five conditions can
 never be waived at any severity: cross-tenant exposure, Guardian bypass, unauthorized production
-action, an exposed production secret, and inability to stop a dangerous workload. An approved
-exception moves a gate to `EXCEPTION_APPROVED`, which is a distinct state from `PASS` and reads as
-such on the dashboard.
+action, an exposed production secret, and inability to stop a dangerous workload.
+
+The requester's own declaration of which condition applies is not trusted on its own, because an
+exception request is precisely where someone would leave it out. The ledger reads the evidence on file
+for that criterion and refuses when the evidence itself demonstrates a hard blocker: an RLS probe that
+returned rows across tenants, a refusal recorded as `allowed`, an open critical secret finding, or an
+agent security record showing authority actually exceeded. An exception on the same gate for something
+that is not a hard blocker remains available.
+
+An approved exception moves a gate to `EXCEPTION_APPROVED`, which is a distinct state from `PASS` and
+reads as such on the dashboard.
 
 ## 55. Freshness
 
@@ -190,9 +206,8 @@ unmet thresholds produce `EVIDENCE_PENDING`; a record that no one has confirmed 
 
 `dashboard()` returns one row per criterion with owner, achieved and required evidence level,
 threshold, state, verifier and freshness. Gates with no evidence show `TBD` freshness, `E0` and a
-non-passing state — an empty cell never reads as a pass. A gate's level is the minimum across its
-supporting records rather than the maximum, so one strong artifact cannot carry several weak ones.
-`releaseReadiness()` is the conjunction of every release-critical gate, not a majority.
+non-passing state — an empty cell never reads as a pass. `releaseReadiness()` is the conjunction of
+every release-critical gate, not a majority.
 
 ## 58. Founder brief
 
