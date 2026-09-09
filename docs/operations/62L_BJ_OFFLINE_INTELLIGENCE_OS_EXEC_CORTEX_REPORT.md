@@ -7,7 +7,7 @@ Branch: `cursor/62l-bj-offline-intelligence-os-exec-cortex-4059`
 Parent / base tip: `cursor/62l-bd-cognitive-memory-chip-neural-bus-4059` @ `90b93cf` (`docs(62L-BD): pin report SHA on cognitive memory neural bus report #68`)
 Why this base: Preferred **62L-BI** (`cursor/62l-bi-governed-discovery-foundry-4059` + `62L_BI_GOVERNED_DISCOVERY_FOUNDRY_REPORT.md`) **MISSING** on origin after fetch. **BH / BG / BF / BE** also **MISSING** as distinct pushed tips with reports (local park `62l-bh-*` equals BD tip; local `62l-bg-*` equals BA tip — not treated as landed BI/BH work). Fallback chain lands on pushed **BD**.
 Implementation SHAs: `6c9a9c5`..`eee9e24` (+ probe fix); see commit list below
-Report SHA: `866663b9018d14678baa1a4834f16a0c0c1d74fa`
+Report SHA: `06bb828cd6618b717f3d6bfdd14db3a918e94c81`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
