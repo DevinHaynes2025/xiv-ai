@@ -2,12 +2,16 @@ import { type Href, useRouter } from 'expo-router';
 
 import { XivEmptyState, XivPremiumButton, XivSectionHeader, XivStatusPill } from '@/components/premium';
 import {
+  AgentMeetingCommandStrip,
   ConnectionCard,
+  DisagreementPack,
   IntelligenceStoryCard,
+  OvernightIntelligenceBrief,
   SourceRow,
   XivListRow,
   XivStatusIndicator,
 } from '@/components/v4';
+import { AGENT_MEETING_DEMO } from '@/data/agent-meetings-demo';
 import {
   CompanyHeader,
   CompanyStoryCard,
@@ -878,6 +882,12 @@ export function WorkspaceCommandCenter() {
   return (
     <PremiumDesk title="Company Command Center" subtitle="Phone pocket command. Desktop operating room. Plugs into host OS.">
       <XivStatusPill label="Does not replace iOS / Android / Windows / macOS" tone="warning" />
+      <AgentMeetingCommandStrip {...AGENT_MEETING_DEMO.command} />
+      <OvernightIntelligenceBrief {...AGENT_MEETING_DEMO.overnight} />
+      <XivListRow
+        title="Guardian observes meetings"
+        body="Who, why, what information, which Universe, classification, proposed action, and whether a human must approve. Guardian is not subordinate to the room."
+      />
     </PremiumDesk>
   );
 }
@@ -886,6 +896,8 @@ export function WorkspaceTaskForce() {
   return (
     <PremiumDesk title="Agentic Task Force" subtitle="Reusable specialist teams. Shared evidence room. Not one chatbot.">
       <XivListRow title="Permissions" body="Joining a task force does not grant new authority." />
+      <DisagreementPack {...AGENT_MEETING_DEMO.disagreement} />
+      <XivListRow title="Lifecycle" body="CREATE → INVESTIGATE → RECOMMEND → APPROVE → RESOLVE → EVALUATE → ARCHIVE. Archive sleeps the force." />
     </PremiumDesk>
   );
 }

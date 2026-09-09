@@ -146,6 +146,100 @@ export function MeetingRoomShell() {
   );
 }
 
+export function AgentMeetingCommandStrip({
+  logicalAgents,
+  activeAgents,
+  meetingsRunning,
+  approvalsRequired,
+  unauthorizedActions,
+}: {
+  logicalAgents: number;
+  activeAgents: number;
+  meetingsRunning: number;
+  approvalsRequired: number;
+  unauthorizedActions: number;
+}) {
+  return (
+    <XivGlassPanel accessibilityLabel="Agent meeting command strip">
+      <XivStatusIndicator state="DEMO" />
+      <XivText variant="label" color={Palette.accent}>
+        Agent meeting network
+      </XivText>
+      <XivText variant="card">
+        {logicalAgents} logical · {activeAgents} active · {meetingsRunning} rooms
+      </XivText>
+      <XivText variant="metadata" muted>
+        {approvalsRequired} human approvals required · {unauthorizedActions} unauthorized actions
+      </XivText>
+      <XivText variant="micro" dim>
+        Logical population is not running compute. Overnight is not uncontrolled action. L4 disabled.
+      </XivText>
+    </XivGlassPanel>
+  );
+}
+
+export function OvernightIntelligenceBrief({
+  meetingsCompleted,
+  issuesInvestigated,
+  opportunitiesIdentified,
+  anomaliesDetected,
+  decisionsRequireApproval,
+}: {
+  meetingsCompleted: number;
+  issuesInvestigated: number;
+  opportunitiesIdentified: number;
+  anomaliesDetected: number;
+  decisionsRequireApproval: number;
+}) {
+  return (
+    <XivGlassPanel accessibilityLabel="Overnight intelligence brief">
+      <XivStatusPill label="OVERNIGHT NOT LIVE" tone="warning" />
+      <XivText variant="card">XIV Overnight Intelligence Brief</XivText>
+      <XivText variant="body" muted>
+        {meetingsCompleted} agent meetings prepared · {issuesInvestigated} issues investigated
+      </XivText>
+      <XivText variant="body" muted>
+        {opportunitiesIdentified} opportunities · {anomaliesDetected} anomalies · {decisionsRequireApproval} decisions need approval
+      </XivText>
+      <XivText variant="micro" dim>
+        0 unauthorized actions executed. Agents may analyze and recommend. They may not act.
+      </XivText>
+    </XivGlassPanel>
+  );
+}
+
+export function DisagreementPack({
+  options,
+  recommendation,
+  confidence,
+  humanRequired,
+}: {
+  options: readonly { label: string; profile: string }[];
+  recommendation: string;
+  confidence: string;
+  humanRequired: boolean;
+}) {
+  return (
+    <XivGlassPanel accessibilityLabel="Preserved disagreement pack">
+      <XivText variant="label" color={Palette.accent}>
+        Productive disagreement
+      </XivText>
+      {options.map((option) => (
+        <XivText key={option.label} variant="body" muted>
+          {option.label} — {option.profile}
+        </XivText>
+      ))}
+      <XivText variant="card">XIV recommendation: {recommendation}</XivText>
+      <XivText variant="metadata" muted>
+        Confidence {confidence} · Human decision required: {humanRequired ? 'YES' : 'NO'}
+      </XivText>
+      <XivText variant="micro" dim>
+        Consensus is not truth. Differences are preserved for the executive.
+      </XivText>
+    </XivGlassPanel>
+  );
+}
+
 export function MeetingDetail({
   title,
   when,

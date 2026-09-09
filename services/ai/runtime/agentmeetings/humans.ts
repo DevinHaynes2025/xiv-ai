@@ -1,7 +1,6 @@
 /**
  * Human Intelligence Bridge.
- * Humans participate; judgment is recorded separately from machine inference.
- * Human opinion is not automatically universal truth.
+ * Judgment is recorded separately from machine inference.
  */
 
 import { advanceStage, getMeeting, isSeated, joinMeeting, type MeetingNetwork } from './engine';
@@ -18,10 +17,6 @@ import type {
   MeetingParticipant,
 } from './types';
 
-const contributions = new Map<string, HumanContribution[]>();
-const actions = new Map<string, MeetingAction[]>();
-const outcomes = new Map<string, MeetingOutcome[]>();
-
 function deny(reason: string): Deny {
   return { ok: false, reason, audited: true };
 }
@@ -30,9 +25,7 @@ function allow<T>(value: T): Allow<T> {
 }
 
 export function resetHumanState(): void {
-  contributions.clear();
-  actions.clear();
-  outcomes.clear();
+  // State is per MeetingNetwork.
 }
 
 export function humanEnterMeeting(
@@ -64,7 +57,7 @@ export function recordHumanKnowledge(
   if (!meeting.ok) return meeting;
   if (!isSeated(net, meetingId, human.actorId)) return deny('unseated_human_knowledge_denied');
   const contribution: HumanContribution = {
-    contributionId: `hk:${meetingId}:${(contributions.get(meetingId) ?? []).length + 1}`,
+    contributionId: `hk:${meetingId}:${(net.contributions.get(meetingId) ?? []).length + 1}`,
     meetingId,
     actorId: human.actorId,
     organizationId: human.organizationId,
@@ -73,9 +66,9 @@ export function recordHumanKnowledge(
     text,
     isUniversalTruth: false,
   };
-  const list = contributions.get(meetingId) ?? [];
+  const list = net.contributions.get(meetingId) ?? [];
   list.push(contribution);
-  contributions.set(meetingId, list);
+  net.contributions.set(meetingId, list);
   return allow(contribution);
 }
 
@@ -94,7 +87,7 @@ export function humanDecide(
   const meeting = getMeeting(net, meetingId, human);
   if (!meeting.ok) return meeting;
   if (!isSeated(net, meetingId, human.actorId)) return deny('unseated_human_decision_denied');
-  const current = listDecisions(meetingId).find((d) => d.decisionId === decisionId);
+  const current = listDecisions(net, meetingId).find((d) => d.decisionId === decisionId);
   if (!current) return deny('decision_not_found');
   const updated: MeetingDecision = {
     ...current,
@@ -108,7 +101,7 @@ export function humanDecide(
           ? `${current.recommendation} (escalated)`
           : current.recommendation,
   };
-  recordHumanDecision(meetingId, updated);
+  recordHumanDecision(net, meetingId, updated);
   if (verdict === 'approve' || verdict === 'reject') {
     advanceStage(net, meetingId, 'DECISION');
   }
@@ -129,10 +122,10 @@ export function queueAuthorizedAction(
   if (human.kind !== 'human') return deny('authorized_action_requires_human');
   const meeting = getMeeting(net, meetingId, human);
   if (!meeting.ok) return meeting;
-  const approved = listDecisions(meetingId).some((d) => d.humanApproved);
+  const approved = listDecisions(net, meetingId).some((d) => d.humanApproved);
   if (!approved) return deny('action_requires_human_approval');
   const action: MeetingAction = {
-    actionId: `act:${meetingId}:${(actions.get(meetingId) ?? []).length + 1}`,
+    actionId: `act:${meetingId}:${(net.actions.get(meetingId) ?? []).length + 1}`,
     meetingId,
     organizationId: meeting.value.organizationId,
     universeId: meeting.value.universeId,
@@ -141,9 +134,9 @@ export function queueAuthorizedAction(
     executed: false,
     unauthorized: false,
   };
-  const list = actions.get(meetingId) ?? [];
+  const list = net.actions.get(meetingId) ?? [];
   list.push(action);
-  actions.set(meetingId, list);
+  net.actions.set(meetingId, list);
   advanceStage(net, meetingId, 'AUTHORIZED_ACTION');
   return allow(action);
 }
@@ -164,19 +157,19 @@ export function recordOutcome(
     summary,
     measured: true,
   };
-  outcomes.set(meetingId, [outcome]);
+  net.outcomes.set(meetingId, [outcome]);
   advanceStage(net, meetingId, 'OUTCOME');
   return allow(outcome);
 }
 
-export function listHumanContributions(meetingId: string): readonly HumanContribution[] {
-  return contributions.get(meetingId) ?? [];
+export function listHumanContributions(net: MeetingNetwork, meetingId: string): readonly HumanContribution[] {
+  return net.contributions.get(meetingId) ?? [];
 }
 
-export function listActions(meetingId: string): readonly MeetingAction[] {
-  return actions.get(meetingId) ?? [];
+export function listActions(net: MeetingNetwork, meetingId: string): readonly MeetingAction[] {
+  return net.actions.get(meetingId) ?? [];
 }
 
-export function listOutcomes(meetingId: string): readonly MeetingOutcome[] {
-  return outcomes.get(meetingId) ?? [];
+export function listOutcomes(net: MeetingNetwork, meetingId: string): readonly MeetingOutcome[] {
+  return net.outcomes.get(meetingId) ?? [];
 }

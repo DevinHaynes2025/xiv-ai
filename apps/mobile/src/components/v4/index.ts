@@ -43,9 +43,12 @@ export {
   RecommendedRelationship,
 } from './network';
 export {
+  AgentMeetingCommandStrip,
+  DisagreementPack,
   MeetingActionItems,
   MeetingAgenda,
   MeetingDetail,
+  OvernightIntelligenceBrief,
   MeetingIntelligence,
   MeetingNotes,
   MeetingPreparation,

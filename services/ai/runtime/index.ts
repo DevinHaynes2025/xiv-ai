@@ -727,5 +727,6 @@ export {
   OVERNIGHT_MEETINGS_LIVE,
   openMeetingNetwork,
   meetingNetworkLive,
+  agentMeetingNetworkStatus,
 } from './agentmeetings';
 export type { Actor as AgentMeetingActor, XivAgentMeeting } from './agentmeetings';

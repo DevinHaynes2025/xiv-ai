@@ -109,7 +109,7 @@ export function handleMeetingApi(
     }
   }
   if (method === 'GET' && path === '/task-forces') {
-    return { ok: true, value: listTaskForces(actor.organizationId, actor.universeId), audited: true };
+    return { ok: true, value: listTaskForces(net, actor.organizationId, actor.universeId), audited: true };
   }
   if (method === 'POST' && path === '/task-forces') {
     return recommendTaskForce(net, actor, {
