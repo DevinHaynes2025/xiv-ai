@@ -8,7 +8,7 @@ Base: `cursor/62l-em5-amd-windows-ml-adapter-path-4059` @ `69753ccad6f1d3a593a4f
 Prior bases: EM4 @ `0c31b27…`; EM3 @ `eb6e963…`; EL9 @ `c834e52…` (superseded)  
 Rebase onto EM5: **YES**  
 Implementation SHA: `90db9191cf47e8cfcfdbe9c32cfd81385db283e2` (feat, post-EM5-rebase)  
-Tip SHA: `5c4cd675fa8c0a850fa371cf57ed8233206ff748`
+Tip SHA: `e6f2247df5a2aafb7c8dfa28b00a17bf0622599e`
 
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
