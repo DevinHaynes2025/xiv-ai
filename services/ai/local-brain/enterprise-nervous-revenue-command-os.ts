@@ -30,6 +30,7 @@ export type EnterpriseNervousSystemOs = {
   tenantId: string;
   universeId: string;
   predecessorLayer: ReturnType<typeof detectPredecessorLayer>;
+  dqSoftWired: boolean;
   dpSoftWired: boolean;
   doSoftWired: boolean;
   l4AutonomyEnabled: false;
@@ -70,6 +71,16 @@ function id(prefix: string) {
   return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function detectDq(repoRoot?: string): boolean {
+  const brain = repoRoot
+    ? join(repoRoot, 'services/ai/local-brain')
+    : join(process.cwd(), 'services/ai/local-brain');
+  return (
+    existsSync(join(brain, 'universal-integration-brain-types.ts')) ||
+    existsSync(join(brain, 'universal-integration-brain.ts'))
+  );
+}
+
 function detectDp(repoRoot?: string): boolean {
   const brain = repoRoot
     ? join(repoRoot, 'services/ai/local-brain')
@@ -108,6 +119,7 @@ export function enterpriseNervousRevenueCommandOsHonesty(repoRoot?: string) {
     learningEqPermission: DR_LOCKS.LEARNING_EQ_PERMISSION,
     nextPhaseTitle: NEXT_PHASE_TITLE,
     predecessorLayer: detectPredecessorLayer(repoRoot),
+    dqSoftWired: detectDq(repoRoot),
     dpSoftWired: detectDp(repoRoot),
     doSoftWired: detectDo(repoRoot),
     subsystems: {
@@ -138,6 +150,7 @@ export async function bootstrapEnterpriseNervousSystemOs(input: {
     tenantId: input.tenantId,
     universeId: input.universeId,
     predecessorLayer: detectPredecessorLayer(input.repoRoot),
+    dqSoftWired: detectDq(input.repoRoot),
     dpSoftWired: detectDp(input.repoRoot),
     doSoftWired: detectDo(input.repoRoot),
     l4AutonomyEnabled: false,

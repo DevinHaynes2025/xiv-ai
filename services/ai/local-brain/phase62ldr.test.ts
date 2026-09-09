@@ -379,11 +379,11 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
-    'predecessor_gates_dp_do_present',
-    preds.DP.tipProbe === 'PRESENT' &&
+    'predecessor_gates_dq_dp_do_present',
+    preds.DQ.tipProbe === 'PRESENT' &&
+      preds.DP.tipProbe === 'PRESENT' &&
       preds.DO.tipProbe === 'PRESENT' &&
-      preds.DN.tipProbe === 'PRESENT' &&
-      preds.DQ.tipProbe === 'WAITING_DATA',
+      preds.DN.tipProbe === 'PRESENT',
     `DQ=${preds.DQ.tipProbe};DP=${preds.DP.tipProbe};DO=${preds.DO.tipProbe}`,
   );
 
@@ -415,8 +415,9 @@ try {
     health.passed === true &&
       honesty.l4AutonomyEnabled === false &&
       honesty.tipLand === false &&
+      honesty.dqSoftWired === true &&
       honesty.dpSoftWired === true,
-    `health.passed=${health.passed}; dpSoftWired=${honesty.dpSoftWired}`,
+    `health.passed=${health.passed}; dqSoftWired=${honesty.dqSoftWired}; dpSoftWired=${honesty.dpSoftWired}`,
   );
 } finally {
   await rm(root, { recursive: true, force: true });
