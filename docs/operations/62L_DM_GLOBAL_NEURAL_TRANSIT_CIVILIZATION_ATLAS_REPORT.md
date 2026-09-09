@@ -4,8 +4,8 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-dm-global-neural-transit-civilization-atlas-4059`
-Parent / base tip: `cursor/62l-dk-unified-intelligence-neural-highway-4059` @ `9a61c61309e8f8cca78b0b2d7dd7f598f1931359` + `docs/operations/62L_DK_UNIFIED_INTELLIGENCE_NEURAL_HIGHWAY_REPORT.md` (**PRESENT**)
-Why this base: Preference **DL → DK → DJ → DI → DH → DG → DF → …**. Remote DL tip + `62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md` **WAITING_DATA** after backoff poll; DK tip + report **PRESENT** and used as base. Soft-wire DL neural transportation when PRESENT; soft-wire DK neural highway / Experience OS when PRESENT. No tip-land onto `xiv-v2`/`main`.
+Parent / base tip: `cursor/62l-dl-neural-transportation-os-4059` @ `359057d06e3a660bb840f00e0162688b895b4f82` + `docs/operations/62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md` (**PRESENT** after WAITING_DATA poll)
+Why this base: Preference **DL → DK → DJ → DI → DH → DG → DF → …**. Remote DL tip initially **WAITING_DATA**, then landed; rebased DM onto DL @ `359057d`. Soft-wire DL neural transportation when PRESENT; soft-wire DK neural highway / Experience OS when PRESENT. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
 Tip SHA: `0de5584af1bf5b8d1687670c6cd666b90fd390b4`
 Tip-land: **NO**
@@ -46,8 +46,8 @@ Ignore older title previews that called DM “Historical Enterprise/Technology I
 
 | Check | Result |
 |---|---|
-| DL Neural Transportation OS tip + report | **WAITING_DATA** — not on origin with report/modules at cut (local empty pointer may exist; not used as base) |
-| DK Unified Intelligence Experience OS tip + report | **PRESENT** @ `9a61c61` + `62L_DK_UNIFIED_INTELLIGENCE_NEURAL_HIGHWAY_REPORT.md`. **Used as base.** |
+| DL Neural Transportation OS tip + report | **PRESENT** @ `359057d` + `62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md`. **Used as base after WAITING_DATA poll.** |
+| DK Unified Intelligence Experience OS tip + report | **PRESENT** @ `9a61c61` (DL ancestor; not used as base; DL preferred). |
 | DJ Personal Intelligence Command OS tip + report | **PRESENT** @ `67e92f8` (DK ancestor; not used as base; DK preferred) |
 | DI Personalized Intelligence Companion OS tip + report | **WAITING_DATA** / not required once DK CLEAR |
 | DH Adaptive Life & Business Intelligence OS tip | **PRESENT** on origin @ `42bd3dd` (not used as base) |
@@ -55,14 +55,14 @@ Ignore older title previews that called DM “Historical Enterprise/Technology I
 | DF / DE / DD / DA | **PRESENT** in lineage |
 | `origin/xiv-v2` / `main` tip-land | **NO** |
 | Draft PR / ManagePullRequest | **NOT CREATED** |
-| Gate verdict | **62L-DK tip + report CLEAR for this child** after DL WAITING_DATA poll. Not PASS for Issue #130 if unread via `gh`. Not PASS for Windows-node verification. Not FAIL-with-report. |
+| Gate verdict | **62L-DL tip + report CLEAR for this child** after backoff poll. Not PASS for Issue #130 if unread via `gh`. Not PASS for Windows-node verification. Not FAIL-with-report. |
 
 ## WAITING gates (documented)
 
 | Gate | Status |
 |---|---|
-| DL tip + `62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md` | **WAITING_DATA** |
-| DK tip + report | **PRESENT** @ `9a61c61` |
+| DL tip + `62L_DL_NEURAL_TRANSPORTATION_OS_REPORT.md` | **PRESENT** @ `359057d` |
+| DK tip + report | **PRESENT** @ `9a61c61` (ancestor) |
 | DJ tip + report | **PRESENT** @ `67e92f8` (ancestor) |
 | DI tip + report | **WAITING_DATA** |
 | DH tip on origin | **PRESENT** @ `42bd3dd` (not base) |
@@ -146,4 +146,4 @@ Commands: `npm run test:62ldm` (also wired into `test:local-brain`)
 
 ## Debrief
 
-62L-DM lands as a focused local-brain coexistence layer on DK while DL remains WAITING_DATA. Honesty locks stay deny-by-default: verify-only toolchains, provenance-backed civilization atlas without demographic profiling, RUNNING_VERIFIED only with fresh evidence, and sealed silent share denied. Unit stories cover the required denials; production authorization remains false.
+62L-DM lands as a focused local-brain coexistence layer on DL (rebased after DL landed) with DK soft-wire available. Honesty locks stay deny-by-default: verify-only toolchains, provenance-backed civilization atlas without demographic profiling, RUNNING_VERIFIED only with fresh evidence, and sealed silent share denied. Unit stories cover the required denials; production authorization remains false.
