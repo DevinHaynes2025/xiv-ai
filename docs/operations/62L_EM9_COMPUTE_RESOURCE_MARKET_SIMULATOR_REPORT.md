@@ -19,7 +19,7 @@ Date: 2026-09-09
 | EM3 / EM6 / EM8 on this tip | Registry + NVIDIA path + return receipts **PRESENT** |
 | EL9 | Resource Governor **PRESENT** |
 | Working branch | `cursor/62l-em9-compute-resource-market-simulator-4059` |
-| Tip SHA | _(recorded after rebase commit)_ |
+| Tip SHA | `2cf4ef5c222729bf106c6ff5f794aa740e106540` |
 | Rebase | **YES** — onto EM8 `52ba42f` |
 | Tip-land / PR | **NO** |
 
