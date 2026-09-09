@@ -13,6 +13,7 @@ From `services/ai`:
 - `npm run local:founder-report` — write the Founder Morning Brain Report (includes operational worker state).
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
+- `npm run test:62lw` — 62L-W Global Neural Transit safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
