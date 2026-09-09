@@ -10,6 +10,12 @@ From `services/ai`:
 - `npm run local:brain` — start the local task worker.
 - `npm run local:task -- coding "<task>"` — enqueue a bounded local task.
 - `npm run local:night -- <approved-task-file.json>` — run a bounded Night Shift task set using the local agent mesh.
+- `npm run local:founder-report` — write the Founder Morning Brain Report.
+- `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
+- `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
+
+## 62L-X Memory Cortex
+Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency. 62L-Y is not implemented here.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
