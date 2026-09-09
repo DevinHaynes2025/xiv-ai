@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto sealed #1
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em1-agent-home-base-contract-4059`  
-Tip SHA: `(recorded after commit)`  
+Tip SHA: `f98eebd7519169229b9938edd2e476e9086889f3`  
 Base: sealed `#157` `cursor/62l-em-agent-compute-home-base-4059` @ `b1040f4124802f73fe3545f6a5e9f9da8337ce0c`  
 EL9 predecessor: `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
 Rebase onto #157 `b1040f41…`: **YES**  
