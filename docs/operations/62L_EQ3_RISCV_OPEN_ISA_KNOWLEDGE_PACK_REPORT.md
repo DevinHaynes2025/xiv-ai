@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq3-riscv-open-isa-knowledge-pack-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `3c1639fbf5be2742a88a004426710eea89b95808`  
 Base: `cursor/62l-eq2-arm-architecture-knowledge-pack-4059` @ `1c45268f05bab5417c315c02951233fd7ad94ae5`  
 Predecessor: EQ2 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ3 RISC-V Open ISA Knowledge Pack*  
