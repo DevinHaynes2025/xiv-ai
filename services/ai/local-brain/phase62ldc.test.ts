@@ -137,8 +137,9 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
-    'US-DC-predecessor-DA-or-CY',
-    preds.DA.tipProbe === 'PRESENT' ||
+    'US-DC-predecessor-DB-or-DA-or-CY',
+    preds.DB.tipProbe === 'PRESENT' ||
+      preds.DA.tipProbe === 'PRESENT' ||
       preds.CY.tipProbe === 'PRESENT' ||
       preds.CX.tipProbe === 'PRESENT',
     `DB=${preds.DB.tipProbe}/${preds.DB.report}; DA=${preds.DA.tipProbe}/${preds.DA.report}; CZ=${preds.CZ.tipProbe}/${preds.CZ.report}; CY=${preds.CY.tipProbe}/${preds.CY.report}; CX=${preds.CX.tipProbe}/${preds.CX.report}`,

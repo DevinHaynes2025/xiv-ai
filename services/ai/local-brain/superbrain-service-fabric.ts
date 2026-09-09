@@ -152,8 +152,35 @@ export async function bootstrapSuperbrainServiceFabric(input: {
   const predecessorLayer = detectPredecessorLayer(input.repoRoot);
   const brain = resolveBrainPath(input.repoRoot);
 
-  // Soft-wire DA Superbrain Runtime Kernel when PRESENT (coexistence; not production auth).
-  if (predecessorLayer === 'DA' || predecessorLayer === 'DB') {
+  // Soft-wire preferred predecessor façade when PRESENT (coexistence; not production auth).
+  if (predecessorLayer === 'DB') {
+    try {
+      const dbMod = join(brain, 'distributed-superbrain-runtime-mesh.ts');
+      if (existsSync(dbMod)) {
+        const db = await import(dbMod);
+        if (typeof db.bootstrapDistributedSuperbrainRuntimeMesh === 'function') {
+          await db.bootstrapDistributedSuperbrainRuntimeMesh({
+            orgId: input.orgId,
+            tenantId: input.tenantId,
+            universeId: input.universeId,
+            root: input.root,
+            actor: {
+              kind: 'mesh_curator',
+              id: input.actor.id,
+              orgId: input.orgId,
+              tenantId: input.tenantId,
+              universeId: input.universeId,
+              role: input.actor.role,
+              permissionLevel: input.actor.permissionLevel,
+              authorityLevel: input.actor.authorityLevel,
+            },
+          });
+        }
+      }
+    } catch {
+      // DB wire optional — WAITING_DATA / partial tip tolerated
+    }
+  } else if (predecessorLayer === 'DA') {
     try {
       const daMod = join(brain, 'superbrain-runtime-kernel.ts');
       if (existsSync(daMod)) {
