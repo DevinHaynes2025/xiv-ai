@@ -51,6 +51,7 @@
     "test:62leq16": "node --import tsx --test local-brain/phase62leq16.test.ts",
     "test:62ler1": "node --import tsx --test local-brain/phase62ler1.test.ts",
     "test:62ler2": "node --import tsx --test local-brain/phase62ler2.test.ts",
+    "test:62ler14": "node --import tsx --test local-brain/phase62ler14.test.ts",
     "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts",
     "test:62lel6": "node --import tsx --test local-runtime/__tests__/amd-npu-capability.test.ts",
     "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
