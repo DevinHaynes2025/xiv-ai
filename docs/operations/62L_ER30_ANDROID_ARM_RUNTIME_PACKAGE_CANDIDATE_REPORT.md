@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er30-android-arm-runtime-package-candidate-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `3b321d3ae9a52e1561d11537132dc551b4b1187d`  
 Base: `cursor/62l-er14-offline-brain-packager-4059` @ `14942e1`  
 Preferred bases: ER29 / ER28 tips **absent** on remote; proceeded from ER14 Offline Brain Packager (best available). Soft-wire missing ER28/ER29 as **WAITING_DATA** (not FAIL). EQ7 ARM Edge soft-wired when PRESENT.  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER30 Android / ARM Runtime Package Candidate*  
