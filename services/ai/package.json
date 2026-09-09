@@ -53,6 +53,7 @@
     "test:62ler2": "node --import tsx --test local-brain/phase62ler2.test.ts",
     "test:62ler9": "node --import tsx --test local-brain/phase62ler9.test.ts",
     "test:62ler10": "node --import tsx --test local-brain/phase62ler10.test.ts",
+    "test:62ler22": "node --import tsx --test local-brain/phase62ler22.test.ts",
     "test:62ler5": "node --import tsx --test local-brain/phase62ler5.test.ts",
     "test:62ler6": "node --import tsx --test local-brain/phase62ler6.test.ts",
     "test:62ler8": "node --import tsx --test local-brain/phase62ler8.test.ts",
