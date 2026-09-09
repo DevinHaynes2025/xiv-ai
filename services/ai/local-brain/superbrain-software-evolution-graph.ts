@@ -151,7 +151,7 @@ export async function recordSoftwareEvolution(
       kind: 'lesson',
       label: input.label.trim(),
       summary: input.summary.trim() || input.label.trim(),
-      claimState: 'CANDIDATE',
+      claimState: 'MODEL_INFERENCE',
       retentionClass: 'durable',
       tenantId: input.tenantId,
       universeId: input.universeId,
