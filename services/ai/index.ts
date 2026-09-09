@@ -24,6 +24,7 @@ export {
 } from './policies';
 export { AGENT_TOOLS, getAgentTool, listAgentTools } from './tools';
 export { withTurnContext } from './turn-context';
+export * from './queue';
 export type {
   Agent,
   AgentAction,
