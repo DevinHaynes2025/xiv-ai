@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq2-arm-architecture-knowledge-pack-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `15484bc396837606a375f1ca2d914d70d2cbacc5`  
 Base: `cursor/62l-eq1-cross-architecture-contract-4059` @ `bbfe7ba5d9bc4e239af5fbc1fc73e303c3678b32`  
 Predecessor: EQ1 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ2 ARM Architecture Knowledge Pack*  
