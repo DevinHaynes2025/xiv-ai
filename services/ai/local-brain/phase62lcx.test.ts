@@ -128,9 +128,9 @@ try {
 
   const preds = predecessorMap(repoRoot);
   check(
-    'US-CX-predecessor-CV',
-    preds.CV.tipProbe === 'PRESENT' && preds.CV.report === 'PRESENT',
-    `CV tip=${preds.CV.tipProbe} report=${preds.CV.report}; CW=${preds.CW.tipProbe}/${preds.CW.report}`,
+    'US-CX-predecessor-CW',
+    preds.CW.tipProbe === 'PRESENT' && preds.CW.report === 'PRESENT',
+    `CW tip=${preds.CW.tipProbe} report=${preds.CW.report}; CV=${preds.CV.tipProbe}/${preds.CV.report}`,
   );
 
   // No powered authorized node → WAITING_NODE or OFFLINE_STOPPED

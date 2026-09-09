@@ -44,6 +44,7 @@ import {
   bootstrapPersistentKnowledgeCivilization,
   persistentKnowledgeCivilizationHonesty,
 } from './persistent-knowledge-civilization';
+import { CW_LOCKS as CW_PREDECESSOR_LOCKS } from './autonomous-research-infrastructure-os-types';
 import {
   CX_LOCKS,
   HONESTY_BANNER,
@@ -113,13 +114,22 @@ export async function runPersistentKnowledgeCivilizationCycle(input: CxCycleInpu
     root,
     actor,
   });
+  // Prefer CW tip when present: honesty/offline locks must remain deny-by-default.
+  const cwProbe = predecessorMap(root).CW;
+  const cwHonesty =
+    CW_PREDECESSOR_LOCKS.L4_AUTONOMY_ENABLED === false &&
+    CW_PREDECESSOR_LOCKS.OFFLINE_DEVICES_PRETEND_RUNNING === false &&
+    CW_PREDECESSOR_LOCKS.RAW_PRIVATE_POOLING_BY_DEFAULT === false;
   hops.push(
     hop(
       'civilization_bootstrap',
-      civ && persistentKnowledgeCivilizationHonesty().l4AutonomyEnabled === false
+      civ &&
+        persistentKnowledgeCivilizationHonesty().l4AutonomyEnabled === false &&
+        cwHonesty &&
+        (cwProbe.tipProbe === 'PRESENT' || cwProbe.tipProbe === 'WAITING_DATA')
         ? 'IMPLEMENTED'
         : 'FAIL',
-      `Persistent Knowledge Civilization façade id=${civ.id}`,
+      `Persistent Knowledge Civilization façade id=${civ.id}; CW tip=${cwProbe.tipProbe}/${cwProbe.report}`,
     ),
   );
 
