@@ -7,8 +7,8 @@ Branch: `cursor/62l-bu-code-research-benchmark-strategy-4059`
 Parent / base tip: `cursor/62l-bs-engineering-university-memory-cortex-4059` @ `39da70c4c33058647222ca71c517081c064d3c4d` (`docs(62L-BS): restore tip SHA after align commit #83` lineage; tip includes `62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md`)
 Why this base: Preferred **62L-BT** tip + `62L_BT_APPRENTICESHIP_EXPERIMENT_EVOLUTION_GRAPH_REPORT.md` **MISSING** on origin after fetch/backoff (**WAITING_DATA**). Next preference **62L-BS** tip + report **PRESENT** — selected as base. Scaffold started briefly from **BR** @ `980a6e2`/`bd1a6fa` while BT/BS were landing, then **rebased onto BS** once available. **BQ** tip present on origin (parallel polyglot honesty lineage) but preference **BT → BS → BR → BQ** selects **BS**.
 Implementation SHAs: `169faf7`..`5822718` (see commit list below)
-Report SHA: _(this commit)_
-Tip SHA: _(pin after docs commit)_
+Report SHA:  (report body)
+Tip SHA:  _(pre-align; restore commit follows)_
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
