@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er11-public-government-data-pack-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `9fc99c2e8911b33ac166d1b8c8b99ddffb8390c7`  
 Base: `origin/cursor/62l-er6-historical-business-case-atlas-v2-4059` @ `27cac4e734eb0f34f9fe7a823d3c1a9b58043ede`  
 Preferred bases ER10→ER7: **absent or empty tip** on remote at implement time — proceeded from best available (**ER6**); ER10/ER9/ER8/ER7 soft-wired as **WAITING_DATA**  
 Predecessor soft-wires: ER6/ER5/ER2/ER1 **PRESENT**; ER10/ER9/ER8/ER7/ER4/ER3/EQ14 **WAITING_DATA** (ok; presence ≠ VERIFIED)  
@@ -76,7 +76,7 @@ cd services/ai && npm run test:62ler11
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62ler11` | **PENDING_RUN** — expect 7/7; rights gate; historical≠future; no unverified realtime |
+| `npm run test:62ler11` | **PASS** — 7/7; rights gate; historical≠future; no unverified realtime |
 
 ## Next (report only — do not implement)
 
