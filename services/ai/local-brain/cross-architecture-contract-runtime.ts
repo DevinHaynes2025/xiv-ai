@@ -1,17 +1,17 @@
 /**
  * 62L-EQ1 — Cross-Architecture Contract runtime.
  *
- * Emit/classify universal architecture contracts; feed neural pathway advisory
- * to Home Base. Soft-wires EP18/EP17/EP12/EP1/EM157 when present.
+ * Emit architecture records; map capabilities → candidates; enforce
+ * knowledge ≠ machine verification and Safety/IP boundaries.
+ * Soft-wires EP18/EP17/EP13/EP12/EP1/EM157 when present.
  */
 
 import {
-  ARCHITECTURE_FAMILIES,
-  ARCH_VERIFICATION_STATES,
+  ARCHITECTURE_EVIDENCE_STATES,
+  ARCHITECTURE_RECORD_FIELDS,
   CROSS_ARCHITECTURE_CONTRACT_CYCLE,
+  CROSS_ARCHITECTURE_FLOW,
   CROSS_ARCH_AGENT_BOUNDS,
-  CROSS_ARCH_CONTRACT_FIELDS,
-  CROSS_ARCH_POLICY_STATES,
   EQ1_DB_CANDIDATES_STATUS,
   EQ1_LOCKS,
   EQ1_MAY,
@@ -21,22 +21,23 @@ import {
   GITHUB_SOT_TITLE,
   GITLAB_MIRROR_NOTE,
   HONESTY_BANNER,
-  NEURAL_COMPUTE_PATHWAY,
+  ISA_FAMILIES,
   NEXT_PHASE_TITLE,
-  TRANSLATION_MODES,
+  SAFETY_IP_BOUNDARIES,
+  WORKLOAD_CAPABILITIES,
+  architectureKnowledgeImpliesMachineVerified,
   assertEq1LocksIntact,
   eq1SoftWireSnapshot,
   isCrossArchAgent,
   isHumanApprover,
-  type ArchitectureFamily,
-  type ArchVerificationState,
-  type CrossArchContractField,
-  type CrossArchPolicyState,
+  type ArchitectureEvidenceState,
+  type ArchitectureRecordField,
   type Eq1Actor,
   type Eq1EvidenceState,
   type Eq1HopRecord,
   type Eq1SoftWireSnapshot,
-  type TranslationMode,
+  type IsaFamily,
+  type WorkloadCapability,
 } from './cross-architecture-contract-types.ts';
 
 function nowIso(): string {
@@ -62,210 +63,155 @@ function deny(reason: string): DenialResult {
   return { denied: true, state: 'DENIED', reason, executed: false };
 }
 
-export type CrossArchitectureContract = {
-  contractId: string;
-  architectureFamily: ArchitectureFamily;
-  isaProfile: string;
-  extensionSet: readonly string[];
-  abiRuntime: string;
-  compilerIrTarget: string;
-  workloadGenomeRef: string;
-  algorithmRef: string;
-  runtimeProvider: string;
-  deviceClassCandidate: string;
-  translationMode: TranslationMode;
-  verificationState: ArchVerificationState;
-  policyState: CrossArchPolicyState;
-  publicSpecRefs: readonly string[];
-  benchmarkRef: string;
-  evidenceRefs: readonly string[];
-  lessonRefs: readonly string[];
-  homeBaseEnvelopeId: string;
-  neuralPathway: typeof NEURAL_COMPUTE_PATHWAY;
-  siliconModificationClaimed: false;
-  autonomousDeviceControl: false;
+export type ArchitectureRecord = {
+  architectureId: string;
+  vendor: string;
+  isaFamily: IsaFamily;
+  architectureVersion: string;
+  deviceClass: string;
+  extensions: readonly string[];
+  runtime: string;
+  compilerToolchain: string;
+  modelFormats: readonly string[];
+  supportedPrecisions: readonly string[];
+  memoryModel: string;
+  vectorSimdCapabilities: readonly string[];
+  securityFeatures: readonly string[];
+  operatingSystems: readonly string[];
+  benchmarkRefs: readonly string[];
+  evidenceState: ArchitectureEvidenceState;
+  sourceRefs: readonly string[];
+  lastVerifiedAt: string | null;
+  machineVerified: boolean;
+  capabilityTags: readonly WorkloadCapability[];
   orgId: string;
   tenantId: string;
   universeId: string;
   hiddenChainOfThoughtPresent: false;
 };
 
-const DEFAULT_ISA: Record<ArchitectureFamily, string> = {
-  arm_aarch64: 'AArch64',
-  x86_64: 'x86-64',
-  riscv: 'RV64GC',
-  gpu: 'vendor-gpu-isa-abstract',
-  npu: 'vendor-npu-isa-abstract',
-  edge: 'edge-heterogeneous',
-  cloud: 'cloud-accelerator-abstract',
-  qpu_path: 'qpu-path-candidate',
+export type CapabilityMappingResult = {
+  mappingId: string;
+  requiredCapabilities: readonly WorkloadCapability[];
+  matchedArchitectureIds: readonly string[];
+  brandHardCoded: false;
+  flow: typeof CROSS_ARCHITECTURE_FLOW;
 };
 
-export function classifyPolicyState(input: {
-  architectureFamily: ArchitectureFamily;
-  verificationState: ArchVerificationState;
-  translationMode: TranslationMode;
-  publicSpecRefs: readonly string[];
-  evidenceRefs: readonly string[];
-}): CrossArchPolicyState {
-  if (input.architectureFamily === 'qpu_path') {
-    if (
-      input.verificationState !== 'VERIFIED' &&
-      input.verificationState !== 'PRODUCTION_AUTHORIZED'
-    ) {
-      return 'RESEARCH_ONLY';
-    }
-  }
-  if (input.publicSpecRefs.length === 0) {
-    return 'WAITING_PUBLIC_SPEC';
-  }
-  if (input.translationMode === 'unsupported') {
-    return 'UNSUPPORTED';
-  }
-  if (
-    input.verificationState === 'RESEARCH_ONLY' ||
-    input.verificationState === 'DOCUMENTED' ||
-    input.verificationState === 'NOT_TESTED'
-  ) {
-    if (input.translationMode === 'native') return 'PARTIAL';
-    return 'TRANSLATION_REQUIRED';
-  }
-  if (
-    input.verificationState === 'VERIFIED' ||
-    input.verificationState === 'PRODUCTION_AUTHORIZED'
-  ) {
-    return input.translationMode === 'native' ? 'COMPATIBLE' : 'PARTIAL';
-  }
-  if (input.translationMode === 'ir_lower' || input.translationMode === 'runtime_shim') {
-    return 'TRANSLATION_REQUIRED';
-  }
-  if (input.evidenceRefs.length === 0) return 'PARTIAL';
-  return 'COMPATIBLE';
-}
-
-export function emitCrossArchitectureContract(input: {
+export function emitArchitectureRecord(input: {
   actor: Eq1Actor;
-  contractId: string;
-  architectureFamily: ArchitectureFamily;
-  isaProfile?: string;
-  extensionSet?: readonly string[];
-  abiRuntime: string;
-  compilerIrTarget: string;
-  workloadGenomeRef: string;
-  algorithmRef: string;
-  runtimeProvider: string;
-  deviceClassCandidate: string;
-  translationMode: TranslationMode;
-  verificationState: ArchVerificationState;
-  publicSpecRefs?: readonly string[];
-  benchmarkRef?: string;
-  evidenceRefs?: readonly string[];
-  lessonRefs?: readonly string[];
-  homeBaseEnvelopeId: string;
-  attemptClaimSiliconModification?: boolean;
-  attemptAutonomousDeviceControl?: boolean;
-  attemptMarkUnverifiedAsVerified?: boolean;
-  attemptPromoteResearchOnlyToProduction?: boolean;
-  attemptImplyQpuPhysicalWithoutEvidence?: boolean;
-  attemptEquatePublicResearchWithVerified?: boolean;
+  architectureId: string;
+  vendor: string;
+  isaFamily: IsaFamily;
+  architectureVersion: string;
+  deviceClass: string;
+  extensions?: readonly string[];
+  runtime: string;
+  compilerToolchain: string;
+  modelFormats?: readonly string[];
+  supportedPrecisions?: readonly string[];
+  memoryModel: string;
+  vectorSimdCapabilities?: readonly string[];
+  securityFeatures?: readonly string[];
+  operatingSystems?: readonly string[];
+  benchmarkRefs?: readonly string[];
+  evidenceState: ArchitectureEvidenceState;
+  sourceRefs?: readonly string[];
+  lastVerifiedAt?: string | null;
+  capabilityTags?: readonly WorkloadCapability[];
+  machineEvidenceRefs?: readonly string[];
+  attemptEquateKnowledgeWithVerification?: boolean;
+  attemptMarkVerifiedWithoutMachineEvidence?: boolean;
+  attemptTreatNotTestedAsVerified?: boolean;
+  attemptCloneProprietaryIsa?: boolean;
+  attemptIngestRestrictedRtlOrFirmware?: boolean;
+  attemptReverseEngineerConfidentialMicroarchitecture?: boolean;
   attemptIncludeHiddenCot?: boolean;
-}): CrossArchitectureContract | DenialResult {
+}): ArchitectureRecord | DenialResult {
   if (input.attemptIncludeHiddenCot) {
     return deny(
       'HIDDEN_CHAIN_OF_THOUGHT_IN_CONTRACT=false — no hidden chain-of-thought.',
     );
   }
-  if (input.attemptClaimSiliconModification) {
+  if (input.attemptCloneProprietaryIsa) {
     return deny(
-      'SILICON_MODIFICATION_CLAIMS=false — contract is a software abstraction, not silicon modification.',
+      'PROPRIETARY_ISA_CLONING=false — no proprietary ISA cloning.',
     );
   }
-  if (input.attemptAutonomousDeviceControl) {
+  if (input.attemptIngestRestrictedRtlOrFirmware) {
     return deny(
-      'AUTONOMOUS_DEVICE_CONTROL=false — agents may not autonomously control devices.',
+      'RESTRICTED_RTL_FIRMWARE_INGESTION=false — no restricted RTL/firmware ingestion.',
     );
   }
-  if (
-    input.attemptMarkUnverifiedAsVerified &&
-    (input.verificationState === 'DOCUMENTED' ||
-      input.verificationState === 'RESEARCH_ONLY' ||
-      input.verificationState === 'NOT_TESTED' ||
-      input.evidenceRefs?.length === 0)
-  ) {
+  if (input.attemptReverseEngineerConfidentialMicroarchitecture) {
     return deny(
-      'UNVERIFIED_MARKED_VERIFIED=false — public ISA research ≠ verified execution.',
+      'CONFIDENTIAL_MICROARCHITECTURE_REVERSE_ENGINEERING=false — no confidential microarchitecture reverse engineering.',
     );
   }
   if (
-    input.attemptPromoteResearchOnlyToProduction ||
-    (input.verificationState === 'RESEARCH_ONLY' &&
-      input.attemptEquatePublicResearchWithVerified)
+    input.attemptEquateKnowledgeWithVerification ||
+    (input.evidenceState === 'DOCUMENTED' &&
+      input.attemptMarkVerifiedWithoutMachineEvidence)
   ) {
     return deny(
-      'RESEARCH_ONLY_EQ_PRODUCTION_AUTHORIZED=false — research-only cannot be production-authorized.',
+      'ARCHITECTURE_KNOWLEDGE_EQ_MACHINE_VERIFICATION=false — DOCUMENTED semantics ≠ machine VERIFIED.',
     );
   }
   if (
-    input.attemptEquatePublicResearchWithVerified &&
-    (input.verificationState === 'DOCUMENTED' ||
-      input.verificationState === 'RESEARCH_ONLY')
+    input.attemptTreatNotTestedAsVerified ||
+    (input.evidenceState === 'NOT_TESTED' &&
+      input.attemptMarkVerifiedWithoutMachineEvidence)
   ) {
-    return deny(
-      'PUBLIC_ISA_RESEARCH_EQ_VERIFIED_EXECUTION=false — Arm/RISC-V public docs enable study, not automatic VERIFIED.',
-    );
+    return deny('NOT_TESTED_EQ_VERIFIED=false.');
   }
-  if (
-    input.architectureFamily === 'qpu_path' &&
-    input.attemptImplyQpuPhysicalWithoutEvidence
-  ) {
-    return deny(
-      'QPU_PATH_IMPLIED_PHYSICAL_WITHOUT_EVIDENCE=false — qpu_path remains research without physical evidence.',
-    );
-  }
-  if (
-    input.verificationState === 'VERIFIED' &&
-    (!input.evidenceRefs || input.evidenceRefs.length === 0)
-  ) {
-    return deny(
-      'UNVERIFIED_MARKED_VERIFIED=false — VERIFIED requires evidence refs.',
-    );
+  if (input.evidenceState === 'VERIFIED') {
+    const machineEvidence = input.machineEvidenceRefs ?? [];
+    if (
+      input.attemptMarkVerifiedWithoutMachineEvidence ||
+      machineEvidence.length === 0
+    ) {
+      return deny(
+        'VERIFIED_WITHOUT_MACHINE_EVIDENCE=false — VERIFIED requires XIV-owned machine measurements / evidence.',
+      );
+    }
   }
 
-  void CROSS_ARCH_CONTRACT_FIELDS;
-  void ARCH_VERIFICATION_STATES;
+  void ARCHITECTURE_RECORD_FIELDS;
 
-  const publicSpecRefs = input.publicSpecRefs ?? [];
-  const evidenceRefs = input.evidenceRefs ?? [];
-  const policyState = classifyPolicyState({
-    architectureFamily: input.architectureFamily,
-    verificationState: input.verificationState,
-    translationMode: input.translationMode,
-    publicSpecRefs,
-    evidenceRefs,
-  });
+  const machineVerified =
+    input.evidenceState === 'VERIFIED' &&
+    (input.machineEvidenceRefs?.length ?? 0) > 0;
+
+  // Explicit: knowledge states never imply machine verification by themselves
+  if (
+    architectureKnowledgeImpliesMachineVerified(input.evidenceState) === true
+  ) {
+    return deny('ARCHITECTURE_KNOWLEDGE_EQ_MACHINE_VERIFICATION=false.');
+  }
 
   return {
-    contractId: input.contractId,
-    architectureFamily: input.architectureFamily,
-    isaProfile: input.isaProfile ?? DEFAULT_ISA[input.architectureFamily],
-    extensionSet: input.extensionSet ?? [],
-    abiRuntime: input.abiRuntime,
-    compilerIrTarget: input.compilerIrTarget,
-    workloadGenomeRef: input.workloadGenomeRef,
-    algorithmRef: input.algorithmRef,
-    runtimeProvider: input.runtimeProvider,
-    deviceClassCandidate: input.deviceClassCandidate,
-    translationMode: input.translationMode,
-    verificationState: input.verificationState,
-    policyState,
-    publicSpecRefs,
-    benchmarkRef: input.benchmarkRef ?? '',
-    evidenceRefs,
-    lessonRefs: input.lessonRefs ?? [],
-    homeBaseEnvelopeId: input.homeBaseEnvelopeId,
-    neuralPathway: NEURAL_COMPUTE_PATHWAY,
-    siliconModificationClaimed: false,
-    autonomousDeviceControl: false,
+    architectureId: input.architectureId,
+    vendor: input.vendor,
+    isaFamily: input.isaFamily,
+    architectureVersion: input.architectureVersion,
+    deviceClass: input.deviceClass,
+    extensions: input.extensions ?? [],
+    runtime: input.runtime,
+    compilerToolchain: input.compilerToolchain,
+    modelFormats: input.modelFormats ?? [],
+    supportedPrecisions: input.supportedPrecisions ?? [],
+    memoryModel: input.memoryModel,
+    vectorSimdCapabilities: input.vectorSimdCapabilities ?? [],
+    securityFeatures: input.securityFeatures ?? [],
+    operatingSystems: input.operatingSystems ?? [],
+    benchmarkRefs: input.benchmarkRefs ?? [],
+    evidenceState: input.evidenceState,
+    sourceRefs: input.sourceRefs ?? [],
+    lastVerifiedAt: machineVerified
+      ? (input.lastVerifiedAt ?? nowIso())
+      : null,
+    machineVerified,
+    capabilityTags: input.capabilityTags ?? [],
     orgId: input.actor.orgId,
     tenantId: input.actor.tenantId,
     universeId: input.actor.universeId,
@@ -273,28 +219,63 @@ export function emitCrossArchitectureContract(input: {
   };
 }
 
-export function attemptClaimSiliconModification(): DenialResult {
-  return deny('SILICON_MODIFICATION_CLAIMS=false.');
+export function mapCapabilitiesToArchitectures(input: {
+  mappingId: string;
+  requiredCapabilities: readonly WorkloadCapability[];
+  candidates: readonly ArchitectureRecord[];
+  attemptBrandHardCoding?: boolean;
+}): CapabilityMappingResult | DenialResult {
+  if (input.attemptBrandHardCoding) {
+    return deny(
+      'BRAND_HARDCODING_REQUIRED_FOR_MAPPING=false — map by capabilities, not vendor brands.',
+    );
+  }
+  for (const cap of input.requiredCapabilities) {
+    if (!(WORKLOAD_CAPABILITIES as readonly string[]).includes(cap)) {
+      return deny(`Unknown workload capability: ${cap}`);
+    }
+  }
+  const matched = input.candidates
+    .filter((c) =>
+      input.requiredCapabilities.every((req) =>
+        c.capabilityTags.includes(req),
+      ),
+    )
+    .map((c) => c.architectureId);
+
+  return {
+    mappingId: input.mappingId,
+    requiredCapabilities: input.requiredCapabilities,
+    matchedArchitectureIds: matched,
+    brandHardCoded: false,
+    flow: CROSS_ARCHITECTURE_FLOW,
+  };
 }
 
-export function attemptAutonomousDeviceControl(): DenialResult {
-  return deny('AUTONOMOUS_DEVICE_CONTROL=false.');
+export function attemptEquateKnowledgeWithVerification(): DenialResult {
+  return deny('ARCHITECTURE_KNOWLEDGE_EQ_MACHINE_VERIFICATION=false.');
 }
 
-export function attemptMarkUnverifiedAsVerified(): DenialResult {
-  return deny('UNVERIFIED_MARKED_VERIFIED=false.');
+export function attemptDocumentedAarch64AsPhoneVerified(): DenialResult {
+  return deny(
+    'DOCUMENTED_AARCH64_EQ_PHONE_INFERENCE_VERIFIED=false — ARM AArch64 semantics DOCUMENTED ≠ this phone runs XIV inference VERIFIED.',
+  );
 }
 
-export function attemptPromoteResearchOnlyToProduction(): DenialResult {
-  return deny('RESEARCH_ONLY_EQ_PRODUCTION_AUTHORIZED=false.');
+export function attemptProprietaryIsaCloning(): DenialResult {
+  return deny('PROPRIETARY_ISA_CLONING=false.');
 }
 
-export function attemptEquatePublicResearchWithVerified(): DenialResult {
-  return deny('PUBLIC_ISA_RESEARCH_EQ_VERIFIED_EXECUTION=false.');
+export function attemptRestrictedRtlFirmwareIngestion(): DenialResult {
+  return deny('RESTRICTED_RTL_FIRMWARE_INGESTION=false.');
 }
 
-export function attemptImplyQpuPhysicalWithoutEvidence(): DenialResult {
-  return deny('QPU_PATH_IMPLIED_PHYSICAL_WITHOUT_EVIDENCE=false.');
+export function attemptConfidentialMicroarchitectureRe(): DenialResult {
+  return deny('CONFIDENTIAL_MICROARCHITECTURE_REVERSE_ENGINEERING=false.');
+}
+
+export function attemptVerifiedWithoutMachineEvidence(): DenialResult {
+  return deny('VERIFIED_WITHOUT_MACHINE_EVIDENCE=false.');
 }
 
 export function attemptRecommendAsAct(): DenialResult {
@@ -313,7 +294,7 @@ export function returnCrossArchEvidenceToHomeBase(input: {
   | {
       evidenceId: string;
       returnedToHomeBase: true;
-      pathway: typeof NEURAL_COMPUTE_PATHWAY;
+      flow: typeof CROSS_ARCHITECTURE_FLOW;
       authorityGranted: false;
     }
   | DenialResult {
@@ -326,7 +307,7 @@ export function returnCrossArchEvidenceToHomeBase(input: {
   return {
     evidenceId: input.evidenceId,
     returnedToHomeBase: true,
-    pathway: NEURAL_COMPUTE_PATHWAY,
+    flow: CROSS_ARCHITECTURE_FLOW,
     authorityGranted: false,
   };
 }
@@ -373,14 +354,49 @@ export function probeGuardianRlsTenantUniverseIsolation(): {
   };
 }
 
+export function exampleArmAarch64Documented(
+  actor: Eq1Actor,
+): ArchitectureRecord {
+  const record = emitArchitectureRecord({
+    actor,
+    architectureId: 'arch-arm-aarch64-public',
+    vendor: 'Arm',
+    isaFamily: 'arm_aarch64',
+    architectureVersion: 'AArch64',
+    deviceClass: 'cpu',
+    extensions: ['NEON', 'SVE-research'],
+    runtime: 'linux-aarch64',
+    compilerToolchain: 'llvm/clang-aarch64',
+    modelFormats: ['onnx', 'tflite'],
+    supportedPrecisions: ['fp32', 'fp16', 'int8'],
+    memoryModel: 'arm-weak-memory-model-public',
+    vectorSimdCapabilities: ['NEON', 'SVE'],
+    securityFeatures: ['pointer-auth-research', 'mte-research'],
+    operatingSystems: ['linux', 'android'],
+    evidenceState: 'DOCUMENTED',
+    sourceRefs: ['arm-architecture-reference-manual-public'],
+    capabilityTags: [
+      'matrix_multiply',
+      'vector_operations',
+      'attention',
+      'compression',
+    ],
+  });
+  if ('denied' in record) {
+    throw new Error('exampleArmAarch64Documented failed');
+  }
+  return record;
+}
+
 export function bootstrapCrossArchitectureContract(repoRoot?: string): {
   locksIntact: boolean;
   softWire: Eq1SoftWireSnapshot;
-  architectureFamilies: typeof ARCHITECTURE_FAMILIES;
-  contractFields: readonly CrossArchContractField[];
-  policyStates: typeof CROSS_ARCH_POLICY_STATES;
-  neuralPathway: typeof NEURAL_COMPUTE_PATHWAY;
-  translationModes: typeof TRANSLATION_MODES;
+  recordFields: readonly ArchitectureRecordField[];
+  evidenceStates: typeof ARCHITECTURE_EVIDENCE_STATES;
+  isaFamilies: typeof ISA_FAMILIES;
+  capabilities: typeof WORKLOAD_CAPABILITIES;
+  flow: typeof CROSS_ARCHITECTURE_FLOW;
+  safetyIp: typeof SAFETY_IP_BOUNDARIES;
   sot: {
     issue: typeof GITHUB_SOT_ISSUE;
     label: typeof GITHUB_SOT_LABEL;
@@ -396,11 +412,12 @@ export function bootstrapCrossArchitectureContract(repoRoot?: string): {
   return {
     locksIntact: assertEq1LocksIntact(),
     softWire: eq1SoftWireSnapshot(repoRoot),
-    architectureFamilies: ARCHITECTURE_FAMILIES,
-    contractFields: CROSS_ARCH_CONTRACT_FIELDS,
-    policyStates: CROSS_ARCH_POLICY_STATES,
-    neuralPathway: NEURAL_COMPUTE_PATHWAY,
-    translationModes: TRANSLATION_MODES,
+    recordFields: ARCHITECTURE_RECORD_FIELDS,
+    evidenceStates: ARCHITECTURE_EVIDENCE_STATES,
+    isaFamilies: ISA_FAMILIES,
+    capabilities: WORKLOAD_CAPABILITIES,
+    flow: CROSS_ARCHITECTURE_FLOW,
+    safetyIp: SAFETY_IP_BOUNDARIES,
     sot: {
       issue: GITHUB_SOT_ISSUE,
       label: GITHUB_SOT_LABEL,
@@ -421,8 +438,8 @@ export function runCrossArchitectureContractCycle(input: {
   repoRoot?: string;
 }): {
   hops: Eq1HopRecord[];
-  armContract: CrossArchitectureContract | DenialResult;
-  riscvContract: CrossArchitectureContract | DenialResult;
+  armDocumented: ArchitectureRecord | DenialResult;
+  mapping: CapabilityMappingResult | DenialResult;
   softWire: Eq1SoftWireSnapshot;
 } {
   const hops: Eq1HopRecord[] = [];
@@ -432,7 +449,7 @@ export function runCrossArchitectureContractCycle(input: {
     hop(
       'honesty_locks',
       assertEq1LocksIntact() ? 'PASS' : 'FAIL',
-      'EQ1 locks intact including L4=false and public-ISA≠VERIFIED.',
+      'EQ1 locks intact including L4=false and knowledge≠machine verification.',
     ),
   );
   hops.push(
@@ -444,206 +461,161 @@ export function runCrossArchitectureContractCycle(input: {
   );
   hops.push(
     hop(
-      'architecture_families_encoded',
+      'architecture_record_fields_encoded',
       'PASS',
-      ARCHITECTURE_FAMILIES.join(' | '),
+      `${ARCHITECTURE_RECORD_FIELDS.length} architecture record fields encoded.`,
     ),
   );
   hops.push(
     hop(
-      'contract_fields_encoded',
+      'evidence_states_encoded',
       'PASS',
-      `${CROSS_ARCH_CONTRACT_FIELDS.length} contract fields encoded.`,
+      ARCHITECTURE_EVIDENCE_STATES.join(' | '),
+    ),
+  );
+  hops.push(
+    hop('isa_families_encoded', 'PASS', ISA_FAMILIES.join(' | ')),
+  );
+  hops.push(
+    hop(
+      'workload_capabilities_encoded',
+      'PASS',
+      WORKLOAD_CAPABILITIES.join(' | '),
     ),
   );
   hops.push(
     hop(
-      'policy_states_encoded',
+      'cross_architecture_flow_encoded',
       'PASS',
-      CROSS_ARCH_POLICY_STATES.join(' | '),
+      CROSS_ARCHITECTURE_FLOW.join(' → '),
     ),
   );
   hops.push(
     hop(
-      'neural_pathway_encoded',
+      'safety_ip_boundaries_encoded',
       'PASS',
-      NEURAL_COMPUTE_PATHWAY.join(' → '),
-    ),
-  );
-  hops.push(
-    hop(
-      'translation_modes_encoded',
-      'PASS',
-      TRANSLATION_MODES.join(' | '),
+      SAFETY_IP_BOUNDARIES.join(' | '),
     ),
   );
 
-  const armContract = emitCrossArchitectureContract({
+  const armDocumented = exampleArmAarch64Documented(input.actor);
+  hops.push(
+    hop(
+      'architecture_knowledge_neq_machine_verification',
+      armDocumented.evidenceState === 'DOCUMENTED' &&
+        armDocumented.machineVerified === false &&
+        architectureKnowledgeImpliesMachineVerified('DOCUMENTED') === false &&
+        attemptEquateKnowledgeWithVerification().state === 'DENIED'
+        ? 'PASS'
+        : 'FAIL',
+      'Architecture knowledge ≠ machine verification.',
+    ),
+  );
+  hops.push(
+    hop(
+      'documented_aarch64_neq_phone_inference_verified',
+      attemptDocumentedAarch64AsPhoneVerified().state === 'DENIED'
+        ? 'PASS'
+        : 'FAIL',
+      'DOCUMENTED AArch64 ≠ phone inference VERIFIED.',
+    ),
+  );
+
+  const riscv = emitArchitectureRecord({
     actor: input.actor,
-    contractId: 'cac-arm-1',
-    architectureFamily: 'arm_aarch64',
-    isaProfile: 'AArch64',
-    extensionSet: ['NEON', 'SVE-research'],
-    abiRuntime: 'linux-aarch64',
-    compilerIrTarget: 'llvm-aarch64',
-    workloadGenomeRef: 'wg-edge-infer-1',
-    algorithmRef: 'alg-batch-cache',
-    runtimeProvider: 'onnx-aarch64',
-    deviceClassCandidate: 'edge_cpu',
-    translationMode: 'native',
-    verificationState: 'DOCUMENTED',
-    publicSpecRefs: ['arm-architecture-reference-manual-public'],
-    homeBaseEnvelopeId: 'hb-eq1-1',
+    architectureId: 'arch-riscv-rv64',
+    vendor: 'RISC-V International (open ISA)',
+    isaFamily: 'riscv',
+    architectureVersion: 'RV64GC',
+    deviceClass: 'cpu',
+    extensions: ['V', 'A', 'K-research'],
+    runtime: 'linux-riscv64',
+    compilerToolchain: 'llvm/clang-riscv64',
+    modelFormats: ['onnx'],
+    supportedPrecisions: ['fp32', 'fp16'],
+    memoryModel: 'riscv-memory-model-public',
+    vectorSimdCapabilities: ['V'],
+    securityFeatures: ['pmp-research'],
+    operatingSystems: ['linux'],
+    evidenceState: 'DOCUMENTED',
+    sourceRefs: ['riscv-ratified-unprivileged'],
+    capabilityTags: [
+      'vector_operations',
+      'optimization',
+      'simulation',
+      'encryption',
+    ],
   });
 
-  const riscvContract = emitCrossArchitectureContract({
-    actor: input.actor,
-    contractId: 'cac-riscv-1',
-    architectureFamily: 'riscv',
-    isaProfile: 'RV64GC',
-    extensionSet: ['V', 'A', 'K-research'],
-    abiRuntime: 'linux-riscv64',
-    compilerIrTarget: 'llvm-riscv64',
-    workloadGenomeRef: 'wg-accel-1',
-    algorithmRef: 'alg-vector-research',
-    runtimeProvider: 'riscv-runtime-research',
-    deviceClassCandidate: 'accelerator_candidate',
-    translationMode: 'ir_lower',
-    verificationState: 'RESEARCH_ONLY',
-    publicSpecRefs: ['riscv-ratified-unprivileged', 'riscv-vector'],
-    homeBaseEnvelopeId: 'hb-eq1-1',
-  });
+  const mapping =
+    !('denied' in riscv)
+      ? mapCapabilitiesToArchitectures({
+          mappingId: 'map-1',
+          requiredCapabilities: ['vector_operations', 'matrix_multiply'],
+          candidates: [armDocumented, riscv],
+        })
+      : riscv;
 
   hops.push(
     hop(
-      'universal_object_binds_architectures',
-      !('denied' in armContract) &&
-        !('denied' in riscvContract) &&
-        armContract.architectureFamily === 'arm_aarch64' &&
-        riscvContract.architectureFamily === 'riscv'
-        ? 'PASS'
-        : 'FAIL',
-      'Universal contract binds ARM and RISC-V objects.',
-    ),
-  );
-
-  hops.push(
-    hop(
-      'public_isa_research_neq_verified_execution',
-      attemptEquatePublicResearchWithVerified().state === 'DENIED' &&
-        !('denied' in armContract) &&
-        armContract.verificationState === 'DOCUMENTED' &&
-        armContract.policyState !== 'COMPATIBLE'
-        ? 'PASS'
-        : 'FAIL',
-      'Public ISA research ≠ verified execution.',
-    ),
-  );
-
-  hops.push(
-    hop(
-      'translation_is_software_abstraction',
-      !('denied' in riscvContract) &&
-        riscvContract.translationMode === 'ir_lower' &&
-        riscvContract.siliconModificationClaimed === false &&
-        attemptClaimSiliconModification().state === 'DENIED'
-        ? 'PASS'
-        : 'FAIL',
-      'Translation is software abstraction, not silicon change.',
-    ),
-  );
-
-  const qpuDeny = emitCrossArchitectureContract({
-    actor: input.actor,
-    contractId: 'cac-qpu-bad',
-    architectureFamily: 'qpu_path',
-    abiRuntime: 'qpu-sim',
-    compilerIrTarget: 'qi-ir',
-    workloadGenomeRef: 'wg-q',
-    algorithmRef: 'alg-q',
-    runtimeProvider: 'qi',
-    deviceClassCandidate: 'qpu',
-    translationMode: 'emulated_research',
-    verificationState: 'RESEARCH_ONLY',
-    publicSpecRefs: ['qi-lab'],
-    homeBaseEnvelopeId: 'hb-eq1-1',
-    attemptImplyQpuPhysicalWithoutEvidence: true,
-  });
-  hops.push(
-    hop(
-      'qpu_path_remains_research_without_physical_evidence',
-      qpuDeny.state === 'DENIED' &&
-        attemptImplyQpuPhysicalWithoutEvidence().state === 'DENIED'
-        ? 'PASS'
-        : 'FAIL',
-      'qpu_path remains research without physical evidence.',
-    ),
-  );
-
-  const familiesOk = ARCHITECTURE_FAMILIES.every((f) =>
-    [
-      'arm_aarch64',
-      'x86_64',
-      'riscv',
-      'gpu',
-      'npu',
-      'edge',
-      'cloud',
-      'qpu_path',
-    ].includes(f),
-  );
-  hops.push(
-    hop(
-      'arm_riscv_x86_gpu_npu_edge_cloud_addressable',
-      familiesOk ? 'PASS' : 'FAIL',
-      'ARM/x86/RISC-V/GPU/NPU/edge/cloud/qpu_path addressable.',
-    ),
-  );
-
-  hops.push(
-    hop(
-      'deny_silicon_modification_claims',
-      attemptClaimSiliconModification().state,
-      'Silicon modification claims DENIED.',
-    ),
-  );
-  hops.push(
-    hop(
-      'deny_autonomous_device_control',
-      attemptAutonomousDeviceControl().state,
-      'Autonomous device control DENIED.',
-    ),
-  );
-  hops.push(
-    hop(
-      'deny_verified_without_evidence',
-      attemptMarkUnverifiedAsVerified().state === 'DENIED' &&
-        emitCrossArchitectureContract({
-          actor: input.actor,
-          contractId: 'cac-bad-v',
-          architectureFamily: 'x86_64',
-          abiRuntime: 'linux-x64',
-          compilerIrTarget: 'llvm-x86_64',
-          workloadGenomeRef: 'wg',
-          algorithmRef: 'alg',
-          runtimeProvider: 'r',
-          deviceClassCandidate: 'cpu',
-          translationMode: 'native',
-          verificationState: 'VERIFIED',
-          publicSpecRefs: ['intel-sdm-public'],
-          evidenceRefs: [],
-          homeBaseEnvelopeId: 'hb',
+      'capability_based_mapping_not_brand_hardcoding',
+      !('denied' in mapping) &&
+        mapping.brandHardCoded === false &&
+        mapping.matchedArchitectureIds.includes('arch-arm-aarch64-public') &&
+        mapCapabilitiesToArchitectures({
+          mappingId: 'map-brand',
+          requiredCapabilities: ['attention'],
+          candidates: [armDocumented],
+          attemptBrandHardCoding: true,
         }).state === 'DENIED'
         ? 'PASS'
         : 'FAIL',
-      'VERIFIED without evidence DENIED.',
+      'Capability-based mapping; brand hard-coding DENIED.',
+    ),
+  );
+
+  hops.push(
+    hop(
+      'deny_proprietary_isa_cloning',
+      attemptProprietaryIsaCloning().state,
+      'Proprietary ISA cloning DENIED.',
     ),
   );
   hops.push(
     hop(
-      'deny_production_authorize_from_research_only',
-      attemptPromoteResearchOnlyToProduction().state,
-      'Research-only → production authorize DENIED.',
+      'deny_restricted_rtl_firmware_ingestion',
+      attemptRestrictedRtlFirmwareIngestion().state,
+      'Restricted RTL/firmware ingestion DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'deny_confidential_microarchitecture_re',
+      attemptConfidentialMicroarchitectureRe().state,
+      'Confidential microarchitecture RE DENIED.',
+    ),
+  );
+  hops.push(
+    hop(
+      'deny_verified_without_machine_evidence',
+      attemptVerifiedWithoutMachineEvidence().state === 'DENIED' &&
+        emitArchitectureRecord({
+          actor: input.actor,
+          architectureId: 'arch-bad-v',
+          vendor: 'x',
+          isaFamily: 'x86_64',
+          architectureVersion: 'x86-64',
+          deviceClass: 'cpu',
+          runtime: 'linux',
+          compilerToolchain: 'gcc',
+          memoryModel: 'x86-tso-public',
+          evidenceState: 'VERIFIED',
+          sourceRefs: ['sdm-public'],
+          machineEvidenceRefs: [],
+        }).state === 'DENIED'
+        ? 'PASS'
+        : 'FAIL',
+      'VERIFIED without machine evidence DENIED.',
     ),
   );
 
@@ -681,6 +653,13 @@ export function runCrossArchitectureContractCycle(input: {
       'ep17_soft_wire',
       softWire.ep17ClassicalQuantBaselineLab.present ? 'PASS' : 'WAITING_DATA',
       softWire.ep17ClassicalQuantBaselineLab.note,
+    ),
+  );
+  hops.push(
+    hop(
+      'ep13_soft_wire',
+      softWire.ep13RuntimeReturnReceipt.present ? 'PASS' : 'WAITING_DATA',
+      softWire.ep13RuntimeReturnReceipt.note,
     ),
   );
   hops.push(
@@ -730,8 +709,8 @@ export function runCrossArchitectureContractCycle(input: {
 
   return {
     hops,
-    armContract,
-    riscvContract,
+    armDocumented,
+    mapping,
     softWire,
   };
 }

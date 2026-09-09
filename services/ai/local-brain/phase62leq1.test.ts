@@ -10,10 +10,11 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 
 import {
-  ARCHITECTURE_FAMILIES,
+  ARCHITECTURE_EVIDENCE_STATES,
+  ARCHITECTURE_RECORD_FIELDS,
   CROSS_ARCHITECTURE_CONTRACT_CYCLE,
-  CROSS_ARCH_CONTRACT_FIELDS,
-  CROSS_ARCH_POLICY_STATES,
+  CROSS_ARCHITECTURE_FLOW,
+  CROSS_ARCH_AGENT_BOUNDS,
   EQ1_DB_CANDIDATES_STATUS,
   EQ1_LOCKS,
   EQ1_MAY,
@@ -24,24 +25,28 @@ import {
   GITHUB_SOT_TITLE,
   GITLAB_MIRROR_NOTE,
   HONESTY_BANNER,
-  NEURAL_COMPUTE_PATHWAY,
+  ISA_FAMILIES,
   NEXT_PHASE_TITLE,
-  TRANSLATION_MODES,
+  SAFETY_IP_BOUNDARIES,
+  WORKLOAD_CAPABILITIES,
+  architectureKnowledgeImpliesMachineVerified,
   assertEq1LocksIntact,
   eq1SoftWireSnapshot,
   type Eq1Actor,
 } from './cross-architecture-contract-types.ts';
 
 import {
-  attemptAutonomousDeviceControl,
-  attemptClaimSiliconModification,
-  attemptEquatePublicResearchWithVerified,
-  attemptImplyQpuPhysicalWithoutEvidence,
-  attemptMarkUnverifiedAsVerified,
-  attemptPromoteResearchOnlyToProduction,
+  attemptConfidentialMicroarchitectureRe,
+  attemptDocumentedAarch64AsPhoneVerified,
+  attemptEquateKnowledgeWithVerification,
+  attemptProprietaryIsaCloning,
   attemptRecommendAsAct,
+  attemptRestrictedRtlFirmwareIngestion,
+  attemptVerifiedWithoutMachineEvidence,
   bootstrapCrossArchitectureContract,
-  emitCrossArchitectureContract,
+  emitArchitectureRecord,
+  exampleArmAarch64Documented,
+  mapCapabilitiesToArchitectures,
   probeGuardianRlsTenantUniverseIsolation,
   requireHumanApproval,
   returnCrossArchEvidenceToHomeBase,
@@ -68,194 +73,215 @@ const human: Eq1Actor = {
   permissions: ['approve_consequential'],
 };
 
-test('SoT label EQ1 / #161; GitLab mirror not invented; next EQ2', () => {
+test('SoT label EQ1 / #161; GitLab mirror not invented; next EQ2 ARM Knowledge Pack', () => {
   assert.equal(GITHUB_SOT_LABEL, '62L-EQ1');
   assert.equal(GITHUB_SOT_ISSUE, 161);
   assert.equal(GITHUB_SOT_FAMILY, '62L-EQ');
   assert.match(GITHUB_SOT_TITLE, /Cross-Architecture Contract/);
   assert.match(GITLAB_MIRROR_NOTE, /no issue number invented/i);
   assert.match(NEXT_PHASE_TITLE, /EQ2/);
-  assert.match(NEXT_PHASE_TITLE, /ARM\/AArch64/);
+  assert.match(NEXT_PHASE_TITLE, /ARM Architecture Knowledge Pack/);
 });
 
-test('honesty locks: L4 false; public-ISA≠VERIFIED; DB NOT_APPLIED', () => {
+test('honesty locks: L4 false; knowledge≠machine verification; DB NOT_APPLIED', () => {
   assert.equal(assertEq1LocksIntact(), true);
   assert.equal(EQ1_LOCKS.L4_AUTONOMY_ENABLED, false);
   assert.equal(EQ1_DB_CANDIDATES_STATUS, 'NOT_APPLIED');
-  assert.equal(EQ1_LOCKS.PUBLIC_ISA_RESEARCH_EQ_VERIFIED_EXECUTION, false);
-  assert.equal(EQ1_LOCKS.SILICON_MODIFICATION_CLAIMS, false);
-  assert.equal(EQ1_LOCKS.AUTONOMOUS_DEVICE_CONTROL, false);
+  assert.equal(
+    EQ1_LOCKS.ARCHITECTURE_KNOWLEDGE_EQ_MACHINE_VERIFICATION,
+    false,
+  );
+  assert.equal(
+    EQ1_LOCKS.DOCUMENTED_AARCH64_EQ_PHONE_INFERENCE_VERIFIED,
+    false,
+  );
+  assert.equal(EQ1_LOCKS.PROPRIETARY_ISA_CLONING, false);
   assert.equal(EQ1_LOCKS.TIP_LAND, false);
   assert.match(HONESTY_BANNER, /DOCUMENTED/);
+  assert.equal(
+    CROSS_ARCH_AGENT_BOUNDS.mayEquateKnowledgeWithMachineVerification,
+    false,
+  );
 });
 
-test('architectures + contract fields + neural pathway + policy states encoded', () => {
-  assert.ok(ARCHITECTURE_FAMILIES.includes('arm_aarch64'));
-  assert.ok(ARCHITECTURE_FAMILIES.includes('riscv'));
-  assert.ok(ARCHITECTURE_FAMILIES.includes('x86_64'));
-  assert.ok(ARCHITECTURE_FAMILIES.includes('gpu'));
-  assert.ok(ARCHITECTURE_FAMILIES.includes('npu'));
-  assert.ok(ARCHITECTURE_FAMILIES.includes('qpu_path'));
-  assert.ok(CROSS_ARCH_CONTRACT_FIELDS.includes('contractId'));
-  assert.ok(CROSS_ARCH_CONTRACT_FIELDS.includes('compilerIrTarget'));
-  assert.deepEqual([...CROSS_ARCH_POLICY_STATES], [
-    'COMPATIBLE',
-    'PARTIAL',
-    'TRANSLATION_REQUIRED',
-    'UNSUPPORTED',
-    'RESEARCH_ONLY',
-    'WAITING_PUBLIC_SPEC',
+test('record fields + evidence states + capabilities + flow encoded', () => {
+  assert.ok(ARCHITECTURE_RECORD_FIELDS.includes('architectureId'));
+  assert.ok(ARCHITECTURE_RECORD_FIELDS.includes('evidenceState'));
+  assert.ok(ARCHITECTURE_RECORD_FIELDS.includes('lastVerifiedAt'));
+  assert.deepEqual([...ARCHITECTURE_EVIDENCE_STATES], [
+    'DOCUMENTED',
+    'DETECTED',
+    'SUPPORTED',
+    'VERIFIED',
+    'NOT_TESTED',
+    'DEGRADED',
+    'UNAVAILABLE',
   ]);
-  assert.equal(NEURAL_COMPUTE_PATHWAY[0], 'agent_mission');
-  assert.equal(NEURAL_COMPUTE_PATHWAY.at(-1), 'xiv_home_base');
-  assert.ok(TRANSLATION_MODES.includes('ir_lower'));
-  assert.ok(EQ1_MAY.includes('emit_universal_cross_architecture_contracts'));
+  assert.ok(ISA_FAMILIES.includes('arm_aarch64'));
+  assert.ok(ISA_FAMILIES.includes('riscv'));
+  assert.ok(WORKLOAD_CAPABILITIES.includes('matrix_multiply'));
+  assert.ok(WORKLOAD_CAPABILITIES.includes('attention'));
+  assert.deepEqual([...CROSS_ARCHITECTURE_FLOW], [
+    'agent_task',
+    'workload_genome',
+    'cross_architecture_contract',
+    'runtime_compiler_candidate',
+    'verified_device',
+    'execution',
+    'return_receipt',
+    'xiv_home_base',
+  ]);
+  assert.ok(SAFETY_IP_BOUNDARIES.includes('no_proprietary_isa_cloning'));
+  assert.ok(EQ1_MAY.includes('separate_architecture_knowledge_from_machine_verification'));
   assert.ok(
-    EQ1_MUST_NOT.includes('equate_public_isa_research_with_verified_execution'),
+    EQ1_MUST_NOT.includes(
+      'equate_documented_semantics_with_verified_machine_execution',
+    ),
   );
 });
 
-test('ARM DOCUMENTED + RISC-V RESEARCH_ONLY contracts; public≠VERIFIED', () => {
-  const arm = emitCrossArchitectureContract({
-    actor: agent,
-    contractId: 'cac-arm',
-    architectureFamily: 'arm_aarch64',
-    abiRuntime: 'linux-aarch64',
-    compilerIrTarget: 'llvm-aarch64',
-    workloadGenomeRef: 'wg-1',
-    algorithmRef: 'alg-1',
-    runtimeProvider: 'onnx',
-    deviceClassCandidate: 'edge_cpu',
-    translationMode: 'native',
-    verificationState: 'DOCUMENTED',
-    publicSpecRefs: ['arm-arm'],
-    homeBaseEnvelopeId: 'hb-1',
-  });
-  assert.ok(!('denied' in arm));
-  assert.equal(arm.architectureFamily, 'arm_aarch64');
-  assert.equal(arm.siliconModificationClaimed, false);
-  assert.notEqual(arm.policyState, 'COMPATIBLE');
+test('DOCUMENTED AArch64 ≠ phone inference VERIFIED; knowledge≠machine', () => {
+  const arm = exampleArmAarch64Documented(agent);
+  assert.equal(arm.evidenceState, 'DOCUMENTED');
+  assert.equal(arm.machineVerified, false);
+  assert.equal(arm.lastVerifiedAt, null);
+  assert.equal(architectureKnowledgeImpliesMachineVerified('DOCUMENTED'), false);
+  assert.equal(attemptEquateKnowledgeWithVerification().state, 'DENIED');
+  assert.equal(attemptDocumentedAarch64AsPhoneVerified().state, 'DENIED');
 
-  const riscv = emitCrossArchitectureContract({
-    actor: agent,
-    contractId: 'cac-rv',
-    architectureFamily: 'riscv',
-    extensionSet: ['V', 'A'],
-    abiRuntime: 'linux-riscv64',
-    compilerIrTarget: 'llvm-riscv64',
-    workloadGenomeRef: 'wg-2',
-    algorithmRef: 'alg-2',
-    runtimeProvider: 'rv-rt',
-    deviceClassCandidate: 'accel',
-    translationMode: 'ir_lower',
-    verificationState: 'RESEARCH_ONLY',
-    publicSpecRefs: ['riscv-spec'],
-    homeBaseEnvelopeId: 'hb-1',
-  });
-  assert.ok(!('denied' in riscv));
-  assert.equal(riscv.policyState, 'TRANSLATION_REQUIRED');
-
-  assert.equal(attemptEquatePublicResearchWithVerified().state, 'DENIED');
   assert.equal(
-    emitCrossArchitectureContract({
+    emitArchitectureRecord({
       actor: agent,
-      contractId: 'cac-bad',
-      architectureFamily: 'arm_aarch64',
-      abiRuntime: 'linux-aarch64',
-      compilerIrTarget: 'llvm-aarch64',
-      workloadGenomeRef: 'wg',
-      algorithmRef: 'alg',
-      runtimeProvider: 'r',
-      deviceClassCandidate: 'cpu',
-      translationMode: 'native',
-      verificationState: 'DOCUMENTED',
-      publicSpecRefs: ['arm'],
-      homeBaseEnvelopeId: 'hb',
-      attemptEquatePublicResearchWithVerified: true,
+      architectureId: 'arch-phone',
+      vendor: 'phone-oem',
+      isaFamily: 'arm_aarch64',
+      architectureVersion: 'AArch64',
+      deviceClass: 'phone',
+      runtime: 'android',
+      compilerToolchain: 'ndk',
+      memoryModel: 'arm',
+      evidenceState: 'DOCUMENTED',
+      sourceRefs: ['arm-public'],
+      attemptEquateKnowledgeWithVerification: true,
     }).state,
     'DENIED',
   );
 });
 
-test('silicon mod / device control / VERIFIED without evidence denied', () => {
-  assert.equal(attemptClaimSiliconModification().state, 'DENIED');
-  assert.equal(attemptAutonomousDeviceControl().state, 'DENIED');
-  assert.equal(attemptMarkUnverifiedAsVerified().state, 'DENIED');
-  assert.equal(attemptPromoteResearchOnlyToProduction().state, 'DENIED');
-  assert.equal(attemptImplyQpuPhysicalWithoutEvidence().state, 'DENIED');
+test('capability mapping without brand hard-coding', () => {
+  const arm = exampleArmAarch64Documented(agent);
+  const x86 = emitArchitectureRecord({
+    actor: agent,
+    architectureId: 'arch-x86',
+    vendor: 'generic-x86',
+    isaFamily: 'x86_64',
+    architectureVersion: 'x86-64',
+    deviceClass: 'cpu',
+    runtime: 'linux-x64',
+    compilerToolchain: 'llvm',
+    memoryModel: 'tso-public',
+    evidenceState: 'DOCUMENTED',
+    sourceRefs: ['sdm-public'],
+    capabilityTags: ['graph_search', 'encryption', 'optimization'],
+  });
+  assert.ok(!('denied' in x86));
+
+  const map = mapCapabilitiesToArchitectures({
+    mappingId: 'm1',
+    requiredCapabilities: ['matrix_multiply', 'vector_operations'],
+    candidates: [arm, x86],
+  });
+  assert.ok(!('denied' in map));
+  assert.equal(map.brandHardCoded, false);
+  assert.deepEqual([...map.matchedArchitectureIds], [
+    'arch-arm-aarch64-public',
+  ]);
 
   assert.equal(
-    emitCrossArchitectureContract({
-      actor: agent,
-      contractId: 'cac-v',
-      architectureFamily: 'x86_64',
-      abiRuntime: 'linux-x64',
-      compilerIrTarget: 'llvm-x86_64',
-      workloadGenomeRef: 'wg',
-      algorithmRef: 'alg',
-      runtimeProvider: 'r',
-      deviceClassCandidate: 'cpu',
-      translationMode: 'native',
-      verificationState: 'VERIFIED',
-      publicSpecRefs: ['sdm'],
-      evidenceRefs: [],
-      homeBaseEnvelopeId: 'hb',
-    }).state,
-    'DENIED',
-  );
-
-  assert.equal(
-    emitCrossArchitectureContract({
-      actor: agent,
-      contractId: 'cac-qpu',
-      architectureFamily: 'qpu_path',
-      abiRuntime: 'qi',
-      compilerIrTarget: 'qi-ir',
-      workloadGenomeRef: 'wg',
-      algorithmRef: 'alg',
-      runtimeProvider: 'qi',
-      deviceClassCandidate: 'qpu',
-      translationMode: 'emulated_research',
-      verificationState: 'RESEARCH_ONLY',
-      publicSpecRefs: ['qi'],
-      homeBaseEnvelopeId: 'hb',
-      attemptImplyQpuPhysicalWithoutEvidence: true,
+    mapCapabilitiesToArchitectures({
+      mappingId: 'm-brand',
+      requiredCapabilities: ['attention'],
+      candidates: [arm],
+      attemptBrandHardCoding: true,
     }).state,
     'DENIED',
   );
 });
 
-test('WAITING_PUBLIC_SPEC when no public refs; neural pathway on contract', () => {
-  const waiting = emitCrossArchitectureContract({
+test('Safety/IP denies + VERIFIED requires machine evidence', () => {
+  assert.equal(attemptProprietaryIsaCloning().state, 'DENIED');
+  assert.equal(attemptRestrictedRtlFirmwareIngestion().state, 'DENIED');
+  assert.equal(attemptConfidentialMicroarchitectureRe().state, 'DENIED');
+  assert.equal(attemptVerifiedWithoutMachineEvidence().state, 'DENIED');
+
+  assert.equal(
+    emitArchitectureRecord({
+      actor: agent,
+      architectureId: 'arch-clone',
+      vendor: 'x',
+      isaFamily: 'arm_aarch64',
+      architectureVersion: 'AArch64',
+      deviceClass: 'cpu',
+      runtime: 'linux',
+      compilerToolchain: 'clang',
+      memoryModel: 'arm',
+      evidenceState: 'DOCUMENTED',
+      sourceRefs: ['public'],
+      attemptCloneProprietaryIsa: true,
+    }).state,
+    'DENIED',
+  );
+
+  assert.equal(
+    emitArchitectureRecord({
+      actor: agent,
+      architectureId: 'arch-v-bad',
+      vendor: 'x',
+      isaFamily: 'x86_64',
+      architectureVersion: 'x86-64',
+      deviceClass: 'cpu',
+      runtime: 'linux',
+      compilerToolchain: 'gcc',
+      memoryModel: 'tso',
+      evidenceState: 'VERIFIED',
+      sourceRefs: ['public'],
+      machineEvidenceRefs: [],
+    }).state,
+    'DENIED',
+  );
+
+  const verified = emitArchitectureRecord({
     actor: agent,
-    contractId: 'cac-wait',
-    architectureFamily: 'gpu',
-    abiRuntime: 'cuda-or-rocm-abstract',
-    compilerIrTarget: 'gpu-ir',
-    workloadGenomeRef: 'wg',
-    algorithmRef: 'alg',
-    runtimeProvider: 'gpu-rt',
-    deviceClassCandidate: 'gpu',
-    translationMode: 'runtime_shim',
-    verificationState: 'DOCUMENTED',
-    publicSpecRefs: [],
-    homeBaseEnvelopeId: 'hb',
+    architectureId: 'arch-v-ok',
+    vendor: 'lab',
+    isaFamily: 'x86_64',
+    architectureVersion: 'x86-64',
+    deviceClass: 'cpu',
+    runtime: 'linux',
+    compilerToolchain: 'gcc',
+    memoryModel: 'tso',
+    evidenceState: 'VERIFIED',
+    sourceRefs: ['public'],
+    machineEvidenceRefs: ['xiv-bench-run-1'],
+    lastVerifiedAt: '2026-09-09T00:00:00.000Z',
+    capabilityTags: ['simulation'],
   });
-  assert.ok(!('denied' in waiting));
-  assert.equal(waiting.policyState, 'WAITING_PUBLIC_SPEC');
-  assert.deepEqual([...waiting.neuralPathway], [...NEURAL_COMPUTE_PATHWAY]);
+  assert.ok(!('denied' in verified));
+  assert.equal(verified.machineVerified, true);
+  assert.equal(verified.lastVerifiedAt, '2026-09-09T00:00:00.000Z');
 });
 
 test('bootstrap + soft-wire + cycle; home base; guardian unchanged', () => {
   const boot = bootstrapCrossArchitectureContract(repoRoot);
   assert.equal(boot.locksIntact, true);
-  assert.equal(boot.architectureFamilies.length, ARCHITECTURE_FAMILIES.length);
+  assert.equal(boot.recordFields.length, ARCHITECTURE_RECORD_FIELDS.length);
   assert.equal(boot.dbCandidates, 'NOT_APPLIED');
   assert.equal(boot.sot.issue, 161);
 
   const soft = eq1SoftWireSnapshot(repoRoot);
   assert.equal(soft.ep18QuantumInspiredComputeLab.present, true);
   assert.equal(soft.ep17ClassicalQuantBaselineLab.present, true);
+  assert.equal(soft.ep13RuntimeReturnReceipt.present, true);
   assert.equal(soft.ep12Scheduler.present, true);
   assert.equal(soft.ep1VirtualChipContract.present, true);
 
@@ -288,6 +314,7 @@ test('bootstrap + soft-wire + cycle; home base; guardian unchanged', () => {
   }
   const realFails = cycle.hops.filter((h) => h.state === 'FAIL');
   assert.equal(realFails.length, 0, JSON.stringify(realFails));
-  assert.ok(!('denied' in cycle.armContract));
-  assert.ok(!('denied' in cycle.riscvContract));
+  assert.ok(!('denied' in cycle.armDocumented));
+  assert.equal(cycle.armDocumented.evidenceState, 'DOCUMENTED');
+  assert.ok(!('denied' in cycle.mapping));
 });

@@ -4,11 +4,11 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq1-cross-architecture-contract-4059`  
-Tip SHA: `481e0161c279a707df1cd6509d21e1e90fdca796`  
+Tip SHA: *(aligned on commit)*  
 Base: `cursor/62l-ep18-quantum-inspired-compute-lab-4059` @ `f09643cea9f6b1221084d0130dffdac38adea57c`  
-Predecessor: EP18 **PRESENT** (EQ family opens from EP tip per founder queue)  
+Predecessor: EP18 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ1 Cross-Architecture Contract*  
-Note: `gh issue view 161` may be unresolved in this agent environment; issue number retained from founder SoT statement (ARM/RISC-V Compatibility Layer umbrella).  
+Note: `gh issue view 161` may be unresolved in this agent environment; issue number retained from founder SoT statement.  
 GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number invented**)
 
 ## Honesty banner
@@ -16,19 +16,27 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 `DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED`
 
 - `L4_AUTONOMY_ENABLED=false`
-- Universal object for ARM / x86 / RISC-V / GPU / NPU / edge / cloud / qpu_path
-- **Public ISA research ≠ verified execution** (Arm AArch64 docs / RISC-V ratified specs enable study)
-- Translation is **software abstraction**, not silicon modification
-- `qpu_path` remains research without physical evidence
-- No autonomous device control
-- Neural pathway: Agent mission → workload genome → algorithm → compiler/IR → architecture → runtime → CPU/GPU/NPU/QPU candidate → benchmark → evidence → lesson → XIV Home Base
+- **Architecture knowledge and machine verification are separate**
+- Example: ARM AArch64 semantics → `DOCUMENTED` does **not** mean this phone runs XIV inference → `VERIFIED`
+- Work described as capabilities (not brands), then mapped to architectures/runtimes
+- Flow: Agent task → Workload Genome → Cross-Architecture Contract → Runtime/Compiler candidate → Verified device → Execution → Return receipt → XIV Home Base
+- No proprietary ISA cloning; no restricted RTL/firmware ingestion; no confidential microarchitecture RE
+- Public specifications, open standards, documented toolchains, XIV-owned measurements only
 - Guardian/RLS/tenant/Universe isolation unchanged
 - DB candidates **NOT_APPLIED**
 - Tip-land / PR / ManagePullRequest / prod deploy: **NO**
 
-## Policy states
+## Evidence states
 
-`COMPATIBLE` | `PARTIAL` | `TRANSLATION_REQUIRED` | `UNSUPPORTED` | `RESEARCH_ONLY` | `WAITING_PUBLIC_SPEC`
+`DOCUMENTED` | `DETECTED` | `SUPPORTED` | `VERIFIED` | `NOT_TESTED` | `DEGRADED` | `UNAVAILABLE`
+
+## Architecture record fields
+
+`architectureId` · `vendor` · `isaFamily` · `architectureVersion` · `deviceClass` · `extensions` · `runtime` · `compilerToolchain` · `modelFormats` · `supportedPrecisions` · `memoryModel` · `vectorSimdCapabilities` · `securityFeatures` · `operatingSystems` · `benchmarkRefs` · `evidenceState` · `sourceRefs` · `lastVerifiedAt`
+
+## Workload capabilities
+
+`matrix_multiply` | `vector_operations` | `attention` | `graph_search` | `compression` | `encryption` | `simulation` | `optimization`
 
 ## Soft-wire (presence ≠ VERIFIED)
 
@@ -36,6 +44,7 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 | --- | --- |
 | EP18 Quantum-Inspired Compute Lab + report | **PRESENT** |
 | EP17 Classical Quant Baseline Lab + report | **PRESENT** |
+| EP13 Runtime Return Receipt + report | **PRESENT** |
 | EP12 Hardware-Neutral Scheduler + report | **PRESENT** |
 | EP1 Virtual Chip Contract + report | **PRESENT** |
 | EM (#157) Agent Compute Home Base | probe (boolean) |
@@ -44,22 +53,23 @@ GitLab mirror: **not resolved** (GitLab MCP `needsAuth`; **no issue number inven
 
 | File | Role |
 | --- | --- |
-| `cross-architecture-contract-types.ts` | families, fields, locks, soft-wire |
-| `cross-architecture-contract-runtime.ts` | emit/classify/deny + cycle |
+| `cross-architecture-contract-types.ts` | records, states, capabilities, locks, soft-wire |
+| `cross-architecture-contract-runtime.ts` | emit/map/deny + cycle |
 | `cross-architecture-contract.ts` | public facade |
 | `phase62leq1.test.ts` | denial + honesty tests |
 | `docs/operations/62L_EQ1_CROSS_ARCHITECTURE_CONTRACT_REPORT.md` | this report |
 
-## Autonomy / integrity denies (tested)
+## Autonomy / safety denies (tested)
 
 | Deny | Result |
 | --- | --- |
-| Equate public ISA research with VERIFIED | → **DENIED** |
-| Silicon modification claims | → **DENIED** |
-| Autonomous device control | → **DENIED** |
-| VERIFIED without evidence | → **DENIED** |
-| Research-only → production authorize | → **DENIED** |
-| Imply qpu_path physical without evidence | → **DENIED** |
+| Equate architecture knowledge with machine verification | → **DENIED** |
+| DOCUMENTED AArch64 as phone inference VERIFIED | → **DENIED** |
+| Brand hard-coding for capability mapping | → **DENIED** |
+| Proprietary ISA cloning | → **DENIED** |
+| Restricted RTL/firmware ingestion | → **DENIED** |
+| Confidential microarchitecture RE | → **DENIED** |
+| VERIFIED without machine evidence | → **DENIED** |
 | L4 autonomy | `L4_AUTONOMY_ENABLED=false` |
 
 ## Tests
@@ -70,15 +80,11 @@ cd services/ai && npm run test:62leq1
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62leq1` | **PASS** — ARM/RISC-V contracts; public≠VERIFIED; neural pathway; soft-wires PRESENT |
-
-## Umbrella context (#161)
-
-EQ family targets buildable ambition: ARM/AArch64 + RISC-V open ISA research, cross-architecture translation, device-neutral compiler/runtime abstraction, neural compute pathways, space/edge research fabric, and a mathematically generated million-story coverage graph (Persona × Industry × Workflow × …) clustered into reusable templates.
+| `npm run test:62leq1` | **PASS** — DOCUMENTED≠VERIFIED; capability mapping; Safety/IP denies; soft-wires PRESENT |
 
 ## Next (report only — do not implement)
 
-**EQ2 — ARM/AArch64 Public Architecture Research Path** — study documented AArch64 instruction semantics and software behavior for phone/edge/server research without claiming silicon control.
+**EQ2 — ARM Architecture Knowledge Pack** — structure public AArch64/ARM instruction semantics, vector/SIMD, memory model, security, and toolchain knowledge into the cross-architecture graph.
 
 ## Tip-land / PR
 
