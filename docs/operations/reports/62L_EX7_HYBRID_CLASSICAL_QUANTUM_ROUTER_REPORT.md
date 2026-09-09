@@ -12,7 +12,7 @@
 | Ref | SHA |
 |-----|-----|
 | Feat SHA | `20082aabfef2eb3c42ed68cdc8b27264a7c5155a` |
-| Branch tip | see `git rev-parse HEAD` on `cursor/62l-ex7-hybrid-classical-quantum-router-4059` after push |
+| Branch tip | `931338eac3437913ee9188e2dc24f5b7f978a368` |
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (behind GitHub; merge-base = GitLab tip — not unsafe) |
 | EX6 tip `cursor/62l-ex6-physical-qpu-execution-receipt-4059` | `60986682f7a6913def6da08499388aecd4acea4a` (= origin/xiv-v2; EX6 modules not tip-landed) |
