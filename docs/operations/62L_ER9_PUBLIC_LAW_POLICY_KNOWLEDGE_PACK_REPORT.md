@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er9-public-law-policy-knowledge-pack-4059`  
-Tip SHA: `b6d35103d3e104ccbef41fd2b14c5b2ed2feb21a`  
+Tip SHA: `fe8ed6c9c4d43b5633ab85003d5388676571c738`  
 Base: `origin/cursor/62l-er6-historical-business-case-atlas-v2-4059` @ `27cac4e`  
 Preferred bases: ER8/ER7 remote refs **absent** at fetch; proceeded from best available preferred tip **ER6**. ER5 also present beneath ER6.  
 Predecessor: ER1/ER2/ER5/ER6 **PRESENT**; EQ14 **WAITING_DATA**; ER3/ER4/ER7/ER8 soft-wired as **WAITING_DATA** when files absent (mid-flight presence ≠ VERIFIED)  
@@ -83,7 +83,7 @@ cd services/ai && npm run test:62ler9
 
 | Command | Result |
 | --- | --- |
-| `npm run test:62ler9` | **PASS** — pending local run; see feat commit |
+| `npm run test:62ler9` | **PASS** — 7/7; unclear→UNKNOWN/STALE; binding/certify/filings/licensed/scraping/cross-tenant DENIED; ER1/ER2/ER5/ER6 soft-wire PRESENT; EQ14 WAITING_DATA |
 
 ## Next (report only — do not implement)
 
