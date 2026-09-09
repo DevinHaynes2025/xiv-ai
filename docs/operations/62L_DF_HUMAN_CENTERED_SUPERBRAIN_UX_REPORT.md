@@ -7,7 +7,7 @@ Branch: `cursor/62l-df-human-centered-superbrain-ux-4059`
 Parent / base tip: `cursor/62l-de-knowledge-exchange-gateway-marketplace-4059` @ `1a5b1e1a4cd8f44aa992a058342c5337aa6bda30` + `docs/operations/62L_DE_KNOWLEDGE_EXCHANGE_GATEWAY_MARKETPLACE_REPORT.md` (**PRESENT** after WAITING_DATA poll; DE rebased onto DD)
 Why this base: Preference **DE → DD `b7ffee5` → DC → DB → DA → CZ → CY**. DE tip initially **WAITING_DATA**, then landed without report; after backoff poll DE tip+report **PRESENT** @ `1a5b1e1` (includes DD `b7ffee5` lineage). Soft-wire DE façade when PRESENT; DD soft-wire path retained for coexistence. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
-Tip SHA: `035b62da75116796e9a7521b58ab61857ea50ba9`
+Tip SHA: `ca1f894a6509fc997ed2f5961065613e17481cd1`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
@@ -98,7 +98,7 @@ Ignore older title previews that called DF “Capability Economy OS / Tool Comme
 | E. Neural Growth Ledger | **IMPLEMENTED** (unit-tested) |
 | F. Agent Meeting/Communication Fabric | **IMPLEMENTED** (unit-tested) |
 | Soft-wire DE knowledge exchange gateway marketplace when PRESENT | **IMPLEMENTED** (optional coexistence) |
-| Soft-wire DD cognitive mesh when PRESENT | **IMPLEMENTED** (path retained; modules WAITING on this tip) |
+| Soft-wire DD cognitive mesh when PRESENT | **IMPLEMENTED** (optional coexistence; modules PRESENT via DE←DD rebase) |
 | Candidate SQL migration | **DOCUMENTED / NOT_APPLIED** |
 | Full production mobile UX / localization ship | **DOCUMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED** (`FULL_PRODUCTION_UX_SHIPPED=false`) |
 | Tip-land / Draft PR / merge / prod deploy / DB migration applied | **NOT DONE** (by design) |
