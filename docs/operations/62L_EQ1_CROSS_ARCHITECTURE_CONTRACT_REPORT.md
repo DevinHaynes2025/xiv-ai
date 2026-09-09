@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq1-cross-architecture-contract-4059`  
-Tip SHA: *(aligned on commit)*  
+Tip SHA: `06ab5d24de4fdf62f5c0ca7858c78f98ab87d0b7`  
 Base: `cursor/62l-ep18-quantum-inspired-compute-lab-4059` @ `f09643cea9f6b1221084d0130dffdac38adea57c`  
 Predecessor: EP18 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ1 Cross-Architecture Contract*  
