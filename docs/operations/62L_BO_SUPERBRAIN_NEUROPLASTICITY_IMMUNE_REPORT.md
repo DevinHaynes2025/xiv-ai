@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bl-org-agent-universes-trust-fabric-4059` @ `46ea
 Why this base: Preferred **62L-BN** (`cursor/62l-bn-superbrain-neural-growth-metabolism-4059` + `62L_BN_SUPERBRAIN_NEURAL_GROWTH_METABOLISM_REPORT.md`) **MISSING** on origin after fetch with backoff (poll ~45s interval; concurrent BN/BM agents still RUNNING). **BM** also **MISSING**. Fallback chain: **BL** tip + report **PRESENT** (preferred over BK/BJ). **BK** tip present on origin @ `54c82e7` but preference order selects **BL**. **BJ** @ `ecfdd9a` is BL ancestor and remains available.
 Implementation SHAs: `342f823`..`fc584e9` (see commit list below)
 Report SHA: `5ce724b9914180816abddabec7927dcf8e20d58d` (report body pin; tip may be later restore commit)
-Tip SHA: `a2511116df726af8f0b517d18acec40ffa7892ae`
+Tip SHA: `dee9df4076e821b994eb253736513f0984ad1744`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
