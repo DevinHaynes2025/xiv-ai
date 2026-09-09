@@ -13,7 +13,7 @@
 |-----|-----|
 | Base EX2 tip `cursor/62l-ex2-classical-baseline-first-4059` | `4da906eeadb6af1f6b23df0f84f784b65f45957e` |
 | Feat SHA | `5c3002b04bcedb1dd544933e8117fed6ef278338` |
-| Branch tip | `45d0d27429ce18d89c5fa58236f94e0e49ee8ff9` |
+| Branch tip | `dfb7330471e484951a79694d7a8e9d7b467ef21c` |
 | GITHUB `origin/xiv-v2` | `60986682f7a6913def6da08499388aecd4acea4a` |
 | GITLAB `gitlab/xiv-v2` | `1c82e0c149f15c532d8700f4802a690c2bb7555f` (behind GitHub; not unsafe divergence for this child) |
 | EX1 tip soft-wire | mission.ts may be WAITING_DATA on EX2 tip; presence ≠ VERIFIED |
