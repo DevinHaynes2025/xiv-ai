@@ -7,7 +7,7 @@ Branch: `cursor/62l-eg-cognitive-operations-backbone-4059`
 Parent / base tip: `cursor/62l-ee-data-nervous-system-4059` @ `963de65c053be8697468cfb1501d4da6df9dc816` + `docs/operations/62L_EE_DATA_NERVOUS_SYSTEM_REPORT.md` (**PRESENT**)
 Why this base: Preference **EF → EE → ED**. EF **ABSENT** on origin. EE tip **PRESENT** (includes ED lineage). Soft-wire: `62L_EE_*` **PRESENT**; `62L_ED_*` **PRESENT**; `62L_EF_*` **ABSENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHA: `251d9551794b6cb51bdfef3b98ddaab4576b84c9`
-Tip SHA: `TBD_AFTER_DOCS_ALIGN`
+Tip SHA: `b0930db8575f4f7386dcd635957f52a470b2efec`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
