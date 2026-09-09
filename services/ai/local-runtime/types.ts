@@ -68,3 +68,19 @@ export const EVIDENCE_GRADE_ORDER: readonly EvidenceGrade[] = [
   'VERIFIED',
   'PRODUCTION_AUTHORIZED',
 ] as const;
+
+/**
+ * EL truth set (preserved):
+ * UNKNOWN / DETECTED / SUPPORTED / VERIFIED / DEGRADED / UNAVAILABLE / NOT_TESTED
+ * Hard progression for promotion claims: UNKNOWN → DETECTED → SUPPORTED → VERIFIED
+ * DETECTED ≠ VERIFIED.
+ */
+export const EL_CAPABILITY_TRUTH_STATES = [
+  'UNKNOWN',
+  'DETECTED',
+  'SUPPORTED',
+  'VERIFIED',
+  'DEGRADED',
+  'UNAVAILABLE',
+  'NOT_TESTED',
+] as const satisfies readonly CapabilityState[];

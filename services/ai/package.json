@@ -10,7 +10,11 @@
     "dev": "tsx watch server.ts",
     "typecheck": "tsc --noEmit",
     "test:local-runtime": "node --import tsx --test local-runtime/__tests__/*.test.ts",
+<<<<<<< HEAD
     "test:62lem": "node --import tsx --test local-runtime/__tests__/phase62lem.test.ts"
+=======
+    "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts"
+>>>>>>> 7c984a3 (feat(62L-EL5): AMD GPU capability candidate with deny-skip truth progression)
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

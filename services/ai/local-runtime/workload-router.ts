@@ -1,6 +1,7 @@
 import type { ComputeCapability, HardwareSnapshot, RouteDecision, WorkloadRequirements } from './types';
 
 function bestVerifiedAccelerator(snapshot: HardwareSnapshot): ComputeCapability | undefined {
+  // DETECTED / SUPPORTED / NOT_TESTED accelerators are intentionally ignored.
   return [...snapshot.npus, ...snapshot.gpus].find((item) => item.state === 'VERIFIED');
 }
 
@@ -46,10 +47,30 @@ export function routeWorkload(
     };
   }
 
+  // EL5: CPU remains the default fallback when GPU is only DETECTED / NOT_TESTED.
   return {
     mode: 'LOCAL',
     compute: 'cpu',
     capabilityState: snapshot.cpu.state,
     reason: 'CPU-first local route is the deterministic safe default until an accelerator is VERIFIED.',
+  };
+}
+
+/**
+ * After a failed or unsupported GPU attempt, always return a CPU route.
+ * Does not mutate hardware state or claim VERIFIED.
+ */
+export function routeAfterGpuFailure(
+  snapshot: HardwareSnapshot,
+  error: string,
+): RouteDecision & { fallbackToCpu: true; errors: string[] } {
+  const base = routeWorkload(snapshot, { preferLocal: true, requiresVerifiedAccelerator: false });
+  return {
+    ...base,
+    compute: 'cpu',
+    capabilityState: snapshot.cpu.state,
+    reason: `GPU path failed or unsupported (${error}); safe CPU fallback selected.`,
+    fallbackToCpu: true,
+    errors: [error],
   };
 }
