@@ -12,3 +12,7 @@ export * from './onnx-windows-ml-adapter';
 export * from './amd-accelerator-benchmark';
 export * from './heartbeat-api';
 export * from './classical-quant-benchmark';
+export * from './amd-npu-capability';
+export * from './npu-presence-probe';
+export * from './npu-benchmark';
+export * from './soft-wire-el6';
