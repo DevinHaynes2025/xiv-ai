@@ -283,6 +283,20 @@ export function runAc14(): AcceptanceResult {
     costPerKTokenUsd: 0.002,
     classifications: ['internal'],
   });
+  // Fully approved and invocable, but only up to `internal`. The local
+  // reference model is approved for every classification, so asking it for
+  // restricted work is not a mismatch and proves nothing.
+  plane.models.register({
+    modelId: 'internal-only-model-1',
+    provider: 'xiv_local',
+    displayName: 'Approved for internal work only',
+    approved: true,
+    providerConfigured: true,
+    evaluationGate: { evaluationId: 'eval_z', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['public', 'internal'],
+  });
 
   const runs = 60;
   for (let index = 0; index < runs; index += 1) {
@@ -292,16 +306,8 @@ export function runAc14(): AcceptanceResult {
     );
   }
 
-  const blocked = {
-    unregistered:
-      plane.engine.submit({ token: operatorA.token, spec: workloadSpec({ tenant: TENANT_A, hardware, modelId: 'model-does-not-exist' }) })
-        .rejection?.reason ?? 'accepted',
-    unapproved: '',
-    ungated: '',
-    unconfiguredProvider: '',
-    classificationMismatch: '',
-  };
-
+  // Each unusable model must be refused at admission, before a node is
+  // committed, and the refusal code must name the reason.
   const runBlocked = (modelId: string, classification: 'internal' | 'restricted' = 'internal') => {
     const outcome = plane.engine.execute(
       {
@@ -317,13 +323,31 @@ export function runAc14(): AcceptanceResult {
       },
       { iterations: 200 },
     );
-    return outcome.error?.code ?? outcome.rejection?.reason ?? 'executed';
+    return {
+      code: outcome.rejection?.code ?? outcome.error?.code ?? 'executed',
+      admitted: !outcome.rejection,
+      nodeCommitted: outcome.record.nodeId !== null,
+    };
   };
 
-  blocked.unapproved = runBlocked('unapproved-model-1');
-  blocked.ungated = runBlocked('ungated-model-1');
-  blocked.unconfiguredProvider = runBlocked('unconfigured-provider-model-1');
-  blocked.classificationMismatch = runBlocked(LOCAL_REFERENCE_MODEL_ID, 'restricted');
+  const blocked = {
+    unregistered: runBlocked('model-does-not-exist'),
+    unapproved: runBlocked('unapproved-model-1'),
+    ungated: runBlocked('ungated-model-1'),
+    unconfiguredProvider: runBlocked('unconfigured-provider-model-1'),
+    classificationMismatch: runBlocked('internal-only-model-1', 'restricted'),
+  };
+
+  const expectedBlockCodes: Record<keyof typeof blocked, string> = {
+    unregistered: 'model_unregistered',
+    unapproved: 'model_unapproved',
+    ungated: 'model_unapproved',
+    unconfiguredProvider: 'model_unavailable',
+    classificationMismatch: 'model_unapproved',
+  };
+  const blockEntries = Object.entries(blocked) as [keyof typeof blocked, (typeof blocked)[keyof typeof blocked]][];
+  const wrongBlockCode = blockEntries.filter(([name, result]) => result.code !== expectedBlockCodes[name]);
+  const admittedAnyway = blockEntries.filter(([, result]) => result.admitted || result.nodeCommitted);
 
   const substitution = catchCode(() =>
     plane.models.bindToRuntime(
@@ -376,6 +400,28 @@ export function runAc14(): AcceptanceResult {
     zero('unavailable_treated_available', 'Model/provider unavailable but treated as available', unavailableTreatedAsAvailable, {
       blocker: true,
     }),
+    zero(
+      'unusable_models_refused_by_reason',
+      'Unusable models refused with the wrong reason',
+      wrongBlockCode.length,
+      {
+        blocker: true,
+        note: wrongBlockCode.length
+          ? wrongBlockCode.map(([name, result]) => `${name} refused as ${result.code}`).join(', ')
+          : blockEntries.map(([name, result]) => `${name}=${result.code}`).join(', '),
+      },
+    ),
+    zero(
+      'unusable_models_admitted',
+      'Unusable models admitted or committed to a node',
+      admittedAnyway.length,
+      {
+        blocker: true,
+        note: admittedAnyway.length
+          ? admittedAnyway.map(([name]) => name).join(', ')
+          : 'each refused at admission with no node committed',
+      },
+    ),
   ];
 
   return summarize('AC-14', 'Model Authorization', thresholds, {

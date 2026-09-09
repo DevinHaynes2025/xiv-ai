@@ -254,6 +254,23 @@ export class WorkloadEngine {
       return reject('quota_exceeded', budgetValidation.reason, null);
     }
 
+    // A named model that cannot be invoked is refused before a node is chosen.
+    // Deferring this to execution admits the workload, commits capacity against
+    // the node and only then fails, which reserves a runtime for work that was
+    // never allowed to run.
+    if (spec.modelId) {
+      try {
+        this.deps.models.authorize({
+          modelId: spec.modelId,
+          tenant: spec.tenant,
+          classification: spec.classification,
+          workloadId: spec.workloadId,
+        });
+      } catch (error) {
+        return reject(errorCodeOf(error), 'model_not_invocable', null);
+      }
+    }
+
     const quota = this.deps.governor.quotaFor(spec.tenant);
     const routing = this.deps.router.route({
       spec,
