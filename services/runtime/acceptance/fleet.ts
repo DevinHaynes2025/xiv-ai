@@ -6,7 +6,7 @@
 import { NodeRegistry } from '../src/nodes';
 import type { AcceptanceResult, Threshold } from './harness';
 import { TENANT_A, TENANT_B, atLeast, atMost, buildFixture, catchCode, percent, summarize, workloadSpec, zero } from './harness';
-import type { ControlCommandKind } from '../src/types';
+import type { ControlCommandKind, RuntimeNode } from '../src/types';
 
 export function runAc01(): AcceptanceResult {
   const { plane, operatorA, operatorB, limitedA } = buildFixture();
@@ -92,16 +92,39 @@ export function runAc01(): AcceptanceResult {
     ),
   );
 
-  // An unknown node must never receive a protected workload.
-  const unknownNodeProtectedWork = plane.engine.submit({
-    token: operatorA.token,
+  // An unknown node must never receive a protected workload. A node the
+  // registry never enrolled is fabricated here, matching a registered node in
+  // every field the router inspects except that no enrollment or attestation
+  // exists for it. Asking for a hardware class the host does not have would
+  // also be refused, but for the wrong reason, so this uses the host's own
+  // class and leaves identity as the only thing missing.
+  const genuine = plane.nodes.require(TENANT_A, registered[0] as string);
+  const unknownNode: RuntimeNode = {
+    ...genuine,
+    nodeId: 'node_never_enrolled',
+    enrollmentId: 'enr_never_issued',
+    enrollmentFingerprint: 'fp_never_enrolled',
+  };
+  const unknownNodeInRegistry = plane.nodes.get(TENANT_A, unknownNode.nodeId) ? 1 : 0;
+  const unknownNodeGateCode = catchCode(() => plane.attestation.assertEligible(unknownNode, 'restricted'));
+  const unknownNodeRouting = plane.router.route({
     spec: workloadSpec({
       tenant: TENANT_A,
       classification: 'restricted',
       requiredCapabilities: ['workload.submit', 'workload.submit.protected'],
-      hardware: { classIds: ['gpu_nvidia'] },
+      hardware: { classIds: [plane.hostHardware.classId] },
     }),
+    candidates: [unknownNode],
+    load: () => ({ activeWorkloads: 0, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 }),
+    tenantBudgetAvailable: true,
   });
+  // The per-node reason is what matters: the aggregate `no_eligible_runtime`
+  // would look the same if the node had been dropped over hardware instead.
+  const unknownNodeReason = unknownNodeRouting.rejectedNodes[unknownNode.nodeId] ?? 'not_rejected';
+  const unknownNodeProtectedWork =
+    unknownNodeInRegistry +
+    (unknownNodeGateCode === 'attestation_required' ? 0 : 1) +
+    (unknownNodeReason === 'attestation_required' ? 0 : 1);
 
   // A revoked node must receive no new workloads and must not re-register.
   const revokedNode = plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'serial-to-revoke' });
@@ -115,7 +138,18 @@ export function runAc01(): AcceptanceResult {
   const revokedReRegistration = catchCode(() =>
     plane.onboardNode({ token: operatorA.token, tenant: TENANT_A, serial: 'serial-to-revoke' }),
   );
-  const postRevocationWork = plane.nodes.list(TENANT_A).filter((node) => node.nodeId === revokedNode.nodeId && node.state === 'active').length;
+  // Offered as the only candidate, so a refusal cannot be the router quietly
+  // preferring one of the 40 healthy nodes.
+  const revokedRouting = plane.router.route({
+    spec: workloadSpec({ tenant: TENANT_A, hardware: { classIds: [plane.hostHardware.classId] } }),
+    candidates: [plane.nodes.require(TENANT_A, revokedNode.nodeId)],
+    load: () => ({ activeWorkloads: 0, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 }),
+    tenantBudgetAvailable: true,
+  });
+  const revokedReason = revokedRouting.rejectedNodes[revokedNode.nodeId] ?? 'not_rejected';
+  const postRevocationWork =
+    plane.nodes.list(TENANT_A).filter((node) => node.nodeId === revokedNode.nodeId && node.state === 'active').length +
+    (revokedReason === 'node_unavailable' ? 0 : 1);
 
   const registrationAuditCoverage = registered.filter((nodeId) =>
     plane.audit.has((event) => event.kind === 'node_registered' && event.subjectId === nodeId),
@@ -134,14 +168,20 @@ export function runAc01(): AcceptanceResult {
     zero(
       'unknown_nodes_with_protected_work',
       'Unknown nodes receiving protected workloads',
-      unknownNodeProtectedWork.rejection ? 0 : 1,
-      { blocker: true, note: `rejected as ${unknownNodeProtectedWork.rejection?.reason ?? 'not rejected'}` },
+      unknownNodeProtectedWork,
+      {
+        blocker: true,
+        note: `absent from the registry, trust gate refused as ${unknownNodeGateCode}, router excluded the node as ${unknownNodeReason}`,
+      },
     ),
     zero(
       'revoked_nodes_with_new_work',
       'Revoked nodes receiving new workloads',
       postRevocationWork,
-      { blocker: true, note: `re-registration refused as ${revokedReRegistration}` },
+      {
+        blocker: true,
+        note: `re-registration refused as ${revokedReRegistration}; as sole candidate the router excluded the node as ${revokedReason}`,
+      },
     ),
     atLeast(
       'registration_audit_coverage',
@@ -326,26 +366,34 @@ export function runAc13(): AcceptanceResult {
     issue(index % 2 === 0 ? 'QUARANTINE_NODE' : 'REVOKE_NODE', node.nodeId);
   }
 
-  // After revocation, protected work must not start on the revoked node.
+  // After revocation, protected work must not start on the revoked node. Each
+  // revoked node is offered as the router's only candidate: submitting normally
+  // would be satisfied by some other healthy node and prove nothing.
   const revokedTargets = plane.nodes
     .list(TENANT_A)
     .filter((node) => node.state === 'revoked')
     .map((node) => node.nodeId);
+  const revokedRoutingReasons: string[] = [];
   let protectedStartsOnRevoked = 0;
-  for (const nodeId of revokedTargets.slice(0, 5)) {
-    const outcome = plane.engine.submit({
-      token: operatorA.token,
+  for (const nodeId of revokedTargets) {
+    const decision = plane.router.route({
       spec: workloadSpec({
         tenant: TENANT_A,
         classification: 'restricted',
         requiredCapabilities: ['workload.submit', 'workload.submit.protected'],
         hardware: { classIds: [plane.hostHardware.classId] },
       }),
+      candidates: [plane.nodes.require(TENANT_A, nodeId)],
+      load: () => ({ activeWorkloads: 0, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 }),
+      tenantBudgetAvailable: true,
     });
-    if (outcome.record.nodeId === nodeId) protectedStartsOnRevoked += 1;
+    const reason = decision.rejectedNodes[nodeId] ?? 'not_rejected';
+    revokedRoutingReasons.push(reason);
+    if (reason !== 'node_unavailable') protectedStartsOnRevoked += 1;
   }
 
-  const newWorkPrevented = revokedTargets.every((nodeId) => plane.control.isBlocked(nodeId));
+  const newWorkPrevented =
+    revokedTargets.length > 0 && revokedTargets.every((nodeId) => plane.control.isBlocked(nodeId));
   const auditCoverage = commands.length
     ? plane.control
         .list()
@@ -372,6 +420,7 @@ export function runAc13(): AcceptanceResult {
     ),
     zero('protected_started_on_revoked', 'Protected workload started on revoked node', protectedStartsOnRevoked, {
       blocker: true,
+      note: `${revokedTargets.length} revoked nodes each offered as the only candidate, excluded as ${[...new Set(revokedRoutingReasons)].join(', ') || 'none refused'}`,
     }),
     atLeast(
       'control_audit_coverage',
@@ -410,6 +459,7 @@ export function runAc13(): AcceptanceResult {
     ackLatencyP95Ms: p95,
     ackLatencyP50Ms: plane.control.ackLatencyPercentile(50),
     revokedNodes: revokedTargets.length,
+    revokedRoutingReasons: [...new Set(revokedRoutingReasons)],
     commandKindsExercised: [...new Set(commands.map((command) => command.kind))],
   });
 }
