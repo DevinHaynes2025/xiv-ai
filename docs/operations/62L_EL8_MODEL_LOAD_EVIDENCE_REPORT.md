@@ -2,7 +2,7 @@
 
 **Branch:** `cursor/62l-el8-model-load-evidence-4059`  
 **Base:** `cursor/62l-el7-windows-local-runtime-adapter-4059` @ `0e7ca09`  
-**Tip SHA:** `9dfd0a23f9e8fc3a663f7b166ad7c99ba5d5c6e2`  
+**Tip SHA:** `9e55d2d79d2e3be199304663185d40ea1a6277e2`  
 **Tests:** `npm run test:62lel8` PASS (22/22); `npm run test:local-runtime` PASS (28/28)  
 **Status:** IMPLEMENTED (unit VERIFIED) — no tip-land, no PR, no production writes  
 **SoT title:** 62L-EL8 — Model-Load Evidence (verification graduation + silent-fallback deny)
