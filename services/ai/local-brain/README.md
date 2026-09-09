@@ -15,12 +15,14 @@ From `services/ai`:
 - `npm run local:knowledge-lake-health` — write the 62L-AB Knowledge Lake / Industry Memory health report.
 - `npm run local:hybrid-edge-health` — write the 62L-AE Hybrid Edge-Cloud + CEO Sealed Vault health report.
 - `npm run local:control-tower-health` — write the 62L-AN Information Control Tower / Semantic Internet Router health report.
+- `npm run local:ens-health` — write the 62L-AQ Enterprise Nervous System / Ethical Data Sentinel health report.
 - `npm run test:62lu` — 62L-U US-U1..US-U10 safety tests.
 - `npm run test:62lv` — 62L-V Founder Digital Twin / Global Brain Highway safety tests.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
 - `npm run test:62lab` — 62L-AB Knowledge Lake / Industry Memory safety tests.
 - `npm run test:62lae` — 62L-AE Hybrid Edge-Cloud / CEO Sealed Vault / Cross-OS federation safety tests.
 - `npm run test:62lan` — 62L-AN Information Control Tower / Semantic Router / Enterprise Data Exchange safety tests.
+- `npm run test:62laq` — 62L-AQ Enterprise Nervous System / Ethical Data Sentinel / wormhole / defensive cyber safety tests.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
@@ -29,6 +31,9 @@ Agents defined → recruited → communicating → meeting → retrieving knowle
 
 ## 62L-AB Knowledge Lake
 Durable offline Knowledge Lake, industry memory federation, multilingual original preservation, evidence graphs, hashed dedup, partitioned sparse indexing, tiered storage, and logical retrieval for huge corpora. Trillion-scale address space is a shard map — this slice does not materialize trillions of files, rows, embeddings, or agents. Unconfigured translators/cloud stay UNAVAILABLE. Evidence Promotion Gate is reused; AI agreement is not VERIFIED. 62L-Y/Z/AA reports are WAITING_DATA here.
+
+## 62L-AQ Enterprise Nervous System + Ethical Data Sentinel
+Executable underground loop: Event → Policy → Language/Culture → Historical Evidence → Reasoning → Math/Quant → Agent Council → Security/Data Sentinel → Highway Optimization → Human Gate → Outcome → Evaluation → Learning → Memory. Wormholes are authorized-path shortcuts only and cannot bypass Guardian/RLS/sealed/tenant isolation. The Ethical Data Sentinel audits authorized XIV flows and cannot become spyware. Cyber agents are defensive only on XIV-owned or explicitly authorized systems. Cultural intelligence does not make deterministic claims about individuals. Unconfigured languages/providers remain UNAVAILABLE. 62L-AP Ops Planner and 62L-AO Supply Chain reports are WAITING_DATA on this parent (not merged). Quantum comparison requires classical baselines and does not claim advantage.
 
 ## 62L-AN Information Control Tower + Semantic Internet Router
 Executable routing loop: Information Need → Intent Resolution → Candidate Roots → Policy Filter → Route Scoring → Semantic Translation → Authorized Query → Evidence Packet → Agent/Workflow → Outcome → Route Learning → Control Tower. Routes are scored on freshness, provenance, trust, privacy, latency, cost, offline availability, compatibility, and verified outcome quality — never popularity. Enterprise Data Exchange allows approved schemas/aggregates/benchmarks/capabilities/permissioned intelligence only. Raw cross-enterprise pooling is DENIED. CEO-sealed records stay outside ordinary exchange. Unconfigured providers remain UNAVAILABLE. 62L-AM Data Fabric and 62L-AL Edge Sync reports are WAITING_DATA on this parent.
