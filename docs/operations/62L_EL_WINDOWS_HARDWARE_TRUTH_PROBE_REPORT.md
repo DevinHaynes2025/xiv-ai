@@ -7,7 +7,7 @@ Branch: `cursor/62l-el-windows-hardware-truth-probe-4059`
 Parent / base tip: EI `cursor/62l-ei-chip-to-cloud-cognitive-fabric-4059` @ `028edbd2c1854fc7edb8955c53536a38117f5da8` + `docs/operations/62L_EI_CHIP_TO_CLOUD_COGNITIVE_FABRIC_REPORT.md` (**PRESENT**)
 Why this base: Preference **EK → EI**. `cursor/62l-ek-*` **ABSENT** on origin at implement time. Soft-wire: `62L_EK_*` **ABSENT**; `62L_EI_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
 Implementation SHA: `587b6c280c28b92c31247ac6e6837e182dfe150d`
-Tip SHA: `edaae584ccd04f06f5ed234c4f4be305677d3605`
+Tip SHA: `fd8e35a95dd5bc229b27d3fc26ab11bf033cfaaa`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
