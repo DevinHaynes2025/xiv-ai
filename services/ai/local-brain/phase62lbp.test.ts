@@ -577,14 +577,19 @@ try {
     'BO predecessor module+report AVAILABLE on this base.',
   );
   check(
+    'US-BP-pred-bm',
+    preds.BM.module === 'AVAILABLE' && preds.BM.report === 'PASS',
+    'BM predecessor module+report AVAILABLE (BO ancestor after BM rebase).',
+  );
+  check(
     'US-BP-pred-bl',
     preds.BL.module === 'AVAILABLE' && preds.BL.report === 'PASS',
-    'BL predecessor module+report AVAILABLE (BO ancestor).',
+    'BL predecessor module+report AVAILABLE (ancestor).',
   );
   check(
     'US-BP-pred-bn-waiting',
     preds.BN.module === 'WAITING_DATA' || preds.BN.report === 'WAITING_DATA',
-    'BN tip/report gate recorded (WAITING_DATA unless landed).',
+    'BN in-tree module/report WAITING_DATA on this BO parent.',
   );
   check(
     'US-BP-next-title',
