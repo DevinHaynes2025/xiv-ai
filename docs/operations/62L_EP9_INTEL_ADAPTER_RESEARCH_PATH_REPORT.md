@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-ep9-intel-adapter-research-path-4059`  
-Tip SHA: *(pending commit — will align after push)*  
+Tip SHA: `bc157cd260aeea83f56db779f1b8a093493c53c8`  
 Base: `cursor/62l-ep8-nvidia-adapter-research-path-4059` @ `977357da07c5d88d3cf571b16f7723730b58e8a1`  
 Predecessor: EP8 NVIDIA Adapter Research Path **PRESENT**  
 SoT: **GitHub #160** / **62L-EP** family — *62L-EP9 Intel Adapter Research Path*  
