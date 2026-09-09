@@ -6,8 +6,8 @@ Date: 2026-09-09
 Branch: `cursor/62l-eb-multi-model-superbrain-federation-4059`
 Parent / base tip: `cursor/62l-ea-global-operations-intelligence-grid-4059` @ `132bb8c72e494fd73c04a2c7f78d240a4985de7c` + `docs/operations/62L_EA_GLOBAL_OPERATIONS_INTELLIGENCE_GRID_REPORT.md` (**PRESENT**)
 Why this base: Preference **EA → DZ**. Sealed EA tip **PRESENT** (includes DZ lineage). Soft-wire: `62L_EA_*` **PRESENT**; `62L_DZ_*` **PRESENT**. No tip-land onto `xiv-v2`/`main`.
-Implementation SHA: _(set at commit)_
-Tip SHA: _(set after push)_
+Implementation SHA: `295d2afe9fbf851ad592c47aec8ed81e4b3def3c`
+Tip SHA: _(set after align commit)_
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 Production deploy: **NO**
