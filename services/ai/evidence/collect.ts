@@ -159,7 +159,13 @@ const ROUTES: readonly { gate: string; match: RegExp }[] = [
   { gate: 'provenance', match: /provenance|lineage|traces back|reconstruct/i },
   { gate: 'agent_runtime_assignment', match: /runtime|node|scheduler/i },
   { gate: 'model_authorization', match: /model|evaluation gate/i },
-  { gate: 'no_exposed_production_secrets', match: /secret|token|credential/i },
+  // There is deliberately no route to no_exposed_production_secrets. The
+  // governance suite proves that a credential-shaped string cannot be written
+  // into the evidence trail, which is a different claim from the repository
+  // being free of exposed secrets. Only a scanner artifact can support that
+  // gate, XIV does not run one yet, and filing these results against it would
+  // report a hard blocker as observed on the strength of evidence about
+  // something else.
 ];
 
 function routeGates(result: CollectedResult, isDatabaseSuite: boolean): string[] {

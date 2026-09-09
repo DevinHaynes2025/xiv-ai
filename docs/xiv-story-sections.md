@@ -43,6 +43,12 @@ naming decisions already made.
 shared core. Later slices extend it rather than adding a parallel module tree per
 customer segment.
 
+The one sibling module is `services/ai/evidence/` (62D governance), and the
+reason is not customer segmentation. The civilization decides what agents may do;
+the evidence layer decides whether XIV is entitled to believe any of it works,
+including the civilization itself. A judge that lives inside the thing it judges
+is not one, so it sits beside it and depends on it for membership only.
+
 **One canonical table per concept.** When a story names a table that already has
 an owner, extend the existing table:
 
