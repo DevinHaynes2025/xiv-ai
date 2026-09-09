@@ -60,6 +60,7 @@ import {
   type CyHopRecord,
 } from './knowledge-colony-operating-system-types';
 
+/** 62L-CZ child extends this OS via intelligence-civilization-kernel-runtime (coexistence; no circular re-export). */
 export {
   CY_LOCKS,
   HONESTY_BANNER,
