@@ -18,7 +18,7 @@
 | EX16 local tip (`cursor/62l-ex16-…-4059`) | `e25c722ea2b9254034aa7bfe3b46c77f722b685a` (descendant of GITHUB xiv-v2; **not pushed** to origin at gate) |
 | EX17 base | GITHUB `origin/xiv-v2` @ `60986682` (EX16 tip not on origin → do not soft-base) |
 | EX17 feat SHA | `6cf3ca5e90263a6ada76b10679a68a5f1e000278` |
-| EX17 tip (this branch) | `a115d0a2a3c100e906ce3061e09ae698f477736c` |
+| EX17 tip (this branch) | `39a389c73ba75a8b6b8bf9c6f3dfd527a72d1ab6` |
 
 **TREE note:** Workspace `/workspace` was dirty/contested (unrelated GOB local-brain + many `.wt-*` parks). EX17 built in isolated worktree `/tmp/62l-ex17-work`. LOCAL/GITLAB xiv-v2 diverge from GITHUB; authorized EX chain base is GITHUB `origin/xiv-v2`. No stop-on-divergence — sibling EX tips expected under soft-wire; EX17 does not tip-land or merge them.
 
