@@ -2,7 +2,7 @@
 
 **Branch:** `cursor/62l-el8-model-load-evidence-4059`  
 **Base:** `cursor/62l-el6-amd-npu-capability-candidate-4059` @ `cee0a57` (EL7 on origin does not contain this tip)  
-**Tip SHA:** `PLACEHOLDER`  
+**Tip SHA:** `3dd0bc04482f39cf186a5d18232dc7d4a0bfc12a`  
 **Tests:** `npm run test:62lel8` PASS (22/22); `npm run test:local-runtime` PASS (66/66) after rebase onto EL6  
 **Status:** IMPLEMENTED (unit VERIFIED) — no tip-land, no PR, no production writes  
 **SoT title:** 62L-EL8 — Model-Load Evidence (verification graduation + silent-fallback deny)
