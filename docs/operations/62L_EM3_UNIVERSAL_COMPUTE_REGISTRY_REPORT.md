@@ -1,6 +1,6 @@
 # 62L-EM3 — Universal Compute Registry Report
 
-Status: **IMPLEMENTED on child branch** — unit tests **executed** — **NOT** a live ASUS/cloud verification pass — **NOT** production authorization — no tip-land / PR / DB apply / auto-purchase
+Status: **IMPLEMENTED on child branch** — **rebased onto EM1 (post-#157)** — unit tests **re-executed** — **NOT** a live ASUS/cloud verification pass — **NOT** production authorization — no tip-land / PR / DB apply / auto-purchase
 
 Date: 2026-09-09
 
@@ -13,12 +13,14 @@ Date: 2026-09-09
 
 | Field | Value |
 | --- | --- |
-| Preferred EM2 | `cursor/62l-em2-*` — **ABSENT** at implement time |
-| Preferred EM1 | `cursor/62l-em1-agent-home-base-contract-4059` — at EM3 base-selection time tip was still EL9; EM1 later landed on remote (`b963ca8…`) after EM3 branched |
-| Home-base #157 | `cursor/62l-em-agent-compute-home-base-4059` — also at EL9 tip (parallel agent still running) |
-| Effective base | EL9 `c834e5242ba1a2b04e6126babbbaf695133178b1` |
+| Preferred EM2 | `cursor/62l-em2-*` — **ABSENT** |
+| Preferred EM1 | `cursor/62l-em1-agent-home-base-contract-4059` @ `ffc8b69b0f7f853c4e0eaf2d82ecbccb41c5045b` (includes sealed #157) |
+| Home-base #157 | `cursor/62l-em-agent-compute-home-base-4059` @ `b1040f4124802f73fe3545f6a5e9f9da8337ce0c` (ancestor of EM1) |
+| Effective base | EM1 `ffc8b69b0f7f853c4e0eaf2d82ecbccb41c5045b` |
 | Working branch | `cursor/62l-em3-universal-compute-registry-4059` |
-| EM3 implement SHA | `13a5b6f348cba29343c282eb7406f4fa36e98b62` |
+| EM3 implement SHA (rebased) | `8de694cb4998f7ef5ebed998bd070df2323cec24` |
+| Rebase | **YES** — onto EM1 latest after #157 |
+| Branch tip SHA | `1c7e87a60321796c670461e1b6b2b4dd638a39b8` |
 | Tip-land / PR | **NO** |
 
 ## Honesty banner
@@ -87,7 +89,7 @@ cd services/ai && npm run test:62lem3
 | Founder ASUS live node registry | **NOT_TESTED** |
 | Live AMD/NVIDIA/Intel/Apple acceleration | **NOT_TESTED** |
 | Authorized cloud capacity live | **NOT_TESTED** |
-| EM1 / EM2 predecessor at EM3 base time | **EM2 ABSENT**; EM1 branch name present but tip=EL9 — EM3 based on EL9. EM1 later landed separately. |
+| EM1 / EM2 predecessor | **EM2 ABSENT**; EM3 rebased onto EM1 (post-#157). Live hardware still NOT_TESTED. |
 | Production authorization / tip-land / PR | **false** / not created |
 
 ## Next (do not implement here)
