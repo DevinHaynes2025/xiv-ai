@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em1-agent-home-base-contract-4059`  
-Tip SHA: `acc2fde285d1de04930263ef97aa76a7c783a7fe`  
+Tip SHA: `541abc2c22f6183df9dd8370c971abd90d5e3549`  
 Base: EL9 `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
 Preferred predecessor `#157` `cursor/62l-em-agent-compute-home-base-4059`: **local pointer only** (no unique commits beyond EL9; remote ref absent) — treated as EL9 tip  
 Tip-land onto `xiv-v2` / `main`: **NO**  
