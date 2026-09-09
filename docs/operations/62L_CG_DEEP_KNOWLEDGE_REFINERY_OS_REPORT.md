@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-cf-data-refinery-compression-replication-4059` @ 
 Why this base: Preferred **62L-CF** tip + report. At start CF/CE were **WAITING_DATA** (not on origin); scaffolded from **CD** @ `ac3fb8c`, then polled with backoff (~30s) until CF tip + report **PRESENT** on origin and **rebased** onto CF `@5daacde`. CE `@4a902ca` + CD `@827684b` are CF ancestors / present in-tree. Preference **CF → CE → CD → CA/CB/CC → BZ → …** selects **CF**.
 Implementation SHAs: `de870cf`..`ee2f5c7` (feat commits; see commit list below)
 Report SHA: `85635129f2a72347ed27cd727374d80a0ed69528`
-Tip SHA: `afbc702184d8a65ef98dfe4fd16bb36539d14ecf`
+Tip SHA: `05b464a0afde40dd6530f2519afc1ac6365dfaed`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
