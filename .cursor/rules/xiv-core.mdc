@@ -1,0 +1,13 @@
+---
+description: XIV AI core mission, source of truth, and non-negotiables for every agent in this repo
+alwaysApply: true
+---
+
+# XIV Core
+
+- Repository is canonical. Read `AGENTS.md` and `docs/operations/*` before coding.
+- One XIV brain. Do not invent parallel frameworks or duplicate agent runtimes.
+- Local-first: prefer local models/tests/Git when suitable. Use `WAITING_DATA` / `WAITING_PROVIDER` instead of fabricating.
+- Model-agnostic: route through XIV interfaces; do not hardcode a single vendor into product logic.
+- Keep live Gemini executive path and governed `services/ai/runtime/` distinct unless a story explicitly unifies them.
+- Personas: consumer / employee / executive / business. Universes are tenant isolation boundaries.

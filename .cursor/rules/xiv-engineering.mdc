@@ -1,0 +1,29 @@
+---
+description: XIV engineering workflow, branches, evidence, and stack conventions
+alwaysApply: true
+---
+
+# XIV Engineering
+
+## Workflow
+`branch -> code -> test -> evidence -> review -> handoff`
+
+- Child branch off authorized tip (`xiv-v2` unless handoff says otherwise).
+- Fix one root cause at a time.
+- Record evidence in `docs/operations/XIV_TEST_EVIDENCE.md`.
+- Return the AGENTS.md receipt block on every task.
+
+## Stack (prototype)
+- Mobile: Expo / React Native under `apps/mobile`
+- AI service: Node/TS under `services/ai` (port 8787)
+- DB: Supabase / Postgres (+ local migrations under `supabase/`)
+- Empty shells today: `apps/web`, `services/api`, `packages/*` — do not pretend they are implemented
+
+## Tests
+- Prefer existing scripts in `services/ai` (`test:runtime`, etc.) and mobile tests when present.
+- Never claim tests passed that were not run.
+- Skipped mandatory tests are not passes.
+
+## Hardware (founder ASUS)
+- AMD Ryzen 7 260 + Radeon 780M, ~32GB RAM, no NVIDIA CUDA.
+- Local inference: Ollama first, DirectML/ONNX later, CPU fallback.
