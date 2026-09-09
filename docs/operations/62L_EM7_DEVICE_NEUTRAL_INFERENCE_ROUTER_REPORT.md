@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto EM6** —
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em7-device-neutral-inference-router-4059`  
-Tip SHA: _(recorded after push)_  
+Tip SHA: `73a892ff148615e7927e6033dceec0ebc5dad5e5`  
 Base used: `cursor/62l-em6-nvidia-runtime-candidate-path-4059` @ `5301b7cf24672d16b27adead619d02db7eaace3f`  
 EM6 lineage includes EM3 @ `eb6e963ac31af155225660cb2a420116e21abaff` (on EM1/#157)  
 Prior base (superseded): EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
