@@ -73,6 +73,7 @@ try {
   });
   check('US-AB2', textilesOnly.hits.some((item) => item.id === textile.object.id), 'Industry Memory Federation returns the matching industry.');
   check('US-AB2', textilesOnly.hits.every((item) => item.id !== shipbuilding.object.id), 'Industry Memory Federation does not leak a different industry.');
+  check('US-AB2', textilesOnly.record.historicalLessonState === 'AVAILABLE' && textilesOnly.inventedFacts === false, 'Federation reuses 62L-Y cross-industry historical learning.');
   const waitingFederation = await federateIndustryMemory({
     tenantId,
     universeId,

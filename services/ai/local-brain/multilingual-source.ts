@@ -124,12 +124,13 @@ export async function readPreservedSource(input: {
   });
   if (!original) throw new Error('LAKE_OBJECT_NOT_FOUND');
   const translations = await load(root);
-  const translation = input.preferLanguage
+  const preferLanguage = input.preferLanguage?.toLowerCase();
+  const translation = preferLanguage
     ? translations.find((item) =>
       item.lakeObjectId === original.id &&
       item.tenantId === input.tenantId &&
       item.universeId === input.universeId &&
-      item.targetLanguage === input.preferLanguage.toLowerCase() &&
+      item.targetLanguage === preferLanguage &&
       item.state === 'AVAILABLE',
     ) ?? null
     : null;
