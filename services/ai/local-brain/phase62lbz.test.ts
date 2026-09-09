@@ -529,10 +529,8 @@ try {
   check(
     'US-BZ-pred-map',
     preds.BU.report === 'PRESENT' &&
-      (preds.BY.tipProbe === 'WAITING_DATA' ||
-        preds.BY.tipProbe === 'PRESENT' ||
-        preds.BY.tipProbe === 'MISSING'),
-    `Predecessor map: BU=${preds.BU.tipProbe}, BY=${preds.BY.tipProbe}, BX=${preds.BX.tipProbe}, BW=${preds.BW.tipProbe}.`,
+      preds.BY.tipProbe === 'PRESENT',
+    `Predecessor map: BU=${preds.BU.tipProbe}, BY=${preds.BY.tipProbe}/report=${preds.BY.report}, BX=${preds.BX.tipProbe}, BW=${preds.BW.tipProbe}.`,
   );
 } catch (error) {
   failures.push(`EXCEPTION: ${(error as Error).stack ?? String(error)}`);

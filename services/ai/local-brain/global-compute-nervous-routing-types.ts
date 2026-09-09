@@ -221,39 +221,27 @@ export function predecessorMap(root = repoRootFromHere()): Record<string, Predec
 
   return {
     BY: {
-      tipProbe:
-        has('62L_BY_HARDWARE_CORTEX_SYNAPSE_COMPILER_REPORT.md') ||
-        hasMod('hardware-cortex-synapse-compiler-types.ts')
-          ? has('62L_BY_HARDWARE_CORTEX_SYNAPSE_COMPILER_REPORT.md')
-            ? 'PRESENT'
-            : 'WAITING_DATA'
-          : 'WAITING_DATA',
+      tipProbe: hasMod('hardware-cortex-synapse-compiler-types.ts')
+        ? 'PRESENT'
+        : 'WAITING_DATA',
       report: has('62L_BY_HARDWARE_CORTEX_SYNAPSE_COMPILER_REPORT.md')
         ? 'PRESENT'
         : 'MISSING',
-      note: 'Preferred BY Hardware Cortex / Synapse Compiler tip + report. Rebase when PRESENT on origin.',
+      note: 'Preferred BY Hardware Cortex / Synapse Compiler tip. Report may still be landing (MISSING ≠ tip absent).',
     },
     BX: {
-      tipProbe:
-        has('62L_BX_NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_REPORT.md') ||
-        hasMod('neural-chip-os-semiconductor-twin-types.ts')
-          ? has('62L_BX_NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_REPORT.md')
-            ? 'PRESENT'
-            : 'WAITING_DATA'
-          : 'WAITING_DATA',
+      tipProbe: hasMod('neural-chip-os-semiconductor-twin-types.ts')
+        ? 'PRESENT'
+        : 'WAITING_DATA',
       report: has('62L_BX_NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_REPORT.md')
         ? 'PRESENT'
         : 'MISSING',
       note: 'BX Neural Chip OS / Semiconductor Twin preferred after BY; used when BY absent.',
     },
     BW: {
-      tipProbe:
-        has('62L_BW_PLANETARY_CHIP_FOUNDER_AVATAR_ETHICS_REPORT.md') ||
-        hasMod('planetary-chip-founder-avatar-ethics-types.ts')
-          ? has('62L_BW_PLANETARY_CHIP_FOUNDER_AVATAR_ETHICS_REPORT.md')
-            ? 'PRESENT'
-            : 'WAITING_DATA'
-          : 'WAITING_DATA',
+      tipProbe: hasMod('planetary-chip-founder-avatar-ethics-types.ts')
+        ? 'PRESENT'
+        : 'WAITING_DATA',
       report: has('62L_BW_PLANETARY_CHIP_FOUNDER_AVATAR_ETHICS_REPORT.md')
         ? 'PRESENT'
         : 'MISSING',
