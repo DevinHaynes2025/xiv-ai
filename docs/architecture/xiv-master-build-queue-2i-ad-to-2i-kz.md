@@ -7324,3 +7324,38 @@ This is the same pattern that produced the landed `agent_meetings` / `xiv_agent_
 
 - [x] **2I-AI-62C** knowledge schema reconciled ahead of implementation (naming fork prevented; tenant/reference split fixed; Universe RLS required); status **QUEUED — NOT IMPLEMENTED**; MYTHOLOGY≠HISTORY; TRANSLATION≠INTERPRETATION; CULTURE≠IDENTITY; ANALOGUE≠PREDICTION; CONSENSUS≠CERTAINTY; QUARANTINED≠TRUSTED; **HARD STOP — no ingestion, no knowledge migration until the naming decision is recorded**
 - [x] **NEXT after 62C:** 2I-AI-62D Distributed Device, Chip & Edge Runtime (title only)
+
+### 2I-AI-62D — XIV Distributed Device, Chip & Edge Runtime Fabric V1
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED.** `DEPLOYMENT_STATE=QUEUED`; **L4 DISABLED**; **NOT a canary candidate**.
+**Section:** **Global Operations Brain** (shared core) per [`xiv-story-placement-and-ownership-rule.md`](./xiv-story-placement-and-ownership-rule.md). Enterprise OS **references** this story; it does not restate it.
+**Capability reconciliation:** [`xiv-2i-ai-62d-runtime-capability-reconciliation.md`](./xiv-2i-ai-62d-runtime-capability-reconciliation.md) · contracts `services/ai/runtime/queued/2i-ai-62d.ts` · tests `npm run test:2i-ai-62d`
+
+**62D is an integration and persistence story, not a greenfield build.** Most of §§2–26 already exists in the runtime (`platform/hardware.ts`, `foundations/compute.ts`, `agentmesh/`, `everywhere/devices.ts`, `pocket/device.ts`, `modelfoundry/`). Two defects underneath it block its own acceptance criteria:
+
+- **Defect 1 — no compute router is tenant-aware.** Eight routing entry points exist (`routeComputeWorkload`, `routeCompute`, `routeAdvancedCompute`, `routeNvidiaAcceleration`, `routeInference`, `scheduleAiWorkload`, `scheduleMission`, `routeMissionIntelligence`); **none accepts a tenant or Universe identifier**, so §24 and AC-03/AC-05 have no enforcement point on the compute plane. Same shape as the Universe-blind RLS defect proven in 62B, one plane over. §8's XCR would be the ninth router.
+- **Defect 2 — the hardware abstraction has one vendor's shape.** The only detector in the runtime is `detectNvidiaCapability`; `AcceleratorKind` is `CPU | NVIDIA_GPU | OTHER_GPU | NPU_EDGE`. AMD, Intel, ARM, Apple silicon and NPU have no proven detector, so AC-06's portability matrix cannot be expressed. AMD has **zero** references runtime-wide.
+
+**§27 schema slice:** no name collides with an existing migration. 12 of 14 tenant-bearing (require tenant **and** Universe RLS); 2 shared reference (`xiv_runtime_capabilities`, `xiv_model_registry`). `xiv_model_evaluations` is tenant-bearing even though the registry is not.
+
+**Acceptance criteria AC-01…AC-24 all read TBD** (encoded as `null` — unmeasured is distinct from failed). **TBD is not PASS. UNCONFIGURED is not PASS. DOCUMENTED is not IMPLEMENTED. IMPLEMENTED is not VERIFIED. VERIFIED is not PRODUCTION AUTHORIZATION.** Canary gate **shut**.
+
+**NEXT after 62D:** **2I-AI-62E** Massive Agent Scheduler, Swarm Coordination & Task Force Fabric (title only). Entry requirement: a measurable distinction between logical agents (100,000 registered) and simultaneously active agents (≥1,000 bounded tasks), 0 cross-tenant scheduling violations.
+
+- [x] **2I-AI-62D** runtime capability reconciled ahead of implementation (8-router fragmentation recorded; tenant-blind routing defect; NVIDIA-shaped XHAL defect; 14-table tenant split; AC-01…AC-24 gates pinned unmeasured); MORE COMPUTE≠MORE AUTHORITY; INSTALLED≠TRUSTED; PROXIMITY≠TRUST; OFFLINE≠AUTHORITY; SHARED HOST≠SHARED UNIVERSE; satellite **UNCONFIGURED**; **HARD STOP — no runtime migration, no node enrollment, no workload execution**
+- [x] **NEXT after 62D:** 2I-AI-62E Massive Agent Scheduler & Task Force Fabric (title only)
+
+**62D §§33–61 evidence, verification & ownership:** [`xiv-2i-ai-62d-evidence-governance-and-audit.md`](./xiv-2i-ai-62d-evidence-governance-and-audit.md) · contracts `services/ai/runtime/queued/2i-ai-62d-evidence.ts` · tests `npm run test:2i-ai-62d-evidence`
+
+The evidence model is applied to the series' own claims, not only to future work. **Result: nothing in the 2I-AI-62 series is currently E3 or VERIFIED.**
+
+- Universe-blind RLS leak and its fix: **E2 / OBSERVED** — reproduced on a local PostgreSQL 16 cluster, not CI-signed, author was also verifier (§36 rules that out for a critical gate), behaviourally tested on **1 of the 18 tables** the migration alters.
+- §40 matrix coverage: **2 of 5 scenarios** (missing `ORG_B→ORG_A`, unauthenticated, revoked user) and **2 of 7 operations** (missing UPDATE, DELETE, RPC, storage, service interface).
+- Landed 62B "RLS schema prepared": **E1 / REPORTED** — `phase2ai62b.test.ts` contains zero database references, so the storage property is untested by it. §58: REPORTED never becomes VERIFIED without evidence.
+- `npm run test:runtime` has never completed in this environment (missing `@supabase/supabase-js`); tests pass individually.
+
+**§38/§55 worked example:** tip moved `4255a23 → 6098668` ("enhance agent meeting network isolation"). Impact analysis performed rather than assumed — `git diff --stat` over `supabase/migrations/` is empty, so the database-layer property is **VALID**; the runtime isolation behaviour that commit changed inherits nothing.
+
+**§37/§56:** all 26 gates encoded with owner, verifier, required level and approval rule; **all 26 are UNASSIGNED**, which §56 forbids at canary. Eight require **E4** (`rls`, `tenant_isolation`, `universe_isolation`, `kill_switch`, `provenance`, `backup_restore`, `rollback`, `canary_promotion`) and therefore an independent reviewer — **an agent cannot close those alone by construction.** `secret_scanning` is the one self-verifying gate in the matrix (Security owns and verifies); pinned at exactly one so a second requires a deliberate decision.
+
+- [x] **2I-AI-62D §§33–61** evidence governance locked and the series audited against it (E0–E4 levels; 33-field record; 26-gate ownership matrix; 11 ownership states; freshness triggers; non-waivable blockers; human-only decisions); E0≠criterion; TBD≠PASS; REPORTED↛VERIFIED; automation may recommend but never approves; **HARD STOP — no gate may be marked PASS without a system artifact and an independent reviewer**
