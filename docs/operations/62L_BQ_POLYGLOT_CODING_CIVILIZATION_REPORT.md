@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bp-cognitive-homeostasis-genome-recovery-4059` @ 
 Why this base: Preferred **62L-BP** tip + `62L_BP_COGNITIVE_HOMEOSTASIS_GENOME_RECOVERY_REPORT.md` **PRESENT** after fetch/backoff (BP landed during BQ wait; initial scaffold briefly used BO @ `ebb6974`, then rebased onto BP @ `99d3e5d`, then rebased again onto rewritten BP tip @ `b359abe` after BM-backed BO gate refresh). **BO / BM / BL / BJ** remain ancestors. **BN** tip + report **PRESENT** on this BP parent after BN-backed BO rebase — BN growth rules (demand-proven, reject redundant) reused in architecture expansion (coexistence; not swallow).
 Implementation SHAs: `9ee8a15`..`d43b6c2` (see commit list below)
 Report SHA: `a0e5cc0be56248c46460fe3a24d12bb503afcf0f`
-Tip SHA: `a0e5cc0be56248c46460fe3a24d12bb503afcf0f`
+Tip SHA: `7b27dd4bba3eba27c8ab690e7f67758fbdeb9c85`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
