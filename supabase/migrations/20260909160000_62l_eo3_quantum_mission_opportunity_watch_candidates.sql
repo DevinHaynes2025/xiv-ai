@@ -1,0 +1,35 @@
+-- 62L-EO3 Quantum Mission Opportunity Watch — candidate schema only.
+-- Status: NOT_APPLIED. DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED.
+-- Do not apply to live Supabase. No overload of production tables.
+-- Hard rule: never store solicitation-driven capability upgrades as VERIFIED / PHYSICAL_QPU_VERIFIED.
+
+-- Candidate: quantum / AI / semiconductor / HPC mission opportunity watch records
+-- CREATE TABLE IF NOT EXISTS quantum_mission_opportunity_watch_candidate (
+--   watch_id text PRIMARY KEY,
+--   source text NOT NULL,
+--   source_authority text NOT NULL,
+--   agency text NOT NULL,
+--   program text NOT NULL,
+--   notice_solicitation_id text NOT NULL,
+--   publication_date date NOT NULL,
+--   mission_area text NOT NULL,
+--   deadline date,
+--   contract_research_type text NOT NULL,
+--   estimated_value_published numeric,
+--   estimated_value_currency text,
+--   eligibility_readiness_requirements jsonb NOT NULL DEFAULT '[]'::jsonb,
+--   eligibility_claimed boolean NOT NULL DEFAULT false,
+--   ai_quantum_relevance text,
+--   logistics_relevance text,
+--   xiv_capability_match text NOT NULL,
+--   quantum_truth_state text NOT NULL,
+--   evidence_gaps jsonb NOT NULL DEFAULT '[]'::jsonb,
+--   capture_priority text NOT NULL,
+--   human_owner text,
+--   strategic_score numeric,
+--   auto_capability_upgraded boolean NOT NULL DEFAULT false,
+--   auto_bid_submitted boolean NOT NULL DEFAULT false,
+--   created_at timestamptz NOT NULL DEFAULT now()
+-- );
+
+SELECT '62L_EO3_QUANTUM_MISSION_OPPORTUNITY_WATCH_CANDIDATES_NOT_APPLIED' AS status;
