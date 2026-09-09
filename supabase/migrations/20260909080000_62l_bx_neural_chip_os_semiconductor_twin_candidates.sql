@@ -1,0 +1,80 @@
+-- 62L-BX Neural Chip OS / Semiconductor Twin — CANDIDATE ONLY
+-- Status: NOT_APPLIED
+-- Honesty: DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED
+-- Do NOT apply to live Supabase. No production table overload.
+-- GitHub SoT #88; GitLab coordination #22.
+
+-- BEGIN CANDIDATE (NOT_APPLIED)
+-- create table if not exists xiv_bx_chip_families (
+--   family_key text primary key,
+--   display_name text not null,
+--   kind text not null check (kind in ('cpu','gpu','npu','dsp','accelerator')),
+--   label text not null,
+--   vendor_proven boolean not null default false,
+--   interface_proven boolean not null default false,
+--   production_authorized boolean not null default false,
+--   evidence_refs jsonb not null default '[]'::jsonb,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bx_twin_inventory (
+--   id text primary key,
+--   sku text not null,
+--   family_key text not null,
+--   lifecycle_stage text not null,
+--   quantity_logical bigint not null default 0,
+--   honesty_label text not null,
+--   physical_evidence_refs jsonb not null default '[]'::jsonb,
+--   production_authorized boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bx_quantum_plans (
+--   id text primary key,
+--   objective text not null,
+--   classical_baseline_present boolean not null default false,
+--   quantum_requested boolean not null default false,
+--   backend_key text,
+--   status text not null,
+--   claims_quantum_advantage boolean not null default false,
+--   production_authorized boolean not null default false,
+--   reason text,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bx_marketplace_plugins (
+--   plugin_id text primary key,
+--   name text not null,
+--   kind text not null,
+--   authorized boolean not null default false,
+--   configured boolean not null default false,
+--   label text not null,
+--   production_authority boolean not null default false,
+--   installed_at timestamptz
+-- );
+--
+-- create table if not exists xiv_bx_knowledge_broadcasts (
+--   id text primary key,
+--   title text not null,
+--   provenance jsonb not null default '[]'::jsonb,
+--   verified boolean not null default false,
+--   scope text not null,
+--   status text not null,
+--   human_gate_approved boolean not null default false,
+--   production_authorized boolean not null default false,
+--   created_at timestamptz not null default now()
+-- );
+--
+-- create table if not exists xiv_bx_sparse_routes (
+--   id text primary key,
+--   from_id text not null,
+--   to_id text not null,
+--   trust numeric not null,
+--   latency_ms numeric not null,
+--   composite_score numeric not null,
+--   selected boolean not null default false,
+--   sealed_protected boolean not null default false,
+--   rejected_reason text,
+--   created_at timestamptz not null default now()
+-- );
+-- END CANDIDATE (NOT_APPLIED)
