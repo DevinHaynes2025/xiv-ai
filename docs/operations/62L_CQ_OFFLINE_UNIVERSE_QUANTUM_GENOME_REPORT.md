@@ -7,7 +7,7 @@ Branch: `cursor/62l-cq-offline-universe-quantum-genome-4059`
 Parent / base tip: `cursor/62l-cp-knowledge-supply-plugin-foundry-4059` @ `e5e53b87cfe71a0fbeef2545918a846edf76196d` (includes `62L_CP_KNOWLEDGE_SUPPLY_PLUGIN_FOUNDRY_REPORT.md`)
 Why this base: Preference **CP → CO `29b18b2` → CN → CM → CL → CK → CJ `478feb1` → …**. Preferred **CP** tip+report **PRESENT** at start; no WAITING_DATA poll required for CP.
 Implementation SHAs: see commit list (`feat` / `chore` / `docs`)
-Tip SHA: `TIP_SHA_PLACEHOLDER`
+Tip SHA: `0ef31cc84ed6ac153525ce3c2f5e5af8eb3c99ab`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
