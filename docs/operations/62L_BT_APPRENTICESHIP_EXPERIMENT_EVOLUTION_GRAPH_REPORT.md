@@ -7,8 +7,8 @@ Branch: `cursor/62l-bt-apprenticeship-experiment-evolution-graph-4059`
 Parent / base tip: `cursor/62l-bs-engineering-university-memory-cortex-4059` @ `39da70c4c33058647222ca71c517081c064d3c4d` (`docs(62L-BS): restore tip SHA after align commit #83`)
 Why this base: Preferred **62L-BS** tip + `docs/operations/62L_BS_ENGINEERING_UNIVERSITY_MEMORY_CORTEX_REPORT.md` **PRESENT** after fetch with backoff (earlier polls: BS missing → briefly BR tip without report → BS landed with report). Preference order BS → BR → BQ → BP → BO … satisfied by **BS**.
 Implementation SHAs: `48b5313`..`8bea468` lineage after rebase onto BS (see commit list below; SHAs rewrite across rebases)
-Report SHA: *(this commit)*
-Tip SHA: *(restored after this report commit)*
+Report SHA: 
+Tip SHA: 
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
