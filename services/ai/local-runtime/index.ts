@@ -41,3 +41,6 @@ export * from './em8-soft-wire';
 export * from './compute-return-receipt';
 export * from './em8-home-base-ingest';
 export * from './em8-neural-pathway';
+export * from './em9-honesty';
+export * from './em9-soft-wire';
+export * from './compute-resource-market-simulator';
