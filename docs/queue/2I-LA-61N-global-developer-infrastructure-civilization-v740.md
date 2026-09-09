@@ -19,6 +19,8 @@ BUSINESS PROBLEM → REQUIREMENT → PROJECT BRAIN → ARCHITECTURE → DATA CON
 
 Queued contract lock (does **not** start factories): [`services/ai/runtime/queued/2i-la-61n.ts`](../../services/ai/runtime/queued/2i-la-61n.ts).
 
+**Work-surface home:** Engineering civilization architecture (long-range R&D). Operational AMD / CPU-GPU-NPU routing / message bus / task graph / Home Base receipts: [`XIV-GOB-166`](./XIV-GOB-166-core-compute-agent-infrastructure.md) in Global operations brain. Do not copy that story here.
+
 **Full contracts §§1–124:** [`docs/architecture/xiv-2i-la-61n-global-developer-infrastructure-civilization-v740.md`](../architecture/xiv-2i-la-61n-global-developer-infrastructure-civilization-v740.md).
 
 ## Prerequisite (queue ordering)

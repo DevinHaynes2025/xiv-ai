@@ -7289,6 +7289,19 @@ Siblings or future queue agents may expand these later. Documentation order ≠ 
 - [x] **2I-LA-61N** Global Developer + Infrastructure Civilization + AI Software Engineering Super Brain V740 queued (full §§1–124; docs + invariant lock; after LA-61M); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; Revision C; ENGINEERING BRAIN≠PRODUCTION AUTHORITY; AGENT ROLE≠PERMISSION; GENERATED CODE≠VALIDATED CODE; GPU PROVIDER≠PARTNERSHIP; QPU≠GPU; SDK≠AUTHORITY BYPASS; CLI≠CLOUD ROOT; L4 DISABLED; all listed AUTO_*=FALSE; evidence QUEUED/FALSE/UNKNOWN; **HARD STOP — no LA-61N factory runtime**; **DO NOT IMPLEMENT until LA-61M PASS**; do not start LA-61O; park `cursor/queue-2i-la-61n-engineering-civilization-d8c0`
 - [x] **NEXT after LA-61N:** LA-61O Intelligence Economy V741 (title only) → LA-61P Mobile SaaS Distribution V742 (title only) → LA-61Q Commercial Operating Company V743 (title only) → LA-61R Global Business Simulation V744 (title only) → LA-61S Universal Knowledge Compression V745 (title only)
 
+### XIV-GOB-166 — Core Compute / Agent Infrastructure (Global operations brain)
+
+**Status:** **QUEUED ARCHITECTURE — NOT IMPLEMENTED** / **DEPLOYMENT_STATE=QUEUED** / **canonical home = Global operations brain**
+**Do not copy** into Enterprise OS, Engineering civilization, or Mobile. Enterprise OS **depends on** this story for enterprise-specific usage only.
+
+**Canonical:** [`xiv-gob-166-core-compute-agent-infrastructure.md`](./xiv-gob-166-core-compute-agent-infrastructure.md) · queue [`../queue/XIV-GOB-166-core-compute-agent-infrastructure.md`](../queue/XIV-GOB-166-core-compute-agent-infrastructure.md) · routing [`xiv-work-surface-routing.md`](./xiv-work-surface-routing.md) · enterprise depends-on [`xiv-enterprise-os-depends-on-gob-166.md`](./xiv-enterprise-os-depends-on-gob-166.md) · lock [`../../services/ai/runtime/queued/xiv-gob-166.ts`](../../services/ai/runtime/queued/xiv-gob-166.ts)
+
+**Includes (document only + invariant lock):** AmdSoftwareAccelerationAdapterV100 · CpuGpuNpuRouterV100 · XivMessageBusV100 · XivTaskGraphV100 (compose Orchestrator V4; do not fork) · HomeBaseReceiptLedgerV100. AMD DETECTED≠OPTIMIZED; AMD≠partnership; MESSAGE BUS≠AUTHORITY; TASK GRAPH≠PRODUCTION EXECUTE; HOME BASE RECEIPT≠SETTLEMENT; ENTERPRISE OS≠SEPARATE AMD BRAIN; 61N R&D≠operational router; MOBILE UI≠router. Next stories post to Global operations brain unless they are specifically enterprise/customer workflows. L4 DISABLED. All AUTO_*=FALSE.
+
+**L4 DISABLED**. **HARD STOP — no LIVE AMD / production bus / production task execute.** If GitLab unverifiable: **REPORT BLOCKED**.
+
+- [x] **XIV-GOB-166** Core Compute / Agent Infrastructure queued under Global operations brain (docs + invariant lock; Enterprise OS depends, does not copy); status **QUEUED ARCHITECTURE — NOT IMPLEMENTED**; **DEPLOYMENT_STATE=QUEUED**; park `cursor/queue-gob-166-core-compute-infra-d8c0`
+
 ### 2I-AI-62B — XIV Agent Meetings, Collective Reasoning & Human Intelligence Bridge
 
 **Status:** **BOUNDED ENGINE LANDED** (deterministic; **NOT LIVE** overnight; **L4 DISABLED**). Predecessor **2I-AI-62A Agent Civilization Foundation** remains **TITLE ONLY**.

@@ -18,6 +18,8 @@
 >
 > Evidence placeholders remain **QUEUED / FALSE / UNKNOWN**. **HARD STOP — no LA-61N factory runtime.** **NEVER INFER PASS.** If GitLab is unverifiable: **REPORT BLOCKED; DO NOT CLAIM SUCCESS.**
 
+**Work-surface home:** this story is **Engineering civilization architecture** (long-range architecture, R&D, photonics, quantum research, chip compatibility, space/edge simulations). Operational AMD software acceleration, CPU/GPU/NPU routing, message bus, task graph, and Home Base receipts are **not** owned here. Canonical: [`xiv-gob-166-core-compute-agent-infrastructure.md`](./xiv-gob-166-core-compute-agent-infrastructure.md) under Global operations brain. Routing rule: [`xiv-work-surface-routing.md`](./xiv-work-surface-routing.md). Do not copy #166 into this document.
+
 ---
 
 ## 0.1 Revision C reconciliation (name authority)
@@ -500,13 +502,17 @@ VENDOR RESEARCH ≠ PROPRIETARY CODE RIGHTS.
 
 **Named contract:** `GPUComputeEngineeringPipelineV100`
 
-Workloads: model inference · training candidates · graph computation · simulation · graphics · batch analytics.
+Workloads (R&D / compatibility research): model inference candidates · training candidates · graph computation · simulation · graphics · batch analytics.
+
+**Operational CPU/GPU/NPU routing used by running agents, the message bus, the task graph, and Home Base receipts belong to XIV-GOB-166** (Global operations brain). This pipeline does **not** create a second AMD brain. Compose [`xiv-gob-166-core-compute-agent-infrastructure.md`](./xiv-gob-166-core-compute-agent-infrastructure.md).
 
 ---
 
 ## 45. PROVIDER-NEUTRAL GPU LAYER
 
-Adapters: AMD · NVIDIA · Intel · Apple · other verified accelerators. Provider states start at `NOT_CONFIGURED`. NVIDIA adapter ≠ NVIDIA partnership.
+Adapters for **engineering research**: AMD · NVIDIA · Intel · Apple · other verified accelerators. Provider states start at `NOT_CONFIGURED`. NVIDIA adapter ≠ NVIDIA partnership.
+
+Runtime placement of agent work onto CPU/GPU/NPU is GOB-166 `CpuGpuNpuRouterV100`, not a 61N-only router.
 
 ---
 
