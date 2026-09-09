@@ -247,12 +247,14 @@ export function predecessorMap(root = repoRootFromHere()): Record<string, Predec
     },
     CN: {
       tipProbe:
-        hasMod('global-knowledge-os-types.ts') ||
-        has('62L_CN_GLOBAL_KNOWLEDGE_OS_REPORT.md')
+        hasMod('world-knowledge-routing-os-types.ts') ||
+        has('62L_CN_WORLD_KNOWLEDGE_ROUTING_OS_REPORT.md')
           ? 'PRESENT'
           : 'WAITING_DATA',
-      report: has('62L_CN_GLOBAL_KNOWLEDGE_OS_REPORT.md') ? 'PRESENT' : 'MISSING',
-      note: 'CN when CO absent.',
+      report: has('62L_CN_WORLD_KNOWLEDGE_ROUTING_OS_REPORT.md')
+        ? 'PRESENT'
+        : 'MISSING',
+      note: 'CN World Knowledge Routing OS when CO absent.',
     },
     CM: {
       tipProbe:
