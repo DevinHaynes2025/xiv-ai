@@ -12,10 +12,15 @@ From `services/ai`:
 - `npm run local:night -- <approved-task-file.json>` — run a bounded Night Shift task set using the local agent mesh.
 - `npm run local:founder-report` — write the Founder Morning Brain Report.
 - `npm run local:cortex-health` — write the 62L-X Memory Cortex / World Knowledge / Simulation Lab health report.
+- `npm run local:research-health` — write the 62L-Y research highway health map.
 - `npm run test:62lx` — 62L-X US-X1..US-X11 safety tests.
+- `npm run test:62ly` — 62L-Y US-Y1..US-Y15 safety tests.
 
 ## 62L-X Memory Cortex
-Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency. 62L-Y is not implemented here.
+Durable local Memory Cortex, partitioned world/business knowledge, contradiction tracking, historical/cultural councils, evidence pathways, scenario simulation, and a classical-quant → bounded quantum research bridge. Unconfigured cloud/quantum stay UNAVAILABLE. Quantum is not a production dependency.
+
+## 62L-Y Offline Research Civilization
+Offline Research Civilization Controller, research feedback loop, cross-industry historical learning, knowledge packs, signal infrastructure (simulation/interfaces), bounded quantum lab, physics research domains, planetary/galactic simulators, reflection council, offline resilience, highway health, and bounded self-improvement. Dark matter/energy are research domains only. Galactic infrastructure is simulation/research only. XIV does not claim consciousness or control physical satellites.
 
 ## Local state
 Runtime state is written beneath `.xiv-local/` and is intentionally excluded from Git. Do not store secrets in tasks, checkpoints, meeting transcripts, vector indexes or the learning ledger.
