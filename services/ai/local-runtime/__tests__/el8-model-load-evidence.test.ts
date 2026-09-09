@@ -309,11 +309,12 @@ test('evidence schema represents all required fields', () => {
   }
 });
 
-test('EL7 runLocalInference soft-wire is honest when absent', () => {
+test('EL7 runLocalInference soft-wire binds when inference-adapter present', () => {
   const soft = softWireRunLocalInference();
-  assert.equal(soft.present, false);
-  assert.equal(soft.callable, false);
-  assert.match(soft.note, /not present/i);
+  assert.equal(soft.present, true);
+  assert.equal(soft.callable, true);
+  assert.match(soft.modulePathChecked, /inference-adapter\.ts$/);
+  assert.match(soft.note, /soft-wired/i);
 });
 
 test('local-runtime regression: router still CPU-first for DETECTED GPU', () => {

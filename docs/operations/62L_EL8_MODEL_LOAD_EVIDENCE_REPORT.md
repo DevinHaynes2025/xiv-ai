@@ -1,9 +1,9 @@
 # 62L-EL8 — Model-Load Evidence Report
 
 **Branch:** `cursor/62l-el8-model-load-evidence-4059`  
-**Base:** `cursor/62l-el6-amd-npu-capability-candidate-4059` @ `cee0a57` (EL7 on origin does not contain this tip)  
-**Tip SHA:** `3dd0bc04482f39cf186a5d18232dc7d4a0bfc12a`  
-**Tests:** `npm run test:62lel8` PASS (22/22); `npm run test:local-runtime` PASS (66/66) after rebase onto EL6  
+**Base / predecessor:** `cursor/62l-el7-windows-local-runtime-adapter-4059` @ `0777b50` (contains EL6 `cee0a57`)  
+**Tip SHA:** `PLACEHOLDER`  
+**Tests:** `npm run test:62lel8` PASS (22/22); `npm run test:local-runtime` PASS (77/77) after rebase onto EL7  
 **Status:** IMPLEMENTED (unit VERIFIED) — no tip-land, no PR, no production writes  
 **SoT title:** 62L-EL8 — Model-Load Evidence (verification graduation + silent-fallback deny)
 
@@ -80,7 +80,7 @@ In-process audit/runtime ledger stores `evidenceRef` + full evidence snapshot. N
 
 ## Soft-wires / preserved invariants
 
-- Soft-wire EL7 `runLocalInference` if present (`el7-soft-wire.ts`); absent → honest no-op.
+- Soft-wire EL7 `runLocalInference` from `inference-adapter.ts` when present (`el7-soft-wire.ts`); absent → honest no-op.
 - Guardian / RLS / tenant / Universe / human-approval locks intact (`el8-honesty.ts`).
 - No automatic model downloads, driver installs, privilege changes, or tip-land.
 
@@ -91,7 +91,7 @@ cd services/ai && npm run test:62lel8
 cd services/ai && npm run test:local-runtime
 ```
 
-Coverage: progression no-skip, silent-fallback rule, each remain-not-verified case, successful CPU/GPU paths, schema field presence, EL7 soft-wire honesty, local-runtime regressions (router / governor / heartbeat).
+Coverage: progression no-skip, silent-fallback rule, each remain-not-verified case, successful CPU/GPU paths, schema field presence, EL7 soft-wire binding to `inference-adapter`, local-runtime regressions (router / governor / heartbeat).
 
 ## Next (do not implement here)
 

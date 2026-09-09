@@ -17,6 +17,7 @@ export type El7SoftWireResult = {
 };
 
 const CANDIDATE_RELATIVE_PATHS = [
+  './inference-adapter.ts',
   './el7-windows-local-runtime-adapter.ts',
   './windows-local-runtime-adapter.ts',
   './run-local-inference.ts',
