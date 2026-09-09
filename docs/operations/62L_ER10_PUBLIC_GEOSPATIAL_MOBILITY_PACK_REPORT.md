@@ -4,8 +4,8 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er10-public-geospatial-mobility-pack-4059`  
-Tip SHA: `PENDING_FEAT_COMMIT`  
-Feat SHA: `PENDING_FEAT_COMMIT`  
+Tip SHA: `5f76ac0bca516e6af6589b19f7507060fa78a383`
+Feat SHA: `5f76ac0bca516e6af6589b19f7507060fa78a383`
 Base: mid-flight ER9 tip `b6d35103d3e104ccbef41fd2b14c5b2ed2feb21a` (`feat(62L-ER9)…`; includes ER5/ER6/ER9). Remote `origin/cursor/62l-er9-…` still lagged at ER2 at park time — used local mid-flight tip. Soft-wire missing ER phases as **WAITING_DATA**.  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER10 Public Geospatial / Mobility Pack*  
 Note: `gh issue view 162` may be unresolved in this agent environment; issue number retained from founder SoT statement.  
