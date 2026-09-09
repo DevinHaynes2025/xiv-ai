@@ -175,24 +175,21 @@ export async function deliberateResearchCouncil(input: {
     return ok;
   }
 
-  // open mode: local preferred when both available
-  if (locals.length > 0 && (clouds.length === 0 || !input.preferCloudWhenLocalAvailable)) {
+  // open mode: local preferred whenever locals are available (LOCAL_LLM_FIRST).
+  // preferCloudWhenLocalAvailable is ignored — policy beats preference.
+  if (locals.length > 0) {
     const ok: CouncilDeliberation = {
       id: id('delib'),
       topic: input.topic,
       mode: input.mode,
-      selectedMemberIds: [...locals, ...clouds].map((m) => m.id),
+      selectedMemberIds: locals.map((m) => m.id),
       preferredKind: 'local',
       cloudFallbackAttempted: false,
       status: 'deliberated',
       reason: LOCAL_PREFERRED_OVER_CLOUD,
       createdAt: new Date().toISOString(),
     };
-    // Even if clouds join, preferredKind stays local when locals present
-    if (clouds.length > 0 && locals.length > 0) {
-      ok.preferredKind = 'local';
-      ok.selectedMemberIds = locals.map((m) => m.id);
-    }
+    void input.preferCloudWhenLocalAvailable;
     store.deliberations.push(ok);
     await save(input.root, store);
     return ok;
