@@ -1,7 +1,8 @@
 # 62L-EL6 — AMD NPU Capability Candidate Report
 
 **Branch:** `cursor/62l-el6-amd-npu-capability-candidate-4059`  
-**Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `0e7ca09` (aligned with `feat/62l-el-local-runtime-probe`)  
+**Tip SHA:** `1883b01ce797d837c33d0ff02ea9ad0aa21ef8ba`  
+**Base:** `cursor/62l-el5-amd-gpu-capability-candidate-4059` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` (aligned with `feat/62l-el-local-runtime-probe`)  
 **Home:** `services/ai/local-runtime/**`  
 **Status:** Candidate contracts + denial tests landed. **NPU VERIFIED claimed: NO.**  
 **Next (not implemented):** EL7 — Windows Local Runtime Adapter  
