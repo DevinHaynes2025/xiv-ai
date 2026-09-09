@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er7-historical-science-engineering-atlas-4059`  
-Tip SHA: `PENDING_FEAT_COMMIT`  
+Tip SHA: `8b505d83ebc167c44605cd00b973067f4b545fed`  
 Base: `origin/cursor/62l-er6-historical-business-case-atlas-v2-4059` @ `27cac4e734eb0f34f9fe7a823d3c1a9b58043ede`  
 Base selection: preferred **ER6** tip present with ER6 files  
 Predecessor soft-wires: ER6/ER5/ER2/ER1/EQ16… **PRESENT**; ER4/ER3/EQ14 **WAITING_DATA** ok  
