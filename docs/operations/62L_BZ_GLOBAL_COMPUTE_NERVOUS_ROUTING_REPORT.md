@@ -7,7 +7,7 @@ Branch: `cursor/62l-bz-global-compute-nervous-routing-4059`
 Parent / base tip: `cursor/62l-by-hardware-cortex-synapse-compiler-4059` @ `a91e182549c3e3a598629482d9869090ec214809` (includes `62L_BY_HARDWARE_CORTEX_SYNAPSE_COMPILER_REPORT.md`)
 Why this base: Preferred **62L-BY** tip + report initially **WAITING_DATA**; scaffolded from **BU** @ `342585a`, interim-rebased onto early BY `@814b372` (report still MISSING), then **rebased onto BY** `@a91e182` once tip + report **PRESENT** on origin (BX `@19b066d` + BW `@dde6e7a` are BY ancestors). Preference **BY → BX → BW → BU → BT → …** selects **BY**.
 Implementation SHAs: `4c848af`..`04b8131` (feat/fix commits; see commit list below)
-Report SHA: `REPORT_SHA_PLACEHOLDER`
+Report SHA: `d5ffbccac09b40e2c66702989484c090b78b8deb`
 Tip SHA: `TIP_SHA_PLACEHOLDER`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
