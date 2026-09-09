@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er34-capability-manifest-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `eb61259813272dec20fb65d33923be33c3e18688`  
 Base: `cursor/62l-er30-android-arm-runtime-package-candidate-4059` @ `08a5613` (best available ER28–ER33 tip; ER33–ER31 absent; ER29/ER28 tips not landed)  
 Preferred bases: ER33→ER32→ER31 **absent**; ER30 **PRESENT** — used as base. Soft-wire missing ER phases as **WAITING_DATA** (not FAIL).  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER34 Capability Manifest*  
