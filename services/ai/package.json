@@ -13,6 +13,7 @@
     "test:62lem": "node --import tsx --test local-runtime/__tests__/phase62lem.test.ts",
     "test:62lem-home": "node --import tsx --test local-brain/phase62lem157.test.ts",
     "test:62lem157": "node --import tsx --test local-brain/phase62lem157.test.ts",
+    "test:62lem10": "node --import tsx --test local-brain/phase62lem10.test.ts",
     "test:62lel5": "node --import tsx --test local-runtime/__tests__/el5-amd-gpu-capability.test.ts",
     "test:62lel6": "node --import tsx --test local-runtime/__tests__/amd-npu-capability.test.ts",
     "test:62lel7": "node --import tsx --test local-runtime/__tests__/el7-inference-adapter.test.ts",
@@ -20,23 +21,12 @@
     "test:62lel9": "node --import tsx --test local-runtime/__tests__/el9-resource-governor.test.ts",
     "test:62lem1": "node --import tsx --test local-brain/phase62lem1.test.ts",
     "test:62lem3": "node --import tsx --test local-runtime/__tests__/phase62lem3.test.ts",
-<<<<<<< HEAD
     "test:62lem4": "node --import tsx --test local-brain/__tests__/phase62lem4.test.ts",
     "test:62lem5": "node --import tsx --test local-runtime/__tests__/em5-amd-windows-ml-adapter.test.ts",
-<<<<<<< HEAD
     "test:62lem6": "node --import tsx --test local-runtime/__tests__/em6-nvidia-runtime.test.ts",
-=======
-=======
-<<<<<<< HEAD
-    "test:62lem6": "node --import tsx --test local-runtime/__tests__/em6-nvidia-runtime.test.ts",
->>>>>>> e5af39e (feat(62L-EM9): compute resource market simulator (estimate-only))
->>>>>>> 61c4840 (feat(62L-EM9): compute resource market simulator (estimate-only))
     "test:62lem7": "node --import tsx --test local-runtime/__tests__/em7-device-neutral-inference-router.test.ts",
-    "test:62lem8": "node --import tsx --test local-runtime/__tests__/em8-compute-return-receipt.test.ts"
-=======
     "test:62lem8": "node --import tsx --test local-runtime/__tests__/em8-compute-return-receipt.test.ts",
     "test:62lem9": "node --import tsx --test local-runtime/__tests__/phase62lem9.test.ts"
->>>>>>> bb6dd2d (feat(62L-EM9): compute resource market simulator (estimate-only))
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
