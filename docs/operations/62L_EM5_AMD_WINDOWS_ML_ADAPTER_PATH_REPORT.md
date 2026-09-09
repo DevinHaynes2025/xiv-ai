@@ -16,7 +16,8 @@ Governed AMD Windows ML / ONNX Runtime adapter path under `services/ai/local-run
 | Predecessor preference | `cursor/62l-em4-*` → else EM3 / EM1 → else EL9 |
 | Base used | `cursor/62l-em4-cpu-gpu-npu-message-envelope-4059` tip (= EM3 tip; EM4 WIP not yet committed) |
 | Base SHA | `185ac60c1c155661ea5618acbcf1158856ff5d0b` |
-| Tip SHA | *(set after commit)* |
+| Implement SHA | `aafa37377f698a15e30fef9eba8a0a1454c053bf` |
+| Tip SHA | `aafa37377f698a15e30fef9eba8a0a1454c053bf` |
 | Tip-land / PR | **NO** |
 | `L4_AUTONOMY_ENABLED` | `false` |
 
