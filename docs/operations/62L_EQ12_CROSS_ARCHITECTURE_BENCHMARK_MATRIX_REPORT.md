@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq12-cross-architecture-benchmark-matrix-4059`  
-Tip SHA: *(filled after feat commit)*  
+Tip SHA: `869fc4b8fb7f8ef40de15b6994b410e9481f728d`  
 Base: `cursor/62l-eq11-device-neutral-workload-genome-4059` @ `7c98121f16397f9c7d087555a8f5f3d90fbb0bbd`  
 Predecessor: EQ11 **PRESENT**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ12 Cross-Architecture Benchmark Matrix*  
