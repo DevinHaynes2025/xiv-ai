@@ -16,3 +16,7 @@ export * from './amd-npu-capability';
 export * from './npu-presence-probe';
 export * from './npu-benchmark';
 export * from './soft-wire-el6';
+export * from './el7-locks';
+export * from './execution-providers';
+export * from './inference-policy';
+export * from './inference-adapter';
