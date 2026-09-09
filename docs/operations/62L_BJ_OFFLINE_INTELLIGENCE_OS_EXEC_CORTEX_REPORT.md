@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bd-cognitive-memory-chip-neural-bus-4059` @ `90b9
 Why this base: Preferred **62L-BI** (`cursor/62l-bi-governed-discovery-foundry-4059` + `62L_BI_GOVERNED_DISCOVERY_FOUNDRY_REPORT.md`) **MISSING** on origin after fetch. **BH / BG / BF / BE** also **MISSING** as distinct pushed tips with reports (local park `62l-bh-*` equals BD tip; local `62l-bg-*` equals BA tip — not treated as landed BI/BH work). Fallback chain lands on pushed **BD**.
 Implementation SHAs: `6c9a9c5`..`eee9e24` (+ probe fix `890eb2f`); see commit list below
 Report SHA: `06bb828cd6618b717f3d6bfdd14db3a918e94c81` (report body pin; tip may be later restore commit)
-Tip SHA: *(set in final pin)*
+Tip SHA: `942011b66f7faefadedfde1a6743dbce24182d61`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
