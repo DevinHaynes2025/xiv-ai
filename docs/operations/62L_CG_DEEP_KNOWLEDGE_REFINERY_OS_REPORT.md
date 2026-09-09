@@ -7,8 +7,8 @@ Branch: `cursor/62l-cg-deep-knowledge-refinery-os-4059`
 Parent / base tip: `cursor/62l-cf-data-refinery-compression-replication-4059` @ `5daacde4d76ad64f61fa9e3d998635b5fa42dc7e` (includes `62L_CF_DATA_REFINERY_COMPRESSION_REPLICATION_REPORT.md`)
 Why this base: Preferred **62L-CF** tip + report. At start CF/CE were **WAITING_DATA** (not on origin); scaffolded from **CD** @ `ac3fb8c`, then polled with backoff (~30s) until CF tip + report **PRESENT** on origin and **rebased** onto CF `@5daacde`. CE `@4a902ca` + CD `@827684b` are CF ancestors / present in-tree. Preference **CF → CE → CD → CA/CB/CC → BZ → …** selects **CF**.
 Implementation SHAs: `de870cf`..`ee2f5c7` (feat commits; see commit list below)
-Report SHA: *(this commit)*
-Tip SHA: *(after report restore if any)*
+Report SHA: 
+Tip SHA: 
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
@@ -124,7 +124,7 @@ Encoded as `DEEP_KNOWLEDGE_REFINERY_OS_CYCLE` in `deep-knowledge-refinery-os-typ
 |---|---|
 | `de870cf` | feat(62L-CG): add deep knowledge refinery OS contracts and honesty locks #97 |
 | `ee2f5c7` | feat(62L-CG): wire runtime, CLI, tests, and NOT_APPLIED candidates #97 |
-| *(report)* | docs(62L-CG): add deep knowledge refinery OS operations report #97 |
+|  | docs(62L-CG): add deep knowledge refinery OS operations report #97 |
 
 ## Tests + results
 
