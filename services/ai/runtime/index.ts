@@ -430,6 +430,18 @@ export {
   synchronizeAgentMesh,
 } from './agentmesh';
 
+/** 62L-EX1 Offline Quantum Mission Contract — soft entrypoints (Agent Mesh + Home Base). */
+export {
+  assertEx1LocksIntact,
+  auditEx1SoftWires,
+  createQuantumMissionContract,
+  evaluateClassicalBaselineGate,
+  evaluateQuantumAdvantageGate,
+  ex1L4AutonomyEnabled,
+  guardianRlsUnchangedByEx1,
+  routeOfflineDevice,
+} from './quantum';
+
 export {
   openPhase2ilaGrounding,
   openDbBackedAgentMissionQueue,
