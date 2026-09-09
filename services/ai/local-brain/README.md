@@ -61,6 +61,8 @@ From `services/ai`:
 - `npm run local:knowledge-excavation-memory-lake-health` — write the 62L-CE Knowledge Excavation / Memory Lake health report.
 - `npm run test:62lcf` — 62L-CF Global Data Refinery Civilization / Archive Research Shifts / Neural Compression / Multi-Provider Router / Device Optimization Lab / Offline Replication Fabric safety tests.
 - `npm run local:data-refinery-compression-replication-health` — write the 62L-CF Data Refinery / Compression / Replication health report.
+- `npm run test:62lcg` — 62L-CG Deep Knowledge Refinery OS / Research Universities / Archive Graph Federation / Storage-Index Compiler / Multi-Model Reasoning / Edge Deployment Orchestrator safety tests.
+- `npm run local:deep-knowledge-refinery-os-health` — write the 62L-CG Deep Knowledge Refinery OS health report.
 
 ## Operational transition
 Agents defined → recruited → communicating → meeting → retrieving knowledge → debating decisions → coding/testing → recording outcomes → XIV learning.
