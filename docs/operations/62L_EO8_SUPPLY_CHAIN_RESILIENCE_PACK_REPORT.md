@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eo8-supply-chain-resilience-pack-4059`  
-Tip SHA: `e3914945084dde1ced45b90bb198a0556a8ac01f`  
+Tip SHA: `7b3661a67fd0bd1b2199b352b81e16714fbec24a`  
 Implementation SHA (feat): `73f499cfa651dfa717b44820fa63d528068c7223`  
 Base: `cursor/62l-eo6-classical-baseline-requirement-4059` @ `3a141648d4f8d69d936c299f88f8bd6ff25fee5a` (EO7 logistics pack **absent** on fetch → fell back to EO6 per park-and-implement predecessor rule)  
 SoT: **62L-EO8** — *Supply Chain Resilience Pack* (multi-tier graph, scenario library, truth labels, bounded agents, recovery recommendations)  
