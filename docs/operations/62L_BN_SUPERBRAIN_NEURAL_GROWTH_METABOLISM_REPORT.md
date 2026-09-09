@@ -7,8 +7,8 @@ Branch: `cursor/62l-bn-superbrain-neural-growth-metabolism-4059`
 Parent / base tip: `cursor/62l-bm-org-neural-federation-bi-nervous-4059` @ `4a6d1286e9c35b55c7d1618009f62ea9216d0627` (`docs(62L-BM): restore tip SHA after align commit #77`)
 Why this base: Preferred **62L-BM** tip + `docs/operations/62L_BM_ORG_NEURAL_FEDERATION_BI_NERVOUS_REPORT.md` **PRESENT** after fetch-with-backoff (initially WAITING_DATA while BM/BL/BK were still landing; rebased onto BM once pushed). BL/BK also PRESENT as BM ancestors. BJ `ecfdd9a` remains in ancestry.
 Implementation SHAs: `8fee42e`..`2db5fe3` (+ CLI probe fix commit; see commit list)
-Report SHA: *(pinned in follow-up docs commit)*
-Tip SHA: *(pinned after report commit)*
+Report SHA:  (report body commit; tip may be later pin/restore)
+Tip SHA: *(set in pin commit)*
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; no Draft PR)
 
