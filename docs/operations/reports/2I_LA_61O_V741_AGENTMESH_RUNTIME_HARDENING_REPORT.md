@@ -6,8 +6,9 @@
 **Story:** 2I-LA-61O / V741 under Global Operations Brain  
 **Branch:** `cursor/62l-2i-la-61o-v741-agentmesh-runtime-hardening-57ba`  
 **Base (authorized tip):** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
-**Implementation HEAD:** `31a3376898b1b2d67324769931c3cd4c5489cfc1`  
-**Feat commits:** `17fb8c9` (runtime), `31a3376` (sync)
+**Implementation HEAD (feat tip):** `31a3376898b1b2d67324769931c3cd4c5489cfc1`  
+**Feat commits:** `17fb8c9` (runtime), `31a3376` (sync)  
+**Docs commits:** evidence report on branch tip after feat
 
 ---
 
