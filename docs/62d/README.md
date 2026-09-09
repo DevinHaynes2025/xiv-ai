@@ -67,6 +67,7 @@ npm run acceptance     # AC-01..AC-24, writes docs/62d/
 npm run verify:rls     # applies the migration to a local PostgreSQL and probes RLS
 npm run scan:secrets   # AC-16 scanner over the git working tree
 npm run sbom           # AC-17 component inventory + npm audit
+npm run verify:mutations  # seeds a fault into each runtime guard, expects the suite to catch it
 npm start              # the control surface on RUNTIME_PORT (default 8788)
 ```
 
@@ -124,3 +125,12 @@ Stated here so nobody has to infer it from a passing scorecard.
 - **IMPLEMENTED is not VERIFIED.** Every row in the scorecard is the output of
   code that ran in the recorded run, on the recorded commit, on the recorded
   host. Nothing is asserted from this design document.
+- **A GREEN SUITE IS NOT VERIFICATION EITHER.** A threshold can pass because
+  nothing it measures can fail. `npm run verify:mutations` removes one runtime
+  guard at a time — the tenant check in the store, the attestation gate, the
+  hard-termination kill, external-action deduplication, the roster signature and
+  others — and requires the criteria that claim to cover that guard to turn
+  FAIL. AC-18 runs it and reports the detection rate as a threshold, so a
+  criterion that has quietly stopped measuring anything shows up as a surviving
+  fault instead of a pass. Four of the current thresholds were rewritten because
+  this caught them passing vacuously.

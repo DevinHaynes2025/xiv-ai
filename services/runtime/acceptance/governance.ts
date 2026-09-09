@@ -182,9 +182,18 @@ export function runAc08(): AcceptanceResult {
     .allUsage()
     .filter((usage) => usage.durationMs > MANDATORY_HARD_TERMINATION_MS && usage.terminatedByLimit === null).length;
 
+  // Each dimension has one correct refusal code. Accepting either
+  // `budget_exceeded` or `hard_termination` everywhere would let a broken
+  // hard-termination check pass on the strength of the duration limit that
+  // happens to trip immediately after it.
+  const expectedEnforcementCode = (dimension: string) =>
+    dimension === 'hardTerminationMs' ? 'hard_termination' : 'budget_exceeded';
   const enforcedDimensions = Object.entries(enforcement).filter(
-    ([, code]) => code === 'budget_exceeded' || code === 'hard_termination',
+    ([dimension, code]) => code === expectedEnforcementCode(dimension),
   ).length;
+  const wrongEnforcementCodes = Object.entries(enforcement)
+    .filter(([dimension, code]) => code !== expectedEnforcementCode(dimension))
+    .map(([dimension, code]) => `${dimension}=${code}`);
 
   const thresholds: Threshold[] = [
     atLeast('resource_policy', 'Workloads with resource policy', percent(withPolicy, executed.length), 100, {
@@ -195,7 +204,12 @@ export function runAc08(): AcceptanceResult {
       'Tested hard-limit enforcement',
       percent(enforcedDimensions, Object.keys(enforcement).length),
       100,
-      { blocker: true },
+      {
+        blocker: true,
+        note: wrongEnforcementCodes.length
+          ? `refused with the wrong code: ${wrongEnforcementCodes.join(', ')}`
+          : `${enforcedDimensions} dimensions each refused with their own code`,
+      },
     ),
     zero('quota_bypasses', 'Unauthorized quota bypasses', quotaBypasses, { blocker: true }),
     zero(

@@ -310,6 +310,21 @@ export class MeetingRegistry {
     return this.messages.get(meetingId) ?? [];
   }
 
+  /**
+   * Adds a participant to the roster without re-signing it, the way a direct
+   * write to the store would. Used by the acceptance suite to prove the roster
+   * signature is actually verified: checking an untampered roster only shows
+   * that a valid signature validates.
+   */
+  tamperRosterForTest(meetingId: string, participant: MeetingParticipant) {
+    const meeting = this.meetings.get(meetingId);
+    if (!meeting) return;
+    this.meetings.set(meetingId, {
+      ...meeting,
+      participants: [...meeting.participants, participant],
+    });
+  }
+
   get metrics() {
     return {
       meetings: this.meetings.size,

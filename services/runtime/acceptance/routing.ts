@@ -386,7 +386,7 @@ export function runAc06(): AcceptanceResult {
 
   const thresholds: Threshold[] = [
     atLeast('completion_rate', 'Supported-runtime completion rate', percent(completions, attempts), 99, {
-      blocker: false,
+      note: `${completions}/${attempts} bounded reference workloads completed on ${configured.length} configured class(es)`,
     }),
     atLeast(
       'contract_tests',

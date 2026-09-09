@@ -236,6 +236,23 @@ export function runAc03(): AcceptanceResult {
     })(),
     observed: 'checked',
   });
+  // TENANT_A and TENANT_B share a universe id, so this is the one case where
+  // only the organization check stands between the two. Without it the
+  // universe check would let the foreign node through.
+  record({
+    name: 'routing_never_selects_other_org_node_in_same_universe',
+    kind: 'cross_tenant_read',
+    passed: (() => {
+      const decision = plane.router.route({
+        spec: workloadSpec({ tenant: TENANT_A, hardware: { classIds: [plane.hostHardware.classId] } }),
+        candidates: [nodeB],
+        load: () => ({ activeWorkloads: 0, cpuMillisCommitted: 0, gpuMillisCommitted: 0, ramMbCommitted: 0 }),
+        tenantBudgetAvailable: true,
+      });
+      return decision.rejectedNodes[nodeB.nodeId] === 'tenant_mismatch';
+    })(),
+    observed: TENANT_A.universeId === TENANT_B.universeId ? 'same universe, different organization' : 'universes differ',
+  });
   record({
     name: 'workload_into_other_universe_refused',
     kind: 'cross_universe_write',

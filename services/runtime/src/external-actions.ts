@@ -32,6 +32,14 @@ export type ExternalActionResult = {
  */
 export class ExternalActionLedger {
   private readonly byKey = new Map<string, ExternalActionRecord>();
+  /**
+   * How many times the side effect was actually performed per key, counted
+   * separately from the records. Deriving this from the record map would make
+   * it structurally incapable of exceeding one — a second execution overwrites
+   * the first entry — so a broken deduplication would still report a single
+   * execution and the AC-12 duplicate threshold could never fail.
+   */
+  private readonly executionsByKey = new Map<string, number>();
   private duplicateAttempts = 0;
   private unapprovedBlocked = 0;
 
@@ -93,6 +101,7 @@ export class ExternalActionLedger {
       attempts: 1,
     };
     this.byKey.set(idempotencyKey, record);
+    this.executionsByKey.set(idempotencyKey, (this.executionsByKey.get(idempotencyKey) ?? 0) + 1);
     this.audit.append({
       tenant: input.tenant,
       category: 'workload',
@@ -104,8 +113,7 @@ export class ExternalActionLedger {
   }
 
   executionCount(tenant: TenantRef, actionKey: string): number {
-    const record = this.byKey.get(ExternalActionLedger.key(tenant, actionKey));
-    return record ? 1 : 0;
+    return this.executionsByKey.get(ExternalActionLedger.key(tenant, actionKey)) ?? 0;
   }
 
   attemptsFor(tenant: TenantRef, actionKey: string): number {
@@ -115,6 +123,16 @@ export class ExternalActionLedger {
   /** Distinct executed actions. Duplicate attempts never increase this. */
   get executedCount() {
     return this.byKey.size;
+  }
+
+  /**
+   * Side effects actually performed. Equal to `executedCount` while
+   * deduplication holds, and larger than it if one ever escapes.
+   */
+  get totalExecutions() {
+    let total = 0;
+    for (const count of this.executionsByKey.values()) total += count;
+    return total;
   }
 
   get duplicateAttemptCount() {
@@ -131,6 +149,13 @@ export class ExternalActionLedger {
 
   restore(rows: Record<string, ExternalActionRecord>) {
     this.byKey.clear();
-    for (const [key, record] of Object.entries(rows)) this.byKey.set(key, record);
+    this.executionsByKey.clear();
+    for (const [key, record] of Object.entries(rows)) {
+      this.byKey.set(key, record);
+      // A restored record proves the side effect happened once. The count from
+      // before the snapshot is not recoverable, and assuming more would
+      // manufacture duplicates that were never observed.
+      this.executionsByKey.set(key, 1);
+    }
   }
 }

@@ -13,7 +13,8 @@
     "acceptance": "tsx acceptance/run.ts",
     "scan:secrets": "tsx tools/secret-scan.ts",
     "sbom": "tsx tools/sbom.ts",
-    "verify:rls": "tsx tools/rls-verify.ts"
+    "verify:rls": "tsx tools/rls-verify.ts",
+    "verify:mutations": "tsx tools/mutation-check.ts"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

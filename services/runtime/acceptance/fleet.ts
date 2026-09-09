@@ -272,6 +272,13 @@ export function runAc02(): AcceptanceResult {
     .filter((record) => record.spec.classification === 'restricted' && record.state !== 'rejected');
   const withAttestationLineage = protectedWorkloads.filter((record) => record.attestationId !== null).length;
 
+  // The router filters ineligible nodes out before the trust gate is reached,
+  // so the counts above stay at zero even if the gate itself stops refusing.
+  // These call the gate directly, which is the check the router relies on.
+  const gateRefusals = Object.entries(directAttempts).filter(
+    ([, code]) => code === 'attestation_required' || code === 'node_unavailable',
+  ).length;
+
   const thresholds: Threshold[] = [
     atLeast(
       'protected_on_attested',
@@ -289,6 +296,18 @@ export function runAc02(): AcceptanceResult {
       percent(withAttestationLineage, protectedWorkloads.length),
       100,
       { blocker: true },
+    ),
+    atLeast(
+      'trust_gate_refuses_directly',
+      'Trust gate refuses ineligible nodes when called directly',
+      percent(gateRefusals, Object.keys(directAttempts).length),
+      100,
+      {
+        blocker: true,
+        note: Object.entries(directAttempts)
+          .map(([name, code]) => `${name}=${code}`)
+          .join(', '),
+      },
     ),
   ];
 

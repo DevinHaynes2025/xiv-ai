@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { generateSigningKeys } from '../src/crypto';
 import { LOCAL_REFERENCE_MODEL_ID, RUNTIME_CONTRACT_VERSION, RuntimePlane } from '../src/plane';
 import { RUNTIME_ROUTES, createRuntimeServer } from '../src/server';
+import { runMutationCheck } from '../tools/mutation-check';
 import { SHIPPING_RUNTIMES } from '../tools/sbom';
 import { findLeakedValues } from '../tools/secret-scan';
 import type { AcceptanceResult, Threshold } from './harness';
@@ -92,10 +93,24 @@ export function runAc18(): AcceptanceResult {
   const manifest = JSON.parse(readFileSync(join(runtimeRoot, 'package.json'), 'utf8')) as {
     scripts?: Record<string, string>;
   };
-  const requiredScripts = ['typecheck', 'test', 'acceptance', 'scan:secrets', 'sbom', 'verify:rls'];
+  const requiredScripts = [
+    'typecheck',
+    'test',
+    'acceptance',
+    'scan:secrets',
+    'sbom',
+    'verify:rls',
+    'verify:mutations',
+  ];
   const presentScripts = requiredScripts.filter((script) => Boolean(manifest.scripts?.[script]));
 
   const lockfiles = SHIPPING_RUNTIMES.filter((runtime) => existsSync(join(repoRoot, runtime, 'package-lock.json')));
+
+  // A green suite is not evidence on its own: it could be asserting things that
+  // cannot fail. Each seeded fault removes one runtime guard and the criteria
+  // covering it must turn FAIL.
+  const mutations = runMutationCheck();
+  const survivors = mutations.filter((outcome) => !outcome.detected);
 
   const thresholds: Threshold[] = [
     zero(
@@ -138,9 +153,28 @@ export function runAc18(): AcceptanceResult {
       100,
       { blocker: true },
     ),
+    atLeast(
+      'seeded_fault_detection',
+      'Seeded runtime faults the acceptance suite detects',
+      percent(mutations.length - survivors.length, mutations.length),
+      100,
+      {
+        blocker: true,
+        note: survivors.length
+          ? `surviving faults: ${survivors.map((outcome) => `${outcome.id} (${outcome.error ?? 'thresholds did not fail'})`).join('; ')}`
+          : `${mutations.length} guards removed one at a time, each caught by the criteria that claim to cover it`,
+      },
+    ),
   ];
 
   return summarize('AC-18', 'Build & Change Integrity', thresholds, {
+    mutationCheck: mutations.map((outcome) => ({
+      id: outcome.id,
+      guard: outcome.guard,
+      expectFailing: outcome.expectFailing,
+      observedFailing: outcome.observedFailing,
+      detected: outcome.detected,
+    })),
     typecheckCommand: 'npx tsc --noEmit (services/runtime)',
     typecheckExitCode: typecheck.code,
     typecheckTail: typecheck.output.split('\n').filter(Boolean).slice(-5),

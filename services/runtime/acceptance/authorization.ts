@@ -3,8 +3,10 @@
  * AC-14 model authorization.
  * AC-15 information logistics and provenance.
  */
+import type { RuntimeAdapter } from '../src/hardware';
 import { REQUIRED_LINEAGE_STAGES } from '../src/lineage';
 import { LOCAL_REFERENCE_MODEL_ID } from '../src/plane';
+import type { ModelRegistryEntry } from '../src/types';
 import type { AcceptanceResult, Threshold } from './harness';
 import {
   TENANT_A,
@@ -27,7 +29,7 @@ export function runAc04(): AcceptanceResult {
 
   const hardware = { classIds: [plane.hostHardware.classId] };
   const accepted: string[] = [];
-  const refused: { reason: string; scenario: string }[] = [];
+  const refused: { reason: string; scenario: string; expected: string }[] = [];
 
   // 120 legitimate authorized workloads.
   for (let index = 0; index < 120; index += 1) {
@@ -42,25 +44,32 @@ export function runAc04(): AcceptanceResult {
   }
 
   // Negative tests: each must be refused with a policy decision.
-  const negativeScenarios: { scenario: string; run: () => string }[] = [
+  // Each scenario declares the reason it must be refused for. Accepting any
+  // refusal would let a scenario that broke for an unrelated reason — a missing
+  // node, a different guard tripping first — read as a pass.
+  const negativeScenarios: { scenario: string; expect: string; run: () => string }[] = [
     {
       scenario: 'unauthenticated_requester',
+      expect: 'unauthenticated_requester',
       run: () =>
         plane.engine.submit({ token: 'not-a-token', spec: workloadSpec({ tenant: TENANT_A, hardware }) }).rejection
           ?.reason ?? 'accepted',
     },
     {
       scenario: 'missing_token',
+      expect: 'unauthenticated_requester',
       run: () => plane.engine.submit({ token: '', spec: workloadSpec({ tenant: TENANT_A, hardware }) }).rejection?.reason ?? 'accepted',
     },
     {
       scenario: 'tenant_mismatch',
+      expect: 'tenant_mismatch',
       run: () =>
         plane.engine.submit({ token: operatorA.token, spec: workloadSpec({ tenant: TENANT_B, hardware }) }).rejection
           ?.reason ?? 'accepted',
     },
     {
       scenario: 'empty_tenant_context',
+      expect: 'tenant_mismatch',
       run: () =>
         plane.engine.submit({
           token: operatorA.token,
@@ -69,6 +78,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'capability_escalation_protected',
+      expect: 'capability_missing',
       run: () =>
         plane.engine.submit({
           token: limitedA.token,
@@ -82,6 +92,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'capability_escalation_control',
+      expect: 'capability_missing',
       run: () =>
         plane.engine.submit({
           token: limitedA.token,
@@ -90,6 +101,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'classification_above_ceiling',
+      expect: 'classification_above_principal_ceiling',
       run: () =>
         plane.engine.submit({
           token: agentPrincipalA.token,
@@ -103,6 +115,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'approval_required_but_absent',
+      expect: 'approval_required',
       run: () =>
         plane.engine.submit({
           token: operatorA.token,
@@ -111,6 +124,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'agent_cannot_self_approve',
+      expect: 'agent_approval_refused',
       run: () => {
         const spec = workloadSpec({ tenant: TENANT_A, requiresApproval: true, consequential: true, hardware });
         const code = catchCode(() => plane.approvals.grant(agentPrincipalA.principal, spec.workloadId, TENANT_A));
@@ -119,6 +133,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'grant_replay_refused',
+      expect: 'grant_replay_refused',
       run: () => {
         const spec = workloadSpec({ tenant: TENANT_A, hardware });
         const authorization = plane.authorizer.authorize(operatorA.principal, spec);
@@ -135,6 +150,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'forged_grant_refused',
+      expect: 'forged_grant_refused',
       run: () => {
         const spec = workloadSpec({ tenant: TENANT_A, hardware });
         const authorization = plane.authorizer.authorize(operatorA.principal, spec);
@@ -151,6 +167,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'grant_repointed_to_other_tenant_node',
+      expect: 'guardian_refused_foreign_node',
       run: () => {
         const spec = workloadSpec({ tenant: TENANT_A, hardware });
         const authorization = plane.authorizer.authorize(operatorA.principal, spec);
@@ -166,6 +183,7 @@ export function runAc04(): AcceptanceResult {
     },
     {
       scenario: 'unbounded_budget_refused',
+      expect: 'missing_hard_termination_limit',
       run: () =>
         plane.engine.submit({
           token: operatorA.token,
@@ -180,10 +198,11 @@ export function runAc04(): AcceptanceResult {
 
   for (const negative of negativeScenarios) {
     const reason = negative.run();
-    refused.push({ scenario: negative.scenario, reason });
+    refused.push({ scenario: negative.scenario, reason, expected: negative.expect });
   }
 
-  const escalationSuccesses = refused.filter((entry) => entry.reason === 'accepted').length;
+  const escalationSuccesses = refused.filter((entry) => entry.reason !== entry.expected).length;
+  const wrongRefusals = refused.filter((entry) => entry.reason !== entry.expected);
   const allWorkloads = plane.workloadStore.list(TENANT_A);
   const withPolicyDecision = allWorkloads.filter((workload) =>
     plane.audit.has(
@@ -227,6 +246,9 @@ export function runAc04(): AcceptanceResult {
     ),
     zero('capability_escalations', 'Capability-escalation successes during negative testing', escalationSuccesses, {
       blocker: true,
+      note: wrongRefusals.length
+        ? wrongRefusals.map((entry) => `${entry.scenario}: expected ${entry.expected}, got ${entry.reason}`).join('; ')
+        : `${refused.length} negative scenarios each refused for the reason they test`,
     }),
     zero(
       'guardian_bypasses',
@@ -349,22 +371,39 @@ export function runAc14(): AcceptanceResult {
   const wrongBlockCode = blockEntries.filter(([name, result]) => result.code !== expectedBlockCodes[name]);
   const admittedAnyway = blockEntries.filter(([, result]) => result.admitted || result.nodeCommitted);
 
-  const substitution = catchCode(() =>
-    plane.models.bindToRuntime(
-      {
-        modelId: 'not-adapter-resolvable',
-        provider: 'xiv_local',
-        displayName: 'x',
-        approved: true,
-        providerConfigured: true,
-        evaluationGate: { evaluationId: 'e', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
-        maxTokens: 1,
-        costPerKTokenUsd: 0,
-        classifications: ['internal'],
-      },
-      plane.hardware.adapterFor(plane.hostHardware.classId),
+  const approvedEntry: ModelRegistryEntry = {
+    modelId: 'substitution-probe',
+    provider: 'xiv_local',
+    displayName: 'Approved model used to probe runtime substitution',
+    approved: true,
+    providerConfigured: true,
+    evaluationGate: { evaluationId: 'e', passed: true, evaluatedAt: 0, evidenceUri: 'n/a' },
+    maxTokens: 1_024,
+    costPerKTokenUsd: 0,
+    classifications: ['internal'],
+  };
+
+  // An adapter with no entry for the model refuses outright, which never
+  // reaches the substitution guard. Only an adapter that answers with a
+  // different model id exercises it, so one is supplied here.
+  const hostAdapter = plane.hardware.adapterFor(plane.hostHardware.classId);
+  const substitutingAdapter: RuntimeAdapter = {
+    ...hostAdapter,
+    resolveModel: () => 'some-other-model-entirely',
+  };
+  const substitution = {
+    unresolvable: catchCode(() =>
+      plane.models.bindToRuntime({ ...approvedEntry, modelId: 'not-adapter-resolvable' }, hostAdapter),
     ),
-  );
+    resolvedToAnother: catchCode(() => plane.models.bindToRuntime(approvedEntry, substitutingAdapter)),
+    honest: catchCode(() => plane.models.bindToRuntime({ ...approvedEntry, modelId: LOCAL_REFERENCE_MODEL_ID }, hostAdapter)),
+  };
+  const substitutionRefused =
+    (substitution.unresolvable === 'model_unavailable' ? 0 : 1) +
+    (substitution.resolvedToAnother === 'model_substitution' ? 0 : 1) +
+    // The honest case must be allowed through, or "refuses everything" would
+    // read as a pass.
+    (substitution.honest === 'no_error' ? 0 : 1);
 
   const invocations = plane.models.allInvocations();
   const attributable = invocations.filter((invocation) => Boolean(invocation.modelId)).length;
@@ -387,8 +426,11 @@ export function runAc14(): AcceptanceResult {
     zero(
       'unapproved_substitution',
       'Unapproved model substitution',
-      unapprovedUsage + (substitution === 'model_unavailable' || substitution === 'model_substitution' ? 0 : 1),
-      { blocker: true, note: `runtime substitution refused as ${substitution}` },
+      unapprovedUsage + substitutionRefused,
+      {
+        blocker: true,
+        note: `unresolvable=${substitution.unresolvable}, adapter returning another id=${substitution.resolvedToAnother}, matching id=${substitution.honest}`,
+      },
     ),
     atLeast(
       'evaluation_gate_present',

@@ -5,6 +5,9 @@
  * AC-23 backup and restore.
  * AC-24 rollback.
  */
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { OfflineAuthority } from '../src/offline';
 import { LOCAL_REFERENCE_MODEL_ID, RUNTIME_CONTRACT_VERSION } from '../src/plane';
 import { REQUIRED_BACKUP_TABLES } from '../src/snapshot';
@@ -23,6 +26,8 @@ import {
   zero,
 } from './harness';
 import type { FailureKind, RecoveryOutcome } from '../src/types';
+
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 
 export function runAc10(): AcceptanceResult {
   const { plane, clock, operatorA } = buildFixture();
@@ -279,6 +284,23 @@ export function runAc11(): AcceptanceResult {
 
   const integrity = plane.meetings.verifyIntegrity(TENANT_A, meeting.meetingId);
 
+  // Verifying an intact roster only shows that a valid signature validates. A
+  // second meeting is tampered with directly so the detection is measured too.
+  const tamperedMeeting = plane.meetings.open({
+    principal: operatorA.principal,
+    tenant: TENANT_A,
+    classification: 'confidential',
+    participants: [humanParticipant, agentParticipant],
+    offline: true,
+  });
+  plane.meetings.tamperRosterForTest(tamperedMeeting.meetingId, {
+    participantId: 'principal_smuggled_onto_roster',
+    kind: 'human',
+    tenant: TENANT_A,
+    displayName: 'Injected attendee',
+  });
+  const tamperedIntegrity = plane.meetings.verifyIntegrity(TENANT_A, tamperedMeeting.meetingId);
+
   const thresholds: Threshold[] = [
     atLeast(
       'participant_identity',
@@ -320,9 +342,15 @@ export function runAc11(): AcceptanceResult {
         (negatives.message_from_non_participant === 'unauthorized' ? 0 : 1),
       { blocker: true },
     ),
-    booleanThreshold('roster_signature_intact', 'Meeting roster signature intact', integrity.rosterIntact, {
-      blocker: true,
-    }),
+    booleanThreshold(
+      'roster_signature_intact',
+      'Meeting roster signature intact, and a tampered roster detected',
+      integrity.rosterIntact && !tamperedIntegrity.rosterIntact && !tamperedIntegrity.participantIdentityPreserved,
+      {
+        blocker: true,
+        note: `signed roster verified; a roster with an injected attendee reported rosterIntact=${tamperedIntegrity.rosterIntact}`,
+      },
+    ),
     booleanThreshold(
       'approved_action_authorized',
       'Consequential action allowed only after a verified human approval',
@@ -464,7 +492,15 @@ export function runAc12(): AcceptanceResult {
       100,
       { blocker: true },
     ),
-    zero('duplicate_external_actions', 'Duplicate consequential external actions', duplicateActions, { blocker: true }),
+    zero(
+      'duplicate_external_actions',
+      'Duplicate consequential external actions',
+      duplicateActions + Math.max(0, plane.external.totalExecutions - plane.external.executedCount),
+      {
+        blocker: true,
+        note: `${plane.external.totalExecutions} side effects performed for ${plane.external.executedCount} distinct actions across ${plane.external.duplicateAttemptCount} deduplicated retries`,
+      },
+    ),
     zero('cross_tenant_recovery', 'Cross-tenant recovery', crossTenantRecoveries, {
       blocker: true,
       note: `${crossTenantRefusals} cross-tenant recovery attempts refused`,
@@ -489,6 +525,7 @@ export function runAc12(): AcceptanceResult {
     failureKinds: kinds,
     detectionMsMax: detectionMsValues.length ? Math.max(...detectionMsValues) : 0,
     externalActionsExecuted: plane.external.executedCount,
+    externalActionSideEffectsPerformed: plane.external.totalExecutions,
     externalActionDuplicateAttempts: plane.external.duplicateAttemptCount,
     scenarioSample: scenarioLog.slice(0, 12),
   });
@@ -552,6 +589,21 @@ export function runAc23(): AcceptanceResult {
   plane.snapshots.corruptForTest(corruptSnapshot.snapshotId);
   const corruptCode = catchCode(() => plane.snapshots.restore(corruptSnapshot.snapshotId));
 
+  // The documented procedure has to name the commands and tables this run
+  // actually used, so the runbook cannot drift away from the implementation.
+  const runbookPath = join(repoRoot, 'docs/62d/BACKUP-RESTORE.md');
+  const runbook = existsSync(runbookPath) ? readFileSync(runbookPath, 'utf8') : '';
+  const runbookReferences = [
+    'npm run acceptance',
+    'snapshots.take()',
+    'snapshots.restore(',
+    'rehearseRollback',
+    'checkpoint_corrupt',
+    ...REQUIRED_BACKUP_TABLES,
+  ];
+  const missingFromRunbook = runbookReferences.filter((reference) => !runbook.includes(reference));
+  const restoreExercises = plane.audit.find((event) => event.kind === 'restore_completed').length;
+
   const thresholds: Threshold[] = [
     atLeast(
       'backup_policy_coverage',
@@ -563,9 +615,9 @@ export function runAc23(): AcceptanceResult {
     atLeast(
       'restore_tests',
       'Successful restore test before canary',
-      report.integrityVerified ? 100 : 0,
+      report.integrityVerified && restoreExercises > 0 ? 100 : 0,
       100,
-      { blocker: true, note: `1 restore exercise completed` },
+      { blocker: true, note: `${restoreExercises} restore exercise(s) completed in this run` },
     ),
     atLeast(
       'restore_integrity',
@@ -577,9 +629,14 @@ export function runAc23(): AcceptanceResult {
     zero('lost_committed_records', 'Lost committed test records', lostCommitted, { blocker: true }),
     booleanThreshold(
       'procedure_documented',
-      'Restore procedure documented and reproducible',
-      true,
-      { note: 'docs/62d/BACKUP-RESTORE.md, reproduced by `npm run acceptance` in services/runtime' },
+      'Restore procedure documented and matching the implementation',
+      runbook.length > 0 && missingFromRunbook.length === 0,
+      {
+        blocker: true,
+        note: missingFromRunbook.length
+          ? `docs/62d/BACKUP-RESTORE.md does not mention: ${missingFromRunbook.join(', ')}`
+          : 'docs/62d/BACKUP-RESTORE.md names every command and table this run exercised',
+      },
     ),
     zero('corrupt_snapshot_accepted', 'Corrupted snapshots accepted', corruptCode === 'checkpoint_corrupt' ? 0 : 1, {
       blocker: true,
