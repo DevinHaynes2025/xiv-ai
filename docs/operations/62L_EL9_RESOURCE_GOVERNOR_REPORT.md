@@ -1,12 +1,12 @@
 # 62L-EL9 — Resource Governor Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** — ceiling reject/throttle **PASS** — **NOT** a Windows/ASUS live thermal/battery verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto latest EL8 — unit tests **executed** — ceiling reject/throttle **PASS** — **NOT** a Windows/ASUS live thermal/battery verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-el9-resource-governor-4059`  
-Tip SHA: `2aa4667f2e6741d8ae2d1116ccdab21dd0cbc4ee`  
-Base: `cursor/62l-el8-model-load-evidence-4059` @ `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502` (EL8 tip at branch creation; preferred predecessor; EL8-* preferred over EL7/EL6/feat probe)  
-Why this base: Founder EL9 SoT prefers EL8 → else EL7 → else EL6/EL5 → else feat/EL/EM. EL8 branch existed; used as predecessor.  
+Tip SHA: `(see branch HEAD after push)`  
+Base: `cursor/62l-el8-model-load-evidence-4059` @ `4447be8d25e2af2337af5add0a0d015ea6fb9067` (preferred; EL8 interim tip after rebase onto EL7 `0777b506775c5215a8c60a030a984fe0c2f4b3de`)  
+Prior base (pre-nudge): `0e7ca0930245d2c1b4cfbc41e2078e2aa8f2c502`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**
@@ -59,15 +59,18 @@ Production deploy / merge: **NO**
 
 Legacy `evaluateResourceRequest` (concurrency + RAM ceilings) **preserved**.
 
-## Soft-wire
+## Soft-wire (post-EL8 rebase)
 
 | Target | Result at tip |
 |---|---|
-| EL7 `windows-local-runtime-adapter.ts` | **absent** on this branch tip (presence check only) |
-| EL8 `model-load-evidence.ts` | **absent** on this branch tip (presence check only) |
+| EL7 `windows-local-runtime-adapter.ts` | **absent** (optional path) |
+| EL7 `el7-soft-wire.ts` | **present** (presence soft-wire) |
+| EL8 `model-load-evidence.ts` | **present** (presence soft-wire) |
 | Heartbeat `WAITING_NODE` / `OFFLINE_STOPPED` | **wired** into admit + monitor |
 
 Presence soft-wire does **not** imply EL7/EL8 VERIFIED.
+
+Note: EL8 tip `package.json` had unresolved conflict markers; EL9 rebase resolved scripts to include `test:62lem|el5|el6|el8|el9`.
 
 ## Acceptance criteria checklist
 
@@ -91,8 +94,7 @@ Presence soft-wire does **not** imply EL7/EL8 VERIFIED.
 | Live ASUS Windows thermal API observation | **NOT_TESTED** |
 | Live battery/AC metering on device | **NOT_TESTED** |
 | Live GPU/NPU memory counters on device | **NOT_TESTED** |
-| EL7 Windows local runtime adapter integration | **NOT_TESTED** / module absent on tip |
-| EL8 model-load evidence integration | **NOT_TESTED** / module absent on tip |
+| EL7/EL8 production verification | **NOT_TESTED** (presence only) |
 | Production authorization / tip-land / PR | **false** / not created |
 
 ## Deliverables
@@ -101,10 +103,10 @@ Presence soft-wire does **not** imply EL7/EL8 VERIFIED.
 |---|---|
 | `services/ai/local-runtime/resource-governor.ts` | Full EL9 governor + preserved legacy ceilings |
 | `services/ai/local-runtime/__tests__/el9-resource-governor.test.ts` | EL9 acceptance tests (must execute) |
-| `services/ai/package.json` | `test:62lel9` + existing `test:local-runtime` |
+| `services/ai/package.json` | `test:62lel9` + inherited local-runtime scripts |
 | `docs/operations/62L_EL9_RESOURCE_GOVERNOR_REPORT.md` | This report |
 
-## Tests (executed)
+## Tests (executed post-rebase)
 
 Commands:
 
@@ -116,13 +118,11 @@ cd services/ai && npm run typecheck
 
 | Command | Result | When (UTC) |
 |---|---|---|
-| `npm run test:62lel9` | **PASS** — 27/27 | 2026-09-09 after tip `2aa4667` |
-| `npm run test:local-runtime` | **PASS** — 33/33 | same run |
-| `npm run typecheck` | **PASS** | 2026-09-09T13:44:18Z |
+| `npm run test:62lel9` | **PASS** — 27/27 | 2026-09-09 post-rebase onto `4447be8` |
+| `npm run test:local-runtime` | **PASS** — 93/93 | same run |
+| `npm run typecheck` | **PASS** | same run |
 
-Ceiling enforcement tested: **YES** (memory DENY, workers DENY, concurrency QUEUE, CPU THROTTLE, queue-full DENY, cache/network/duration DENY, unlimited policy DENY).
-
-Do **not** treat unit PASS as ASUS hardware VERIFIED.
+Ceiling enforcement tested: **YES**.
 
 ## Explicit NON-claims
 
