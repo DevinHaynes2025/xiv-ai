@@ -1,11 +1,16 @@
 # 62L-EM7 — Device-Neutral Inference Router Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** — safeguard denies + priority scoring **PASS** — soft-wire EM3/EM5/EM6/EL9/EM1 (presence) — **NOT** a live multi-vendor ASUS verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — **rebased onto EM6** — unit tests **re-executed** — safeguard denies + priority scoring **PASS** — soft-wires updated — **NOT** a live multi-vendor ASUS verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em7-device-neutral-inference-router-4059`  
-Base: `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
-Predecessor preference: EM6 → EM5/EM4/EM3 → EL9 — **EM6 remote absent at implement time; EM3–EM5 park-and-implement still landing → EL9 tip used**  
+Tip SHA: _(recorded after push)_  
+Base used: `cursor/62l-em6-nvidia-runtime-candidate-path-4059` @ `5301b7cf24672d16b27adead619d02db7eaace3f`  
+EM6 lineage includes EM3 @ `eb6e963ac31af155225660cb2a420116e21abaff` (on EM1/#157)  
+Prior base (superseded): EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1`  
+Rebase onto EM6: **YES**  
+EM5 remote: **ABSENT** at rebase time (EM5 soft-wire via onnx/AMD candidate modules on EM6 tip)  
+EM4 tip exists remotely but is **not** an ancestor of EM6 → envelope soft-wire **ABSENT** (honest)  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -55,19 +60,19 @@ privacy/locality, model compatibility, hardware verification state, latency evid
 | Consequential tasks approval-gated on any compute path | **PASS** |
 | `L4_AUTONOMY_ENABLED=false` | **PASS** |
 
-## Soft-wire (presence only)
+## Soft-wire (presence only — post-EM6 rebase)
 
-| Target | Role |
-|---|---|
-| EM3 Universal Compute Registry | presence probe |
-| EM4 message envelope | fallback visibility soft-wire |
-| EM5 AMD Windows ML | presence / onnx / AMD candidates |
-| EM6 NVIDIA runtime | presence / honesty candidate |
-| EL9 Resource Governor | **PRESENT** (ceiling soft-wire + locks) |
-| EM1 Agent Home Base | presence probe |
-| Prior EM honesty / capability-truth | **PRESENT** |
+| Target | Presence | Notes |
+|---|---|---|
+| EM3 Universal Compute Registry | **PRESENT** | `universal-compute-registry.ts` + `em3-honesty.ts` |
+| EM4 message envelope | **ABSENT** | EM4 tip not in EM6 ancestry; fallback visibility still enforced in EM7 decision record |
+| EM5 AMD Windows ML | **PRESENT** | via `onnx-windows-ml-adapter.ts` / `amd-gpu-capability.ts` on EM6 tip |
+| EM6 NVIDIA runtime | **PRESENT** | `nvidia-runtime-adapter.ts` + `em6-honesty.ts` / soft-wire |
+| EL9 Resource Governor | **PRESENT** | ceiling soft-wire + locks |
+| EM1 Agent Home Base | **PRESENT** | `local-brain/agent-home-base-*.ts` |
+| Prior EM honesty / capability-truth | **PRESENT** | |
 
-Presence ≠ VERIFIED ≠ production authorization. ABSENT predecessors are honest on the EL9 park-and-implement base.
+Presence ≠ VERIFIED ≠ production authorization.
 
 ## Deliverables
 
@@ -83,7 +88,7 @@ Presence ≠ VERIFIED ≠ production authorization. ABSENT predecessors are hone
 ## Test evidence
 
 Command: `npm run test:62lem7` (cwd `services/ai`)  
-Result: **12/12 PASS** (locks, soft-wire, safeguards, priority, vendor-neutral scoring, decision fields).
+Result after EM6 rebase: **12/12 PASS** (locks, soft-wire, safeguards, priority, vendor-neutral scoring, decision fields).
 
 ## Next (do not implement here)
 
