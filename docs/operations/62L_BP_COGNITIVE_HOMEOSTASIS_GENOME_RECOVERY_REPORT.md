@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bo-superbrain-neuroplasticity-immune-4059` @ `67a
 Why this base: Preferred **62L-BO** tip + `62L_BO_SUPERBRAIN_NEUROPLASTICITY_IMMUNE_REPORT.md` **PRESENT**. Initial scaffold from **BL**, rebased onto BO @ `ebb6974`, then **rebased again** onto rewritten BO tip (BO rebased onto BM @ `67a5ebd`). **BN** tip appeared on origin during BP landing — tip PRESENT; in-tree BN modules/report on this parent remain **WAITING_DATA** (BO skipped BN). Founder paste uses **Skill Exchange** (not Marketplace).
 Implementation SHA: `643fd826786eb5aa52bc30dbbe4ba4f2b69e3c0b` (`feat(62L-BP): add cognitive homeostasis, genome replication, skill exchange, mesh recovery #80`)
 Report SHA: `451cf2fc1be45b11972297d3e49d91b14175cc74` (report body + gate refresh)
-Tip SHA: `696e4950446911286587270f58a82b3c19f10d22`
+Tip SHA: `2463c040e16c523e4e81fb1acb5cb888dfbd7938`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
