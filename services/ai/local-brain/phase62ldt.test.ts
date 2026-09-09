@@ -121,7 +121,7 @@ try {
       os.l4AutonomyEnabled === false &&
       os.tipLand === false &&
       os.publicLaunchAuthorized === false &&
-      os.predecessorLayer === 'DR',
+      os.predecessorLayer === 'DS',
     `os=${os.id}; predecessor=${os.predecessorLayer}`,
   );
 
@@ -438,11 +438,11 @@ try {
     'honesty_and_predecessor_probe',
     honesty.banner === HONESTY_BANNER &&
       honesty.l4AutonomyEnabled === false &&
+      preds.DS.tipProbe === 'PRESENT' &&
       preds.DR.tipProbe === 'PRESENT' &&
       preds.DP.tipProbe === 'PRESENT' &&
-      preds.DS.tipProbe === 'WAITING_DATA' &&
       preds.DQ.tipProbe === 'WAITING_DATA',
-    `predecessor=${honesty.predecessorLayer}; DR=${preds.DR.tipProbe}; DQ=${preds.DQ.tipProbe}`,
+    `predecessor=${honesty.predecessorLayer}; DS=${preds.DS.tipProbe}; DR=${preds.DR.tipProbe}`,
   );
 } finally {
   await rm(root, { recursive: true, force: true });

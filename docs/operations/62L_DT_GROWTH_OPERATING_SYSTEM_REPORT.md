@@ -4,8 +4,8 @@ Status: IMPLEMENTATION COMPLETE ON CHILD BRANCH — UNIT TESTS EXECUTED — NOT 
 
 Date: 2026-09-09
 Branch: `cursor/62l-dt-growth-operating-system-4059`
-Parent / base tip: `cursor/62l-dr-enterprise-nervous-revenue-command-4059` @ `eddb46d9209d2babb7a82e128e862a00054376d0` + `docs/operations/62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md` (**PRESENT**)
-Why this base: Preference **DS → DR → DQ → DP**. Remote **DS WAITING_DATA**. **DR PRESENT** @ `eddb46d` (preferred over sealed DQ `383e6ce`). Soft-wire DQ report when PRESENT on tip (currently **MISSING** on DR lineage); DS report **MISSING**. Rebased DT commits from DP `08078d1` onto DR. No tip-land onto `xiv-v2`/`main`.
+Parent / base tip: `cursor/62l-ds-revenue-intelligence-os-4059` @ `e8908fb0d8ac0855c6727cc61cbbb6ee1fb5784b` + `docs/operations/62L_DS_REVENUE_INTELLIGENCE_OS_REPORT.md` (**PRESENT**)
+Why this base: Preference **DS → DR → DQ → DP**. Remote **DS PRESENT** @ `e8908fb0d8ac0855c6727cc61cbbb6ee1fb5784b` (preferred over final DR `25594448b6d52f8e48b09af8c1fc6170f9a64355`). DR report also **PRESENT** in DS lineage (interim DR `eddb46d`; final DR tip `25594448b6d52f8e48b09af8c1fc6170f9a64355` not in this DS lineage). Soft-wire DQ **WAITING_DATA** on this tree. Rebased DT commits from interim DR onto DS. No tip-land onto `xiv-v2`/`main`.
 Implementation SHAs: see commit list (`feat` / `test` / `docs` / `chore`)
 Tip SHA: `29725294ac64e8450782256459eb2023a1eb5a3c`
 Tip-land: **NO**
@@ -49,22 +49,22 @@ Contract / payment: **NO**
 
 | Check | Result |
 |---|---|
-| DS Revenue Intelligence OS tip + report | **WAITING_DATA** / report **MISSING** on origin |
-| DR Enterprise Nervous Revenue Command tip + report | **PRESENT** @ `eddb46d` + `62L_DR_ENTERPRISE_NERVOUS_REVENUE_COMMAND_REPORT.md` — **used as base** (preferred over DQ) |
-| DQ Universal Integration Brain tip + report | Sealed tip **PRESENT** on origin @ `383e6ce` + report; **not in DR lineage** — soft-wire **WAITING_DATA** on this child tree |
-| DP Plugin Civilization OS tip + report | **PRESENT** (DR ancestor) @ `08078d1` |
+| DS Revenue Intelligence OS tip + report | **PRESENT** @ `e8908fb0d8ac0855c6727cc61cbbb6ee1fb5784b` + `62L_DS_REVENUE_INTELLIGENCE_OS_REPORT.md` — **used as base** |
+| DR Enterprise Nervous Revenue Command tip + report | Interim DR **PRESENT** in DS lineage @ `eddb46d`; final DR tip `25594448b6d52f8e48b09af8c1fc6170f9a64355` on origin **not in DS lineage** |
+| DQ Universal Integration Brain tip + report | Soft-wire **WAITING_DATA** on this DS-based tree |
+| DP Plugin Civilization OS tip + report | **PRESENT** (ancestor) @ `08078d1` |
 | `origin/xiv-v2` / `main` tip-land | **NO** |
 | Draft PR / ManagePullRequest | **NOT CREATED** |
-| Gate verdict | **62L-DR tip + report CLEAR for this child** after rebase (DS WAITING_DATA; DQ sealed but superseded by DR preference). Not PASS for Issue #137 if unread via `gh`. Not PASS for Windows-node verification. Not FAIL-with-report. |
+| Gate verdict | **62L-DS tip + report CLEAR for this child** after rebase (DS preferred over final DR). Not PASS for Issue #137 if unread via `gh`. Not PASS for Windows-node verification. Not FAIL-with-report. |
 
 ## WAITING gates (documented)
 
 | Gate | Status |
 |---|---|
-| DS tip + report | **WAITING_DATA** |
-| DR tip + report | **PRESENT** @ `eddb46d` |
-| DQ tip + report | Sealed on origin @ `383e6ce`; soft-wire on this tree **WAITING_DATA** (not in DR lineage) |
-| DP tip + report | **PRESENT** (DR ancestor) @ `08078d1` |
+| DS tip + report | **PRESENT** @ `e8908fb0d8ac0855c6727cc61cbbb6ee1fb5784b` |
+| DR tip + report | Interim **PRESENT** in lineage @ `eddb46d`; final origin tip `25594448b6d52f8e48b09af8c1fc6170f9a64355` not ancestor of this tip |
+| DQ tip + report | Soft-wire **WAITING_DATA** on this tree |
+| DP tip + report | **PRESENT** (ancestor) @ `08078d1` |
 | GitHub Issue #137 body via `gh` | Scope taken from founder master prompt (SoT citation retained; issue API not resolvable to this integration) |
 | GitLab #71 MCP | Coordination cite only |
 | Windows-node verification | **NOT_TESTED** |
@@ -92,7 +92,7 @@ Contract / payment: **NO**
 | E. Launch Mission Control | **IMPLEMENTED** (unit-tested) |
 | F. Retention/Expansion Intelligence | **IMPLEMENTED** (unit-tested) |
 | G. Executive Performance Nervous System | **IMPLEMENTED** (unit-tested) |
-| H. Neural growth nodes (soft-wire DS/DR/DQ/DP) | **IMPLEMENTED** (unit-tested; DR soft-wire **PRESENT**; DS/DQ WAITING_DATA on this tree) |
+| H. Neural growth nodes (soft-wire DS/DR/DQ/DP) | **IMPLEMENTED** (unit-tested; DS+DR soft-wire **PRESENT**; DQ WAITING_DATA on this tree) |
 | Candidate SQL migration | **DOCUMENTED / NOT_APPLIED** |
 | Full production Growth OS ship | **DOCUMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED** (`FULL_PRODUCTION_GROWTH_OS_SHIPPED=false`) |
 | Tip-land / Draft PR / merge / prod deploy / DB apply / public launch / contract / payment | **NOT DONE** (by design) |
@@ -135,7 +135,7 @@ Contract / payment: **NO**
 - **No** live Supabase / DB migration applied (`NOT_APPLIED`)
 - **No** contract signing, payment charging, public launch, or auto-ship
 - **No** production authorization; `L4_AUTONOMY_ENABLED=false`
-- Soft-wire DS when tip+report lands; DQ sealed on origin but absent from DR lineage soft-wire on this tree
+- Soft-wire DQ when present in lineage; DS preferred base used; final DR tip not in DS lineage
 
 ## Next (report only — do not implement)
 
@@ -143,4 +143,4 @@ Contract / payment: **NO**
 
 ## Summary
 
-62L-DT delivers a governed Growth Operating System rebased onto the DR Enterprise Nervous Revenue Command tip (DS WAITING_DATA; sealed DQ present on origin but not preferred over DR), with denial/honesty stories across acquisition, partnership, deal desk, pricing lab, launch mission control, retention/expansion, executive performance learning, and neural growth nodes. Unit tests pass for required deny stories. Not production authorized; candidate SQL remains NOT_APPLIED; no PR/merge/tip-land/public launch/contract/payment.
+62L-DT delivers a governed Growth Operating System rebased onto the DS Revenue Intelligence OS tip (preferred over final DR), with denial/honesty stories across acquisition, partnership, deal desk, pricing lab, launch mission control, retention/expansion, executive performance learning, and neural growth nodes. Unit tests pass for required deny stories. Not production authorized; candidate SQL remains NOT_APPLIED; no PR/merge/tip-land/public launch/contract/payment.
