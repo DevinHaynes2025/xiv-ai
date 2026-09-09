@@ -155,7 +155,9 @@
     "test:62ldz": "tsx local-brain/phase62ldz.test.ts",
     "local:supply-chain-intelligence-fabric-health": "tsx local-brain/supply-chain-intelligence-fabric-cli.ts",
     "test:62lea": "tsx local-brain/phase62lea.test.ts",
-    "local:global-operations-intelligence-grid-health": "tsx local-brain/global-operations-intelligence-grid-cli.ts"
+    "local:global-operations-intelligence-grid-health": "tsx local-brain/global-operations-intelligence-grid-cli.ts",
+    "test:62leb": "tsx local-brain/phase62leb.test.ts",
+    "local:multi-model-superbrain-federation-health": "tsx local-brain/multi-model-superbrain-federation-cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
