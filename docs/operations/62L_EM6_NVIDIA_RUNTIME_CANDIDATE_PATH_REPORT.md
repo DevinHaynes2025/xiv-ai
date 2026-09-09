@@ -1,12 +1,14 @@
 # 62L-EM6 — NVIDIA Runtime Candidate Path Report
 
-Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
+Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto EM3 tip (post-#157) — unit tests **re-executed** — **NOT** a live NVIDIA CUDA/TensorRT verification pass — **NOT** production authorization
 
 Date: 2026-09-09  
 Branch: `cursor/62l-em6-nvidia-runtime-candidate-path-4059`  
-Base: `cursor/62l-el9-resource-governor-4059` @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (EM5 absent at park-and-implement; EM4/EM3 soft-wire only)  
-Implementation SHA: `94f90e11da5ba5c3165d98e0f09386616e9654e4` (feat)  
-Tip SHA: `9bec192e491edb12eaeae47f3225dfafa5b8fafb`  
+Base: `cursor/62l-em3-universal-compute-registry-4059` @ `eb6e963ac31af155225660cb2a420116e21abaff` (EM5/EM4 tips not published; EM3 preferred available tip; includes EM1 + #157 `b1040f4`)  
+Prior base: EL9 @ `c834e5242ba1a2b04e6126babbbaf695133178b1` (superseded by rebase)  
+Rebase onto EM3: **YES**  
+Implementation SHA: `1f6b8c14e795949f1b485897c7854ec12d6c509d` (feat, post-rebase)  
+Tip SHA: `PLACEHOLDER_TIP`  
 Tip-land onto `xiv-v2` / `main`: **NO**  
 PR / ManagePullRequest: **NOT CREATED**  
 Production deploy / merge: **NO**  
@@ -122,8 +124,8 @@ cd services/ai && npm run test:local-runtime
 
 | Command | Result |
 |---|---|
-| `npm run test:62lem6` | **PASS** — 19/19 |
-| `npm run test:local-runtime` | **PASS** — 123/123 (includes EM6 + prior EL/EM; no regression) |
+| `npm run test:62lem6` | **PASS** — 19/19 (re-run after EM3 rebase) |
+| `npm run test:local-runtime` | **PASS** — 137/137 (includes EM3 + EM6 + prior EL/EM; no regression) |
 
 NVIDIA VERIFIED claimed from these tests: **NO** (fixtures prove rules only).
 

@@ -1,9 +1,10 @@
 /**
- * 62L-EM6 soft-wire — EM4 / EL8 / EM5 / EL9 / local-brain home-base (presence only).
+ * 62L-EM6 soft-wire — EM3 / EM4 / EL8 / EM5 / EL9 / local-brain home-base (presence only).
  *
  * Soft-wire does not invent missing predecessors or claim them VERIFIED.
  * CPU fallback honesty soft-wires EM4/EL8/EM5 patterns when present.
  * Resource governor soft-wires EL9 when present.
+ * Post-EM3-rebase: universal compute registry soft-wire when present.
  */
 
 import { existsSync } from 'node:fs';
@@ -23,6 +24,7 @@ export type Em6SoftWireProbe = {
   el8ModelLoadEvidence: Presence;
   el8Honesty: Presence;
   el9ResourceGovernor: Presence;
+  em3UniversalRegistry: Presence;
   em4EnvelopeCandidate: Presence;
   em5AmdWindowsMlCandidate: Presence;
   localBrainHomeOptional: Presence;
@@ -56,20 +58,31 @@ function presentAny(rels: string[]): Presence {
 
 /**
  * Soft-wire predecessor modules by filesystem presence.
- * EM4 / EM5 may be ABSENT on park-and-implement bases — that is honest.
+ * EM4 / EM5 may be ABSENT when only EM3 tip is available — that is honest.
  */
 export function probeEm6SoftWires(): Em6SoftWireProbe {
   return {
     el8ModelLoadEvidence: present('model-load-evidence.ts'),
     el8Honesty: present('el8-honesty.ts'),
     el9ResourceGovernor: present('resource-governor.ts'),
+    em3UniversalRegistry: presentAny([
+      'universal-compute-registry.ts',
+      'em3-honesty.ts',
+      'em3-soft-wire.ts',
+    ]),
     em4EnvelopeCandidate: presentAny([
       'em4-compute-envelope.ts',
       'cpu-gpu-npu-message-envelope.ts',
       'agent-compute-envelope.ts',
-    ]),
+    ]) === 'PRESENT'
+      ? 'PRESENT'
+      : presentOutside('local-brain/em4-message-envelope.ts') === 'PRESENT' ||
+          presentOutside('local-brain/em4-message-envelope-types.ts') === 'PRESENT'
+        ? 'PRESENT'
+        : 'ABSENT',
     em5AmdWindowsMlCandidate: presentAny([
       'em5-amd-windows-ml-path.ts',
+      'em5-honesty.ts',
       'amd-windows-ml-runtime.ts',
       'amd-windows-ml-adapter-path.ts',
       'onnx-windows-ml-adapter.ts',
@@ -86,7 +99,7 @@ export function probeEm6SoftWires(): Em6SoftWireProbe {
       EM6_LOCKS.GUARDIAN_RLS_TENANT_BOUNDARIES_INTACT,
     universeBoundariesIntact: EM6_LOCKS.UNIVERSE_BOUNDARIES_INTACT,
     note:
-      'Presence soft-wire only; DETECTED≠VERIFIED; CPU/silent fallback≠NVIDIA verify; does not imply EM4/EM5/EL8/EL9 VERIFIED or production authorization.',
+      'Presence soft-wire only; DETECTED≠VERIFIED; CPU/silent fallback≠NVIDIA verify; does not imply EM3/EM4/EM5/EL8/EL9 VERIFIED or production authorization.',
     locks: {
       em6: EM6_LOCKS,
       el8: EL8_LOCKS,
