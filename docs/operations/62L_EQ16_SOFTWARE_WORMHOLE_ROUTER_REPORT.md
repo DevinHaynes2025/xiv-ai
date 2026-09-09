@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-eq16-software-wormhole-router-4059`  
-Tip SHA: *(aligned in follow-up docs commit)*  
+Tip SHA: `46c29176cbfed7fb0a273fd2d5adc78ab177ced1`  
 Base: `cursor/62l-eq15-pathway-plasticity-4059` @ `cdee30d08b5da109112b29940315b023ad3f608b`  
 Predecessor: EQ15 **PRESENT**; EQ14 **WAITING_DATA**  
 SoT: **GitHub #161** / **62L-EQ** family — *62L-EQ16 Software Wormhole Router*  
