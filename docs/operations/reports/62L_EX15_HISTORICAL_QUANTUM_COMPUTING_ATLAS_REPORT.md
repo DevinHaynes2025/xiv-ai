@@ -7,7 +7,7 @@
 **Branch:** `cursor/62l-ex15-historical-quantum-computing-atlas-4059`  
 **Base (authorized tip):** `origin/xiv-v2` @ `60986682f7a6913def6da08499388aecd4acea4a`  
 **Feat tip SHA:** `ebb40072986dd8393f0584c0f4efb27278f28357`  
-**Branch tip SHA:** `aae8fe31814677c68629714fcd0bffc83fac888f`  
+**Branch tip SHA:** `f54675c75909665c2d1282d12f5091e7242a8f1c`  
 **Honesty:** DOCUMENTED ≠ IMPLEMENTED ≠ VERIFIED ≠ PRODUCTION AUTHORIZED  
 **Locks:** `L4_AUTONOMY_ENABLED=false`; tip-land=NO; merge-main=NO; no PR opened  
 **Quantum honesty:** Historical advantage ≠ QUANTUM_ADVANTAGE_VERIFIED. Historical ≠ modern proof. Simulator ≠ physical QPU.
