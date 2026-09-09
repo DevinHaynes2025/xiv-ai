@@ -363,6 +363,35 @@ export {
   openOperationsCommandCenter,
 } from './opsbrain';
 export {
+  QUEUE_ORDER,
+  XIV_ARCHITECTURE_QUEUE,
+  advanceQueue,
+  connectNeuralPathways,
+  currentQueueStory,
+  documentationChangesQueueState,
+  evaluateQueueEvidence,
+  evaluateQueueLimit,
+  expectedSecurityVerdict,
+  getQueuedStory,
+  limitExceededIncreasesLimit,
+  listQueuedStories,
+  neuralPathwayGrantsAuthority,
+  queueAdvancement,
+  queuedArchitectureAuthorizesMigration,
+  securityLockEngaged,
+  unlockSecurityFlag,
+  uploadQueueToBrain,
+} from './queue';
+export type {
+  NeuralPathway,
+  QueueDeploymentState,
+  QueueEvidence,
+  QueueStoryId,
+  QueuedStory,
+  SecurityLock,
+  SecurityLockFlag,
+} from './queue';
+export {
   AGENT_DEBUGGER_PROHIBITED,
   agentDebuggerCanDeploy,
   agentDebuggerCanExecuteShell,
