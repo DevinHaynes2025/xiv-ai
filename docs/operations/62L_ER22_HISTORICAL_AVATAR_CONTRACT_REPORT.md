@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — unit tests **executed** 
 
 Date: 2026-09-09  
 Branch: `cursor/62l-er22-historical-avatar-contract-4059`  
-Tip SHA: `PENDING_FEAT_SHA`  
+Tip SHA: `7aa9f6af2180efd42b213484813da7431f1d9c96`  
 Base: `cursor/62l-er10-public-geospatial-mobility-pack-4059` @ `c05639c` (best available progressive ER tip; preferred ER21→ER11 tips absent or empty of phase deliverables at implement time)  
 Predecessor soft-wires: ER10/ER9/ER6/ER5/ER2/ER1 **PRESENT**; ER21→ER11 / ER8 ancient civ / ER7 / ER4 rights / ER3 **WAITING_DATA** (ok; presence ≠ VERIFIED)  
 SoT: **GitHub #162** / **62L-ER** family — *62L-ER22 Historical Avatar Contract*  
