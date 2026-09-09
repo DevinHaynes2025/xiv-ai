@@ -7,7 +7,7 @@ Branch: `cursor/62l-cd-data-root-local-llm-archive-mesh-4059`
 Parent / base tip: `cursor/62l-bz-global-compute-nervous-routing-4059` @ `ff72b947ee513694531c5fd4fa36c8e3447f2232` (`docs(62L-BZ): restore tip SHA after align commit #90`)
 Why this base: Preferred **62L-CC** tip + report (`cursor/62l-cc-*` + `62L_CC_*REPORT.md`) remained **WAITING_DATA** after fetch-with-backoff. Preferred **CB** and **CA** likewise **WAITING_DATA** (never present on origin). Preference **CC → CB → CA → BZ → BY → …** therefore selects **BZ** @ `ff72b947`.
 Implementation SHAs: see commit list below
-Tip SHA: `8f0d070170cdf6e5240a85281d9e46685ca59fce`
+Tip SHA: `bfc089bdabd96b6a72663ab12d920bcd27f354e4`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
