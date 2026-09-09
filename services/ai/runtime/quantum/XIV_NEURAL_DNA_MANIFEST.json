@@ -1,0 +1,59 @@
+{
+  "manifestId": "XIV_NEURAL_DNA_MANIFEST",
+  "phase": "62L-EX12",
+  "title": "Quantum Pathway Graph — neural routing preference DNA",
+  "githubIssue": 170,
+  "l4AutonomyEnabled": false,
+  "graphKind": "SOFTWARE_KNOWLEDGE_DECISION_GRAPH",
+  "biologicalConsciousness": false,
+  "canonicalPathway": [
+    "Mission",
+    "Problem",
+    "WorkloadGenome",
+    "ProblemPrimitive",
+    "Algorithm",
+    "Representation",
+    "Runtime",
+    "Architecture",
+    "Device",
+    "Benchmark",
+    "Evidence",
+    "Comparison",
+    "Outcome",
+    "Lesson",
+    "FutureRoute"
+  ],
+  "may": [
+    "update_routing_preference",
+    "update_confidence",
+    "recommend_retest",
+    "record_FAILED_ON",
+    "preserve_CONTRADICTS",
+    "weaken_on_stale",
+    "label_SIMULATED_QUANTUM",
+    "explicit_CPU_GPU_NPU_FALLBACK_TO"
+  ],
+  "mustNot": [
+    "change_permissions",
+    "weaken_guardian_rls",
+    "auto_promote_local_global",
+    "treat_HYPOTHESIS_as_VERIFIED",
+    "treat_PREFERRED_as_production_permission",
+    "collapse_to_generic_QUANTUM",
+    "present_simulation_as_PHYSICAL_QPU_VERIFIED",
+    "fake_graph_scale",
+    "claim_consciousness_or_superintelligence_verified",
+    "bypass_wormhole_identity_tenant_universe_guardian_privacy_dataclass_runtime"
+  ],
+  "quantumTruthLabels": [
+    "CLASSICAL",
+    "QUANTUM_INSPIRED",
+    "SIMULATED_QUANTUM",
+    "PHYSICAL_QPU_VERIFIED",
+    "NOT_TESTED"
+  ],
+  "softWireNote": "EX1–EX11 / Agent Mesh / evidence ledger / benchmarks / chipgraph via existsSync; presence ≠ VERIFIED; absent → WAITING_DATA",
+  "nextPhaseDocsOnly": "EX13 — Quantum Pathway Plasticity",
+  "createdAt": "2026-09-09T22:50:00.000Z",
+  "rollbackVersion": null
+}
