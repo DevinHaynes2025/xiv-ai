@@ -7,8 +7,8 @@ Branch: `cursor/62l-by-hardware-cortex-synapse-compiler-4059`
 Parent / base tip: `cursor/62l-bx-neural-chip-os-semiconductor-twin-4059` @ `19b066d5a4aba7684408054817e7ea5695b8dd8d` (includes `62L_BX_NEURAL_CHIP_OS_SEMICONDUCTOR_TWIN_REPORT.md`)
 Why this base: Preferred **62L-BX** tip + report initially **WAITING_DATA**; scaffolded from **BU** @ `342585a` then **rebased onto BX** once tip + report **PRESENT** on origin (BW also PRESENT as BX ancestor @ `dde6e7a`). Preference **BX → BW → BV → BU → BT → …** selects **BX**.
 Implementation SHAs: `3afb20c`..`ed33930` (feat commits; see commit list below)
-Report SHA: _(this commit)_
-Tip SHA: _(updated after report align)_
+Report SHA: 
+Tip SHA: 
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
