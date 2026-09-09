@@ -24,8 +24,8 @@ export type AgentRegistryStats = {
   registered: number;
   active: number;
   slots: number;
-  slotCollisions: number;
-  crossTenantCollisions: number;
+  refusedDuplicateKeys: number;
+  refusedCrossTenantKeys: number;
   integrityFailures: number;
 };
 
@@ -42,8 +42,8 @@ export class LogicalAgentRegistry {
   private readonly slots = new Map<string, string>();
   private readonly assignments = new Map<string, AgentAssignment>();
   private readonly assignmentsByAgent = new Map<string, string[]>();
-  private slotCollisions = 0;
-  private crossTenantCollisions = 0;
+  private refusedDuplicateKeys = 0;
+  private refusedCrossTenantKeys = 0;
   private unauthorizedActivations = 0;
   private rejectedAssignments = 0;
 
@@ -68,8 +68,8 @@ export class LogicalAgentRegistry {
     const existingAgentId = this.slots.get(slot);
     if (existingAgentId) {
       const existing = this.agents.get(existingAgentId) as LogicalAgentIdentity;
-      this.slotCollisions += 1;
-      if (!sameTenant(existing.tenant, input.tenant)) this.crossTenantCollisions += 1;
+      this.refusedDuplicateKeys += 1;
+      if (!sameTenant(existing.tenant, input.tenant)) this.refusedCrossTenantKeys += 1;
       throw new RuntimeError('duplicate_identity', 'This logical agent key already exists in this universe.', {
         agentKey: input.agentKey,
       });
@@ -112,6 +112,13 @@ export class LogicalAgentRegistry {
       detail: { registered, rejected, classification },
     });
     return { registered, rejected };
+  }
+
+  /** Resolves a human-facing key inside one tenant's slot space. */
+  findByKey(scope: TenantRef, agentKey: string): LogicalAgentIdentity | undefined {
+    const agentId = this.slots.get(logicalAgentSlot(scope.organizationId, scope.universeId, agentKey));
+    if (!agentId) return undefined;
+    return this.get(scope, agentId);
   }
 
   get(scope: TenantRef, agentId: string): LogicalAgentIdentity | undefined {
@@ -296,8 +303,8 @@ export class LogicalAgentRegistry {
       registered: this.agents.size,
       active,
       slots: this.slots.size,
-      slotCollisions: this.slotCollisions,
-      crossTenantCollisions: this.crossTenantCollisions,
+      refusedDuplicateKeys: this.refusedDuplicateKeys,
+      refusedCrossTenantKeys: this.refusedCrossTenantKeys,
       integrityFailures,
     };
   }
@@ -308,6 +315,42 @@ export class LogicalAgentRegistry {
 
   get rejectedAssignmentCount() {
     return this.rejectedAssignments;
+  }
+
+  exportAgents(): Record<string, LogicalAgentIdentity> {
+    return Object.fromEntries(this.agents.entries());
+  }
+
+  exportAssignments(): Record<string, AgentAssignment> {
+    return Object.fromEntries(this.assignments.entries());
+  }
+
+  /**
+   * Restore rebuilds the slot index from the agent rows rather than trusting a
+   * stored index, so a snapshot cannot reintroduce a slot that points at a
+   * different tenant's agent.
+   */
+  restore(input: {
+    agents: Record<string, LogicalAgentIdentity>;
+    assignments: Record<string, AgentAssignment>;
+  }) {
+    this.agents.clear();
+    this.slots.clear();
+    this.assignments.clear();
+    this.assignmentsByAgent.clear();
+    for (const [agentId, identity] of Object.entries(input.agents)) {
+      this.agents.set(agentId, identity);
+      this.slots.set(
+        logicalAgentSlot(identity.tenant.organizationId, identity.tenant.universeId, identity.agentKey),
+        agentId,
+      );
+    }
+    for (const [assignmentId, assignment] of Object.entries(input.assignments)) {
+      this.assignments.set(assignmentId, assignment);
+      const history = this.assignmentsByAgent.get(assignment.agentId) ?? [];
+      history.push(assignmentId);
+      this.assignmentsByAgent.set(assignment.agentId, history);
+    }
   }
 
   countForTenant(tenant: TenantRef): number {

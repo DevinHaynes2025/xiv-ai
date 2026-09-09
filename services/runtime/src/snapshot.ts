@@ -31,6 +31,7 @@ export const REQUIRED_BACKUP_TABLES = [
   'attestations',
   'approvals',
   'agents',
+  'agentAssignments',
   'lineage',
   'audit',
   'usage',
@@ -50,7 +51,9 @@ export class SnapshotService {
   ) {}
 
   take(): PlaneSnapshot {
-    const tables = this.source.exportTables();
+    // Deep-copied at capture: an export that aliases live control-plane state
+    // would keep changing after the snapshot, which is not a backup.
+    const tables = structuredClone(this.source.exportTables());
     const missing = REQUIRED_BACKUP_TABLES.filter((name) => !(name in tables));
     if (missing.length) {
       throw new RuntimeError('malformed', 'Backup policy does not cover every required table.', { missing });
@@ -97,7 +100,9 @@ export class SnapshotService {
     }
 
     const recordsBefore = this.source.countRecords(this.source.exportTables());
-    this.source.restoreTables(snapshot.tables as Record<string, unknown>);
+    // Cloned on the way out too, so restored state is not aliased to the
+    // snapshot and a later mutation cannot invalidate it retroactively.
+    this.source.restoreTables(structuredClone(snapshot.tables as Record<string, unknown>));
     const recordsRestored = this.source.countRecords(this.source.exportTables());
     const completedAt = this.clock.now();
 

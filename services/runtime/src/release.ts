@@ -9,8 +9,15 @@ export type RollbackRehearsal = {
   toVersion: string;
   destructiveDependency: boolean;
   recovered: boolean;
-  recordsBefore: number;
-  recordsAfter: number;
+  /** Records the rollback target committed to, reported by the restore hook. */
+  expectedRecords: number;
+  /** Records present once the rollback finished. */
+  observedRecords: number;
+  /**
+   * Records the rollback target held that did not come back. Writes made after
+   * the target and intentionally reverted are not counted: reverting them is
+   * what a rollback is for.
+   */
   unauthorizedDataLoss: number;
   durationMs: number;
   configLineageRetained: boolean;
@@ -75,7 +82,11 @@ export class ReleaseLedger {
    * restore hook, then reports measured duration and record deltas.
    */
   rehearseRollback(input: {
-    restore: () => { recordsBefore: number; recordsAfter: number };
+    /**
+     * Performs the rollback and reports how many records the target version
+     * committed against how many are present afterwards.
+     */
+    restore: () => { expectedRecords: number; observedRecords: number };
   }): RollbackRehearsal {
     const from = this.current();
     const to = this.previous();
@@ -96,7 +107,7 @@ export class ReleaseLedger {
     }
 
     const startedAt = this.clock.now();
-    const { recordsBefore, recordsAfter } = input.restore();
+    const { expectedRecords, observedRecords } = input.restore();
     const durationMs = this.clock.now() - startedAt;
 
     this.manifests.push({
@@ -110,9 +121,9 @@ export class ReleaseLedger {
       toVersion: to.version,
       destructiveDependency: false,
       recovered: true,
-      recordsBefore,
-      recordsAfter,
-      unauthorizedDataLoss: Math.max(0, recordsBefore - recordsAfter),
+      expectedRecords,
+      observedRecords,
+      unauthorizedDataLoss: Math.max(0, expectedRecords - observedRecords),
       durationMs,
       configLineageRetained: this.manifests.every((manifest) => Boolean(manifest.configHash)),
     };

@@ -17,6 +17,15 @@ export const REQUIRED_TELEMETRY_SIGNALS = [
 
 export type TelemetrySignal = (typeof REQUIRED_TELEMETRY_SIGNALS)[number];
 
+/**
+ * Signals every workload must emit regardless of outcome. `error` is required
+ * of the fleet and of any workload that actually failed, but demanding it of a
+ * successful workload would only teach the runtime to emit noise.
+ */
+export const REQUIRED_WORKLOAD_SIGNALS = REQUIRED_TELEMETRY_SIGNALS.filter(
+  (signal) => signal !== 'error',
+) as readonly TelemetrySignal[];
+
 export type TelemetryEvent = {
   eventId: string;
   at: number;
@@ -106,16 +115,22 @@ export class TelemetryHub {
     return [...(this.byWorkload.get(workloadId) ?? new Set<TelemetrySignal>())];
   }
 
-  /** A workload is traceable only when every required signal is present. */
-  traceable(workloadId: string): boolean {
+  /**
+   * A workload is traceable when every signal required of it is present. A
+   * workload that failed must additionally carry an `error` signal, so a silent
+   * failure is not traceable.
+   */
+  traceable(workloadId: string, options: { failed?: boolean } = {}): boolean {
     const signals = this.byWorkload.get(workloadId);
     if (!signals) return false;
-    return REQUIRED_TELEMETRY_SIGNALS.every((signal) => signals.has(signal));
+    if (!REQUIRED_WORKLOAD_SIGNALS.every((signal) => signals.has(signal))) return false;
+    return options.failed ? signals.has('error') : true;
   }
 
-  traceabilityRate(workloadIds: readonly string[]): number {
+  traceabilityRate(workloadIds: readonly string[], failedWorkloadIds: readonly string[] = []): number {
     if (!workloadIds.length) return 0;
-    const traced = workloadIds.filter((id) => this.traceable(id)).length;
+    const failed = new Set(failedWorkloadIds);
+    const traced = workloadIds.filter((id) => this.traceable(id, { failed: failed.has(id) })).length;
     return traced / workloadIds.length;
   }
 

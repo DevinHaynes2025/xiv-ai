@@ -351,4 +351,9 @@ export class ResourceGovernor {
   export() {
     return { usage: [...this.usage], quotas: Object.fromEntries(this.quotas.entries()) };
   }
+
+  restoreUsage(rows: readonly WorkloadUsage[]) {
+    this.usage.length = 0;
+    this.usage.push(...rows);
+  }
 }

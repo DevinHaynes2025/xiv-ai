@@ -104,4 +104,11 @@ export class AuditLedger {
   export(): readonly AuditEvent[] {
     return this.events;
   }
+
+  /** Used by restore. The chain head is recomputed from the restored tail. */
+  restore(events: readonly AuditEvent[]) {
+    this.events.length = 0;
+    this.events.push(...events);
+    this.head = this.events.at(-1)?.hash ?? GENESIS;
+  }
 }

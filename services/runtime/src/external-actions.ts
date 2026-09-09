@@ -128,4 +128,9 @@ export class ExternalActionLedger {
   export(): Record<string, ExternalActionRecord> {
     return Object.fromEntries(this.byKey.entries());
   }
+
+  restore(rows: Record<string, ExternalActionRecord>) {
+    this.byKey.clear();
+    for (const [key, record] of Object.entries(rows)) this.byKey.set(key, record);
+  }
 }

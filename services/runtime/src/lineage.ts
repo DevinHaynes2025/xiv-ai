@@ -127,4 +127,9 @@ export class LineageStore {
   export(): Record<string, LineageRecord[]> {
     return Object.fromEntries(this.byWorkload.entries());
   }
+
+  restore(rows: Record<string, LineageRecord[]>) {
+    this.byWorkload.clear();
+    for (const [workloadId, chain] of Object.entries(rows)) this.byWorkload.set(workloadId, [...chain]);
+  }
 }

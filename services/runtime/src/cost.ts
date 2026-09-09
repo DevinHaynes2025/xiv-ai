@@ -46,7 +46,7 @@ export class CostLedger {
   private readonly authorizations = new Map<string, BudgetAuthorization>();
   private readonly monitoredResources = new Set<string>();
   private readonly alertedResources = new Set<string>();
-  private unauthorizedContinuations = 0;
+  private refusedContinuations = 0;
 
   constructor(
     private readonly clock: Clock,
@@ -94,7 +94,7 @@ export class CostLedger {
   mayContinueOverBudget(workloadId: string): boolean {
     const authorization = this.authorizations.get(workloadId);
     if (!authorization) {
-      this.unauthorizedContinuations += 1;
+      this.refusedContinuations += 1;
       return false;
     }
     return true;
@@ -157,8 +157,9 @@ export class CostLedger {
     return out;
   }
 
-  get unauthorizedOverBudgetContinuations() {
-    return this.unauthorizedContinuations;
+  /** Over-budget continuations that were refused for want of an authorization. */
+  get refusedOverBudgetContinuations() {
+    return this.refusedContinuations;
   }
 
   get recordCount() {

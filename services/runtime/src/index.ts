@@ -70,5 +70,20 @@ export { LOCAL_REFERENCE_MODEL_ID, RUNTIME_CONTRACT_VERSION, RuntimePlane, type 
 export { ReleaseLedger, type RollbackRehearsal } from './release';
 export { ComputeRouter, type NodeLoad, type RoutingInput } from './router';
 export { REQUIRED_BACKUP_TABLES, SnapshotService, type RestoreReport, type SnapshotSource } from './snapshot';
-export { REQUIRED_TELEMETRY_SIGNALS, TelemetryHub, type AlertPath, type TelemetryEvent } from './telemetry';
+export {
+  REQUIRED_TELEMETRY_SIGNALS,
+  REQUIRED_WORKLOAD_SIGNALS,
+  TelemetryHub,
+  type AlertPath,
+  type TelemetryEvent,
+} from './telemetry';
+export {
+  RUNTIME_ROUTES,
+  createRuntimeHandlers,
+  createRuntimeServer,
+  dispatch,
+  type RouteSpec,
+  type RuntimeRequest,
+  type RuntimeResponse,
+} from './server';
 export type * from './types';

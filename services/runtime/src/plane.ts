@@ -5,7 +5,7 @@ import { ApprovalRegistry, PrincipalDirectory, WorkloadAuthorizer } from './auth
 import { systemClock, type Clock } from './clock';
 import { ControlPlane } from './control';
 import { CostLedger } from './cost';
-import { generateSigningKeys, type SigningKeys } from './crypto';
+import { generateSigningKeys, sha256, type SigningKeys } from './crypto';
 import { WorkloadEngine } from './execution';
 import { ExternalActionLedger } from './external-actions';
 import { ResourceGovernor, type TenantQuota } from './governor';
@@ -286,6 +286,27 @@ export class RuntimePlane {
     this.governor.setQuota(quota);
   }
 
+  /**
+   * Rotates signing material in place. Every subsystem holds this same key
+   * object, so one rotation invalidates outstanding enrollment tickets, grants,
+   * offline packages, meeting rosters and checkpoints at once. Only key
+   * fingerprints reach the audit ledger.
+   */
+  rotateKeys(next: SigningKeys = generateSigningKeys()): { previousFingerprints: Record<string, string> } {
+    const fingerprintsOf = (keys: SigningKeys) =>
+      Object.fromEntries(Object.entries(keys).map(([name, value]) => [name, sha256(value).slice(0, 16)]));
+    const previousFingerprints = fingerprintsOf(this.keys);
+    Object.assign(this.keys, next);
+    this.audit.append({
+      tenant: null,
+      category: 'security',
+      kind: 'signing_keys_rotated',
+      subjectId: 'signing_keys',
+      detail: { previousFingerprints, currentFingerprints: fingerprintsOf(this.keys) },
+    });
+    return { previousFingerprints };
+  }
+
   /** Convenience for tests and acceptance: full node onboarding in one call. */
   onboardNode(input: {
     token: string;
@@ -334,14 +355,14 @@ export class RuntimePlane {
       workloads: this.workloadStore.exportAll(),
       attestations: this.attestation.export(),
       approvals: this.approvals.export(),
-      agents: this.agents.stats(),
+      agents: this.agents.exportAgents(),
+      agentAssignments: this.agents.exportAssignments(),
       lineage: this.lineage.export(),
       audit: this.audit.export(),
-      usage: this.governor.export(),
+      usage: this.governor.export().usage,
       checkpoints: this.engine.exportCheckpoints(),
       externalActions: this.external.export(),
       releases: this.releases.export(),
-      models: this.models.export(),
     };
   }
 
@@ -350,7 +371,15 @@ export class RuntimePlane {
     this.workloadStore.restoreAll((tables.workloads ?? {}) as Record<string, WorkloadRecord>);
     this.attestation.restore((tables.attestations ?? {}) as Record<string, AttestationRecord>);
     this.approvals.restore((tables.approvals ?? {}) as never);
+    this.agents.restore({
+      agents: (tables.agents ?? {}) as never,
+      assignments: (tables.agentAssignments ?? {}) as never,
+    });
+    this.lineage.restore((tables.lineage ?? {}) as never);
+    this.audit.restore((tables.audit ?? []) as never[]);
+    this.governor.restoreUsage((tables.usage ?? []) as never[]);
     this.engine.restoreCheckpoints((tables.checkpoints ?? {}) as never);
+    this.external.restore((tables.externalActions ?? {}) as never);
     this.releases.restore(((tables.releases ?? []) as never[]).slice());
   }
 
