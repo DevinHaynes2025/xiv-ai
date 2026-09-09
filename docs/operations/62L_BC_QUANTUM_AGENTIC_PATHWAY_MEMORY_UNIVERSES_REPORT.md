@@ -173,7 +173,8 @@ Note: **62L-BD will push HW/SW abstraction while remaining installable on ordina
 
 - Branch: `cursor/62l-bc-quantum-agentic-pathway-memory-universes-4059`
 - Tip SHA (feat): `b55d8b8b231948f24c8226bf2f637bca9b174518`
-- Tip SHA (report pin): `85a6d22ae449e6773dfd6135e95f17f813b31e94`
+- Tip SHA (report pin): 
+- Tip SHA (final): `85a6d22ae449e6773dfd6135e95f17f813b31e94`
 - Report path: `docs/operations/62L_BC_QUANTUM_AGENTIC_PATHWAY_MEMORY_UNIVERSES_REPORT.md`
 - Tests: `npm run test:62lbc` exit 0
 - Base tip: BA `5acb7ef98e1acccccc58fc2fea60baa5504a3cc2`
