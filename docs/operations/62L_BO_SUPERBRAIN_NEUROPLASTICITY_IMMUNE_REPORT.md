@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-bn-superbrain-neural-growth-metabolism-4059` @ `6
 Why this base: Preferred **62L-BN** tip + report **PRESENT** after fetch/backoff — **rebased onto BN**. **BM** @ `4a6d128` and **BL** @ `46ea56b` are ancestors.
 Implementation SHAs: `17ab7eb`..`9c5af86` (+ docs restore commits); see `git log` on branch
 Report SHA: `acd455c` (report body pin; tip may be later restore commit)
-Tip SHA: `8826671c7e201d421242bfb8f594586e9176b1ee`
+Tip SHA: `a11a7260ed925e8d1345a9f66d21b36390fd0cff`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
