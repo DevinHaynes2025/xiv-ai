@@ -4,7 +4,7 @@ Status: **IMPLEMENTATION COMPLETE ON CHILD BRANCH** — rebased onto final EL8 t
 
 Date: 2026-09-09  
 Branch: `cursor/62l-el9-resource-governor-4059`  
-Tip SHA: `(updated on commit)`  
+Tip SHA: `354e017f9eeaa71b5e1851ecb830164ad636094a`  
 Base: `cursor/62l-el8-model-load-evidence-4059` @ `224715c9b741c181bf97131e9c29985d9192038d`  
 EL8 predecessor: EL7 `0777b506775c5215a8c60a030a984fe0c2f4b3de`  
 Prior EL9 bases: `4447be8…` (interim EL8), `0e7ca09…` (initial)  
