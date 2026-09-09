@@ -24,7 +24,8 @@
     "test:62lem1": "node --import tsx --test local-brain/phase62lem1.test.ts",
     "test:62lem3": "node --import tsx --test local-runtime/__tests__/phase62lem3.test.ts",
     "test:62lem8": "node --import tsx --test local-runtime/__tests__/em8-compute-return-receipt.test.ts",
-    "test:62lem9": "node --import tsx --test local-runtime/__tests__/phase62lem9.test.ts"
+    "test:62lem9": "node --import tsx --test local-runtime/__tests__/phase62lem9.test.ts",
+    "test:62leo6": "node --import tsx --test local-brain/phase62leo6.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
