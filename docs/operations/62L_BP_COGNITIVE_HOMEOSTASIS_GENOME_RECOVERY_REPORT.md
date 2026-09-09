@@ -7,8 +7,8 @@ Branch: `cursor/62l-bp-cognitive-homeostasis-genome-recovery-4059`
 Parent / base tip: `cursor/62l-bo-superbrain-neuroplasticity-immune-4059` @ `211272c1fdf5f0f17fff050089acfc7fd87e8453` (`docs(62L-BO): restore tip SHA after align commit #79`)
 Why this base: Preferred **62L-BO** tip + report **PRESENT** (latest includes BN then BM). Scaffolded from BL; rebased through BO revisions onto current BO @ `211272c`. Founder paste uses **Skill Exchange** (not Marketplace).
 Implementation SHA: `51fcd3f72af97b00f15df59c7b2bedb60f91e30b` (`feat(62L-BP): add cognitive homeostasis, genome replication, skill exchange, mesh recovery #80`)
-Report SHA: _(pending pin)_
-Tip SHA: _(pending pin)_
+Report SHA: `79a29731f680fb89dc2d5f1ad0210f8a8e008682` (gate refresh on BN-backed BO)
+Tip SHA: `79a29731f680fb89dc2d5f1ad0210f8a8e008682`
 Tip-land: **NO**
 PR: **NOT CREATED** (`gh pr create` / ManagePullRequest were not called)
 
