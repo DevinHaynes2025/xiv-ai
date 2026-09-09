@@ -238,6 +238,12 @@ replay is blocked for that reason. Either way the workload moves to `held_for_hu
 decision goes to a person. A committed action also cannot be re-committed later: the ledger is keyed
 by workload and action key.
 
+Held work cannot be rescheduled at all until `releaseHeldWorkload` is called by a human operator with
+a recorded note, which either discards it or reauthorizes it. Reauthorizing clears the ledger for that
+workload, and both the decision and the cleared keys are written to lineage and to the security log —
+the story forbids a *blind* replay, not a deliberate one, so the duplicate risk a human accepted stays
+visible afterwards.
+
 ## 27. Schema slice
 
 `services/ai/runtime/schema.planned.sql` contains the fourteen tables from the story with constraints,

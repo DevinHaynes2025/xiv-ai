@@ -30,6 +30,7 @@ export type DenialCode =
   | 'model_revoked'
   | 'budget_exhausted'
   | 'budget_limit_reached'
+  | 'budget_unknown'
   | 'offline_package_unknown'
   | 'offline_signature_invalid'
   | 'offline_package_expired'

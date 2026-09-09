@@ -170,6 +170,24 @@ describe('cross-tenant compute isolation', () => {
     assert.equal(fabric.getAssignment(opB, decision.assignmentId!).ok, false);
   });
 
+  it('scopes an agent stop to the Universe that issued it', () => {
+    const { fabric, opA, opB } = twoTenantFabric();
+    const opBFull = operator(ORG_B, 'operator_beta');
+
+    // Both Universes happen to name an agent `agent_supply`.
+    expectOk(fabric.stopAgent(opA, 'agent_supply', 'alpha guardian hold'), 'stopAgent');
+
+    const alphaDenial = fabric.submitWorkload(agentCaller('agent_supply', ORG_A), analysisWorkload('agent_supply'));
+    assert.equal(alphaDenial.ok, false);
+
+    const betaSubmission = fabric.submitWorkload(
+      agentCaller('agent_supply', ORG_B),
+      analysisWorkload('agent_supply'),
+    );
+    assert.equal(betaSubmission.ok, true, 'a stop in one Universe must not reach into another');
+    assert.equal(opB.scope.universeId, opBFull.scope.universeId);
+  });
+
   it('rejects a foreign node at the eligibility layer as defence in depth', () => {
     const { fabric, opB, beta } = twoTenantFabric();
     const foreignNode = expectOk(fabric.getNode(opB, beta.nodeId), 'getNode').node;

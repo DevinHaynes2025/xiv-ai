@@ -184,6 +184,67 @@ describe('runtime failure recovery', () => {
     assert.equal(replay.ok === false && replay.code, 'consequential_replay_blocked');
   });
 
+  it('will not reschedule held work until a human releases it', () => {
+    const { fabric, op, primary, standby } = twoNodeFabric();
+    const started = startWork(
+      fabric,
+      [primary, standby],
+      analysisWorkload('agent_supply', { consequential: true, sourceLabel: 'supplier reallocation commit' }),
+    );
+    expectOk(fabric.reportNodeFailure(op, { nodeId: started.node.nodeId, detail: 'rack lost' }), 'reportNodeFailure');
+
+    const blocked = fabric.scheduleWorkload(op, started.workloadId);
+    assert.equal(blocked.ok, false);
+    assert.equal(blocked.ok === false && blocked.code, 'consequential_replay_blocked');
+
+    const unsigned = fabric.releaseHeldWorkload(op, {
+      workloadId: started.workloadId,
+      decision: 'reauthorize',
+      note: '   ',
+    });
+    assert.equal(unsigned.ok, false);
+    assert.equal(unsigned.ok === false && unsigned.code, 'validation_evidence_missing');
+
+    const released = expectOk(
+      fabric.releaseHeldWorkload(op, {
+        workloadId: started.workloadId,
+        decision: 'reauthorize',
+        note: 'confirmed with the supplier that no order was placed',
+      }),
+      'releaseHeldWorkload',
+    );
+    assert.equal(released.workload.status, 'queued');
+    assert.equal(expectOk(fabric.scheduleWorkload(op, started.workloadId), 'scheduleWorkload').decision.outcome, 'scheduled');
+
+    const lineage = expectOk(fabric.getLineage(op, started.workloadId), 'getLineage').lineage;
+    assert.ok(
+      lineage.chain.some(
+        (entry) => entry.stage === 'decision' && entry.authorizationReason.includes('reauthorize'),
+      ),
+    );
+  });
+
+  it('lets a human discard held work instead of rerunning it', () => {
+    const { fabric, op, primary, standby } = twoNodeFabric();
+    const started = startWork(
+      fabric,
+      [primary, standby],
+      analysisWorkload('agent_supply', { consequential: true, sourceLabel: 'supplier reallocation commit' }),
+    );
+    expectOk(fabric.reportNodeFailure(op, { nodeId: started.node.nodeId, detail: 'rack lost' }), 'reportNodeFailure');
+
+    const discarded = expectOk(
+      fabric.releaseHeldWorkload(op, {
+        workloadId: started.workloadId,
+        decision: 'discard',
+        note: 'the supplier confirmed the order landed; no rerun',
+      }),
+      'releaseHeldWorkload',
+    );
+    assert.equal(discarded.workload.status, 'cancelled');
+    assert.equal(fabric.scheduleWorkload(op, started.workloadId).ok, false);
+  });
+
   it('queues the workload when no alternate runtime qualifies', () => {
     const fabric = newFabric();
     const op = operator();

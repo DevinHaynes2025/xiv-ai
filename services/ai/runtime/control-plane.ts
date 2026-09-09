@@ -201,6 +201,28 @@ export class RuntimeFabric {
     return this.clock().toISOString();
   }
 
+  /**
+   * Agent and meeting identifiers are only unique inside a Universe, so every
+   * keyed side table is namespaced. Stopping `agent_supply` in one Universe
+   * must not stop an unrelated `agent_supply` in another.
+   */
+  private keyIn(scope: TenantScope, id: string): string {
+    return `${scope.organizationId}/${scope.universeId}/${id}`;
+  }
+
+  private agentVersion(scope: TenantScope, agentId: string): number {
+    return this.agentStateVersions.get(this.keyIn(scope, agentId)) ?? 0;
+  }
+
+  private bumpAgentVersion(scope: TenantScope, agentId: string): void {
+    this.agentStateVersions.set(this.keyIn(scope, agentId), this.agentVersion(scope, agentId) + 1);
+  }
+
+  /** The version an offline package is issued against, and re-checked on sync. */
+  private agentSetVersion(scope: TenantScope, agentIds: readonly string[]): number {
+    return agentIds.reduce((total, agentId) => total + this.agentVersion(scope, agentId), 0);
+  }
+
   private record(
     scope: TenantScope,
     kind: SecurityEventKind,
@@ -773,7 +795,7 @@ export class RuntimeFabric {
     const denied = authorize(caller, 'audit.read');
     if (denied) return denied;
     const budget = this.budgets.get(budgetKey(caller.scope, owner));
-    if (!budget) return deny('workload_unknown', `no budget recorded for ${owner.kind} ${owner.id}`);
+    if (!budget) return deny('budget_unknown', `no budget recorded for ${owner.kind} ${owner.id}`);
     return { ok: true, budget: { ...budget } };
   }
 
@@ -802,10 +824,10 @@ export class RuntimeFabric {
     if (caller.actorType === 'agent' && caller.agentId && caller.agentId !== request.agentId) {
       return deny('caller_unauthorized', 'an agent cannot submit work under another agent identity');
     }
-    if (this.stoppedAgents.has(request.agentId)) {
+    if (this.stoppedAgents.has(this.keyIn(caller.scope, request.agentId))) {
       return deny('workload_terminated', `agent ${request.agentId} is stopped by an operator`);
     }
-    if (request.meetingId && this.stoppedMeetings.has(request.meetingId)) {
+    if (request.meetingId && this.stoppedMeetings.has(this.keyIn(caller.scope, request.meetingId))) {
       return deny('workload_terminated', `meeting ${request.meetingId} is stopped by an operator`);
     }
 
@@ -879,6 +901,12 @@ export class RuntimeFabric {
     const workload = this.scopedWorkload(caller, workloadId);
     if (!workload) return deny('workload_unknown', `workload ${workloadId} is not visible in this universe`);
     if (workload.status === 'cancelled') return deny('workload_terminated', `workload ${workloadId} was cancelled`);
+    if (workload.status === 'held_for_human_review') {
+      return deny(
+        'consequential_replay_blocked',
+        `workload ${workloadId} is held for human review and cannot be rescheduled until it is released`,
+      );
+    }
 
     const decision = this.planPlacement(caller.scope, workload, options.excludeNodeIds ?? []);
     if (decision.outcome === 'scheduled' && decision.nodeId && decision.placement) {
@@ -1298,7 +1326,7 @@ export class RuntimeFabric {
     this.assignments.set(assignment.assignmentId, finished);
     this.reservations.delete(assignment.assignmentId);
     this.workloads.set(workload.workloadId, { ...workload, status: 'completed' });
-    this.agentStateVersions.set(workload.agentId, (this.agentStateVersions.get(workload.agentId) ?? 0) + 1);
+    this.bumpAgentVersion(caller.scope, workload.agentId);
 
     this.trace({
       scope: caller.scope,
@@ -1451,7 +1479,7 @@ export class RuntimeFabric {
   stopAgent(caller: CallerContext, agentId: string, reason: string): Result<{ terminated: string[] }> {
     const denied = authorize(caller, 'workload.cancel');
     if (denied) return denied;
-    this.stoppedAgents.add(agentId);
+    this.stoppedAgents.add(this.keyIn(caller.scope, agentId));
 
     const terminated: string[] = [];
     for (const assignment of this.assignments.values()) {
@@ -1472,7 +1500,7 @@ export class RuntimeFabric {
   stopMeeting(caller: CallerContext, meetingId: string, reason: string): Result<{ terminated: string[] }> {
     const denied = authorize(caller, 'workload.cancel');
     if (denied) return denied;
-    this.stoppedMeetings.add(meetingId);
+    this.stoppedMeetings.add(this.keyIn(caller.scope, meetingId));
 
     const terminated: string[] = [];
     for (const workload of this.workloads.values()) {
@@ -1638,7 +1666,7 @@ export class RuntimeFabric {
       nodeId: input.nodeId,
       agentIds: [...input.agentIds],
       grant: boundGrant(input.grant, ceiling),
-      baseStateVersion: input.agentIds.reduce((total, agentId) => total + (this.agentStateVersions.get(agentId) ?? 0), 0),
+      baseStateVersion: this.agentSetVersion(caller.scope, input.agentIds),
       issuedAt: issuedAt.toISOString(),
       expiresAt: new Date(issuedAt.getTime() + input.ttlMs).toISOString(),
       issuedBy: caller.actorId,
@@ -1700,10 +1728,7 @@ export class RuntimeFabric {
     }
 
     const audit = auditOfflineResults(input.package, input.results);
-    const currentVersion = input.package.agentIds.reduce(
-      (total, agentId) => total + (this.agentStateVersions.get(agentId) ?? 0),
-      0,
-    );
+    const currentVersion = this.agentSetVersion(caller.scope, input.package.agentIds);
 
     let status: SyncEvent['status'] = 'accepted';
     let reason = 'within_granted_authority';
@@ -1731,7 +1756,7 @@ export class RuntimeFabric {
 
     if (status === 'accepted') {
       for (const agentId of input.package.agentIds) {
-        this.agentStateVersions.set(agentId, (this.agentStateVersions.get(agentId) ?? 0) + 1);
+        this.bumpAgentVersion(caller.scope, agentId);
       }
       for (const result of input.results) {
         this.lineage.push({
@@ -1923,7 +1948,7 @@ export class RuntimeFabric {
     if (denied) return denied;
     const workload = this.scopedWorkload(caller, input.workloadId);
     if (!workload) return deny('workload_unknown', `workload ${input.workloadId} is not visible in this universe`);
-    if (this.stoppedMeetings.has(input.meetingId)) {
+    if (this.stoppedMeetings.has(this.keyIn(caller.scope, input.meetingId))) {
       return deny('workload_terminated', `meeting ${input.meetingId} is stopped by an operator`);
     }
 
@@ -1939,6 +1964,68 @@ export class RuntimeFabric {
       note: 'agent meeting recorded against the workload result',
     });
     return { ok: true, transcriptDigest };
+  }
+
+  /**
+   * The only way out of `held_for_human_review`. Section 26 forbids a *blind*
+   * replay, not a deliberate one: reauthorizing clears the ledger for the
+   * workload, and both the decision and the clearing are recorded so the
+   * duplicate risk the human accepted is visible afterwards.
+   */
+  releaseHeldWorkload(
+    caller: CallerContext,
+    input: { workloadId: string; decision: 'reauthorize' | 'discard'; note: string },
+  ): Result<{ workload: WorkloadRecord }> {
+    if (caller.actorType !== 'human_operator') {
+      return deny('caller_unauthorized', 'only a human operator can release work held for human review');
+    }
+    const workload = this.scopedWorkload(caller, input.workloadId);
+    if (!workload) return deny('workload_unknown', `workload ${input.workloadId} is not visible in this universe`);
+    if (workload.status !== 'held_for_human_review') {
+      return deny('workload_terminated', `workload ${input.workloadId} is ${workload.status}, not held`);
+    }
+    if (!input.note.trim()) {
+      return deny('validation_evidence_missing', 'releasing held work requires a recorded note');
+    }
+
+    const cleared: string[] = [];
+    for (const [key, entry] of [...this.consequentialLedger]) {
+      if (entry.workloadId !== workload.workloadId) continue;
+      if (input.decision === 'reauthorize') {
+        this.consequentialLedger.delete(key);
+        cleared.push(entry.actionKey);
+      } else if (entry.state === 'held_for_human_review') {
+        this.consequentialLedger.delete(key);
+      }
+    }
+
+    const updated: WorkloadRecord = {
+      ...workload,
+      status: input.decision === 'reauthorize' ? 'queued' : 'cancelled',
+    };
+    this.workloads.set(workload.workloadId, updated);
+
+    this.trace({
+      scope: caller.scope,
+      workloadId: workload.workloadId,
+      stage: 'decision',
+      agentId: workload.agentId,
+      meetingId: workload.meetingId,
+      authorizationReason: `human ${caller.actorId} ${input.decision} after a consequential hold`,
+      note: cleared.length > 0 ? `${input.note} (cleared ledger keys: ${cleared.join(',')})` : input.note,
+    });
+
+    if (input.decision === 'reauthorize') {
+      this.record(
+        caller.scope,
+        'consequential_replay_blocked',
+        caller.actorId,
+        `hold on ${workload.workloadId} released by a human; ledger keys cleared: ${cleared.join(',') || 'none'}`,
+        { workloadId: workload.workloadId },
+      );
+    }
+
+    return { ok: true, workload: updated };
   }
 
   recordHumanDecision(
