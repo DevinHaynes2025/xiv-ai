@@ -8,7 +8,7 @@ Parent / base tip: `cursor/62l-by-hardware-cortex-synapse-compiler-4059` @ `a91e
 Why this base: Preferred **62L-BY** tip + report initially **WAITING_DATA**; scaffolded from **BU** @ `342585a`, interim-rebased onto early BY `@814b372` (report still MISSING), then **rebased onto BY** `@a91e182` once tip + report **PRESENT** on origin (BX `@19b066d` + BW `@dde6e7a` are BY ancestors). Preference **BY → BX → BW → BU → BT → …** selects **BY**.
 Implementation SHAs: `4c848af`..`04b8131` (feat/fix commits; see commit list below)
 Report SHA: `d5ffbccac09b40e2c66702989484c090b78b8deb`
-Tip SHA: `c5c64f157a8e02454cd61efb0f634f7ac3247ef6`
+Tip SHA: `9969132978b69f1f767a05ef5da224639f90ac2a`
 Tip-land: **NO**
 PR: **NOT CREATED** (founder did not ask; ManagePullRequest / `gh pr create` not called)
 
