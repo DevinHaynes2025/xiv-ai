@@ -94,3 +94,5 @@ export * from './agentic-search-worker';
 export * from './device-pilot-enrollment';
 export * from './device-pilot-policy';
 export * from './local-learning-sandbox';
+export * from './universal-device-compatibility';
+export * from './device-capability-broker';
