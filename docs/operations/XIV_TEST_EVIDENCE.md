@@ -142,3 +142,11 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 - Failed: none
 - Not run: device e2e; hosted xiv_consumer_ideas table apply
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 92efdee (US-EMP-01)
+
+## 2026-09-09 ~23:00 CT - US-SYS-01 System Navigator CSV/commerce demo - grok
+- Branch / SHA: grok/us-sys-01-system-navigator (commit follows)
+- Commands run: services/ai typecheck; npx tsx system-navigator.test.ts; apps/mobile npx tsc --noEmit
+- Passed: connector stubs (not live ERP); listSystemNavigatorView WAITING_CONNECTOR when unbound with null commerce totals; loadCommerceCsvDemo surfaces DEMO_CSV only; parseCommerceCsvDemo; L4 false; productionMutation false; mobile SystemsNavigator + CommerceCsvDemoScreen; never fabricate metrics
+- Failed: none
+- Not run: device e2e; live ERP connector (intentionally out of scope)
+- Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 52f06a6 (US-CON-01)

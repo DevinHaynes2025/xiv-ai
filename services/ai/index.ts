@@ -151,3 +151,25 @@ export {
   type ConsumerInnovateChannel,
   type ConsumerInnovatePersistence,
 } from './consumer-innovate';
+
+export {
+  SYSTEM_NAVIGATOR_POLICY,
+  BUILTIN_COMMERCE_CSV_DEMO_ROWS,
+  clearCommerceCsvDemo,
+  isCommerceCsvDemoLoaded,
+  listSystemNavigatorView,
+  loadCommerceCsvDemo,
+  parseCommerceCsvDemo,
+  resetSystemNavigatorSession,
+  systemNavigatorAllowsL4,
+  systemNavigatorAllowsLiveErp,
+  systemNavigatorAllowsProductionMutation,
+  type CommerceCsvDemoBundle,
+  type CommerceCsvDemoRow,
+  type CommerceCsvDemoSnapshot,
+  type CommerceMetricGate,
+  type SystemConnectorKind,
+  type SystemConnectorStatus,
+  type SystemConnectorStub,
+  type SystemNavigatorView,
+} from './system-navigator';

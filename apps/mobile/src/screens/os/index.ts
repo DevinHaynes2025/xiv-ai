@@ -1,4 +1,4 @@
-export { CustomerIntelligence } from '@/screens/os/customer-intelligence';
+﻿export { CustomerIntelligence } from '@/screens/os/customer-intelligence';
 export { DocumentsDesk } from '@/screens/os/documents-desk';
 export { FinanceDesk, MarketingDesk, ProjectsDesk, SecurityDesk } from '@/screens/os/light-desks';
 export { InventoryHealth } from '@/screens/os/inventory-health';
@@ -8,4 +8,5 @@ export { OperationsTower } from '@/screens/os/operations-tower';
 export { SalesDesk } from '@/screens/os/sales-desk';
 export { SupplyChainTower } from '@/screens/os/supply-chain-tower';
 export { SystemsNavigator } from '@/screens/os/systems-navigator';
+export { CommerceCsvDemoScreen } from '@/screens/os/commerce-csv-demo';
 export { WarehouseTower } from '@/screens/os/warehouse-tower';
