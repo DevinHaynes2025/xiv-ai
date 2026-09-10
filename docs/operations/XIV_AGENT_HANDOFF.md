@@ -1,12 +1,12 @@
-# XIV AGENT HANDOFF - US-PLG-01
+# XIV AGENT HANDOFF - EY3
 
-BRANCH: grok/us-plg-01-plugin-marketplace
-BASE: grok/us-net-01-supplier-directory @ 9b1edc9 (docs) / 7aacce1 (feat)
-STORY_ID: US-PLG-01
-ONLINE: hybrid
+BRANCH: grok/ey3-hardware-probe-reconcile
+BASE: grok/us-plg-01-plugin-marketplace @ 23c744e2
+STORY_ID: EY3
+ONLINE: hybrid (ASUS local probe + Ollama)
 WORKER: grok (one writer)
 
-GOAL: Plugin marketplace install (signed) - in-memory marketplace stub for Builder; WAITING_SIGNING when unbound; never claim cryptographic verification without a real verifier; install proposals requireApproval; L4 false; no production mutations; services/ai module + mobile Builder screens + tests + queue/TEST_EVIDENCE/handoff.
-CONSTRAINTS: L4 false; WAITING_SIGNING when signing/marketplace unbound; cryptographicallyVerified always false without real verifier; install proposals requireApproval; no production mutations; stub marketplace only; no main/force/xiv-v2; leave historical/* and sec-status alone; do not touch dimensional/* or xiv-12d / xiv-ai-energy.
-EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (US-PLG-01 entry)
-NEXT: EY3 Hardware capability probe (CPU/GPU/NPU/ollama) — queued in master Now lane; stay off xiv-12d / dimensional/* / xiv-ai-energy
+GOAL: Hardware capability probe reconcile — GET /v1/hardware with honest CPU/GPU/NPU/Ollama truth states; AMD CPU DETECTED on ASUS; GPU/NPU DETECTED or WAITING never fake VERIFIED; Ollama reachability via live /api/tags; tests + executive mobile readout; queue DONE + evidence.
+CONSTRAINTS: L4 false; no fabricate silicon VERIFIED; no main/force/xiv-v2; leave historical/* and sec-status alone; do not touch dimensional/* or xiv-12d / xiv-ai-energy.
+EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (EY3 reconcile entry)
+NEXT: Architecture Reader wire from 12D-08 FOLLOW_UP (product lane in xiv-ai only — do not mutate xiv-ai-12d / dimensional/* / xiv-ai-energy). If queue empty after EY3, that is the recommended next product story.

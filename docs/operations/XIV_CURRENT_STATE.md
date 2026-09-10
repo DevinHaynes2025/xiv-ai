@@ -80,3 +80,8 @@ Canonical files landed on this child branch from `origin/cursor/ey0-l-local-codi
 - Pre-smoke heartbeat correctly returned `offlineAgentVerified=false`
 - actualDevice remains `UNKNOWN` / `NOT_TESTED` (honest; no fabricated GPU VERIFIED)
 - Docs: `LOCAL_CODING_WORKER.md` contract updated
+
+## EY3
+EY3 DONE on grok/ey3-hardware-probe-reconcile: GET /v1/hardware honest silicon probe (AMD DETECTED; GPU/NPU DETECTED never VERIFIED; Ollama live). Next: Architecture Reader wire (12D-08 FOLLOW_UP) in xiv-ai product lane only.
+
+

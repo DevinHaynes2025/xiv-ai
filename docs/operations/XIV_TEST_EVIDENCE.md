@@ -185,3 +185,12 @@ Append entries; never delete history. Skipped mandatory tests Ã¢â€°Â  pa
 - Not run: device e2e; real signed-package verifier (intentionally WAITING_SIGNING / out of scope)
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 9b1edc9 (US-NET-01 docs) / 7aacce1 (US-NET-01 feat)
 
+
+## 2026-09-09 ~23:40 CT - EY3 Hardware capability probe reconcile - grok
+- Branch / SHA: grok/ey3-hardware-probe-reconcile / (feat commit follows; evidence SHA refreshed in docs commit)
+- Commands run: `npx tsx hardware-probe.test.ts`; `npx tsc --noEmit` in services/ai; live `collectHardwareProbe()`; `GET http://127.0.0.1:8787/v1/hardware` after service restart
+- Passed: AMD Ryzen 7 260 CPU DETECTED; AMD Radeon 780M GPU DETECTED (not VERIFIED); NPU Compute Accelerator Device DETECTED (not VERIFIED); Ollama /api/tags reachable with qwen2.5-coder:7b; l4Autonomy=false; unit tests clamp env VERIFIEDâ†’DETECTED; mobile HardwareCapabilityScreen + /executive/hardware route
+- Failed: none
+- Not run: device Expo e2e; GPU/NPU workload VERIFIED proof (intentionally out of scope â€” EY3 is presence probe only)
+- Notes: Prior EY3 landing existed only on cursor/ey0-l-local-coding-brain (deebe814) and was NOT an ancestor of US-PLG tip â€” reconciled onto grok/ey3-hardware-probe-reconcile from 23c744e2. Windows CIM merged with XIV_GPU_* env overlay (env no longer suppresses NPU). historical/* / sec-status / xiv-12d / dimensional/* / xiv-ai-energy untouched.
+

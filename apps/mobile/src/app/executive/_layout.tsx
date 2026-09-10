@@ -134,6 +134,7 @@ const hidden = [
   'plugin-manager',
   'plugin-marketplace',
   'runtime-health',
+  'hardware',
   'device-manager',
   'enterprise-catalog',
   'sdk-docs',
