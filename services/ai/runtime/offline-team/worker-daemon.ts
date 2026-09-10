@@ -27,9 +27,10 @@ export async function runWorkerTick(input: {
   queue: OfflineWorkQueue;
   journal: RecoveryJournal;
   adapter: WorkerAdapter;
-  now: string;
+  now?: Date;
 }): Promise<WorkerTickResult> {
-  const leased = input.queue.lease(input.adapter.agent, WORKER_DAEMON_GUARDRAILS.maxJobsPerTick, input.now);
+  const now = input.now ?? new Date();
+  const leased = input.queue.lease(input.adapter.agent, now, 5 * 60_000, WORKER_DAEMON_GUARDRAILS.maxJobsPerTick);
   let completed = 0;
   let failed = 0;
   const lessons: string[] = [];
@@ -38,24 +39,39 @@ export async function runWorkerTick(input: {
     try {
       const result = await input.adapter.execute({ id: job.id, objective: job.objective });
       if (result.ok) {
-        input.queue.complete(job.id, input.adapter.agent, result.evidence, input.now);
+        input.queue.complete(job.id, input.adapter.agent, now);
         input.journal.append({
-          event: 'COMPLETED',
-          jobId: job.id,
-          agent: input.adapter.agent,
-          at: input.now,
-          evidenceRefs: result.evidence,
+          eventId: `completed:${job.id}:${now.toISOString()}`,
+          workItemId: job.id,
+          kind: 'COMPLETED',
+          actor: input.adapter.agent,
+          at: now.toISOString(),
+          evidence: result.evidence.join('|'),
         });
         completed += 1;
         if (result.lesson) lessons.push(result.lesson);
       } else {
-        input.queue.fail(job.id, input.adapter.agent, 'adapter returned not-ok', input.now);
-        input.journal.append({ event: 'FAILED', jobId: job.id, agent: input.adapter.agent, at: input.now, evidenceRefs: result.evidence });
+        input.queue.fail(job.id, input.adapter.agent, now);
+        input.journal.append({
+          eventId: `failed:${job.id}:${now.toISOString()}`,
+          workItemId: job.id,
+          kind: 'FAILED',
+          actor: input.adapter.agent,
+          at: now.toISOString(),
+          evidence: result.evidence.join('|'),
+        });
         failed += 1;
       }
     } catch (error) {
-      input.queue.fail(job.id, input.adapter.agent, error instanceof Error ? error.message : 'unknown worker failure', input.now);
-      input.journal.append({ event: 'FAILED', jobId: job.id, agent: input.adapter.agent, at: input.now, evidenceRefs: [] });
+      input.queue.fail(job.id, input.adapter.agent, now);
+      input.journal.append({
+        eventId: `failed:${job.id}:${now.toISOString()}`,
+        workItemId: job.id,
+        kind: 'FAILED',
+        actor: input.adapter.agent,
+        at: now.toISOString(),
+        evidence: error instanceof Error ? error.message : 'unknown worker failure',
+      });
       failed += 1;
     }
   }
