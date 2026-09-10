@@ -71,3 +71,8 @@ export * from './next-story-generator';
 export * from './persistent-company-brain';
 export * from './meeting-ingestion';
 export * from './company-brain-search';
+export * from './company-brain-disk-store';
+export * from './meeting-folder-ingestion';
+export * from './experience-backend';
+export * from './experience-view-model';
+export * from './local-experience-runner';
