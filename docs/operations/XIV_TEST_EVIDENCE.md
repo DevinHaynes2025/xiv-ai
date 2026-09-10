@@ -213,7 +213,7 @@ Append entries; never delete history. Skipped mandatory tests ÃƒÂ¢Ã¢â‚�
 - Notes: PRODUCT lane only after US-ARCH-01; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; .tmp-cc-preview.json left untracked
 
 ## 2026-09-10 ~00:20 CT - US-BB-01 Blue Brain mobile product surface - grok
-- Branch / SHA: grok/us-bb-01-blue-brain-surface / (feat tip follows)
+- Branch / SHA: grok/us-bb-01-blue-brain-surface / 6c8fd14a842f915e8f1f650b91e2bc553d147224
 - Commands run: services/ai typecheck; npx tsx blue-brain.test.ts; apps/mobile npx tsc --noEmit
 - Passed: listBlueBrainView WAITING_DATA when unbound (surfaceCard=null, pocketIngestStubs=null, scaleClaims=null); bindBlueBrainFixture surfaces FIXTURE_SIMULATION with liveCloudSyncClaimed=false mayEnterGlobalBrain=false; GATE_DENIED nulls surface on deny; cloud/sync/Global Brain WAITING_PROVIDER; aspirational ADC scale asMeasured=false value=null; tenant/universe/device mismatch WAITING_DATA; L4 false; productionMutation false; mobile BlueBrainSurfaceScreen on executive+business blue-brain routes; never fabricate neural/ADC metrics
 - Failed: none
