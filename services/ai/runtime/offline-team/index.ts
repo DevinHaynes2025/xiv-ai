@@ -5,3 +5,7 @@ export * from './work-queue';
 export * from './recovery-journal';
 export * from './openai-local';
 export * from './local-store';
+export * from './hardware-receipts';
+export * from './data-mining';
+export * from './defensive-security';
+export * from './worker-daemon';
