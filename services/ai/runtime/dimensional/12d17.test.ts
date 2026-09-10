@@ -200,7 +200,7 @@ assert.throws(
 );
 
 // Evidence hash
-const tipSha = '5bbf1d32aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+const tipSha = '8786cdca19162e41ecb5f8ff0d3977fdc9ba509d';
 const evidence = evidenceHashDevicePathways({
   tipSha,
   registry,

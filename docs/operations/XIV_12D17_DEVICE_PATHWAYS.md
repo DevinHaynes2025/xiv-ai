@@ -2,9 +2,13 @@
 
 **Ticket:** 12D-17  
 **Branch:** `grok/12d-17-device-pathways`  
-**Base:** sealed `5bbf1d32` (12D-15 seal / 12D-16 tip)  
+**Worktree:** `C:\Users\Devin\xiv-ai-12d-17` (sibling; do not disturb other WTs)  
+**Base:** sealed 12D-16 tip `d7f56a586658c70946728d452ce1b16aecc5d785` (`grok/12d-16-community-age-gate`; PASS/sealed; merged into this tip)  
+**State:** research / feature branch -- LOCAL SIMULATION device pathway registry stubs only  
+**L4 / production auto:** false  
 **Schema:** `12d17.1`  
-**Wire:** `DEVICE_PATHWAYS_GUARDRAILS.devicePathwaysWire = WIRED`
+**Wire:** `DEVICE_PATHWAYS_GUARDRAILS.devicePathwaysWire = WIRED`  
+**Tip SHA:** `8786cdca19162e41ecb5f8ff0d3977fdc9ba509d`
 
 ## Intent
 
@@ -58,6 +62,16 @@ Allowed honesty labels: **`UNVERIFIED` | `WAITING_PROVIDER`** only.
 ```bash
 cd services/ai && npx tsx runtime/dimensional/12d17.test.ts
 ```
+
+## Evidence
+
+- Feature tip: `8786cdca19162e41ecb5f8ff0d3977fdc9ba509d`
+- tipShaPlaceholder sealed to feature tip (was fake padded `5bbf1d32aaa…`)
+- Base: sealed 12D-16 tip `d7f56a586658c70946728d452ce1b16aecc5d785` (merged; ancestry includes 12D-16)
+- `npx tsx runtime/dimensional/12d17.test.ts` -> OK
+- `quantumSoftwareClaimed=false`; `liveSatelliteControl=false`; `liveVehicleControl=false`; `productionAuto*=false`; `L4_PRODUCTION_ENABLED=false`
+- Product WT undisturbed: `C:\Users\Devin\xiv-ai`
+- 12D-16 WT undisturbed: `d7f56a58` @ `C:\Users\Devin\xiv-ai-12d-16`
 
 ## Non-goals
 
