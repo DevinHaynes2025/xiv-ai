@@ -16,3 +16,6 @@ export * from './xiv-genome';
 export * from './virtual-family';
 export * from './offline-plugin-runtime';
 export * from './ollama-toolchain';
+export * from './model-discovery';
+export * from './live-supervisor';
+export * from './supervisor-status';
