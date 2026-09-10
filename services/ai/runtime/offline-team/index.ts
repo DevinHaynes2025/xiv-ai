@@ -26,3 +26,7 @@ export * from './model-discovery';
 export * from './live-supervisor';
 export * from './supervisor-status';
 export * from './ollama-job-executor';
+export * from './review-learning-council';
+export * from './virtual-cloud-chip-sim';
+export * from './consultant-academy';
+export * from './historical-intelligence-registry';
