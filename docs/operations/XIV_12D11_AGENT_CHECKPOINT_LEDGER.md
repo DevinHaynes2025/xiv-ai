@@ -1,8 +1,8 @@
-﻿# XIV 12D-11 — Agent Identity + Checkpoint Ledger
+# XIV 12D-11 — Agent Identity + Checkpoint Ledger
 
 **Ticket:** 12D-11  
 **Branch:** `grok/12d-11-agent-checkpoint-ledger`  
-**Worktree:** `C:\Users\Devin\xiv-ai-12d` only  
+**Worktree:** `C:\Users\Devin\xiv-ai-12d-ledger` (sibling)  
 **Base:** `grok/12d-10-ollama-pocket-brain-ingest` @ `b0b05b6`  
 **State:** research / feature branch — append-only identity+audit  
 **L4 / production auto:** false
@@ -30,6 +30,9 @@
 | autonomousProductionDDL | false |
 | autonomousProductionDML | false |
 | productionAutoApply / Merge / Deploy | false |
+| destructiveDbAutoApply | false |
+| L4_PRODUCTION_ENABLED | false |
+| autonomousSecretCreation | false |
 | highAutonomyTargets | LOCAL \| CLOUD_SANDBOX only |
 | twinClaimBansAssertable | true |
 | atomDbClaimAllowed | false |
