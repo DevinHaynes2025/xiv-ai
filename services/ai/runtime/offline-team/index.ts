@@ -96,3 +96,6 @@ export * from './device-pilot-policy';
 export * from './local-learning-sandbox';
 export * from './universal-device-compatibility';
 export * from './device-capability-broker';
+export * from './visual-intelligence-engine';
+export * from './industry-visual-templates';
+export * from './client-presentation-composer';
