@@ -22,3 +22,7 @@ export type {
   MemoryShard as AtomicFactShard,
   HistoricalPath,
 } from './atomic-memory';
+export * from './database-city';
+export * from './sync-journal';
+export * from './vector-search';
+export * from './cloud-sandbox';

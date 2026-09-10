@@ -52,12 +52,14 @@ Before 12D leaves research state:
 
 ## Next build slices
 
-1. Add benchmark harnesses for 3D/6D/12D/24D/50D/100D sparse workloads.
-2. Connect historical provenance records to the existing temporal and historical runtimes.
-3. Add device capability adapters without marking vendors verified by default.
-4. Add an offline shard manifest and reconciliation protocol.
-5. Add a quantum-provider interface with a local simulator first and QPU adapters only after provider verification.
+1. ~~Add benchmark harnesses for 3D/6D/12D/24D/50D/100D sparse workloads.~~ (12D-03 local CPU runner)
+2. ~~Connect historical provenance records to the existing temporal and historical runtimes.~~ (12D-02 historical bridge + atomic-memory ingest)
+3. Add device capability adapters without marking vendors verified by default (GPU/NPU remain WAITING/DETECTED).
+4. ~~Add an offline shard manifest and reconciliation protocol.~~ (12D-04 sync journal stubs — deepen real CRDT/manifest next)
+5. Add a quantum-provider interface with a local simulator first and QPU adapters only after provider verification (simulator stub exists; QPU still WAITING_PROVIDER).
 6. Add a 12D scenario UI to XIV Command Center that clearly labels observed facts, inferred links, and simulated futures.
+7. Deepen Database City: real local SQLite shard fixtures + checksummed offline manifests (still no autonomous production DDL).
+8. Wire governed builder (`OLLAMA`/`LOCAL_RULES`) to emit city blueprints into reviewable PR artifacts only.
 
 ## Build note — 12D-02 (Atomic Knowledge + Historical Memory)
 
@@ -81,3 +83,20 @@ Implemented on branch `grok/12d-03-benchmark-runner`:
 - Never claims GPU/NPU/QPU VERIFIED without device receipt. L4 / production fabric remain false.
 
 See `docs/operations/XIV_12D03_BENCHMARK_RUNNER.md`.
+
+## Build note — 12D-03b (Governed Offline + Cloud Builder ingest)
+
+Ingested CEO builder control-plane from GitHub tip `74e8fe5` (GitLab tip `7c34493` content-mirrored, distinct objects). See `docs/operations/XIV_12D03_GOVERNED_BUILDER.md`. All autonomousProduction* flags remain false.
+
+## Build note — 12D-04 (Database City + Neural Highway Fabric)
+
+Implemented on branch `grok/12d-04-database-city`:
+
+- Topology device → local_shard → company_brain → regional_brain → global_brain
+- Sparse neural highways; hot/warm/cold/archive memory heat
+- Offline sync journal + MANUAL conflict stubs
+- Vector LOCAL_STUB / WAITING_PROVIDER; GCP CLOUD_SANDBOX generate-only
+- Pocket Brain vs Global Brain types; CPU-first silicon honesty
+- L4 / production fabric remain false; no live production DDL
+
+See `docs/operations/XIV_12D04_DATABASE_CITY.md`.
