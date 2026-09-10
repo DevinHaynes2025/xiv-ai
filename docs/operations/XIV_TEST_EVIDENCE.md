@@ -50,3 +50,10 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Commands: added hardware-probe.ts + GET /v1/hardware; typecheck clean
 - Notes: GPU via XIV_GPU_* env; NPU honestly undetected; Ollama models listed when reachable
 - Roster/schedule/data-plane docs + xiv-data dirs created; weekday 8:30 digest routine saved
+
+### 2026-09-09 — US-UNI-01 audit — grok
+- Hosted Universes present: Isolation Org A/B with active Universes (internal/business)
+- RLS isolation covered by prior test:runtime Phase 2H
+- Google Drive connector installed; awaiting user auth card
+- Salesforce blocked on CLIENT_ID + SALESFORCE_MCP_URL
+- Added XIV_COMPUTE_FABRIC.md (classical-first; QPU candidate only)
