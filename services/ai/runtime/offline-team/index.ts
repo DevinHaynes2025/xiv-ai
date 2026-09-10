@@ -68,3 +68,6 @@ export * from './executive-cabinet-council';
 export * from './company-brain-writeback';
 export * from './executive-neuron-learning';
 export * from './next-story-generator';
+export * from './persistent-company-brain';
+export * from './meeting-ingestion';
+export * from './company-brain-search';
