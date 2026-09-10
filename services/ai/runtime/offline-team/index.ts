@@ -112,3 +112,6 @@ export * from './industry-ecosystem-graph';
 export * from './case-study-team';
 export * from './historical-knowledge-growth';
 export * from './case-study-learning-pipeline';
+export * from './case-study-ollama-lab';
+export * from './industry-problem-simulator';
+export * from './case-study-council';
