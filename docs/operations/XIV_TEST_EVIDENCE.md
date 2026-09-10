@@ -87,3 +87,6 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 - Result: LOCAL=GITHUB=GITLAB=60986682; TREE clean; Ollama reply OK (~9s)
 - PASS: git sync + local model heartbeat
 - NOT claimed: AMD GPU acceleration VERIFIED; NPU VERIFIED; OFFLINE_AGENT_VERIFIED=true (needs worker contract + heartbeat process)
+## 62L-EZ Supabase schema inventory
+- PASS: public list_tables only; RLS noted; no secrets schemas queried
+
