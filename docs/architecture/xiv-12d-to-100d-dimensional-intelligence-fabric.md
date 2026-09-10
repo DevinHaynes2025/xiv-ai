@@ -70,3 +70,14 @@ Implemented on branch `grok/12d-02-datagene-historical-memory`:
 - Local quantum simulator stub + QPU `WAITING_PROVIDER` (`quantum-simulator.ts`); no fake LIVE QPU.
 
 See `docs/operations/XIV_12D02_ATOMIC_KNOWLEDGE.md`. L4 / production fabric remain false.
+
+## Build note — 12D-03 (Local Dimension Benchmark Runner)
+
+Implemented on branch `grok/12d-03-benchmark-runner`:
+
+- Bounded CPU-only harness in `benchmarks.ts` executes ladder `[3,6,12,24,50,100]` measuring `projectPoint` + `findPathway`.
+- Results marked `RUN` with latency/throughput; stubs remain `NOT_RUN` until harness runs.
+- Lean Six Sigma counters: defects (honest 0), latency, throughput; evidenceCoverage / falseLinkRate / reproducibility stay `WAITING` when unmeasured.
+- Never claims GPU/NPU/QPU VERIFIED without device receipt. L4 / production fabric remain false.
+
+See `docs/operations/XIV_12D03_BENCHMARK_RUNNER.md`.

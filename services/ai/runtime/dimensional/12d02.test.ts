@@ -125,7 +125,7 @@ const pathway = findPathway(edges, 'ancient-source', 'business-hypothesis', 0.3)
 assert.ok(pathway);
 assert.deepEqual(pathway?.path, ['ancient-source', 'normalized-fact', 'business-hypothesis']);
 
-// --- Benchmarks ---
+// --- Benchmarks: stubs stay NOT_RUN; runner marks RUN (12D-03) ---
 assert.deepEqual([...DIMENSION_LADDER], [3, 6, 12, 24, 50, 100]);
 const stubs = createDimensionLadderBenchmarks();
 assert.equal(stubs.length, 6);
@@ -133,9 +133,14 @@ for (const stub of stubs) {
   assert.equal(stub.status, 'NOT_RUN');
   assert.equal(stub.executedAt, null);
   assert.equal(stub.metrics.latencyMs, null);
+  assert.equal(stub.quality.evidenceCoverage, 'WAITING');
 }
-const stillNotRun = runDimensionBenchmarks({ dimensions: [12, 100] });
-assert.ok(stillNotRun.every((r) => r.status === 'NOT_RUN'));
+const runResults = runDimensionBenchmarks({ dimensions: [12, 100], iterations: 8 });
+assert.equal(runResults.length, 2);
+assert.ok(runResults.every((r) => r.status === 'RUN'));
+assert.ok(runResults.every((r) => r.backend === 'cpu'));
+assert.ok(runResults.every((r) => typeof r.metrics.latencyMs === 'number'));
+assert.ok(runResults.every((r) => r.executedAt !== null));
 
 // --- Quantum simulator ---
 assert.equal(DEFAULT_QPU_STATUS, 'WAITING_PROVIDER');
