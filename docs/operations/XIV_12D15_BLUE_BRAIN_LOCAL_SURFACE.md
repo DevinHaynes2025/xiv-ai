@@ -6,7 +6,7 @@
 **Base:** sealed 12D-14 polish `14961024` (`grok/12d-14-virtual-mini-city`; PASS/sealed EQ>=3; merged into this tip) + clean merge of 12D-13 polish `2ddc3b64`  
 **State:** research / feature branch -- LOCAL SIMULATION Blue Brain READ surface stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `d5149e9d1b265f14e7754473cf6d1190dc2efcef`
+**Tip SHA:** `34bb84982ea85f48a64fa530606d809470a95793`
 
 ## Locked Blue Brain contract
 
