@@ -104,3 +104,7 @@ export * from './case-study-learning-pipeline';
 export * from './case-study-ollama-lab';
 export * from './industry-problem-simulator';
 export * from './case-study-council';
+export * from './elite-onboarding';
+export * from './avatar-identity-twin';
+export * from './defensive-security-swarm';
+export * from './ai-tool-marketplace-bundles';
