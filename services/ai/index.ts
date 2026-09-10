@@ -235,3 +235,25 @@ export {
   type SupplierKind,
   type SupplierRatingsMetrics,
 } from './supplier-directory';
+
+export {
+  PLUGIN_MARKETPLACE_POLICY,
+  BUILTIN_STUB_PACKAGES,
+  bindInMemoryPluginMarketplace,
+  clearInMemoryPluginMarketplace,
+  decidePluginInstallProposal,
+  isPluginMarketplaceBound,
+  listPluginMarketplaceView,
+  pluginMarketplaceAllowsL4,
+  pluginMarketplaceAllowsProductionMutation,
+  pluginMarketplaceClaimsCryptographicVerification,
+  pluginMarketplaceRequiresApproval,
+  proposePluginInstall,
+  resetPluginMarketplaceSession,
+  type PluginInstallProposal,
+  type PluginMarketplacePackage,
+  type PluginMarketplaceView,
+  type PluginPackageKind,
+  type PluginSignatureStatus,
+  type PluginSigningGate,
+} from './plugin-marketplace';

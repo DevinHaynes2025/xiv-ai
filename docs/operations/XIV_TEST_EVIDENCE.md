@@ -176,3 +176,11 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Failed: none
 - Not run: device e2e; live marketplace ingest (intentionally out of scope)
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 582d30e (US-SOC-01 docs) / 7c0a1ff (US-SOC-01 feat)
+
+## 2026-09-09 ~23:30 CT - US-PLG-01 Plugin marketplace install (signed) - grok
+- Branch / SHA: grok/us-plg-01-plugin-marketplace / (commit follows)
+- Commands run: services/ai typecheck; npx tsx plugin-marketplace.test.ts; apps/mobile npx tsc --noEmit
+- Passed: listPluginMarketplaceView WAITING_SIGNING when unbound with packages=null; bindInMemoryPluginMarketplace surfaces STUB_UNSIGNED packages with cryptographicallyVerified=false (digest/signer null); proposePluginInstall requiresApproval + pending_approval; decide approve/reject session-only (approved_session never productionMutation); cross-tenant mismatch WAITING_DATA; L4 false; productionMutation false; mobile PluginMarketplaceInstallScreen (Builder); never claim cryptographic verification without real verifier
+- Failed: none
+- Not run: device e2e; real signed-package verifier (intentionally WAITING_SIGNING / out of scope)
+- Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 9b1edc9 (US-NET-01 docs) / 7aacce1 (US-NET-01 feat)

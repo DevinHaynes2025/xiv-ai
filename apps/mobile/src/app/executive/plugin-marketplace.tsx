@@ -1,5 +1,5 @@
-import { WorkspacePluginMarketplace } from '@/screens/workspace';
+import { PluginMarketplaceInstallScreen } from '@/screens/builder';
 
 export default function ExecutivePluginMarketplace() {
-  return <WorkspacePluginMarketplace />;
+  return <PluginMarketplaceInstallScreen />;
 }

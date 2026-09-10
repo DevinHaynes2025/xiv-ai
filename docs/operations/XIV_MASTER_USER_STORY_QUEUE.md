@@ -27,7 +27,7 @@ No story may weaken Guardian/RLS or enable L4.
 | US-SEC-01 | Security Center: policy denials visible | Executive | DONE (branch); Guardian read-only; WAITING_DATA; never fabricate incidents; L4 false |
 | US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | DONE (branch); prototype pipeline; WAITING_DATA; never fabricate engagement; L4 false |
 | US-NET-01 | Supplier / manufacturer directory search | Business | DONE (branch); search index stub + RLS; WAITING_INDEX/WAITING_DATA; never fabricate inventory/ratings; L4 false |
-| US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory Ã¢â€ â€™ signed packages later |
+| US-PLG-01 | Plugin marketplace install (signed) | Builder | DONE (branch); in-memory stub; WAITING_SIGNING; never claim crypto verified; requiresApproval; L4 false |
 
 ## Done / parked
 | ID | Notes |
