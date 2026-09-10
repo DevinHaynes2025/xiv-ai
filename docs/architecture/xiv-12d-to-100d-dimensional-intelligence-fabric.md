@@ -1,4 +1,4 @@
-# XIV AI 12D → 100D Dimensional Intelligence Fabric
+# XIV AI 12D â†’ 100D Dimensional Intelligence Fabric
 
 **State:** research architecture / feature branch only  
 **Production enabled:** no  
@@ -6,20 +6,20 @@
 
 ## Purpose
 
-Translate the XIV “100D” vision into testable software contracts. In this architecture, a dimension is a logical or semantic axis used by vectors, graphs, simulations, timelines, supply-chain states, organizations, geography, risk, finance, provenance, and other modeled variables. It is not a claim that XIV can create or enter physical dimensions.
+Translate the XIV â€œ100Dâ€ vision into testable software contracts. In this architecture, a dimension is a logical or semantic axis used by vectors, graphs, simulations, timelines, supply-chain states, organizations, geography, risk, finance, provenance, and other modeled variables. It is not a claim that XIV can create or enter physical dimensions.
 
 The first engineering milestone is **12 logical dimensions**. The research API permits bounded experiments up to **100 dimensions** so algorithms can be evaluated before any production capability is considered.
 
 ## Core layers
 
-1. **Dimensional state fabric** — bounded 1–100D vectors with explicit projection and validation.
-2. **Neural pathway graph** — evidence-weighted graph edges and bounded path search. New connections remain hypotheses until their evidence threshold is met.
-3. **Data genes** — content hashes + schema version + provenance. This borrows DNA vocabulary as a data-model analogy; it does not clone biological DNA.
-4. **Historical/civilization memory** — provenance-aware ingestion can connect archaeological, historical, economic, scientific, geographic, and business datasets. XIV must distinguish source, interpretation, inference, and simulation.
-5. **Hybrid compute router** — CPU, GPU, NPU, quantum simulator, and future verified QPU adapters behind capability checks. A quantum label does not establish quantum advantage.
-6. **Pocket/edge brain** — devices hold authorized compressed shards, indexes, embeddings, policies, and small local models. The complete global brain is not assumed to fit on every handheld device.
-7. **Federated storage** — local/edge/cloud/archive tiers use content addressing, sharding, deduplication, lineage, and policy-controlled synchronization instead of pretending to create trillions of independent databases.
-8. **World/galaxy simulation spaces** — large digital-twin and scenario environments for business collaboration. These are virtual simulations, not physical portals.
+1. **Dimensional state fabric** â€” bounded 1â€“100D vectors with explicit projection and validation.
+2. **Neural pathway graph** â€” evidence-weighted graph edges and bounded path search. New connections remain hypotheses until their evidence threshold is met.
+3. **Data genes** â€” content hashes + schema version + provenance. This borrows DNA vocabulary as a data-model analogy; it does not clone biological DNA.
+4. **Historical/civilization memory** â€” provenance-aware ingestion can connect archaeological, historical, economic, scientific, geographic, and business datasets. XIV must distinguish source, interpretation, inference, and simulation.
+5. **Hybrid compute router** â€” CPU, GPU, NPU, quantum simulator, and future verified QPU adapters behind capability checks. A quantum label does not establish quantum advantage.
+6. **Pocket/edge brain** â€” devices hold authorized compressed shards, indexes, embeddings, policies, and small local models. The complete global brain is not assumed to fit on every handheld device.
+7. **Federated storage** â€” local/edge/cloud/archive tiers use content addressing, sharding, deduplication, lineage, and policy-controlled synchronization instead of pretending to create trillions of independent databases.
+8. **World/galaxy simulation spaces** â€” large digital-twin and scenario environments for business collaboration. These are virtual simulations, not physical portals.
 
 ## Silicon strategy
 
@@ -31,7 +31,7 @@ A first business simulation can use twelve axes such as time, geography, organiz
 
 ## Lean Six Sigma quality loop
 
-Every pathway should expose measurable quality: defect/error rate, latency, throughput, cost per task, evidence coverage, stale-data rate, false-link rate, reproducibility, and rollback success. Changes follow Define → Measure → Analyze → Improve → Control. Autonomous agents may recommend improvements but cannot silently promote experiments into production.
+Every pathway should expose measurable quality: defect/error rate, latency, throughput, cost per task, evidence coverage, stale-data rate, false-link rate, reproducibility, and rollback success. Changes follow Define â†’ Measure â†’ Analyze â†’ Improve â†’ Control. Autonomous agents may recommend improvements but cannot silently promote experiments into production.
 
 ## Scale doctrine
 
@@ -55,13 +55,13 @@ Before 12D leaves research state:
 1. ~~Add benchmark harnesses for 3D/6D/12D/24D/50D/100D sparse workloads.~~ (12D-03 local CPU runner)
 2. ~~Connect historical provenance records to the existing temporal and historical runtimes.~~ (12D-02 historical bridge + atomic-memory ingest)
 3. Add device capability adapters without marking vendors verified by default (GPU/NPU remain WAITING/DETECTED).
-4. ~~Add an offline shard manifest and reconciliation protocol.~~ (12D-04 sync journal stubs — deepen real CRDT/manifest next)
+4. ~~Add an offline shard manifest and reconciliation protocol.~~ (12D-04 sync journal stubs â€” deepen real CRDT/manifest next)
 5. Add a quantum-provider interface with a local simulator first and QPU adapters only after provider verification (simulator stub exists; QPU still WAITING_PROVIDER).
 6. Add a 12D scenario UI to XIV Command Center that clearly labels observed facts, inferred links, and simulated futures.
-7. Deepen Database City: real local SQLite shard fixtures + checksummed offline manifests (still no autonomous production DDL).
-8. Wire governed builder (`OLLAMA`/`LOCAL_RULES`) to emit city blueprints into reviewable PR artifacts only.
+7. ~~Deepen Database City: real local SQLite shard fixtures + checksummed offline manifests (still no autonomous production DDL).~~ (folded into 12D-05 Universe Simulation Kernel substrate)
+8. ~~Wire governed builder (`OLLAMA`/`LOCAL_RULES`) to emit city blueprints into reviewable PR artifacts only.~~ (12D-05 city-blueprint-emitter — reviewable only)
 
-## Build note — 12D-02 (Atomic Knowledge + Historical Memory)
+## Build note â€” 12D-02 (Atomic Knowledge + Historical Memory)
 
 Implemented on branch `grok/12d-02-datagene-historical-memory`:
 
@@ -73,7 +73,7 @@ Implemented on branch `grok/12d-02-datagene-historical-memory`:
 
 See `docs/operations/XIV_12D02_ATOMIC_KNOWLEDGE.md`. L4 / production fabric remain false.
 
-## Build note — 12D-03 (Local Dimension Benchmark Runner)
+## Build note â€” 12D-03 (Local Dimension Benchmark Runner)
 
 Implemented on branch `grok/12d-03-benchmark-runner`:
 
@@ -84,15 +84,15 @@ Implemented on branch `grok/12d-03-benchmark-runner`:
 
 See `docs/operations/XIV_12D03_BENCHMARK_RUNNER.md`.
 
-## Build note — 12D-03b (Governed Offline + Cloud Builder ingest)
+## Build note â€” 12D-03b (Governed Offline + Cloud Builder ingest)
 
 Ingested CEO builder control-plane from GitHub tip `74e8fe5` (GitLab tip `7c34493` content-mirrored, distinct objects). See `docs/operations/XIV_12D03_GOVERNED_BUILDER.md`. All autonomousProduction* flags remain false.
 
-## Build note — 12D-04 (Database City + Neural Highway Fabric)
+## Build note â€” 12D-04 (Database City + Neural Highway Fabric)
 
 Implemented on branch `grok/12d-04-database-city`:
 
-- Topology device → local_shard → company_brain → regional_brain → global_brain
+- Topology device â†’ local_shard â†’ company_brain â†’ regional_brain â†’ global_brain
 - Sparse neural highways; hot/warm/cold/archive memory heat
 - Offline sync journal + MANUAL conflict stubs
 - Vector LOCAL_STUB / WAITING_PROVIDER; GCP CLOUD_SANDBOX generate-only
@@ -100,3 +100,18 @@ Implemented on branch `grok/12d-04-database-city`:
 - L4 / production fabric remain false; no live production DDL
 
 See `docs/operations/XIV_12D04_DATABASE_CITY.md`.
+
+## Build note — 12D-05 (Universe Simulation Kernel)
+
+Implemented on branch `grok/12d-05-universe-simulation-kernel` (ingests `f6eae640` multi-cloud Database City):
+
+- SimulatedUniverse SIMULATION layers only (Founder Twin ethics gates assertable)
+- Digital companies, supply chains, economic signals (business-bar metrics), agent populations
+- Geographic + XR-ready spatial schema (contracts only; no fake XR render)
+- Scenario branching with OBSERVED / HYPOTHESIS / SIMULATION labels
+- Routes through dimensional city ladder + `runtime/databasecity` multi-cloud highway (LOCAL | CLOUD_SANDBOX)
+- SQLite pocket fixtures + checksummed offline manifests (IN_SYNC / CONFLICT / WAITING_SYNC)
+- ArchitectureReader markdown/JSON export for Command Center / mobile
+- L4 / production fabric remain false; PRODUCTION auto-replication remains disabled
+
+See `docs/operations/XIV_12D05_UNIVERSE_SIMULATION_KERNEL.md`.
