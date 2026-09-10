@@ -60,3 +60,6 @@ export * from './agent-campus-runner';
 export * from './multi-agent-meeting-bus';
 export * from './executive-decision-packet';
 export * from './ollama-meeting-runner';
+export * from './executive-cabinet';
+export * from './private-data-brain';
+export * from './cloud-dna-package';
