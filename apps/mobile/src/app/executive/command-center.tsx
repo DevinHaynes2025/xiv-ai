@@ -1,5 +1,5 @@
-import { WorkspaceCommandCenter } from '@/screens/workspace';
+import { ArchitectureReaderCouncilScreen } from '@/screens/command';
 
 export default function ExecutiveCommandCenter() {
-  return <WorkspaceCommandCenter />;
+  return <ArchitectureReaderCouncilScreen />;
 }

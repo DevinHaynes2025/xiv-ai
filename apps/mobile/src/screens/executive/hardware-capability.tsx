@@ -112,10 +112,10 @@ export function HardwareCapabilityScreen() {
 
 const styles = StyleSheet.create({
   card: {
-    gap: Spacing.sm,
-    marginBottom: Spacing.md,
+    gap: Spacing.two,
+    marginBottom: Spacing.three,
   },
   stack: {
-    gap: Spacing.sm,
+    gap: Spacing.two,
   },
 });

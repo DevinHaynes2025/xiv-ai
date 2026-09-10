@@ -1,5 +1,5 @@
-import { WorkspaceCouncil } from '@/screens/workspace';
+import { ArchitectureReaderCouncilScreen } from '@/screens/command';
 
 export default function BusinessCouncil() {
-  return <WorkspaceCouncil />;
+  return <ArchitectureReaderCouncilScreen />;
 }

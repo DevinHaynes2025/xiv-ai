@@ -257,3 +257,24 @@ export {
   type PluginSignatureStatus,
   type PluginSigningGate,
 } from './plugin-marketplace';
+
+export {
+  ARCHITECTURE_READER_POLICY,
+  BUILTIN_ARCHITECTURE_FIXTURE,
+  DEFAULT_READY_PROVIDERS,
+  DEFAULT_WAITING_PROVIDERS,
+  architectureReaderAllowsL4,
+  architectureReaderAllowsProductionAutoApply,
+  architectureReaderIsReadOnly,
+  bindArchitectureReaderFixture,
+  clearArchitectureReaderFixture,
+  isArchitectureReaderFabricBound,
+  listArchitectureReaderView,
+  resetArchitectureReaderSession,
+  type ArchitectureCard,
+  type ArchitectureFabricGate,
+  type ArchitectureManifestStatus,
+  type ArchitectureReaderFixtureBundle,
+  type ArchitectureReaderView,
+  type CouncilStoryRank,
+} from './architecture-reader';
