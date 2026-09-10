@@ -6,7 +6,7 @@
 **Base:** 12D-14 polish tip `14961024` (WAITING OB sealed; not yet sealed) + clean merge of 12D-13 polish `2ddc3b64`  
 **State:** research / feature branch -- LOCAL SIMULATION Blue Brain READ surface stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `311eef975ec8c0f0e8ed7eff863ba2dec59d60b9`
+**Tip SHA:** `d5149e9d1b265f14e7754473cf6d1190dc2efcef`
 
 ## Locked Blue Brain contract
 
