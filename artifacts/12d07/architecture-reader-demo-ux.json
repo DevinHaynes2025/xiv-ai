@@ -1,0 +1,58 @@
+{
+  "title": "XIV Universe Simulation Kernel — Architecture Reader",
+  "universeId": "demo-ux",
+  "tenantId": "xiv",
+  "layerKind": "SIMULATION",
+  "fingerprint": "dg1:a934702223c0aabd",
+  "cityTiers": [
+    "device",
+    "local_shard",
+    "company_brain",
+    "regional_brain",
+    "global_brain"
+  ],
+  "companyCount": 2,
+  "supplyLinkCount": 1,
+  "agentPopulationTotal": 25,
+  "worldEntityCount": 1,
+  "branchCount": 1,
+  "stances": [
+    "HYPOTHESIS",
+    "OBSERVED",
+    "SIMULATION"
+  ],
+  "memoryHeatHistogram": {
+    "hot": 1,
+    "warm": 0,
+    "cold": 0,
+    "archive": 0
+  },
+  "businessBarMetricsPresent": [
+    "reliability"
+  ],
+  "routeTarget": null,
+  "routeNodeIds": [],
+  "guardrails": {
+    "UNIVERSES_ARE_SIMULATION_LAYERS_ONLY": true,
+    "PHYSICAL_PORTALS_BANNED": true,
+    "PHYSICAL_PORTAL_CAPABILITY": false,
+    "QUANTUM_ADVANTAGE_CLAIM": false,
+    "VALUATION_THEATER_ALLOWED": false,
+    "PRODUCTION_DIMENSIONAL_FABRIC_ENABLED": false,
+    "L4_PRODUCTION_ENABLED": false,
+    "autonomousProductionDDL": false,
+    "autonomousProductionDML": false,
+    "autonomousDestructiveMigration": false,
+    "autonomousSecretCreation": false,
+    "autonomousDeployment": false,
+    "autonomousProductionReplication": false,
+    "autonomousCrossTenantReplication": false,
+    "autonomousCloudCreation": false,
+    "destructiveSchemaEvolution": false,
+    "cloudProvidersAreSandboxRoutingOnly": true,
+    "liveProductionDdlAllowed": false,
+    "literalGalaxiesClaim": false
+  },
+  "ethicsNotice": "Universes are SIMULATION layers only. Red-line capabilities remain disabled. GCP/Azure used for sandbox routing only.",
+  "manifestStatus": "WAITING_SYNC"
+}

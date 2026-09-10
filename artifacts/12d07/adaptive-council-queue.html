@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>XIV Adaptive Story Council — Ranked Queue (READ ONLY)</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;line-height:1.4;color:#122}
+h1,h2{color:#0b3d5c} table{border-collapse:collapse;width:100%;margin:0.75rem 0;font-size:0.92rem}
+th,td{border:1px solid #bcd;padding:0.35rem 0.5rem;text-align:left;vertical-align:top}
+th{background:#e8f2f8} .banner{background:#fff6e0;border:1px solid #e0c56a;padding:0.6rem 0.8rem;border-radius:6px}
+code{background:#f0f4f8;padding:0.1rem 0.3rem;border-radius:3px}
+</style></head><body>
+<p class="banner"><strong>READ ONLY</strong> — Adaptive Council ranked queue. Never auto-applies production. Unbound cloud agents stay <code>WAITING_PROVIDER</code>.</p>
+<h1>XIV Adaptive Story Council — Ranked Queue (READ ONLY)</h1>
+<h2>Provider seats</h2>
+<table><thead><tr><th>Agent</th><th>Status</th><th>Scope</th><th>Vote</th></tr></thead><tbody>
+<tr><td>LOCAL_RULES</td><td><code>READY</code></td><td>local</td><td>1</td></tr><tr><td>OLLAMA</td><td><code>OPTIONAL_OFFLINE</code></td><td>local</td><td>0</td></tr><tr><td>GROK</td><td><code>WAITING_PROVIDER</code></td><td>cloud</td><td>0</td></tr><tr><td>CHATGPT</td><td><code>WAITING_PROVIDER</code></td><td>cloud</td><td>0</td></tr><tr><td>GEMINI</td><td><code>WAITING_PROVIDER</code></td><td>cloud</td><td>0</td></tr>
+</tbody></table>
+<h2>Ranked stories</h2>
+<table><thead><tr>
+<th>Rank</th><th>Story</th><th>Domain</th><th>Composite</th><th>Worth</th>
+<th>customerValue</th><th>technicalRisk</th><th>cost</th><th>security</th><th>deps</th><th>evidenceQuality</th>
+<th>WAITING_PROVIDER</th>
+</tr></thead><tbody>
+<tr><td>1</td><td><code>XIV-US-00000014</code><br/>SECURITY capability increment 14</td><td>SECURITY</td><td>0.723</td><td>yes</td><td>0.760</td><td>0.590</td><td>0.450</td><td>0.950</td><td>0.420</td><td>0.920</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>2</td><td><code>XIV-US-00000011</code><br/>DATABASE capability increment 11</td><td>DATABASE</td><td>0.658</td><td>yes</td><td>0.710</td><td>0.540</td><td>0.500</td><td>0.700</td><td>0.470</td><td>0.870</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>3</td><td><code>XIV-US-00000012</code><br/>AI_RUNTIME capability increment 12</td><td>AI_RUNTIME</td><td>0.651</td><td>yes</td><td>0.810</td><td>0.640</td><td>0.450</td><td>0.650</td><td>0.420</td><td>0.820</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>4</td><td><code>XIV-US-00000010</code><br/>PLATFORM capability increment 10</td><td>PLATFORM</td><td>0.648</td><td>yes</td><td>0.710</td><td>0.540</td><td>0.400</td><td>0.650</td><td>0.470</td><td>0.820</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>5</td><td><code>XIV-US-00000013</code><br/>MOBILE capability increment 13</td><td>MOBILE</td><td>0.646</td><td>yes</td><td>0.860</td><td>0.490</td><td>0.500</td><td>0.600</td><td>0.370</td><td>0.770</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>6</td><td><code>XIV-US-00000015</code><br/>CLOUD capability increment 15</td><td>CLOUD</td><td>0.638</td><td>yes</td><td>0.660</td><td>0.590</td><td>0.500</td><td>0.700</td><td>0.520</td><td>0.820</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>7</td><td><code>XIV-US-00000016</code><br/>SIMULATION capability increment 16</td><td>SIMULATION</td><td>0.606</td><td>yes</td><td>0.610</td><td>0.440</td><td>0.350</td><td>0.500</td><td>0.320</td><td>0.920</td><td>GROK, CHATGPT, GEMINI</td></tr><tr><td>8</td><td><code>XIV-US-00000009</code><br/>XR capability increment 9</td><td>XR</td><td>0.498</td><td>yes</td><td>0.560</td><td>0.690</td><td>0.600</td><td>0.450</td><td>0.420</td><td>0.670</td><td>GROK, CHATGPT, GEMINI</td></tr>
+</tbody></table>
+<h2>Ethics</h2>
+<p>Adaptive Council UX is READ ONLY. Ranked scores inform triage only — never auto-merge, auto-deploy, or apply production. Unbound cloud agents remain WAITING_PROVIDER.</p>
+<ul><li>productionAutoApply / Merge / Deploy: false</li>
+<li>cloudAgentsDefaultWaitingIfUnbound: true</li></ul>
+</body></html>
