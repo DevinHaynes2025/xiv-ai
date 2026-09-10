@@ -1,5 +1,5 @@
-import { WorkspaceScenarioLab } from '@/screens/workspace';
+import { SupplierSimulationLab } from '@/screens/agents/supplier-simulation-lab';
 
 export default function BusinessScenarioLab() {
-  return <WorkspaceScenarioLab />;
+  return <SupplierSimulationLab />;
 }

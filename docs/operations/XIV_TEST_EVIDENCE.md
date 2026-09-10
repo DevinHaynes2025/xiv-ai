@@ -108,3 +108,12 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 ## 2026-09-09 ~22:24 CT — mobile↔ai TS boundary — grok
 - See docs/operations/XIV_TEST_EVIDENCE_NOTE_TS_BOUNDARY.md (isomorphic checkpoint; tenant barrel without Node review re-exports; mobile durable excludes). Local typecheck/runtime/mobile tsc verification follows on local/offline-build-recovery.
 
+
+## 2026-09-09 ~22:40 CT - US-AGT-01 propose+approval wire - grok
+- Branch / SHA: grok/us-agt-01-supplier-sim-propose (commit follows)
+- Commands run: services/ai typecheck; npx tsx supplier-simulation.test.ts; apps/mobile npx tsc --noEmit
+- Passed: propose simulate_supplier_reallocation requiresApproval; reject path; approve runs prototype simulation only; Scenario Lab WAITING_SESSION / WAITING_APPROVAL / WAITING_DATA labels; L4 false; SIMULATION_NOT_PRODUCTION
+- Failed: none
+- Not run: device e2e; US-AGT-02 persisted ai_agent_approvals audit UI
+- Notes: historical/* and sec-status left alone; parent recovery tip b7c9b4e5
+

@@ -40,6 +40,7 @@ import { osHome } from '@/lib/os-routes';
 import { XivText } from '@/components/xiv/text';
 import { XivV5AnswerPanel, XivV5CommunityCard, XivV5PlaceCard } from '@/components/v5';
 import { PremiumDesk } from '../premium/desk';
+import { SupplierSimulationLab } from '@/screens/agents/supplier-simulation-lab';
 
 export function WorkspaceOfflineCenter() {
   return (
@@ -1107,11 +1108,7 @@ export function WorkspaceOperationalTwins() {
 }
 
 export function WorkspaceScenarioLab() {
-  return (
-    <PremiumDesk title="Scenario Lab" subtitle="Supplier failure, route disruption, demand spike. Output is not prediction certainty.">
-      <XivListRow title="Assumptions" body="Scenarios keep constraints visible. They do not become forecasts of fact." />
-    </PremiumDesk>
-  );
+  return <SupplierSimulationLab />;
 }
 
 export function WorkspaceInformationLogistics() {

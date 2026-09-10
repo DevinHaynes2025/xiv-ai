@@ -90,3 +90,13 @@ export type {
   XivAgentId,
   XivAgentStatus,
 } from './runtime';
+
+export {
+  SUPPLIER_SIMULATION_TOOL_ID,
+  SUPPLIER_SIMULATION_POLICY,
+  supplierSimulationTool,
+  canProposeSupplierSimulation,
+  proposeSupplierSimulation,
+  decideSupplierSimulation,
+  openAndProposeSupplierSimulation,
+} from './supplier-simulation';

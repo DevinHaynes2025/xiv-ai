@@ -1,12 +1,12 @@
-# XIV AGENT HANDOFF — Offline recovery freeze
+# XIV AGENT HANDOFF — US-AGT-01
 
-BRANCH: local/offline-build-recovery
-SHA: 33816c447572355f8acd7dfaed3cf9bed5a62b9f
-STORY_ID: 62L-EZ recovery audit
+BRANCH: grok/us-agt-01-supplier-sim-propose
+BASE: local/offline-build-recovery @ b7c9b4e5
+STORY_ID: US-AGT-01
 ONLINE: hybrid
-WORKER: grok-reviewer (no write contention)
+WORKER: grok (one writer)
 
-GOAL: Protect validated local tip; classify file delta; stop multi-writer churn.
-CONSTRAINTS: no push, no force, no main, L4 false, Ollama=writer hereafter
-EVIDENCE: docs/operations/XIV_OFFLINE_RECOVERY_AUDIT.md (uncommitted local)
-NEXT: bounded mobile/ai tsconfig boundary fix via Ollama writer only
+GOAL: Wire AI Workforce propose supplier simulation + human approval.
+CONSTRAINTS: L4 false; SIMULATION ≠ PRODUCTION; no Guardian/RLS weaken; no main/force/xiv-v2.
+EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (US-AGT-01 entry)
+NEXT: US-AGT-02 approval audit trail persistence (queued)
