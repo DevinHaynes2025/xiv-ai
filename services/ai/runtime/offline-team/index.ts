@@ -66,3 +66,5 @@ export * from './cloud-dna-package';
 export * from './executive-cabinet-ollama-runner';
 export * from './executive-cabinet-council';
 export * from './company-brain-writeback';
+export * from './executive-neuron-learning';
+export * from './next-story-generator';
