@@ -38,5 +38,6 @@ export function createDebrief(input: {
 }
 
 export function debriefPromotesToGlobalBrain(_debrief: AgentDebrief): false {
+  // agentsociety learning-loop: promotesToGlobalBrain stays false (WAITING_REVIEW only).
   return false;
 }
