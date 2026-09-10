@@ -49,3 +49,4 @@ export * from './virtual-mini-city';
 export * from './blue-brain-local-surface';
 export * from './community-age-gate';
 export * from './device-pathways-registry';
+export * from './virtual-chip-lab-registry';
