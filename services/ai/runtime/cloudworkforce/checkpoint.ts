@@ -3,11 +3,22 @@
  * Checkpoints never transfer authority.
  */
 
-import { createHash } from 'node:crypto';
 import type { AgentCheckpoint } from './types';
 
+/** Deterministic integrity fingerprint — isomorphic (no node:crypto). Not a security credential. */
 function signCheckpoint(parts: readonly string[]): string {
-  return createHash('sha256').update(parts.join('|')).digest('hex').slice(0, 32);
+  const payload = parts.join('|');
+  let h1 = 0x811c9dc5;
+  let h2 = 0x01000193;
+  for (let i = 0; i < payload.length; i += 1) {
+    const c = payload.charCodeAt(i);
+    h1 ^= c;
+    h1 = Math.imul(h1, 0x01000193);
+    h2 = Math.imul(h2 ^ c, 0x01000193);
+  }
+  const a = (h1 >>> 0).toString(16).padStart(8, '0');
+  const b = (h2 >>> 0).toString(16).padStart(8, '0');
+  return (a + b + payload.length.toString(16).padStart(4, '0')).slice(0, 32);
 }
 
 export function createCheckpoint(input: {

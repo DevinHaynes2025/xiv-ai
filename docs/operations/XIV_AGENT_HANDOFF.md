@@ -1,37 +1,12 @@
-# XIV AGENT HANDOFF — 62L-EZ / GitHub #175
+# XIV AGENT HANDOFF — Offline recovery freeze
 
-BRANCH: grok/62l-ez-shared-agent-context
-BASE_SHA: 60986682f7a6913def6da08499388aecd4acea4a
-STORY_ID: 62L-EZ / GitHub #175
-ONLINE: yes
-WORKER: grok
+BRANCH: local/offline-build-recovery
+SHA: 33816c447572355f8acd7dfaed3cf9bed5a62b9f
+STORY_ID: 62L-EZ recovery audit
+ONLINE: hybrid
+WORKER: grok-reviewer (no write contention)
 
-## BEFORE CODING REPORT
-CURRENT_BRANCH: grok/62l-ez-shared-agent-context
-LOCAL_SHA: (after this commit — see tip)
-GITHUB_XIV_V2_SHA: 60986682f7a6913def6da08499388aecd4acea4a
-GITLAB_XIV_V2_SHA: 60986682f7a6913def6da08499388aecd4acea4a
-WORKING_TREE: clean after commit
-Required: LOCAL xiv-v2 == GITHUB == GITLAB == 60986682 — SATISFIED on integration branch
-
-## GOAL
-Land shared agent context files + sync evidence + Ollama/AMD DETECTED receipts for #175.
-
-## CONSTRAINTS
-L4_AUTONOMY_ENABLED=false; no force; no main; no production DB mutation; no secret mining.
-
-## FILES
-AGENTS.md
-docs/operations/XIV_*.md (vision, state, queue, context, handoff, decision, evidence)
-docs/operations/LOCAL_CODING_WORKER.md
-.cursor/rules/*
-
-## EVIDENCE
-See XIV_TEST_EVIDENCE.md 62L-EZ section.
-
-## NEXT_SAFE_TASK
-1. DONE this session: local coding worker heartbeat + smoke receipt (offlineAgentVerified computed with live proof)
-2. Safe Supabase schema-only inventory (partially done earlier; keep secrets schemas out)
-3. Separate child branches for Cursor UI vs Ollama implementation vs review — do not co-edit same files
-4. Review/merge path into xiv-v2 after ChatGPT/Cursor review
-5. Optional: host GPU device probe to promote actualDevice beyond NOT_TESTED/UNKNOWN
+GOAL: Protect validated local tip; classify file delta; stop multi-writer churn.
+CONSTRAINTS: no push, no force, no main, L4 false, Ollama=writer hereafter
+EVIDENCE: docs/operations/XIV_OFFLINE_RECOVERY_AUDIT.md (uncommitted local)
+NEXT: bounded mobile/ai tsconfig boundary fix via Ollama writer only

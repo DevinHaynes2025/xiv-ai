@@ -104,3 +104,7 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 - Failed: none
 - Not run: AMD GPU acceleration proof; NPU probe; full test:runtime
 - Notes: GPU device path remains NOT_TESTED/UNKNOWN; do not claim Vulkan/DirectML VERIFIED. xiv-v2 left alone.
+
+## 2026-09-09 ~22:24 CT — mobile↔ai TS boundary — grok
+- See docs/operations/XIV_TEST_EVIDENCE_NOTE_TS_BOUNDARY.md (isomorphic checkpoint; tenant barrel without Node review re-exports; mobile durable excludes). Local typecheck/runtime/mobile tsc verification follows on local/offline-build-recovery.
+
