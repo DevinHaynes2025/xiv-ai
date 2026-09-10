@@ -195,3 +195,12 @@ Append entries; never delete history. Skipped mandatory tests Ã¢â€°Â  pa
 - Notes: Prior EY3 landing existed only on cursor/ey0-l-local-coding-brain (deebe814) and was NOT an ancestor of US-PLG tip â€” reconciled onto grok/ey3-hardware-probe-reconcile from 23c744e2. Windows CIM merged with XIV_GPU_* env overlay (env no longer suppresses NPU). historical/* / sec-status / xiv-12d / dimensional/* / xiv-ai-energy untouched.
 
 
+
+## 2026-09-10 ~00:00 CT - US-ARCH-01 Architecture Reader product wire - grok
+- Branch / SHA: grok/us-arch-01-architecture-reader / a4d40950c7d83274d85cd358a432083d15d3a0f4
+- Commands run: services/ai typecheck; npx tsx architecture-reader.test.ts; apps/mobile npx tsc --noEmit
+- Passed: listArchitectureReaderView WAITING_DATA when unbound (architectureCard=null, councilTop=null); bindArchitectureReaderFixture surfaces FIXTURE_SIMULATION labeled demo topology with liveFabric=false; cloud GROK/CHATGPT/GEMINI remain WAITING_PROVIDER; tenant/universe mismatch WAITING_DATA (no cross-tenant leak); L4 false; productionAutoApply false; readOnly; mobile ArchitectureReaderCouncilScreen on executive+business command-center/council/architecture-reader routes; never fabricate live fabric metrics
+- Failed: none
+- Not run: device e2e; live dimensional fabric bind from 12d worktrees (intentionally product-lane fixture / WAITING_DATA); production deploy
+- Notes: 12D-08 FOLLOW_UP product UX only; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; Spacing.sm/md token fix on EY3 hardware screen for clean mobile tsc; .tmp-cc-preview.json left untracked
+
