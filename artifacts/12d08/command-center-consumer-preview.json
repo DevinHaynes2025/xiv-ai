@@ -1,0 +1,589 @@
+{
+  "readOnly": true,
+  "productionAutoApply": false,
+  "layerKind": "SIMULATION",
+  "ethicsNotice": "Command Center consumer is READ ONLY over SIMULATION layers. Twin roster uses digital replicas only (CAP 64, maxDuty 0.25). No bio cloning; wormholes are sparse SIMULATION pathways. Never auto-apply production.",
+  "mobileReady": {
+    "architectureCard": {
+      "universeId": "demo-cc",
+      "tenantId": "xiv",
+      "layerKind": "SIMULATION",
+      "fingerprint": "dg1:91897df34528e1e5",
+      "companyCount": 2,
+      "supplyLinkCount": 1,
+      "agentPopulationTotal": 18,
+      "worldEntityCount": 1,
+      "branchCount": 0,
+      "cityLadder": "device → local_shard → company_brain → regional_brain → global_brain",
+      "routeTarget": null,
+      "manifestStatus": "WAITING_SYNC"
+    },
+    "councilTop": [
+      {
+        "priorityRank": 1,
+        "storyId": "XIV-US-00000014",
+        "title": "SECURITY capability increment 14",
+        "domain": "SECURITY",
+        "composite": 0.7230000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 2,
+        "storyId": "XIV-US-00000011",
+        "title": "DATABASE capability increment 11",
+        "domain": "DATABASE",
+        "composite": 0.6580000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 3,
+        "storyId": "XIV-US-00000012",
+        "title": "AI_RUNTIME capability increment 12",
+        "domain": "AI_RUNTIME",
+        "composite": 0.6505000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 4,
+        "storyId": "XIV-US-00000010",
+        "title": "PLATFORM capability increment 10",
+        "domain": "PLATFORM",
+        "composite": 0.6480000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 5,
+        "storyId": "XIV-US-00000013",
+        "title": "MOBILE capability increment 13",
+        "domain": "MOBILE",
+        "composite": 0.6455000000000002,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 6,
+        "storyId": "XIV-US-00000015",
+        "title": "CLOUD capability increment 15",
+        "domain": "CLOUD",
+        "composite": 0.638,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 7,
+        "storyId": "XIV-US-00000016",
+        "title": "SIMULATION capability increment 16",
+        "domain": "SIMULATION",
+        "composite": 0.6055000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 8,
+        "storyId": "XIV-US-00000009",
+        "title": "XR capability increment 9",
+        "domain": "XR",
+        "composite": 0.498,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      }
+    ],
+    "councilProviderHonesty": [
+      "LOCAL_RULES:READY",
+      "OLLAMA:OPTIONAL_OFFLINE",
+      "GROK:WAITING_PROVIDER",
+      "CHATGPT:WAITING_PROVIDER",
+      "GEMINI:WAITING_PROVIDER"
+    ],
+    "dutyCycleStatus": {
+      "replicaCount": 2,
+      "hardCap": 64,
+      "energyRemaining": 940,
+      "energyBudgetTotal": 1000,
+      "maxDutyCycle": 0.25,
+      "sparsePathwayCount": 1,
+      "bioCloningAllowed": false,
+      "wormholesAreSparseSimulationPathwaysOnly": true
+    },
+    "banners": [
+      "READ ONLY",
+      "productionAutoApply=false",
+      "layerKind=SIMULATION",
+      "productLaneMobileWire=FOLLOW_UP"
+    ]
+  },
+  "dutyPlan": {
+    "cycleId": "cycle-12d08-demo",
+    "tenantId": "xiv",
+    "replicaSlots": [
+      {
+        "replicaId": "twin-demo-1",
+        "kind": "DIGITAL_TWIN",
+        "dutyCycle": 0.2,
+        "windowStartFrac": 0,
+        "windowEndFrac": 0.2,
+        "energyAllocated": 35,
+        "hotEligible": true
+      },
+      {
+        "replicaId": "twin-demo-2",
+        "kind": "COMPRESSED_SHARD_SET",
+        "dutyCycle": 0.15,
+        "windowStartFrac": 0.5,
+        "windowEndFrac": 0.65,
+        "energyAllocated": 25,
+        "hotEligible": true
+      }
+    ],
+    "energyBudgetTotal": 1000,
+    "energyAllocated": 60,
+    "energyRemaining": 940,
+    "maxDutyCycle": 0.25,
+    "replicaHardCap": 64,
+    "sparsePathwayCount": 1,
+    "readOnly": true,
+    "productionAutoApply": false,
+    "ethicsNotice": "Roster duty-cycle scheduler stub: digital-twin replicas only, CAP 64, maxDuty 0.25, energy budget enforced. No bio cloning; wormholes are sparse SIMULATION pathways. READ ONLY plan — never auto-applies production.",
+    "guardrails": {
+      "readOnly": true,
+      "productionAutoApply": false,
+      "replicaHardCap": 64,
+      "maxDutyCycle": 0.25,
+      "energyBudgetPerCycle": 1000,
+      "bioCloningAllowed": false,
+      "alwaysOnInfiniteClonesAllowed": false,
+      "wormholesAreSparseSimulationPathwaysOnly": true
+    }
+  },
+  "architectureSummary": {
+    "title": "XIV Universe Simulation Kernel — Architecture Reader",
+    "universeId": "demo-cc",
+    "tenantId": "xiv",
+    "layerKind": "SIMULATION",
+    "fingerprint": "dg1:91897df34528e1e5",
+    "cityTiers": [
+      "device",
+      "local_shard",
+      "company_brain",
+      "regional_brain",
+      "global_brain"
+    ],
+    "companyCount": 2,
+    "supplyLinkCount": 1,
+    "agentPopulationTotal": 18,
+    "worldEntityCount": 1,
+    "branchCount": 0,
+    "stances": [
+      "OBSERVED",
+      "SIMULATION"
+    ],
+    "memoryHeatHistogram": {
+      "hot": 1,
+      "warm": 0,
+      "cold": 0,
+      "archive": 0
+    },
+    "businessBarMetricsPresent": [
+      "reliability"
+    ],
+    "routeTarget": null,
+    "routeNodeIds": [],
+    "guardrails": {
+      "UNIVERSES_ARE_SIMULATION_LAYERS_ONLY": true,
+      "PHYSICAL_PORTALS_BANNED": true,
+      "PHYSICAL_PORTAL_CAPABILITY": false,
+      "QUANTUM_ADVANTAGE_CLAIM": false,
+      "VALUATION_THEATER_ALLOWED": false,
+      "PRODUCTION_DIMENSIONAL_FABRIC_ENABLED": false,
+      "L4_PRODUCTION_ENABLED": false,
+      "autonomousProductionDDL": false,
+      "autonomousProductionDML": false,
+      "autonomousDestructiveMigration": false,
+      "autonomousSecretCreation": false,
+      "autonomousDeployment": false,
+      "autonomousProductionReplication": false,
+      "autonomousCrossTenantReplication": false,
+      "autonomousCloudCreation": false,
+      "destructiveSchemaEvolution": false,
+      "cloudProvidersAreSandboxRoutingOnly": true,
+      "liveProductionDdlAllowed": false,
+      "literalGalaxiesClaim": false
+    },
+    "ethicsNotice": "Universes are SIMULATION layers only. Red-line capabilities remain disabled. GCP/Azure used for sandbox routing only.",
+    "manifestStatus": "WAITING_SYNC"
+  },
+  "councilSummary": {
+    "title": "XIV Adaptive Story Council — Ranked Queue (READ ONLY)",
+    "readOnly": true,
+    "productionAutoApply": false,
+    "productionAutoMerge": false,
+    "productionAutoDeploy": false,
+    "ethicsNotice": "Adaptive Council UX is READ ONLY. Ranked scores inform triage only — never auto-merge, auto-deploy, or apply production. Unbound cloud agents remain WAITING_PROVIDER.",
+    "scoreAxes": [
+      "customerValue",
+      "technicalRisk",
+      "cost",
+      "security",
+      "dependencies",
+      "evidenceQuality"
+    ],
+    "providerStatuses": [
+      {
+        "agent": "LOCAL_RULES",
+        "status": "READY",
+        "local": true,
+        "voteWeight": 1
+      },
+      {
+        "agent": "OLLAMA",
+        "status": "OPTIONAL_OFFLINE",
+        "local": true,
+        "voteWeight": 0
+      },
+      {
+        "agent": "GROK",
+        "status": "WAITING_PROVIDER",
+        "local": false,
+        "voteWeight": 0
+      },
+      {
+        "agent": "CHATGPT",
+        "status": "WAITING_PROVIDER",
+        "local": false,
+        "voteWeight": 0
+      },
+      {
+        "agent": "GEMINI",
+        "status": "WAITING_PROVIDER",
+        "local": false,
+        "voteWeight": 0
+      }
+    ],
+    "ranked": [
+      {
+        "priorityRank": 1,
+        "storyId": "XIV-US-00000014",
+        "title": "SECURITY capability increment 14",
+        "domain": "SECURITY",
+        "composite": 0.7230000000000001,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.76,
+          "technicalRisk": 0.5900000000000001,
+          "cost": 0.45,
+          "security": 0.95,
+          "dependencies": 0.42,
+          "evidenceQuality": 0.9199999999999999
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 2,
+        "storyId": "XIV-US-00000011",
+        "title": "DATABASE capability increment 11",
+        "domain": "DATABASE",
+        "composite": 0.6580000000000001,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.71,
+          "technicalRisk": 0.54,
+          "cost": 0.5,
+          "security": 0.7,
+          "dependencies": 0.47000000000000003,
+          "evidenceQuality": 0.8700000000000001
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 3,
+        "storyId": "XIV-US-00000012",
+        "title": "AI_RUNTIME capability increment 12",
+        "domain": "AI_RUNTIME",
+        "composite": 0.6505000000000001,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.81,
+          "technicalRisk": 0.64,
+          "cost": 0.45000000000000007,
+          "security": 0.65,
+          "dependencies": 0.42,
+          "evidenceQuality": 0.8200000000000001
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 4,
+        "storyId": "XIV-US-00000010",
+        "title": "PLATFORM capability increment 10",
+        "domain": "PLATFORM",
+        "composite": 0.6480000000000001,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.71,
+          "technicalRisk": 0.54,
+          "cost": 0.4,
+          "security": 0.65,
+          "dependencies": 0.47000000000000003,
+          "evidenceQuality": 0.8200000000000001
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 5,
+        "storyId": "XIV-US-00000013",
+        "title": "MOBILE capability increment 13",
+        "domain": "MOBILE",
+        "composite": 0.6455000000000002,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.8600000000000001,
+          "technicalRisk": 0.49,
+          "cost": 0.5,
+          "security": 0.6,
+          "dependencies": 0.37,
+          "evidenceQuality": 0.77
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 6,
+        "storyId": "XIV-US-00000015",
+        "title": "CLOUD capability increment 15",
+        "domain": "CLOUD",
+        "composite": 0.638,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.6599999999999999,
+          "technicalRisk": 0.5900000000000001,
+          "cost": 0.5,
+          "security": 0.7,
+          "dependencies": 0.52,
+          "evidenceQuality": 0.8200000000000001
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 7,
+        "storyId": "XIV-US-00000016",
+        "title": "SIMULATION capability increment 16",
+        "domain": "SIMULATION",
+        "composite": 0.6055000000000001,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.6100000000000001,
+          "technicalRisk": 0.44,
+          "cost": 0.35,
+          "security": 0.5,
+          "dependencies": 0.32,
+          "evidenceQuality": 0.9199999999999999
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      },
+      {
+        "priorityRank": 8,
+        "storyId": "XIV-US-00000009",
+        "title": "XR capability increment 9",
+        "domain": "XR",
+        "composite": 0.498,
+        "worthExecuting": true,
+        "scores": {
+          "customerValue": 0.56,
+          "technicalRisk": 0.6900000000000001,
+          "cost": 0.6,
+          "security": 0.45,
+          "dependencies": 0.42,
+          "evidenceQuality": 0.6699999999999999
+        },
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ],
+        "offlineProviders": [
+          "OLLAMA"
+        ]
+      }
+    ],
+    "skippedNotWorth": [],
+    "orderedStoryIds": [
+      "XIV-US-00000014",
+      "XIV-US-00000011",
+      "XIV-US-00000012",
+      "XIV-US-00000010",
+      "XIV-US-00000013",
+      "XIV-US-00000015",
+      "XIV-US-00000016",
+      "XIV-US-00000009"
+    ],
+    "guardrails": {
+      "productionAutoMerge": false,
+      "productionAutoDeploy": false,
+      "destructiveDbAutoApply": false,
+      "secretExfiltrationAllowed": false,
+      "crossTenantDataCopyAllowed": false,
+      "agentDebriefRequired": true,
+      "evidenceBeforeDone": true,
+      "cloudAgentsDefaultWaitingIfUnbound": true
+    },
+    "uxGuardrails": {
+      "readOnly": true,
+      "productionAutoApply": false,
+      "productionAutoMerge": false,
+      "productionAutoDeploy": false,
+      "destructiveDbAutoApply": false,
+      "crossTenantDataCopyAllowed": false,
+      "cloudAgentsDefaultWaitingIfUnbound": true
+    }
+  },
+  "guardrails": {
+    "readOnly": true,
+    "productionAutoApply": false,
+    "productionAutoMerge": false,
+    "productionAutoDeploy": false,
+    "destructiveDbAutoApply": false,
+    "crossTenantDataCopyAllowed": false,
+    "L4_PRODUCTION_ENABLED": false,
+    "cloudAgentsDefaultWaitingIfUnbound": true,
+    "VALUATION_THEATER_ALLOWED": false,
+    "UNIVERSES_ARE_SIMULATION_LAYERS_ONLY": true,
+    "bioCloningAllowed": false,
+    "alwaysOnInfiniteClonesAllowed": false,
+    "wormholesAreSparseSimulationPathwaysOnly": true,
+    "replicaHardCap": 64,
+    "maxDutyCycle": 0.25,
+    "productLaneMobileWire": "FOLLOW_UP"
+  }
+}

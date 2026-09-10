@@ -1,4 +1,4 @@
-export * from './types';
+﻿export * from './types';
 export * from './fabric';
 export * from './pathways';
 export * from './datagene';
@@ -34,3 +34,6 @@ export * from './offline-manifest';
 export * from './architecture-reader';
 export * from './city-blueprint-emitter';
 export * from './founder-twin-roster';
+export * from './roster-duty-cycle-scheduler';
+export * from './architecture-reader-consumer';
+
