@@ -1,6 +1,8 @@
-export { ArticleDetailScreen } from './article-detail';
+﻿export { ArticleDetailScreen } from './article-detail';
+export { BusinessArticlesFeedScreen } from './business-articles-feed';
 export { CommunitiesNetwork } from './communities-network';
 export { DiscoverNetwork } from './discover-network';
 export { NetworkComposer } from './composer';
+export { ProfilesArticlesFeedScreen } from './profiles-articles-feed';
 export { XivComposer } from '@/components/xiv/xiv-composer';
 export { ProfessionalHome } from './professional-home';

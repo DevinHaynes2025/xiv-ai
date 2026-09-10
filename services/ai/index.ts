@@ -193,3 +193,23 @@ export {
   type PolicyDenialVerdict,
   type SecurityCenterView,
 } from './security-center';
+
+export {
+  PROFILES_ARTICLES_POLICY,
+  BUILTIN_PROTOTYPE_ARTICLES,
+  BUILTIN_PROTOTYPE_PROFILES,
+  clearPrototypeProfilesArticlesFeed,
+  isProfilesArticlesPrototypeLoaded,
+  listProfilesArticlesView,
+  loadPrototypeProfilesArticlesFeed,
+  profilesArticlesAllowsL4,
+  profilesArticlesAllowsLiveSocialMetrics,
+  profilesArticlesAllowsProductionMutation,
+  resetProfilesArticlesSession,
+  type ContentGate,
+  type EngagementMetrics,
+  type EngagementMetricsGate,
+  type ProfilesArticlesView,
+  type PrototypeArticle,
+  type PrototypeProfile,
+} from './profiles-articles';
