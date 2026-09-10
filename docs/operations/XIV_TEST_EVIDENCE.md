@@ -229,7 +229,7 @@ Append entries; never delete history. Skipped mandatory tests ÃƒÂ¢Ã¢â‚�
 - Notes: PRODUCT lane after US-BB-01; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; .tmp-cc-preview.json left untracked
 
 ## 2026-09-10 ~00:40 CT - US-SIM-01 Sims 18+ entry (12D-16/17 FOLLOW_UP) - grok
-- Branch / SHA: grok/us-sim-01-sims-18-entry / PENDING_FEAT_SHA
+- Branch / SHA: grok/us-sim-01-sims-18-entry / 6593413fd77c7a986231ae21f14cb8a776a6627f
 - Commands run: services/ai typecheck; npx tsx sims-18-entry.test.ts; apps/mobile npx tsc --noEmit
 - Passed: listSims18EntryView WAITING_DATA when unbound (worlds=null, entryCard=null, ack=null); bindSims18EntryFixture surfaces AGE_GATE_REQUIRED; attemptSims18Entry denies without 18+/sandbox-rules acks; full local acks yield FIXTURE_SIMULATION with WAITING_PROVIDER for LIVE_SIM_WORLD/LIVE_AGE_VERIFICATION; GATE_DENIED nulls worlds/entryCard; portal/wormhole entry labels are metaphors only (livePortalPhysics=false; liveWormholeTransport=false); non-sexual cultural/professional/civic framing; liveSimWorld=false; liveAgeVerification=false; L4 false; productionMutation false; mobile Sims18EntryScreen on consumer+business+executive sims-18-entry routes
 - Failed: none
