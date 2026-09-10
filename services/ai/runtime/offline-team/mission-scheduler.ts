@@ -44,5 +44,5 @@ export function decomposeMission(mission: OfflineMission): readonly MissionTask[
     dependsOn: index === 0 ? Object.freeze([]) : Object.freeze([`${mission.missionId}:${String(index).padStart(2, '0')}:${roles[index - 1].toLowerCase()}`]),
     requiresHumanReview: role === 'SECURITY_REVIEWER' || role === 'QA',
     productionMutation: false as const,
-  }))));
+  })));
 }
