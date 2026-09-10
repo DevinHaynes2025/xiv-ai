@@ -278,3 +278,26 @@ export {
   type ArchitectureReaderView,
   type CouncilStoryRank,
 } from './architecture-reader';
+
+export {
+  POCKET_BRAIN_POLICY,
+  BUILTIN_POCKET_BRAIN_FIXTURE,
+  DEFAULT_POCKET_READY_PROVIDERS,
+  DEFAULT_POCKET_WAITING_PROVIDERS,
+  bindPocketBrainFixture,
+  clearPocketBrainFixture,
+  isPocketBrainFixtureBound,
+  listPocketBrainView,
+  pocketBrainAllowsAutoPromoteToGlobalBrain,
+  pocketBrainAllowsL4,
+  pocketBrainAllowsProductionMutation,
+  pocketBrainCloudOnlyNeverCached,
+  pocketBrainIsReadOnly,
+  resetPocketBrainSession,
+  type PocketBrainCacheCard,
+  type PocketBrainFixtureBundle,
+  type PocketBrainGate,
+  type PocketBrainView,
+  type PocketCacheStatus,
+  type PocketKnowledgeItem,
+} from './pocket-brain';

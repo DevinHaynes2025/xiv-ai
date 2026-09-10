@@ -1,5 +1,5 @@
-import { WorkspacePocketBrainV2 } from '@/screens/workspace';
+import { PocketBrainSurfaceScreen } from '@/screens/command';
 
-export default function Page() {
-  return <WorkspacePocketBrainV2 />;
+export default function ExecutivePocketBrainV2() {
+  return <PocketBrainSurfaceScreen />;
 }
