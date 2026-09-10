@@ -119,3 +119,7 @@ export * from './elite-onboarding';
 export * from './avatar-identity-twin';
 export * from './defensive-security-swarm';
 export * from './ai-tool-marketplace-bundles';
+export * from './onboarding-experience-ui';
+export * from './security-command-center-view';
+export * from './avatar-universe-home';
+export * from './privacy-consent-center';
