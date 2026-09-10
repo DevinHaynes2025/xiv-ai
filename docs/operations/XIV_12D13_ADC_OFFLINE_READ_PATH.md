@@ -3,10 +3,10 @@
 **Ticket:** 12D-13  
 **Branch:** `grok/12d-13-adc-offline-read-path`  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-13` (sibling; avoid US-ARCH product checkout)  
-**Base:** tip of 12D-12 `990ff590` + 12D-11 polish seals (`destructiveDbAutoApply` / `L4_PRODUCTION_ENABLED` / `autonomousSecretCreation`)  
+**Base:** sealed 12D-12 polish `06bc5a33` (`grok/12d-12-checkpoint-ledger-consumer`; merged into this tip) + 12D-11 polish seals (`destructiveDbAutoApply` / `L4_PRODUCTION_ENABLED` / `autonomousSecretCreation`)  
 **State:** research / feature branch — LOCAL offline READ path only  
 **L4 / production auto:** false  
-**Tip SHA:** `da938bb54e075a00ea2ab7503a21c956659a078e`
+**Tip SHA:** `bb09e92ee621094496b25fb439f0c11516570431`
 
 ## Locked Data City contract
 
@@ -98,6 +98,8 @@ Banned: `fanOutAdcOfflineRegionalGlobal`, `applyAdcOfflineProductionDdl`, `bypas
 ## Evidence
 
 - Feature tip: `da938bb54e075a00ea2ab7503a21c956659a078e`
+- tipShaPlaceholder sealed to feature tip (was PENDING_COMMIT)
+- Base ingest: sealed 12D-12 polish `06bc5a33954275a8d3e14e4f2d33f941d13731fe` merged into this tip
 - `npx tsx runtime/dimensional/12d13.test.ts` → OK (HIT/MISS/WAITING_SYNC/CONFLICT)
 - Prior green: `12d12.test.ts`, `12d11.test.ts`, `12d09.test.ts`
 - Cache HIT / MISS receipts (`AdcOfflineCacheReceipt`); `liveCloudSyncClaimed=false`; `productionAuto*=false`

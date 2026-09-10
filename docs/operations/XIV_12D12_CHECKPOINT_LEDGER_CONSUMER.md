@@ -1,9 +1,9 @@
-﻿# XIV 12D-12 - Checkpoint Ledger Consumer (Command Center / offline)
+# XIV 12D-12 - Checkpoint Ledger Consumer (Command Center / offline)
 
 **Ticket:** 12D-12  
 **Branch:** `grok/12d-12-checkpoint-ledger-consumer`  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-ledger`  
-**Base:** `grok/12d-11-agent-checkpoint-ledger` @ `dca96ad`  
+**Base:** sealed 12D-11 polish `d5a1db6` (`grok/12d-11-agent-checkpoint-ledger`; merged into this tip)  
 **State:** research / feature branch - read-only consumer  
 **L4 / production auto:** false  
 **Soft-confirm:** LOCAL / OFFLINE_PREFER_LOCAL (CLOUD_SANDBOX only if read-only + Policy Gate intact)
@@ -30,6 +30,9 @@
 | autonomyFlipAllowed | false |
 | deployAuthority | false |
 | productionAutoApply / Merge / Deploy | false |
+| destructiveDbAutoApply | false |
+| L4_PRODUCTION_ENABLED | false |
+| autonomousSecretCreation | false |
 | autonomousProductionDDL / DML | false |
 | policyGateBypassAllowed | false |
 | secondControlPlane | false |

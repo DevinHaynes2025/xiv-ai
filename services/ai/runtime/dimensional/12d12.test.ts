@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 12D-12 — Read-only Command Center / offline consumer of Checkpoint Ledger rows.
  * Soft-confirm: LOCAL / OFFLINE_PREFER_LOCAL; CLOUD_SANDBOX only if read-only + Gate intact.
  * Assertable: no identity mutation, autonomy flips, deploy authority, Policy Gate bypass,
@@ -46,6 +46,10 @@ assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.deployAuthority, false);
 assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.productionAutoApply, false);
 assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.productionAutoMerge, false);
 assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.productionAutoDeploy, false);
+assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.destructiveDbAutoApply, false);
+assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.L4_PRODUCTION_ENABLED, false);
+assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.autonomousSecretCreation, false);
+assert.equal(BUILDER_GUARDRAILS.autonomousSecretCreation, false);
 assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.autonomousProductionDDL, false);
 assert.equal(CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.autonomousProductionDML, false);
 assert.equal(BUILDER_GUARDRAILS.autonomousProductionDDL, false);

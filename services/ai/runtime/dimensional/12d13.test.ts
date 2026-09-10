@@ -238,7 +238,7 @@ assert.throws(
 );
 
 // Evidence hash over tip + receipts
-const tipSha = 'PENDING_COMMIT';
+const tipSha = 'da938bb54e075a00ea2ab7503a21c956659a078e';
 const evidence = evidenceHashAdcOfflineRead({
   tipSha,
   receipts: [miss.receipt, hitBound.receipt, hitUnbound.receipt],

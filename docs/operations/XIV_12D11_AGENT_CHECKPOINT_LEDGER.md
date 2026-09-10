@@ -1,4 +1,4 @@
-﻿# XIV 12D-11 — Agent Identity + Checkpoint Ledger
+# XIV 12D-11 — Agent Identity + Checkpoint Ledger
 
 **Ticket:** 12D-11  
 **Branch:** `grok/12d-11-agent-checkpoint-ledger`  
