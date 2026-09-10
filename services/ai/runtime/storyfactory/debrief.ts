@@ -29,3 +29,11 @@ export function summarizeCouncil(debriefs: AgentDebrief[]): DebriefCouncilSummar
     unresolvedQuestions,
   };
 }
+
+/** Optional 12D-11 hook — append identity+audit row from a debrief (read/review ledger only). */
+export {
+  appendCheckpointFromStoryDebrief,
+  type AgentCheckpointLedger,
+  type AgentCheckpointLedgerEntry,
+  type CheckpointEnvironmentLabel,
+} from '../dimensional/agent-checkpoint-ledger';

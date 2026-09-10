@@ -333,3 +333,9 @@ export function createLearningState(): AdaptiveLearningState {
 
 export type { DebateScoreAxis, DebateScores, StoryPriorityVerdict };
 export { rankStoriesLocalRules, scoreStoryLocalRules, DEBATE_SCORE_AXES };
+
+/** Optional 12D-11 hook — append identity+audit row after adaptive council learning. */
+export {
+  appendCheckpointFromAdaptiveCouncil,
+  createAgentCheckpointLedger,
+} from '../dimensional/agent-checkpoint-ledger';

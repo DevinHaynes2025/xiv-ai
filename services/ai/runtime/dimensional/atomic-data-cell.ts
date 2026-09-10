@@ -1,10 +1,10 @@
-/**
- * 12D-09 / CEO doctrine — Atomic Data Cells (software contracts).
+﻿/**
+ * 12D-09 / CEO doctrine â€” Atomic Data Cells (software contracts).
  * Tiny addressable knowledge records: provenance, checksum, tenant, timestamp,
  * confidence, optional vector, graph links, replication rules.
  * NOT literal atom / atomic-physics databases. Analogy only.
  *
- * Fuller ledger wiring lands in 12D-10 (Agent Identity + Checkpoint Ledger).
+ * Agent Identity + Checkpoint Ledger wired in 12D-11 (append-only; not a second control plane).
  * Quantum entanglement elsewhere = simulated pathway correlation only.
  */
 import { isomorphicContentHash } from './datagene';
@@ -22,8 +22,8 @@ export const ATOMIC_DATA_CELL_GUARDRAILS = {
   quantumEntanglementIsSimulatedCorrelationOnly: true as const,
   UNIVERSES_ARE_SIMULATION_LAYERS_ONLY,
   /** Fuller identity + checkpoint ledger integration. */
-  agentCheckpointLedgerWire: 'FOLLOW_UP' as const,
-  ticketFollowUp: '12D-10' as const,
+  agentCheckpointLedgerWire: 'WIRED' as const,
+  ticketFollowUp: '12D-11' as const,
 } as const;
 
 export type AtomicDataCellReplicationRule = {
@@ -36,7 +36,7 @@ export type AtomicDataCellReplicationRule = {
 export type AtomicDataCellGraphLink = {
   rel: string;
   targetCellId: string;
-  /** Simulated pathway correlation weight only — not physical entanglement. */
+  /** Simulated pathway correlation weight only â€” not physical entanglement. */
   correlationWeight?: number;
 };
 
@@ -76,7 +76,7 @@ function assertCellGuardrails(): void {
     throw new Error('literalAtomicPhysicsStorage must remain false');
   }
   if (ATOMIC_DATA_CELL_GUARDRAILS.atomDbClaimAllowed) {
-    throw new Error('atomDbClaimAllowed must remain false — Atomic Data Cells are software records only');
+    throw new Error('atomDbClaimAllowed must remain false â€” Atomic Data Cells are software records only');
   }
   if (ATOMIC_DATA_CELL_GUARDRAILS.biologicalDnaCloning) {
     throw new Error('biologicalDnaCloning must remain false');
@@ -161,3 +161,4 @@ export function verifyAtomicDataCellChecksum(cell: AtomicDataCell): boolean {
   );
   return rebuilt === cell.checksum;
 }
+
