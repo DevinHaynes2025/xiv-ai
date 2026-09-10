@@ -1,0 +1,13 @@
+---
+description: XIV security, Guardian, RLS, and autonomy constraints
+alwaysApply: true
+---
+
+# XIV Security
+
+- `L4_AUTONOMY_ENABLED=false`. Agents propose; humans approve consequential actions.
+- Never weaken Guardian, RLS, Universe isolation, or approval gates for convenience.
+- No secrets in source, commits, logs, or PR bodies. Env keys live in `.env` / `.env.example` names only.
+- Never: force push, auto-push `main`, deploy production, mutate production DBs, expand permissions.
+- Agents are non-principals. Policy re-check after human approval.
+- Do not claim online or production activity while offline.
