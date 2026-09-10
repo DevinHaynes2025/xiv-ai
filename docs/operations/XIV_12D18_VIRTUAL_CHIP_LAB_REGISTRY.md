@@ -3,7 +3,7 @@
 **Ticket:** 12D-18  
 **Branch:** `grok/12d-18-virtual-chip-lab-registry`  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-18` (sibling; do not disturb other WTs)  
-**Base:** sealed 12D-17 tip `239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6` (`grok/12d-17-device-pathways`; PASS_WITH_NOTES / sealed)  
+**Base:** sealed 12D-17 tip `239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6` (`grok/12d-17-device-pathways`; PASS/sealed)  
 **State:** research / feature branch — LOCAL SIMULATION Virtual Chip Lab registry stubs only  
 **L4 / production auto:** false  
 **Schema:** `12d18.vcl0.1`  
@@ -60,8 +60,9 @@ cd services/ai && npx tsx runtime/dimensional/12d18.test.ts
 
 ## Evidence
 
-- Base: sealed 12D-17 tip `239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6`
-- Feature tip: `ed47be854b68f20b6d6a90777fccc14d07585d90` (filled after push)
+- Feature tip: `ed47be854b68f20b6d6a90777fccc14d07585d90`
+- tipShaPlaceholder sealed to feature tip (was wrongly Base `239abcf6`)
+- Base: sealed 12D-17 tip `239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6` (PASS/sealed)
 - `npx tsx runtime/dimensional/12d18.test.ts` → OK
 - `twinSoftConfirmedSimulation=true`; `quantumAdvantageClaimed=false`; `liveChip/Npu/GpuControl=false`; `productionAuto*=false`; `L4_PRODUCTION_ENABLED=false`
 - Product WT undisturbed: `C:\Users\Devin\xiv-ai`

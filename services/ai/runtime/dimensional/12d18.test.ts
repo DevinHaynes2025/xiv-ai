@@ -181,7 +181,7 @@ assert.throws(
 );
 
 // Evidence hash
-const tipSha = '239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6';
+const tipSha = 'ed47be854b68f20b6d6a90777fccc14d07585d90';
 const evidence = evidenceHashVirtualChipLab({
   tipSha,
   registry,
