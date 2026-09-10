@@ -110,3 +110,24 @@ export {
   decideSupplierSimulation,
   openAndProposeSupplierSimulation,
 } from './supplier-simulation';
+
+export {
+  EMPLOYEE_FEEDBACK_POLICY,
+  FORBIDDEN_FEEDBACK_IDENTITY_KEYS,
+  anonymousEmployeeAlias,
+  assertFeedbackPayloadAnonymous,
+  bindEmployeeFeedbackPersistence,
+  buildAnonymousFeedbackPayload,
+  employeeFeedbackAllowsL4,
+  feedbackPayloadHasIdentityLeak,
+  isEmployeeFeedbackDurableBound,
+  isEmployeeFeedbackPersistenceBound,
+  listEmployeeFeedbackChannel,
+  resetEmployeeFeedbackSessionStore,
+  submitEmployeeFeedback,
+  type EmployeeFeedbackCategory,
+  type EmployeeFeedbackChannel,
+  type EmployeeFeedbackPayload,
+  type EmployeeFeedbackPersistence,
+  type EmployeeFeedbackRecord,
+} from './employee-feedback';

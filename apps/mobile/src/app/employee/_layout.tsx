@@ -1,4 +1,4 @@
-import { ExperienceTabs } from '@/components/xiv/experience-tabs';
+﻿import { ExperienceTabs } from '@/components/xiv/experience-tabs';
 
 const tabs = [
   { name: 'index', label: 'Command', ios: 'square.grid.2x2', android: 'dashboard' },
@@ -8,5 +8,10 @@ const tabs = [
 ];
 
 export default function EmployeeLayout() {
-  return <ExperienceTabs tabs={tabs} hidden={['assistant', 'ideas', 'learn', 'growth', 'activity']} />;
+  return (
+    <ExperienceTabs
+      tabs={tabs}
+      hidden={['assistant', 'ideas', 'feedback', 'learn', 'growth', 'activity']}
+    />
+  );
 }

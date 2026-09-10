@@ -1,4 +1,4 @@
-export {
+﻿export {
   agentTypeForRole,
   applyStructuredTurn,
   bindAgentPersistence,
@@ -6,6 +6,18 @@ export {
   listApprovalAuditTrail,
   recordApprovalDecisionAudit,
   approvalAuditAllowsProductionWrite,
+  EMPLOYEE_FEEDBACK_POLICY,
+  FORBIDDEN_FEEDBACK_IDENTITY_KEYS,
+  anonymousEmployeeAlias,
+  assertFeedbackPayloadAnonymous,
+  bindEmployeeFeedbackPersistence,
+  buildAnonymousFeedbackPayload,
+  employeeFeedbackAllowsL4,
+  feedbackPayloadHasIdentityLeak,
+  isEmployeeFeedbackDurableBound,
+  listEmployeeFeedbackChannel,
+  resetEmployeeFeedbackSessionStore,
+  submitEmployeeFeedback,
   APPROVAL_AUDIT_POLICY,
   decideAgentAction,
   getAgentSnapshot,
@@ -34,6 +46,10 @@ export {
   type ApprovalAuditTrail,
   type ApprovalAuditSessionEntry,
   type ApprovalAuditEventEntry,
+  type EmployeeFeedbackCategory,
+  type EmployeeFeedbackChannel,
+  type EmployeeFeedbackPayload,
+  type EmployeeFeedbackRecord,
   type AgentRiskLevel,
   type AgentRole,
   type AgentSessionContext,
@@ -80,3 +96,4 @@ export {
   type PolicyVerdict,
   type XivAgentDefinition,
 } from '../../../../services/ai/index';
+

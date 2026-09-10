@@ -1,5 +1,6 @@
-const prefixes = ['Signal', 'Keel', 'North', 'Harbor', 'Atlas'];
+﻿const prefixes = ['Signal', 'Keel', 'North', 'Harbor', 'Atlas'];
 
+/** Deterministic on-device alias — must match services/ai anonymousEmployeeAlias. */
 export function anonymousAlias(userId: string) {
   if (!userId) return 'Signal-00';
 
