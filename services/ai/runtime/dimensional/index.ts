@@ -1,4 +1,4 @@
-﻿export * from './types';
+export * from './types';
 export * from './fabric';
 export * from './pathways';
 export * from './datagene';
@@ -45,3 +45,4 @@ export * from './pocket-brain-ingest';
 export * from './agent-checkpoint-ledger';
 export * from './checkpoint-ledger-consumer';
 export * from './adc-offline-read-path';
+export * from './virtual-mini-city';
