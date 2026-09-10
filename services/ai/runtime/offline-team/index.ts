@@ -19,3 +19,4 @@ export * from './ollama-toolchain';
 export * from './model-discovery';
 export * from './live-supervisor';
 export * from './supervisor-status';
+export * from './ollama-job-executor';
