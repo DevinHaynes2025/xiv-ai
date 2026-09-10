@@ -108,3 +108,7 @@ export * from './visual-interaction-contract';
 export * from './xiv-experience-runtime';
 export * from './experience-freshness';
 export * from './ollama-story-explanation';
+export * from './industry-ecosystem-graph';
+export * from './case-study-team';
+export * from './historical-knowledge-growth';
+export * from './case-study-learning-pipeline';
