@@ -24,3 +24,6 @@ export * from './review-learning-council';
 export * from './virtual-cloud-chip-sim';
 export * from './consultant-academy';
 export * from './historical-intelligence-registry';
+export * from './experience-modes';
+export * from './cross-os-runtime';
+export * from './neuron-fabric';
