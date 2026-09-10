@@ -130,3 +130,6 @@ export * from './avatar-universe-session';
 export * from './offline-brain-health';
 export * from './encrypted-memory-nervous-system';
 export * from './simulation-scale-manifest';
+export * from './neural-growth-scheduler';
+export * from './historical-technology-archive';
+export * from './agent-academy-learning-loop';
