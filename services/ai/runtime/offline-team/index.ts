@@ -88,3 +88,6 @@ export * from './device-capability-broker';
 export * from './visual-intelligence-engine';
 export * from './industry-visual-templates';
 export * from './client-presentation-composer';
+export * from './live-visual-dashboard';
+export * from './story-visual-drilldown';
+export * from './lovable-ux-sync-manifest';
