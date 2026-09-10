@@ -1,4 +1,4 @@
-﻿# XIV Test Evidence
+# XIV Test Evidence
 
 Append entries; never delete history. Skipped mandatory tests â‰  pass.
 
@@ -169,3 +169,10 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: device e2e; live social network ingest (intentionally out of scope)
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 1b60ad0 (US-SEC-01)
 
+## 2026-09-09 ~23:25 CT - US-NET-01 Supplier / manufacturer directory search - grok
+- Branch / SHA: grok/us-net-01-supplier-directory / PENDING_COMMIT
+- Commands run: services/ai typecheck; npx tsx supplier-directory.test.ts; apps/mobile npx tsc --noEmit
+- Passed: listSupplierDirectoryView WAITING_INDEX when unbound with results=null inventory/ratings WAITING_DATA; bindStubSupplierSearchIndex RLS-scopes stub cards; search filters by query; cross-tenant search returns empty / WAITING_DATA; inventory onHand/sku and ratings stars/reviews/trust always null; L4 false; productionMutation false; mobile SupplierDirectorySearchScreen; never fabricate supplier inventory or ratings
+- Failed: none
+- Not run: device e2e; live marketplace ingest (intentionally out of scope)
+- Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 582d30e (US-SOC-01 docs) / 7c0a1ff (US-SOC-01 feat)

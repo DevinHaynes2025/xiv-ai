@@ -1,4 +1,4 @@
-﻿# XIV Master User Story Queue
+# XIV Master User Story Queue
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
@@ -26,7 +26,7 @@ No story may weaken Guardian/RLS or enable L4.
 | US-SYS-01 | System Navigator CSV/commerce demo | Executive | DONE (branch); connector stub; WAITING_CONNECTOR/DEMO_CSV; L4 false |
 | US-SEC-01 | Security Center: policy denials visible | Executive | DONE (branch); Guardian read-only; WAITING_DATA; never fabricate incidents; L4 false |
 | US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | DONE (branch); prototype pipeline; WAITING_DATA; never fabricate engagement; L4 false |
-| US-NET-01 | Supplier / manufacturer directory search | Business | Search index stub + RLS |
+| US-NET-01 | Supplier / manufacturer directory search | Business | DONE (branch); search index stub + RLS; WAITING_INDEX/WAITING_DATA; never fabricate inventory/ratings; L4 false |
 | US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory Ã¢â€ â€™ signed packages later |
 
 ## Done / parked
