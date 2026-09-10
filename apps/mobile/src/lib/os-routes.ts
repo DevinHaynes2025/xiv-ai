@@ -1,4 +1,4 @@
-import { type Href } from 'expo-router';
+﻿import { type Href } from 'expo-router';
 
 import { experienceRoute } from '@/lib/onboarding';
 import type { RoleId } from '@/types/session';
@@ -96,6 +96,7 @@ export type OsPath =
   | 'pocket-security'
   | 'communities'
   | 'community-age-gate'
+  | 'sims-18-entry'
   | 'groups'
   | 'places'
   | 'answers'
@@ -192,3 +193,4 @@ export function assistantHref(role: RoleId | null): Href {
 export function canAskLiveXiv(role: RoleId | null) {
   return role === 'business_owner' || role === 'executive';
 }
+

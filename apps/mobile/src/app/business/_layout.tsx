@@ -1,4 +1,4 @@
-import { ExperienceTabs } from '@/components/xiv/experience-tabs';
+﻿import { ExperienceTabs } from '@/components/xiv/experience-tabs';
 
 const tabs = [
   { name: 'index', label: 'Home', ios: 'house', android: 'home' },
@@ -100,6 +100,7 @@ const hidden = [
   'pocket-security',
   'communities',
   'community-age-gate',
+  'sims-18-entry',
   'groups',
   'places',
   'answers',
@@ -176,3 +177,5 @@ const hidden = [
 export default function BusinessLayout() {
   return <ExperienceTabs tabs={tabs} hidden={hidden} />;
 }
+
+

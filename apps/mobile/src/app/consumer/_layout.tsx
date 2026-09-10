@@ -1,4 +1,4 @@
-import { ExperienceTabs } from '@/components/xiv/experience-tabs';
+﻿import { ExperienceTabs } from '@/components/xiv/experience-tabs';
 
 const tabs = [
   { name: 'index', label: 'Home', ios: 'house', android: 'home' },
@@ -24,8 +24,10 @@ export default function ConsumerLayout() {
         'innovate',
         'early-access',
         'community-age-gate',
+        'sims-18-entry',
         'profiles-articles',
       ]}
     />
   );
 }
+

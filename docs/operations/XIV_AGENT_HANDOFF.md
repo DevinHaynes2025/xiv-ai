@@ -1,12 +1,11 @@
-# XIV AGENT HANDOFF - US-COM-01
+﻿# XIV AGENT HANDOFF - US-SIM-01
 
-BRANCH: grok/us-com-01-community-age-gate
-BASE: grok/us-bb-01-blue-brain-surface @ e99d4428
-STORY_ID: US-COM-01
+BRANCH: grok/us-sim-01-sims-18-entry
+TIP: (see git after commit)
+STORY_ID: US-SIM-01
 ONLINE: LOCAL/SIMULATION product lane (ASUS)
-WORKER: grok (one writer)
-
-GOAL: Community age-gate + rules acknowledgment stubs -- 18+ ack required for gated communities; waiver/contract SIMULATION flags (not live legal); anti-predator / anti-bully denial stubs; non-sexual cultural community framing; WAITING_* honesty; L4 false.
-CONSTRAINTS: L4 false; productionMutation false; liveLegalWaiver false; liveAgeVerification false; sexualFraming false; no main/force/xiv-v2; do not touch dimensional/* or xiv-12d / xiv-ai-energy / xiv-v2.
-EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (US-COM-01 entry)
-NEXT: Highest-value remaining PRODUCT US-* (Universe login polish, Mini Agent OS demo, Virtual City product peek, Story Engine deepen, AI Workforce UX) in xiv-ai only.
+PARENT: US-COM-01 @ da3d9da91c53fb8bc0ee07ad093f0c52f609ab07
+WT: C:\Users\Devin\xiv-ai only
+CONSTRAINTS: L4 false; productionMutation false; liveSimWorld false; liveAgeVerification false; livePortalPhysics false; liveWormholeTransport false; sexualSimFraming false; portals/wormholes metaphors only; no main/force/xiv-v2; do not touch dimensional/* or xiv-12d / xiv-ai-energy / xiv-v2.
+EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (US-SIM-01 entry)
+NEXT: Highest-value remaining PRODUCT US-* (Universe builder peek, Virtual City product surface, Device pathways consumer stub, Mini Agent OS demo, Story Engine deepen) in xiv-ai only.

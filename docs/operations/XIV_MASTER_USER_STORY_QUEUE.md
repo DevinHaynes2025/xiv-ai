@@ -1,4 +1,4 @@
-# XIV Master User Story Queue
+﻿# XIV Master User Story Queue
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
@@ -13,12 +13,13 @@ No story may weaken Guardian/RLS or enable L4.
 | **EY2** | ModelBackend Phase 0 (gemini | openai | ollama) | Local / Grok | DONE |
 | **EY3** | Hardware capability probe (CPU/GPU/NPU/ollama) | Local / Grok | DONE |
 
-## Product epics (queued ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â master plan aligned)
+## Product epics (queued ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â master plan aligned)
 | ID | Title | Persona | Notes |
 |----|-------|---------|-------|
 | **US-PB-01** | Pocket Brain product surface (LOCAL/SIMULATION) | Executive | DONE (branch); WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC; CLOUD_ONLY never cached; L4 false |
 | **US-BB-01** | Blue Brain mobile product surface (LOCAL/SIMULATION) | Executive | DONE (branch); WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC/GATE_DENIED; liveCloudSyncClaimed=false; mayEnterGlobalBrain=false; aspirational!=measured; L4 false |
 | **US-COM-01** | Community age-gate + rules acknowledgment stubs (LOCAL/SIMULATION) | Consumer/Business | DONE (branch); WAITING_DATA/AGE_GATE_REQUIRED/RULES_ACK_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveLegalWaiver=false; liveAgeVerification=false; sexualFraming=false; anti-predator/anti-bully stubs; L4 false |
+| **US-SIM-01** | Sims 18+ entry product surface (LOCAL/SIMULATION; 12D-16/17 FOLLOW_UP) | Consumer | DONE (branch); WAITING_DATA/AGE_GATE_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveSimWorld=false; liveAgeVerification=false; livePortalPhysics=false; portals/wormholes metaphors only; sexualFraming=false; L4 false |
 | US-ARCH-01 | Architecture Reader product UX wire | Executive | DONE (branch); FIXTURE_SIMULATION; WAITING_DATA/WAITING_PROVIDER; liveFabric=false; L4 false |
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
 | US-EXE-01 | Executive Home + Business Health score | Executive | DONE (live wire + WAITING_DATA; CRM alts doc) |
@@ -42,6 +43,7 @@ No story may weaken Guardian/RLS or enable L4.
 ## Rules
 - ChatGPT may author US-MOB / US-* detail; Grok executes EY* + backend; local Ollama implements offline.
 - Sync via Git + this queue, not chat memory.
+
 
 
 

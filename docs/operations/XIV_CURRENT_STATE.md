@@ -1,4 +1,4 @@
-# XIV Current State
+﻿# XIV Current State
 
 Updated: 2026-09-09 (America/Chicago)
 
@@ -8,20 +8,20 @@ Updated: 2026-09-09 (America/Chicago)
 - Remotes: GitHub `DevinHaynes2025/xiv-ai`, GitLab `xiv-ai-group/xiv-ai-project`
 
 ## What is real
-- `apps/mobile` — Expo ~57 multi-persona app
-- `services/ai` — Node/TS AI service (port 8787); live Gemini executive turns
-- `services/ai/runtime/` — governed agent runtime (policy, mesh, guardian, fabric, etc.)
-- Supabase project **XIV AI** (`laxpnlnavzkjawuvzyxh`, us-east-2) — Universes, memberships, AI agent tables, RLS enabled
-- Docs under `docs/` (agent-runtime, security, modules, …)
+- `apps/mobile` â€” Expo ~57 multi-persona app
+- `services/ai` â€” Node/TS AI service (port 8787); live Gemini executive turns
+- `services/ai/runtime/` â€” governed agent runtime (policy, mesh, guardian, fabric, etc.)
+- Supabase project **XIV AI** (`laxpnlnavzkjawuvzyxh`, us-east-2) â€” Universes, memberships, AI agent tables, RLS enabled
+- Docs under `docs/` (agent-runtime, security, modules, â€¦)
 
 ## Empty / stub
 - `apps/web`, `services/api`, `packages/{database,security,ui}`
-- AWS / Azure / GCP status stubs → `NOT_CONFIGURED`
+- AWS / Azure / GCP status stubs â†’ `NOT_CONFIGURED`
 - OpenAI provider id is mock-labeled only
 - Local Ollama worker heartbeat/smoke implemented (`services/ai/local-coding-worker.ts`); ONNX DirectML still not implemented; GPU accel NOT_TESTED
 
 ## Hardware (founder ASUS)
-- ASUS Vivobook 18 M1807HA — ~31.3 GB RAM
+- ASUS Vivobook 18 M1807HA â€” ~31.3 GB RAM
 - AMD Ryzen 7 260 + Radeon 780M (no NVIDIA)
 - Tools present: Git, Node, Python 3.14
 - Ollama: installed 0.33.3; model qwen2.5-coder:7b DETECTED
@@ -29,7 +29,7 @@ Updated: 2026-09-09 (America/Chicago)
 
 ## Active engineering lanes
 - **Local / Grok Bot:** EY0-L Coding Brain spine; silicon/offline; agents/backend
-- **ChatGPT:** user stories → Cursor UI
+- **ChatGPT:** user stories â†’ Cursor UI
 - **Cursor cloud:** optional; prefer local worker when usage is constrained
 - Recent cloud work: Agent Civilization / evidence layers (private PRs; verify in browser)
 
@@ -66,7 +66,7 @@ Prototype. Prefer `PROTOTYPE` / `NOT_CONFIGURED` / `WAITING_*` over false readin
 | RAM | DETECTED ~31.3 GB | Win32_OperatingSystem |
 | Ollama runtime | DETECTED 0.33.3 | `ollama --version` |
 | Model qwen2.5-coder:7b | DETECTED | `ollama list` + `/api/tags` |
-| Local generate smoke | VERIFIED (runtime) | `/api/generate` prompt Reply OK → `OK`; wall ~9004ms; eval_count=2 |
+| Local generate smoke | VERIFIED (runtime) | `/api/generate` prompt Reply OK â†’ `OK`; wall ~9004ms; eval_count=2 |
 | GPU device used by Ollama | NOT_TESTED / UNKNOWN | Receipt does not yet prove Vulkan/DirectML device; treat as local runtime VERIFIED, GPU path still NOT_TESTED for acceleration |
 
 ### Shared agent brain
@@ -87,4 +87,4 @@ EY3 DONE on grok/ey3-hardware-probe-reconcile: GET /v1/hardware honest silicon p
 
 
 ## Latest PRODUCT tip
-US-COM-01 Community age-gate + rules acknowledgment stubs DONE on grok/us-com-01-community-age-gate (after US-BB-01). LOCAL/SIMULATION; WAITING_DATA/AGE_GATE_REQUIRED/RULES_ACK_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveLegalWaiver=false; liveAgeVerification=false; sexualFraming=false; L4 false.
+US-SIM-01 Sims 18+ entry (12D-16/17 FOLLOW_UP) DONE on grok/us-sim-01-sims-18-entry (after US-COM-01). LOCAL/SIMULATION; WAITING_DATA/AGE_GATE_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveSimWorld=false; liveAgeVerification=false; livePortalPhysics=false; liveWormholeTransport=false; portals/wormholes metaphors only; sexualFraming=false; L4 false.
