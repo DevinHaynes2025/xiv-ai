@@ -123,3 +123,7 @@ export * from './onboarding-experience-ui';
 export * from './security-command-center-view';
 export * from './avatar-universe-home';
 export * from './privacy-consent-center';
+export * from './live-onboarding-runtime';
+export * from './avatar-brain-bootstrap';
+export * from './permission-scoped-tool-loader';
+export * from './avatar-universe-session';
