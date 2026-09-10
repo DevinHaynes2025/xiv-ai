@@ -38,3 +38,6 @@ export * from './roster-duty-cycle-scheduler';
 export * from './architecture-reader-consumer';
 export * from './atomic-data-cell';
 export * from './offline-snapshot-cache';
+export * from './xiv-data-manifest';
+export * from './ollama-local-writer';
+export * from './pocket-brain-ingest';
