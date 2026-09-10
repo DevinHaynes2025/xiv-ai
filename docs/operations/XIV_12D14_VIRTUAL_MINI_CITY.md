@@ -3,10 +3,10 @@
 **Ticket:** 12D-14  
 **Branch:** `grok/12d-14-virtual-mini-city`  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-14` (sibling; avoid US-ARCH product + ledger checkouts)  
-**Base:** tip of 12D-13 sealed `1d56700b` (`grok/12d-13-adc-offline-read-path`)  
+**Base:** sealed 12D-13 polish `2ddc3b64` (`grok/12d-13-adc-offline-read-path`; merged into this tip)  
 **State:** research / feature branch — LOCAL SIMULATION catalog stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `44d1f428958ea66e7fabb05c814fd22864fecdb4`
+**Tip SHA:** `9b177ca2467f4e51e29e746fb5b4f86d6f5095fe`
 
 ## Locked Virtual Mini City contract
 
@@ -82,9 +82,11 @@ Banned: `applyVirtualMiniCityProductionDdl`, `materializeVirtualMiniCityProducti
 ## Evidence
 
 - Feature tip: `44d1f428958ea66e7fabb05c814fd22864fecdb4`
+- tipShaPlaceholder sealed to feature tip (was PENDING_COMMIT)
+- Base ingest: sealed 12D-13 polish `2ddc3b64c25d7ea60ecbe46574d3edd4ca21675a` merged into this tip
 - Seal note: docs Evidence records feature tip; 12d14+12d13 green
 - `npx tsx runtime/dimensional/12d14.test.ts` → OK
-- Prior green: `12d13.test.ts` (base tip `1d56700b`)
+- Prior green: `12d13.test.ts` (sealed polish tip `2ddc3b64`)
 - `liveCloudSyncClaimed=false`; `productionAuto*=false`; accelerators UNVERIFIED except CPU
 - Product WT undisturbed: `C:\Users\Devin\xiv-ai`
 - Ledger polish tip undisturbed: `06bc5a33` @ `C:\Users\Devin\xiv-ai-12d-ledger`

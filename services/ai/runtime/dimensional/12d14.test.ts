@@ -168,7 +168,7 @@ assert.throws(
 );
 
 // Evidence hash
-const tipSha = 'PENDING_COMMIT';
+const tipSha = '44d1f428958ea66e7fabb05c814fd22864fecdb4';
 const evidence = evidenceHashVirtualMiniCity({
   tipSha,
   catalog,
