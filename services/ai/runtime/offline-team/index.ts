@@ -15,3 +15,5 @@ export * from './storage-compiler';
 export * from './parallel-scenario-compiler';
 export * from './control-tower';
 export * from './public-data-ingest';
+export * from './neural-highway';
+export * from './model-council';
