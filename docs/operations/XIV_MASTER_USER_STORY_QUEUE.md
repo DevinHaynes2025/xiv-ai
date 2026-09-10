@@ -18,7 +18,7 @@ No story may weaken Guardian/RLS or enable L4.
 |----|-------|---------|-------|
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
 | US-EXE-01 | Executive Home + Business Health score | Executive | DONE (live wire + WAITING_DATA; CRM alts doc) |
-| US-EXE-02 | Story Engine brief (what changed / why) | Executive | Read-only; approval for actions |
+| US-EXE-02 | Story Engine brief (what changed / why) | Executive | DONE (live runLiveBrief + WAITING_DATA; Founder Twin guidance-only) |
 | US-AGT-01 | AI Workforce: propose supplier simulation | Executive | requiresApproval=true |
 | US-AGT-02 | Agent approval + audit trail | Executive | ai_agent_approvals / audit_events |
 | US-EMP-01 | Anonymous employee feedback channel | Employee | alias only; no legal name leak |

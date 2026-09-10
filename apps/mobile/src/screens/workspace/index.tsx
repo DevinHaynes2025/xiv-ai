@@ -36,6 +36,7 @@ import { osHome } from '@/lib/os-routes';
 import { XivText } from '@/components/xiv/text';
 import { XivV5AnswerPanel, XivV5CommunityCard, XivV5PlaceCard } from '@/components/v5';
 import { PremiumDesk } from '../premium/desk';
+import { LiveStoryBriefScreen } from '@/screens/executive/live-story-brief';
 
 export function WorkspaceOfflineCenter() {
   return (
@@ -1098,10 +1099,12 @@ export function WorkspaceIncidentEngine() {
 }
 
 export function WorkspaceExecutiveBriefs() {
+  // US-EXE-02: same live Story Engine brief path as executive/story.
   return (
-    <PremiumDesk title="Executive Briefs" subtitle="What happened, why it matters, impact, evidence, options, risks, decision needed.">
-      <XivListRow title="Evidence" body="A recommendation without evidence is denied. UNKNOWN health is not HEALTHY." />
-    </PremiumDesk>
+    <LiveStoryBriefScreen
+      title="Executive Briefs"
+      subtitle="What changed / why - live governed brief. Read-only; actions requireApproval."
+    />
   );
 }
 

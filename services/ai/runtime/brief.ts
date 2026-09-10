@@ -60,7 +60,11 @@ export function buildExecutiveBrief(input: {
       ? ['Live source unavailable']
       : input.provenance?.freshnessStatus === 'stale'
         ? ['Connected source is stale']
-        : [],
+        : (input.report?.findings ?? [])
+            .filter((finding) => input.liveStatus === 'live' ? !finding.prototype : true)
+            .map((finding) => finding.whatHappened || finding.title)
+            .filter(Boolean)
+            .slice(0, 5),
     recommendedPriorities: unavailable
       ? ['Do not treat prototype sample as live company data.']
       : input.report?.topOpportunities.slice(0, 2) ?? [],

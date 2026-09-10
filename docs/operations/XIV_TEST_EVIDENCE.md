@@ -70,3 +70,11 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 - Failed: none
 - Not run: device e2e on Expo; authenticated `GET /v1/business/health` from device
 - Notes: L4 remains false; recommendation labeled requiresApproval; score only numeric when `dataStatus === 'live'`
+
+### 2026-09-09 - US-EXE-02 - grok
+- Branch / SHA: cursor/ey0-l-local-coding-brain (commit follows)
+- Commands run: wired executive story + executive-briefs to LiveStoryBriefScreen (runLiveBrief / summarizeLiveExecutiveBrief); enhanced buildExecutiveBrief criticalChanges from live findings; health probe when service up
+- Passed: live governed brief path (not mock DEMO); WAITING_DATA when AI/source unavailable; empty change/why not fabricated; requiresApproval labeled; L4 false; Salesforce skipped; Founder Twin non-approving per XIV_SUPERVISION.md
+- Failed: none
+- Not run: device e2e on Expo; authenticated business brief from device
+- Notes: historical/* and sec-status.ts left unstaged; PremiumStory + WorkspaceExecutiveBriefs share LiveStoryBriefScreen

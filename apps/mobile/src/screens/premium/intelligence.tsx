@@ -15,6 +15,8 @@ import {
   SOURCE_ROWS,
 } from '@/data/premium-experience';
 
+import { LiveStoryBriefScreen } from '@/screens/executive/live-story-brief';
+
 import { PremiumDesk } from './desk';
 
 export function PremiumIntelligence() {
@@ -59,12 +61,8 @@ export function PremiumIntelligence() {
 }
 
 export function PremiumStory() {
-  const story = INTELLIGENCE_STORIES[0];
-  return (
-    <PremiumDesk title="Business Story" subtitle={`${story.title} · ${story.state}`}>
-      <IntelligenceStoryCard {...story} />
-    </PremiumDesk>
-  );
+  // US-EXE-02: live Story Engine brief (summarizeLiveExecutiveBrief), not mock-only.
+  return <LiveStoryBriefScreen />;
 }
 
 export function PremiumDataSources() {
