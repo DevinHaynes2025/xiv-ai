@@ -87,4 +87,4 @@ EY3 DONE on grok/ey3-hardware-probe-reconcile: GET /v1/hardware honest silicon p
 
 
 ## Latest PRODUCT tip
-US-BB-01 Blue Brain mobile product surface DONE on grok/us-bb-01-blue-brain-surface (after US-PB-01). LOCAL/SIMULATION; WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC/GATE_DENIED; liveCloudSyncClaimed=false; mayEnterGlobalBrain=false; L4 false.
+US-COM-01 Community age-gate + rules acknowledgment stubs DONE on grok/us-com-01-community-age-gate (after US-BB-01). LOCAL/SIMULATION; WAITING_DATA/AGE_GATE_REQUIRED/RULES_ACK_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveLegalWaiver=false; liveAgeVerification=false; sexualFraming=false; L4 false.

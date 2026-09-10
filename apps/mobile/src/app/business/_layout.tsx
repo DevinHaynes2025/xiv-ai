@@ -99,6 +99,7 @@ const hidden = [
   'device-trust',
   'pocket-security',
   'communities',
+  'community-age-gate',
   'groups',
   'places',
   'answers',

@@ -23,6 +23,8 @@ export default function ConsumerLayout() {
         'live',
         'innovate',
         'early-access',
+        'community-age-gate',
+        'profiles-articles',
       ]}
     />
   );

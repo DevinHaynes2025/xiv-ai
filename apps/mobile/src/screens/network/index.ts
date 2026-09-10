@@ -7,3 +7,4 @@ export { ProfilesArticlesFeedScreen } from './profiles-articles-feed';
 export { XivComposer } from '@/components/xiv/xiv-composer';
 export { ProfessionalHome } from './professional-home';
 export { SupplierDirectorySearchScreen } from './supplier-directory-search';
+export { CommunityAgeGateScreen } from './community-age-gate';

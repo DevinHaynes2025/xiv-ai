@@ -18,6 +18,7 @@ No story may weaken Guardian/RLS or enable L4.
 |----|-------|---------|-------|
 | **US-PB-01** | Pocket Brain product surface (LOCAL/SIMULATION) | Executive | DONE (branch); WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC; CLOUD_ONLY never cached; L4 false |
 | **US-BB-01** | Blue Brain mobile product surface (LOCAL/SIMULATION) | Executive | DONE (branch); WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC/GATE_DENIED; liveCloudSyncClaimed=false; mayEnterGlobalBrain=false; aspirational!=measured; L4 false |
+| **US-COM-01** | Community age-gate + rules acknowledgment stubs (LOCAL/SIMULATION) | Consumer/Business | DONE (branch); WAITING_DATA/AGE_GATE_REQUIRED/RULES_ACK_REQUIRED/WAITING_PROVIDER/GATE_DENIED; liveLegalWaiver=false; liveAgeVerification=false; sexualFraming=false; anti-predator/anti-bully stubs; L4 false |
 | US-ARCH-01 | Architecture Reader product UX wire | Executive | DONE (branch); FIXTURE_SIMULATION; WAITING_DATA/WAITING_PROVIDER; liveFabric=false; L4 false |
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
 | US-EXE-01 | Executive Home + Business Health score | Executive | DONE (live wire + WAITING_DATA; CRM alts doc) |
