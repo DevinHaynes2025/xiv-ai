@@ -9,6 +9,7 @@
  * Quantum entanglement = simulated pathway correlation only.
  */
 import { isomorphicContentHash } from './datagene';
+import { PRODUCTION_DIMENSIONAL_FABRIC_ENABLED } from './fabric';
 import {
   assertEthicsSafeCopy,
   BUSINESS_BAR_METRICS,
@@ -43,6 +44,7 @@ export const OFFLINE_SNAPSHOT_GUARDRAILS = {
   destructiveDbAutoApply: false as const,
   crossTenantDataCopyAllowed: false as const,
   L4_PRODUCTION_ENABLED: false as const,
+  PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   /** Never claim live cloud sync succeeded from offline cache alone. */
   liveCloudSyncFabricationAllowed: false as const,
   cloudAgentsDefaultWaitingIfUnbound: true as const,
@@ -122,6 +124,12 @@ function assertOfflineGuardrails(): void {
   }
   if (OFFLINE_SNAPSHOT_GUARDRAILS.L4_PRODUCTION_ENABLED) {
     throw new Error('L4_PRODUCTION_ENABLED must remain false');
+  }
+  if (OFFLINE_SNAPSHOT_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED) {
+    throw new Error('PRODUCTION_DIMENSIONAL_FABRIC_ENABLED must remain false');
+  }
+  if (OFFLINE_SNAPSHOT_GUARDRAILS.destructiveDbAutoApply) {
+    throw new Error('destructiveDbAutoApply must remain false');
   }
   if (OFFLINE_SNAPSHOT_GUARDRAILS.liveCloudSyncFabricationAllowed) {
     throw new Error('liveCloudSyncFabricationAllowed must remain false');

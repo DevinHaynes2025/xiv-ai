@@ -12,6 +12,7 @@ import {
   UNIVERSES_ARE_SIMULATION_LAYERS_ONLY,
   VALUATION_THEATER_ALLOWED,
 } from './universe-ethics';
+import { PRODUCTION_DIMENSIONAL_FABRIC_ENABLED } from './fabric';
 import { BUILDER_GUARDRAILS } from '../builder/policy';
 import { DEFAULT_BUILDERS, selectBuilder } from '../builder/orchestrator';
 
@@ -23,12 +24,23 @@ export const OLLAMA_DEFAULT_ENDPOINT = 'http://127.0.0.1:11434' as const;
 export const OLLAMA_WRITER_GUARDRAILS = {
   readOnlyArtifacts: true as const,
   productionAutoApply: false as const,
+  productionAutoMerge: false as const,
+  productionAutoDeploy: false as const,
+  destructiveDbAutoApply: false as const,
+  L4_PRODUCTION_ENABLED: false as const,
+  PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   autonomousProductionDDL: false as const,
   autonomousProductionDML: false as const,
   OFFLINE_PREFER_LOCAL,
   /** Never emit fake VERIFIED accelerator claims. */
   verifiedAcceleratorClaimAllowed: false as const,
   fakeVerifiedGpuNpuQpuAllowed: false as const,
+  /** Lane-local: gpu/npu/qpu stay UNVERIFIED only (type bans VERIFIED). */
+  acceleratorGpu: 'UNVERIFIED' as const,
+  acceleratorNpu: 'UNVERIFIED' as const,
+  acceleratorQpu: 'UNVERIFIED' as const,
+  liveCloudSyncFabricationAllowed: false as const,
+  bioCloningAllowed: false as const,
   highAutonomyTargets: HIGH_AUTONOMY_TARGETS,
   businessBarMetrics: BUSINESS_BAR_METRICS,
   VALUATION_THEATER_ALLOWED,
@@ -86,11 +98,42 @@ function assertWriterGuardrails(): void {
   if (OLLAMA_WRITER_GUARDRAILS.autonomousProductionDML || BUILDER_GUARDRAILS.autonomousProductionDML) {
     throw new Error('autonomousProductionDML must remain false');
   }
+  if (OLLAMA_WRITER_GUARDRAILS.productionAutoApply) {
+    throw new Error('productionAutoApply must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.productionAutoMerge) {
+    throw new Error('productionAutoMerge must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.productionAutoDeploy) {
+    throw new Error('productionAutoDeploy must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.destructiveDbAutoApply) {
+    throw new Error('destructiveDbAutoApply must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.L4_PRODUCTION_ENABLED) {
+    throw new Error('L4_PRODUCTION_ENABLED must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED) {
+    throw new Error('PRODUCTION_DIMENSIONAL_FABRIC_ENABLED must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.bioCloningAllowed) {
+    throw new Error('bioCloningAllowed must remain false');
+  }
+  if (OLLAMA_WRITER_GUARDRAILS.liveCloudSyncFabricationAllowed) {
+    throw new Error('liveCloudSyncFabricationAllowed must remain false');
+  }
   if (OLLAMA_WRITER_GUARDRAILS.verifiedAcceleratorClaimAllowed) {
     throw new Error('verifiedAcceleratorClaimAllowed must remain false');
   }
   if (OLLAMA_WRITER_GUARDRAILS.fakeVerifiedGpuNpuQpuAllowed) {
     throw new Error('fakeVerifiedGpuNpuQpuAllowed must remain false');
+  }
+  if (
+    OLLAMA_WRITER_GUARDRAILS.acceleratorGpu !== 'UNVERIFIED' ||
+    OLLAMA_WRITER_GUARDRAILS.acceleratorNpu !== 'UNVERIFIED' ||
+    OLLAMA_WRITER_GUARDRAILS.acceleratorQpu !== 'UNVERIFIED'
+  ) {
+    throw new Error('gpu/npu/qpu accelerator claims must remain UNVERIFIED only');
   }
   if (OLLAMA_WRITER_GUARDRAILS.policyGateBypassAllowed) {
     throw new Error('policyGateBypassAllowed must remain false');

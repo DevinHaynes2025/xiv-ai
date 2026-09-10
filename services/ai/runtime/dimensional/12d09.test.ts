@@ -17,6 +17,7 @@ import {
   FOUNDER_TWIN_REPLICA_HARD_CAP,
   HIGH_AUTONOMY_TARGETS,
   OFFLINE_SNAPSHOT_GUARDRAILS,
+  PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   UNIVERSE_KERNEL_GUARDRAILS,
   VALUATION_THEATER_ALLOWED,
   OfflineSnapshotCache,
@@ -54,6 +55,10 @@ assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.readOnly, true);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.productionAutoApply, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.productionAutoMerge, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.productionAutoDeploy, false);
+assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.destructiveDbAutoApply, false);
+assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.L4_PRODUCTION_ENABLED, false);
+assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED, false);
+assert.equal(PRODUCTION_DIMENSIONAL_FABRIC_ENABLED, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.liveCloudSyncFabricationAllowed, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.policyGateBypassAllowed, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.checkpointIsReadReviewOnly, true);

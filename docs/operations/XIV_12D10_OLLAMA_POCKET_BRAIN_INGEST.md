@@ -1,7 +1,7 @@
 # XIV 12D-10 — LOCAL Ollama writer loop + Pocket Brain ingest
 
 **Ticket:** 12D-10 (renumbered — was Offline Builder “Ollama/Pocket” lane; Agent Identity Checkpoint Ledger deferred to **12D-11**)  
-**Branch:** `grok/12d-10-ollama-pocket-brain-ingest`  
+**Branch:** `grok/12d-10-guardrail-self-seal` (from `grok/12d-10-ollama-pocket-brain-ingest` @ `b0b05b69`)  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d` only  
 **Base:** `grok/12d-09-offline-snapshot-cache` @ `957115b0`  
 **State:** research / feature branch  
@@ -18,17 +18,28 @@
 
 ## Guardrails
 
+Self-sealed on both `OLLAMA_WRITER_GUARDRAILS` and `POCKET_BRAIN_INGEST_GUARDRAILS` (not inherited-only):
+
 | Flag | Value |
 |------|-------|
-| OFFLINE_PREFER_LOCAL | true |
+| OFFLINE_PREFER_LOCAL | true (writer) |
+| L4_PRODUCTION_ENABLED | false |
+| PRODUCTION_DIMENSIONAL_FABRIC_ENABLED | false |
+| bioCloningAllowed | false |
+| destructiveDbAutoApply | false |
+| productionAutoApply | false |
+| productionAutoMerge | false |
+| productionAutoDeploy | false |
+| liveCloudSyncFabricationAllowed | false (lane-local) |
 | autonomousProductionDDL | false |
 | autonomousProductionDML | false |
 | verifiedAcceleratorClaimAllowed | false |
 | fakeVerifiedGpuNpuQpuAllowed | false |
-| ingestFromXivDataManifestsOnly | true |
+| acceleratorGpu / Npu / Qpu | UNVERIFIED only (type bans VERIFIED) |
+| ingestFromXivDataManifestsOnly | true (ingest) |
 | mayEnterGlobalBrain | false |
 | secretsAllowed | false |
-| highAutonomyTargets | LOCAL \| CLOUD_SANDBOX |
+| highAutonomyTargets | LOCAL \| CLOUD_SANDBOX only |
 | policyGateBypassAllowed | false |
 | checkpointIsReadReviewOnly | true |
 | checkpointLedgerIsSecondControlPlane | false |

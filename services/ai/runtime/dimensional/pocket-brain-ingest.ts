@@ -10,6 +10,7 @@ import {
   HIGH_AUTONOMY_TARGETS,
   UNIVERSES_ARE_SIMULATION_LAYERS_ONLY,
 } from './universe-ethics';
+import { PRODUCTION_DIMENSIONAL_FABRIC_ENABLED } from './fabric';
 import {
   buildAtomicDataCell,
   type AtomicDataCell,
@@ -26,6 +27,11 @@ import { OLLAMA_WRITER_GUARDRAILS } from './ollama-local-writer';
 export const POCKET_BRAIN_INGEST_GUARDRAILS = {
   readOnly: true as const,
   productionAutoApply: false as const,
+  productionAutoMerge: false as const,
+  productionAutoDeploy: false as const,
+  destructiveDbAutoApply: false as const,
+  L4_PRODUCTION_ENABLED: false as const,
+  PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   autonomousProductionDDL: false as const,
   autonomousProductionDML: false as const,
   /** Ingest sources must be checksummed xiv-data manifests only. */
@@ -33,6 +39,12 @@ export const POCKET_BRAIN_INGEST_GUARDRAILS = {
   mayEnterGlobalBrain: false as const,
   secretsAllowed: false as const,
   verifiedAcceleratorClaimAllowed: false as const,
+  /** Lane-local: gpu/npu/qpu stay UNVERIFIED only (type bans VERIFIED). */
+  acceleratorGpu: 'UNVERIFIED' as const,
+  acceleratorNpu: 'UNVERIFIED' as const,
+  acceleratorQpu: 'UNVERIFIED' as const,
+  liveCloudSyncFabricationAllowed: false as const,
+  bioCloningAllowed: false as const,
   highAutonomyTargets: HIGH_AUTONOMY_TARGETS,
   businessBarMetrics: BUSINESS_BAR_METRICS,
   UNIVERSES_ARE_SIMULATION_LAYERS_ONLY,
@@ -79,11 +91,42 @@ function assertIngestGuardrails(): void {
   if (POCKET_BRAIN_INGEST_GUARDRAILS.autonomousProductionDML) {
     throw new Error('autonomousProductionDML must remain false');
   }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoApply) {
+    throw new Error('productionAutoApply must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoMerge) {
+    throw new Error('productionAutoMerge must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoDeploy) {
+    throw new Error('productionAutoDeploy must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.destructiveDbAutoApply) {
+    throw new Error('destructiveDbAutoApply must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.L4_PRODUCTION_ENABLED) {
+    throw new Error('L4_PRODUCTION_ENABLED must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED) {
+    throw new Error('PRODUCTION_DIMENSIONAL_FABRIC_ENABLED must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.bioCloningAllowed) {
+    throw new Error('bioCloningAllowed must remain false');
+  }
+  if (POCKET_BRAIN_INGEST_GUARDRAILS.liveCloudSyncFabricationAllowed) {
+    throw new Error('liveCloudSyncFabricationAllowed must remain false');
+  }
   if (POCKET_BRAIN_INGEST_GUARDRAILS.mayEnterGlobalBrain) {
     throw new Error('mayEnterGlobalBrain must remain false');
   }
   if (POCKET_BRAIN_INGEST_GUARDRAILS.verifiedAcceleratorClaimAllowed) {
     throw new Error('verifiedAcceleratorClaimAllowed must remain false');
+  }
+  if (
+    POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorGpu !== 'UNVERIFIED' ||
+    POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorNpu !== 'UNVERIFIED' ||
+    POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorQpu !== 'UNVERIFIED'
+  ) {
+    throw new Error('gpu/npu/qpu accelerator claims must remain UNVERIFIED only');
   }
   if (POCKET_BRAIN_INGEST_GUARDRAILS.checkpointLedgerIsSecondControlPlane) {
     throw new Error('Checkpoint Ledger must not be a second production control plane');
@@ -96,6 +139,10 @@ function assertIngestGuardrails(): void {
   }
   if (!XIV_DATA_MANIFEST_GUARDRAILS.founderApprovalRequired) {
     throw new Error('founderApprovalRequired must remain true');
+  }
+  const targets = POCKET_BRAIN_INGEST_GUARDRAILS.highAutonomyTargets;
+  if (!targets.includes('LOCAL') || !targets.includes('CLOUD_SANDBOX') || targets.length !== 2) {
+    throw new Error('highAutonomyTargets must be LOCAL|CLOUD_SANDBOX only');
   }
 }
 

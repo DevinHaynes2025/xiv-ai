@@ -24,6 +24,9 @@
 | productionAutoApply | false |
 | productionAutoMerge | false |
 | productionAutoDeploy | false |
+| destructiveDbAutoApply | false |
+| L4_PRODUCTION_ENABLED | false |
+| PRODUCTION_DIMENSIONAL_FABRIC_ENABLED | false |
 | liveCloudSyncFabricationAllowed | false |
 | checkpointIsReadReviewOnly | true |
 | policyGateBypassAllowed | false |

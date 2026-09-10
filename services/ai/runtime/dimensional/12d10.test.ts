@@ -13,6 +13,7 @@ import {
   OLLAMA_DEFAULT_ENDPOINT,
   OLLAMA_WRITER_GUARDRAILS,
   POCKET_BRAIN_INGEST_GUARDRAILS,
+  PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   VALUATION_THEATER_ALLOWED,
   XIV_DATA_MANIFEST_GUARDRAILS,
   buildXivDataManifest,
@@ -23,12 +24,24 @@ import {
 } from './index';
 
 assert.equal(VALUATION_THEATER_ALLOWED, false);
+assert.equal(PRODUCTION_DIMENSIONAL_FABRIC_ENABLED, false);
 assert.equal(OFFLINE_PREFER_LOCAL, true);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.OFFLINE_PREFER_LOCAL, true);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.autonomousProductionDDL, false);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.autonomousProductionDML, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.productionAutoApply, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.productionAutoMerge, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.productionAutoDeploy, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.destructiveDbAutoApply, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.L4_PRODUCTION_ENABLED, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.bioCloningAllowed, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.liveCloudSyncFabricationAllowed, false);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.verifiedAcceleratorClaimAllowed, false);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.fakeVerifiedGpuNpuQpuAllowed, false);
+assert.equal(OLLAMA_WRITER_GUARDRAILS.acceleratorGpu, 'UNVERIFIED');
+assert.equal(OLLAMA_WRITER_GUARDRAILS.acceleratorNpu, 'UNVERIFIED');
+assert.equal(OLLAMA_WRITER_GUARDRAILS.acceleratorQpu, 'UNVERIFIED');
 assert.equal(OLLAMA_WRITER_GUARDRAILS.policyGateBypassAllowed, false);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.checkpointIsReadReviewOnly, true);
 assert.equal(OLLAMA_WRITER_GUARDRAILS.nextTicket, '12D-11');
@@ -41,8 +54,23 @@ assert.equal(XIV_DATA_MANIFEST_GUARDRAILS.secretsAllowed, false);
 assert.equal(XIV_DATA_MANIFEST_GUARDRAILS.founderApprovalRequired, true);
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.ingestFromXivDataManifestsOnly, true);
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.mayEnterGlobalBrain, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoApply, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoMerge, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.productionAutoDeploy, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.destructiveDbAutoApply, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.L4_PRODUCTION_ENABLED, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.PRODUCTION_DIMENSIONAL_FABRIC_ENABLED, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.bioCloningAllowed, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.liveCloudSyncFabricationAllowed, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.verifiedAcceleratorClaimAllowed, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorGpu, 'UNVERIFIED');
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorNpu, 'UNVERIFIED');
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.acceleratorQpu, 'UNVERIFIED');
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.policyGateBypassAllowed, false);
+assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.checkpointIsReadReviewOnly, true);
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.checkpointLedgerTicket, '12D-11');
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.checkpointLedgerIsSecondControlPlane, false);
+assert.deepEqual([...POCKET_BRAIN_INGEST_GUARDRAILS.highAutonomyTargets], ['LOCAL', 'CLOUD_SANDBOX']);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.atomDbClaimAllowed, false);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.liveCloudSyncFabricationAllowed, false);
 assert.equal(OLLAMA_DEFAULT_ENDPOINT, 'http://127.0.0.1:11434');
@@ -167,7 +195,7 @@ async function main(): Promise<void> {
   assert.ok(bad.rejected.some((r) => r.startsWith('checksum_mismatch:')));
 
   console.log(
-    'XIV 12D-10 Ollama local writer + Pocket Brain xiv-data ingest contracts hold (OFFLINE_PREFER_LOCAL, no fake VERIFIED accelerators, no prod DDL/DML).',
+    'XIV 12D-10 Ollama local writer + Pocket Brain xiv-data ingest contracts hold (self-sealed autonomy guardrails, OFFLINE_PREFER_LOCAL, no fake VERIFIED accelerators, no prod DDL/DML).',
   );
 }
 
