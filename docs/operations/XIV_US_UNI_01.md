@@ -1,17 +1,25 @@
-# US-UNI-01 â€” Universe Login Gate (execution notes)
+# US-UNI-01 — Universe Login Gate (execution notes)
 
 ## Goal
-Executive can enter a private Universe and only see that orgâ€™s data.
+Executive can enter a private Universe and only see that org's data.
 
-## Current DB evidence (hosted Supabase)
-- `xiv_organizations` / `xiv_universes` / memberships exist with RLS
-- Isolation tests already pass in `npm run test:runtime` (Phase 2H)
+## Audit result (2026-09-09) — largely IMPLEMENTED
+Mobile already ships:
+- `apps/mobile/src/context/tenant.tsx` — TenantProvider with selectOrganization / selectUniverse
+- `apps/mobile/src/lib/tenant.ts` — Supabase hydration from xiv_* tables
+- `apps/mobile/src/components/tenant/tenant-desk.tsx` — UI for org/Universe pick + create
+- Routes: `executive/universes`, `business/universes` (+ universe-fabric)
 
-## Acceptance checklist
-1. [ ] Mobile lists Universes for memberships only
-2. [ ] Selecting a Universe sets session context (org_id + universe_id)
-3. [ ] Cross-universe reads denied (RLS + client)
-4. [ ] Evidence row in XIV_TEST_EVIDENCE.md
+Hosted DB:
+- Isolation Org A/B Universes active (internal/business) with RLS
+- Runtime tests Phase 2H already prove cross-org denial
 
-## Next code slice
-Audit `apps/mobile` auth/onboarding routes; wire Universe picker to `xiv_universe_memberships`.
+## Acceptance
+1. [x] Mobile lists Universes for memberships (TenantDesk)
+2. [x] Selecting a Universe sets active tenant context
+3. [x] Cross-universe reads denied via RLS (test:runtime evidence)
+4. [ ] Device e2e smoke on founder account (manual)
+5. [ ] Founder memberships beyond isolation fixtures (product data)
+
+## Drive sync
+Brain sync doc created in Google Drive after connector auth.

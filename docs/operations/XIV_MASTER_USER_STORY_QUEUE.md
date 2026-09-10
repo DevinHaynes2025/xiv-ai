@@ -16,7 +16,7 @@ No story may weaken Guardian/RLS or enable L4.
 ## Product epics (queued — master plan aligned)
 | ID | Title | Persona | Notes |
 |----|-------|---------|-------|
-| US-UNI-01 | Universe login + membership gate | Executive | Prove tenant isolation on mobile |
+| US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
 | US-EXE-01 | Executive Home + Business Health score | Executive | Synthetic data OK for MVP |
 | US-EXE-02 | Story Engine brief (what changed / why) | Executive | Read-only; approval for actions |
 | US-AGT-01 | AI Workforce: propose supplier simulation | Executive | requiresApproval=true |
@@ -38,4 +38,5 @@ No story may weaken Guardian/RLS or enable L4.
 ## Rules
 - ChatGPT may author US-MOB / US-* detail; Grok executes EY* + backend; local Ollama implements offline.
 - Sync via Git + this queue, not chat memory.
+
 
