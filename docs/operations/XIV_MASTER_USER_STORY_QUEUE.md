@@ -25,7 +25,7 @@ No story may weaken Guardian/RLS or enable L4.
 | US-CON-01 | Consumer innovate / early access loop | Consumer | DONE (branch); named handle; proposals only; WAITING_DATA; L4 false |
 | US-SYS-01 | System Navigator CSV/commerce demo | Executive | DONE (branch); connector stub; WAITING_CONNECTOR/DEMO_CSV; L4 false |
 | US-SEC-01 | Security Center: policy denials visible | Executive | DONE (branch); Guardian read-only; WAITING_DATA; never fabricate incidents; L4 false |
-| US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | Prototype content pipeline |
+| US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | DONE (branch); prototype pipeline; WAITING_DATA; never fabricate engagement; L4 false |
 | US-NET-01 | Supplier / manufacturer directory search | Business | Search index stub + RLS |
 | US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory Ã¢â€ â€™ signed packages later |
 
@@ -38,6 +38,7 @@ No story may weaken Guardian/RLS or enable L4.
 ## Rules
 - ChatGPT may author US-MOB / US-* detail; Grok executes EY* + backend; local Ollama implements offline.
 - Sync via Git + this queue, not chat memory.
+
 
 
 

@@ -160,3 +160,12 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: device e2e; host guardian:validate suite from mobile (intentionally out of scope — read-only catalog only)
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 6cbef82 (US-SYS-01)
 
+
+## 2026-09-09 ~23:15 CT - US-SOC-01 Profiles + business articles feed - grok
+- Branch / SHA: grok/us-soc-01-profiles-articles / 7c0a1ff37a153c337a6a96a8385b95e5d8126b65
+- Commands run: services/ai typecheck; npx tsx profiles-articles.test.ts; apps/mobile npx tsc --noEmit
+- Passed: listProfilesArticlesView WAITING_DATA when unbound with profiles=null articles=null engagement WAITING_DATA; loadPrototypeProfilesArticlesFeed surfaces PROTOTYPE_DEMO daily profiles+articles; engagement likes/views/shares/followers/comments always null; L4 false; liveSocialMetrics false; productionMutation false; mobile ProfilesArticlesFeedScreen + BusinessArticlesFeedScreen; never fabricate live social metrics
+- Failed: none
+- Not run: device e2e; live social network ingest (intentionally out of scope)
+- Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 1b60ad0 (US-SEC-01)
+
