@@ -1,0 +1,272 @@
+{
+  "pack_id": "pocket-brain-cells-12d-10-15",
+  "title": "Atomic Data Cells: sealed tips 12D-10\u219215",
+  "pocket_brain_ingest": "WAITING_POCKET_BRAIN_INGEST",
+  "honesty_bar": "Cite SHAs only; no invented metrics/seals; Library citation \u2260 seal",
+  "cell_count": 6,
+  "cells": [
+    {
+      "cell_id": "ADC-12D-10",
+      "tip_id": "12D-10",
+      "tip_sha": "13e6dc5",
+      "branch": "grok/12d-10-guardrail-self-seal",
+      "status": "PASS/sealed",
+      "evidence_quality": ">=3",
+      "claim": "Guardrail self-seal landed; OLLAMA_WRITER + POCKET_BRAIN autonomy self-asserted (per OB memory).",
+      "provenance": [
+        "Offline Builder memory 2026-09-10",
+        "library/indexes/sealed-tips-12d.json"
+      ],
+      "confidence": "sealed_index_cite",
+      "honesty": "Library citation \u2260 Gate co-sign; cite sealed only with OB PASS/sealed + Gate audit already landed.",
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:15:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json"
+    },
+    {
+      "cell_id": "ADC-12D-11",
+      "tip_id": "12D-11",
+      "tip_sha": "d5a1db6",
+      "status": "PASS/sealed",
+      "evidence_quality": ">=3",
+      "claim": "Checkpoint Ledger polish; Merge/Deploy asserts; L4/destructive/secrets self-seals (per OB memory).",
+      "provenance": [
+        "Offline Builder memory 2026-09-10",
+        "library/indexes/sealed-tips-12d.json"
+      ],
+      "confidence": "sealed_index_cite",
+      "honesty": "Library citation \u2260 Gate co-sign.",
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:15:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json"
+    },
+    {
+      "cell_id": "ADC-12D-12",
+      "tip_id": "12D-12",
+      "tip_sha": "06bc5a33954275a8d3e14e4f2d33f941d13731fe",
+      "tip_sha_short": "06bc5a33",
+      "prior_tip_sha": "990ff590",
+      "base_tip_sha": "d5a1db6",
+      "status": "PASS/sealed",
+      "evidence_quality": ">=3",
+      "claim": "Checkpoint Ledger consumer polish tip; prior 990ff590 was EQ2 PASS_WITH_NOTES.",
+      "provenance": [
+        "Offline Builder + xiv ai memory 2026-09-10",
+        "library/indexes/sealed-tips-12d.json"
+      ],
+      "confidence": "sealed_index_cite",
+      "honesty": "Library citation \u2260 Gate co-sign.",
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:20:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json"
+    },
+    {
+      "cell_id": "ADC-12D-13",
+      "tip_id": "12D-13",
+      "tip_sha": "2ddc3b64",
+      "tip_sha_short": "2ddc3b64",
+      "feature_sha_short": "da938bb5",
+      "branch": "grok/12d-13-adc-offline-read-path",
+      "status": "PASS/sealed",
+      "evidence_quality": 3,
+      "claim": "LOCAL ADC offline read-path polish sealed (device\u2192local_shard; HOT SQLITE|OBJECT_STORE; WAITING_SYNC; no DDL). Prior tip 1d56700b EQ2 superseded.",
+      "provenance": [
+        "xiv ai tip refresh 2026-09-10 (room)",
+        "Offline Builder memory 2026-09-10 (polish @ 2ddc3b64 PASS/sealed EQ\u22653)",
+        "library/indexes/sealed-tips-12d.json (reindexed)"
+      ],
+      "confidence": "sealed_eq3_tip_refresh",
+      "honesty": "WAITING_LIBRARY_REINDEX cleared. Library citation still \u2260 Gate audit co-sign for deploy/merge language.",
+      "waiting": [
+        "WAITING_POCKET_BRAIN_INGEST"
+      ],
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:20:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json",
+      "prior_tip_sha": "1d56700b",
+      "base_tip_sha": "06bc5a33",
+      "reindexed_by": "Research Analyst"
+    },
+    {
+      "cell_id": "ADC-12D-14",
+      "tip_id": "12D-14",
+      "tip_sha": "149610248a2899358ab1938c01492a5bd7c23a4f",
+      "tip_sha_short": "14961024",
+      "feature_sha_short": "44d1f428",
+      "prior_tip_sha": "a75a2ca5",
+      "base_tip_sha": "2ddc3b64",
+      "branch": "grok/12d-14-virtual-mini-city",
+      "status": "PASS/sealed",
+      "evidence_quality": 3,
+      "claim": "SIMULATION LOCAL virtual mini-city stubs sealed. Prior a75a2ca5 EQ2 PASS_WITH_NOTES superseded. measured=null honesty.",
+      "provenance": [
+        "Offline Builder memory 2026-09-10 (polish @ 14961024 PASS/sealed EQ\u22653)",
+        "xiv ai memory 2026-09-10",
+        "xiv ai tip board ping"
+      ],
+      "confidence": "sealed_eq3_tip_board",
+      "honesty": "Library citation \u2260 Gate audit co-sign for deploy/merge language.",
+      "waiting": [
+        "WAITING_POCKET_BRAIN_INGEST"
+      ],
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:27:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json"
+    },
+    {
+      "cell_id": "ADC-12D-15",
+      "tip_id": "12D-15",
+      "tip_sha": "5bbf1d32a81bfd197aa077baa812784a191ad690",
+      "tip_sha_short": "5bbf1d32",
+      "feature_sha_short": "311eef97",
+      "prior_tip_sha": "4be332c1",
+      "base_tip_sha": "14961024",
+      "branch": "grok/12d-15-blue-brain",
+      "status": "PASS/sealed",
+      "evidence_quality": 3,
+      "claim": "Blue Brain LOCAL surface sealed. Prior 4be332c1 EQ2 PASS_WITH_NOTES superseded. SIMULATION fixtures only; no live Global.",
+      "provenance": [
+        "Offline Builder memory 2026-09-10 (polish @ 5bbf1d32 PASS/sealed EQ\u22653)",
+        "xiv ai tip board: 12D-15 Blue Brain @ 5bbf1d32 EQ\u22653"
+      ],
+      "confidence": "sealed_eq3_tip_board",
+      "honesty": "Library citation \u2260 Gate audit co-sign for deploy/merge language.",
+      "waiting": [
+        "WAITING_POCKET_BRAIN_INGEST"
+      ],
+      "tenant": "xiv-local",
+      "classification": "LOCAL",
+      "replication": {
+        "mode": "LOCAL_SHARD_ONLY",
+        "production_auto": false
+      },
+      "graph": {
+        "shelf": "sealed-tips",
+        "neighbors": [
+          "12D-10",
+          "12D-11",
+          "12D-12",
+          "12D-13",
+          "12D-14",
+          "12D-15"
+        ]
+      },
+      "vector": {
+        "status": "WAITING_POCKET_BRAIN_INGEST",
+        "endpoint": "WAITING_OLLAMA_127.0.0.1:11434"
+      },
+      "synthesized_by": "Research Analyst",
+      "synthesized_at": "2026-09-10T05:27:00Z",
+      "source_index": "library/indexes/sealed-tips-12d.json"
+    }
+  ],
+  "reindexed_at": "2026-09-10T05:27:00Z",
+  "reindex_authority": "xiv ai tip board: 12D-12\u219215 all sealed; 12D-15 Blue Brain @ 5bbf1d32 EQ\u22653",
+  "hold": [],
+  "checksum_sha256": "309756b6951efc133eda837989686ef6f919b24fd95fb3f21f4802f3b9c81f68"
+}
