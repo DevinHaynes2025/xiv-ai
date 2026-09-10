@@ -63,3 +63,6 @@ export * from './ollama-meeting-runner';
 export * from './executive-cabinet';
 export * from './private-data-brain';
 export * from './cloud-dna-package';
+export * from './executive-cabinet-ollama-runner';
+export * from './executive-cabinet-council';
+export * from './company-brain-writeback';
