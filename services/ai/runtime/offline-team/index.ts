@@ -27,3 +27,6 @@ export * from './historical-intelligence-registry';
 export * from './experience-modes';
 export * from './cross-os-runtime';
 export * from './neuron-fabric';
+export * from './team-operations';
+export * from './database-growth-manifest';
+export * from './blueprint-conformance';
