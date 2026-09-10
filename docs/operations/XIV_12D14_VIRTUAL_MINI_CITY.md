@@ -6,7 +6,7 @@
 **Base:** sealed 12D-13 polish `2ddc3b64` (`grok/12d-13-adc-offline-read-path`; merged into this tip)  
 **State:** research / feature branch — LOCAL SIMULATION catalog stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `44d1f428958ea66e7fabb05c814fd22864fecdb4`
+**Tip SHA:** `9b177ca2467f4e51e29e746fb5b4f86d6f5095fe`
 
 ## Locked Virtual Mini City contract
 
