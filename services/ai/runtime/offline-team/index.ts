@@ -127,3 +127,6 @@ export * from './live-onboarding-runtime';
 export * from './avatar-brain-bootstrap';
 export * from './permission-scoped-tool-loader';
 export * from './avatar-universe-session';
+export * from './offline-brain-health';
+export * from './encrypted-memory-nervous-system';
+export * from './simulation-scale-manifest';
