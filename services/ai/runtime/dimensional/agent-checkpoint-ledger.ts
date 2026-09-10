@@ -46,6 +46,11 @@ export const AGENT_CHECKPOINT_LEDGER_GUARDRAILS = {
   productionAutoApply: false as const,
   productionAutoMerge: false as const,
   productionAutoDeploy: false as const,
+  destructiveDbAutoApply: false as const,
+  /** Lane self-seal: L4 production fabric off. */
+  L4_PRODUCTION_ENABLED: false as const,
+  /** secrets / autonomousSecretCreation — never mint secrets from ledger. */
+  autonomousSecretCreation: false as const,
   highAutonomyTargets: HIGH_AUTONOMY_TARGETS,
   businessBarMetrics: BUSINESS_BAR_METRICS,
   VALUATION_THEATER_ALLOWED,
@@ -157,6 +162,15 @@ function assertLedgerGuardrails(): void {
   }
   if (AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoApply || AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoMerge || AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoDeploy) {
     throw new Error('production auto flags must remain false');
+  }
+  if (AGENT_CHECKPOINT_LEDGER_GUARDRAILS.destructiveDbAutoApply) {
+    throw new Error('destructiveDbAutoApply must remain false');
+  }
+  if (AGENT_CHECKPOINT_LEDGER_GUARDRAILS.L4_PRODUCTION_ENABLED) {
+    throw new Error('L4_PRODUCTION_ENABLED must remain false');
+  }
+  if (AGENT_CHECKPOINT_LEDGER_GUARDRAILS.autonomousSecretCreation || BUILDER_GUARDRAILS.autonomousSecretCreation) {
+    throw new Error('autonomousSecretCreation must remain false');
   }
   const targets = AGENT_CHECKPOINT_LEDGER_GUARDRAILS.highAutonomyTargets;
   if (!targets.includes('LOCAL') || !targets.includes('CLOUD_SANDBOX') || targets.length !== 2) {

@@ -37,6 +37,11 @@ assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.chatgptAuthorityToFlipAutonomous
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.autonomousProductionDDL, false);
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.autonomousProductionDML, false);
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoApply, false);
+assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoMerge, false);
+assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.productionAutoDeploy, false);
+assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.destructiveDbAutoApply, false);
+assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.L4_PRODUCTION_ENABLED, false);
+assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.autonomousSecretCreation, false);
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.twinClaimBansAssertable, true);
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.atomicDataCellsMayBeEvidenceUnits, true);
 assert.equal(AGENT_CHECKPOINT_LEDGER_GUARDRAILS.ticket, '12D-11');
