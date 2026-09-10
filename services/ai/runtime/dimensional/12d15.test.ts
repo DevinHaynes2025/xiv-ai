@@ -210,7 +210,7 @@ assert.throws(
 );
 
 // Evidence hash
-const tipSha = 'PENDING_COMMIT';
+const tipSha = '311eef975ec8c0f0e8ed7eff863ba2dec59d60b9';
 const evidence = evidenceHashBlueBrainLocal({
   tipSha,
   surface,

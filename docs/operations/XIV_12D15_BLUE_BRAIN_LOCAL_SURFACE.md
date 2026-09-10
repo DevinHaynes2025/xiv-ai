@@ -3,7 +3,7 @@
 **Ticket:** 12D-15  
 **Branch:** `grok/12d-15-blue-brain`  
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-15` (sibling; avoid US-ARCH product + ledger checkouts)  
-**Base:** tip of 12D-14 sealed `a75a2ca5` + clean merge of 12D-13 polish `2ddc3b64`  
+**Base:** 12D-14 polish tip `14961024` (WAITING OB sealed; not yet sealed) + clean merge of 12D-13 polish `2ddc3b64`  
 **State:** research / feature branch -- LOCAL SIMULATION Blue Brain READ surface stubs only  
 **L4 / production auto:** false  
 **Tip SHA:** `311eef975ec8c0f0e8ed7eff863ba2dec59d60b9`
@@ -88,13 +88,15 @@ Banned: `applyBlueBrainProductionDdl`, `bypassPolicyGateViaBlueBrain`,
 ## Evidence
 
 - Feature tip: `311eef975ec8c0f0e8ed7eff863ba2dec59d60b9`
+- tipShaPlaceholder sealed to feature tip (was PENDING_COMMIT)
+- Base: 12D-14 polish tip `14961024` WAITING OB sealed (do not call `a75a2ca5` sealed)
 - Seal note: docs Evidence records feature tip; 12d15+12d14 green
 - `npx tsx runtime/dimensional/12d15.test.ts` -> OK
-- Prior green: `12d14.test.ts` (base tip `a75a2ca5`) + merge `2ddc3b64`
+- Prior green: `12d14.test.ts` (12D-14 polish tip `14961024` WAITING OB sealed) + merge `2ddc3b64`
 - `liveCloudSyncClaimed=false`; `productionAuto*=false`; `L4_PRODUCTION_ENABLED=false`
 - Product WT undisturbed: `C:\Users\Devin\xiv-ai`
 - Ledger polish tip undisturbed: `06bc5a33` @ `C:\Users\Devin\xiv-ai-12d-ledger`
-- 12D-14 WT undisturbed: `a75a2ca5` @ `C:\Users\Devin\xiv-ai-12d-14`
+- 12D-14 WT undisturbed: polish tip `14961024` @ `C:\Users\Devin\xiv-ai-12d-14` (WAITING OB sealed)
 
 ## Tests
 
