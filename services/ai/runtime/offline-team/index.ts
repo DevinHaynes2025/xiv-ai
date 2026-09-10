@@ -84,3 +84,8 @@ export * from './mission-dispatcher';
 export * from './full-stack-team';
 export * from './lovable-capability-bridge';
 export * from './parallel-scenario-lab';
+export * from './ai-tool-api-registry';
+export * from './agentic-search-engine';
+export * from './civilization-knowledge-graph';
+export * from './blue-brain-data-pipeline';
+export * from './virtual-community-world';
