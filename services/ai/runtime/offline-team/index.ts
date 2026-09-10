@@ -9,3 +9,5 @@ export * from './hardware-receipts';
 export * from './data-mining';
 export * from './defensive-security';
 export * from './worker-daemon';
+export * from './neural-highway';
+export * from './model-council';
