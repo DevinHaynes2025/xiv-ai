@@ -45,3 +45,8 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Failed: none
 - Not run: live ollama executive turn e2e (optional next)
 - Notes: executive-turn routes via model-backend; Metro mock keeps ollama label server-only
+
+### 2026-09-09 — EY3 — grok
+- Commands: added hardware-probe.ts + GET /v1/hardware; typecheck clean
+- Notes: GPU via XIV_GPU_* env; NPU honestly undetected; Ollama models listed when reachable
+- Roster/schedule/data-plane docs + xiv-data dirs created; weekday 8:30 digest routine saved

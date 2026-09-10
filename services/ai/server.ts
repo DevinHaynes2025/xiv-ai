@@ -13,6 +13,7 @@ import {
   mediaStatus,
 } from './business-api';
 import { runExecutiveTurn } from './executive-turn';
+import { collectHardwareProbe } from './hardware-probe';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
@@ -134,6 +135,11 @@ const server = createServer((req, res) => {
         setCors(res);
         res.writeHead(204);
         res.end();
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/hardware') {
+        json(res, 200, await collectHardwareProbe());
         return;
       }
 
