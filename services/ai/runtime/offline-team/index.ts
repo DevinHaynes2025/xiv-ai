@@ -133,3 +133,8 @@ export * from './simulation-scale-manifest';
 export * from './neural-growth-scheduler';
 export * from './historical-technology-archive';
 export * from './agent-academy-learning-loop';
+export * from './avatar-genome-registry';
+export * from './historical-business-tech-archive';
+export * from './devops-programming-library';
+export * from './open-source-tool-collaboration-registry';
+export * from './agent-media-study-room';
