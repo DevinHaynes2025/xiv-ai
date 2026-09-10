@@ -1,5 +1,5 @@
-/**
- * 12D-09 — Offline Command Center snapshot cache + sync-status + Atomic Data Cell stubs.
+﻿/**
+ * 12D-09 â€” Offline Command Center snapshot cache + sync-status + Atomic Data Cell stubs.
  * Twin gate: claim bans hard; LOCAL|CLOUD_SANDBOX only; checkpoint read/review only;
  * Ledger append-only / no Policy Gate bypass (wired in 12D-11);
  * Atomic Data Cells = software records; business bar metrics.
@@ -71,7 +71,7 @@ assert.ok(BUSINESS_BAR_METRICS.includes('customer_value'));
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.literalAtomicPhysicsStorage, false);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.atomDbClaimAllowed, false);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.agentCheckpointLedgerWire, 'WIRED');
-assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-11');
+assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-12');
 assert.equal(ARCH_READER_CONSUMER_GUARDRAILS.readOnly, true);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.replicaHardCap, 64);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.maxDutyCycle, 0.25);

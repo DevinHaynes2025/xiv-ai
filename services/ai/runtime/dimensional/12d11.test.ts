@@ -52,7 +52,7 @@ assert.equal(OLLAMA_WRITER_GUARDRAILS.nextTicket, '12D-11');
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.checkpointLedgerTicket, '12D-11');
 assert.equal(POCKET_BRAIN_INGEST_GUARDRAILS.checkpointLedgerIsSecondControlPlane, false);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.agentCheckpointLedgerWire, 'WIRED');
-assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-11');
+assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-12');
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.atomDbClaimAllowed, false);
 assert.equal(FOUNDER_TWIN_GUARDRAILS.bioCloningAllowed, false);
 assert.equal(FOUNDER_TWIN_GUARDRAILS.alwaysOnInfiniteClonesAllowed, false);

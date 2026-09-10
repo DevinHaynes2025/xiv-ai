@@ -43,3 +43,4 @@ export * from './ollama-local-writer';
 export * from './pocket-brain-ingest';
 
 export * from './agent-checkpoint-ledger';
+export * from './checkpoint-ledger-consumer';

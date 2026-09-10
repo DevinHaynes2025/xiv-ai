@@ -5,6 +5,7 @@
  * NOT literal atom / atomic-physics databases. Analogy only.
  *
  * Agent Identity + Checkpoint Ledger wired in 12D-11 (append-only; not a second control plane).
+ * Checkpoint Ledger consumer (Command Center / offline) wired in 12D-12 (read-only).
  * Quantum entanglement elsewhere = simulated pathway correlation only.
  */
 import { isomorphicContentHash } from './datagene';
@@ -23,7 +24,8 @@ export const ATOMIC_DATA_CELL_GUARDRAILS = {
   UNIVERSES_ARE_SIMULATION_LAYERS_ONLY,
   /** Fuller identity + checkpoint ledger integration. */
   agentCheckpointLedgerWire: 'WIRED' as const,
-  ticketFollowUp: '12D-11' as const,
+  checkpointLedgerConsumerWire: 'WIRED' as const,
+  ticketFollowUp: '12D-12' as const,
 } as const;
 
 export type AtomicDataCellReplicationRule = {
