@@ -5,7 +5,8 @@
 **Worktree:** `C:\Users\Devin\xiv-ai-12d-13` (sibling; avoid US-ARCH product checkout)  
 **Base:** tip of 12D-12 `990ff590` + 12D-11 polish seals (`destructiveDbAutoApply` / `L4_PRODUCTION_ENABLED` / `autonomousSecretCreation`)  
 **State:** research / feature branch — LOCAL offline READ path only  
-**L4 / production auto:** false
+**L4 / production auto:** false  
+**Tip SHA:** `da938bb54e075a00ea2ab7503a21c956659a078e`
 
 ## Locked Data City contract
 
@@ -96,9 +97,11 @@ Banned: `fanOutAdcOfflineRegionalGlobal`, `applyAdcOfflineProductionDdl`, `bypas
 
 ## Evidence
 
-- Tip SHA (after commit)
-- `npx tsx runtime/dimensional/12d13.test.ts` (+ prior 12d09–12d12 green)
-- Cache HIT / MISS receipts (`AdcOfflineCacheReceipt`)
+- Feature tip: `da938bb54e075a00ea2ab7503a21c956659a078e`
+- `npx tsx runtime/dimensional/12d13.test.ts` → OK (HIT/MISS/WAITING_SYNC/CONFLICT)
+- Prior green: `12d12.test.ts`, `12d11.test.ts`, `12d09.test.ts`
+- Cache HIT / MISS receipts (`AdcOfflineCacheReceipt`); `liveCloudSyncClaimed=false`; `productionAuto*=false`
+- Ledger polish tip undisturbed: `06bc5a33954275a8d3e14e4f2d33f941d13731fe` @ `C:\Users\Devin\xiv-ai-12d-ledger`
 
 ## Tests
 
@@ -112,4 +115,4 @@ npx tsx runtime/dimensional/12d09.test.ts
 
 ## Remotes
 
-Push child branch to **origin (GitHub)** only. Do not force-push GitLab. Do not touch `C:\Users\Devin\xiv-ai` US-ARCH product checkout.
+Push child branch to **origin (GitHub)** only. Do not force-push GitLab. Do not touch `C:\Users\Devin\xiv-ai` US-ARCH product checkout. Do not disturb `xiv-ai-12d-ledger` polish tip `06bc5a33`.
