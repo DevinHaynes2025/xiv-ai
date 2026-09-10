@@ -11,7 +11,7 @@ export type ToolLayer =
   | 'search_knowledge'
   | 'future_actions';
 
-export type ModelProviderId = 'mock' | 'gemini' | 'openai' | 'future';
+export type ModelProviderId = 'mock' | 'gemini' | 'openai' | 'ollama' | 'future';
 
 export type AgentStatus =
   | 'idle'

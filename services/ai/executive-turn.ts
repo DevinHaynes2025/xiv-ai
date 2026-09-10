@@ -1,5 +1,5 @@
 import { logAudit } from './audit';
-import { completeGeminiStructured } from './gemini-provider';
+import { completeStructuredTurn } from './model-backend';
 import { gateStructuredOutput } from './policies';
 import type { ApprovedDataContext, OrganizationContext, StructuredAgentOutput } from './types';
 
@@ -17,7 +17,7 @@ export async function runExecutiveTurn(input: {
     note: 'executive_turn_accepted',
   });
 
-  const raw = await completeGeminiStructured({
+  const { output: raw, backend } = await completeStructuredTurn({
     userMessage: input.userMessage,
     role: input.role,
     organizationContext: input.organizationContext,
@@ -31,7 +31,7 @@ export async function runExecutiveTurn(input: {
     agentType: 'executive_agent',
     userId: input.userId,
     riskLevel: gated.riskLevel,
-    note: 'policy_gated_after_model',
+    note: `policy_gated_after_model:${backend}`,
   });
 
   return gated;

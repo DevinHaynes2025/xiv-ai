@@ -37,3 +37,11 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Failed: none
 - Not run: full mobile test suite; EY2 ModelBackend
 - Notes: AI health `{"ok":true,"agent":"executive_agent"}`; L4 remains disabled per suite assertions
+
+### 2026-09-09 — EY2 — grok
+- Branch / SHA: cursor/ey0-l-local-coding-brain (commit follows)
+- Commands run: `npx tsc --noEmit` in services/ai
+- Passed: typecheck after ModelBackend + ollama provider id
+- Failed: none
+- Not run: live ollama executive turn e2e (optional next)
+- Notes: executive-turn routes via model-backend; Metro mock keeps ollama label server-only

@@ -9,8 +9,8 @@ No story may weaken Guardian/RLS or enable L4.
 | ID | Title | Owner lane | Status |
 |----|-------|------------|--------|
 | **EY0-L** | Local Coding Workforce + Unified Agent Context Spine | Local / Grok | DONE (branch pushed; PR pending token write scope) |
-| **EY1** | Release & Runtime Verification Gate | Local / Grok | IN PROGRESS |
-| **EY2** | ModelBackend Phase 0 (gemini \| openai \| ollama) | Local / Cursor | QUEUED |
+| **EY1** | Release & Runtime Verification Gate | Local / Grok | DONE |
+| **EY2** | ModelBackend Phase 0 (gemini | openai | ollama) | Local / Grok | DONE |
 | **EY3** | Hardware capability probe (CPU/GPU/NPU/ollama) | Local / Grok | QUEUED |
 
 ## Product epics (queued — master plan aligned)
@@ -38,3 +38,4 @@ No story may weaken Guardian/RLS or enable L4.
 ## Rules
 - ChatGPT may author US-MOB / US-* detail; Grok executes EY* + backend; local Ollama implements offline.
 - Sync via Git + this queue, not chat memory.
+

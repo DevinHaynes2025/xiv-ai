@@ -192,3 +192,9 @@ Covers Phase 2A–2F-B: Universe isolation, media validation, quotas, no storage
 Host validation (optional, trusted machine only):
 
 `npm run guardian:validate`
+
+
+## Local silicon
+
+See [local-silicon.md](./local-silicon.md) for Ollama / AMD offline model routing behind executive turns.
+

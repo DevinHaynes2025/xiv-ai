@@ -199,6 +199,15 @@ const openaiProvider: ModelProvider = {
   },
 };
 
+
+/** Live Ollama is server-only (model-backend.ts). Metro stays mocked — no local model key in the app bundle. */
+const ollamaProvider: ModelProvider = {
+  id: 'ollama',
+  complete: async (input) => {
+    const result = await mockProvider.complete(input);
+    return { ...result, provider: 'ollama' };
+  },
+};
 const futureProvider: ModelProvider = {
   id: 'future',
   complete: async (input) => {
@@ -211,6 +220,7 @@ const PROVIDERS: Record<ModelProviderId, ModelProvider> = {
   mock: mockProvider,
   gemini: geminiProvider,
   openai: openaiProvider,
+  ollama: ollamaProvider,
   future: futureProvider,
 };
 
