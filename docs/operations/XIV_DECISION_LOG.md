@@ -18,3 +18,10 @@ Append-only. Newest first.
 - Security-first Universes; agents non-principals; human approval gates.
 - Stack: Expo mobile, Next.js web (future), FastAPI/Node AI, Supabase/Postgres.
 - `L4_AUTONOMY_ENABLED=false`.
+
+## 2026-09-09 — Supervised autonomy + no Salesforce
+- CEO authorized continued build without waiting; escalate only when crucial.
+- Prefer AI team + Founder Twin before real CEO.
+- Salesforce deferred; CRM_ALTERNATIVES.md is source of truth.
+- Evening build pulse routine (weekdays 18:00 CT) added alongside morning digest.
+

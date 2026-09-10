@@ -1,4 +1,4 @@
-# XIV Master User Story Queue
+﻿# XIV Master User Story Queue
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
@@ -13,11 +13,11 @@ No story may weaken Guardian/RLS or enable L4.
 | **EY2** | ModelBackend Phase 0 (gemini | openai | ollama) | Local / Grok | DONE |
 | **EY3** | Hardware capability probe (CPU/GPU/NPU/ollama) | Local / Grok | QUEUED |
 
-## Product epics (queued — master plan aligned)
+## Product epics (queued â€” master plan aligned)
 | ID | Title | Persona | Notes |
 |----|-------|---------|-------|
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
-| US-EXE-01 | Executive Home + Business Health score | Executive | Synthetic data OK for MVP |
+| US-EXE-01 | Executive Home + Business Health score | Executive | IN PROGRESS — live health wire + CRM alternatives |
 | US-EXE-02 | Story Engine brief (what changed / why) | Executive | Read-only; approval for actions |
 | US-AGT-01 | AI Workforce: propose supplier simulation | Executive | requiresApproval=true |
 | US-AGT-02 | Agent approval + audit trail | Executive | ai_agent_approvals / audit_events |
@@ -27,7 +27,7 @@ No story may weaken Guardian/RLS or enable L4.
 | US-SEC-01 | Security Center: policy denials visible | Executive | Guardian read-only checks |
 | US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | Prototype content pipeline |
 | US-NET-01 | Supplier / manufacturer directory search | Business | Search index stub + RLS |
-| US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory → signed packages later |
+| US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory â†’ signed packages later |
 
 ## Done / parked
 | ID | Notes |

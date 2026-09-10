@@ -788,6 +788,8 @@ export function WorkspaceFounderTwin() {
   return (
     <PremiumDesk title="Founder Twin" subtitle="XIV Founder Twin — AI representation of Devin Xavier Haynes">
       <XivListRow title="Not the actual Devin" body="The real CEO stays above the simulation. Twin cannot disable Guardian or grant itself permissions." />
+      <XivListRow title="Escalation ladder" body="Agents consult ops docs and the AI team first, then this twin for vision alignment. Real Devin is last resort for credentials, irreversible actions, or true ambiguity." />
+      <XivListRow title="Supervised autonomy" body="L4 stays off. Twin guidance is non-binding. Money, payroll, and production writes still need human approval." />
       <XivStatusPill label="Ephemeral instances only" tone="warning" />
     </PremiumDesk>
   );

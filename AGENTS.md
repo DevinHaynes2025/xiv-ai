@@ -119,3 +119,7 @@ Approved lessons are written into operations docs â€” not hidden chat memory.
 Work from the currently authorized `xiv-v2` tip on a **child branch**.
 Do not redesign from scratch.
 Prefer EY1 (Release & Runtime Verification Gate) after EY0-L spine exists.
+
+## Supervision
+See docs/operations/XIV_SUPERVISION.md — escalate to real CEO last; prefer Founder Twin + AI team.
+
