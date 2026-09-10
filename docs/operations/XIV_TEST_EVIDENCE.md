@@ -235,3 +235,12 @@ Append entries; never delete history. Skipped mandatory tests ÃƒÂ¢Ã¢â‚�
 - Failed: none
 - Not run: device e2e; live sim world runtime; live age-verification vendor; dimensional 12d fabric bind (intentionally product-lane fixture / WAITING_PROVIDER); production deploy
 - Notes: PRODUCT lane after US-COM-01; 12D-16/17 FOLLOW_UP product UX only; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; .tmp-cc-preview.json left untracked
+
+
+## 2026-09-10 — US-NS-01 — Software Dev D
+- Branch / SHA: `grok/us-ns-01-neural-search-local` / `0fd669900f04cc307a724ea7ce81074de0843aae` (short `0fd66990`, OBSERVED product tip — not invented)
+- Commands run: `npx --yes tsx neural-search-v0.test.ts` (box LOCAL, CT 2026-09-10 ~01:42)
+- Passed: `neural-search-v0 contract tests: PASS` (exit 0)
+- Failed: n/a
+- Not run: full `npm run test:runtime` (out of scope for this Soft evidence fill)
+- Notes: LOCAL-only Soft fill for Offline Builder PASS_WITH_NOTES path. Fabric 12D-NS-01 box stubs already PASS/sealed. Open WAITING_*: WAITING_POCKET_BRAIN_INGEST, WAITING_SCORER, WAITING_CLOUD_PULL (by design). productionAllowed=false. No PRODUCTION.
