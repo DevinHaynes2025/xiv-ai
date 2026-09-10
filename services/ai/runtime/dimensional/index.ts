@@ -46,3 +46,4 @@ export * from './agent-checkpoint-ledger';
 export * from './checkpoint-ledger-consumer';
 export * from './adc-offline-read-path';
 export * from './virtual-mini-city';
+export * from './blue-brain-local-surface';
