@@ -91,3 +91,6 @@ export * from './blue-brain-data-pipeline';
 export * from './virtual-community-world';
 export * from './live-tool-heartbeats';
 export * from './agentic-search-worker';
+export * from './device-pilot-enrollment';
+export * from './device-pilot-policy';
+export * from './local-learning-sandbox';
