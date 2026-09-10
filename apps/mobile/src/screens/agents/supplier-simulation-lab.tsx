@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { ActionApprovalCard } from '@/components/agents/action-approval-card';
+import { ApprovalAuditPanel } from '@/components/agents/approval-audit-panel';
 import { XivStatusPill } from '@/components/premium';
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
@@ -19,7 +20,7 @@ import {
 import { PremiumDesk } from '@/screens/premium/desk';
 
 /**
- * US-AGT-01 — Scenario Lab wire: propose supplier simulation + human approval.
+ * US-AGT-01 / US-AGT-02 — Scenario Lab: propose supplier simulation + approval audit trail.
  * Honest WAITING_* labels. L4 false. Simulation ≠ production.
  */
 export function SupplierSimulationLab() {
@@ -71,7 +72,7 @@ export function SupplierSimulationLab() {
   return (
     <PremiumDesk
       title="Scenario Lab"
-      subtitle="US-AGT-01 supplier simulation — propose only until approved. Output is not prediction certainty."
+      subtitle="US-AGT-01/02 supplier simulation — propose, approve, and audit. Output is not prediction certainty."
     >
       <XivStatusPill label="L4 autonomy: false" tone="warning" />
       <XivStatusPill label={SUPPLIER_SIMULATION_POLICY.label} tone="warning" />
@@ -139,6 +140,11 @@ export function SupplierSimulationLab() {
         />
       ) : null}
 
+      <ApprovalAuditPanel
+        approvals={snapshot?.approvals ?? []}
+        intents={snapshot?.intents ?? []}
+      />
+
       {latestSimMessage ? (
         <Card style={styles.card}>
           <SectionHeader kicker="Result" title="Prototype simulation receipt" />
@@ -150,10 +156,6 @@ export function SupplierSimulationLab() {
           </XivText>
         </Card>
       ) : null}
-
-      <XivText variant="micro" dim>
-        US-AGT-02 (approval audit trail persistence) remains queued. This screen wires propose + approval only.
-      </XivText>
     </PremiumDesk>
   );
 }

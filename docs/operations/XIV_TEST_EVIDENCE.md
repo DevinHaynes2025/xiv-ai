@@ -117,3 +117,11 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 - Not run: device e2e; US-AGT-02 persisted ai_agent_approvals audit UI
 - Notes: historical/* and sec-status left alone; parent recovery tip b7c9b4e5
 
+
+## 2026-09-09 ~22:45 CT - US-AGT-02 approval+audit trail - grok
+- Branch / SHA: grok/us-agt-02-approval-audit (commit follows)
+- Commands run: services/ai typecheck; npx tsx approval-audit.test.ts; npx tsx supplier-simulation.test.ts; apps/mobile npx tsc --noEmit
+- Passed: listApprovalAuditTrail WAITING_DATA when unbound; approve/deny writes session + governed audit + persistApproval/persistAudit path; Scenario Lab ApprovalAuditPanel; durable listPersistedApprovals/listPersistedAuditEvents with WAITING_DATA; L4 false; no production write without approval
+- Failed: none
+- Not run: device e2e; hosted Supabase table apply
+- Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 631f86f (US-AGT-01)

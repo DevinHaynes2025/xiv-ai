@@ -11,8 +11,18 @@ export {
 } from './agent-router';
 export {
   bindAgentPersistence,
+  isAgentPersistenceBound,
   type AgentPersistence,
 } from './persistence';
+export {
+  APPROVAL_AUDIT_POLICY,
+  listApprovalAuditTrail,
+  recordApprovalDecisionAudit,
+  approvalAuditAllowsProductionWrite,
+  type ApprovalAuditTrail,
+  type ApprovalAuditSessionEntry,
+  type ApprovalAuditEventEntry,
+} from './approval-audit';
 export { completeAgentTurn } from './model-router';
 export {
   AGENT_ALLOWED_TOOLS,

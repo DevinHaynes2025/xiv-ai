@@ -33,6 +33,11 @@ export function bindAgentPersistence(next: AgentPersistence | null) {
   globalStore.__xivAgentPersistence = next ?? undefined;
 }
 
+/** True when a Supabase (or test) persistence adapter is bound. Unbound ⇒ durable trail WAITING_DATA. */
+export function isAgentPersistenceBound(): boolean {
+  return Boolean(globalStore.__xivAgentPersistence);
+}
+
 function blocksHighRiskExecution(row: Record<string, unknown>) {
   const risk = row.risk_level;
   const status = row.status;

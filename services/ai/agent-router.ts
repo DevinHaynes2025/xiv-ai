@@ -9,6 +9,7 @@ import {
   persistMessage,
   persistSession,
 } from './persistence';
+import { recordApprovalDecisionAudit } from './approval-audit';
 import {
   AGENT_ALLOWED_TOOLS,
   assertToolAllowed,
@@ -602,6 +603,15 @@ export async function decideAgentAction(input: {
     note: input.decision === 'approve' ? 'Human approved prototype simulation' : 'Human rejected action',
   };
   state.approvals = [...state.approvals, approval];
+  recordApprovalDecisionAudit({
+    actionId: action.id,
+    agentId: state.agent.id,
+    toolId: action.toolId,
+    decision: input.decision,
+    reviewedBy: state.context.userId,
+    reason: approval.note,
+    requestedAt: action.createdAt,
+  });
 
   if (input.decision === 'reject') {
     action.status = 'rejected';

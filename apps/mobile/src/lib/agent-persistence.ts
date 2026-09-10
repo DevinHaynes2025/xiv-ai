@@ -1,3 +1,4 @@
+
 import { bindAgentPersistence, type AgentPersistence, type PersistedAgentActionStatus } from '@/lib/ai';
 import { diagnoseAuthStage } from '@/lib/diagnostics';
 import { supabase } from '@/lib/supabase';
@@ -16,6 +17,23 @@ export type PersistedAgentAction = {
   completed_at: string | null;
 };
 
+export type PersistedAgentApproval = {
+  id: string;
+  action_id: string;
+  decision: 'approved' | 'rejected';
+  decision_note: string | null;
+  created_at: string;
+};
+
+export type PersistedAgentAuditEvent = {
+  id: string;
+  session_id: string | null;
+  action_id: string | null;
+  event_type: string;
+  event_data: Record<string, unknown>;
+  created_at: string;
+};
+
 export type AgentActivityErrorKind = 'missing_schema' | 'unauthorized' | 'unknown';
 
 export type AgentActivityLoadError = {
@@ -30,11 +48,26 @@ export type AgentActivityLoadResult = {
   error: AgentActivityLoadError | null;
 };
 
+export type AgentApprovalLoadResult = {
+  approvals: PersistedAgentApproval[];
+  error: AgentActivityLoadError | null;
+  status: 'READY' | 'WAITING_DATA';
+};
+
+export type AgentAuditLoadResult = {
+  events: PersistedAgentAuditEvent[];
+  error: AgentActivityLoadError | null;
+  status: 'READY' | 'WAITING_DATA';
+};
+
 const ACTION_COLUMNS =
   'id, agent_type, tool_id, action_type, description, risk_level, status, input_payload, result_payload, created_at, completed_at';
 
+const APPROVAL_COLUMNS = 'id, action_id, decision, decision_note, created_at';
+const AUDIT_COLUMNS = 'id, session_id, action_id, event_type, event_data, created_at';
+
 const SCHEMA_HINT =
-  "Run supabase/migrations/20260904180000_ai_agent_governance.sql in the Supabase SQL editor, then execute NOTIFY pgrst, 'reload schema'; so PostgREST reloads public.ai_agent_actions. Activity is not invented while those tables are missing.";
+  "Run supabase/migrations/20260904180000_ai_agent_governance.sql in the Supabase SQL editor, then execute NOTIFY pgrst, 'reload schema'; so PostgREST reloads public.ai_agent_actions / ai_agent_approvals / ai_agent_audit_events. Activity is not invented while those tables are missing.";
 
 const adapter: AgentPersistence = {
   async insert(table, row) {
@@ -116,7 +149,16 @@ function classifyActivityError(error: {
     kind: 'unknown',
     code,
     message,
-    hint: 'The query targets public.ai_agent_actions (owner-only RLS). No sample activity is substituted.',
+    hint: 'The query targets governed agent tables (owner-only RLS). No sample activity is substituted.',
+  };
+}
+
+function unauthorizedNoUser(userError: { code?: string; message?: string } | null): AgentActivityLoadError {
+  return {
+    kind: 'unauthorized',
+    code: userError?.code ?? 'no_user',
+    message: userError?.message ?? 'No authenticated user.',
+    hint: 'Sign in to load governed agent activity for your account.',
   };
 }
 
@@ -127,22 +169,9 @@ export async function listPersistedAgentActions(): Promise<AgentActivityLoadResu
       code: userError?.code,
       message: userError?.message,
     });
-    return {
-      actions: [],
-      error: {
-        kind: 'unauthorized',
-        code: userError?.code ?? 'no_user',
-        message: userError?.message ?? 'No authenticated user.',
-        hint: 'Sign in to load governed agent activity for your account.',
-      },
-    };
+    return { actions: [], error: unauthorizedNoUser(userError) };
   }
 
-  // Exact query: public.ai_agent_actions columns from
-  // supabase/migrations/20260904180000_ai_agent_governance.sql
-  // Scoped to auth.uid() via user_id + owner RLS. organization_id is nullable
-  // and reserved for a future org membership table — not invented here.
-  // Authenticated session only. No service-role key in the mobile client.
   const { data, error } = await supabase
     .from('ai_agent_actions')
     .select(ACTION_COLUMNS)
@@ -181,4 +210,94 @@ export async function listPersistedAgentActions(): Promise<AgentActivityLoadResu
     .filter((row): row is PersistedAgentAction => Boolean(row));
 
   return { actions, error: null };
+}
+
+/** US-AGT-02 — list ai_agent_approvals. Honest WAITING_DATA when schema/auth unavailable. */
+export async function listPersistedApprovals(): Promise<AgentApprovalLoadResult> {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) {
+    diagnoseAuthStage('agent_approvals:no_user', {
+      code: userError?.code,
+      message: userError?.message,
+    });
+    return { approvals: [], error: unauthorizedNoUser(userError), status: 'WAITING_DATA' };
+  }
+
+  const { data, error } = await supabase
+    .from('ai_agent_approvals')
+    .select(APPROVAL_COLUMNS)
+    .eq('user_id', userData.user.id)
+    .order('created_at', { ascending: false })
+    .limit(80);
+
+  if (error) {
+    const classified = classifyActivityError(error);
+    diagnoseAuthStage('agent_approvals:load_failed', {
+      code: classified.code,
+      message: classified.message,
+      hint: classified.hint,
+    });
+    return { approvals: [], error: classified, status: 'WAITING_DATA' };
+  }
+
+  const approvals = (data ?? [])
+    .map((row) => {
+      if (typeof row.id !== 'string') return null;
+      if (row.decision !== 'approved' && row.decision !== 'rejected') return null;
+      return {
+        id: row.id,
+        action_id: typeof row.action_id === 'string' ? row.action_id : '',
+        decision: row.decision,
+        decision_note: typeof row.decision_note === 'string' ? row.decision_note : null,
+        created_at: typeof row.created_at === 'string' ? row.created_at : '',
+      } satisfies PersistedAgentApproval;
+    })
+    .filter((row): row is PersistedAgentApproval => Boolean(row));
+
+  return { approvals, error: null, status: 'READY' };
+}
+
+/** US-AGT-02 — list ai_agent_audit_events. Honest WAITING_DATA when schema/auth unavailable. */
+export async function listPersistedAuditEvents(): Promise<AgentAuditLoadResult> {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) {
+    diagnoseAuthStage('agent_audit:no_user', {
+      code: userError?.code,
+      message: userError?.message,
+    });
+    return { events: [], error: unauthorizedNoUser(userError), status: 'WAITING_DATA' };
+  }
+
+  const { data, error } = await supabase
+    .from('ai_agent_audit_events')
+    .select(AUDIT_COLUMNS)
+    .eq('user_id', userData.user.id)
+    .order('created_at', { ascending: false })
+    .limit(80);
+
+  if (error) {
+    const classified = classifyActivityError(error);
+    diagnoseAuthStage('agent_audit:load_failed', {
+      code: classified.code,
+      message: classified.message,
+      hint: classified.hint,
+    });
+    return { events: [], error: classified, status: 'WAITING_DATA' };
+  }
+
+  const events = (data ?? [])
+    .map((row) => {
+      if (typeof row.id !== 'string' || typeof row.event_type !== 'string') return null;
+      return {
+        id: row.id,
+        session_id: typeof row.session_id === 'string' ? row.session_id : null,
+        action_id: typeof row.action_id === 'string' ? row.action_id : null,
+        event_type: row.event_type,
+        event_data: asPayload(row.event_data) ?? {},
+        created_at: typeof row.created_at === 'string' ? row.created_at : '',
+      } satisfies PersistedAgentAuditEvent;
+    })
+    .filter((row): row is PersistedAgentAuditEvent => Boolean(row));
+
+  return { events, error: null, status: 'READY' };
 }
