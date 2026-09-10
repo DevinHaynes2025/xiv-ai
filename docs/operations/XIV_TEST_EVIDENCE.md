@@ -235,3 +235,11 @@ Append entries; never delete history. Skipped mandatory tests ÃƒÂ¢Ã¢â‚�
 - Failed: none
 - Not run: device e2e; live sim world runtime; live age-verification vendor; dimensional 12d fabric bind (intentionally product-lane fixture / WAITING_PROVIDER); production deploy
 - Notes: PRODUCT lane after US-COM-01; 12D-16/17 FOLLOW_UP product UX only; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; .tmp-cc-preview.json left untracked
+
+## 2026-09-10 ~01:35 CT - US-MC-01 Adult Mindcraft 18+ gated entry - grok
+- Branch / SHA: grok/us-mc-01-mindcraft-adults-entry / 3aa998f2302380c25acb5da7ad71b0bfd0a0b4e9
+- Commands run: `npx tsx mindcraft-adults-entry.test.ts` in `services/ai` (exit 0; OB PASS_WITH_NOTES polish)
+- Passed: listMindcraftAdultsEntryView WAITING_DATA when unbound (rooms=null, entryCard=null, ack=null, policyDenials=null); bindMindcraftAdultsEntryFixture surfaces AGE_GATE_REQUIRED; attemptMindcraftRoomEntry denies without 18+/rules acks; culture soft re-verify; health/culture entry-lines fail-closed; full local acks yield FIXTURE_SIMULATION with WAITING_PROVIDER for LIVE_MINDCRAFT_WORLD/LIVE_AGE_VERIFICATION; GATE_DENIED; US-COM-01 deny codes; clothing-optional culture-gallery only (heritage/edu); sexualFraming=false; liveMindcraftWorld=false; liveAgeVerification=false; L4 false; productionMutation false; mobile MindcraftAdultsEntryScreen on consumer+business+executive mindcraft-adults-entry routes
+- Failed: none
+- Not run: device e2e; live mindcraft world runtime; live age-verification vendor; production deploy
+- Notes: PRODUCT lane after US-SIM-01; OB PASS_WITH_NOTES - evidence cites full feature tip SHA (no PENDING_FEAT_SHA); honesty 18+; SIMULATION; did not touch xiv-v2 @ 60986682; did not edit 12d fabric WTs / dimensional/*; .tmp-cc-preview.json left untracked
