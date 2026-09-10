@@ -45,3 +45,8 @@ export * from './cfo-ollama-revenue-lab';
 export * from './revenue-lab-council';
 export * from './training-evaluation-ledger';
 export * from './revenue-lab-runner';
+export * from './founder-twin';
+export * from './virtual-coo';
+export * from './confidential-vault';
+export * from './leadership-genome';
+export * from './document-governance-catalog';
