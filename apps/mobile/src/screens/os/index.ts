@@ -9,4 +9,6 @@ export { SalesDesk } from '@/screens/os/sales-desk';
 export { SupplyChainTower } from '@/screens/os/supply-chain-tower';
 export { SystemsNavigator } from '@/screens/os/systems-navigator';
 export { CommerceCsvDemoScreen } from '@/screens/os/commerce-csv-demo';
+export { SecurityCenterScreen } from '@/screens/os/security-center';
+export { PolicyDenialsScreen } from '@/screens/os/policy-denials';
 export { WarehouseTower } from '@/screens/os/warehouse-tower';

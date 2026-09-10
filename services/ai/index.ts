@@ -173,3 +173,23 @@ export {
   type SystemConnectorStub,
   type SystemNavigatorView,
 } from './system-navigator';
+
+export {
+  SECURITY_CENTER_POLICY,
+  clearPolicyDenials,
+  evaluateAndRecordPolicyDenial,
+  listGuardianReadOnlyChecks,
+  listRecordedPolicyDenials,
+  listSecurityCenterView,
+  probeKnownPolicyDenials,
+  recordPolicyDenial,
+  resetSecurityCenterSession,
+  securityCenterAllowsL4,
+  securityCenterAllowsLiveExploitTooling,
+  securityCenterAllowsProductionMutation,
+  type DenialGate,
+  type GuardianReadOnlyCheckView,
+  type PolicyDenialRecord,
+  type PolicyDenialVerdict,
+  type SecurityCenterView,
+} from './security-center';

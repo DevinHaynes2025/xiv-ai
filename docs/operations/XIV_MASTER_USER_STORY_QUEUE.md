@@ -23,8 +23,8 @@ No story may weaken Guardian/RLS or enable L4.
 | US-AGT-02 | Agent approval + audit trail | Executive | DONE (branch); session+governed+DB list; WAITING_DATA; L4 false |
 | US-EMP-01 | Anonymous employee feedback channel | Employee | DONE (branch); alias-only payload; WAITING_DATA; L4 false |
 | US-CON-01 | Consumer innovate / early access loop | Consumer | DONE (branch); named handle; proposals only; WAITING_DATA; L4 false |
-| US-SYS-01 | System Navigator CSV/commerce demo | Executive | WIRED (branch); connector stub; WAITING_CONNECTOR/DEMO_CSV; L4 false |
-| US-SEC-01 | Security Center: policy denials visible | Executive | Guardian read-only checks |
+| US-SYS-01 | System Navigator CSV/commerce demo | Executive | DONE (branch); connector stub; WAITING_CONNECTOR/DEMO_CSV; L4 false |
+| US-SEC-01 | Security Center: policy denials visible | Executive | DONE (branch); Guardian read-only; WAITING_DATA; never fabricate incidents; L4 false |
 | US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | Prototype content pipeline |
 | US-NET-01 | Supplier / manufacturer directory search | Business | Search index stub + RLS |
 | US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory Ã¢â€ â€™ signed packages later |

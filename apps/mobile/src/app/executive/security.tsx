@@ -1,5 +1,5 @@
-import { SecurityDesk } from '@/screens/os';
+﻿import { SecurityCenterScreen } from '@/screens/os';
 
 export default function ExecutiveSecurity() {
-  return <SecurityDesk />;
+  return <SecurityCenterScreen />;
 }
