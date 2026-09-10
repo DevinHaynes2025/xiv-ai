@@ -6,7 +6,7 @@
 **Base:** sealed 12D-12 polish `06bc5a33` (`grok/12d-12-checkpoint-ledger-consumer`; merged into this tip) + 12D-11 polish seals (`destructiveDbAutoApply` / `L4_PRODUCTION_ENABLED` / `autonomousSecretCreation`)  
 **State:** research / feature branch — LOCAL offline READ path only  
 **L4 / production auto:** false  
-**Tip SHA:** `da938bb54e075a00ea2ab7503a21c956659a078e`
+**Tip SHA:** `bb09e92ee621094496b25fb439f0c11516570431`
 
 ## Locked Data City contract
 
