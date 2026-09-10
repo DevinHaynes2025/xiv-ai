@@ -2,24 +2,39 @@
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
+Stories need: persona, goal, acceptance criteria, APIs/screens, evidence plan.
+No story may weaken Guardian/RLS or enable L4.
+
 ## Now
 | ID | Title | Owner lane | Status |
 |----|-------|------------|--------|
-| **EY0-L** | Local Coding Workforce + Unified Agent Context Spine (`AGENTS.md`, Cursor rules, ops docs, Ollama/local worker, handoff protocol) | Local / Grok | IN PROGRESS |
-| **EY1** | Release & Runtime Verification Gate — run tests locally, fix one root cause at a time, record evidence | Local coding agent | QUEUED |
+| **EY0-L** | Local Coding Workforce + Unified Agent Context Spine | Local / Grok | DONE (branch pushed; PR pending token write scope) |
+| **EY1** | Release & Runtime Verification Gate | Local / Grok | IN PROGRESS |
+| **EY2** | ModelBackend Phase 0 (gemini \| openai \| ollama) | Local / Cursor | QUEUED |
+| **EY3** | Hardware capability probe (CPU/GPU/NPU/ollama) | Local / Grok | QUEUED |
 
-## Next (draft)
-| ID | Title | Notes |
-|----|-------|-------|
-| EY2 | ModelBackend Phase 0 — gemini \| openai \| ollama behind executive turns | Keep policy/approval intact |
-| EY3 | Hardware capability probe (CPU/GPU/NPU/ollamaReachable) as read-only governed tool | AMD 780M honest reporting |
-| US-MOB-* | ChatGPT-authored mobile stories | Land via Cursor on `apps/mobile` |
+## Product epics (queued — master plan aligned)
+| ID | Title | Persona | Notes |
+|----|-------|---------|-------|
+| US-UNI-01 | Universe login + membership gate | Executive | Prove tenant isolation on mobile |
+| US-EXE-01 | Executive Home + Business Health score | Executive | Synthetic data OK for MVP |
+| US-EXE-02 | Story Engine brief (what changed / why) | Executive | Read-only; approval for actions |
+| US-AGT-01 | AI Workforce: propose supplier simulation | Executive | requiresApproval=true |
+| US-AGT-02 | Agent approval + audit trail | Executive | ai_agent_approvals / audit_events |
+| US-EMP-01 | Anonymous employee feedback channel | Employee | alias only; no legal name leak |
+| US-CON-01 | Consumer innovate / early access loop | Consumer | Structured ideas into Universe |
+| US-SYS-01 | System Navigator CSV/commerce demo | Executive | Connector stub, not live ERP |
+| US-SEC-01 | Security Center: policy denials visible | Executive | Guardian read-only checks |
+| US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | Prototype content pipeline |
+| US-NET-01 | Supplier / manufacturer directory search | Business | Search index stub + RLS |
+| US-PLG-01 | Plugin marketplace install (signed) | Builder | In-memory → signed packages later |
 
 ## Done / parked
 | ID | Notes |
 |----|-------|
-| Inventory | Local monorepo + Supabase schema map complete (2026-09-09) |
+| Inventory | Monorepo + Supabase schema mapped (2026-09-09) |
+| Ollama | `qwen2.5-coder:7b` pulled on ASUS (2026-09-09) |
 
 ## Rules
-- Stories need: persona, goal, acceptance criteria, screens/routes or APIs, evidence plan.
-- No story may require weakening Guardian/RLS or enabling L4.
+- ChatGPT may author US-MOB / US-* detail; Grok executes EY* + backend; local Ollama implements offline.
+- Sync via Git + this queue, not chat memory.

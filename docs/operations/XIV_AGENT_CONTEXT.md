@@ -5,7 +5,7 @@ Snapshotted: 2026-09-09
 ## Authorized tip
 - Branch: `cursor/ey0-l-local-coding-brain`
 - SHA: `87dfb54d0182da8813446d0aa9fcacc970281cdb`
-- Story: EY0-L complete locally; next EY1
+- Story: EY1 verification passed; next EY2 ModelBackend
 
 ## Read order
 1. `AGENTS.md`
@@ -36,3 +36,4 @@ Snapshotted: 2026-09-09
 
 ## Hardware
 ASUS Vivobook 18, ~32GB RAM, AMD Ryzen 7 260 + Radeon 780M — local coding models via Ollama (no CUDA).
+

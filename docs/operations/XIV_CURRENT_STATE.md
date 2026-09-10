@@ -38,3 +38,11 @@ Historical graph edits under `services/ai/runtime/historical/*` and `sec-status.
 
 ## Honest maturity
 Prototype. Prefer `PROTOTYPE` / `NOT_CONFIGURED` / `WAITING_*` over false readiness.
+
+
+## 2026-09-09 evening
+- EY0-L spine on GitHub branch
+- Ollama qwen2.5-coder:7b ready
+- EY1 test:runtime passed (exit 0)
+- Detailed stories in XIV_USER_STORIES_DETAILED.md
+

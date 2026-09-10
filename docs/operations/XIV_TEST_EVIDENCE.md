@@ -29,3 +29,11 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Failed: n/a
 - Not run: ollama install (next); full test:runtime (EY1)
 - Notes: historical working-tree edits left unstaged by design
+
+### 2026-09-09 — EY1 — grok
+- Branch / SHA: cursor/ey0-l-local-coding-brain (pre-commit tip 2bfa3b5; stories commit follows)
+- Commands run: `ollama run qwen2.5-coder:7b`; `npm run test:runtime` in `services/ai`
+- Passed: test:runtime exit_code 0 (~106s); all Phase 2* case suites reported passed in log; Ollama model `qwen2.5-coder:7b` listed (4.7GB)
+- Failed: none
+- Not run: full mobile test suite; EY2 ModelBackend
+- Notes: AI health `{"ok":true,"agent":"executive_agent"}`; L4 remains disabled per suite assertions
