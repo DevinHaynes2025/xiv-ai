@@ -102,3 +102,6 @@ export * from './client-presentation-composer';
 export * from './live-visual-dashboard';
 export * from './story-visual-drilldown';
 export * from './lovable-ux-sync-manifest';
+export * from './client-visual-component-gateway';
+export * from './offline-chart-data-service';
+export * from './visual-interaction-contract';
