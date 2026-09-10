@@ -22,7 +22,7 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: full `npm run test:runtime` (pending EY1)
 - Notes: AI service deps present; Ollama not yet installed
 
-### 2026-09-09 — EY0-L — grok
+### 2026-09-09 ï¿½ EY0-L ï¿½ grok
 - Branch / SHA: cursor/ey0-l-local-coding-brain / 87dfb54d0182da8813446d0aa9fcacc970281cdb
 - Commands run: created AGENTS.md, .cursor/rules/*, docs/operations/*; git commit
 - Passed: files present; commit succeeded (12 files, +408)
@@ -30,7 +30,7 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: ollama install (next); full test:runtime (EY1)
 - Notes: historical working-tree edits left unstaged by design
 
-### 2026-09-09 — EY1 — grok
+### 2026-09-09 ï¿½ EY1 ï¿½ grok
 - Branch / SHA: cursor/ey0-l-local-coding-brain (pre-commit tip 2bfa3b5; stories commit follows)
 - Commands run: `ollama run qwen2.5-coder:7b`; `npm run test:runtime` in `services/ai`
 - Passed: test:runtime exit_code 0 (~106s); all Phase 2* case suites reported passed in log; Ollama model `qwen2.5-coder:7b` listed (4.7GB)
@@ -38,7 +38,7 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: full mobile test suite; EY2 ModelBackend
 - Notes: AI health `{"ok":true,"agent":"executive_agent"}`; L4 remains disabled per suite assertions
 
-### 2026-09-09 — EY2 — grok
+### 2026-09-09 ï¿½ EY2 ï¿½ grok
 - Branch / SHA: cursor/ey0-l-local-coding-brain (commit follows)
 - Commands run: `npx tsc --noEmit` in services/ai
 - Passed: typecheck after ModelBackend + ollama provider id
@@ -46,19 +46,27 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 - Not run: live ollama executive turn e2e (optional next)
 - Notes: executive-turn routes via model-backend; Metro mock keeps ollama label server-only
 
-### 2026-09-09 — EY3 — grok
+### 2026-09-09 ï¿½ EY3 ï¿½ grok
 - Commands: added hardware-probe.ts + GET /v1/hardware; typecheck clean
 - Notes: GPU via XIV_GPU_* env; NPU honestly undetected; Ollama models listed when reachable
 - Roster/schedule/data-plane docs + xiv-data dirs created; weekday 8:30 digest routine saved
 
-### 2026-09-09 — US-UNI-01 audit — grok
+### 2026-09-09 ï¿½ US-UNI-01 audit ï¿½ grok
 - Hosted Universes present: Isolation Org A/B with active Universes (internal/business)
 - RLS isolation covered by prior test:runtime Phase 2H
 - Google Drive connector installed; awaiting user auth card
 - Salesforce blocked on CLIENT_ID + SALESFORCE_MCP_URL
 - Added XIV_COMPUTE_FABRIC.md (classical-first; QPU candidate only)
 
-### 2026-09-09 — Google Drive connected — grok
+### 2026-09-09 ï¿½ Google Drive connected ï¿½ grok
 - Drive search found XiV Firm Master Blueprint; themes ingested into compute/vision alignment
-- Created Drive doc: XIV AI Brain Sync — 2026-09-09
+- Created Drive doc: XIV AI Brain Sync ï¿½ 2026-09-09
 - US-UNI-01 audited: TenantDesk/Provider already implement picker + context
+
+### 2026-09-09 â€” US-EXE-01 â€” grok
+- Branch / SHA: cursor/ey0-l-local-coding-brain (commit follows)
+- Commands run: rewrote `apps/mobile/src/app/executive/health.tsx`; `Invoke-WebRequest http://127.0.0.1:8787/health` (service ok in session)
+- Passed: health screen no longer imports `@/data/mock`; mounts `probeAiService` + `runLiveHealth` (`analyzeLiveBusinessHealth`); shows `WAITING_DATA` / blank score when disconnected; `DataStatusMark` + `GovernedHealthResult` for honest status; CRM_ALTERNATIVES.md + XIV_SUPERVISION.md included (parent); historical/* left unstaged
+- Failed: none
+- Not run: device e2e on Expo; authenticated `GET /v1/business/health` from device
+- Notes: L4 remains false; recommendation labeled requiresApproval; score only numeric when `dataStatus === 'live'`

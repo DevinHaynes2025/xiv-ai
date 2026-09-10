@@ -1,4 +1,4 @@
-﻿# XIV Master User Story Queue
+# XIV Master User Story Queue
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
@@ -17,7 +17,7 @@ No story may weaken Guardian/RLS or enable L4.
 | ID | Title | Persona | Notes |
 |----|-------|---------|-------|
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
-| US-EXE-01 | Executive Home + Business Health score | Executive | IN PROGRESS — live health wire + CRM alternatives |
+| US-EXE-01 | Executive Home + Business Health score | Executive | DONE (live wire + WAITING_DATA; CRM alts doc) |
 | US-EXE-02 | Story Engine brief (what changed / why) | Executive | Read-only; approval for actions |
 | US-AGT-01 | AI Workforce: propose supplier simulation | Executive | requiresApproval=true |
 | US-AGT-02 | Agent approval + audit trail | Executive | ai_agent_approvals / audit_events |
