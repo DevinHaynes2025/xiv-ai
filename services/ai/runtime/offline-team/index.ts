@@ -76,3 +76,7 @@ export * from './meeting-folder-ingestion';
 export * from './experience-backend';
 export * from './experience-view-model';
 export * from './local-experience-runner';
+export * from './hybrid-agent-fleet';
+export * from './hybrid-agent-router';
+export * from './plugin-capability-gateway';
+export * from './fleet-neural-learning';
