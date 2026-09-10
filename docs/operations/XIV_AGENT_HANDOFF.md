@@ -1,12 +1,12 @@
-# XIV AGENT HANDOFF - EY3
+# XIV AGENT HANDOFF - US-BB-01
 
-BRANCH: grok/ey3-hardware-probe-reconcile
-BASE: grok/us-plg-01-plugin-marketplace @ 23c744e2
-STORY_ID: EY3
-ONLINE: hybrid (ASUS local probe + Ollama)
+BRANCH: grok/us-bb-01-blue-brain-surface
+BASE: grok/us-pb-01-pocket-brain-surface @ b35b15fb
+STORY_ID: US-BB-01
+ONLINE: LOCAL/SIMULATION product lane (ASUS)
 WORKER: grok (one writer)
 
-GOAL: Hardware capability probe reconcile — GET /v1/hardware with honest CPU/GPU/NPU/Ollama truth states; AMD CPU DETECTED on ASUS; GPU/NPU DETECTED or WAITING never fake VERIFIED; Ollama reachability via live /api/tags; tests + executive mobile readout; queue DONE + evidence.
-CONSTRAINTS: L4 false; no fabricate silicon VERIFIED; no main/force/xiv-v2; leave historical/* and sec-status alone; do not touch dimensional/* or xiv-12d / xiv-ai-energy.
-EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (EY3 reconcile entry)
-NEXT: Architecture Reader wire from 12D-08 FOLLOW_UP (product lane in xiv-ai only — do not mutate xiv-ai-12d / dimensional/* / xiv-ai-energy). If queue empty after EY3, that is the recommended next product story.
+GOAL: Blue Brain mobile product surface -- READ-only SIMULATION fixture presenter for Executive/Business; policy gate in front; pocket ingest stubs; aspirational vs measured scale honesty; WAITING_* honesty; L4 false.
+CONSTRAINTS: L4 false; productionMutation false; liveCloudSyncClaimed false; mayEnterGlobalBrain false; no fabricate ADC measured scale; no main/force/xiv-v2; do not touch dimensional/* or xiv-12d / xiv-ai-energy / xiv-v2.
+EVIDENCE: docs/operations/XIV_TEST_EVIDENCE.md (US-BB-01 entry)
+NEXT: Highest-value remaining PRODUCT US-* (Universe login polish, Mini Agent OS demo, Virtual City product peek, Story Engine deepen, AI Workforce UX) in xiv-ai only.

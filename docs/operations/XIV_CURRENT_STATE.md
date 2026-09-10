@@ -85,3 +85,6 @@ Canonical files landed on this child branch from `origin/cursor/ey0-l-local-codi
 EY3 DONE on grok/ey3-hardware-probe-reconcile: GET /v1/hardware honest silicon probe (AMD DETECTED; GPU/NPU DETECTED never VERIFIED; Ollama live). Next: Architecture Reader wire (12D-08 FOLLOW_UP) in xiv-ai product lane only.
 
 
+
+## Latest PRODUCT tip
+US-BB-01 Blue Brain mobile product surface DONE on grok/us-bb-01-blue-brain-surface (after US-PB-01). LOCAL/SIMULATION; WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC/GATE_DENIED; liveCloudSyncClaimed=false; mayEnterGlobalBrain=false; L4 false.
