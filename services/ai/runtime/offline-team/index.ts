@@ -73,3 +73,8 @@ export * from './hybrid-agent-fleet';
 export * from './hybrid-agent-router';
 export * from './plugin-capability-gateway';
 export * from './fleet-neural-learning';
+export * from './ai-tool-api-registry';
+export * from './agentic-search-engine';
+export * from './civilization-knowledge-graph';
+export * from './blue-brain-data-pipeline';
+export * from './virtual-community-world';
