@@ -8,7 +8,7 @@
 **L4 / production auto:** false  
 **Schema:** `12d17.1`  
 **Wire:** `DEVICE_PATHWAYS_GUARDRAILS.devicePathwaysWire = WIRED`  
-**Tip SHA:** `8786cdca19162e41ecb5f8ff0d3977fdc9ba509d`
+**Tip SHA:** `616c3e85988d9d7164a4c576b520ed977ff3b9de`
 
 ## Intent
 
