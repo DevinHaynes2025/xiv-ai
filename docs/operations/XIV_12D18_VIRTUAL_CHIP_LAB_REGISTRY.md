@@ -8,7 +8,7 @@
 **L4 / production auto:** false  
 **Schema:** `12d18.vcl0.1`  
 **Wire:** `VIRTUAL_CHIP_LAB_GUARDRAILS.virtualChipLabWire = WIRED`  
-**Tip SHA:** `ed47be854b68f20b6d6a90777fccc14d07585d90`
+**Tip SHA:** `8fc2f928c3a332b33183ab7580176caa5312a1d2`
 
 ## Intent
 
