@@ -57,3 +57,6 @@ export * from './study-curriculum';
 export * from './agent-campus-meetings';
 export * from './innovation-mental-gym';
 export * from './agent-campus-runner';
+export * from './multi-agent-meeting-bus';
+export * from './executive-decision-packet';
+export * from './ollama-meeting-runner';
