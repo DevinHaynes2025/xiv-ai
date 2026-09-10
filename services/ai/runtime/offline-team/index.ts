@@ -105,3 +105,6 @@ export * from './lovable-ux-sync-manifest';
 export * from './client-visual-component-gateway';
 export * from './offline-chart-data-service';
 export * from './visual-interaction-contract';
+export * from './xiv-experience-runtime';
+export * from './experience-freshness';
+export * from './ollama-story-explanation';
