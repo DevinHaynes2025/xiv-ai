@@ -6,7 +6,7 @@
 **Base:** sealed 12D-15 tip `5bbf1d32a81bfd197aa077baa812784a191ad690` (`grok/12d-15-blue-brain`)  
 **State:** research / feature branch -- LOCAL SIMULATION community age-gate + rules stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `PENDING_COMMIT`
+**Tip SHA:** `fcb82b618a4ecb018050838e210068ba57b05007`
 
 ## Locked community age-gate contract
 
@@ -85,7 +85,7 @@ Banned: `claimPhysicalPortalViaCommunity`, `claimWormholeAsPhysicalPathway`,
 
 ## Evidence
 
-- Feature tip: `PENDING_COMMIT`
+- Feature tip: `fcb82b618a4ecb018050838e210068ba57b05007`
 - Base: sealed 12D-15 tip `5bbf1d32a81bfd197aa077baa812784a191ad690`
 - `npx tsx runtime/dimensional/12d16.test.ts` -> OK
 - `liveCloudSyncClaimed=false`; `productionAuto*=false`; `L4_PRODUCTION_ENABLED=false`

@@ -195,7 +195,7 @@ const ageDenied = activateCommunityStub({
 assert.equal(ageDenied.outcome, 'GATE_DENIED');
 
 // Evidence hash
-const tipSha = 'PENDING_COMMIT';
+const tipSha = 'fcb82b618a4ecb018050838e210068ba57b05007';
 const evidence = evidenceHashCommunityAgeGate({
   tipSha,
   surface,
