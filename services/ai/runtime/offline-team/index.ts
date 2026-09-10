@@ -89,3 +89,5 @@ export * from './agentic-search-engine';
 export * from './civilization-knowledge-graph';
 export * from './blue-brain-data-pipeline';
 export * from './virtual-community-world';
+export * from './live-tool-heartbeats';
+export * from './agentic-search-worker';
