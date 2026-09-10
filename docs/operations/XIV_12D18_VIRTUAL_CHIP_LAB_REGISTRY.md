@@ -8,7 +8,7 @@
 **L4 / production auto:** false  
 **Schema:** `12d18.vcl0.1`  
 **Wire:** `VIRTUAL_CHIP_LAB_GUARDRAILS.virtualChipLabWire = WIRED`  
-**Tip SHA:** `TIP_SHA_PENDING_PUSH`
+**Tip SHA:** `ed47be854b68f20b6d6a90777fccc14d07585d90`
 
 ## Intent
 
@@ -61,7 +61,7 @@ cd services/ai && npx tsx runtime/dimensional/12d18.test.ts
 ## Evidence
 
 - Base: sealed 12D-17 tip `239abcf6c1d3b4e11eb242576361a4ffbdc8d4a6`
-- Feature tip: `TIP_SHA_PENDING_PUSH` (filled after push)
+- Feature tip: `ed47be854b68f20b6d6a90777fccc14d07585d90` (filled after push)
 - `npx tsx runtime/dimensional/12d18.test.ts` → OK
 - `twinSoftConfirmedSimulation=true`; `quantumAdvantageClaimed=false`; `liveChip/Npu/GpuControl=false`; `productionAuto*=false`; `L4_PRODUCTION_ENABLED=false`
 - Product WT undisturbed: `C:\Users\Devin\xiv-ai`
