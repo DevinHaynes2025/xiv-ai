@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { reviewArtifact } from './review-learning-council';
+import { buildVirtualTopology } from './virtual-cloud-chip-sim';
+import { createHistoricalProfile } from './historical-intelligence-registry';
+import { DEFAULT_AGENT_COURSES, DEFAULT_PLAYBOOKS } from './consultant-academy';
+const review=reviewArtifact({artifact:{artifactId:'a1',authorAgent:'OLLAMA_BUILDER',content:'bounded result',evidenceRefs:['sha256:x']},findings:[{reviewer:'QA',severity:'INFO',message:'checked',evidenceRefs:['test:ok']}]});
+assert.equal(review.accepted,true);
+const topology=buildVirtualTopology([{id:'local',kind:'LOCAL_SERVER',capacityUnits:1,evidenceRefs:['sim'],simulationOnly:true},{id:'qpu',kind:'QPU_SIM',capacityUnits:1,evidenceRefs:['sim'],simulationOnly:true}],[{from:'local',to:'qpu',latencyMs:1,bandwidthUnits:1}]);
+assert.equal(topology.quantumAdvantageClaimed,false);
+const profile=createHistoricalProfile({profileId:'p1',kind:'PHILOSOPHER',sources:[{sourceId:'s1',title:'source',provenance:'public',authorized:true}],traits:['reasoning'],confidence:0.7});
+assert.equal(profile.simulationPersona,true);
+assert.equal(DEFAULT_PLAYBOOKS.every(p=>p.humanApprovalRequired),true);
+assert.equal(DEFAULT_AGENT_COURSES.length>0,true);
+console.log('12D-27 review/learning/virtual-cloud/academy contracts: OK');
