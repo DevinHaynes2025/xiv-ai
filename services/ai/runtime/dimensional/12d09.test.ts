@@ -71,7 +71,7 @@ assert.ok(BUSINESS_BAR_METRICS.includes('customer_value'));
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.literalAtomicPhysicsStorage, false);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.atomDbClaimAllowed, false);
 assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.agentCheckpointLedgerWire, 'WIRED');
-assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-12');
+assert.equal(ATOMIC_DATA_CELL_GUARDRAILS.ticketFollowUp, '12D-13');
 assert.equal(ARCH_READER_CONSUMER_GUARDRAILS.readOnly, true);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.replicaHardCap, 64);
 assert.equal(OFFLINE_SNAPSHOT_GUARDRAILS.maxDutyCycle, 0.25);

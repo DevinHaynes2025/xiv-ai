@@ -44,3 +44,4 @@ export * from './pocket-brain-ingest';
 
 export * from './agent-checkpoint-ledger';
 export * from './checkpoint-ledger-consumer';
+export * from './adc-offline-read-path';

@@ -6,6 +6,7 @@
  *
  * Agent Identity + Checkpoint Ledger wired in 12D-11 (append-only; not a second control plane).
  * Checkpoint Ledger consumer (Command Center / offline) wired in 12D-12 (read-only).
+ * ADC offline snapshot READ path (device→local_shard HOT hydrate) wired in 12D-13.
  * Quantum entanglement elsewhere = simulated pathway correlation only.
  */
 import { isomorphicContentHash } from './datagene';
@@ -25,7 +26,8 @@ export const ATOMIC_DATA_CELL_GUARDRAILS = {
   /** Fuller identity + checkpoint ledger integration. */
   agentCheckpointLedgerWire: 'WIRED' as const,
   checkpointLedgerConsumerWire: 'WIRED' as const,
-  ticketFollowUp: '12D-12' as const,
+  adcOfflineReadPathWire: 'WIRED' as const,
+  ticketFollowUp: '12D-13' as const,
 } as const;
 
 export type AtomicDataCellReplicationRule = {
