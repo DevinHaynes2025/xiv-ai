@@ -6,7 +6,13 @@ import {
   PHYSICAL_PORTAL_CAPABILITY,
   PRODUCTION_DIMENSIONAL_FABRIC_ENABLED,
   RESEARCH_DIMENSION_CEILING,
+  bridgeHistoricalRef,
+  createDataGene,
+  createDimensionLadderBenchmarks,
+  createLocalQuantumSimulator,
+  createMemoryShard,
   createPoint,
+  createWaitingQpuAdapter,
   findPathway,
   projectPoint,
   routeWorkload,
@@ -78,5 +84,13 @@ const pathway = findPathway([
 assert.deepEqual(pathway?.path, ['ancient-source', 'normalized-fact', 'business-hypothesis']);
 assert.equal(pathway?.totalWeight, 5);
 assert.equal(pathway?.minimumEvidence, 0.8);
+
+// 12D-02 smoke: exports resolve; production/honesty flags unchanged
+assert.ok(createDataGene({ id: 'smoke', body: { ok: true } }).contentHash.startsWith('dg1:'));
+assert.equal(createMemoryShard({ shardId: 'd1', tier: 'device', kind: 'index' }).holdsGlobalBrain, false);
+assert.equal(bridgeHistoricalRef({ refId: 'a', stance: 'SIMULATION' }).autoVerified, false);
+assert.ok(createDimensionLadderBenchmarks().every((b) => b.status === 'NOT_RUN'));
+assert.equal(createLocalQuantumSimulator().providerStatus, 'AVAILABLE_SIMULATOR');
+assert.equal(createWaitingQpuAdapter().providerStatus, 'WAITING_PROVIDER');
 
 console.log('XIV 12D dimensional intelligence fabric contracts hold (research-only).');

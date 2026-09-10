@@ -58,3 +58,15 @@ Before 12D leaves research state:
 4. Add an offline shard manifest and reconciliation protocol.
 5. Add a quantum-provider interface with a local simulator first and QPU adapters only after provider verification.
 6. Add a 12D scenario UI to XIV Command Center that clearly labels observed facts, inferred links, and simulated futures.
+
+## Build note — 12D-02 (Atomic Knowledge + Historical Memory)
+
+Implemented on branch `grok/12d-02-datagene-historical-memory`:
+
+- DataGene factory (`datagene.ts`) with isomorphic content hash; biological DNA cloning remains false.
+- Sparse memory shards (`memory-shards.ts`); device/phone does not hold global brain.
+- Historical/temporal bridge (`historical-bridge.ts`) with OBSERVED / HYPOTHESIS / SIMULATION separation; ancient sources never auto-verify.
+- Dimension ladder benchmark stubs (`benchmarks.ts`) return `NOT_RUN` until executed.
+- Local quantum simulator stub + QPU `WAITING_PROVIDER` (`quantum-simulator.ts`); no fake LIVE QPU.
+
+See `docs/operations/XIV_12D02_ATOMIC_KNOWLEDGE.md`. L4 / production fabric remain false.
