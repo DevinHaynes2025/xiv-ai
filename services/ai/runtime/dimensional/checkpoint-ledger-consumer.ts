@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 12D-12 — Read-only Command Center / offline consumer of Checkpoint Ledger rows.
  * Consumes append-only ledger entries from 12D-11. mobileReady + offline snapshot
  * friendly views (md/json/html). Optional fixture persist remains read-only vs production.
@@ -47,6 +47,11 @@ export const CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS = {
   productionAutoApply: false as const,
   productionAutoMerge: false as const,
   productionAutoDeploy: false as const,
+  destructiveDbAutoApply: false as const,
+  /** Lane self-seal: L4 production fabric off. */
+  L4_PRODUCTION_ENABLED: false as const,
+  /** secrets / autonomousSecretCreation — never mint secrets from consumer. */
+  autonomousSecretCreation: false as const,
   autonomousProductionDDL: false as const,
   autonomousProductionDML: false as const,
   policyGateBypassAllowed: false as const,
@@ -178,6 +183,18 @@ function assertConsumerGuardrails(): void {
     CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.productionAutoDeploy
   ) {
     throw new Error('production auto flags must remain false');
+  }
+  if (CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.destructiveDbAutoApply) {
+    throw new Error('destructiveDbAutoApply must remain false');
+  }
+  if (CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.L4_PRODUCTION_ENABLED) {
+    throw new Error('L4_PRODUCTION_ENABLED must remain false');
+  }
+  if (
+    CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.autonomousSecretCreation ||
+    BUILDER_GUARDRAILS.autonomousSecretCreation
+  ) {
+    throw new Error('autonomousSecretCreation must remain false');
   }
   if (
     CHECKPOINT_LEDGER_CONSUMER_GUARDRAILS.autonomousProductionDDL ||
