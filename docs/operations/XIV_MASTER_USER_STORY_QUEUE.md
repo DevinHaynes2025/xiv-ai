@@ -21,8 +21,8 @@ No story may weaken Guardian/RLS or enable L4.
 | US-EXE-02 | Story Engine brief (what changed / why) | Executive | DONE (live runLiveBrief + WAITING_DATA; Founder Twin guidance-only) |
 | US-AGT-01 | AI Workforce: propose supplier simulation | Executive | DONE (branch); requiresApproval=true; L4 false |
 | US-AGT-02 | Agent approval + audit trail | Executive | DONE (branch); session+governed+DB list; WAITING_DATA; L4 false |
-| US-EMP-01 | Anonymous employee feedback channel | Employee | WIRED (branch); alias-only payload; WAITING_DATA; L4 false |
-| US-CON-01 | Consumer innovate / early access loop | Consumer | Structured ideas into Universe |
+| US-EMP-01 | Anonymous employee feedback channel | Employee | DONE (branch); alias-only payload; WAITING_DATA; L4 false |
+| US-CON-01 | Consumer innovate / early access loop | Consumer | WIRED (branch); named handle; proposals only; WAITING_DATA; L4 false |
 | US-SYS-01 | System Navigator CSV/commerce demo | Executive | Connector stub, not live ERP |
 | US-SEC-01 | Security Center: policy denials visible | Executive | Guardian read-only checks |
 | US-SOC-01 | Profiles + business articles feed (daily) | Consumer/Business | Prototype content pipeline |

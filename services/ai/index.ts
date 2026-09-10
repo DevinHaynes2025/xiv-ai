@@ -131,3 +131,23 @@ export {
   type EmployeeFeedbackPersistence,
   type EmployeeFeedbackRecord,
 } from './employee-feedback';
+
+export {
+  CONSUMER_INNOVATE_POLICY,
+  bindConsumerInnovatePersistence,
+  buildConsumerIdeaPayload,
+  consumerHandleFromIdentity,
+  consumerIdeaAllowsProductionMutation,
+  consumerInnovateAllowsL4,
+  isConsumerInnovateDurableBound,
+  isConsumerInnovatePersistenceBound,
+  listConsumerInnovateChannel,
+  resetConsumerInnovateSessionStore,
+  submitConsumerIdea,
+  type ConsumerIdeaCategory,
+  type ConsumerIdeaPayload,
+  type ConsumerIdeaRecord,
+  type ConsumerIdeaStage,
+  type ConsumerInnovateChannel,
+  type ConsumerInnovatePersistence,
+} from './consumer-innovate';
