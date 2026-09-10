@@ -6,3 +6,19 @@ export * from './memory-shards';
 export * from './historical-bridge';
 export * from './benchmarks';
 export * from './quantum-simulator';
+// Atomic-memory fabric from CEO 12D-03 tip (74e8fe5). MemoryShard renamed on export
+// to avoid clashing with memory-shards.MemoryShard (device/enterprise/regional/global).
+export {
+  stableFactId,
+  validateFact,
+  shardFacts,
+  historicalPath,
+  ATOMIC_MEMORY_GUARDRAILS,
+} from './atomic-memory';
+export type {
+  EvidenceState,
+  TemporalEra,
+  AtomicFact,
+  MemoryShard as AtomicFactShard,
+  HistoricalPath,
+} from './atomic-memory';
