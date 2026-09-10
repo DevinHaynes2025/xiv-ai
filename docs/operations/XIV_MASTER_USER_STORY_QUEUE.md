@@ -1,4 +1,4 @@
-﻿# XIV Master User Story Queue
+# XIV Master User Story Queue
 
 Priority order for agents. Only the top authorized story should be in active implementation unless handoff says otherwise.
 
@@ -13,9 +13,11 @@ No story may weaken Guardian/RLS or enable L4.
 | **EY2** | ModelBackend Phase 0 (gemini | openai | ollama) | Local / Grok | DONE |
 | **EY3** | Hardware capability probe (CPU/GPU/NPU/ollama) | Local / Grok | DONE |
 
-## Product epics (queued ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â master plan aligned)
+## Product epics (queued ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â master plan aligned)
 | ID | Title | Persona | Notes |
 |----|-------|---------|-------|
+| **US-PB-01** | Pocket Brain product surface (LOCAL/SIMULATION) | Executive | DONE (branch); WAITING_DATA/WAITING_PROVIDER/WAITING_SYNC; CLOUD_ONLY never cached; L4 false |
+| US-ARCH-01 | Architecture Reader product UX wire | Executive | DONE (branch); FIXTURE_SIMULATION; WAITING_DATA/WAITING_PROVIDER; liveFabric=false; L4 false |
 | US-UNI-01 | Universe login + membership gate | Executive | DONE (core); device e2e pending |
 | US-EXE-01 | Executive Home + Business Health score | Executive | DONE (live wire + WAITING_DATA; CRM alts doc) |
 | US-EXE-02 | Story Engine brief (what changed / why) | Executive | DONE (live runLiveBrief + WAITING_DATA; Founder Twin guidance-only) |
