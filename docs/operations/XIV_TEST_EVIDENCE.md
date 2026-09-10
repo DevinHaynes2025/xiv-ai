@@ -153,9 +153,10 @@ Append entries; never delete history. Skipped mandatory tests â‰  pass.
 
 
 ## 2026-09-09 ~23:10 CT - US-SEC-01 Security Center policy denials - grok
-- Branch / SHA: grok/us-sec-01-security-center (commit follows)
+- Branch / SHA: grok/us-sec-01-security-center / df3f31d1eb8e98972b9c757a21d8d8631093f1ea
 - Commands run: services/ai typecheck; npx tsx security-center.test.ts; apps/mobile npx tsc --noEmit
 - Passed: Guardian read-only check catalog; listSecurityCenterView WAITING_DATA when unbound with denials=null and incidents=null; recordPolicyDenial only for verdict=denied; probeKnownPolicyDenials surfaces real evaluatePolicy denials as SESSION_DENIALS; requires_approval not recorded as denial; L4 false; liveExploitTooling false; productionMutation false; mobile SecurityCenterScreen + PolicyDenialsScreen; never fabricate incidents
 - Failed: none
 - Not run: device e2e; host guardian:validate suite from mobile (intentionally out of scope — read-only catalog only)
 - Notes: historical/* and sec-status left alone; did not checkout xiv-12d or touch dimensional/*; parent tip 6cbef82 (US-SYS-01)
+
