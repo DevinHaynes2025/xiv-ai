@@ -18,13 +18,13 @@ Updated: 2026-09-09 (America/Chicago)
 - `apps/web`, `services/api`, `packages/{database,security,ui}`
 - AWS / Azure / GCP status stubs → `NOT_CONFIGURED`
 - OpenAI provider id is mock-labeled only
-- Local Ollama / ONNX DirectML inference **not implemented** (policy stubs only)
+- Local Ollama worker heartbeat/smoke implemented (`services/ai/local-coding-worker.ts`); ONNX DirectML still not implemented; GPU accel NOT_TESTED
 
 ## Hardware (founder ASUS)
 - ASUS Vivobook 18 M1807HA — ~31.3 GB RAM
 - AMD Ryzen 7 260 + Radeon 780M (no NVIDIA)
 - Tools present: Git, Node, Python 3.14
-- Ollama: not installed (EY0-L target)
+- Ollama: installed 0.33.3; model qwen2.5-coder:7b DETECTED
 - AI service: can run locally on `:8787` when started
 
 ## Active engineering lanes
@@ -71,3 +71,12 @@ Prototype. Prefer `PROTOTYPE` / `NOT_CONFIGURED` / `WAITING_*` over false readin
 
 ### Shared agent brain
 Canonical files landed on this child branch from `origin/cursor/ey0-l-local-coding-brain` for #175 acceptance item 1.
+
+
+## 62L-EZ local coding worker (2026-09-09 20:14 CT)
+- Module: `services/ai/local-coding-worker.ts`
+- Routes: `GET /v1/local-worker/heartbeat`, `POST /v1/local-worker/smoke`
+- Live smoke vs `127.0.0.1:11434`: receipt ok (~6.5s); `offlineAgentVerified` **true** only after heartbeat+smoke succeed (computed flag)
+- Pre-smoke heartbeat correctly returned `offlineAgentVerified=false`
+- actualDevice remains `UNKNOWN` / `NOT_TESTED` (honest; no fabricated GPU VERIFIED)
+- Docs: `LOCAL_CODING_WORKER.md` contract updated

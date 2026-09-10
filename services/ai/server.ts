@@ -15,6 +15,10 @@ import {
 import { agentMeetingNetworkStatus } from './runtime/agentmeetings';
 import { runExecutiveTurn } from './executive-turn';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
+import {
+  collectLocalWorkerHeartbeat,
+  runLocalWorkerSmoke,
+} from './local-coding-worker';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
 loadEnv({ path: join(dirname(fileURLToPath(import.meta.url)), '.env') });
@@ -140,6 +144,16 @@ const server = createServer((req, res) => {
 
       if (req.method === 'GET' && url.pathname === '/health') {
         json(res, 200, { ok: true, agent: 'executive_agent' });
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/local-worker/heartbeat') {
+        json(res, 200, await collectLocalWorkerHeartbeat());
+        return;
+      }
+
+      if (req.method === 'POST' && url.pathname === '/v1/local-worker/smoke') {
+        json(res, 200, await runLocalWorkerSmoke());
         return;
       }
 

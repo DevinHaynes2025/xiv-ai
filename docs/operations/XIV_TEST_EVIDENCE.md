@@ -90,3 +90,17 @@ Append entries; never delete history. Skipped mandatory tests ≠ pass.
 ## 62L-EZ Supabase schema inventory
 - PASS: public list_tables only; RLS noted; no secrets schemas queried
 
+## 2026-09-09 20:14 CT — 62L-EZ local coding worker heartbeat+smoke — grok
+- Branch / SHA: `grok/62l-ez-shared-agent-context` (commit follows)
+- Commands run:
+  - `npx tsc --noEmit` in `services/ai` (exit 0)
+  - Restarted `npm start` on :8787 with new routes
+  - `GET http://127.0.0.1:8787/v1/local-worker/heartbeat`
+  - `POST http://127.0.0.1:8787/v1/local-worker/smoke` (real Ollama `localhost:11434`)
+- Passed:
+  - Heartbeat pre-smoke: connectivity=online; ollamaVersion=0.33.3 DETECTED; model qwen2.5-coder:7b DETECTED; actualDevice=UNKNOWN/NOT_TESTED; offlineAgentVerified=false (no smoke yet)
+  - Smoke receipt: result=ok; responsePreview=OK; latencyMs=6529; evalCount=2; memory totalBytes~33.6GB
+  - Post-smoke heartbeat: offlineAgentVerified=true (computed from tags+model+smoke ok) — not a static env constant
+- Failed: none
+- Not run: AMD GPU acceleration proof; NPU probe; full test:runtime
+- Notes: GPU device path remains NOT_TESTED/UNKNOWN; do not claim Vulkan/DirectML VERIFIED. xiv-v2 left alone.

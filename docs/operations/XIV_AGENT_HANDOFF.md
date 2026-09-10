@@ -30,7 +30,8 @@ docs/operations/LOCAL_CODING_WORKER.md
 See XIV_TEST_EVIDENCE.md 62L-EZ section.
 
 ## NEXT_SAFE_TASK
-1. Local coding worker heartbeat process + receipt schema (promote OFFLINE_AGENT_VERIFIED only with proof)
-2. Safe Supabase schema-only inventory (no auth/vault/credentials)
+1. DONE this session: local coding worker heartbeat + smoke receipt (offlineAgentVerified computed with live proof)
+2. Safe Supabase schema-only inventory (partially done earlier; keep secrets schemas out)
 3. Separate child branches for Cursor UI vs Ollama implementation vs review — do not co-edit same files
 4. Review/merge path into xiv-v2 after ChatGPT/Cursor review
+5. Optional: host GPU device probe to promote actualDevice beyond NOT_TESTED/UNKNOWN
