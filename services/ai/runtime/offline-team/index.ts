@@ -80,3 +80,7 @@ export * from './hybrid-agent-fleet';
 export * from './hybrid-agent-router';
 export * from './plugin-capability-gateway';
 export * from './fleet-neural-learning';
+export * from './mission-dispatcher';
+export * from './full-stack-team';
+export * from './lovable-capability-bridge';
+export * from './parallel-scenario-lab';
