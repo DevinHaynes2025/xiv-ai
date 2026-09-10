@@ -1,5 +1,5 @@
-export type HardwareVendor = 'AMD' | 'ARM' | 'QUALCOMM' | 'NVIDIA' | 'APPLE' | 'INTEL' | 'SAMSUNG' | 'GENERIC';
-export type AcceleratorType = 'CPU' | 'GPU' | 'NPU';
+export type HardwareVendor = 'AMD' | 'ARM' | 'QUALCOMM' | 'NVIDIA' | 'APPLE' | 'INTEL' | 'SAMSUNG' | 'GOOGLE' | 'GENERIC';
+export type AcceleratorType = 'CPU' | 'GPU' | 'NPU' | 'TPU';
 export type HardwareStatus = 'UNVERIFIED' | 'DETECTED' | 'WAITING_DRIVER' | 'VERIFIED';
 
 export interface HardwareReceipt {
@@ -18,6 +18,7 @@ export const HARDWARE_RECEIPT_GUARDRAILS = {
   allowSyntheticVerification: false,
   allowLiveDeviceControl: false,
   allowProductionAutoTune: false,
+  quantumAccelerationClaimAllowedWithoutEvidence: false,
 } as const;
 
 export function validateHardwareReceipt(receipt: HardwareReceipt): HardwareReceipt {
@@ -36,5 +37,6 @@ export function summarizeHardware(receipts: readonly HardwareReceipt[]) {
     detected: valid.filter((r) => r.status === 'DETECTED').length,
     waitingDriver: valid.filter((r) => r.status === 'WAITING_DRIVER').length,
     vendors: Object.freeze([...new Set(valid.map((r) => r.vendor))]),
+    accelerators: Object.freeze([...new Set(valid.map((r) => r.accelerator))]),
   });
 }
