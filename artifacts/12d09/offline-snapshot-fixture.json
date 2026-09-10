@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "12d09.1",
+  "snapshotId": "demo-offline-1",
+  "tenantId": "xiv",
+  "contentChecksum": "dg1:e5b6c3d91c7986a5",
+  "provenance": {
+    "source": "architecture-reader-consumer",
+    "capturedAt": "2026-09-10T04:29:31.568Z",
+    "operator": "generate-12d09-artifacts",
+    "consumerTitle": "XIV Command Center Consumer — Architecture Reader + Council (12D-08)"
+  },
+  "mobileReady": {
+    "architectureCard": {
+      "universeId": "demo-offline",
+      "tenantId": "xiv",
+      "layerKind": "SIMULATION",
+      "fingerprint": "dg1:82b41015a91415b7",
+      "companyCount": 1,
+      "supplyLinkCount": 0,
+      "agentPopulationTotal": 0,
+      "worldEntityCount": 0,
+      "branchCount": 0,
+      "cityLadder": "device → local_shard → company_brain → regional_brain → global_brain",
+      "routeTarget": null,
+      "manifestStatus": "n/a"
+    },
+    "councilTop": [
+      {
+        "priorityRank": 1,
+        "storyId": "XIV-US-00000014",
+        "title": "SECURITY capability increment 14",
+        "domain": "SECURITY",
+        "composite": 0.7230000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 2,
+        "storyId": "XIV-US-00000007",
+        "title": "KNOWLEDGE capability increment 7",
+        "domain": "KNOWLEDGE",
+        "composite": 0.6780000000000002,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 3,
+        "storyId": "XIV-US-00000008",
+        "title": "SUPPLY_CHAIN capability increment 8",
+        "domain": "SUPPLY_CHAIN",
+        "composite": 0.6680000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 4,
+        "storyId": "XIV-US-00000011",
+        "title": "DATABASE capability increment 11",
+        "domain": "DATABASE",
+        "composite": 0.6580000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 5,
+        "storyId": "XIV-US-00000012",
+        "title": "AI_RUNTIME capability increment 12",
+        "domain": "AI_RUNTIME",
+        "composite": 0.6505000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 6,
+        "storyId": "XIV-US-00000010",
+        "title": "PLATFORM capability increment 10",
+        "domain": "PLATFORM",
+        "composite": 0.6480000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 7,
+        "storyId": "XIV-US-00000013",
+        "title": "MOBILE capability increment 13",
+        "domain": "MOBILE",
+        "composite": 0.6455000000000002,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      },
+      {
+        "priorityRank": 8,
+        "storyId": "XIV-US-00000006",
+        "title": "SIMULATION capability increment 6",
+        "domain": "SIMULATION",
+        "composite": 0.6055000000000001,
+        "worthExecuting": true,
+        "waitingProviders": [
+          "GROK",
+          "CHATGPT",
+          "GEMINI"
+        ],
+        "readyProviders": [
+          "LOCAL_RULES"
+        ]
+      }
+    ],
+    "councilProviderHonesty": [
+      "LOCAL_RULES:READY",
+      "OLLAMA:OPTIONAL_OFFLINE",
+      "GROK:WAITING_PROVIDER",
+      "CHATGPT:WAITING_PROVIDER",
+      "GEMINI:WAITING_PROVIDER"
+    ],
+    "dutyCycleStatus": {
+      "replicaCount": 1,
+      "hardCap": 64,
+      "energyRemaining": 975,
+      "energyBudgetTotal": 1000,
+      "maxDutyCycle": 0.25,
+      "sparsePathwayCount": 1,
+      "bioCloningAllowed": false,
+      "wormholesAreSparseSimulationPathwaysOnly": true
+    },
+    "banners": [
+      "READ ONLY",
+      "productionAutoApply=false",
+      "layerKind=SIMULATION",
+      "productLaneMobileWire=FOLLOW_UP"
+    ]
+  },
+  "syncStatus": "WAITING_SYNC",
+  "liveCloudSyncClaimed": false,
+  "expectedRemoteChecksum": null,
+  "freshnessWindowMs": 900000,
+  "readOnly": true,
+  "productionAutoApply": false,
+  "layerKind": "SIMULATION",
+  "ethicsNotice": "Offline Command Center snapshot is READ ONLY over SIMULATION layers. Sync-status is local honesty only (FRESH|STALE|WAITING_SYNC|CONFLICT). Never fabricates live cloud sync. Twin CAP 64, maxDuty 0.25. Atomic Data Cells = software knowledge records only (naming ALIGN; no physics-scale storage claims). Checkpoint = read/review only — no Policy Gate bypass. High-autonomy: LOCAL|CLOUD_SANDBOX only.",
+  "atomicCellChecksum": "dg1:c328e85ab79bedaf",
+  "guardrails": {
+    "liveCloudSyncFabricationAllowed": false,
+    "policyGateBypassAllowed": false,
+    "checkpointIsReadReviewOnly": true,
+    "atomDbClaimAllowed": false,
+    "highAutonomyTargets": [
+      "LOCAL",
+      "CLOUD_SANDBOX"
+    ]
+  }
+}
