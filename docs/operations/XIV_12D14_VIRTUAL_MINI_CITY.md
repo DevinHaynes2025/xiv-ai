@@ -6,7 +6,7 @@
 **Base:** tip of 12D-13 sealed `1d56700b` (`grok/12d-13-adc-offline-read-path`)  
 **State:** research / feature branch — LOCAL SIMULATION catalog stubs only  
 **L4 / production auto:** false  
-**Tip SHA:** `PENDING_COMMIT`
+**Tip SHA:** `44d1f428958ea66e7fabb05c814fd22864fecdb4`
 
 ## Locked Virtual Mini City contract
 
@@ -81,7 +81,8 @@ Banned: `applyVirtualMiniCityProductionDdl`, `materializeVirtualMiniCityProducti
 
 ## Evidence
 
-- Feature tip: `PENDING_COMMIT`
+- Feature tip: `44d1f428958ea66e7fabb05c814fd22864fecdb4`
+- Seal note: docs Evidence records feature tip; 12d14+12d13 green
 - `npx tsx runtime/dimensional/12d14.test.ts` → OK
 - Prior green: `12d13.test.ts` (base tip `1d56700b`)
 - `liveCloudSyncClaimed=false`; `productionAuto*=false`; accelerators UNVERIFIED except CPU
