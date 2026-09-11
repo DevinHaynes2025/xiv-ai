@@ -158,3 +158,4 @@ export * from './offline-learning-device-sync-receipt';
 export * from './persistent-offline-knowledge-index';
 export * from './embedding-adapter-registry';
 export * from './device-sync-conflict-journal';
+export * from './device-sync-conflict-disk-store';
