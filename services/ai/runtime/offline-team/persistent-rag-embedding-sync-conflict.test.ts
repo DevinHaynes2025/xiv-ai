@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { FilesystemKnowledgeSnapshotStore, PersistentOfflineKnowledgeIndex } from './persistent-offline-knowledge-index';
 import { EmbeddingAdapterRegistry } from './embedding-adapter-registry';
 import { DeviceSyncConflictJournal } from './device-sync-conflict-journal';
+import { FilesystemDeviceSyncJournalStore } from './device-sync-conflict-disk-store';
 
 const now = '2026-09-11T04:00:00.000Z';
 const tenantId = 'tenant-alpha';
@@ -25,7 +26,7 @@ try {
   assert.throws(() => index.index({ ...approved, knowledgeId: 'unapproved', approved: false }), /approval receipt/);
 
   const snapshot = index.createSnapshot(tenantId, now);
-  const store = new FilesystemKnowledgeSnapshotStore(root);
+  const store = new FilesystemKnowledgeSnapshotStore(join(root, 'knowledge'));
   const path = await store.write(snapshot);
   const loaded = await store.read(tenantId);
   const restarted = new PersistentOfflineKnowledgeIndex();
@@ -62,7 +63,16 @@ try {
   assert.equal(identical.state, 'RECONCILED_IDENTICAL');
   journal.append({ eventId: 'success-1', tenantId, userId: 'u1', deviceId: 'd1', platform: 'WINDOWS', itemId: 'task-1', action: 'SYNC_SUCCESS', classification: 'INTERNAL', baseVersion: 1, localVersion: 2, remoteVersion: 2, createdAt: now, evidenceRefs: ['receipt:device-1'] });
   assert.equal(journal.verifyIntegrity(), true);
-  const metrics = journal.buildPlatformMetrics('WINDOWS', now);
+  assert.throws(() => journal.append({ eventId: 'other-tenant', tenantId: 'tenant-beta', userId: 'u2', deviceId: 'd2', platform: 'WINDOWS', itemId: 'task-x', action: 'SYNC_ATTEMPT', classification: 'INTERNAL', baseVersion: 0, localVersion: 1, remoteVersion: 0, createdAt: now, evidenceRefs: ['receipt:device-2'] }), /tenant scoped/);
+
+  const syncStore = new FilesystemDeviceSyncJournalStore(join(root, 'sync'));
+  for (const event of journal.list(tenantId)) await syncStore.append(event);
+  const diskReload = await syncStore.load(tenantId);
+  assert.equal(diskReload.receipt.integrityVerified, true);
+  assert.equal(diskReload.receipt.restoredEvents, journal.list(tenantId).length);
+  assert.equal(diskReload.journal.verifyIntegrity(), true);
+
+  const metrics = diskReload.journal.buildPlatformMetrics('WINDOWS', now);
   assert.equal(metrics.attempts, 1);
   assert.equal(metrics.successes, 1);
   assert.equal(metrics.conflicts, 1);
