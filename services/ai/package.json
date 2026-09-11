@@ -16,6 +16,7 @@
     "test:12d-88": "tsx runtime/offline-team/local-model-collaboration-bus.test.ts",
     "test:12d-89": "tsx runtime/offline-team/neural-pathway-growth-engine.test.ts",
     "test:12d-90": "tsx runtime/offline-team/ollama-live-runtime-bridge.test.ts",
+    "test:12d-91": "tsx runtime/offline-team/agentic-brain-alignment-control-plane.test.ts",
     "test:2i-la-61i": "tsx runtime/queued/2i-la-61i.test.ts",
     "test:2i-la-61n": "tsx runtime/queued/2i-la-61n.test.ts",
     "test:2i-ai-62b": "tsx runtime/phase2ai62b.test.ts",
