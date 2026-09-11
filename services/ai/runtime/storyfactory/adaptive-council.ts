@@ -331,8 +331,8 @@ export function createLearningState(): AdaptiveLearningState {
   return { biasByTag: {}, samples: 0 };
 }
 
-export type { DebateScoreAxis, DebateScores, StoryPriorityVerdict };
-export { rankStoriesLocalRules, scoreStoryLocalRules, DEBATE_SCORE_AXES };
+export type { DebateScoreAxis, DebateScores, StoryPriorityVerdict } from './priority-scores';
+export { rankStoriesLocalRules, scoreStoryLocalRules, DEBATE_SCORE_AXES } from './priority-scores';
 
 /** Optional 12D-11 hook — append identity+audit row after adaptive council learning. */
 export {

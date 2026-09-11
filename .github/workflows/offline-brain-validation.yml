@@ -1,0 +1,44 @@
+name: Offline brain validation
+
+on:
+  push:
+    branches: ['grok/12d-93-type-surface-stabilization']
+  pull_request:
+    branches: ['grok/12d-92-agent-tool-heartbeat-fabric']
+
+permissions:
+  contents: read
+
+jobs:
+  ai-service-validation:
+    runs-on: ubuntu-latest
+    container: node:22-bookworm-slim
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install locked AI service dependencies
+        id: install
+        working-directory: services/ai
+        run: npm ci --no-audit --no-fund
+      - name: Full AI service typecheck
+        working-directory: services/ai
+        run: npm run typecheck
+      - name: Offline brain regression contracts
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        working-directory: services/ai
+        run: |
+          npm run typecheck:12d-92
+          npm run test:12d-85
+          npm run test:12d-86
+          npm run test:12d-87
+          npm run test:12d-88
+          npm run test:12d-89
+          npm run test:12d-90
+          npm run test:12d-91
+          npm run test:12d-92
+          node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/runtime-type-surface.test.ts
+          node node_modules/tsx/dist/cli.mjs --test runtime/github-legacy-type-regressions.test.ts
+          node node_modules/tsx/dist/cli.mjs runtime/offline-team/multi-agent-meeting-bus.test.ts
+          node node_modules/tsx/dist/cli.mjs runtime/offline-team/secure-device-pilot-local-learning.test.ts

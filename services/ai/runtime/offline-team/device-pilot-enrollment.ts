@@ -7,7 +7,7 @@ export interface DevicePilotEnrollment {
   enrolledAt: string;
   expiresAt?: string;
   consentVersion: string;
-  capabilities: DevicePilotCapability[];
+  capabilities: readonly DevicePilotCapability[];
   biometricOrPasskeyVerified: boolean;
   mfaVerified: boolean;
   recoveryConfigured: boolean;
