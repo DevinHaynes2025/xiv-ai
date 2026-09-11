@@ -11,5 +11,5 @@ assert.throws(() => appendMeetingMessage(messages, createMeetingMessage({ meetin
 const packet = buildExecutiveDecisionPacket({ messages, recommendation:'Proceed with bounded next story.', supportingRoles:['FOUNDER_TWIN'], dissentingRoles:['CHALLENGER'], unresolvedRisks:['Need local runtime receipt.'] });
 assert.equal(packet.requiresHumanApproval, true);
 assert.equal(packet.productionExecutionAllowed, false);
-assert.deepEqual(packet.evidenceRefs.sort(), ['E1','E2']);
+assert.deepEqual([...packet.evidenceRefs].sort(), ['E1','E2']);
 console.log('12D-34 multi-agent meeting bus contracts: OK');

@@ -33,7 +33,8 @@ const roleMission: Record<RevenueLabRole, string> = {
   REVENUE_OPERATIONS: 'Model funnel, conversion, churn, expansion, renewals, contracts, and operational bottlenecks.',
 };
 
-export function buildRevenueLabPrompt(task: RevenueLabTask, model = REVENUE_LAB_GUARDRAILS.defaultModel): RevenueLabPrompt {
+// Prompt construction only; the caller remains responsible for authorizing model execution.
+export function buildRevenueLabPrompt(task: RevenueLabTask, model: string = REVENUE_LAB_GUARDRAILS.defaultModel): RevenueLabPrompt {
   if (!task.runId || !task.tenantId || !task.objective.trim()) throw new Error('revenue lab identity required');
   const facts = task.facts.slice(0, REVENUE_LAB_GUARDRAILS.maxFactsPerPrompt);
   const prompt = [
