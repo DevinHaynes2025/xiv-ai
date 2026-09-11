@@ -151,3 +151,7 @@ export * from './encrypted-local-event-store';
 export * from './local-event-store-disk';
 export * from './offline-replay-recovery';
 export * from './executive-metrics-api';
+export * from './offline-rag-retrieval-index';
+export * from './learning-promotion-ledger';
+export * from './device-sync-gateway';
+export * from './offline-learning-device-sync-receipt';
