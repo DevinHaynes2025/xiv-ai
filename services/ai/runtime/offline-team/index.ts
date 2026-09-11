@@ -180,3 +180,4 @@ export * from './operations-event-journal-view-rebuilder-receipts';
 export * from './encrypted-operations-journal-checkpoint-recovery';
 export * from './sovereign-brain-api-studio-vault';
 export * from './sovereign-universe-data-room-agent-twins';
+export * from './universe-authorization-consent-private-rag';
