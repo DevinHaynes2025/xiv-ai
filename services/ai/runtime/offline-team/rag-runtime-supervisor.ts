@@ -85,7 +85,7 @@ export function summarizeRagRuntime(
   }
 
   const ordered = [...valid].sort((a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt));
-  const successes = ordered.filter((r) => r.reachable && (r.statusCode === undefined || (r.statusCode >= 200 && r.statusCode < 500)));
+  const successes = ordered.filter((r) => r.reachable && (r.statusCode === undefined || (r.statusCode >= 200 && r.statusCode < 300)));
   const failures = ordered.length - successes.length;
   const latencies = successes.map((r) => r.latencyMs).filter((v): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0);
   const queues = ordered.map((r) => r.queueDepth).filter((v): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0);
