@@ -26,7 +26,7 @@ const expectedOrigins: readonly (readonly [string, string])[] = [
   ['OsFamily', 'cross-os-runtime'],
   ['DeviceOsFamily', 'universal-device-compatibility'],
   ['VisualEvidencePoint', 'visual-intelligence-engine'],
-  ['PresentationEvidencePoint', 'client-presentation-composer'],
+  ['DashboardEvidencePoint', 'live-visual-dashboard'],
   ['ComponentEvidencePoint', 'client-visual-component-gateway'],
   ['EnrollmentReceipt', 'elite-onboarding'],
   ['LiveEnrollmentReceipt', 'live-onboarding-runtime'],
