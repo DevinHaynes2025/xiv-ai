@@ -138,3 +138,8 @@ export * from './historical-business-tech-archive';
 export * from './devops-programming-library';
 export * from './open-source-tool-collaboration-registry';
 export * from './agent-media-study-room';
+export * from './offline-learning-data-plane';
+export * from './usage-analytics-ledger';
+export * from './bookkeeping-ops';
+export * from './team-task-meeting-orchestrator';
+export * from './vendor-device-integration-registry';
