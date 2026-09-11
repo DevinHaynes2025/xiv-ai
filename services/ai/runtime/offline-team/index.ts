@@ -180,7 +180,7 @@ export { planAgenticSearch as planAgenticSearchWorker } from './agentic-search-w
 export type { OsFamily } from './cross-os-runtime';
 export type { OsFamily as DeviceOsFamily } from './universal-device-compatibility';
 export type { VisualEvidencePoint } from './visual-intelligence-engine';
-export type { VisualEvidencePoint as PresentationEvidencePoint } from './client-presentation-composer';
+export type { VisualEvidencePoint as DashboardEvidencePoint } from './live-visual-dashboard';
 export type { VisualEvidencePoint as ComponentEvidencePoint } from './client-visual-component-gateway';
 export type { EnrollmentReceipt } from './elite-onboarding';
 export type { EnrollmentReceipt as LiveEnrollmentReceipt } from './live-onboarding-runtime';
