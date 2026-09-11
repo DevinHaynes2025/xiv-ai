@@ -162,3 +162,4 @@ export * from './offline-brain-execution-ledger';
 export * from './local-model-collaboration-bus';
 export * from './neural-pathway-growth-engine';
 export * from './ollama-live-runtime-bridge';
+export * from './agentic-brain-alignment-control-plane';
