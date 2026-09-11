@@ -164,3 +164,7 @@ export * from './retrieval-sync-telemetry';
 export * from './embedding-verification-receipt-store';
 export * from './sync-conflict-review-queue';
 export * from './local-rag-readonly-service';
+export * from './tenant-key-rotation';
+export * from './rag-runtime-supervisor';
+export * from './device-sync-review-console';
+export * from './device-sync-review-disk-store';
