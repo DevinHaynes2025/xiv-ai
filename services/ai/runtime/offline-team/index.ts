@@ -183,3 +183,4 @@ export * from './sovereign-universe-data-room-agent-twins';
 export * from './universe-authorization-consent-private-rag';
 export * from './authorized-retrieval-learning-journal-sync-receipts';
 export * from './cpu-first-brain-retrieval-api-studio-revocation-watch';
+export * from './persistent-governed-api-vault-runtime-supervisor';
