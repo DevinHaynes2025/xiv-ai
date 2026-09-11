@@ -246,9 +246,10 @@ function canonical(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
   if (value && typeof value === 'object') {
     const object = value as Record<string, unknown>;
-    return `{${Object.keys(object).sort().map((key) => `${JSON.stringify(key)}:${canonical(object[key])}`).join(',')}}`;
+    return `{${Object.keys(object).filter((key) => object[key] !== undefined).sort().map((key) => `${JSON.stringify(key)}:${canonical(object[key])}`).join(',')}}`;
   }
-  return JSON.stringify(value);
+  const serialized = JSON.stringify(value);
+  return serialized === undefined ? 'null' : serialized;
 }
 
 function assertIdentifier(value: string, label: string): void {
@@ -879,6 +880,7 @@ export async function decideUniverseSync(input: {
   const authorization = await input.ledger.decide(input.grantId, input.userId, input.universeId, input.requestedScopes, now.getTime());
   const adapterVerified = verifiedSyncAdapter(input.adapterReceipt, input.tenantId, input.requestedScopes, input.jurisdiction, now.getTime());
   const reasons: string[] = [];
+  if (input.ledger.tenantId !== input.tenantId || input.ledger.userId !== input.userId) reasons.push('Authorization ledger tenant/user mismatch.');
   if (!authorization.allowed) reasons.push(...authorization.reasons);
   if (!adapterVerified) reasons.push(input.adapterReceipt.kind === 'EXTERNAL' ? 'External adapter is not an evidence-backed current VERIFIED_PARTNER.' : 'Device adapter is not an evidence-backed current VERIFIED device adapter.');
   if (input.classification === 'TOP_SECRET') reasons.push('TOP_SECRET cannot be routed through external/device synchronization.');
