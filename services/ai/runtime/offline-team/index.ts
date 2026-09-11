@@ -143,3 +143,7 @@ export * from './usage-analytics-ledger';
 export * from './bookkeeping-ops';
 export * from './team-task-meeting-orchestrator';
 export * from './vendor-device-integration-registry';
+export * from './local-database-server-runtime';
+export * from './metrics-dashboard';
+export * from './executive-operations-room';
+export * from './replication-adapter-registry';
