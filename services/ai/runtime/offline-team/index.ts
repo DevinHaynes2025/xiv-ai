@@ -173,3 +173,6 @@ export * from './operations-materialized-views';
 export * from './operations-meeting-scheduler';
 export * from './server-capacity-health';
 export * from './operational-replication-gate';
+export * from './persistent-operations-views';
+export * from './vendor-device-verification-matrix';
+export * from './executive-control-readonly-api';
