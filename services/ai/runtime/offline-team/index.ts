@@ -151,3 +151,4 @@ export * from './runtime-convergence-validator';
 export * from './offline-brain-agent-council';
 export * from './offline-brain-execution-ledger';
 export * from './local-model-collaboration-bus';
+export * from './neural-pathway-growth-engine';
