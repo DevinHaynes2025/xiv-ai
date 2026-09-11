@@ -1,0 +1,5 @@
+export type MemoryControlAction='CORRECT'|'REDACT'|'FORGET'|'EXPORT';
+export interface MemoryControlRequest{tenantId:string;userId:string;memoryId:string;action:MemoryControlAction;requestedAt:string;reason?:string;replacementText?:string;userAuthorized:boolean;}
+export interface MemoryControlDecision{allowed:boolean;requiresReindex:boolean;requiresTombstone:boolean;reason:string;}
+export function decideMemoryControl(r:MemoryControlRequest):MemoryControlDecision{if(!r.userAuthorized)return{allowed:false,requiresReindex:false,requiresTombstone:false,reason:'user authorization required'};if(r.action==='CORRECT'&&!r.replacementText)return{allowed:false,requiresReindex:false,requiresTombstone:false,reason:'replacement text required'};return{allowed:true,requiresReindex:r.action==='CORRECT'||r.action==='REDACT'||r.action==='FORGET',requiresTombstone:r.action==='FORGET',reason:'authorized user control'};}
+export const memoryControlPolicy={userCanCorrect:true,userCanForget:true,forgetUsesTombstoneAndIndexRemoval:true,rawDeletedContentMustNotRemainInOrdinarySearch:true,auditMetadataMayRetainNoncontentReceipt:true};
