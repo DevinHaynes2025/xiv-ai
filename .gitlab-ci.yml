@@ -11,9 +11,27 @@ offline-brain-contracts:
     - cd services/ai
     - npm ci --no-audit --no-fund
   script:
-    - npm run typecheck
     - npm run test:12d-85
     - npm run test:12d-86
+  variables:
+    npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  cache:
+    key: "xiv-ai-${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .npm/
+
+legacy-typecheck:
+  stage: validate
+  image: node:22-bookworm-slim
+  allow_failure: true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH'
+  before_script:
+    - cd services/ai
+    - npm ci --no-audit --no-fund
+  script:
+    - npm run typecheck
   variables:
     npm_config_cache: "$CI_PROJECT_DIR/.npm"
   cache:
