@@ -337,12 +337,13 @@ export function demoteMemoryHeat(tier: MemoryHeatTier): MemoryHeatTier {
 
 /**
  * Historical memory bridge reuse: map a temporal ref into a city highway edge stub.
+ * Preserve the historical metadata already returned at runtime in the public type.
  */
 export function bridgeHistoryOntoCity(
   ref: HistoricalTemporalRef,
   fromTier: BrainTier,
   toTier: BrainTier,
-): NeuralHighwayEdge {
+): NeuralHighwayEdge & ReturnType<typeof bridgeHistoricalRef> {
   const bridged = bridgeHistoricalRef(ref);
   return {
     ...bridged,

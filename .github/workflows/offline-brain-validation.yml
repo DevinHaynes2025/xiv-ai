@@ -39,5 +39,6 @@ jobs:
           npm run test:12d-91
           npm run test:12d-92
           node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/runtime-type-surface.test.ts
+          node node_modules/tsx/dist/cli.mjs --test runtime/github-legacy-type-regressions.test.ts
           node node_modules/tsx/dist/cli.mjs runtime/offline-team/multi-agent-meeting-bus.test.ts
           node node_modules/tsx/dist/cli.mjs runtime/offline-team/secure-device-pilot-local-learning.test.ts

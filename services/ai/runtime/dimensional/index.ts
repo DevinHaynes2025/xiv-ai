@@ -50,3 +50,7 @@ export * from './blue-brain-local-surface';
 export * from './community-age-gate';
 export * from './device-pathways-registry';
 export * from './virtual-chip-lab-registry';
+
+// Preserve both distinct validators without an ambiguous star export.
+export { assertPathwayHonesty } from './device-pathways-registry';
+export { assertPathwayHonesty as assertChipLabPathwayHonesty } from './virtual-chip-lab-registry';

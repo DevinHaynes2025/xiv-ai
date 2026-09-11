@@ -196,3 +196,6 @@ export type { OllamaModelInfo } from './model-discovery';
 export type { OllamaModelInfo as OllamaBridgeModelInfo } from './ollama-live-runtime-bridge';
 export type { BrainSecurityClass } from './offline-brain-agent-council';
 export type { BrainSecurityClass as AlignmentBrainSecurityClass } from './agentic-brain-alignment-control-plane';
+// GitHub's inherited compiler and lab expose separate scenario contracts.
+export type { ScenarioBranch } from './parallel-scenario-compiler';
+export type { ScenarioBranch as LabScenarioBranch } from './parallel-scenario-lab';
