@@ -147,3 +147,7 @@ export * from './local-database-server-runtime';
 export * from './metrics-dashboard';
 export * from './executive-operations-room';
 export * from './replication-adapter-registry';
+export * from './encrypted-local-event-store';
+export * from './local-event-store-disk';
+export * from './offline-replay-recovery';
+export * from './executive-metrics-api';
