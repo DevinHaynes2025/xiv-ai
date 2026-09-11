@@ -1,0 +1,4 @@
+export type EmbeddingStatus='VERIFIED_LOCAL'|'AVAILABLE_UNVERIFIED'|'OFFLINE'|'DISABLED';
+export interface EmbeddingReceipt{provider:'OLLAMA_LOCAL'|'LOCAL_MODEL';model:string;status:EmbeddingStatus;endpoint:'http://127.0.0.1:11434'|string;receiptRef?:string;verifiedAt?:string;}
+export function canEmbedLocally(r:EmbeddingReceipt,classification:'PUBLIC'|'INTERNAL'|'CONFIDENTIAL'|'TOP_SECRET'){return r.status==='VERIFIED_LOCAL'&&r.endpoint.startsWith('http://127.0.0.1')&&!!r.receiptRef&&(classification!=='TOP_SECRET'||r.provider==='OLLAMA_LOCAL');}
+export const localEmbeddingPolicy={externalEmbeddingByDefault:false,topSecretExternalEmbeddingAllowed:false,modelWeightMutationAllowed:false,requiresFreshReceipt:true};
