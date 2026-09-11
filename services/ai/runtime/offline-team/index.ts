@@ -155,3 +155,6 @@ export * from './offline-rag-retrieval-index';
 export * from './learning-promotion-ledger';
 export * from './device-sync-gateway';
 export * from './offline-learning-device-sync-receipt';
+export * from './persistent-offline-knowledge-index';
+export * from './embedding-adapter-registry';
+export * from './device-sync-conflict-journal';
