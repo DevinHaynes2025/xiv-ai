@@ -168,3 +168,8 @@ export * from './tenant-key-rotation';
 export * from './rag-runtime-supervisor';
 export * from './device-sync-review-console';
 export * from './device-sync-review-disk-store';
+export * from './multi-tenant-local-database-service';
+export * from './operations-materialized-views';
+export * from './operations-meeting-scheduler';
+export * from './server-capacity-health';
+export * from './operational-replication-gate';
