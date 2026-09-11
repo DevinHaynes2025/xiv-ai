@@ -163,3 +163,36 @@ export * from './local-model-collaboration-bus';
 export * from './neural-pathway-growth-engine';
 export * from './ollama-live-runtime-bridge';
 export * from './agentic-brain-alignment-control-plane';
+
+// 12D-93: Explicit origins for formerly ambiguous public names. Direct imports
+// are unchanged; distinct sibling contracts stay available through named aliases.
+export type { ExecutiveRole } from './executive-cabinet';
+export type { ExecutiveRole as CabinetOllamaRole } from './executive-cabinet-ollama-runner';
+export { buildExecutiveDecisionPacket } from './executive-decision-packet';
+export type { ExecutiveDecisionPacket } from './executive-decision-packet';
+export { buildExecutiveDecisionPacket as buildCabinetDecisionPacket } from './executive-cabinet-council';
+export type { ExecutiveDecisionPacket as CabinetDecisionPacket } from './executive-cabinet-council';
+export type { DataClass } from './private-data-brain';
+export type { DataClass as ApiToolDataClass } from './ai-tool-api-registry';
+export type { DataClass as GovernedToolDataClass } from './governed-tool-registry';
+export { planAgenticSearch } from './agentic-search-engine';
+export { planAgenticSearch as planAgenticSearchWorker } from './agentic-search-worker';
+export type { OsFamily } from './cross-os-runtime';
+export type { OsFamily as DeviceOsFamily } from './universal-device-compatibility';
+export type { VisualEvidencePoint } from './visual-intelligence-engine';
+export type { VisualEvidencePoint as PresentationEvidencePoint } from './client-presentation-composer';
+export type { VisualEvidencePoint as ComponentEvidencePoint } from './client-visual-component-gateway';
+export type { EnrollmentReceipt } from './elite-onboarding';
+export type { EnrollmentReceipt as LiveEnrollmentReceipt } from './live-onboarding-runtime';
+export { HISTORICAL_ARCHIVE_GUARDRAILS } from './historical-technology-archive';
+export { HISTORICAL_ARCHIVE_GUARDRAILS as HISTORICAL_BUSINESS_ARCHIVE_GUARDRAILS } from './historical-business-tech-archive';
+export type { AgentMeeting } from './agent-campus-meetings';
+export type { AgentMeeting as OperationsAgentMeeting } from './team-task-meeting-orchestrator';
+export type { HistoricalArchiveRecord } from './historical-business-tech-archive';
+export type { HistoricalArchiveRecord as IngestedHistoricalArchiveRecord } from './historical-archive-ingestion';
+export type { PartnerState } from './industry-ecosystem-graph';
+export type { PartnerState as AdapterPartnerState } from './partner-adapter-atlas';
+export type { OllamaModelInfo } from './model-discovery';
+export type { OllamaModelInfo as OllamaBridgeModelInfo } from './ollama-live-runtime-bridge';
+export type { BrainSecurityClass } from './offline-brain-agent-council';
+export type { BrainSecurityClass as AlignmentBrainSecurityClass } from './agentic-brain-alignment-control-plane';
