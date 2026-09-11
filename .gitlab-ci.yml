@@ -15,6 +15,7 @@ offline-brain-contracts:
     - npm run test:12d-86
     - npm run test:12d-87
     - npm run test:12d-88
+    - npm run test:12d-89
   variables:
     npm_config_cache: "$CI_PROJECT_DIR/.npm"
   cache:
