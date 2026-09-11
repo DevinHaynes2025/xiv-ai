@@ -16,12 +16,7 @@ offline-brain-contracts:
     - npm run test:12d-87
     - npm run test:12d-88
     - npm run test:12d-89
-  variables:
-    npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  cache:
-    key: "xiv-ai-${CI_COMMIT_REF_SLUG}"
-    paths:
-      - .npm/
+    - npm run test:12d-90
 
 legacy-typecheck:
   stage: validate
@@ -35,9 +30,3 @@ legacy-typecheck:
     - npm ci --no-audit --no-fund
   script:
     - npm run typecheck
-  variables:
-    npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  cache:
-    key: "xiv-ai-${CI_COMMIT_REF_SLUG}"
-    paths:
-      - .npm/
