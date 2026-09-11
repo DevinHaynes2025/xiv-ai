@@ -17,6 +17,7 @@ offline-brain-contracts:
     - npm run test:12d-88
     - npm run test:12d-89
     - npm run test:12d-90
+    - npm run test:12d-91
 
 legacy-typecheck:
   stage: validate
