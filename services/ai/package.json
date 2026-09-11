@@ -14,6 +14,7 @@
     "test:12d-86": "tsx runtime/offline-team/offline-brain-agent-council.test.ts",
     "test:12d-87": "tsx runtime/offline-team/offline-brain-execution-ledger.test.ts",
     "test:12d-88": "tsx runtime/offline-team/local-model-collaboration-bus.test.ts",
+    "test:12d-89": "tsx runtime/offline-team/neural-pathway-growth-engine.test.ts",
     "test:2i-la-61i": "tsx runtime/queued/2i-la-61i.test.ts",
     "test:2i-la-61n": "tsx runtime/queued/2i-la-61n.test.ts",
     "test:2i-ai-62b": "tsx runtime/phase2ai62b.test.ts",
