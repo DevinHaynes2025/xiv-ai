@@ -11,6 +11,7 @@ offline-brain-contracts:
     - cd services/ai
     - npm ci --no-audit --no-fund
   script:
+    - npm run typecheck:12d-92
     - npm run test:12d-85
     - npm run test:12d-86
     - npm run test:12d-87
@@ -18,6 +19,7 @@ offline-brain-contracts:
     - npm run test:12d-89
     - npm run test:12d-90
     - npm run test:12d-91
+    - npm run test:12d-92
 
 legacy-typecheck:
   stage: validate

@@ -31,7 +31,10 @@
     "proof:worldbank": "tsx runtime/phase2id.worldbank.proof.ts",
     "proof:sec": "tsx runtime/phase2id2.sec.proof.ts",
     "proof:gleif": "tsx runtime/phase2ih.gleif.proof.ts",
-    "guardian:validate": "tsx runtime/guardian/validate.ts"
+    "guardian:validate": "tsx runtime/guardian/validate.ts",
+    "test:12d-92": "tsx --test runtime/offline-team/agent-tool-heartbeat-fabric.test.ts",
+    "typecheck:12d-92": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/local-model-collaboration-bus.ts runtime/offline-team/neural-pathway-growth-engine.ts runtime/offline-team/agent-tool-heartbeat-fabric.ts runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts runtime/offline-team/agent-tool-heartbeat-fabric.test.ts runtime/offline-team/local-model-collaboration-bus.test.ts",
+    "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
