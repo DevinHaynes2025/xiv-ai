@@ -47,14 +47,10 @@ export class EncryptedLocalEventStore {
   constructor(private readonly crypto: PersistenceCrypto) {}
 
   append(input: AppendOperationalEvent): StoredOperationalEvent {
-    if (!input.eventId || !input.tenantId || !input.streamId || !input.keyId || !input.occurredAt) {
-      throw new Error('event/tenant/stream/key/time required');
-    }
+    if (!input.eventId || !input.tenantId || !input.streamId || !input.keyId || !input.occurredAt) throw new Error('event/tenant/stream/key/time required');
     const dedupeKey = `${input.tenantId}:${input.eventId}`;
     if (this.eventIds.has(dedupeKey)) throw new Error('duplicate event id for tenant');
-    if (input.kind === 'BOOKKEEPING' && (!input.evidenceRefs || input.evidenceRefs.length === 0)) {
-      throw new Error('bookkeeping persistence requires evidence');
-    }
+    if (input.kind === 'BOOKKEEPING' && (!input.evidenceRefs || input.evidenceRefs.length === 0)) throw new Error('bookkeeping persistence requires evidence');
 
     const key = `${input.tenantId}:${input.streamId}`;
     const stream = this.rows.get(key) ?? [];
@@ -64,12 +60,8 @@ export class EncryptedLocalEventStore {
     const ciphertext = this.crypto.seal(payloadJson, { tenantId: input.tenantId, streamId: input.streamId, keyId: input.keyId });
     const sequence = stream.length + 1;
     const evidenceRefs = [...(input.evidenceRefs ?? [])];
-    const envelopeHash = this.crypto.hash([
-      input.eventId, input.tenantId, input.streamId, sequence, input.kind, input.occurredAt,
-      input.classification, input.keyId, payloadHash, ciphertext, previousHash ?? '', ...evidenceRefs,
-    ].join('|'));
+    const envelopeHash = this.crypto.hash([input.eventId, input.tenantId, input.streamId, sequence, input.kind, input.occurredAt, input.classification, input.keyId, payloadHash, ciphertext, previousHash ?? '', ...evidenceRefs].join('|'));
 
-    const stored: StoredOperationalEvent = { ...input, payload: undefined } as never;
     const envelope: StoredOperationalEvent = {
       eventId: input.eventId,
       tenantId: input.tenantId,
@@ -85,7 +77,6 @@ export class EncryptedLocalEventStore {
       previousHash,
       envelopeHash,
     };
-    void stored;
     stream.push(envelope);
     this.rows.set(key, stream);
     this.eventIds.add(dedupeKey);
@@ -94,9 +85,7 @@ export class EncryptedLocalEventStore {
 
   readStream(tenantId: string, streamId: string, fromSequence = 1): StoredOperationalEvent[] {
     if (!tenantId || !streamId) throw new Error('tenant/stream required');
-    return (this.rows.get(`${tenantId}:${streamId}`) ?? [])
-      .filter(row => row.sequence >= fromSequence)
-      .map(row => ({ ...row, evidenceRefs: [...row.evidenceRefs] }));
+    return (this.rows.get(`${tenantId}:${streamId}`) ?? []).filter(row => row.sequence >= fromSequence).map(row => ({ ...row, evidenceRefs: [...row.evidenceRefs] }));
   }
 
   verifyChain(tenantId: string, streamId: string): boolean {
@@ -107,11 +96,7 @@ export class EncryptedLocalEventStore {
   exportForReplication(tenantId: string, gate: ReplicationGate): StoredOperationalEvent[] {
     if (gate.status !== 'VERIFIED_PARTNER' || !gate.approved) throw new Error('replication requires approved verified-partner adapter');
     const prefix = `${tenantId}:`;
-    return [...this.rows.entries()]
-      .filter(([key]) => key.startsWith(prefix))
-      .flatMap(([, rows]) => rows)
-      .filter(row => row.classification !== 'TOP_SECRET')
-      .map(row => ({ ...row, evidenceRefs: [...row.evidenceRefs] }));
+    return [...this.rows.entries()].filter(([key]) => key.startsWith(prefix)).flatMap(([, rows]) => rows).filter(row => row.classification !== 'TOP_SECRET').map(row => ({ ...row, evidenceRefs: [...row.evidenceRefs] }));
   }
 }
 
