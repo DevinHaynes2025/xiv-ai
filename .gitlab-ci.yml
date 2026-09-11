@@ -5,6 +5,7 @@ offline-brain-contracts:
   stage: validate
   image: node:22-bookworm-slim
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH'
   before_script:
     - cd services/ai
