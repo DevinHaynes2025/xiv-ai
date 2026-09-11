@@ -159,3 +159,8 @@ export * from './persistent-offline-knowledge-index';
 export * from './embedding-adapter-registry';
 export * from './device-sync-conflict-journal';
 export * from './device-sync-conflict-disk-store';
+export * from './encrypted-knowledge-vault';
+export * from './retrieval-sync-telemetry';
+export * from './embedding-verification-receipt-store';
+export * from './sync-conflict-review-queue';
+export * from './local-rag-readonly-service';
