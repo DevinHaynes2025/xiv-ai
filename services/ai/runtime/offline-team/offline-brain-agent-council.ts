@@ -52,7 +52,7 @@ export interface OfflineBrainCouncilPlan {
   evidenceRefs: readonly string[];
 }
 
-export interface LearningCandidate {
+export interface OfflineBrainLearningCandidate {
   candidateId: string;
   tenantId: string;
   securityClass: BrainSecurityClass;
@@ -124,7 +124,7 @@ export function planOfflineBrainCouncil(input: {
   });
 }
 
-export function canPromoteLearning(candidate: LearningCandidate): boolean {
+export function canPromoteLearning(candidate: OfflineBrainLearningCandidate): boolean {
   if (!candidate.candidateId || !candidate.tenantId) return false;
   if (candidate.evidenceRefs.length === 0) return false;
   if (!Number.isFinite(candidate.evaluationScore) || candidate.evaluationScore < OFFLINE_BRAIN_COUNCIL_GUARDRAILS.learningPromotionThreshold) return false;
