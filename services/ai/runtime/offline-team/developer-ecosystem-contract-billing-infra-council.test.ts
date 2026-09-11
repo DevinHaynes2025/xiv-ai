@@ -1,0 +1,11 @@
+import { canBuildOnXiv } from './developer-contract-entitlement-gate';
+import { verifiedCollectedRevenue } from './billing-vault-ledger';
+import { usageChargeMicros } from './infrastructure-rental-meter';
+import { validateSandbox } from './developer-offline-sandbox';
+import { validateDeveloperCouncil } from './developer-agent-council';
+const e={developerId:'dev-1',tenantId:'tenant-1',status:'APPROVED' as const,contractReceipt:'c',legalReviewReceipt:'l',securityReviewReceipt:'s',scopes:['universe:build'],offlineBuildAllowed:true,productionPublishAllowed:false}; if(!canBuildOnXiv(e)) throw new Error('developer gate');
+if(verifiedCollectedRevenue([{id:'p',tenantId:'tenant-1',kind:'PAYMENT_RECEIVED',amountCents:2500,currency:'USD',evidenceRefs:['r'],approved:true,createdAt:new Date().toISOString()}])!==2500) throw new Error('ledger');
+if(usageChargeMicros({tenantId:'tenant-1',developerId:'dev-1',resource:'API_CALLS',quantity:100,unitPriceMicros:10,receiptRef:'u',measuredAt:new Date().toISOString()})!==1000) throw new Error('meter');
+if(!validateSandbox({sandboxId:'s',tenantId:'tenant-1',developerId:'dev-1',mode:'OFFLINE',localhostOnly:true,productionMutationAllowed:false,allowedTools:['ollama']})) throw new Error('sandbox');
+if(!validateDeveloperCouncil({meetingId:'m',tenantId:'tenant-1',topic:'sdk',participants:['LEGAL','SECURITY'],votes:[{role:'LEGAL',recommendation:'review',evidenceRefs:['e1'],confidence:.9},{role:'SECURITY',recommendation:'sandbox',evidenceRefs:['e2'],confidence:.8}],humanApprovalRequired:true})) throw new Error('council');
+console.log('12D-81 developer ecosystem/contract/billing/infrastructure/council contracts: OK');
