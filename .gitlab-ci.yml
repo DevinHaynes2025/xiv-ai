@@ -24,7 +24,7 @@ offline-brain-contracts:
     - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/runtime-type-surface.test.ts
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/multi-agent-meeting-bus.test.ts
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/secure-device-pilot-local-learning.test.ts
-    - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/bounded-background-shift.test.ts runtime/offline-team/agent-census.integration.test.ts
+    - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/bounded-background-shift.test.ts runtime/offline-team/agent-census.integration.test.ts runtime/offline-team/approved-master-plan-meeting.test.ts
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/background-shift.cli.ts --census
 
 ai-service-typecheck:
