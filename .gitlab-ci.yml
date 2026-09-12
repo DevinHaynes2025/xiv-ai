@@ -32,6 +32,8 @@ offline-brain-contracts:
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/enterprise-workforce.cli.ts
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/offline-story-queue.capacity.ts --rows 10000
     - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/shared-host-admission.test.ts
+    - npm run typecheck:12d-99
+    - npm run test:12d-99
 
 ai-service-typecheck:
   stage: validate
