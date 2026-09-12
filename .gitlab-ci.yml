@@ -28,6 +28,9 @@ offline-brain-contracts:
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/background-shift.cli.ts --census
     - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/agent-presence-census.test.ts runtime/offline-team/agent-presence-report.test.ts runtime/offline-team/agent-presence-report.integration.test.ts
     - node node_modules/tsx/dist/cli.mjs runtime/offline-team/agent-presence-report.cli.ts
+    - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/enterprise-workforce.test.ts runtime/offline-team/enterprise-workforce.integration.test.ts runtime/offline-team/offline-story-queue.test.ts
+    - node node_modules/tsx/dist/cli.mjs runtime/offline-team/enterprise-workforce.cli.ts
+    - node node_modules/tsx/dist/cli.mjs runtime/offline-team/offline-story-queue.capacity.ts --rows 10000
 
 ai-service-typecheck:
   stage: validate
