@@ -3,8 +3,8 @@ import { closeSync, lstatSync, openSync, realpathSync } from 'node:fs';
 import { isAbsolute } from 'node:path';
 import { createHash, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
 import {
-  assessSharedHostLeaseAcquisition, createSharedHostLease, markSharedHostLeaseStopped,
-  parseSharedHostLeaseRecord, releaseSharedHostLease, renewSharedHostLease,
+  assessSharedHostLeaseAcquisition, confirmSharedHostLeaseStop, createSharedHostLease, markSharedHostLeaseStopped,
+  parseSharedHostLeaseRecord, releaseSharedHostLease, renewSharedHostLease, voidSharedHostLease,
   type SharedHostLane, type SharedHostLeaseRecord,
 } from './shared-host-job-lease';
 
@@ -162,11 +162,38 @@ export class SharedHostLeaseStore {
   release(handle: HostLeaseHandle, releaseEvidenceRef: string) {
     return this.#transition(handle, (lease, nowMs) => releaseSharedHostLease({ lease, nowMs, releaseEvidenceRef }));
   }
+  /**
+   * OPERATOR-ONLY recovery (12D-100). Deliberately does NOT require the owner secret: the
+   * operator already owns this ledger file and its host ID, and a crashed worker cannot
+   * hand over a handle. The leaseId must match the held record; every recovery transition
+   * records operatorRecoveryAttested: true so operator provenance is always visible.
+   */
+  #operatorTransition(leaseId: string, transform: (record: SharedHostLeaseRecord, nowMs: number) => SharedHostLeaseRecord) {
+    if (!identifier(leaseId)) throw new Error('lease id required');
+    return this.#transaction(() => {
+      const row = this.#read();
+      if (!row.record) throw new Error('no held lease');
+      if (row.record.leaseId !== leaseId) throw new Error('lease id mismatch');
+      const next = transform(row.record, this.#now(row.lastClock));
+      this.#write(next, row.ownerDigest!);
+      return Object.freeze({ leaseId: next.leaseId, tenantId: next.tenantId, state: next.state,
+        operatorRecoveryAttested: next.operatorRecoveryAttested });
+    });
+  }
+  voidLeaseByOperator(leaseId: string, evidenceRef: string) {
+    return this.#operatorTransition(leaseId, (lease, nowMs) => voidSharedHostLease({ lease, nowMs, evidenceRef }));
+  }
+  confirmStoppedByOperator(leaseId: string, evidenceRef: string) {
+    return this.#operatorTransition(leaseId, (lease, nowMs) => confirmSharedHostLeaseStop({ lease, nowMs, evidenceRef }));
+  }
+  releaseByOperator(leaseId: string, evidenceRef: string) {
+    return this.#operatorTransition(leaseId, (lease, nowMs) => releaseSharedHostLease({ lease, nowMs, releaseEvidenceRef: evidenceRef }));
+  }
   snapshot(tenantId: string) {
     if (!identifier(tenantId)) throw new Error('tenant required');
     return this.#transaction(() => {
       const row = this.#read(), now = this.#now(row.lastClock), r = row.record;
-      const held = r !== null && r.state !== 'RELEASED';
+      const held = r !== null && r.state !== 'RELEASED' && r.state !== 'VOIDED_BY_OPERATOR';
       return Object.freeze({ observedAtMs: now, held, state: r?.tenantId === tenantId ? r.state : held ? 'HELD_BY_OTHER_SCOPE' : 'AVAILABLE',
         expiredUnsettled: Boolean(held && r && now >= r.expiresAtMs), ownerSecretExposed: false,
         hostAdoptionVerified: false, modelExecutionVerified: false, liveAgentCount: null });

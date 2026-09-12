@@ -34,6 +34,8 @@ offline-brain-contracts:
     - node node_modules/tsx/dist/cli.mjs --test runtime/offline-team/shared-host-admission.test.ts
     - npm run typecheck:12d-99
     - npm run test:12d-99
+    - npm run typecheck:12d-100
+    - npm run test:12d-100
 
 ai-service-typecheck:
   stage: validate

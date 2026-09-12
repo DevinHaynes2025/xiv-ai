@@ -6,10 +6,11 @@
  * callers must obtain it from an authenticated presence collector such as 12D-95.
  */
 export type SharedHostLane = 'HOMEBASE' | 'OFFLINE_SHIFT';
-export type SharedHostLeaseState = 'ACTIVE' | 'STOPPED_CONFIRMED' | 'STOPPED_UNCONFIRMED' | 'RELEASED';
+export type SharedHostLeaseState = 'ACTIVE' | 'STOPPED_CONFIRMED' | 'STOPPED_UNCONFIRMED' | 'RELEASED' | 'VOIDED_BY_OPERATOR';
 export type SharedHostLeaseDecision =
   | 'ALLOW_NO_EXISTING_LEASE'
   | 'ALLOW_RELEASED_LEASE'
+  | 'ALLOW_OPERATOR_VOIDED_LEASE'
   | 'DENY_INVALID_EXISTING_RECORD'
   | 'DENY_HOST_SCOPE_MISMATCH'
   | 'DENY_DUPLICATE_LEASE_ID'
@@ -49,6 +50,8 @@ export interface SharedHostLeaseRecord {
   state: SharedHostLeaseState;
   stopEvidenceRef: string | null;
   releaseEvidenceRef: string | null;
+  /** True only when an operator (never the owning controller) supplied recovery evidence. */
+  operatorRecoveryAttested: boolean;
   productionAuthorityGranted: false;
   privateDataAuthorityGranted: false;
   providerProcessTerminationAttested: false;
@@ -59,7 +62,7 @@ const ref = (v: unknown): v is string => typeof v === 'string' && v.trim() === v
 const hex = (v: unknown, n: number): v is string => typeof v === 'string' && new RegExp(`^[a-f0-9]{${n}}$`).test(v);
 const time = (v: unknown): v is number => Number.isSafeInteger(v) && (v as number) >= 0;
 const obj = (v: unknown): v is Record<string, unknown> => Boolean(v) && typeof v === 'object' && !Array.isArray(v);
-const states: readonly SharedHostLeaseState[] = Object.freeze(['ACTIVE', 'STOPPED_CONFIRMED', 'STOPPED_UNCONFIRMED', 'RELEASED']);
+const states: readonly SharedHostLeaseState[] = Object.freeze(['ACTIVE', 'STOPPED_CONFIRMED', 'STOPPED_UNCONFIRMED', 'RELEASED', 'VOIDED_BY_OPERATOR']);
 const lanes: readonly SharedHostLane[] = Object.freeze(['HOMEBASE', 'OFFLINE_SHIFT']);
 
 function ttlOk(acquiredAtMs: number, heartbeatAtMs: number, expiresAtMs: number): boolean {
@@ -72,7 +75,7 @@ function validRecord(v: unknown): v is SharedHostLeaseRecord {
   const expected = [
     'schemaVersion','resourceClass','hostScopeId','leaseId','tenantId','holderInstanceId','lane','workId','providerId','modelId',
     'presenceEvidenceRef','sourceCommit','acquiredAtMs','heartbeatAtMs','expiresAtMs','revision','state','stopEvidenceRef','releaseEvidenceRef',
-    'productionAuthorityGranted','privateDataAuthorityGranted','providerProcessTerminationAttested',
+    'operatorRecoveryAttested','productionAuthorityGranted','privateDataAuthorityGranted','providerProcessTerminationAttested',
   ] as const;
   if (Object.keys(v).length !== expected.length || !expected.every(k => Object.hasOwn(v, k))) return false;
   if (v.schemaVersion !== 1 || v.resourceClass !== 'LOCAL_MODEL_INFERENCE' || !hex(v.hostScopeId, 32)
@@ -80,12 +83,14 @@ function validRecord(v: unknown): v is SharedHostLeaseRecord {
     || !id(v.workId) || !id(v.providerId) || !id(v.modelId) || !ref(v.presenceEvidenceRef) || !hex(v.sourceCommit, 40)
     || !time(v.acquiredAtMs) || !time(v.heartbeatAtMs) || !time(v.expiresAtMs) || !ttlOk(v.acquiredAtMs as number, v.heartbeatAtMs as number, v.expiresAtMs as number)
     || !Number.isSafeInteger(v.revision) || (v.revision as number) < 1 || !states.includes(v.state as SharedHostLeaseState)
+    || typeof v.operatorRecoveryAttested !== 'boolean'
     || !(v.stopEvidenceRef === null || ref(v.stopEvidenceRef)) || !(v.releaseEvidenceRef === null || ref(v.releaseEvidenceRef))
     || v.productionAuthorityGranted !== false || v.privateDataAuthorityGranted !== false || v.providerProcessTerminationAttested !== false) return false;
-  if (v.state === 'ACTIVE' && (v.stopEvidenceRef !== null || v.releaseEvidenceRef !== null)) return false;
+  if (v.state === 'ACTIVE' && (v.stopEvidenceRef !== null || v.releaseEvidenceRef !== null || v.operatorRecoveryAttested !== false)) return false;
   if (v.state === 'STOPPED_CONFIRMED' && v.stopEvidenceRef === null) return false;
-  if (v.state === 'STOPPED_UNCONFIRMED' && v.releaseEvidenceRef !== null) return false;
+  if (v.state === 'STOPPED_UNCONFIRMED' && (v.releaseEvidenceRef !== null || v.operatorRecoveryAttested !== false)) return false;
   if (v.state === 'RELEASED' && (v.stopEvidenceRef === null || v.releaseEvidenceRef === null)) return false;
+  if (v.state === 'VOIDED_BY_OPERATOR' && (v.stopEvidenceRef !== null || v.releaseEvidenceRef === null || v.operatorRecoveryAttested !== true)) return false;
   return true;
 }
 
@@ -120,7 +125,7 @@ export function createSharedHostLease(input: {
     lane: input.lane, workId: input.workId, providerId: input.providerId, modelId: input.modelId,
     presenceEvidenceRef: input.presenceEvidenceRef, sourceCommit: input.sourceCommit,
     acquiredAtMs: input.nowMs, heartbeatAtMs: input.nowMs, expiresAtMs: input.nowMs + ttl,
-    revision: 1, state: 'ACTIVE', stopEvidenceRef: null, releaseEvidenceRef: null,
+    revision: 1, state: 'ACTIVE', stopEvidenceRef: null, releaseEvidenceRef: null, operatorRecoveryAttested: false,
     productionAuthorityGranted: false, privateDataAuthorityGranted: false, providerProcessTerminationAttested: false,
   };
   const parsed = parseSharedHostLeaseRecord(candidate);
@@ -171,6 +176,40 @@ export function releaseSharedHostLease(input: {
     state: 'RELEASED', releaseEvidenceRef: input.releaseEvidenceRef });
 }
 
+/**
+ * OPERATOR-ONLY terminal recovery. Records that the provider's fate was never attested:
+ * an expired-unsettled ACTIVE lease or an unresolvable STOPPED_UNCONFIRMED hold is voided
+ * by explicit operator evidence. This is NOT a provider-stop confirmation and never infers
+ * one; the voided capacity simply becomes reusable again.
+ */
+export function voidSharedHostLease(input: {
+  lease: SharedHostLeaseRecord;
+  nowMs: number;
+  evidenceRef: string;
+}): Readonly<SharedHostLeaseRecord> {
+  const current = parseSharedHostLeaseRecord(input.lease);
+  const voidable = current !== null && (current.state === 'ACTIVE' || current.state === 'STOPPED_UNCONFIRMED')
+    && !(current.state === 'ACTIVE' && input.nowMs < current.expiresAtMs);
+  if (!voidable || !time(input.nowMs) || !ref(input.evidenceRef)) throw new Error('expired-unsettled or unconfirmed lease and operator evidence required');
+  // heartbeatAtMs is deliberately unchanged: the record must stay valid (heartbeat < expiresAtMs).
+  return Object.freeze({ ...current, revision: current.revision + 1,
+    state: 'VOIDED_BY_OPERATOR', stopEvidenceRef: null, releaseEvidenceRef: input.evidenceRef, operatorRecoveryAttested: true });
+}
+
+/** OPERATOR-ONLY: confirms a stop after the operator independently verified it, recording operator provenance. */
+export function confirmSharedHostLeaseStop(input: {
+  lease: SharedHostLeaseRecord;
+  nowMs: number;
+  evidenceRef: string;
+}): Readonly<SharedHostLeaseRecord> {
+  const current = parseSharedHostLeaseRecord(input.lease);
+  if (!current || current.state !== 'STOPPED_UNCONFIRMED' || !time(input.nowMs) || !ref(input.evidenceRef)) {
+    throw new Error('unconfirmed stopped lease and operator evidence required');
+  }
+  return Object.freeze({ ...current, revision: current.revision + 1,
+    state: 'STOPPED_CONFIRMED', stopEvidenceRef: input.evidenceRef, operatorRecoveryAttested: true });
+}
+
 export function assessSharedHostLeaseAcquisition(input: {
   existing: unknown | null;
   candidate: SharedHostLeaseRecord;
@@ -184,6 +223,7 @@ export function assessSharedHostLeaseAcquisition(input: {
   if (existing.hostScopeId !== candidate.hostScopeId) return Object.freeze({ allowed: false, decision: 'DENY_HOST_SCOPE_MISMATCH', operatorReviewRequired: true });
   if (existing.leaseId === candidate.leaseId) return Object.freeze({ allowed: false, decision: 'DENY_DUPLICATE_LEASE_ID', operatorReviewRequired: true });
   if (existing.state === 'RELEASED') return Object.freeze({ allowed: true, decision: 'ALLOW_RELEASED_LEASE', operatorReviewRequired: false });
+  if (existing.state === 'VOIDED_BY_OPERATOR') return Object.freeze({ allowed: true, decision: 'ALLOW_OPERATOR_VOIDED_LEASE', operatorReviewRequired: false });
   if (existing.state === 'STOPPED_UNCONFIRMED') return Object.freeze({ allowed: false, decision: 'DENY_OPERATOR_REVIEW_HOLD', operatorReviewRequired: true });
   if (existing.state === 'STOPPED_CONFIRMED') return Object.freeze({ allowed: false, decision: 'DENY_RELEASE_REQUIRED', operatorReviewRequired: true });
   if (input.nowMs < existing.expiresAtMs) return Object.freeze({ allowed: false, decision: 'DENY_ACTIVE_LEASE', operatorReviewRequired: false });

@@ -148,6 +148,35 @@ export class OfflineStoryQueue {
       this.#db.prepare('DELETE FROM lease WHERE singleton=1 AND token=?').run(lease.token);
     });
   }
+  /** Operator/controller-only read of the singleton lease. Read-only; grants nothing. */
+  inspectHeldLease(): Readonly<StoryLease & { expired: boolean }> | null {
+    const held = this.#db.prepare('SELECT * FROM lease WHERE singleton=1').get();
+    if (!held) return null;
+    const lease: StoryLease = Object.freeze({ token: String(held.token), storyId: String(held.story_id),
+      tenantId: String(held.tenant), roleId: String(held.role), ownerId: String(held.owner),
+      deadlineMs: Number(held.deadline_ms) });
+    return Object.freeze({ ...lease, expired: this.#now() >= lease.deadlineMs });
+  }
+  /**
+   * OPERATOR recovery (12D-100): clears a stale lease WITHOUT claiming any provider settlement.
+   * 'READY' re-queues the story — the operator explicitly attests no provider side-effect is
+   * outstanding; 'FAILED' retires it. The evidence ref is echoed to the caller, never stored
+   * as a review or settlement record.
+   */
+  voidLease(input: { token: string; tenantId: string; storyId: string; roleId: string; ownerId: string; deadlineMs: number },
+    outcome: 'READY' | 'FAILED', evidenceRef: string): void {
+    if (!input || ![input.token, input.tenantId, input.storyId, input.ownerId, input.roleId].every(id)
+      || !Number.isSafeInteger(input.deadlineMs) || !['READY', 'FAILED'].includes(outcome)
+      || typeof evidenceRef !== 'string' || !evidenceRef.trim() || evidenceRef.length > 256) throw new Error('operator void request invalid');
+    this.#transaction(() => {
+      const held = this.#db.prepare('SELECT * FROM lease WHERE singleton=1').get();
+      if (!held || held.token !== input.token || held.tenant !== input.tenantId || held.story_id !== input.storyId
+        || held.owner !== input.ownerId || held.role !== input.roleId || Number(held.deadline_ms) !== input.deadlineMs) throw new Error('lease ownership mismatch');
+      this.#db.prepare("UPDATE stories SET state=?,output_hash=NULL WHERE tenant=? AND id=? AND state='LEASED'").run(outcome, input.tenantId, input.storyId);
+      this.#db.prepare('DELETE FROM lease WHERE singleton=1 AND token=?').run(input.token);
+      this.#now();
+    });
+  }
   /** Called by the trusted controller only AFTER its provider call has actually settled. */
   settle(lease:StoryLease,result:{outcome:'DRAFT'|'FAILED';outputHash?:string;providerSettled:true}):void {
     if(!lease||![lease.token,lease.tenantId,lease.storyId,lease.ownerId,lease.roleId].every(id)
