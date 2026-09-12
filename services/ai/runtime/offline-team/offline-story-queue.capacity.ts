@@ -7,7 +7,7 @@ import {OfflineStoryQueue,type OfflineStory} from './offline-story-queue';
 const args=process.argv.slice(2);
 if(args.length!==2||args[0]!=='--rows'||!/^\d+$/.test(args[1])) throw new Error('explicit --rows count required');
 const rows=Number(args[1]);
-if(!Number.isSafeInteger(rows)||rows<1||rows>1_000_001)throw new Error('rows must be 1..1000001');
+if(!Number.isSafeInteger(rows)||rows<1||rows>2_000_001)throw new Error('rows must be 1..2000001');
 const dir=mkdtempSync(join(tmpdir(),'xiv-capacity-fixture-')),path=join(dir,'test.sqlite');
 let q:OfflineStoryQueue|undefined;
 try{
