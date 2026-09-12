@@ -201,6 +201,35 @@ export class OfflineStoryQueue {
     if(!row||row.state!=='AWAITING_REVIEW'||!getEnterpriseRole(String(row.role)).reviewerIds.includes(reviewerRoleId)) throw new Error('designated independent reviewer required');
     this.#db.prepare("UPDATE stories SET state='DONE',review_ref=? WHERE tenant=? AND id=? AND state='AWAITING_REVIEW'").run(reviewRef,tenantId,storyId);
   }
+  /** Read-only single-story lookup for authenticated review ingestion (12D-101). Grants nothing. */
+  inspectStory(tenantId:string,storyId:string): { state:QueueState; role:string; outputHash:string|null } | null {
+    if(!id(tenantId)||!id(storyId)) throw new Error('story identity required');
+    const row=this.#db.prepare('SELECT state,role,output_hash FROM stories WHERE tenant=? AND id=?').get(tenantId,storyId);
+    if(!row) return null;
+    return { state:String(row.state) as QueueState, role:String(row.role), outputHash:row.output_hash===null?null:String(row.output_hash) };
+  }
+  /**
+   * 12D-101: apply a reviewer's decision atomically, ONLY for a story in AWAITING_REVIEW whose
+   * stored output hash still matches the hash the reviewer signed. APPROVED→DONE,
+   * CHANGES_REQUESTED→READY (output hash kept as the audit record of what was re-requested; the
+   * next settlement overwrites it), REJECTED→FAILED. The signature verification lives in the
+   * ingestion adapter; this method only enforces state and designated-reviewer invariants.
+   */
+  applyReviewDecision(input:{tenantId:string;storyId:string;reviewerId:string;expectedOutputHash:string;decision:'APPROVED'|'CHANGES_REQUESTED'|'REJECTED';reviewRef:string}):'DONE'|'READY'|'FAILED' {
+    if(![input?.tenantId,input?.storyId,input?.reviewerId].every(id)||!sha(input.expectedOutputHash,64)
+      || !['APPROVED','CHANGES_REQUESTED','REJECTED'].includes(input.decision)
+      || !bounded(input.reviewRef,256)) throw new Error('invalid review decision');
+    this.#now();
+    this.#transaction(()=>{
+      const row=this.#db.prepare('SELECT role,state,output_hash FROM stories WHERE tenant=? AND id=?').get(input.tenantId,input.storyId);
+      if(!row||String(row.state)!=='AWAITING_REVIEW') throw new Error('story not awaiting review');
+      if(String(row.output_hash??'')!==input.expectedOutputHash) throw new Error('reviewed output hash mismatch');
+      if(!getEnterpriseRole(String(row.role)).reviewerIds.includes(input.reviewerId)) throw new Error('designated independent reviewer required');
+      const to=input.decision==='APPROVED'?'DONE':input.decision==='CHANGES_REQUESTED'?'READY':'FAILED';
+      this.#db.prepare('UPDATE stories SET state=?,review_ref=? WHERE tenant=? AND id=? AND state=? AND (output_hash IS ? )').run(to,input.reviewRef,input.tenantId,input.storyId,'AWAITING_REVIEW',input.expectedOutputHash);
+    });
+    return input.decision==='APPROVED'?'DONE':input.decision==='CHANGES_REQUESTED'?'READY':'FAILED';
+  }
   summary(tenantId:string) {
     if(!id(tenantId)) throw new Error('tenant required');
     const counts=this.#db.prepare('SELECT kind,state,count(*) AS count FROM stories WHERE tenant=? GROUP BY kind,state').all(tenantId);
