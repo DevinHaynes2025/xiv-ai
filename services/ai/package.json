@@ -41,6 +41,8 @@
     "test:12d-104": "tsx --test runtime/offline-team/social-ingestion-registry.test.ts",
     "test:12d-105": "tsx --test runtime/offline-team/runtime-mode-governor.test.ts",
     "test:12d-106": "tsx --test runtime/offline-team/governed-report-composer.test.ts",
+    "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
+    "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
     "typecheck:12d-100": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/shared-host-job-lease.ts runtime/offline-team/shared-host-lease-store.ts runtime/offline-team/offline-story-queue.ts runtime/offline-team/operator-recovery.cli.ts runtime/offline-team/operator-recovery.test.ts runtime/offline-team/shared-host-admission.test.ts runtime/offline-team/supervised-local-worker.ts",
     "typecheck:12d-101": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/authenticated-review-response.ts runtime/offline-team/authenticated-review-response.test.ts runtime/offline-team/offline-story-queue.ts",
@@ -49,6 +51,8 @@
     "typecheck:12d-104": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/social-ingestion-registry.ts runtime/offline-team/social-ingestion-registry.test.ts",
     "typecheck:12d-105": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/runtime-mode-governor.ts runtime/offline-team/runtime-mode-governor.test.ts",
     "typecheck:12d-106": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/governed-report-composer.ts runtime/offline-team/governed-report-composer.test.ts",
+    "typecheck:pathway-evidence-bridge": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/pathway-evidence-bridge.ts runtime/offline-team/pathway-evidence-bridge.test.ts",
+    "typecheck:device-fleet-enrollment": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/device-fleet-enrollment.ts runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-92": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/local-model-collaboration-bus.ts runtime/offline-team/neural-pathway-growth-engine.ts runtime/offline-team/agent-tool-heartbeat-fabric.ts runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts runtime/offline-team/agent-tool-heartbeat-fabric.test.ts runtime/offline-team/local-model-collaboration-bus.test.ts",
     "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },

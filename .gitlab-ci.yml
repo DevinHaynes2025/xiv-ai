@@ -48,6 +48,10 @@ offline-brain-contracts:
     - npm run test:12d-105
     - npm run typecheck:12d-106
     - npm run test:12d-106
+    - npm run typecheck:pathway-evidence-bridge
+    - npm run test:pathway-evidence-bridge
+    - npm run typecheck:device-fleet-enrollment
+    - npm run test:device-fleet-enrollment
 
 ai-service-typecheck:
   stage: validate
