@@ -18,6 +18,9 @@ export const SUPERVISED_WORKER_POLICY = Object.freeze({
   maxRequestsPerRun: 1, retries: 0, remoteCallsEnabled: false,
   maxTaskMs: 100_000, settleMarginMs: 5_000, queueLeaseMs: 120_000,
   hostRenewalIntervalMs: 4_000,
+  // 12D-102: the queue lease renews on the same maintenance interval as the host lease, but
+  // on the queue's own longer clock; extensions are bounded by the queue's total-life cap.
+  queueRenewalExtendMs: 60_000,
   productionMutationAllowed: false, modelWeightMutationAllowed: false,
 });
 
@@ -56,6 +59,8 @@ export interface SupervisedWorkerRun {
   evidenceRefs: readonly string[];
   presenceReported: { RUNNING: boolean; STOPPED: boolean };
   queueLeaseRetained: boolean;
+  queueLeaseExtensions: number;
+  queueLeaseExtensionExhausted: boolean;
   hostLeaseUnresolved: boolean;
   storyState: string | null;
   reviewRequests: readonly { tool: string; status: 'PENDING'; providerId: null; modelId: null }[];
@@ -181,7 +186,9 @@ export async function runSupervisedLocalStory(admission: SharedQueueAdmission, r
     providerId: 'ollama' as const, modelId: SUPERVISED_WORKER_POLICY.model,
     reviewRequests: reviewers, humanDecision: 'REQUIRED' as const, learningPromoted: false as const,
     liveAgentCount: null, executionClaimsVerified: false as const, providerIdentityAttested: false as const,
-    productionMutationAllowed: false as const, modelWeightMutationAllowed: false as const };
+    productionMutationAllowed: false as const, modelWeightMutationAllowed: false as const,
+    // 12D-102 counters; mutated by the maintenance interval, snapshotted when a packet is built.
+    queueLeaseExtensions: 0, queueLeaseExtensionExhausted: false };
   const presence = { RUNNING: false, STOPPED: false };
   const report = (state: 'RUNNING' | 'STOPPED'): string | null => {
     if (!options.presence) return null;
@@ -257,10 +264,17 @@ export async function runSupervisedLocalStory(admission: SharedQueueAdmission, r
   const timeoutBudgetMs = Math.min(remainingMs, options.maxTaskMs ?? SUPERVISED_WORKER_POLICY.maxTaskMs);
 
   // Lease maintenance while the single request is in flight: keeps the host reservation
-  // ACTIVE during a long local generation. Bounded by the request timeout; never a retry.
+  // ACTIVE during a long local generation and extends the queue lease on the queue's longer
+  // clock. Bounded by the request timeout; never a retry.
   let renewalFailed = false;
   const renewal = setInterval(() => {
-    try { ticket = admission.renew(ticket); } catch { renewalFailed = true; clearInterval(renewal); }
+    try {
+      ticket = admission.renew(ticket);
+      const q = admission.renewQueueLease(ticket, SUPERVISED_WORKER_POLICY.queueRenewalExtendMs);
+      ticket = q.ticket;
+      base.queueLeaseExtensions += q.extended ? 1 : 0;
+      base.queueLeaseExtensionExhausted ||= q.extensionExhausted;
+    } catch { renewalFailed = true; clearInterval(renewal); }
   }, SUPERVISED_WORKER_POLICY.hostRenewalIntervalMs);
 
   let responseCompleted = false;

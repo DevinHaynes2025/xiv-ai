@@ -1,0 +1,209 @@
+<title>XIV OS Build Report 12D-99–101</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;650&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EEF0F3; --surface:#FFFFFF; --ink:#1B2430; --muted:#5C6673;
+  --line:#D3D8DE; --accent:#9A5B00; --accent-soft:#F3E4C8; --pass:#2E7D4F; --pass-soft:#DFEDE3;
+  --warn:#8A4A00; --warn-soft:#F3E4C8;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#12161C; --surface:#1A2028; --ink:#E6EAEE; --muted:#98A2AC;
+  --line:#2A323C; --accent:#D99A33; --accent-soft:#2C2312; --pass:#57B37E; --pass-soft:#16281D;
+  --warn:#D99A33; --warn-soft:#2C2312;
+}}
+:root[data-theme="dark"]{
+  --ground:#12161C; --surface:#1A2028; --ink:#E6EAEE; --muted:#98A2AC;
+  --line:#2A323C; --accent:#D99A33; --accent-soft:#2C2312; --pass:#57B37E; --pass-soft:#16281D;
+  --warn:#D99A33; --warn-soft:#2C2312;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font:16px/1.6 Archivo,system-ui,sans-serif;padding:48px 20px 64px;}
+main{max-width:860px;margin:0 auto}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 10px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.12;font-weight:650;letter-spacing:-.01em;text-wrap:balance;margin:0 0 14px}
+h2{font-size:20px;font-weight:650;letter-spacing:-.005em;margin:56px 0 6px}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+section{margin-top:14px}
+p{max-width:66ch}
+/* pipeline */
+.pipe{border:1px solid var(--line);background:var(--surface);padding:26px 22px;overflow-x:auto}
+.pipe svg{display:block;min-width:640px;width:100%;height:auto}
+.pipe text{font-family:'IBM Plex Mono',monospace}
+/* stories */
+.story{display:grid;grid-template-columns:110px 1fr;gap:4px 20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.story:first-child{border-top:1px solid var(--line)}
+.story .id{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);padding-top:2px}
+.story h3{margin:0 0 3px;font-size:15.5px;font-weight:650}
+.story p{margin:0;font-size:14px;color:var(--muted)}
+/* verification table */
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td.n{font-family:'IBM Plex Mono',monospace}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:1px 8px;border-radius:3px}
+.tag.pass{background:var(--pass-soft);color:var(--pass)}
+.tag.pending{background:var(--warn-soft);color:var(--warn)}
+/* capacity tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:20px 0 18px}
+.tile{background:var(--surface);padding:18px 16px 14px}
+.tile .v{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:-.01em}
+.tile .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 18px;font-size:14px;max-width:none}
+.callout b{color:var(--accent)}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+.chip b{font-weight:500}
+/* next */
+ol.next{margin:14px 0 0;padding-left:22px;max-width:64ch}
+ol.next li{margin:10px 0}
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);line-height:1.9}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<main>
+  <p class="eyebrow">XIV AI OS · Offline Brain · Build session report</p>
+  <h1>Build report 12D-99 → 12D-101</h1>
+  <p class="lede">Three stories shipped on one branch in this session: the supervised local worker, operator recovery for held capacity, and authenticated review ingestion — plus a completed 2,000,000-row capacity fixture. Everything below is local-build evidence; nothing is deployed, merged, or promoted.</p>
+  <div class="meta">
+    <span><b>Branch</b> claude/12d-99-supervised-local-worker</span>
+    <span><b>Pushed</b> gitlab.com/xiv-ai-group/xiv-ai-project</span>
+    <span><b>Reviewer</b> CLAUDE_CODE · PENDING</span>
+    <span><b>GROK_XAI</b> PENDING — no response ever received</span>
+  </div>
+
+  <section>
+    <h2>Where the stories flow</h2>
+    <div class="pipe">
+      <svg viewBox="0 0 720 300" role="img" aria-label="Pipeline: queue, supervised worker, review ingestion, operator recovery">
+        <defs>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+        <!-- stage boxes -->
+        <g font-size="12" fill="var(--ink)" stroke="var(--line)" fill-opacity="1">
+          <rect x="10" y="40" width="130" height="54" fill="var(--surface)"/>
+          <rect x="190" y="40" width="150" height="54" fill="var(--surface)"/>
+          <rect x="390" y="40" width="130" height="54" fill="var(--surface)"/>
+          <rect x="570" y="40" width="140" height="54" fill="var(--surface)"/>
+          <rect x="190" y="170" width="150" height="54" fill="var(--surface)"/>
+          <rect x="390" y="170" width="130" height="54" fill="var(--surface)"/>
+        </g>
+        <text x="75" y="62" text-anchor="middle" font-size="12.5" font-weight="500">12D-85..98</text>
+        <text x="75" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">queue + admission</text>
+        <text x="265" y="62" text-anchor="middle" font-size="12.5" font-weight="500">12D-99</text>
+        <text x="265" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">supervised worker</text>
+        <text x="455" y="62" text-anchor="middle" font-size="12.5" font-weight="500">Ollama</text>
+        <text x="455" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">127.0.0.1:11434 · 1 call</text>
+        <text x="640" y="62" text-anchor="middle" font-size="12.5" font-weight="500">12D-101</text>
+        <text x="640" y="80" text-anchor="middle" font-size="11" fill="var(--muted)">review ingestion</text>
+        <text x="265" y="192" text-anchor="middle" font-size="12.5" font-weight="500">held for operator</text>
+        <text x="265" y="210" text-anchor="middle" font-size="11" fill="var(--muted)">fail toward hold</text>
+        <text x="455" y="192" text-anchor="middle" font-size="12.5" font-weight="500">12D-100</text>
+        <text x="455" y="210" text-anchor="middle" font-size="11" fill="var(--muted)">operator recovery</text>
+        <!-- main path arrows -->
+        <g stroke="var(--muted)" stroke-width="1.4" fill="none">
+          <line x1="140" y1="67" x2="186" y2="67" marker-end="url(#arw)"/>
+          <line x1="340" y1="67" x2="386" y2="67" marker-end="url(#arw)"/>
+          <line x1="520" y1="67" x2="566" y2="67" marker-end="url(#arw)"/>
+        </g>
+        <text x="265" y="130" text-anchor="middle" font-size="11" fill="var(--muted)">AWAITING_REVIEW → DONE / READY / FAILED</text>
+        <g stroke="var(--muted)" stroke-width="1.4" fill="none" stroke-dasharray="4 3">
+          <path d="M330 67 C 360 67 330 197 344 197"/>
+          <path d="M344 197 L 386 197" marker-end="url(#arw)"/>
+          <path d="M520 197 C 560 197 560 130 470 130 L 265 130 L 265 100" marker-end="url(#arw)"/>
+        </g>
+        <text x="360" y="255" font-size="11" fill="var(--muted)">every hold is recoverable by an evidence-required operator verb — automaticRecovery: false</text>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <h2>What shipped</h2>
+    <div class="story">
+      <span class="id">9bb73b5e<br>12D-99</span>
+      <div><h3>Supervised end-to-end local worker</h3>
+      <p>One bounded Ollama request per run, 0 remote calls, 0 retries. A fully received response body is the only accepted settlement signal; aborted exchanges are held for the operator, never retried. Live proof run: story <span class="mono">pilot-99-draft-1</span> settled to AWAITING_REVIEW, output hash <span class="mono">6f6a4f1a…</span></p></div>
+    </div>
+    <div class="story">
+      <span class="id">e3bd0fd3<br>12D-100</span>
+      <div><h3>Operator recovery for held capacity</h3>
+      <p>New <span class="mono">VOIDED_BY_OPERATOR</span> lease state and <span class="mono">operatorRecoveryAttested</span> provenance. Operator verbs gated on lease-id match, not the owner secret — the operator owns the ledger; a crashed worker cannot hand over a handle. Queue re-queues only on an explicit no-side-effect attestation.</p></div>
+    </div>
+    <div class="story">
+      <span class="id">14158944<br>12D-101</span>
+      <div><h3>Authenticated reviewer-response ingestion</h3>
+      <p>Closes the AWAITING_REVIEW port: decisions land only as Ed25519-signed envelopes from operator-enrolled reviewers, bound to the exact settled output hash, applied atomically. APPROVED→DONE, CHANGES_REQUESTED→READY, REJECTED→FAILED.</p></div>
+    </div>
+    <div class="story">
+      <span class="id">5326fb5c<br>fixture</span>
+      <div><h3>Capacity fixture ceiling aligned to the 2M queue policy</h3>
+      <p>The fixture previously refused more than 1,000,001 rows; the queue's policy ceiling is 2,000,000, so the fixture now matches it — and the 2M run was executed for real (below).</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Verification</h2>
+    <table>
+      <tr><th>Check</th><th>Result</th></tr>
+      <tr><td><span class="mono">tsc --noEmit</span> (full) + scoped 12D-99/100/101</td><td><span class="tag pass">PASS</span></td></tr>
+      <tr><td>shared-host-admission (12D-98)</td><td class="n"><span class="tag pass">32/32</span></td></tr>
+      <tr><td>offline-story-queue (regression after 12D-101)</td><td class="n"><span class="tag pass">12/12</span></td></tr>
+      <tr><td>supervised-local-worker (12D-99)</td><td class="n"><span class="tag pass">11/11</span></td></tr>
+      <tr><td>operator-recovery (12D-100)</td><td class="n"><span class="tag pass">7/7</span></td></tr>
+      <tr><td>authenticated-review-response (12D-101)</td><td class="n"><span class="tag pass">7/7</span></td></tr>
+      <tr><td>2,000,000-row capacity fixture</td><td><span class="tag pass">PASS</span> <span class="mono" style="color:var(--muted)">exit 0</span></td></tr>
+      <tr><td>GitLab push (4 commits)</td><td><span class="tag pass">PUSHED</span></td></tr>
+      <tr><td>Reviewer CLAUDE_CODE / GROK_XAI</td><td><span class="tag pending">PENDING</span></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>The 2,000,000-row run</h2>
+    <div class="tiles">
+      <div class="tile"><div class="v">2,000,000</div><div class="l">rows stored</div></div>
+      <div class="tile"><div class="v">0</div><div class="l">product stories</div></div>
+      <div class="tile"><div class="v">0</div><div class="l">model calls</div></div>
+      <div class="tile"><div class="v">530.1s</div><div class="l">insertion</div></div>
+      <div class="tile"><div class="v">0.611ms</div><div class="l">last-page read</div></div>
+      <div class="tile"><div class="v">1.86GB</div><div class="l">database</div></div>
+      <div class="tile"><div class="v">209.6</div><div class="l">MiB peak RSS</div></div>
+    </div>
+    <div class="callout"><b>What this proves — and what it does not.</b> This is CAPACITY FIXTURE evidence: the queue ledger physically holds, pages, and admits 2,000,000 story rows within policy. It does not mean 2,000,000 real user stories exist or completed — the fixture records <span class="mono">productStoriesCreated: 0</span> and <span class="mono">millionUsersProven: false</span> itself.</div>
+  </section>
+
+  <section>
+    <h2>Honest status — unchanged, on every packet</h2>
+    <div class="chips">
+      <span class="chip">humanDecision <b>REQUIRED</b></span>
+      <span class="chip">learningPromoted <b>false</b></span>
+      <span class="chip">liveAgentCount <b>null</b></span>
+      <span class="chip">executionClaimsVerified <b>false</b></span>
+      <span class="chip">providerIdentityAttested <b>false</b></span>
+      <span class="chip">automaticRecovery <b>false</b></span>
+      <span class="chip">remoteCallsMade <b>0</b></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Queued next</h2>
+    <ol class="next">
+      <li>Reconcile the parallel 12D-96 lineages (MR !17 vs !18) so 12D-97's consent assessment rides the queue lineage.</li>
+      <li>The 120s queue-lease cap on long generations — deadlock-free since 12D-100, still a cap. Lengthen or split.</li>
+      <li>Reviewer key custody (where reviewer private keys live) — an operator concern, deliberately outside the 12D-101 module.</li>
+      <li>Grok review: still PENDING. Recorded the moment a real response exists — never fabricated before then.</li>
+    </ol>
+  </section>
+
+  <footer>
+    commits 9bb73b5e · e3bd0fd3 · 14158944 · 5326fb5c — pushed 2026-09-12<br>
+    draft MR: <a href="https://gitlab.com/xiv-ai-group/xiv-ai-project/-/merge_requests/new?merge_request%5Bsource_branch%5D=claude%2F12d-99-supervised-local-worker">open merge request on GitLab</a> · handoff docs: docs/ai-agents/
+  </footer>
+</main>

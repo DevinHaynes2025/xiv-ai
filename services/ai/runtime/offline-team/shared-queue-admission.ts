@@ -62,6 +62,19 @@ export class SharedQueueAdmission {
     this.queue.inspectLease(ticket.storyLease, true);
     return Object.freeze({ storyLease: ticket.storyLease, hostHandle: this.host.renew(ticket.hostHandle) });
   }
+  /**
+   * 12D-102: bounded queue-lease maintenance during a long generation. The HOST lease (short
+   * TTL) and the QUEUE lease (long TTL) renew on different clocks; this extends the queue lease
+   * within the queue's total-life cap. Returns the refreshed ticket — the caller must keep using
+   * it, because the lease deadline moves. A refused extension is reported, never thrown, when
+   * the queue's total-life cap is reached; a lapsed or mismatched lease still throws.
+   */
+  renewQueueLease(ticket: SharedQueueTicket, extendMs: number): Readonly<{ ticket: Readonly<SharedQueueTicket>; extended: boolean; extensionExhausted: boolean }> {
+    this.#validate(ticket);
+    const renewed = this.queue.renewLease(ticket.storyLease, extendMs);
+    return Object.freeze({ ticket: Object.freeze({ ...ticket, storyLease: renewed.lease }),
+      extended: renewed.extended, extensionExhausted: renewed.extensionExhausted });
+  }
   /** Trusted controller supplies actual settlement evidence; the model cannot approve itself. */
   settle(ticket: SharedQueueTicket, result: {
     providerAcknowledged: boolean; outcome: 'DRAFT' | 'FAILED'; outputHash?: string; evidenceRef?: string;

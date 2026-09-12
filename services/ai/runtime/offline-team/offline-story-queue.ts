@@ -69,8 +69,16 @@ export class OfflineStoryQueue {
           singleton INTEGER PRIMARY KEY CHECK(singleton=1), token TEXT NOT NULL,
           tenant TEXT NOT NULL, story_id TEXT NOT NULL, role TEXT NOT NULL,
           owner TEXT NOT NULL, deadline_ms INTEGER NOT NULL,
+          base_deadline_ms INTEGER NOT NULL, renewals INTEGER NOT NULL,
           FOREIGN KEY(tenant,story_id) REFERENCES stories(tenant,id)
         ) STRICT;`);
+      // 12D-102 migration: lease files created before queue renewal lack the provenance columns.
+      const leaseCols = this.#db.prepare("SELECT name FROM pragma_table_info('lease')").all().map(c => String(c.name));
+      if (!leaseCols.includes('base_deadline_ms')) {
+        this.#db.exec("ALTER TABLE lease ADD COLUMN base_deadline_ms INTEGER NOT NULL DEFAULT 0");
+        this.#db.exec('UPDATE lease SET base_deadline_ms=deadline_ms WHERE base_deadline_ms=0');
+      }
+      if (!leaseCols.includes('renewals')) this.#db.exec('ALTER TABLE lease ADD COLUMN renewals INTEGER NOT NULL DEFAULT 0');
     } catch (error) { this.#db.close(); throw error; }
   }
   #now(): number {
@@ -122,7 +130,7 @@ export class OfflineStoryQueue {
       if(!row) return null;
       const lease:StoryLease=Object.freeze({token:randomUUID(),storyId:String(row.id),tenantId,roleId,ownerId,deadlineMs:now+durationMs});
       this.#db.prepare("UPDATE stories SET state='LEASED' WHERE tenant=? AND id=? AND state='READY'").run(tenantId,lease.storyId);
-      this.#db.prepare('INSERT INTO lease VALUES(1,?,?,?,?,?,?)').run(lease.token,tenantId,lease.storyId,roleId,ownerId,lease.deadlineMs);
+      this.#db.prepare('INSERT INTO lease VALUES(1,?,?,?,?,?,?,?,?)').run(lease.token,tenantId,lease.storyId,roleId,ownerId,lease.deadlineMs,lease.deadlineMs,0);
       return lease;
     });
   }
@@ -149,13 +157,44 @@ export class OfflineStoryQueue {
     });
   }
   /** Operator/controller-only read of the singleton lease. Read-only; grants nothing. */
-  inspectHeldLease(): Readonly<StoryLease & { expired: boolean }> | null {
+  inspectHeldLease(): Readonly<StoryLease & { expired: boolean; renewals: number }> | null {
     const held = this.#db.prepare('SELECT * FROM lease WHERE singleton=1').get();
     if (!held) return null;
     const lease: StoryLease = Object.freeze({ token: String(held.token), storyId: String(held.story_id),
       tenantId: String(held.tenant), roleId: String(held.role), ownerId: String(held.owner),
       deadlineMs: Number(held.deadline_ms) });
-    return Object.freeze({ ...lease, expired: this.#now() >= lease.deadlineMs });
+    return Object.freeze({ ...lease, expired: this.#now() >= lease.deadlineMs, renewals: Number(held.renewals ?? 0) });
+  }
+  /**
+   * 12D-102: bounded queue-lease renewal for the owning controller. Requires the exact lease
+   * identity and an UNEXPIRED lease (a lapsed lease is never resurrected — operator recovery
+   * is the only path). Never shortens a lease and never extends beyond the original deadline
+   * plus maxLeaseMs, so a story's total lease life is bounded by 2 × maxLeaseMs no matter how
+   * many renewals are requested. A renewal that would not extend is reported honestly instead
+   * of throwing: `extended:false` (and `extensionExhausted` once the total-life cap is reached).
+   */
+  renewLease(lease: StoryLease, extendMs: number): { lease: Readonly<StoryLease>; extended: boolean; extensionExhausted: boolean } {
+    if (!lease || ![lease.token, lease.tenantId, lease.storyId, lease.ownerId, lease.roleId].every(id)
+      || !Number.isSafeInteger(lease.deadlineMs) || !Number.isSafeInteger(extendMs)
+      || extendMs < 1 || extendMs > OFFLINE_QUEUE_POLICY.maxLeaseMs) throw new Error('invalid lease renewal');
+    const now = this.#now();
+    return this.#transaction(() => {
+      const held = this.#db.prepare('SELECT * FROM lease WHERE singleton=1').get();
+      if (!held || held.token !== lease.token || held.tenant !== lease.tenantId || held.story_id !== lease.storyId
+        || held.owner !== lease.ownerId || held.role !== lease.roleId || Number(held.deadline_ms) !== lease.deadlineMs) throw new Error('lease ownership mismatch');
+      if (now >= Number(held.deadline_ms)) throw new Error('expired queue lease cannot be renewed; operator recovery required');
+      const base = Number(held.base_deadline_ms) || lease.deadlineMs;
+      const target = Math.min(now + extendMs, base + OFFLINE_QUEUE_POLICY.maxLeaseMs);
+      // Exhausted means this request reached the total-life cap: no renewal can grant the
+      // full extension past base + maxLeaseMs, whatever partial amount was applied.
+      const exhausted = now + extendMs > base + OFFLINE_QUEUE_POLICY.maxLeaseMs;
+      if (target <= lease.deadlineMs) {
+        return { lease: Object.freeze({ ...lease }), extended: false, extensionExhausted: exhausted };
+      }
+      const renewed: StoryLease = Object.freeze({ ...lease, deadlineMs: target });
+      this.#db.prepare('UPDATE lease SET deadline_ms=?,renewals=renewals+1 WHERE singleton=1 AND token=?').run(target, lease.token);
+      return { lease: renewed, extended: true, extensionExhausted: exhausted };
+    });
   }
   /**
    * OPERATOR recovery (12D-100): clears a stale lease WITHOUT claiming any provider settlement.
