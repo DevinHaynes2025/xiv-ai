@@ -126,6 +126,28 @@ export class OfflineStoryQueue {
       return lease;
     });
   }
+  /** Controller-only lookup. A matching queue token is not permission to invoke a model. */
+  inspectLease(lease: StoryLease, requireUnexpired = false): Readonly<OfflineStory> {
+    if (!lease || ![lease.token, lease.tenantId, lease.storyId, lease.ownerId, lease.roleId].every(id)
+      || !Number.isSafeInteger(lease.deadlineMs)) throw new Error('invalid lease identity');
+    const held = this.#db.prepare('SELECT * FROM lease WHERE singleton=1').get();
+    if (!held || held.token !== lease.token || held.tenant !== lease.tenantId || held.story_id !== lease.storyId
+      || held.owner !== lease.ownerId || held.role !== lease.roleId || Number(held.deadline_ms) !== lease.deadlineMs) throw new Error('lease ownership mismatch');
+    if (requireUnexpired && this.#now() >= lease.deadlineMs) throw new Error('queue lease expired');
+    const row = this.#db.prepare("SELECT body FROM stories WHERE tenant=? AND id=? AND state='LEASED'").get(lease.tenantId, lease.storyId);
+    if (!row || typeof row.body !== 'string') throw new Error('leased story unavailable');
+    const story: OfflineStory = JSON.parse(row.body);
+    validate(story);
+    return Object.freeze({ ...story, acceptance: Object.freeze([...story.acceptance]), dependencies: Object.freeze([...story.dependencies]) });
+  }
+  /** Trusted admission controller ONLY, while no provider has been invoked for this lease. */
+  returnUnstarted(lease: StoryLease): void {
+    this.#transaction(() => {
+      this.inspectLease(lease);
+      this.#db.prepare("UPDATE stories SET state='READY' WHERE tenant=? AND id=? AND state='LEASED'").run(lease.tenantId, lease.storyId);
+      this.#db.prepare('DELETE FROM lease WHERE singleton=1 AND token=?').run(lease.token);
+    });
+  }
   /** Called by the trusted controller only AFTER its provider call has actually settled. */
   settle(lease:StoryLease,result:{outcome:'DRAFT'|'FAILED';outputHash?:string;providerSettled:true}):void {
     if(!lease||![lease.token,lease.tenantId,lease.storyId,lease.ownerId,lease.roleId].every(id)
