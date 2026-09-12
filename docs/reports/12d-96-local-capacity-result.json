@@ -1,0 +1,18 @@
+{
+  "kind": "SYNTHETIC_BACKLOG_CAPACITY_TEST",
+  "node": "v22.16.0",
+  "sqliteBackend": "node:sqlite",
+  "platform": "linux",
+  "requestedRows": 1000001,
+  "storedRows": 1000001,
+  "productStoriesCreated": 0,
+  "modelCalls": 0,
+  "insertionMs": 26012,
+  "lastPageReadMs": 0.229,
+  "pageSize": 100,
+  "dbBytes": 926896128,
+  "processRssMiB": 86.5,
+  "millionUsersProven": false,
+  "liveAgentsProven": false,
+  "createdAt": "2026-09-12T01:28:14.681Z"
+}
