@@ -12,6 +12,8 @@ export type AlignmentReplayStore = { reserve(key: string): boolean };
 export type AlignmentTrustContext = {
   tenantId: string; universeId: string; target: EcosystemTarget; issuerId: string; keyId: string;
   publicKeyPem: string; expectedSourceRevision: string; now: Date; maxClockSkewMs: number;
+  expectedHumanApprovalRef: string; expectedTermsDigest: string;
+  expectedDataPolicyDigest: string; expectedCapabilityEvidenceDigest: string;
   replayStore: AlignmentReplayStore;
 };
 const keys: readonly (keyof AlignmentReceiptPayload)[] = ['tenantId','universeId','target','issuerId','keyId','nonce','issuedAt','expiresAt','sourceRevision','participantOptIn','organizationAuthorized','humanApprovalRef','termsDigest','dataPolicyDigest','capabilityEvidenceDigest'];
@@ -35,6 +37,8 @@ export function evaluateAuthenticatedAlignment(c: AlignmentTrustContext, r: Sign
   if (expires < now) return deny(c.target, 'receipt_expired');
   if (!p.nonce || !p.humanApprovalRef) return deny(c.target, 'approval_or_nonce_missing');
   if (![p.termsDigest,p.dataPolicyDigest,p.capabilityEvidenceDigest].every((v) => /^[a-f0-9]{64}$/i.test(v))) return deny(c.target, 'evidence_digest_invalid');
+  if (p.humanApprovalRef !== c.expectedHumanApprovalRef) return deny(c.target, 'human_approval_mismatch');
+  if (p.termsDigest !== c.expectedTermsDigest || p.dataPolicyDigest !== c.expectedDataPolicyDigest || p.capabilityEvidenceDigest !== c.expectedCapabilityEvidenceDigest) return deny(c.target, 'evidence_digest_mismatch');
   if (!p.participantOptIn) return deny(c.target, 'participant_opt_in_required');
   if (!p.organizationAuthorized) return deny(c.target, 'organization_authority_required');
   const replayKey = [p.tenantId,p.universeId,p.issuerId,p.keyId,p.nonce].join(':');
