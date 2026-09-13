@@ -1,5 +1,8 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { assessDeviceParticipation, type DeviceParticipationInput } from './device-participation-assessment';
 import { validateDevicePilotEnrollment } from './device-pilot-enrollment';
 const now = 1_000_000;
@@ -146,4 +149,59 @@ test('assessment lifetime is capped by the earliest expiring dependency',()=>{
 test('returned policy report is immutable and omits identities and raw profile hashes',()=>{
  const r=assess();assert.ok(Object.isFrozen(r));assert.ok(Object.isFrozen(r.reasons));
  const s=JSON.stringify(r);assert.equal(s.includes('user-1'),false);assert.equal(s.includes('a'.repeat(64)),false);
+});
+// ---------------------------------------------------------------------------
+// Reconciliation (12D-96 queue lineage x 12D-97 consent assessment): the
+// consent assessment RIDES the queue lineage. Policy eligibility here is one
+// sequential gate; it is never admission, never a lease, never execution.
+// ---------------------------------------------------------------------------
+import { OfflineStoryQueue } from './offline-story-queue';
+import { SharedHostLeaseStore } from './shared-host-lease-store';
+import { SharedQueueAdmission, type SharedQueueContext } from './shared-queue-admission';
+import { OFFLINE_QUEUE_GUARDRAILS } from './work-queue';
+import { ENTERPRISE_WORKFORCE } from './enterprise-workforce';
+
+const qHostId = 'a'.repeat(32), qSource = 'b'.repeat(40), qPlan = 'c'.repeat(64);
+const qContext: SharedQueueContext = { tenantId: 'synthetic-tenant', holderInstanceId: 'synthetic-worker',
+  sourceCommit: qSource, approvedPlanSha256: qPlan, providerId: 'ollama', modelId: 'qwen2.5-coder:7b',
+  presenceEvidenceRef: 'fixture:presence' };
+const qStory = (id = 'story-1') => ({ id, tenantId: qContext.tenantId, roleId: 'node_backend',
+  objective: `Synthetic bounded draft ${id}`, acceptance: ['Must pass the fixture test'], dependencies: [],
+  sourceRevision: qSource, masterPlanSha256: qPlan, kind: 'PRODUCT_STORY' as const, securityClass: 'ORDINARY' as const });
+
+test('reconciliation: the queue-lineage invariants hold beneath the consent assessment',()=>{
+ assert.equal(OFFLINE_QUEUE_GUARDRAILS.productionWritesAllowed, false);
+ assert.equal(OFFLINE_QUEUE_GUARDRAILS.policyGateBypassAllowed, false);
+ assert.equal(OFFLINE_QUEUE_GUARDRAILS.humanDecision, 'REQUIRED');
+ // The consent assessment rode the 12D-96 queue lineage without forking the catalog.
+ assert.equal(ENTERPRISE_WORKFORCE.length, 100);
+});
+
+test('reconciliation: eligibility here is never admission there, and admission grants no execution either',()=>{
+ const r = assess();
+ assert.equal(r.status, 'POLICY_ELIGIBLE_NOT_STARTED');
+ assert.ok(r.mustObtainBeforeExecution.includes('shared host lease'), 'the assessment itself names the shared host lease as still required');
+ // The assessment result carries no lease, ticket or admission handle it could substitute.
+ for (const key of Object.keys(r)) assert.equal(/lease|ticket|admis|handle/i.test(key), false, `assessment carries authority-shaped field ${key}`);
+ // And even the queue lineage's own admission path — with a real queue and host —
+ // grants no execution authority; the two gates compose sequentially, neither suffices.
+ const dir = mkdtempSync(join(tmpdir(), 'xiv-dpa-recon-'));
+ try {
+  SharedHostLeaseStore.initialize(join(dir, 'host.sqlite'), qHostId);
+  const host = new SharedHostLeaseStore(join(dir, 'host.sqlite'), qHostId, () => now);
+  const queue = new OfflineStoryQueue(join(dir, 'queue.sqlite'), () => now);
+  queue.enqueue([qStory()]);
+  const admission = new SharedQueueAdmission(queue, host, qContext);
+  const admitted = admission.claimNext('node_backend');
+  assert.equal(admitted.status, 'ADMITTED_NOT_STARTED');
+  assert.equal(admitted.executionAuthorityGranted, false);
+  assert.equal(admitted.humanReviewRequired, true);
+  assert.equal(admitted.modelCallsMade, 0);
+  // Consent assessment on the admitted story's device remains assessment-only:
+  // the same POLICY_ELIGIBLE_NOT_STARTED result with zero authority either way.
+  const still = assess();
+  assert.equal(still.status, 'POLICY_ELIGIBLE_NOT_STARTED');
+  assert.equal(still.operationalAuthorizationGranted, false);
+  queue.close(); host.close();
+ } finally { rmSync(dir, { recursive: true, force: true }); }
 });

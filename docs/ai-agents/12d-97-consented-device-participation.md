@@ -63,3 +63,30 @@ ONNX hardware-specific execution providers: https://onnxruntime.ai/docs/executio
 GPS positioning/navigation/timing: https://www.gps.gov/gps
 
 These sources inform the design; no runtime/library is installed. Internet connectivity is not permission to execute on satellites. Source retrieval does not train the model or establish Starlink/AMD/ARM partnerships.
+
+---
+
+## Reconciliation note (2026-09-13, Claude Code integration)
+
+The implementer branch `chatgpt/12d-97-consented-device-participation` (MR !18) was built
+on the pre-queue base `1645a937` and sat PARALLEL to the 12D-96 queue lineage (MR !17,
+`chatgpt/12d-96-enterprise-workforce-queue` @ `1b65a2f7`) — 12D-98 explicitly did not
+merge it. Reconciled at integration commit `ac9d7868`: MR !18's content
+(`device-participation-assessment.{ts,test.ts,cli.ts}` + `12d-97.ts` + handoff) now rides
+the queue lineage on `claude/12d-99-supervised-local-worker`.
+
+Reconciliation verification (all green):
+- 33/33 assessment tests, including two new reconciliation tests: the queue-lineage
+  invariants hold beneath the assessment (`productionWritesAllowed: false`,
+  `policyGateBypassAllowed: false`; the 100-role enterprise catalog was NOT forked), and
+  a real OfflineStoryQueue + SharedHostLeaseStore + SharedQueueAdmission integration
+  proves eligibility here is never admission there — and even `ADMITTED_NOT_STARTED`
+  grants no execution authority (`executionAuthorityGranted: false`,
+  `humanReviewRequired: true`). The two gates compose sequentially; neither suffices.
+- The assessment carries no authority-shaped field (lease/ticket/admission/handle).
+- Alignment audit 9/9; neighboring suites (shared-host-admission, enterprise-workforce,
+  enterprise-authority-ladder) 49/49; full typecheck clean.
+- The only pre-existing conflict was the CI file; the implementer's
+  `atomic-workforce-plan` CI lines were NOT carried (those files exist only on the
+  implementer lineage). The device-participation test is wired as `npm run test:12d-97`.
+- MR !16's sparse-address catalog remains a separate design (unchanged, not summed).
