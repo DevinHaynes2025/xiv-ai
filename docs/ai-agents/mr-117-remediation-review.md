@@ -39,8 +39,14 @@ only.
   exit 0, speedup 9.94× (183.4 ms → 18.5 ms median), write-overhead 1.118×, migration
   320 ms, index ≈ 4.9 MB, plan flips to
   `SEARCH stories USING COVERING INDEX story_summary (tenant=?)`.
-- Full 2,000,000-row governed run: see the committed evidence when it lands in this
-  branch's docs (this reviewer executed it; result appended below when complete).
+- Full 2,000,000-row governed run (this reviewer, disposable copy, native exit 0,
+  anomalies `[]`): unindexed insertion 540.8 s vs indexed insertion 498.3 s
+  (write-overhead ratio 0.921 — this warm-cache run showed no insertion penalty; the
+  12D-103 cold drill's 607.9 s remains the cold reference), tenant summary
+  2,264.6 ms → 223.1 ms after governed migration (**10.15×**), fresh indexed-insert
+  summary 280.3 ms, migration 3.19 s, index ≈ 98.8 MB, plan flipped to
+  `SEARCH stories USING COVERING INDEX story_summary (tenant=?)`,
+  `billionUsersProven: false`, `realUserStories: 0`, `modelCalls: 0`.
 
 ## Honest limits
 
