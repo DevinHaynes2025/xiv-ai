@@ -16,6 +16,7 @@ import { agentMeetingNetworkStatus } from './runtime/agentmeetings';
 import { runExecutiveTurn } from './executive-turn';
 import { previewCommunityJoin } from './runtime/community/join-preview';
 import { previewFeedbackIntake, type FeedbackAudience } from './runtime/feedback/intake-preview';
+import { FEEDBACK_GOVERNANCE_STATUS } from './runtime/feedback/encrypted-ledger';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
@@ -166,6 +167,12 @@ const server = createServer((req, res) => {
       if (req.method === 'GET' && url.pathname === '/v1/business/executive-brief') {
         const user = await verifyAccessToken(req.headers.authorization);
         json(res, 200, await businessExecutiveBrief(user.id));
+        return;
+      }
+
+      if (req.method === 'GET' && url.pathname === '/v1/feedback/governance/status') {
+        await verifyAccessToken(req.headers.authorization);
+        json(res, 200, FEEDBACK_GOVERNANCE_STATUS);
         return;
       }
 
