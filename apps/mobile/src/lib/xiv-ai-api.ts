@@ -36,6 +36,7 @@ export type ExecutiveBriefResponse = {
   brief: ExecutiveBrief;
   connectionStatus: string;
 };
+export type CommunityJoinPreview = { status:'REVIEW_REQUIRED'; membershipCreated:false; accountsConnected:false; devicesControlled:false; earningsGuaranteed:false; partnerStatus:'NOT_CONFIGURED'; communityId:string; nextSteps:string[] };
 
 function friendlyMessage(code: string) {
   if (code === 'unauthorized') return 'Your session expired. Sign in again to use the agent.';
@@ -129,6 +130,14 @@ export async function requestExecutiveBrief(accessToken: string): Promise<Execut
     if (caught instanceof Error && caught.name === 'AbortError') throw new XivAiRequestError('timeout', friendlyMessage('timeout'));
     throw new XivAiRequestError('unreachable', friendlyMessage('unreachable'));
   } finally { settle(); }
+}
+
+export async function requestCommunityJoinPreview(accessToken:string,communityId:string):Promise<CommunityJoinPreview>{
+  const base=apiBaseUrl();if(!base)throw new XivAiRequestError('unreachable',friendlyMessage('unreachable'));
+  const response=await fetch(`${base}/v1/community/join/preview`,{method:'POST',headers:{Authorization:`Bearer ${accessToken}`,'Content-Type':'application/json'},body:JSON.stringify({communityId})});
+  const payload=await response.json().catch(()=>null) as CommunityJoinPreview|ErrorBody|null;
+  if(!response.ok||!payload||!('nextSteps'in payload)||!Array.isArray(payload.nextSteps)){const code=response.status===401?'unauthorized':'malformed';throw new XivAiRequestError(code,friendlyMessage(code));}
+  return payload;
 }
 
 export async function requestExecutiveTurn(input: {
