@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `b819bfe2`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `9e50d230`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
