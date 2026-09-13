@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/xiv/button';
@@ -11,7 +11,7 @@ import { SectionHeader } from '@/components/xiv/section-header';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
 import { useSession } from '@/hooks/use-session';
-import { requestFeedbackIntakePreview } from '@/lib/xiv-ai-api';
+import { requestFeedbackGovernanceStatus, requestFeedbackIntakePreview, type FeedbackGovernanceStatus } from '@/lib/xiv-ai-api';
 
 type Audience = 'CUSTOMER' | 'CONSUMER' | 'COMMUNITY';
 const audiences: Audience[] = ['CUSTOMER', 'CONSUMER', 'COMMUNITY'];
@@ -23,6 +23,13 @@ export function CommunityFeedback() {
   const [consented, setConsented] = useState(false);
   const [pending, setPending] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [governance, setGovernance] = useState<FeedbackGovernanceStatus | null>(null);
+
+  useEffect(() => {
+    const token = authSession?.access_token;
+    if (!token) return;
+    void requestFeedbackGovernanceStatus(token).then(setGovernance).catch(() => setGovernance(null));
+  }, [authSession?.access_token]);
 
   const submit = () => {
     const token = authSession?.access_token;
@@ -51,6 +58,11 @@ export function CommunityFeedback() {
         <Button label={consented ? '✓ Improvement review consented' : 'Allow improvement review'} variant={consented ? 'success' : 'secondary'} onPress={() => setConsented((value) => !value)} />
         <XivText variant="caption" muted>Consent covers this review candidate only. It does not authorize public sharing, profile inference, model training, account access, or commercial use.</XivText>
         <Button label={pending ? 'Preparing review…' : 'Prepare feedback review'} disabled={pending || feedback.trim().length < 10 || !consented} onPress={submit} />
+      </Card>
+      <Card style={styles.card}>
+        <XivText variant="subtitle">Privacy controls</XivText>
+        <XivText variant="body" muted>{governance ? `Encrypted adapter: ${governance.encryptedLocalAdapter} · Production storage: ${governance.productionStorage}` : 'Governance status unavailable; production storage must be treated as not configured.'}</XivText>
+        <XivText variant="caption" color={Palette.textDim}>Consent withdrawal uses an append-only tombstone. Physical deletion remains an operator-reviewed workflow; automatic pathway promotion and model training are disabled.</XivText>
       </Card>
       <Card style={styles.card}>
         <XivText variant="subtitle">Specialist team status</XivText>

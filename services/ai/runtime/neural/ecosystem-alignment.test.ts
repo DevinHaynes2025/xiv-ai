@@ -10,6 +10,7 @@ import {
   type AlignmentRequest,
 } from './ecosystem-alignment';
 import '../feedback/intake-preview.test';
+import '../feedback/encrypted-ledger.test';
 
 function test(name: string, run: () => void) {
   run();
