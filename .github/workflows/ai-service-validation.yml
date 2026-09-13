@@ -1,15 +1,18 @@
-name: AI service validation
+name: XIV full-stack validation
 
 on:
   pull_request:
     paths:
       - "services/ai/**"
+      - "apps/mobile/**"
       - ".github/workflows/ai-service-validation.yml"
   push:
     branches:
       - xiv-v2
+      - chatgpt/ceo-command-brief
     paths:
       - "services/ai/**"
+      - "apps/mobile/**"
       - ".github/workflows/ai-service-validation.yml"
   workflow_dispatch:
 
@@ -17,12 +20,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: ai-service-validation-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: xiv-validation-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate:
-    name: Typecheck and runtime contracts
+  ai-service:
+    name: Backend typecheck and runtime contracts
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -43,3 +46,24 @@ jobs:
         run: npm run typecheck
       - name: Runtime contracts
         run: npm run test:runtime
+
+  mobile:
+    name: Mobile lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Lint mobile experience
+        run: npm run lint
