@@ -14,6 +14,7 @@ import {
 } from './business-api';
 import { agentMeetingNetworkStatus } from './runtime/agentmeetings';
 import { runExecutiveTurn } from './executive-turn';
+import { previewCommunityJoin } from './runtime/community/join-preview';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
@@ -164,6 +165,17 @@ const server = createServer((req, res) => {
       if (req.method === 'GET' && url.pathname === '/v1/business/executive-brief') {
         const user = await verifyAccessToken(req.headers.authorization);
         json(res, 200, await businessExecutiveBrief(user.id));
+        return;
+      }
+
+      if (req.method === 'POST' && url.pathname === '/v1/community/join/preview') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        const raw = await readBody(req);
+        let body: { communityId?: unknown };
+        try { body = JSON.parse(raw) as { communityId?: unknown }; }
+        catch { throw new ServiceError('malformed', 400, 'The request could not be read.'); }
+        try { json(res, 200, previewCommunityJoin({userId:user.id,communityId:typeof body.communityId==='string'?body.communityId:''})); }
+        catch { throw new ServiceError('malformed', 400, 'The community request is invalid.'); }
         return;
       }
 

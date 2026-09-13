@@ -11,9 +11,12 @@ import { SectionHeader } from '@/components/xiv/section-header';
 import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
 import { professionalCommunities } from '@/data/mock';
+import { useSession } from '@/hooks/use-session';
+import { requestCommunityJoinPreview } from '@/lib/xiv-ai-api';
 
 export function CommunitiesNetwork() {
-  const [joined, setJoined] = useState<string[]>([]);
+  const { authSession } = useSession();
+  const [pending, setPending] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
 
   return (
@@ -22,7 +25,7 @@ export function CommunitiesNetwork() {
       <SectionHeader kicker="XIV circles" title="Where operators gather" />
       {note ? <EmptyState title="Preview only" body={note} ios="info.circle" android="info" /> : null}
       {professionalCommunities.map((item) => {
-        const member = joined.includes(item.id);
+        const member = false;
         return (
           <Card key={item.id} variant="elevated" style={styles.card}>
             <View style={styles.head}>
@@ -42,13 +45,8 @@ export function CommunitiesNetwork() {
               <Button
                 label={member ? 'In circle' : 'Request seat'}
                 variant={member ? 'secondary' : 'primary'}
-                onPress={() =>
-                  setJoined((current) =>
-                    current.includes(item.id)
-                      ? current.filter((id) => id !== item.id)
-                      : [...current, item.id],
-                  )
-                }
+                disabled={pending !== null}
+                onPress={() => { const token=authSession?.access_token;if(!token){setNote('Sign in again to request a governed membership review.');return;}setPending(item.id);void requestCommunityJoinPreview(token,item.id).then(result=>setNote(`${item.name}: ${result.status}. ${result.nextSteps.join(' · ')}. No membership or external account connection was created.`)).catch(()=>setNote('The membership preview is unavailable. Nothing was joined or connected.')).finally(()=>setPending(null)); }}
                 style={styles.action}
               />
               <Button
