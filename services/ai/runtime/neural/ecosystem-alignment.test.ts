@@ -22,6 +22,7 @@ import './alignment-key-rollback.test';
 import './alignment-trust-audit.test';
 import './alignment-audit-checkpoint.test';
 import './alignment-checkpoint-store.test';
+import './alignment-checkpoint-reconciliation.test';
 
 function test(name: string, run: () => void) {
   run();
