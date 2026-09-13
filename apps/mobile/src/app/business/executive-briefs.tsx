@@ -1,5 +1,5 @@
-import { WorkspaceExecutiveBriefs } from '@/screens/workspace';
+import { ExecutiveBriefScreen } from '@/screens/briefs/executive-brief';
 
 export default function BusinessExecutiveBriefs() {
-  return <WorkspaceExecutiveBriefs />;
+  return <ExecutiveBriefScreen />;
 }
