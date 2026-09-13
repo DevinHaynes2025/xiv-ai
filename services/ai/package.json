@@ -53,6 +53,8 @@
     "typecheck:12d-111": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/taskforce-expansion.ts runtime/offline-team/taskforce-expansion.test.ts",
     "test:12d-112": "tsx --test runtime/offline-team/external-tool-registry.test.ts",
     "typecheck:12d-112": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/external-tool-registry.ts runtime/offline-team/external-tool-registry.test.ts",
+    "test:12d-115": "tsx --test runtime/offline-team/control-tower-api.test.ts",
+    "typecheck:12d-115": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/control-tower-api.ts runtime/offline-team/control-tower-api.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
