@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import { generateKeyPairSync, sign } from 'node:crypto';
+import { createInMemoryAlignmentReplayStore, serializeAlignmentReceipt, type AlignmentReceiptPayload, type AlignmentTrustContext } from './alignment-receipt';
+import { buildAuthenticatedAlignmentReport } from './authenticated-alignment-report';
+
+const key=generateKeyPairSync('ed25519'),digest='a'.repeat(64);
+const payload:AlignmentReceiptPayload={tenantId:'t1',universeId:'u1',target:'EXPO',issuerId:'authority',keyId:'k1',nonce:'n1',issuedAt:'2026-09-13T04:00:00Z',expiresAt:'2026-09-13T05:00:00Z',sourceRevision:'r1',participantOptIn:true,organizationAuthorized:true,humanApprovalRef:'approval-1',termsDigest:digest,dataPolicyDigest:digest,capabilityEvidenceDigest:digest};
+const receipt=(p=payload)=>({payload:p,signature:sign(null,Buffer.from(serializeAlignmentReceipt(p)),key.privateKey).toString('base64')});
+const context=():AlignmentTrustContext=>({tenantId:'t1',universeId:'u1',target:'EXPO',issuerId:'authority',keyId:'k1',publicKeyPem:key.publicKey.export({type:'spki',format:'pem'}).toString(),expectedSourceRevision:'r1',expectedHumanApprovalRef:'approval-1',expectedTermsDigest:digest,expectedDataPolicyDigest:digest,expectedCapabilityEvidenceDigest:digest,now:new Date('2026-09-13T04:30:00Z'),maxClockSkewMs:30000,replayStore:createInMemoryAlignmentReplayStore(),mode:'TEST',revokedKeyIds:new Set(),revokedApprovalRefs:new Set(),participantConsentActive:true,organizationAuthorityActive:true});
+
+const empty=buildAuthenticatedAlignmentReport([]);assert.equal(empty.summary.configuredCount,0);assert.equal(empty.summary.partnershipCount,0);
+const configured=buildAuthenticatedAlignmentReport([{context:context(),receipt:receipt()}]);
+assert.equal(configured.summary.configuredCount,1);assert.equal(configured.targets.find((item)=>item.target==='EXPO')?.state,'CONFIGURED');
+assert.equal(configured.targets.find((item)=>item.target==='EXPO')?.productionLive,false);assert.equal(configured.targets.find((item)=>item.target==='EXPO')?.partnershipClaimed,false);assert.equal(configured.targets.find((item)=>item.target==='EXPO')?.installedOnDevices,false);
+const forgedScope=buildAuthenticatedAlignmentReport([{context:{...context(),tenantId:'t2'},receipt:receipt()}]);assert.equal(forgedScope.summary.configuredCount,0);
+const duplicate=buildAuthenticatedAlignmentReport([{context:context(),receipt:receipt()},{context:context(),receipt:receipt({...payload,nonce:'n2'})}]);assert.equal(duplicate.summary.configuredCount,0);assert.equal(duplicate.targets.find((item)=>item.target==='EXPO')?.reason,'duplicate_target_evidence');
+const operational=buildAuthenticatedAlignmentReport([{context:{...context(),mode:'OPERATIONAL'},receipt:receipt()}]);assert.equal(operational.summary.configuredCount,0);
+console.log('Authenticated alignment report contracts: OK');
