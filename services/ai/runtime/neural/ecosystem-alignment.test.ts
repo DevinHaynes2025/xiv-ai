@@ -25,6 +25,7 @@ import './alignment-checkpoint-store.test';
 import './alignment-checkpoint-reconciliation.test';
 import './reconciled-alignment-report.test';
 import './alignment-runtime-report.test';
+import './local-alignment-runtime-source.test';
 
 function test(name: string, run: () => void) {
   run();
