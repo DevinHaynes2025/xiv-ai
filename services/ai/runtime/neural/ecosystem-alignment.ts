@@ -107,6 +107,7 @@ export function pathwayTargetIsCurrentCapacity(): false {
 
 export const ECOSYSTEM_ALIGNMENT_PROTOCOL = {
   version: '1.0.0',
+  evidenceMode: 'SIGNED_RECEIPTS_ONLY',
   authorityPath: ['Authenticated actor', 'Tenant + Universe', 'Guardian policy', 'Consent + terms', 'Capability evidence', 'Human approval', 'Audit receipt'],
   universalInstallationClaimed: false,
   vendorPartnershipsClaimed: false,
@@ -123,6 +124,10 @@ const TARGET_LAYERS: Record<EcosystemTarget, EcosystemLayer> = {
   ANDROID:'DEVICE_OS', IOS:'DEVICE_OS', AMD:'OEM_HARDWARE', ASUS:'OEM_HARDWARE', SAMSUNG:'OEM_HARDWARE', APPLE_DEVICE:'OEM_HARDWARE',
   GENERIC_AI_TOOL:'CHIP_OR_GENERIC_TARGET', GENERIC_AI_CHIP:'CHIP_OR_GENERIC_TARGET', GENERIC_DIGITAL_DEVICE:'CHIP_OR_GENERIC_TARGET',
 };
+
+export function ecosystemLayerFor(target: EcosystemTarget): EcosystemLayer {
+  return TARGET_LAYERS[target];
+}
 
 export function ecosystemAlignmentReport() {
   return {
