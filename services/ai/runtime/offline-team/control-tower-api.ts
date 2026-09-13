@@ -19,7 +19,7 @@
  * fail-closed: any malformed, cross-tenant, oversized, or field-inventing result yields
  * a 503 envelope, never a partial or repaired payload.
  */
-import { CONTROL_TOWER_GUARDRAILS } from './control-tower-evidence';
+import { CONTROL_TOWER_GUARDRAILS, CONTROL_TOWER_POLICY } from './control-tower-evidence';
 import type { ControlTowerEvidencePacket } from './control-tower-evidence';
 
 export type SnapshotQueueState = 'READY' | 'LEASED' | 'AWAITING_REVIEW' | 'DONE' | 'FAILED';
@@ -169,14 +169,67 @@ function validateQueueSummary(value: unknown, tenantId: string): QueueSummaryVie
   return q as unknown as QueueSummaryView;
 }
 
+const CONTROL_TOWER_PACKET_KEYS: readonly string[] = ['kind', 'tenantId', 'generatedAtMs', 'pathway', 'devices', 'evidenceRefs', 'guardrails'];
+const PATHWAY_KEYS: readonly string[] = ['packetsConsidered', 'uniqueStories', 'eligibleNow', 'blocked', 'topBlockReasons', 'humanActionsRequired'];
+const DEVICES_KEYS: readonly string[] = ['assessmentsConsidered', 'byState', 'observedLocalWorkers', 'workersStartedByThisSurface'];
+const DEVICE_STATES: readonly string[] = [
+  'ENROLLED_NOT_ACTIVE', 'ELIGIBLE_FOR_LOCAL_TASKS', 'PAUSED', 'REVOKED', 'EXPIRED', 'UNVERIFIED_COMPATIBILITY',
+];
+
+/**
+ * Exact-shape, fail-closed validation of a caller-provided CONTROL_TOWER_EVIDENCE packet.
+ * A packet with any invented, missing, or inconsistent field is a fabrication attempt and
+ * yields provider_invalid — nothing is served (including on the aggregate /snapshot route).
+ */
 function validateControlTowerPacket(value: unknown, tenantId: string): ControlTowerEvidencePacket {
-  if (!value || typeof value !== 'object') throw new Error('control-tower packet must be an object');
-  const p = value as Record<string, unknown>;
+  const p = exactShape(value, CONTROL_TOWER_PACKET_KEYS, 'control-tower packet');
   if (p.kind !== 'CONTROL_TOWER_EVIDENCE') throw new Error('unexpected control-tower packet kind');
   validateTenant(p.tenantId, tenantId, 'control-tower packet');
   if (!nonNegativeMs(p.generatedAtMs)) throw new Error('control-tower packet timestamp invalid');
   if (JSON.stringify(p.guardrails) !== JSON.stringify(CONTROL_TOWER_GUARDRAILS)) {
     throw new Error('control-tower packet violates control-tower guardrails');
+  }
+  const pathway = exactShape(p.pathway, PATHWAY_KEYS, 'control-tower pathway view');
+  if (!count(pathway.packetsConsidered) || !count(pathway.uniqueStories) || !count(pathway.eligibleNow) || !count(pathway.blocked)) {
+    throw new Error('control-tower pathway counts invalid');
+  }
+  if (pathway.packetsConsidered > CONTROL_TOWER_POLICY.maxPathwayPackets) throw new Error('control-tower pathway view exceeds packet ceiling');
+  if (pathway.uniqueStories > pathway.packetsConsidered) throw new Error('control-tower pathway uniqueStories exceeds packetsConsidered');
+  if (pathway.eligibleNow + pathway.blocked !== pathway.packetsConsidered) throw new Error('control-tower pathway counts are inconsistent');
+  if (!Array.isArray(pathway.topBlockReasons) || pathway.topBlockReasons.length > CONTROL_TOWER_POLICY.maxPathwayPackets) {
+    throw new Error('control-tower top block reasons invalid');
+  }
+  for (const entry of pathway.topBlockReasons) {
+    const e = exactShape(entry, ['reason', 'count'], 'control-tower block reason');
+    if (typeof e.reason !== 'string' || e.reason.trim().length === 0 || e.reason.length > 256 || !count(e.count)) {
+      throw new Error('control-tower block reason invalid');
+    }
+  }
+  if (!Array.isArray(pathway.humanActionsRequired) || pathway.humanActionsRequired.length > CONTROL_TOWER_POLICY.maxPathwayPackets) {
+    throw new Error('control-tower human actions list invalid');
+  }
+  for (const action of pathway.humanActionsRequired) {
+    if (typeof action !== 'string' || action.trim().length === 0 || action.length > 256) throw new Error('control-tower human action invalid');
+  }
+  const devices = exactShape(p.devices, DEVICES_KEYS, 'control-tower device view');
+  if (!count(devices.assessmentsConsidered) || !count(devices.observedLocalWorkers)) throw new Error('control-tower device counts invalid');
+  if (devices.assessmentsConsidered > CONTROL_TOWER_POLICY.maxDeviceAssessments) throw new Error('control-tower device view exceeds assessment ceiling');
+  if (devices.observedLocalWorkers > devices.assessmentsConsidered) throw new Error('control-tower observedLocalWorkers exceeds assessmentsConsidered');
+  if (devices.workersStartedByThisSurface !== 0) throw new Error('control-tower surface cannot have started workers');
+  const byState = exactShape(devices.byState, DEVICE_STATES, 'control-tower device states');
+  let stateTotal = 0;
+  for (const s of DEVICE_STATES) {
+    if (!count(byState[s])) throw new Error(`control-tower device state count invalid: ${s}`);
+    stateTotal += byState[s];
+  }
+  if (stateTotal !== devices.assessmentsConsidered) throw new Error('control-tower device state counts are inconsistent');
+  if (!Array.isArray(p.evidenceRefs) || p.evidenceRefs.length > CONTROL_TOWER_POLICY.maxEvidenceRefs) {
+    throw new Error('control-tower evidence refs invalid');
+  }
+  for (const evidenceRef of p.evidenceRefs) {
+    if (typeof evidenceRef !== 'string' || evidenceRef.trim().length === 0 || evidenceRef.length > 256) {
+      throw new Error('control-tower evidence ref invalid');
+    }
   }
   return value as ControlTowerEvidencePacket;
 }

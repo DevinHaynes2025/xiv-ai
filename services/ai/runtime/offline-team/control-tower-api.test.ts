@@ -23,7 +23,12 @@ const controlTowerPacket = () => ({
   tenantId: TENANT,
   generatedAtMs: 1_700_000_000_000,
   pathway: { packetsConsidered: 0, uniqueStories: 0, eligibleNow: 0, blocked: 0, topBlockReasons: [], humanActionsRequired: [] },
-  devices: { assessmentsConsidered: 0, byState: {}, observedLocalWorkers: 0, workersStartedByThisSurface: 0 },
+  devices: {
+    assessmentsConsidered: 0,
+    byState: { ENROLLED_NOT_ACTIVE: 0, ELIGIBLE_FOR_LOCAL_TASKS: 0, PAUSED: 0, REVOKED: 0, EXPIRED: 0, UNVERIFIED_COMPATIBILITY: 0 },
+    observedLocalWorkers: 0,
+    workersStartedByThisSurface: 0,
+  },
   evidenceRefs: [],
   guardrails: CONTROL_TOWER_GUARDRAILS,
 });
@@ -172,6 +177,33 @@ test('bounded providers: oversized, inconsistent, cross-tenant, and field-invent
   assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), guardrails: { ...CONTROL_TOWER_GUARDRAILS, humanDecision: 'AUTOMATIC' } }) }, '/control-tower/evidence').status, 503);
   assert.equal(attempt({ storageFeedSnapshot: () => storageFeed({ exportableOffLocalPlane: 3 }) }, '/control-tower/storage-feed').status, 503);
   assert.equal(attempt({ storageFeedSnapshot: () => storageFeed({ artifactsByTier: { LOCAL: SNAPSHOT_API_POLICY.maxArtifactsInView + 1, OFFLINE_CARRIER: 0, CLOUD: 0 } }) }, '/control-tower/storage-feed').status, 503);
+});
+
+test('regression (independent review): a fabricated control-tower packet is never served — exact-shape and consistency', () => {
+  const attempt = (provider: Record<string, unknown>, path = '/control-tower/evidence') =>
+    get(build({ providers: makeProviders(provider) }), path);
+  // The exact live probe from the independent review: invented flags rode through as 200.
+  const fabricated = {
+    ...controlTowerPacket(),
+    liveAgentCount: 5,
+    realUserStories: 999,
+    observedLocalWorkers: 4,
+  };
+  assert.equal(attempt({ controlTowerPacket: () => fabricated }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => fabricated }, '/control-tower/snapshot').status, 503);
+  // Missing or renamed fields are equally refused.
+  const { evidenceRefs: _dropped, ...missingField } = controlTowerPacket();
+  assert.equal(attempt({ controlTowerPacket: () => missingField }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), extra: true }) }).status, 503);
+  // Internal inconsistencies the builder cannot produce.
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), pathway: { ...controlTowerPacket().pathway, eligibleNow: 2, blocked: 1, packetsConsidered: 2 } }) }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), devices: { ...controlTowerPacket().devices, workersStartedByThisSurface: 1 } }) }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), devices: { ...controlTowerPacket().devices, byState: { ...controlTowerPacket().devices.byState, PAUSED: 3 } } }) }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), devices: { ...controlTowerPacket().devices, observedLocalWorkers: 1 } }) }).status, 503);
+  assert.equal(attempt({ controlTowerPacket: () => ({ ...controlTowerPacket(), evidenceRefs: Array.from({ length: 9 }, (_, i) => `ref-${i}`) }) }).status, 503);
+  // A well-formed packet still serves on both routes.
+  assert.equal(attempt({ controlTowerPacket: () => controlTowerPacket() }).status, 200);
+  assert.equal(attempt({ controlTowerPacket: () => controlTowerPacket() }, '/control-tower/snapshot').status, 200);
 });
 
 test('fail-closed on provider throw or malformed results, and error payloads keep the honest flags', () => {
