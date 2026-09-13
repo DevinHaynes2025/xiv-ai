@@ -36,8 +36,8 @@ export function CommunitiesNetwork() {
         <XivText variant="subtitle">Tools, agents, devices, and chips</XivText>
         <XivText variant="body" muted>{alignment ? `${alignment.summary.targetCount} targets · ${alignment.summary.configuredCount} signed/configured · ${alignment.summary.productionLiveCount} production-live · ${alignment.summary.partnershipCount} partnerships` : 'Alignment evidence unavailable; all external targets must be treated as not configured.'}</XivText>
         {alignment ? <View style={styles.assuranceGrid}>
-          <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>TRUST STORE</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.trustStore.replace('_',' ')}</XivText></View>
-          <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>AUDIT CHAIN</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.auditChain.replace('_',' ')}</XivText></View>
+          <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>TRUST STORE</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.trustStore.split('_').join(' ')}</XivText></View>
+          <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>AUDIT CHAIN</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.auditChain.split('_').join(' ')}</XivText></View>
           <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>REVIEW</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.independentReview}</XivText></View>
           <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>PRODUCTION</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.productionActivation}</XivText></View>
         </View> : null}
