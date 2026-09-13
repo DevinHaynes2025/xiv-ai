@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 6)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 7)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `c522187b`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `13c9b528`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -15,7 +15,10 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   100 workforce roles; the parallel 12D-97 consent-assessment lineage (MR !18) is
   RECONCILED onto the queue lineage (MR !17) — eligibility is never admission;
   a stray `<<<<<<< HEAD` conflict marker the reconciliation cherry-pick left in
-  `.gitlab-ci.yml` is fixed (file now parses clean)).
+  `.gitlab-ci.yml` is fixed (file now parses clean); 12D-119 built the tenant-routing
+  ADOPTION layer — the reviewed adapter that makes 12D-109's advisory routing operative
+  over caller-provisioned local shard queues, receipt-gated at adoption and at every
+  onboarding, with the measured 2,000,000-row per-shard ceiling enforced).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -85,17 +88,21 @@ debt paydown (136/136 frozen + humanDecision; ledger empty; audit green), 12D-11
 L0–L5 authority-ladder mapping over all 100 workforce roles (adversarially verified,
 conservative refute-downs applied; L4 never assigned), 12D-97 reconciliation
 (MR !18's device-participation consent assessment now rides the MR !17 queue lineage;
-33/33 tests including the eligibility-never-admission integration proof).
+33/33 tests including the eligibility-never-admission integration proof), 12D-119
+tenant-routing adoption (`tenant-routed-queue.ts`: receipt-gated adoption, no database
+materialized by the facade, per-shard singleton leases unchanged, aggregate shard
+ceiling enforced; 5/5 tests, typecheck green, adversarial review applied).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
 renews the host lease AND extends the queue lease on the same 4s maintenance interval
 (`admission.renew(ticket)` + `admission.renewQueueLease(ticket,
 SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12D-102's
-total-life cap (base + OFFLINE_QUEUE_POLICY.maxLeaseMs), and the run packet honestly
+total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern.
+concern. Next rung on the scale ladder after 12D-119: regional service cells (not
+built; needs its own measured evidence).
 
 ## 6. Roles
 
