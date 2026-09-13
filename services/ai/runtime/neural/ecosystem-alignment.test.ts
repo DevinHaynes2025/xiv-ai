@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import './alignment-receipt.test';
+import '../community/join-preview.test';
 import {
   ECOSYSTEM_TARGETS,
   LOGICAL_PATHWAY_TARGET,
