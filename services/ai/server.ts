@@ -15,6 +15,7 @@ import {
 import { agentMeetingNetworkStatus } from './runtime/agentmeetings';
 import { runExecutiveTurn } from './executive-turn';
 import { previewCommunityJoin } from './runtime/community/join-preview';
+import { previewFeedbackIntake, type FeedbackAudience } from './runtime/feedback/intake-preview';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
@@ -176,6 +177,25 @@ const server = createServer((req, res) => {
         catch { throw new ServiceError('malformed', 400, 'The request could not be read.'); }
         try { json(res, 200, previewCommunityJoin({userId:user.id,communityId:typeof body.communityId==='string'?body.communityId:''})); }
         catch { throw new ServiceError('malformed', 400, 'The community request is invalid.'); }
+        return;
+      }
+
+      if (req.method === 'POST' && url.pathname === '/v1/feedback/intake/preview') {
+        const user = await verifyAccessToken(req.headers.authorization);
+        const raw = await readBody(req);
+        let body: { audience?: unknown; feedback?: unknown; improvementConsent?: unknown };
+        try { body = JSON.parse(raw) as typeof body; }
+        catch { throw new ServiceError('malformed', 400, 'The request could not be read.'); }
+        try {
+          json(res, 200, previewFeedbackIntake({
+            userId: user.id,
+            audience: body.audience as FeedbackAudience,
+            feedback: typeof body.feedback === 'string' ? body.feedback : '',
+            improvementConsent: body.improvementConsent === true,
+          }, { tenantId: 'xiv-community-preview', universeId: 'xiv-public-preview' }));
+        } catch {
+          throw new ServiceError('malformed', 400, 'Feedback must be 10–2,000 characters and explicitly consented for improvement review.');
+        }
         return;
       }
 

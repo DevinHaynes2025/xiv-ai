@@ -9,6 +9,7 @@ import {
   pathwayTargetIsCurrentCapacity,
   type AlignmentRequest,
 } from './ecosystem-alignment';
+import '../feedback/intake-preview.test';
 
 function test(name: string, run: () => void) {
   run();

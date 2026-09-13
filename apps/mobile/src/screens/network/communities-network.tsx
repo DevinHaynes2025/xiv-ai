@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { router } from 'expo-router';
 
 import { Button } from '@/components/xiv/button';
 import { Card } from '@/components/xiv/card';
@@ -23,6 +24,12 @@ export function CommunitiesNetwork() {
     <ExperienceScreen title="Communities" subtitle="Closed professional circles, not public forums.">
       <PrototypeNotice text="Membership, rosters, and threads are DEMO. Joining a circle stays on this device and does not write to Supabase." />
       <SectionHeader kicker="XIV circles" title="Where operators gather" />
+      <Card variant="elevated" style={styles.card}>
+        <XivText variant="label" color={Palette.accent}>COMMUNITY INTELLIGENCE</XivText>
+        <XivText variant="subtitle">Help shape what XIV builds next</XivText>
+        <XivText variant="body" muted>Your feedback can become a human-reviewed improvement candidate. It never silently trains a model.</XivText>
+        <Button label="Share governed feedback" onPress={() => router.push('/consumer/feedback')} />
+      </Card>
       {note ? <EmptyState title="Preview only" body={note} ios="info.circle" android="info" /> : null}
       {professionalCommunities.map((item) => {
         const member = false;
