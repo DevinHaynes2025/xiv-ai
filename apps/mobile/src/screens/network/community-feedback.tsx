@@ -62,7 +62,7 @@ export function CommunityFeedback() {
       <Card style={styles.card}>
         <XivText variant="subtitle">Privacy controls</XivText>
         <XivText variant="body" muted>{governance ? `Encrypted adapter: ${governance.encryptedLocalAdapter} · Production storage: ${governance.productionStorage}` : 'Governance status unavailable; production storage must be treated as not configured.'}</XivText>
-        <XivText variant="caption" color={Palette.textDim}>Consent withdrawal uses an append-only tombstone. Physical deletion remains an operator-reviewed workflow; automatic pathway promotion and model training are disabled.</XivText>
+        <XivText variant="caption" color={Palette.textDim}>Consent withdrawal uses an append-only tombstone. Moderation requires a signed independent review. Physical deletion remains an operator-reviewed workflow; automatic pathway promotion and model training are disabled.</XivText>
       </Card>
       <Card style={styles.card}>
         <XivText variant="subtitle">Specialist team status</XivText>

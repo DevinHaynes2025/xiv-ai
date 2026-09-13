@@ -11,6 +11,7 @@ import {
 } from './ecosystem-alignment';
 import '../feedback/intake-preview.test';
 import '../feedback/encrypted-ledger.test';
+import '../feedback/moderation-receipt.test';
 
 function test(name: string, run: () => void) {
   run();

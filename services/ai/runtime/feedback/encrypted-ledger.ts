@@ -23,6 +23,8 @@ export const FEEDBACK_GOVERNANCE_STATUS = {
   physicalDeletion: 'OPERATOR_WORKFLOW_REQUIRED' as const,
   automaticPathwayPromotion: false as const,
   modelWeightTraining: false as const,
+  moderationReceipts: 'SIGNED_INDEPENDENT_REVIEW' as const,
+  deletionExecution: 'DISABLED' as const,
 };
 
 function validateId(value: string, name: string) {
