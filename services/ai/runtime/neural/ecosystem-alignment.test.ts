@@ -19,6 +19,7 @@ import './alignment-evidence-ledger.test';
 import './alignment-key-rotation.test';
 import './alignment-trust-store.test';
 import './alignment-key-rollback.test';
+import './alignment-trust-audit.test';
 
 function test(name: string, run: () => void) {
   run();
