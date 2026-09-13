@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './alignment-receipt.test';
 import {
   ECOSYSTEM_TARGETS,
   LOGICAL_PATHWAY_TARGET,
@@ -79,4 +80,3 @@ test('pathway goal is sparse and never reported as measured capacity', () => {
 });
 
 console.log('Ecosystem alignment contracts: OK');
-
