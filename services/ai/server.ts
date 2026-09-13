@@ -17,7 +17,7 @@ import { runExecutiveTurn } from './executive-turn';
 import { previewCommunityJoin } from './runtime/community/join-preview';
 import { previewFeedbackIntake, type FeedbackAudience } from './runtime/feedback/intake-preview';
 import { FEEDBACK_GOVERNANCE_STATUS } from './runtime/feedback/encrypted-ledger';
-import { ecosystemAlignmentReport } from './runtime/neural/ecosystem-alignment';
+import { buildAuthenticatedAlignmentReport } from './runtime/neural/authenticated-alignment-report';
 import { geminiModelName, isGeminiKeyConfigured } from './gemini-provider';
 import type { ApprovedDataContext, OrganizationContext } from './types';
 
@@ -179,7 +179,7 @@ const server = createServer((req, res) => {
 
       if (req.method === 'GET' && url.pathname === '/v1/ecosystem/alignment/report') {
         await verifyAccessToken(req.headers.authorization);
-        json(res, 200, ecosystemAlignmentReport());
+        json(res, 200, buildAuthenticatedAlignmentReport([]));
         return;
       }
 
