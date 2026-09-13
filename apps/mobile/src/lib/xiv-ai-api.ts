@@ -17,6 +17,26 @@ export type AiServiceProbe = {
   reachable: boolean;
 };
 
+export type ExecutiveBrief = {
+  generatedAt: string;
+  dataStatus: 'live' | 'unavailable' | 'not_configured' | 'stale' | 'prototype';
+  freshnessSummary: string;
+  topRisks: string[];
+  topOpportunities: string[];
+  criticalChanges: string[];
+  recommendedPriorities: string[];
+  decisionsAwaitingApproval: string[];
+  confidence: 'low' | 'medium' | 'high';
+  sources: string[];
+  financialImpactClaimed: false;
+  financialImpactNote: string;
+};
+
+export type ExecutiveBriefResponse = {
+  brief: ExecutiveBrief;
+  connectionStatus: string;
+};
+
 function friendlyMessage(code: string) {
   if (code === 'unauthorized') return 'Your session expired. Sign in again to use the agent.';
   if (code === 'timeout') return 'The request timed out. Try again.';
@@ -83,6 +103,32 @@ export async function probeAiService(): Promise<AiServiceProbe> {
   } catch {
     return { reachable: false };
   }
+}
+
+export async function requestExecutiveBrief(accessToken: string): Promise<ExecutiveBriefResponse> {
+  const base = apiBaseUrl();
+  if (!base) throw new XivAiRequestError('unreachable', friendlyMessage('unreachable'));
+  const { controller, settle } = withAbortTimer(TURN_TIMEOUT_MS);
+  try {
+    const response = await fetch(`${base}/v1/business/executive-brief`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+      signal: controller.signal,
+    });
+    const payload = (await response.json().catch(() => null)) as ExecutiveBriefResponse | ErrorBody | null;
+    if (!response.ok) {
+      const raw = payload && 'error' in payload ? payload.error?.code : undefined;
+      const code = mapServerError(raw ?? (response.status === 401 ? 'unauthorized' : 'unavailable'));
+      throw new XivAiRequestError(code, friendlyMessage(code));
+    }
+    if (!payload || !('brief' in payload) || !payload.brief || !Array.isArray(payload.brief.recommendedPriorities)) {
+      throw new XivAiRequestError('malformed', friendlyMessage('malformed'));
+    }
+    return payload;
+  } catch (caught) {
+    if (caught instanceof XivAiRequestError) throw caught;
+    if (caught instanceof Error && caught.name === 'AbortError') throw new XivAiRequestError('timeout', friendlyMessage('timeout'));
+    throw new XivAiRequestError('unreachable', friendlyMessage('unreachable'));
+  } finally { settle(); }
 }
 
 export async function requestExecutiveTurn(input: {
