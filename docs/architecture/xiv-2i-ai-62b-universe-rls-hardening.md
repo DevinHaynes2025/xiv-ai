@@ -62,6 +62,11 @@ The migration also adds what the tables were missing relative to conventions alr
 
 ## Verification
 
+GitHub validation for this change is intentionally stacked on the draft AI-service
+workflow branch. The stack keeps the RLS diff isolated while exercising the same
+locked install, TypeScript, and runtime-test gates proposed for `xiv-v2`. Neither
+draft is a production authorization or permission to apply the migration.
+
 Executed against PostgreSQL 16 with the real migrations applied, not asserted from reading:
 
 | Check | Result |
