@@ -15,6 +15,7 @@ import '../feedback/intake-preview.test';
 import '../feedback/encrypted-ledger.test';
 import '../feedback/moderation-receipt.test';
 import './authenticated-alignment-report.test';
+import './alignment-evidence-ledger.test';
 
 function test(name: string, run: () => void) {
   run();
