@@ -41,6 +41,7 @@ export function CommunitiesNetwork() {
           <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>REVIEW</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.independentReview}</XivText></View>
           <View style={styles.assuranceItem}><XivText variant="caption" color={Palette.textDim}>PRODUCTION</XivText><XivText variant="label" color={Palette.accent}>{alignment.assurance.productionActivation}</XivText></View>
         </View> : null}
+        {alignment ? <View style={styles.layerList}>{alignment.layers.map((layer)=><View key={layer.layer} style={styles.layerRow}><XivText variant="caption" color={Palette.textMuted}>{layer.layer.split('_').join(' ')}</XivText><XivText variant="caption" color={layer.configured>0?Palette.success:Palette.textDim}>{layer.configured}/{layer.total} configured · {layer.reviewRequired} review</XivText></View>)}</View> : null}
         <XivText variant="caption" color={Palette.accent}>Status upgrades require signed, scoped, fresh, replay-protected evidence.</XivText>
         <XivText variant="caption" color={Palette.textDim}>Expo · Lovable · GitHub · GitLab · Claude · Ollama · Android · iOS · AMD · ASUS · Samsung · Apple · generic tools, chips, and devices. Targets are not partnerships or installations.</XivText>
       </Card>
@@ -113,4 +114,6 @@ const styles = StyleSheet.create({
   },
   assuranceGrid:{flexDirection:'row',flexWrap:'wrap',gap:Spacing.two},
   assuranceItem:{width:'47%',gap:Spacing.one},
+  layerList:{gap:Spacing.one},
+  layerRow:{flexDirection:'row',justifyContent:'space-between',gap:Spacing.two},
 });
