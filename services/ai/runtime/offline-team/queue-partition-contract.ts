@@ -124,7 +124,8 @@ export function tenantHash(tenantId: string): number {
 const isKnownEpoch = (epoch: unknown): epoch is string =>
   typeof epoch === 'string' && (PARTITION_POLICY.routingEpochs as readonly string[]).includes(epoch);
 
-function assertRouting(routing: QueueRouting): void {
+/** Exported in 12D-120 so the regional-cell contract validates routings identically. */
+export function assertRouting(routing: QueueRouting): void {
   if (!routing || !isKnownEpoch(routing.epoch)) throw new Error('unknown routing epoch; refusing to route');
   if (!safeInt(routing.shardCount) || routing.shardCount < 1 || routing.shardCount > PARTITION_POLICY.maxShards)
     throw new Error('shard count outside policy bounds');
@@ -139,7 +140,8 @@ function assertRouting(routing: QueueRouting): void {
   }
 }
 
-function assertRowBudget(rowBudget: unknown): asserts rowBudget is number {
+/** Exported in 12D-120 so the regional-cell contract validates budgets identically. */
+export function assertRowBudget(rowBudget: unknown): asserts rowBudget is number {
   if (!safeInt(rowBudget) || rowBudget < 1 || rowBudget > PARTITION_POLICY.maxRowBudgetPerTenant)
     throw new Error('tenant row budget must be a measured, bounded positive integer');
 }

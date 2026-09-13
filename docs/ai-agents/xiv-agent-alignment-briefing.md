@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 7)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 8)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -18,7 +18,11 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   `.gitlab-ci.yml` is fixed (file now parses clean); 12D-119 built the tenant-routing
   ADOPTION layer — the reviewed adapter that makes 12D-109's advisory routing operative
   over caller-provisioned local shard queues, receipt-gated at adoption and at every
-  onboarding, with the measured 2,000,000-row per-shard ceiling enforced).
+  onboarding, with the measured 2,000,000-row per-shard ceiling enforced); 12D-120 built
+  the regional-cell placement CONTRACT (pure, materializes-nothing grouping of a 12D-109
+  routing into ≤16 cells via deterministic shardId%cellCount; adversarially reviewed
+  before commit — 9 confirmed findings incl. 3 BLOCKING paid down, construction now
+  runs 12D-109's own exported validators and self-checks its packet).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -91,7 +95,15 @@ conservative refute-downs applied; L4 never assigned), 12D-97 reconciliation
 33/33 tests including the eligibility-never-admission integration proof), 12D-119
 tenant-routing adoption (`tenant-routed-queue.ts`: receipt-gated adoption, no database
 materialized by the facade, per-shard singleton leases unchanged, aggregate shard
-ceiling enforced; 5/5 tests, typecheck green, adversarial review applied).
+ceiling enforced; 5/5 tests, typecheck green, adversarial review applied), 12D-120
+regional-cell placement contract (`regional-cell-contract.ts`: deterministic
+shardId%cellCount grouping of a 12D-109 routing into ≤16 cells, pure and
+materializes-nothing, the measured 2,000,000-per-database ceiling as the ONLY measured
+number, fail-closed invariant detection; 7/7 tests, typecheck green, adversarial review
+applied: 9 confirmed findings (3 BLOCKING — foreign-shard placement, missing
+ceiling/budget validation, skipped routing validation — all fixed before commit; 1
+refuted finding discarded and disclosed; one residual cellCount-tamper class disclosed
+in the handoff).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -101,8 +113,9 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rung on the scale ladder after 12D-119: regional service cells (not
-built; needs its own measured evidence).
+concern. Next rung on the scale ladder after 12D-120: the distributed event + storage
+plane (not built; needs its own measured evidence), and a separately-reviewed cell
+ADOPTION layer if regional cells ever move from contract to operator-adopted routing.
 
 ## 6. Roles
 
