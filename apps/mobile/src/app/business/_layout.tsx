@@ -170,6 +170,7 @@ const hidden = [
   'os-data-fabric',
   'intelligence-task-force',
   'research-fabric',
+  'control-tower',
 ];
 
 export default function BusinessLayout() {
