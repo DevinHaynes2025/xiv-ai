@@ -20,6 +20,7 @@ import './alignment-key-rotation.test';
 import './alignment-trust-store.test';
 import './alignment-key-rollback.test';
 import './alignment-trust-audit.test';
+import './alignment-audit-checkpoint.test';
 
 function test(name: string, run: () => void) {
   run();
