@@ -38,6 +38,7 @@ export type ExecutiveBriefResponse = {
 };
 export type CommunityJoinPreview = { status:'REVIEW_REQUIRED'; membershipCreated:false; accountsConnected:false; devicesControlled:false; earningsGuaranteed:false; partnerStatus:'NOT_CONFIGURED'; communityId:string; nextSteps:string[] };
 export type FeedbackIntakePreview = { status:'REVIEW_REQUIRED'; audience:'CUSTOMER'|'CONSUMER'|'COMMUNITY'; feedbackDigest:string; feedbackCharacters:number; consentScope:'IMPROVEMENT_CANDIDATE_ONLY'; learningCandidate:{state:'AWAITING_HUMAN_REVIEW';promoted:false}; feedbackStored:false; rawFeedbackReturned:false; modelWeightsModified:false; neuralPathwayActivated:false; profileInferred:false; compensationGuaranteed:false; externalAccountsAccessed:false; humanReviewRequired:true; nextSteps:string[] };
+export type FeedbackGovernanceStatus = { encryptedLocalAdapter:'IMPLEMENTED'; encryption:'AES_256_GCM_INJECTED_KEY'; productionStorage:'NOT_CONFIGURED'; productionWritesEnabled:false; consentWithdrawal:'APPEND_ONLY_TOMBSTONE'; physicalDeletion:'OPERATOR_WORKFLOW_REQUIRED'; automaticPathwayPromotion:false; modelWeightTraining:false };
 
 function friendlyMessage(code: string) {
   if (code === 'unauthorized') return 'Your session expired. Sign in again to use the agent.';
@@ -146,6 +147,14 @@ export async function requestFeedbackIntakePreview(input:{accessToken:string;aud
   const response=await fetch(`${base}/v1/feedback/intake/preview`,{method:'POST',headers:{Authorization:`Bearer ${input.accessToken}`,'Content-Type':'application/json'},body:JSON.stringify({audience:input.audience,feedback:input.feedback,improvementConsent:input.improvementConsent})});
   const payload=await response.json().catch(()=>null) as FeedbackIntakePreview|ErrorBody|null;
   if(!response.ok||!payload||!('learningCandidate'in payload)||payload.learningCandidate.state!=='AWAITING_HUMAN_REVIEW'){const code=response.status===401?'unauthorized':'malformed';throw new XivAiRequestError(code,friendlyMessage(code));}
+  return payload;
+}
+
+export async function requestFeedbackGovernanceStatus(accessToken:string):Promise<FeedbackGovernanceStatus>{
+  const base=apiBaseUrl();if(!base)throw new XivAiRequestError('unreachable',friendlyMessage('unreachable'));
+  const response=await fetch(`${base}/v1/feedback/governance/status`,{headers:{Authorization:`Bearer ${accessToken}`}});
+  const payload=await response.json().catch(()=>null) as FeedbackGovernanceStatus|ErrorBody|null;
+  if(!response.ok||!payload||!('productionWritesEnabled'in payload)||payload.productionWritesEnabled!==false){const code=response.status===401?'unauthorized':'malformed';throw new XivAiRequestError(code,friendlyMessage(code));}
   return payload;
 }
 
