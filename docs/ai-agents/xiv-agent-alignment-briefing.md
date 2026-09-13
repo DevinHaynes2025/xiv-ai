@@ -31,7 +31,13 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   Story Engine screen (`apps/mobile story-engine.tsx`: KPI change → causal narrative →
   treatment options → human decision, SIGNAL→LEARNING ladder, example data only) —
   the investor demo's GOVERNED AGENT / AUDIT CENTER / STORY ENGINE trio, backend and
-  frontend, now exist as governed contracts).
+  frontend, now exist as governed contracts); 12D-123 built the distributed event +
+  storage PLANE CONTRACT (`event-plane-contract.ts`): the next scale-ladder rung after
+  12D-120 — deterministic primary-cell and cross-cell replica placement for every
+  shard's event stream over a validated 12D-109 routing + 12D-120 cell plan, honest
+  single-cell degradation (no fabricated co-located replica), cell-plan re-derivation
+  cross-checks, the re-asserted 2,000,000-per-database measured ceiling, receipt-gated
+  adoption that materializes nothing).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -122,7 +128,16 @@ receipt-gate bypass, unbound metadata, mutable tool scope, plus stage-machine ho
 all fixed before commit; 1 refuted finding discarded and disclosed)), 12D-122 governed
 Story Engine screen (`apps/mobile/src/app/business/story-engine.tsx`:
 KPI change → causal narrative → treatment options, SIGNAL→LEARNING ladder, example data
-only, registered in the business tab layout; mobile typecheck green).
+only, registered in the business tab layout; mobile typecheck green), 12D-123
+distributed event + storage plane contract (`event-plane-contract.ts`: deterministic
+primary + cross-cell replica placement per event stream, honest single-cell
+degradation, re-derivation cross-checks against the routing and cell plan, the
+2,000,000-per-database ceiling re-asserted per stream, receipt-gated adoption that
+materializes nothing; 6/6 tests, typecheck green; adversarially reviewed before
+commit: 3 confirmed findings (1 BLOCKING — trusted cellPlan.cellCount let a sparse
+topology hand replicas to cells no validated packet describes; fixed by pinning the
+cell count to the re-derived cell set; 2 CONSERVATIVE, same root cause plus a
+non-positive adoption timestamp — all fixed before commit; 0 refuted)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -132,9 +147,10 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rung on the scale ladder after 12D-120: the distributed event + storage
-plane (not built; needs its own measured evidence), and a separately-reviewed cell
-ADOPTION layer if regional cells ever move from contract to operator-adopted routing.
+concern. Next rungs on the scale ladder after 12D-123: MEASURED FAILOVER and MEASURED
+HORIZONTAL SCALING (not built; each needs its own measured evidence), and the
+separately-reviewed ADOPTION layers (event-plane adoption, and cell/instruction
+adoption) if contracts ever move from advisory to operator-adopted routing.
 
 ## 6. Roles
 
