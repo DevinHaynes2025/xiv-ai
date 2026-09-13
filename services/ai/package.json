@@ -45,6 +45,8 @@
     "typecheck:12d-107": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/control-tower-evidence.ts runtime/offline-team/control-tower-evidence.test.ts",
     "test:12d-108": "tsx --test runtime/offline-team/device-worker-receipt.test.ts",
     "typecheck:12d-108": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/device-worker-receipt.ts runtime/offline-team/device-worker-receipt.test.ts",
+    "test:12d-110": "tsx --test runtime/offline-team/storage-feed-hierarchy.test.ts",
+    "typecheck:12d-110": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/storage-feed-hierarchy.ts runtime/offline-team/storage-feed-hierarchy.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
