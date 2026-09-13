@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 
@@ -13,17 +13,30 @@ import { XivText } from '@/components/xiv/text';
 import { Palette, Spacing } from '@/constants/theme';
 import { professionalCommunities } from '@/data/mock';
 import { useSession } from '@/hooks/use-session';
-import { requestCommunityJoinPreview } from '@/lib/xiv-ai-api';
+import { requestCommunityJoinPreview, requestEcosystemAlignmentReport, type EcosystemAlignmentReport } from '@/lib/xiv-ai-api';
 
 export function CommunitiesNetwork() {
   const { authSession } = useSession();
   const [pending, setPending] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
+  const [alignment, setAlignment] = useState<EcosystemAlignmentReport | null>(null);
+
+  useEffect(() => {
+    const token = authSession?.access_token;
+    if (!token) return;
+    void requestEcosystemAlignmentReport(token).then(setAlignment).catch(() => setAlignment(null));
+  }, [authSession?.access_token]);
 
   return (
     <ExperienceScreen title="Communities" subtitle="Closed professional circles, not public forums.">
       <PrototypeNotice text="Membership, rosters, and threads are DEMO. Joining a circle stays on this device and does not write to Supabase." />
       <SectionHeader kicker="XIV circles" title="Where operators gather" />
+      <Card variant="elevated" style={styles.card}>
+        <XivText variant="label" color={Palette.accent}>ONE ALIGNMENT PROTOCOL</XivText>
+        <XivText variant="subtitle">Tools, agents, devices, and chips</XivText>
+        <XivText variant="body" muted>{alignment ? `${alignment.summary.targetCount} compatibility targets · ${alignment.summary.productionLiveCount} production-live · ${alignment.summary.partnershipCount} claimed partnerships` : 'Alignment evidence unavailable; all external targets must be treated as not configured.'}</XivText>
+        <XivText variant="caption" color={Palette.textDim}>Expo · Lovable · GitHub · GitLab · Claude · Ollama · Android · iOS · AMD · ASUS · Samsung · Apple · generic tools, chips, and devices. Targets are not partnerships or installations.</XivText>
+      </Card>
       <Card variant="elevated" style={styles.card}>
         <XivText variant="label" color={Palette.accent}>COMMUNITY INTELLIGENCE</XivText>
         <XivText variant="subtitle">Help shape what XIV builds next</XivText>

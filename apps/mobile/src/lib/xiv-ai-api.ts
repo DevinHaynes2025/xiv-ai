@@ -39,6 +39,7 @@ export type ExecutiveBriefResponse = {
 export type CommunityJoinPreview = { status:'REVIEW_REQUIRED'; membershipCreated:false; accountsConnected:false; devicesControlled:false; earningsGuaranteed:false; partnerStatus:'NOT_CONFIGURED'; communityId:string; nextSteps:string[] };
 export type FeedbackIntakePreview = { status:'REVIEW_REQUIRED'; audience:'CUSTOMER'|'CONSUMER'|'COMMUNITY'; feedbackDigest:string; feedbackCharacters:number; consentScope:'IMPROVEMENT_CANDIDATE_ONLY'; learningCandidate:{state:'AWAITING_HUMAN_REVIEW';promoted:false}; feedbackStored:false; rawFeedbackReturned:false; modelWeightsModified:false; neuralPathwayActivated:false; profileInferred:false; compensationGuaranteed:false; externalAccountsAccessed:false; humanReviewRequired:true; nextSteps:string[] };
 export type FeedbackGovernanceStatus = { encryptedLocalAdapter:'IMPLEMENTED'; encryption:'AES_256_GCM_INJECTED_KEY'; productionStorage:'NOT_CONFIGURED'; productionWritesEnabled:false; consentWithdrawal:'APPEND_ONLY_TOMBSTONE'; physicalDeletion:'OPERATOR_WORKFLOW_REQUIRED'; automaticPathwayPromotion:false; modelWeightTraining:false; moderationReceipts:'SIGNED_INDEPENDENT_REVIEW'; deletionExecution:'DISABLED' };
+export type EcosystemAlignmentReport = { protocol:{version:string;authorityPath:string[];universalInstallationClaimed:false;vendorPartnershipsClaimed:false;chipEmbeddingClaimed:false;automaticAccountAccess:false;automaticAgentAuthority:false};targets:{target:string;layer:string;state:'NOT_CONFIGURED';compatibilityTarget:true;partnershipClaimed:false;productionLive:false;installedOnDevices:false}[];summary:{targetCount:number;configuredCount:0;productionLiveCount:0;partnershipCount:0;universallyInstalled:false} };
 
 function friendlyMessage(code: string) {
   if (code === 'unauthorized') return 'Your session expired. Sign in again to use the agent.';
@@ -155,6 +156,14 @@ export async function requestFeedbackGovernanceStatus(accessToken:string):Promis
   const response=await fetch(`${base}/v1/feedback/governance/status`,{headers:{Authorization:`Bearer ${accessToken}`}});
   const payload=await response.json().catch(()=>null) as FeedbackGovernanceStatus|ErrorBody|null;
   if(!response.ok||!payload||!('productionWritesEnabled'in payload)||payload.productionWritesEnabled!==false){const code=response.status===401?'unauthorized':'malformed';throw new XivAiRequestError(code,friendlyMessage(code));}
+  return payload;
+}
+
+export async function requestEcosystemAlignmentReport(accessToken:string):Promise<EcosystemAlignmentReport>{
+  const base=apiBaseUrl();if(!base)throw new XivAiRequestError('unreachable',friendlyMessage('unreachable'));
+  const response=await fetch(`${base}/v1/ecosystem/alignment/report`,{headers:{Authorization:`Bearer ${accessToken}`}});
+  const payload=await response.json().catch(()=>null) as EcosystemAlignmentReport|ErrorBody|null;
+  if(!response.ok||!payload||!('summary'in payload)||payload.summary.universallyInstalled!==false){const code=response.status===401?'unauthorized':'malformed';throw new XivAiRequestError(code,friendlyMessage(code));}
   return payload;
 }
 
