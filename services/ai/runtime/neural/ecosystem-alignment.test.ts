@@ -18,6 +18,7 @@ import './authenticated-alignment-report.test';
 import './alignment-evidence-ledger.test';
 import './alignment-key-rotation.test';
 import './alignment-trust-store.test';
+import './alignment-key-rollback.test';
 
 function test(name: string, run: () => void) {
   run();
