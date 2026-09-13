@@ -6,14 +6,23 @@
  */
 
 export const ECOSYSTEM_TARGETS = [
+  'EXPO',
+  'LOVABLE',
+  'GITHUB',
+  'GITLAB',
   'OLLAMA',
   'ANTHROPIC_CLAUDE',
   'GOOGLE_AI',
   'AWS',
   'AMD',
   'ASUS',
+  'SAMSUNG',
+  'APPLE_DEVICE',
   'ANDROID',
   'IOS',
+  'GENERIC_AI_TOOL',
+  'GENERIC_AI_CHIP',
+  'GENERIC_DIGITAL_DEVICE',
 ] as const;
 
 export type EcosystemTarget = (typeof ECOSYSTEM_TARGETS)[number];
@@ -96,3 +105,29 @@ export function pathwayTargetIsCurrentCapacity(): false {
   return false;
 }
 
+export const ECOSYSTEM_ALIGNMENT_PROTOCOL = {
+  version: '1.0.0',
+  authorityPath: ['Authenticated actor', 'Tenant + Universe', 'Guardian policy', 'Consent + terms', 'Capability evidence', 'Human approval', 'Audit receipt'],
+  universalInstallationClaimed: false,
+  vendorPartnershipsClaimed: false,
+  chipEmbeddingClaimed: false,
+  automaticAccountAccess: false,
+  automaticAgentAuthority: false,
+} as const;
+
+export type EcosystemLayer = 'DEVELOPMENT' | 'SOURCE_CONTROL' | 'AI_PROVIDER' | 'DEVICE_OS' | 'OEM_HARDWARE' | 'CHIP_OR_GENERIC_TARGET';
+
+const TARGET_LAYERS: Record<EcosystemTarget, EcosystemLayer> = {
+  EXPO:'DEVELOPMENT', LOVABLE:'DEVELOPMENT', GITHUB:'SOURCE_CONTROL', GITLAB:'SOURCE_CONTROL',
+  OLLAMA:'AI_PROVIDER', ANTHROPIC_CLAUDE:'AI_PROVIDER', GOOGLE_AI:'AI_PROVIDER', AWS:'AI_PROVIDER',
+  ANDROID:'DEVICE_OS', IOS:'DEVICE_OS', AMD:'OEM_HARDWARE', ASUS:'OEM_HARDWARE', SAMSUNG:'OEM_HARDWARE', APPLE_DEVICE:'OEM_HARDWARE',
+  GENERIC_AI_TOOL:'CHIP_OR_GENERIC_TARGET', GENERIC_AI_CHIP:'CHIP_OR_GENERIC_TARGET', GENERIC_DIGITAL_DEVICE:'CHIP_OR_GENERIC_TARGET',
+};
+
+export function ecosystemAlignmentReport() {
+  return {
+    protocol: ECOSYSTEM_ALIGNMENT_PROTOCOL,
+    targets: ECOSYSTEM_TARGETS.map((target) => ({ target, layer: TARGET_LAYERS[target], state: 'NOT_CONFIGURED' as const, compatibilityTarget: true as const, partnershipClaimed: false as const, productionLive: false as const, installedOnDevices: false as const })),
+    summary: { targetCount: ECOSYSTEM_TARGETS.length, configuredCount: 0, productionLiveCount: 0, partnershipCount: 0, universallyInstalled: false as const },
+  };
+}
