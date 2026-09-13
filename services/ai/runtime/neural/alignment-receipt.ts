@@ -28,12 +28,19 @@ function deny(target: EcosystemTarget, reason: string): AlignmentDecision {
 }
 export function evaluateAuthenticatedAlignment(c: AlignmentTrustContext, r: SignedAlignmentReceipt): AlignmentDecision {
   const p = r.payload;
+  const serialized = serializeAlignmentReceipt(p);
+  if (Buffer.byteLength(serialized, 'utf8') + Buffer.byteLength(r.signature, 'utf8') > 8192) return deny(c.target, 'receipt_too_large');
   if (p.tenantId !== c.tenantId || p.universeId !== c.universeId || p.target !== c.target) return deny(c.target, 'scope_mismatch');
   if (p.issuerId !== c.issuerId || p.keyId !== c.keyId) return deny(c.target, 'untrusted_issuer');
   if (c.revokedKeyIds.has(p.keyId)) return deny(c.target, 'signing_key_revoked');
   if (p.sourceRevision !== c.expectedSourceRevision) return deny(c.target, 'source_revision_mismatch');
   try {
-    if (!verify(null, Buffer.from(serializeAlignmentReceipt(p)), createPublicKey(c.publicKeyPem), Buffer.from(r.signature, 'base64'))) return deny(c.target, 'invalid_signature');
+    if (/PRIVATE KEY/.test(c.publicKeyPem)) return deny(c.target, 'public_ed25519_key_required');
+    const publicKey = createPublicKey(c.publicKeyPem);
+    if (publicKey.asymmetricKeyType !== 'ed25519') return deny(c.target, 'public_ed25519_key_required');
+    const signature = Buffer.from(r.signature, 'base64');
+    if (signature.length !== 64 || signature.toString('base64') !== r.signature) return deny(c.target, 'invalid_signature_encoding');
+    if (!verify(null, Buffer.from(serialized), publicKey, signature)) return deny(c.target, 'invalid_signature');
   } catch { return deny(c.target, 'invalid_signature'); }
   const issued = Date.parse(p.issuedAt), expires = Date.parse(p.expiresAt), now = c.now.getTime();
   if (!Number.isFinite(issued) || !Number.isFinite(expires) || expires <= issued) return deny(c.target, 'invalid_time_window');
