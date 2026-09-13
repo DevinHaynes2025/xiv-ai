@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import { generateKeyPairSync, sign } from 'node:crypto';
+import { createInMemoryAlignmentReplayStore, evaluateAuthenticatedAlignment, serializeAlignmentReceipt, type AlignmentReceiptPayload, type AlignmentTrustContext } from './alignment-receipt';
+function test(name:string, run:()=>void){ run(); console.log(`ok - ${name}`); }
+const kp=generateKeyPairSync('ed25519'), other=generateKeyPairSync('ed25519'), digest='a'.repeat(64);
+const payload:AlignmentReceiptPayload={tenantId:'t1',universeId:'u1',target:'OLLAMA',issuerId:'authority',keyId:'k1',nonce:'n1',issuedAt:'2026-09-13T00:00:00Z',expiresAt:'2026-09-13T01:00:00Z',sourceRevision:'r1',participantOptIn:true,organizationAuthorized:true,humanApprovalRef:'approval-1',termsDigest:digest,dataPolicyDigest:digest,capabilityEvidenceDigest:digest};
+const signed=(p=payload,key=kp.privateKey)=>({payload:p,signature:sign(null,Buffer.from(serializeAlignmentReceipt(p)),key).toString('base64')});
+const context=():AlignmentTrustContext=>({tenantId:'t1',universeId:'u1',target:'OLLAMA',issuerId:'authority',keyId:'k1',publicKeyPem:kp.publicKey.export({type:'spki',format:'pem'}).toString(),expectedSourceRevision:'r1',now:new Date('2026-09-13T00:30:00Z'),maxClockSkewMs:30000,replayStore:createInMemoryAlignmentReplayStore()});
+test('valid receipt configures bounded target',()=>{const r=evaluateAuthenticatedAlignment(context(),signed());assert.equal(r.allowed,true);assert.equal(r.productionLive,false)});
+test('forged signature denied',()=>assert.equal(evaluateAuthenticatedAlignment(context(),signed(payload,other.privateKey)).reason,'invalid_signature'));
+test('tenant and Universe bound',()=>{assert.equal(evaluateAuthenticatedAlignment({...context(),tenantId:'t2'},signed()).reason,'scope_mismatch');assert.equal(evaluateAuthenticatedAlignment({...context(),universeId:'u2'},signed()).reason,'scope_mismatch')});
+test('target and revision bound',()=>{assert.equal(evaluateAuthenticatedAlignment({...context(),target:'AWS'},signed()).reason,'scope_mismatch');assert.equal(evaluateAuthenticatedAlignment({...context(),expectedSourceRevision:'r2'},signed()).reason,'source_revision_mismatch')});
+test('expiry and future time denied',()=>{assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,expiresAt:'2026-09-13T00:20:00Z'})).reason,'receipt_expired');assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,issuedAt:'2026-09-13T00:31:00Z',expiresAt:'2026-09-13T01:31:00Z'})).reason,'receipt_from_future')});
+test('replay denied',()=>{const c=context(),r=signed();assert.equal(evaluateAuthenticatedAlignment(c,r).allowed,true);assert.equal(evaluateAuthenticatedAlignment(c,r).reason,'receipt_replayed')});
+test('signed consent and organization authority required',()=>{assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,participantOptIn:false})).reason,'participant_opt_in_required');assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,organizationAuthorized:false})).reason,'organization_authority_required')});
+test('approval reference required',()=>assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,humanApprovalRef:''})).reason,'approval_or_nonce_missing'));
+test('evidence digests validated',()=>assert.equal(evaluateAuthenticatedAlignment(context(),signed({...payload,termsDigest:'caller-valid'})).reason,'evidence_digest_invalid'));
+console.log('Authenticated ecosystem alignment receipts: OK');
