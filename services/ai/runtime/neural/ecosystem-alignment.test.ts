@@ -17,6 +17,7 @@ import '../feedback/moderation-receipt.test';
 import './authenticated-alignment-report.test';
 import './alignment-evidence-ledger.test';
 import './alignment-key-rotation.test';
+import './alignment-trust-store.test';
 
 function test(name: string, run: () => void) {
   run();
