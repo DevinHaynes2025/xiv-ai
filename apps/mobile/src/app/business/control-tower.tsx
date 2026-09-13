@@ -145,7 +145,10 @@ export default function ControlTower() {
         ))}
         <View style={styles.flags}>
           <XivText variant="label" color={Palette.warning}>
-            learningPromoted: false
+            humanDecision: {guardrails.humanDecision}
+          </XivText>
+          <XivText variant="label" color={Palette.warning}>
+            learningPromoted: {String(guardrails.learningPromoted)}
           </XivText>
           <XivText variant="label" color={Palette.textDim}>
             modelCalls: {guardrails.modelCalls}
