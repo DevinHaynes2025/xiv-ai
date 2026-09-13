@@ -61,6 +61,8 @@
     "typecheck:12d-116": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/agent-training-gate.ts runtime/offline-team/agent-training-gate.test.ts",
     "test:12d-118": "tsx --test runtime/offline-team/enterprise-authority-ladder.test.ts",
     "typecheck:12d-118": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/enterprise-authority-ladder.ts runtime/offline-team/enterprise-authority-ladder.test.ts",
+    "test:12d-97": "tsx --test runtime/offline-team/device-participation-assessment.test.ts",
+    "typecheck:12d-97": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/device-participation-assessment.ts runtime/offline-team/device-participation-assessment.cli.ts runtime/offline-team/device-participation-assessment.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
