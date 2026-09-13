@@ -34,7 +34,8 @@ export function CommunitiesNetwork() {
       <Card variant="elevated" style={styles.card}>
         <XivText variant="label" color={Palette.accent}>ONE ALIGNMENT PROTOCOL</XivText>
         <XivText variant="subtitle">Tools, agents, devices, and chips</XivText>
-        <XivText variant="body" muted>{alignment ? `${alignment.summary.targetCount} compatibility targets · ${alignment.summary.productionLiveCount} production-live · ${alignment.summary.partnershipCount} claimed partnerships` : 'Alignment evidence unavailable; all external targets must be treated as not configured.'}</XivText>
+        <XivText variant="body" muted>{alignment ? `${alignment.summary.targetCount} targets · ${alignment.summary.configuredCount} signed/configured · ${alignment.summary.productionLiveCount} production-live · ${alignment.summary.partnershipCount} partnerships` : 'Alignment evidence unavailable; all external targets must be treated as not configured.'}</XivText>
+        <XivText variant="caption" color={Palette.accent}>Status upgrades require signed, scoped, fresh, replay-protected evidence.</XivText>
         <XivText variant="caption" color={Palette.textDim}>Expo · Lovable · GitHub · GitLab · Claude · Ollama · Android · iOS · AMD · ASUS · Samsung · Apple · generic tools, chips, and devices. Targets are not partnerships or installations.</XivText>
       </Card>
       <Card variant="elevated" style={styles.card}>
