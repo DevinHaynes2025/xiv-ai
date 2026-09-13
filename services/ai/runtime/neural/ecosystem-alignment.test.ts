@@ -7,6 +7,8 @@ import {
   defaultEcosystemAlignment,
   evaluateEcosystemAlignment,
   pathwayTargetIsCurrentCapacity,
+  ecosystemAlignmentReport,
+  ECOSYSTEM_ALIGNMENT_PROTOCOL,
   type AlignmentRequest,
 } from './ecosystem-alignment';
 import '../feedback/intake-preview.test';
@@ -32,13 +34,26 @@ const approved: AlignmentRequest = {
 };
 
 test('every named ecosystem target defaults to NOT_CONFIGURED', () => {
-  assert.equal(ECOSYSTEM_TARGETS.length, 8);
+  assert.equal(ECOSYSTEM_TARGETS.length, 17);
   for (const target of ECOSYSTEM_TARGETS) {
     const decision = defaultEcosystemAlignment(target);
     assert.equal(decision.state, 'NOT_CONFIGURED');
     assert.equal(decision.allowed, false);
     assert.equal(decision.partnershipClaimed, false);
   }
+});
+
+test('one protocol covers tools, source control, providers, devices, OEMs, and chips without partnership claims', () => {
+  const report = ecosystemAlignmentReport();
+  assert.equal(report.targets.length, 17);
+  assert.equal(new Set(report.targets.map((item) => item.layer)).size, 6);
+  assert.equal(report.summary.configuredCount, 0);
+  assert.equal(report.summary.productionLiveCount, 0);
+  assert.equal(report.summary.partnershipCount, 0);
+  assert.equal(report.summary.universallyInstalled, false);
+  assert.equal(report.targets.every((item) => item.state === 'NOT_CONFIGURED' && !item.partnershipClaimed && !item.installedOnDevices), true);
+  assert.equal(ECOSYSTEM_ALIGNMENT_PROTOCOL.authorityPath.includes('Guardian policy'), true);
+  assert.equal(ECOSYSTEM_ALIGNMENT_PROTOCOL.automaticAgentAuthority, false);
 });
 
 test('people require explicit opt-in', () => {
