@@ -23,6 +23,7 @@ import './alignment-trust-audit.test';
 import './alignment-audit-checkpoint.test';
 import './alignment-checkpoint-store.test';
 import './alignment-checkpoint-reconciliation.test';
+import './reconciled-alignment-report.test';
 
 function test(name: string, run: () => void) {
   run();
