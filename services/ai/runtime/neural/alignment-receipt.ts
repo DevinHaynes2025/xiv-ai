@@ -8,13 +8,14 @@ export type AlignmentReceiptPayload = {
   termsDigest: string; dataPolicyDigest: string; capabilityEvidenceDigest: string;
 };
 export type SignedAlignmentReceipt = { payload: AlignmentReceiptPayload; signature: string };
-export type AlignmentReplayStore = { reserve(key: string): boolean };
+export type AlignmentReplayStore = { durability: 'MEMORY' | 'DURABLE'; reserve(key: string): boolean };
 export type AlignmentTrustContext = {
   tenantId: string; universeId: string; target: EcosystemTarget; issuerId: string; keyId: string;
   publicKeyPem: string; expectedSourceRevision: string; now: Date; maxClockSkewMs: number;
   expectedHumanApprovalRef: string; expectedTermsDigest: string;
   expectedDataPolicyDigest: string; expectedCapabilityEvidenceDigest: string;
   replayStore: AlignmentReplayStore;
+  mode: 'TEST' | 'OPERATIONAL';
 };
 const keys: readonly (keyof AlignmentReceiptPayload)[] = ['tenantId','universeId','target','issuerId','keyId','nonce','issuedAt','expiresAt','sourceRevision','participantOptIn','organizationAuthorized','humanApprovalRef','termsDigest','dataPolicyDigest','capabilityEvidenceDigest'];
 export function serializeAlignmentReceipt(p: AlignmentReceiptPayload): string {
@@ -41,10 +42,13 @@ export function evaluateAuthenticatedAlignment(c: AlignmentTrustContext, r: Sign
   if (p.termsDigest !== c.expectedTermsDigest || p.dataPolicyDigest !== c.expectedDataPolicyDigest || p.capabilityEvidenceDigest !== c.expectedCapabilityEvidenceDigest) return deny(c.target, 'evidence_digest_mismatch');
   if (!p.participantOptIn) return deny(c.target, 'participant_opt_in_required');
   if (!p.organizationAuthorized) return deny(c.target, 'organization_authority_required');
+  if (c.mode === 'OPERATIONAL' && c.replayStore.durability !== 'DURABLE') return deny(c.target, 'durable_replay_store_required');
   const replayKey = [p.tenantId,p.universeId,p.issuerId,p.keyId,p.nonce].join(':');
-  if (!c.replayStore.reserve(replayKey)) return deny(c.target, 'receipt_replayed');
+  try {
+    if (!c.replayStore.reserve(replayKey)) return deny(c.target, 'receipt_replayed');
+  } catch { return deny(c.target, 'replay_store_unavailable'); }
   return evaluateEcosystemAlignment({ tenantId:c.tenantId, universeId:c.universeId, target:c.target, actorAuthorized:true, humanApproved:true, participantOptIn:true, organizationAuthorized:true, termsAccepted:true, dataPolicyApproved:true, capabilityEvidenceVerified:true });
 }
 export function createInMemoryAlignmentReplayStore(): AlignmentReplayStore {
-  const seen = new Set<string>(); return { reserve(key) { if (seen.has(key)) return false; seen.add(key); return true; } };
+  const seen = new Set<string>(); return { durability: 'MEMORY', reserve(key) { if (seen.has(key)) return false; seen.add(key); return true; } };
 }
