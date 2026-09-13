@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 2)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 3)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,10 +7,11 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `d2dd94f3`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `463bcbe8`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
-  12D-116 fully integrated; 12D-115's blocking review finding fixed at integration;
-  12D-113 rebuilt directly after its workflow agent stalled 6×).
+  12D-117 fully integrated; 12D-115's blocking review finding fixed at integration;
+  12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
+  entire guardrails debt ledger).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -32,9 +33,11 @@ GROK_XAI PENDING — Grok has never responded; never fabricate its review.
 ## 3. Shared invariants (12D-113 audits these mechanically — run `npm run test:12d-113`)
 
 - Every `*_GUARDRAILS` object is `Object.freeze`d and carries `humanDecision: 'REQUIRED'`.
-  136 legacy objects violate this; they are recorded in the frozen GENERATED ledger
-  `alignment-invariant-debt.ts`, which is enforced **shrink-only** — new violations fail
-  the audit, and paying down ledger debt is queued as its own remediation story.
+  12D-117 paid down the entire 136-object debt ledger (126 objects wrapped in
+  `Object.freeze`, 10 frozen entries given the missing key), so the frozen GENERATED
+  ledger `alignment-invariant-debt.ts` is now EMPTY. It stays **shrink-only**: any new
+  violation fails the audit, and new unfrozen guardrails objects are new debt — fix them,
+  never add ledger entries.
 - No governance module makes network calls. Fail closed on ambiguity; an unavailable
   gate is a blocker, never permission to route around it. The ONLY authorized network
   surfaces are the loopback Ollama (127.0.0.1:11434) collaboration surfaces, the
@@ -68,10 +71,10 @@ unreachable by construction), 12D-113 mechanical alignment-invariant audit + shr
 debt ledger (136 legacy violations ledgered), 12D-114 Expo control-tower screen
 (governed, example-data-only), 12D-115 loopback-only control-tower snapshot API
 (off by default, operator-receipt-gated, exact-shape validated), 12D-116 agent training
-gate (proposals held, no outcome recording, runs never started).
+gate (proposals held, no outcome recording, runs never started), 12D-117 full guardrails
+debt paydown (136/136 frozen + humanDecision; ledger empty; audit green).
 
-Queued next: pay down the 136-object guardrails debt ledger in small reviewable diffs;
-map the plan's L0–L5 authority ladder onto enterprise workforce roles.
+Queued next: map the plan's L0–L5 authority ladder onto enterprise workforce roles.
 
 ## 6. Roles
 
