@@ -19,5 +19,5 @@ export function buildAuthenticatedAlignmentReport(evidence: readonly Authenticat
     return { target, layer: ecosystemLayerFor(target), state: decision.state, reason: decision.reason, compatibilityTarget: true as const, partnershipClaimed: false as const, productionLive: false as const, installedOnDevices: false as const, grantsAuthority: false as const };
   });
   const configuredCount = targets.filter((item) => item.state === 'CONFIGURED').length;
-  return { protocol: ECOSYSTEM_ALIGNMENT_PROTOCOL, targets, summary: { targetCount: targets.length, configuredCount, productionLiveCount: 0 as const, partnershipCount: 0 as const, universallyInstalled: false as const } };
+  return { protocol: ECOSYSTEM_ALIGNMENT_PROTOCOL, targets, summary: { targetCount: targets.length, configuredCount, productionLiveCount: 0 as const, partnershipCount: 0 as const, universallyInstalled: false as const }, assurance:{receiptTrust:'SIGNED_RECEIPTS_ONLY' as const,trustStore:'NOT_CONFIGURED' as const,auditChain:'NOT_CONNECTED' as const,independentReview:'REQUIRED' as const,productionActivation:'DISABLED' as const,publicDetail:'AGGREGATES_ONLY' as const} };
 }
