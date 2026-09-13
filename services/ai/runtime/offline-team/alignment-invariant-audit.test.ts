@@ -127,12 +127,15 @@ test('an unlisted network module is flagged regardless of loopback binding', () 
 test('a compliant object still listed in the debt ledger is flagged as stale ledger data', () => {
   const dir = mkdtempSync(join(tmpdir(), 'xiv-align-113d-'));
   try {
-    // Compliant module whose object name matches a real ledger entry's file::object.
-    const entry = KNOWN_GUARDRAILS_DEBT[0];
-    writeFileSync(join(dir, entry.file),
-      `export const ${entry.object} = Object.freeze({ humanDecision: 'REQUIRED' as const, automaticRecovery: false });\n`);
-    const packet = auditAlignmentInvariants({ dir, auditedAtMs: 1_700_004_000 });
-    assert.equal(packet.findings.some((f) => f.invariant === 'debt-ledger-stale' && f.file === entry.file), true,
+    // Compliant module whose object name matches an INJECTED ledger entry's file::object
+    // (the real ledger is empty since 12D-117 paid it down — injection keeps this path testable).
+    const syntheticLedger = Object.freeze([
+      { file: 'legacy-guardrails.ts', object: 'LEGACY_GUARDRAILS', missing: ['freeze', 'humanDecision'] as const },
+    ]);
+    writeFileSync(join(dir, 'legacy-guardrails.ts'),
+      "export const LEGACY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const, automaticRecovery: false });\n");
+    const packet = auditAlignmentInvariants({ dir, auditedAtMs: 1_700_004_000, debtLedger: syntheticLedger });
+    assert.equal(packet.findings.some((f) => f.invariant === 'debt-ledger-stale' && f.file === 'legacy-guardrails.ts'), true,
       'a fixed-but-still-listed debt entry must be flagged so the ledger shrinks');
   } finally {
     rmSync(dir, { recursive: true, force: true });

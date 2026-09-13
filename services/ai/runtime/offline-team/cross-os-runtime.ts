@@ -8,11 +8,12 @@ export interface OsRuntimeReceipt {
   evidenceRefs: readonly string[];
 }
 
-export const CROSS_OS_GUARDRAILS = {
+export const CROSS_OS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   claimUniversalCompatibility: false,
   verifiedRequiresEvidence: true,
   productionAutoInstall: false,
-} as const;
+} as const );
 
 export function validateOsRuntimeReceipt(receipt: OsRuntimeReceipt): OsRuntimeReceipt {
   if (!receipt.runtime.trim()) throw new Error('runtime required');

@@ -25,12 +25,13 @@ export interface MentalGymResult {
   passed: boolean;
 }
 
-export const INNOVATION_MENTAL_GYM_GUARDRAILS = {
+export const INNOVATION_MENTAL_GYM_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   experimentsAreSandboxed: true,
   productionMutationAllowed: false,
   evidenceRequiredForPromotion: true,
   scoresDoNotImplyConsciousnessOrGeneralIntelligence: true,
-} as const;
+} as const );
 
 export function evaluateMentalGym(input: { exercise: MentalGymExercise; agentId: string; score: number; evidenceRefs: readonly string[] }): MentalGymResult {
   const boundedScore = Math.max(0, Math.min(input.score, input.exercise.maxScore));

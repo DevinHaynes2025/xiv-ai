@@ -44,9 +44,10 @@ export class OfflineLearningDataPlane {
   listNodes() { return [...this.nodes.values()]; }
 }
 
-export const OFFLINE_LEARNING_GUARDRAILS = {
+export const OFFLINE_LEARNING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   ragMemoryEvaluationByDefault: true,
   silentWeightMutationAllowed: false,
   topSecretOrdinaryEmbeddingAllowed: false,
   verifiedRequiresReceipt: true,
-};
+} );

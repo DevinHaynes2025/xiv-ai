@@ -33,9 +33,10 @@ export function validateIndustryNode(node: IndustryNode): IndustryNode {
   return node;
 }
 
-export const INDUSTRY_GRAPH_GUARDRAILS = {
+export const INDUSTRY_GRAPH_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   partnershipClaimsRequireEvidence: true,
   crossTenantDataPoolingAllowed: false,
   productionIntegrationAutomatic: false,
   vendorNamesDoNotImplyPartnership: true,
-};
+} );

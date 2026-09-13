@@ -5,4 +5,4 @@ export function buildCloudDnaPackage(input: Omit<CloudDnaPackage,'payloadHash'>)
   const canonical = JSON.stringify({...input, capabilities:[...input.capabilities].sort(), policyRefs:[...input.policyRefs].sort(), modelRefs:[...input.modelRefs].sort(), secretRefs:[...input.secretRefs].sort()});
   return {...input, payloadHash:createHash('sha256').update(canonical).digest('hex')};
 }
-export const CLOUD_DNA_GUARDRAILS = Object.freeze({ containsRawSecrets:false, productionAutoDeploy:false, tenantBoundaryRequired:true, verificationRequiredBeforeCloudUse:true });
+export const CLOUD_DNA_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  containsRawSecrets:false, productionAutoDeploy:false, tenantBoundaryRequired:true, verificationRequiredBeforeCloudUse:true });

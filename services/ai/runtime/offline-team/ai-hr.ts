@@ -8,12 +8,13 @@ export interface AgentCapabilityProfile {
   status: 'READY' | 'TRAINING' | 'REVIEW_REQUIRED' | 'INACTIVE';
 }
 
-export const AI_HR_GUARDRAILS = {
+export const AI_HR_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   humanApprovalForRoleExpansion: true,
   noEmploymentOrLegalPersonhoodClaim: true,
   noAutonomousCredentialGrant: true,
   performanceRequiresEvidence: true,
-} as const;
+} as const );
 
 export function assessAgentReadiness(profile: Omit<AgentCapabilityProfile, 'status'>): AgentCapabilityProfile {
   const status = profile.performanceEvidence.length > 0 && profile.trainingCompleted.length > 0 ? 'READY' : 'TRAINING';

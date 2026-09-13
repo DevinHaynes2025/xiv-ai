@@ -13,4 +13,4 @@ export function composeDashboard(viewport: ViewportKind, cards: StoryVisualCard[
   return { viewport, columns, cards, drillDownEnabled: true, rawDataDefaultVisible: false };
 }
 export function canRenderCardForClient(card: StoryVisualCard): boolean { return card.classification !== 'TOP_SECRET'; }
-export const LIVE_VISUAL_GUARDRAILS = { storyFirst: true, evidenceRequired: true, rawDataThird: true, topSecretClientRenderingAllowed: false, crossTenantRenderingAllowed: false };
+export const LIVE_VISUAL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  storyFirst: true, evidenceRequired: true, rawDataThird: true, topSecretClientRenderingAllowed: false, crossTenantRenderingAllowed: false } );

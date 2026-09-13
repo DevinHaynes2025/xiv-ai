@@ -9,7 +9,8 @@ export interface CompanyBrainSnapshot {
   records: CompanyBrainRecord[];
 }
 
-export const COMPANY_BRAIN_STORE_GUARDRAILS = Object.freeze({
+export const COMPANY_BRAIN_STORE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   atomicReplace: true,
   crossTenantRestoreAllowed: false,

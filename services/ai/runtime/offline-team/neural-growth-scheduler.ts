@@ -26,11 +26,12 @@ export function scheduleNeuralGrowth(candidates: GrowthCandidate[], maxNewEdges 
   return { accepted, rejected: candidates.filter(c => !acceptedIds.has(c.candidateId)), maxNewEdges };
 }
 
-export const NEURAL_GROWTH_GUARDRAILS = {
+export const NEURAL_GROWTH_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   evidenceRequired: true,
   approvalRequired: true,
   minimumConfidence: 0.7,
   graphEdgeIsNotFact: true,
   silentModelWeightMutationAllowed: false,
   productionMutationAllowed: false,
-};
+} );

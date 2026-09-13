@@ -18,4 +18,4 @@ export function bootstrapAvatarBrain(receipt: EnrollmentReceipt, cloudSyncConsen
   return { namespaceId: `avatar-brain:${digest}`, userId: receipt.userId, tenantId: receipt.tenantId, localFirst: true, cloudSync: cloudSyncConsented ? 'CONSENTED' : 'DISABLED', memoryMode: 'RAG_MEMORY_EVAL', evidenceRefs: [...receipt.consentRefs], createdAt: new Date().toISOString() };
 }
 
-export const AVATAR_BRAIN_BOOTSTRAP_GUARDRAILS = { literalMindClone: false, modelWeightMutation: false, secretsInSourceAllowed: false, crossTenantMemoryAllowed: false };
+export const AVATAR_BRAIN_BOOTSTRAP_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  literalMindClone: false, modelWeightMutation: false, secretsInSourceAllowed: false, crossTenantMemoryAllowed: false } );

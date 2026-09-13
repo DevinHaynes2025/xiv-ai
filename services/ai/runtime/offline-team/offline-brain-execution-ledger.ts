@@ -31,14 +31,15 @@ export interface CouncilExecutionSummary {
   rawOutputsPersisted: false;
 }
 
-export const OFFLINE_BRAIN_EXECUTION_GUARDRAILS = {
+export const OFFLINE_BRAIN_EXECUTION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   appendOnly: true,
   rawOutputsPersisted: false,
   crossTenantReceiptsAllowed: false,
   topSecretExternalExecutionAllowed: false,
   productionMutationAllowed: false,
   autonomousDeployAllowed: false,
-} as const;
+} as const );
 
 function canonicalReceipt(receipt: AgentExecutionReceipt): string {
   return JSON.stringify({

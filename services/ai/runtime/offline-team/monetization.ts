@@ -14,14 +14,15 @@ export interface PricingPlan {
   humanApprovalRequired: true;
 }
 
-export const MONETIZATION_GUARDRAILS = {
+export const MONETIZATION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   forecastsAreScenariosNotGuarantees: true,
   humanApprovalForContracts: true,
   autonomousPaymentsAllowed: false,
   autonomousPriceChangesAllowed: false,
   deceptiveAdvertisingAllowed: false,
   secretsInReportsAllowed: false,
-} as const;
+} as const );
 
 export function buildDefaultPricingCatalog(): readonly PricingPlan[] {
   return Object.freeze([

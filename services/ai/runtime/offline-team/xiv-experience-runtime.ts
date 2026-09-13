@@ -53,10 +53,11 @@ export function runXivExperience(input: ExperienceRuntimeInput): ExperienceRunti
   return { tenantId: input.tenantId, healthScore, visual, generatedAt: new Date().toISOString(), sourceEvidenceRefs };
 }
 
-export const EXPERIENCE_RUNTIME_GUARDRAILS = {
+export const EXPERIENCE_RUNTIME_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   tenantIsolation: true,
   evidenceRequired: true,
   topSecretClientRenderingAllowed: false,
   productionMutationAllowed: false,
   storyFirst: true,
-};
+} );

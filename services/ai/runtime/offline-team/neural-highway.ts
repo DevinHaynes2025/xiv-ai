@@ -21,13 +21,14 @@ export interface HighwayWorkload {
   allowedProviders: readonly HighwayProvider[];
 }
 
-export const NEURAL_HIGHWAY_GUARDRAILS = {
+export const NEURAL_HIGHWAY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   productionExecutionAllowed: false,
   crossTenantRoutingAllowed: false,
   verifiedProviderRequiresEvidence: true,
   policyGateBypassAllowed: false,
-} as const;
+} as const );
 
 export function routeNeuralHighway(workload: HighwayWorkload, capabilities: readonly ProviderCapability[]) {
   const eligible = capabilities.filter((c) =>

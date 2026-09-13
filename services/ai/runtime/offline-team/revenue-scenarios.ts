@@ -17,11 +17,12 @@ export interface RevenueScenarioResult extends RevenueScenarioInput {
   scenarioOnly: true;
 }
 
-export const REVENUE_SCENARIO_GUARDRAILS = {
+export const REVENUE_SCENARIO_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   scenarioOnly: true,
   guaranteedOutcome: false,
   investorClaimAllowedWithoutEvidence: false,
-} as const;
+} as const );
 
 export function simulateRevenue(input: RevenueScenarioInput): RevenueScenarioResult {
   if (!Number.isFinite(input.customers) || input.customers < 0) throw new Error('customers must be nonnegative');

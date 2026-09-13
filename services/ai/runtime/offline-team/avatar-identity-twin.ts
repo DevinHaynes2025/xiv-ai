@@ -20,10 +20,11 @@ export function buildAvatarIdentityTwin(input: Omit<AvatarIdentityTwin, 'avatarI
   return { ...input, avatarId: `avatar:${digest.slice(0, 32)}`, literalPersonClone: false };
 }
 
-export const AVATAR_IDENTITY_GUARDRAILS = {
+export const AVATAR_IDENTITY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   literalCloneAllowed: false,
   cloudSyncRequiresConsent: true,
   crossTenantSharingAllowed: false,
   topSecretClientExposureAllowed: false,
   userCanRevokeSync: true,
-};
+} );

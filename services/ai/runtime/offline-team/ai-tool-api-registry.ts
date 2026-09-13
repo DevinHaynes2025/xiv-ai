@@ -2,7 +2,7 @@ export type ToolKind = 'LOCAL_MODEL' | 'CLOUD_MODEL' | 'PLUGIN' | 'IDE' | 'DEVIC
 export type ToolState = 'CONNECTED' | 'AVAILABLE' | 'PAUSED' | 'OFFLINE' | 'UNVERIFIED';
 export type DataClass = 'PUBLIC' | 'INTERNAL' | 'CONFIDENTIAL' | 'TOP_SECRET';
 export interface ToolCapabilityRecord { id:string; name:string; kind:ToolKind; state:ToolState; capabilities:string[]; maxDataClass:DataClass; tenantScoped:boolean; productionAuthority:false; evidenceRefs:string[]; }
-export const TOOL_REGISTRY_GUARDRAILS = { topSecretExternalRoutingAllowed:false, secretsInSourceAllowed:false, connectedStatusRequiresEvidence:true, productionAuthority:false };
+export const TOOL_REGISTRY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  topSecretExternalRoutingAllowed:false, secretsInSourceAllowed:false, connectedStatusRequiresEvidence:true, productionAuthority:false } );
 export function buildDefaultToolRegistry(): ToolCapabilityRecord[] { return [
 {id:'ollama',name:'Ollama',kind:'LOCAL_MODEL',state:'AVAILABLE',capabilities:['local-inference','coding','reasoning'],maxDataClass:'TOP_SECRET',tenantScoped:true,productionAuthority:false,evidenceRefs:[]},
 {id:'qwen-local',name:'Qwen2.5-Coder',kind:'LOCAL_MODEL',state:'AVAILABLE',capabilities:['coding','review','planning'],maxDataClass:'TOP_SECRET',tenantScoped:true,productionAuthority:false,evidenceRefs:[]},

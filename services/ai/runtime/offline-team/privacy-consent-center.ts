@@ -18,11 +18,12 @@ export function validateConsentGrant(grant: ConsentGrant): ConsentGrant {
   return grant;
 }
 
-export const PRIVACY_CONSENT_GUARDRAILS = {
+export const PRIVACY_CONSENT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   explicitOptInForSensitiveScopes: true,
   revocableAnyTime: true,
   separateConsentPerCapability: true,
   noBundledBlanketDevicePermission: true,
   noDarkPatterns: true,
   auditReceiptRequired: true,
-};
+} );

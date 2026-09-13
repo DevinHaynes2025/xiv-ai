@@ -20,7 +20,8 @@ export type AtomicLearningCell = {
   createdAt: string;
 };
 
-export const EXECUTIVE_LEARNING_GUARDRAILS = Object.freeze({
+export const EXECUTIVE_LEARNING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   requiresEvidence: true,
   requiresApproval: true,
   crossTenantWriteAllowed: false,

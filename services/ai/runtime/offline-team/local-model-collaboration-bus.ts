@@ -56,7 +56,8 @@ export interface PathwayCandidate {
   securityClass: CollaborationSecurityClass;
   humanApproved: boolean;
 }
-export const LOCAL_MODEL_COLLABORATION_GUARDRAILS = {
+export const LOCAL_MODEL_COLLABORATION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   ollamaDefaultEndpoint: 'http://127.0.0.1:11434',
   claudeCodeIsLocalCliNotLocalModelGuarantee: true,
   topSecretClaudeReviewAllowed: false,
@@ -67,7 +68,7 @@ export const LOCAL_MODEL_COLLABORATION_GUARDRAILS = {
   pathwayPromotionThreshold: 0.92,
   independentReviewCount: 2,
   maximumReceiptAgeMs: 300_000,
-} as const;
+} as const );
 const nonblank = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0;
 const validRefs = (value: readonly string[]): boolean => Array.isArray(value) && value.length > 0 && value.every(nonblank);
 

@@ -33,7 +33,8 @@ export function buildDefenseSwarm(tenantId: string, desiredLogicalAgents = 64): 
   }));
 }
 
-export const DEFENSE_SWARM_GUARDRAILS = {
+export const DEFENSE_SWARM_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   defensiveOnly: true,
   counterIntrusionAllowed: false,
   credentialTheftAllowed: false,
@@ -41,4 +42,4 @@ export const DEFENSE_SWARM_GUARDRAILS = {
   containmentMustBeReversible: true,
   criticalResponseRequiresHumanApproval: true,
   logicalScaleTargetNotActiveProcessClaim: true,
-};
+} );

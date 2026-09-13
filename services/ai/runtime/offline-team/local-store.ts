@@ -61,9 +61,10 @@ export async function loadOfflineRuntime(paths = defaultOfflineStorePaths()): Pr
   return { queue, journal };
 }
 
-export const OFFLINE_STORE_GUARDRAILS = {
+export const OFFLINE_STORE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localOnlyByDefault: true,
   secretsStored: false,
   productionDatabase: false,
   atomicFileReplace: true,
-} as const;
+} as const );

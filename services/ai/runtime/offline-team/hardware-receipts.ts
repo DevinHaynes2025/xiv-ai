@@ -13,12 +13,13 @@ export interface HardwareReceipt {
   measuredAt: string;
 }
 
-export const HARDWARE_RECEIPT_GUARDRAILS = {
+export const HARDWARE_RECEIPT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   verifiedRequiresEvidence: true,
   allowSyntheticVerification: false,
   allowLiveDeviceControl: false,
   allowProductionAutoTune: false,
-} as const;
+} as const );
 
 export function validateHardwareReceipt(receipt: HardwareReceipt): HardwareReceipt {
   if (!receipt.deviceName.trim()) throw new Error('deviceName required');

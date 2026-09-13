@@ -124,9 +124,12 @@ const sameFacets = (a: readonly string[], b: readonly string[]) =>
 export function auditAlignmentInvariants(input: {
   dir: string;
   auditedAtMs: number;
+  // Test injection only — production audits always run against the real frozen ledger.
+  debtLedger?: readonly KnownGuardrailsDebtEntry[];
 }): AlignmentAuditPacket {
   if (!input || typeof input.dir !== 'string' || input.dir.length === 0) throw new Error('audit directory required');
   if (!Number.isSafeInteger(input.auditedAtMs) || input.auditedAtMs < 0) throw new Error('audit timestamp required');
+  const DEBT = input.debtLedger ?? KNOWN_GUARDRAILS_DEBT;
   const findings: AlignmentFinding[] = [];
   const add = (invariant: string, file: string, detail: string) => {
     if (findings.length < ALIGNMENT_AUDIT_POLICY.maxFindingsReported) {
@@ -134,7 +137,7 @@ export function auditAlignmentInvariants(input: {
     }
   };
 
-  const debtByKey = new Map(KNOWN_GUARDRAILS_DEBT.map((e) => [`${e.file}::${e.object}`, e]));
+  const debtByKey = new Map(DEBT.map((e) => [`${e.file}::${e.object}`, e]));
   const debtSeen = new Set<string>();
   let guardrailObjects = 0;
   let compliantGuardrailObjects = 0;
@@ -269,7 +272,7 @@ export function auditAlignmentInvariants(input: {
   // Ledger hygiene: every ledger entry must have been observed as still-violating or
   // still-compliant in this audit; an entry whose file no longer declares the object at
   // all is stale ledger data.
-  for (const entry of KNOWN_GUARDRAILS_DEBT) {
+  for (const entry of DEBT) {
     if (!debtSeen.has(`${entry.file}::${entry.object}`)) {
       add('debt-ledger-stale', entry.file, `ledger entry ${entry.object} was not observed in the audit (fixed, renamed, or removed) — update KNOWN_GUARDRAILS_DEBT`);
     }
@@ -282,7 +285,7 @@ export function auditAlignmentInvariants(input: {
     guardrailObjects,
     compliantGuardrailObjects,
     knownDebtViolations,
-    knownDebtLedgerSize: KNOWN_GUARDRAILS_DEBT.length,
+    knownDebtLedgerSize: DEBT.length,
     authorizedNetworkSurfaces: AUTHORIZED_NETWORK_SURFACES.length,
     findings,
     auditOnly: true as const,

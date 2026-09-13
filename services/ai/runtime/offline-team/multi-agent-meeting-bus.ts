@@ -12,14 +12,15 @@ export interface MeetingMessage {
   messageHash: string;
 }
 
-export const MEETING_BUS_GUARDRAILS = {
+export const MEETING_BUS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localFirst: true,
   maxMessagesPerMeeting: 64,
   crossTenantMessagesAllowed: false,
   productionMutationAllowed: false,
   consequentialDecisionRequiresHuman: true,
   preserveDissent: true,
-} as const;
+} as const );
 
 export function createMeetingMessage(input: Omit<MeetingMessage, 'messageHash'>): MeetingMessage {
   if (!input.meetingId || !input.tenantId || !input.role || !input.content.trim()) throw new Error('INVALID_MEETING_MESSAGE');

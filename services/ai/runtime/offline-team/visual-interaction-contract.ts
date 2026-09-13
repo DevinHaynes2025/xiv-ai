@@ -15,9 +15,10 @@ export function buildInteractionContract(formFactor: VisualInteractionContract['
   return { formFactor, modes: ['MOUSE_KEYBOARD','VOICE'], drilldownDepth: 4, supportsOffline: true, supportsApprovalAction: true };
 }
 
-export const VISUAL_INTERACTION_GUARDRAILS = {
+export const VISUAL_INTERACTION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   mobilePrioritizesNarrativeAndApprovals: true,
   desktopPrioritizesExploration: true,
   xrIsResearchInterfaceUntilVerified: true,
   approvalActionsRemainPolicyGated: true,
-};
+} );

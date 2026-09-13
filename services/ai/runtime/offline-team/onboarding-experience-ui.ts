@@ -20,11 +20,12 @@ export function buildOnboardingScreen(input: OnboardingScreenModel): OnboardingS
   return { ...input, evidenceRefs: [...new Set(input.evidenceRefs)] };
 }
 
-export const ONBOARDING_EXPERIENCE_GUARDRAILS = {
+export const ONBOARDING_EXPERIENCE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   noSecurityStepBypass: true,
   contractsMustBeVersioned: true,
   privacyChoicesBeforePersonalization: true,
   accessibilityRequired: true,
   responsiveAcrossMajorFormFactors: true,
   topSecretClientValuesAllowed: false,
-};
+} );

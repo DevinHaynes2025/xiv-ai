@@ -19,13 +19,14 @@ export interface NeuronEdge {
   evidenceRefs: readonly string[];
 }
 
-export const NEURON_FABRIC_GUARDRAILS = {
+export const NEURON_FABRIC_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   literalBiologicalNeuronClaimAllowed: false,
   literalAtomicStorageClaimAllowed: false,
   graphEdgeIsFact: false,
   crossTenantEdgeAllowed: false,
   maxEdgesPerExpansion: 10000,
-} as const;
+} as const );
 
 export function makeNeuron(input: { tenantId: string; kind: NeuronKind; payload: unknown; evidenceRefs?: readonly string[] }): NeuronNode {
   const serialized = JSON.stringify(input.payload);

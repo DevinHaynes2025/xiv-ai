@@ -16,13 +16,14 @@ export interface RevenueLabCouncilDecision {
   requiresHumanReview: boolean;
 }
 
-export const REVENUE_COUNCIL_GUARDRAILS = {
+export const REVENUE_COUNCIL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   preserveDisagreement: true,
   evidenceRequired: true,
   confidenceFloor: 0.5,
   humanReviewOnObjection: true,
   autonomousFinancialActionAllowed: false,
-} as const;
+} as const );
 
 export function decideRevenueCouncil(positions: readonly RevenueLabPosition[]): RevenueLabCouncilDecision {
   const valid = positions.filter((position) => position.confidence >= REVENUE_COUNCIL_GUARDRAILS.confidenceFloor).filter((position) => position.evidenceRefs.length > 0).sort((a, b) => b.confidence - a.confidence);

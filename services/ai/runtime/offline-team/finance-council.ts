@@ -11,14 +11,15 @@ export interface FinanceRecommendation {
   requiresHumanApproval: true;
 }
 
-export const FINANCE_COUNCIL_GUARDRAILS = {
+export const FINANCE_COUNCIL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   advisoryOnly: true,
   mayExecutePayments: false,
   maySignContracts: false,
   mayOpenBankAccounts: false,
   mayChangeProductionPricing: false,
   evidenceRequired: true,
-} as const;
+} as const );
 
 export function rankFinanceRecommendations(items: readonly FinanceRecommendation[]): readonly FinanceRecommendation[] {
   const valid = items.filter((item) => item.confidence >= 0 && item.confidence <= 1 && item.evidenceRefs.length > 0);

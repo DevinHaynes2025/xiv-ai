@@ -17,7 +17,8 @@ export const MODE_GOVERNOR_POLICY = Object.freeze({
   maxRefChars: 256,
 });
 
-export const MODE_GOVERNOR_GUARDRAILS = Object.freeze({
+export const MODE_GOVERNOR_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   graduatedTrustRequired: true,
   autopilotRequiresPriorHumanAuthorization: true,
   autopilotWindowBounded: true,

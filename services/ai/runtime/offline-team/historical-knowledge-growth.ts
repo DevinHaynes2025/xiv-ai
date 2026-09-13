@@ -31,10 +31,11 @@ export class HistoricalKnowledgeGrowthLedger {
   }
 }
 
-export const HISTORICAL_GROWTH_GUARDRAILS = {
+export const HISTORICAL_GROWTH_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   measuredCountsSeparateFromTargets: true,
   provenanceRequired: true,
   memoryIsNotTruth: true,
   correlationIsNotCausation: true,
   sourceBackedHistoricalClaimsOnly: true,
-};
+} );

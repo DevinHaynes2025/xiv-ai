@@ -23,7 +23,8 @@ export interface MissionTask {
   productionMutation: false;
 }
 
-export const MISSION_SCHEDULER_GUARDRAILS = {
+export const MISSION_SCHEDULER_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   maxTasksPerMission: 64,
   maxParallelTasksPerMission: 8,
@@ -31,7 +32,7 @@ export const MISSION_SCHEDULER_GUARDRAILS = {
   autonomousDeployAllowed: false,
   policyGateBypassAllowed: false,
   resumeFromCheckpoint: true,
-} as const;
+} as const );
 
 export function decomposeMission(mission: OfflineMission): readonly MissionTask[] {
   if (!mission.missionId || !mission.tenantId || !mission.objective.trim()) throw new Error('mission identity required');

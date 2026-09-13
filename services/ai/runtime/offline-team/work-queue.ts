@@ -14,13 +14,14 @@ export interface OfflineWorkItem {
   updatedAt: string;
 }
 
-export const OFFLINE_QUEUE_GUARDRAILS = {
+export const OFFLINE_QUEUE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   productionWritesAllowed: false,
   destructiveDbChangesAllowed: false,
   policyGateBypassAllowed: false,
   leaseRequiredBeforeExecution: true,
   maxBatchLease: 32,
-} as const;
+} as const );
 
 export class OfflineWorkQueue {
   private readonly items = new Map<string, OfflineWorkItem>();

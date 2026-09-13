@@ -17,7 +17,8 @@ export interface OllamaJobExecutionResult {
   outputHash: string;
 }
 
-export const OLLAMA_EXECUTOR_GUARDRAILS = {
+export const OLLAMA_EXECUTOR_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   endpoint: 'http://127.0.0.1:11434',
   defaultModel: 'qwen2.5-coder:7b',
   maxJobsPerTick: 1,
@@ -25,7 +26,7 @@ export const OLLAMA_EXECUTOR_GUARDRAILS = {
   destructiveDatabaseActionAllowed: false,
   autonomousDeployAllowed: false,
   networkRequired: false,
-} as const;
+} as const );
 
 function hashOutput(text: string): string {
   return createHash('sha256').update(text, 'utf8').digest('hex');

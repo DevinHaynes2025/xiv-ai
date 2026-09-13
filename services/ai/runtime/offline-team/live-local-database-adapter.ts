@@ -12,4 +12,4 @@ export function buildLocalDbReceipt(config: LocalDbConfig, schemaVersion = 1, ve
   const payload = `${config.tenantId}|${config.engine}|${config.path}|${schemaVersion}|${health}`;
   return { tenantId: config.tenantId, engine: config.engine, path: config.path, schemaVersion, health, verifiedAt: verified ? new Date().toISOString() : undefined, receiptHash: createHash('sha256').update(payload).digest('hex') };
 }
-export const LOCAL_DB_GUARDRAILS = { localhostOnly: true, productionMutationAllowed: false, topSecretExternalSyncAllowed: false, secretsInSourceAllowed: false } as const;
+export const LOCAL_DB_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  localhostOnly: true, productionMutationAllowed: false, topSecretExternalSyncAllowed: false, secretsInSourceAllowed: false } as const );

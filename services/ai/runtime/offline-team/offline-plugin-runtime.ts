@@ -10,14 +10,15 @@ export interface OfflinePluginManifest {
   mayWriteProduction: false;
 }
 
-export const OFFLINE_PLUGIN_GUARDRAILS = {
+export const OFFLINE_PLUGIN_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   productionWritesAllowed: false,
   networkDefaultAllowed: false,
   unsignedPluginAutoLoadAllowed: false,
   secretAccessAllowed: false,
   hostShellUnrestrictedAllowed: false,
   tenantBoundaryBypassAllowed: false,
-} as const;
+} as const );
 
 export function validateOfflinePlugin(manifest: OfflinePluginManifest): OfflinePluginManifest {
   if (!manifest.pluginId || !manifest.version || !manifest.checksum) throw new Error('plugin identity/checksum required');

@@ -14,4 +14,4 @@ export function composeClientPresentation(input: { presentationId: string; tenan
   return { presentationId: input.presentationId, tenantId: input.tenantId, title: input.title, audience: input.audience, sections, evidenceRefs: [...new Set(input.evidenceRefs)], generatedFromSyntheticData: !!input.generatedFromSyntheticData };
 }
 
-export const PRESENTATION_GUARDRAILS = { evidenceBeforePolish: true, syntheticDataLabelRequired: true, noCrossTenantDecks: true, confidentialSlidesNeedExplicitAuthorization: true };
+export const PRESENTATION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  evidenceBeforePolish: true, syntheticDataLabelRequired: true, noCrossTenantDecks: true, confidentialSlidesNeedExplicitAuthorization: true } );

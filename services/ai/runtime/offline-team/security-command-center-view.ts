@@ -25,11 +25,12 @@ export function composeSecurityCommandCenter(input: SecurityCommandCenterView): 
   return { ...input, emergencyStopAvailable: true };
 }
 
-export const SECURITY_COMMAND_CENTER_GUARDRAILS = {
+export const SECURITY_COMMAND_CENTER_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   defensiveOnly: true,
   noCounterIntrusion: true,
   evidenceRequiredForVerifiedState: true,
   quarantineAndRollbackPreferred: true,
   userVisibleEmergencyStop: true,
   noRawSecretsInClientView: true,
-};
+} );

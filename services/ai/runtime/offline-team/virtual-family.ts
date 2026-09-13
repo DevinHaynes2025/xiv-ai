@@ -14,14 +14,15 @@ export interface VirtualFamily {
   simulationOnly: true;
 }
 
-export const VIRTUAL_FAMILY_GUARDRAILS = {
+export const VIRTUAL_FAMILY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   simulationOnly: true,
   maxDimensions: 100,
   maxMembers: 256,
   crossTenantMembershipAllowed: false,
   autonomousProductionAuthority: false,
   physicalPersonClaimAllowed: false,
-} as const;
+} as const );
 
 export function createVirtualFamily(input: Omit<VirtualFamily, 'simulationOnly'>): VirtualFamily {
   if (!input.familyId || !input.tenantId) throw new Error('family identity required');

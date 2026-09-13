@@ -14,12 +14,13 @@ export interface StudyModule {
   assessmentRequired: boolean;
 }
 
-export const STUDY_GUARDRAILS = {
+export const STUDY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   provenanceRequired: true,
   copyrightRespectRequired: true,
   sourceAuthorizationRequired: true,
   completionDoesNotImplyExpertise: true,
-} as const;
+} as const );
 
 export function validateStudySource(source: StudySource): boolean {
   return Boolean(source.sourceId && source.title && source.provenanceRef && source.licensedOrAuthorized);

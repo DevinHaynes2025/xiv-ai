@@ -25,7 +25,8 @@ export interface SupervisorSnapshot {
   productionMutationAllowed: false;
 }
 
-export const LIVE_SUPERVISOR_GUARDRAILS = {
+export const LIVE_SUPERVISOR_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   maxWorkers: 8,
   maxAutomaticRestartsPerWorker: 3,
@@ -33,7 +34,7 @@ export const LIVE_SUPERVISOR_GUARDRAILS = {
   autonomousDeployAllowed: false,
   destructiveDatabaseActionAllowed: false,
   requiresEvidenceForHealthyState: true,
-} as const;
+} as const );
 
 function roleToAgent(role: MissionTask['role']): OfflineAgentId {
   switch (role) {

@@ -8,13 +8,14 @@ export interface FounderTwinProfile {
   literalMindClone: false;
 }
 
-export const FOUNDER_TWIN_GUARDRAILS = {
+export const FOUNDER_TWIN_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   advisoryOnly: true,
   literalMindClone: false,
   secretsInSourceAllowed: false,
   decisionsRequireEvidence: true,
   productionAuthority: false,
-} as const;
+} as const );
 
 export function buildFounderTwin(input: { principles: readonly FounderPrinciple[]; decisionStyle?: readonly string[] }): FounderTwinProfile {
   if (input.principles.some((p) => p.evidenceRefs.length === 0)) throw new Error('founder principles require evidence');

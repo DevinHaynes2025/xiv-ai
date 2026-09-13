@@ -29,9 +29,10 @@ export function buildOllamaStoryPrompt(request: StoryExplanationRequest, model =
   };
 }
 
-export const OLLAMA_STORY_GUARDRAILS = {
+export const OLLAMA_STORY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineOnly: true,
   evidenceRequired: true,
   secretsInPromptAllowed: false,
   productionAuthority: false,
-};
+} );

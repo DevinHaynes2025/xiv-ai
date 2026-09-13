@@ -14,4 +14,4 @@ export const XIV_EXECUTIVE_CABINET: readonly ExecutiveSeat[] = Object.freeze([
  {role:'GENERAL_COUNSEL_RISK',mission:'Flag legal, contractual, governance, and irreversible-action risks.',authority:'ADVISE',canRunOffline:true,requiresEvidence:true},
  {role:'SUPPLY_CHAIN_OPERATIONS',mission:'Optimize logistics, operations, and measurable workflow outcomes.',authority:'DRAFT',canRunOffline:true,requiresEvidence:true}
 ]);
-export const EXECUTIVE_GUARDRAILS = Object.freeze({ autonomousMoneyMovement:false, autonomousContractSignature:false, autonomousProductionRoot:false, humanApprovalForConsequentialActions:true });
+export const EXECUTIVE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  autonomousMoneyMovement:false, autonomousContractSignature:false, autonomousProductionRoot:false, humanApprovalForConsequentialActions:true });

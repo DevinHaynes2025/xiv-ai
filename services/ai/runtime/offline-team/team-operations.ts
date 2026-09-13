@@ -9,12 +9,13 @@ export interface TeamMemberStatus {
   lastSeenAt?: string;
 }
 
-export const TEAM_OPERATIONS_GUARDRAILS = {
+export const TEAM_OPERATIONS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   evidenceRequiredForActive: true,
   branchNameIsNotAuthorshipProof: true,
   processNameIsNotAgentProof: true,
   productionMutationAllowed: false,
-} as const;
+} as const );
 
 export function normalizeTeamMember(input: Omit<TeamMemberStatus, 'state'> & { state?: TeamMemberState }): TeamMemberStatus {
   const evidence = Object.freeze([...(input.evidence ?? [])]);

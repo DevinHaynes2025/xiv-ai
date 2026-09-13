@@ -11,12 +11,13 @@ export interface OllamaDiscoveryResult {
   evidence: readonly string[];
 }
 
-export const MODEL_DISCOVERY_GUARDRAILS = {
+export const MODEL_DISCOVERY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   endpoint: 'http://127.0.0.1:11434',
   networkRequired: false,
   productionMutationAllowed: false,
   discoveredDoesNotMeanRunning: true,
-} as const;
+} as const );
 
 export async function discoverOllamaModels(input?: {
   endpoint?: string;

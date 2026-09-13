@@ -41,10 +41,11 @@ export class RecoveryJournal {
   }
 }
 
-export const RECOVERY_JOURNAL_GUARDRAILS = {
+export const RECOVERY_JOURNAL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   appendOnly: true,
   productionControlPlane: false,
   secretsAllowed: false,
   resumesAfterRestart: true,
   claimsWorkDuringPowerOff: false,
-} as const;
+} as const );

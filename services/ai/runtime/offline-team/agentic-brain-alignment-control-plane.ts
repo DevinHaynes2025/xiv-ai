@@ -108,7 +108,8 @@ export interface CeoProgressPacket {
   nextActions: readonly string[];
 }
 
-export const AGENTIC_BRAIN_ALIGNMENT_GUARDRAILS = {
+export const AGENTIC_BRAIN_ALIGNMENT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   topSecretRemoteExecutionAllowed: false,
   crossTenantRawMemoryAllowed: false,
   modelWeightMutationAllowed: false,
@@ -118,7 +119,7 @@ export const AGENTIC_BRAIN_ALIGNMENT_GUARDRAILS = {
   quantumHardwareVerified: false,
   requireEvidenceForVerifiedConnections: true,
   requireLoadEvidenceForBillionsReady: true,
-} as const;
+} as const );
 
 export function chooseExecutionMode(input: {
   securityClass: BrainSecurityClass;

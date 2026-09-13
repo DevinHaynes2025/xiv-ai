@@ -18,14 +18,15 @@ export interface OllamaRuntimeReceipt {
   cloudExecutionVerified: false;
 }
 
-export const OLLAMA_RUNTIME_GUARDRAILS = {
+export const OLLAMA_RUNTIME_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   loopbackOnly: true,
   localOnly: true,
   productionAuthority: false,
   autonomousDeployAllowed: false,
   modelWeightMutationAllowed: false,
   preferredModels: Object.freeze(['qwen2.5-coder:7b', 'gpt-oss:20b']),
-} as const;
+} as const );
 
 export function selectPreferredOllamaModel(modelNames: readonly string[]): string | undefined {
   for (const preferred of OLLAMA_RUNTIME_GUARDRAILS.preferredModels) {

@@ -16,4 +16,4 @@ export function canUseCapability(grants: CapabilityGrant[], input: { userId: str
   return grants.some(g => g.userId === input.userId && g.tenantId === input.tenantId && g.deviceId === input.deviceId && g.capability === input.capability && g.granted && g.evidenceRefs.length > 0 && (!g.expiresAt || new Date(g.expiresAt).getTime() > now));
 }
 
-export const CAPABILITY_BROKER_GUARDRAILS = { explicitConsentRequired: true, crossTenantCapabilityReuse: false, blanketDeviceAccessAllowed: false, immediateRevocationSupported: true, auditReceiptRequired: true, topSecretNetworkExportAllowed: false };
+export const CAPABILITY_BROKER_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  explicitConsentRequired: true, crossTenantCapabilityReuse: false, blanketDeviceAccessAllowed: false, immediateRevocationSupported: true, auditReceiptRequired: true, topSecretNetworkExportAllowed: false } );

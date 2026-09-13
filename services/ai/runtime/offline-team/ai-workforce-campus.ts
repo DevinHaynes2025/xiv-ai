@@ -20,7 +20,8 @@ export interface CampusSpace {
   tenantId: string;
 }
 
-export const AI_WORKFORCE_GUARDRAILS = {
+export const AI_WORKFORCE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   maxAgentsPerDepartmentPerCycle: 16,
   autonomousProductionDeploy: false,
   secretsInPrompts: false,
@@ -28,7 +29,7 @@ export const AI_WORKFORCE_GUARDRAILS = {
   mediaStudyRequiresProvenance: true,
   learningMutatesModelWeights: false,
   learningRewritesAgentCode: false,
-} as const;
+} as const );
 
 export function createWorkforceAgent(input: Omit<WorkforceAgent, 'state' | 'confidentiality'>): WorkforceAgent {
   const hasEvidence = input.evidenceRefs.length > 0;

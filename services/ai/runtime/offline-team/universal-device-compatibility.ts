@@ -33,4 +33,4 @@ export function verifyCompatibility(profile: DeviceCompatibilityProfile, evidenc
   return { ...profile, state: 'VERIFIED', evidenceRefs: [...new Set(evidenceRefs)] };
 }
 
-export const UNIVERSAL_COMPATIBILITY_GUARDRAILS = { universalSupportClaimAllowedWithoutEvidence: false, verificationRequiredPerOsDeviceClass: true, fallbackToWebOrPwaWhenNativeUnavailable: true, offlineFirstWhereSupported: true, secretsInClientLogsAllowed: false, productionAuthorityFromDeviceInstall: false };
+export const UNIVERSAL_COMPATIBILITY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  universalSupportClaimAllowedWithoutEvidence: false, verificationRequiredPerOsDeviceClass: true, fallbackToWebOrPwaWhenNativeUnavailable: true, offlineFirstWhereSupported: true, secretsInClientLogsAllowed: false, productionAuthorityFromDeviceInstall: false } );

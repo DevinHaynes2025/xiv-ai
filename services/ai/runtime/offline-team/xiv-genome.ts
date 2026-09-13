@@ -12,13 +12,14 @@ export interface XivAgentGenome {
   immutableBaseHash: string;
 }
 
-export const XIV_GENOME_GUARDRAILS = {
+export const XIV_GENOME_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   biologicalGenomeClaim: false,
   biologicalCloningAllowed: false,
   modelWeightMutationAllowed: false,
   capabilityPromotionRequiresEvidence: true,
   maxGeneration: 1_000_000,
-} as const;
+} as const );
 
 export function matureGenome(input: XivAgentGenome, evidenceRefs: readonly string[]): XivAgentGenome {
   if (!input.genomeId || !input.tenantId || !input.immutableBaseHash) throw new Error('genome identity required');

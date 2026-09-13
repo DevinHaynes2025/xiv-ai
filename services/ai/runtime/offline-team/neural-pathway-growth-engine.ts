@@ -9,11 +9,12 @@ export interface NeuralPathwayCandidate {
 export interface NeuralPathwayState extends NeuralPathwayCandidate {
   status: PathwayStatus; activatedAt?: string; supersedes?: string;
 }
-export const NEURAL_PATHWAY_GROWTH_GUARDRAILS = {
+export const NEURAL_PATHWAY_GROWTH_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   minimumEvaluationScore: 0.92, minimumConfidence: 0.75, minimumIndependentReviews: 2,
   maxActivePathwaysPerDomain: 32, modelWeightMutationAllowed: false,
   autonomousProductionRewriteAllowed: false, humanApprovalRequired: true, rollbackRequiredForActivation: true,
-} as const;
+} as const );
 const nonblank = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0;
 const unitScore = (v: number): boolean => Number.isFinite(v) && v >= 0 && v <= 1;
 const refs = (v: readonly string[]): boolean => Array.isArray(v) && v.length > 0 && v.every(nonblank);

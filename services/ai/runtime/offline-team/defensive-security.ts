@@ -14,14 +14,15 @@ export interface SecurityFinding {
   evidence: string;
 }
 
-export const DEFENSIVE_SECURITY_GUARDRAILS = {
+export const DEFENSIVE_SECURITY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   authorizedScopeRequired: true,
   exploitExecutionAllowed: false,
   credentialTheftAllowed: false,
   persistenceAllowed: false,
   destructiveActionAllowed: false,
   productionMutationAllowed: false,
-} as const;
+} as const );
 
 const secretPatterns: RegExp[] = [
   /AKIA[0-9A-Z]{16}/g,

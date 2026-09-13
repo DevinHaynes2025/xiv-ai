@@ -17,14 +17,15 @@ export interface TrainingLedgerSnapshot {
   mutatesModelWeights: false;
 }
 
-export const TRAINING_LEDGER_GUARDRAILS = {
+export const TRAINING_LEDGER_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   maxEvaluations: 10000,
   minScore: 0,
   maxScore: 1,
   evidenceRequired: true,
   mutatesModelWeights: false,
   rewritesAgentCode: false,
-} as const;
+} as const );
 
 export function buildTrainingLedger(evaluations: readonly TrainingEvaluation[]): TrainingLedgerSnapshot {
   const valid = evaluations.filter((item) => item.score >= 0 && item.score <= 1).filter((item) => item.evidenceRefs.length > 0).slice(-TRAINING_LEDGER_GUARDRAILS.maxEvaluations);

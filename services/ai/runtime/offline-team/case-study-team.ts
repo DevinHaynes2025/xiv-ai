@@ -25,10 +25,11 @@ export function buildCaseStudyTeam(problem: CaseStudyProblem): CaseStudyAssignme
   return { caseId: problem.caseId, roles: [...new Set(roles)].slice(0, 8), maxParallel: 8, requiresHumanApproval: problem.confidentiality === 'TOP_SECRET' };
 }
 
-export const CASE_STUDY_GUARDRAILS = {
+export const CASE_STUDY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   evidenceRequired: true,
   preserveContrarianReview: true,
   maxParallelAgents: 8,
   productionMutationAllowed: false,
   consequentialActionsRequireHumanApproval: true,
-};
+} );

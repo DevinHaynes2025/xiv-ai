@@ -37,7 +37,8 @@ const OFFLINE_SURFACES = new Set<ExperienceSurface>([
   'EXECUTIVE_HOME', 'BUSINESS_HEALTH', 'STORY_ENGINE', 'AGENT_ACTIVITY', 'APPROVALS', 'LEARNING',
 ]);
 
-export const EXPERIENCE_BACKEND_GUARDRAILS = Object.freeze({
+export const EXPERIENCE_BACKEND_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   tenantIsolationRequired: true,
   humanApprovalForConsequentialActions: true,
   topSecretCommunityExposureAllowed: false,

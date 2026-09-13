@@ -24,10 +24,11 @@ export function bundlesForTier(tier: MarketplaceTier): ToolBundle[] {
   return PREPACKAGED_BUNDLES.filter(b => order.indexOf(b.tier) <= max);
 }
 
-export const MARKETPLACE_GUARDRAILS = {
+export const MARKETPLACE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   noGuaranteedIncomeClaims: true,
   tenantIsolationRequired: true,
   paidCapabilitiesRequireEntitlement: true,
   supplyChainTeamOwnsSupplyChainBundleReview: true,
   eliteAccessStillPolicyGated: true,
-};
+} );

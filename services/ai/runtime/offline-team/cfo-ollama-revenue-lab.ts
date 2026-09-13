@@ -15,7 +15,8 @@ export interface RevenueLabPrompt {
   productionMutationAllowed: false;
 }
 
-export const REVENUE_LAB_GUARDRAILS = {
+export const REVENUE_LAB_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   defaultModel: 'qwen2.5-coder:7b',
   maxFactsPerPrompt: 128,
@@ -23,7 +24,7 @@ export const REVENUE_LAB_GUARDRAILS = {
   contractSigningAllowed: false,
   productionPricingMutationAllowed: false,
   guaranteesAllowed: false,
-} as const;
+} as const );
 
 const roleMission: Record<RevenueLabRole, string> = {
   CFO: 'Optimize durable revenue, margin, runway, and capital efficiency while challenging unsupported assumptions.',

@@ -9,12 +9,13 @@ export interface DatabaseGrowthManifest {
   evidence: readonly string[];
 }
 
-export const DATABASE_GROWTH_GUARDRAILS = {
+export const DATABASE_GROWTH_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   measuredCountsOnly: true,
   trillionScaleIsTargetNotClaim: true,
   crossTenantWritesAllowed: false,
   automaticCloudExpansionAllowed: false,
-} as const;
+} as const );
 
 export function validateGrowthManifest(manifest: DatabaseGrowthManifest): DatabaseGrowthManifest {
   const counts = [manifest.atomicCells, manifest.shards, manifest.documentsIndexed, manifest.lessonsStored, manifest.simulationsStored];

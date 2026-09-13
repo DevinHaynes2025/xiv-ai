@@ -11,13 +11,14 @@ export interface DevOpsAssignment {
   state: 'READY' | 'WAITING_EVIDENCE' | 'BLOCKED';
 }
 
-export const DEVOPS_TEAM_GUARDRAILS = {
+export const DEVOPS_TEAM_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localFirst: true,
   productionDeployAllowed: false,
   secretsInLogsAllowed: false,
   destructiveInfrastructureActionAllowed: false,
   cloudSandboxRequiresEvidence: true,
-} as const;
+} as const );
 
 export function createDevOpsAssignment(input: Omit<DevOpsAssignment, 'productionMutationAllowed' | 'state'>): DevOpsAssignment {
   const blockedCloud = input.environment === 'CLOUD_SANDBOX' && input.evidenceRefs.length === 0;

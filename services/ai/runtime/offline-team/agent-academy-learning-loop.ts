@@ -29,10 +29,11 @@ export function evaluateLesson(lesson: AcademyLesson, score: number, evidenceRef
   };
 }
 
-export const AGENT_ACADEMY_GUARDRAILS = {
+export const AGENT_ACADEMY_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   studyDoesNotEqualLearningUntilEvaluated: true,
   failedLessonsDoNotEnterTrustedMemory: true,
   sharedMemoryRequiresExplicitApproval: true,
   noAutonomousWeightTraining: true,
   maxConcurrentStudyAgents: 8,
-};
+} );

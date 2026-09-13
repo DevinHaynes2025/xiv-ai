@@ -15,13 +15,14 @@ export interface WorkerTickResult {
   lessons: readonly string[];
 }
 
-export const WORKER_DAEMON_GUARDRAILS = {
+export const WORKER_DAEMON_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   maxJobsPerTick: 8,
   productionMutationAllowed: false,
   destructiveActionAllowed: false,
   selfModifyAgentCodeAllowed: false,
-} as const;
+} as const );
 
 export async function runWorkerTick(input: {
   queue: OfflineWorkQueue;

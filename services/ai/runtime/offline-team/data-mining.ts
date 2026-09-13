@@ -15,12 +15,13 @@ export interface MiningFinding {
   inferred: true;
 }
 
-export const DATA_MINING_GUARDRAILS = {
+export const DATA_MINING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   provenanceRequired: true,
   privateCrossTenantMiningAllowed: false,
   unsupportedPatternBecomesFact: false,
   productionMutationAllowed: false,
-} as const;
+} as const );
 
 export function mineTokenFrequency(records: readonly MiningRecord[], minimumCount = 2): MiningFinding[] {
   const counts = new Map<string, { count: number; ids: Set<string> }>();

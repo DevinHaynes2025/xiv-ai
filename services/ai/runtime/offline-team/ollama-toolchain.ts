@@ -41,7 +41,8 @@ export const OLLAMA_TOOLCHAIN: readonly OllamaToolSpec[] = Object.freeze([
   { id: 'TERMINAL', launch: 'ollama run', role: 'TERMINAL', requiresNetwork: false, parallelEligible: false, enabledByDefault: true, productionAuthority: false },
 ]);
 
-export const OLLAMA_TOOLCHAIN_GUARDRAILS = {
+export const OLLAMA_TOOLCHAIN_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localFirst: true,
   maxConcurrentTools: 8,
   productionWritesAllowed: false,
@@ -49,7 +50,7 @@ export const OLLAMA_TOOLCHAIN_GUARDRAILS = {
   secretsFromEnvironmentOnly: true,
   shellCommandAllowlistRequired: true,
   evidenceReceiptRequired: true,
-} as const;
+} as const );
 
 export function planOllamaToolchain(input: {
   offline: boolean;

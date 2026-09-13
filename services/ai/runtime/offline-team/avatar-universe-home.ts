@@ -20,10 +20,11 @@ export function buildAvatarUniverseHome(input: AvatarUniverseHome): AvatarUniver
   return { ...input, recommendedActions: input.recommendedActions.slice(0, 8), marketplaceBundleIds: [...new Set(input.marketplaceBundleIds)] };
 }
 
-export const AVATAR_UNIVERSE_HOME_GUARDRAILS = {
+export const AVATAR_UNIVERSE_HOME_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   literalPersonClone: false,
   localFirstIdentity: true,
   cloudSyncRequiresConsent: true,
   crossTenantIdentityLinkingAllowed: false,
   topSecretClientExposureAllowed: false,
-};
+} );

@@ -27,7 +27,8 @@ export const REPORT_POLICY = Object.freeze({
   maxEvidenceRefs: 8,
 });
 
-export const REPORT_GUARDRAILS = Object.freeze({
+export const REPORT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   generatedByModel: false,
   modelCalls: 0,
   remoteCalls: 0,

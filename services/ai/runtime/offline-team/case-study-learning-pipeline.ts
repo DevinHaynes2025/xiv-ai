@@ -36,11 +36,12 @@ export function ingestCaseStudyLesson(lesson: CaseStudyLesson): CaseStudyLearnin
   };
 }
 
-export const CASE_STUDY_LEARNING_GUARDRAILS = {
+export const CASE_STUDY_LEARNING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   approvalRequired: true,
   evidenceRequired: true,
   topSecretSearchable: false,
   modelWeightsMutated: false,
   autonomousSelfRewrite: false,
   quantumPath: 'SIMULATOR_OR_VERIFIED_ADAPTER_ONLY',
-};
+} );

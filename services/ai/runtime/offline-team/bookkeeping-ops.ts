@@ -27,9 +27,10 @@ export class BookkeepingOps {
   }
 }
 
-export const BOOKKEEPING_GUARDRAILS = {
+export const BOOKKEEPING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   canMoveMoney: false,
   canOpenAccounts: false,
   canSignContracts: false,
   humanApprovalRequired: true,
-};
+} );

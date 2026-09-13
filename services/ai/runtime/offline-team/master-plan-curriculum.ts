@@ -8,4 +8,4 @@ export const MASTER_PLAN_CURRICULUM: MasterPlanLesson[] = [
 { lessonId:'mp-06', topic:'company-brain', principle:'The Company Brain models entities, relationships, history, actions and outcomes above the storage layer.', sourceRefs:['master-plan:93','master-plan:116','master-plan:131','master-plan:132'], requiresHumanApproval:false },
 { lessonId:'mp-07', topic:'android', principle:'Android Studio validates the mobile experience; real device or emulator evidence is required before compatibility claims.', sourceRefs:['master-plan:139','master-plan:144','master-plan:165','master-plan:176'], requiresHumanApproval:false }
 ];
-export const MASTER_PLAN_LEARNING_GUARDRAILS = { sourceBackedOnly:true, modelWeightMutationAllowed:false, autonomousPolicyRewriteAllowed:false, founderApprovalRequiredForMissionOrSecurityChanges:true };
+export const MASTER_PLAN_LEARNING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  sourceBackedOnly:true, modelWeightMutationAllowed:false, autonomousPolicyRewriteAllowed:false, founderApprovalRequiredForMissionOrSecurityChanges:true } );

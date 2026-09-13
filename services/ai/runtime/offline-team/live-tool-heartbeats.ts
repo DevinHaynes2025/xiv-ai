@@ -11,12 +11,13 @@ export interface ToolHeartbeat {
   topSecretAllowed: boolean;
 }
 
-export const HEARTBEAT_GUARDRAILS = {
+export const HEARTBEAT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   activeRequiresEvidence: true,
   topSecretExternalAllowed: false,
   crossTenantAccess: false,
   productionMutationAllowed: false,
-};
+} );
 
 export function normalizeHeartbeat(input: ToolHeartbeat): ToolHeartbeat {
   const health = input.health === 'ACTIVE' && input.evidenceRefs.length === 0 ? 'UNVERIFIED' : input.health;

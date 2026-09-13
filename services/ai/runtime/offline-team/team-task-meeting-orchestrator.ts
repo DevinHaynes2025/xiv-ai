@@ -37,9 +37,10 @@ export class TeamTaskMeetingOrchestrator {
   }
 }
 
-export const TEAM_OPS_GUARDRAILS = {
+export const TEAM_OPS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   maxConcurrentActiveAgents: 8,
   decisionsNeedEvidence: true,
   productionMutationRequiresHumanApproval: true,
   virtualCOOIsAdvisoryCoordinator: true,
-};
+} );

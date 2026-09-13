@@ -5,4 +5,4 @@ export function buildStoryDrilldown(card: StoryVisualCard): DrilldownLayer[] { r
   { level: 'EVIDENCE', title: 'Evidence', payload: card.data.map(point => ({ label: point.label, value: point.value, unit: point.unit, evidenceRefs: point.evidenceRefs })) },
   { level: 'RAW', title: 'Raw data', payload: card.data },
 ]; }
-export const DRILLDOWN_GUARDRAILS = { order: ['STORY','EVIDENCE','RAW'] as const, rawDataHiddenByDefault: true, evidenceBeforeRawData: true };
+export const DRILLDOWN_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  order: ['STORY','EVIDENCE','RAW'] as const, rawDataHiddenByDefault: true, evidenceBeforeRawData: true } );

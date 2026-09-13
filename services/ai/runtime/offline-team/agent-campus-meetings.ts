@@ -11,13 +11,14 @@ export interface AgentMeeting {
   productionAuthority: false;
 }
 
-export const AGENT_MEETING_GUARDRAILS = {
+export const AGENT_MEETING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   maxParticipants: 32,
   maxAgendaItems: 16,
   crossTenantMeetingsAllowed: false,
   productionAuthority: false,
   disagreementMustBePreserved: true,
-} as const;
+} as const );
 
 export function createAgentMeeting(input: Omit<AgentMeeting, 'simulationOnly' | 'productionAuthority'>): AgentMeeting {
   if (input.participantAgentIds.length > AGENT_MEETING_GUARDRAILS.maxParticipants) throw new Error('participant cap exceeded');

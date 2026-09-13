@@ -28,9 +28,10 @@ export class AgentHeartbeatStore {
   }
 }
 
-export const AGENT_HEARTBEAT_GUARDRAILS = {
+export const AGENT_HEARTBEAT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   maxConcurrentActiveAgents: 8,
   minConcurrentActiveAgents: 2,
   heartbeatIsProofOfConsciousness: false,
   heartbeatIsProofOfOptimization: false,
-} as const;
+} as const );

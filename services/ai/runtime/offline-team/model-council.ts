@@ -16,12 +16,13 @@ export interface CouncilDecision {
   requiresHumanReview: boolean;
 }
 
-export const MODEL_COUNCIL_GUARDRAILS = {
+export const MODEL_COUNCIL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   preserveDisagreement: true,
   evidenceRequiredForSelection: true,
   humanReviewOnCloseCall: true,
   autonomousProductionAuthority: false,
-} as const;
+} as const );
 
 export function decideCouncil(positions: readonly CouncilPosition[]): CouncilDecision {
   const valid = positions.filter((p) => p.confidence >= 0 && p.confidence <= 1 && p.evidenceRefs.length > 0);

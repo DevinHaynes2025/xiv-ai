@@ -23,10 +23,11 @@ export function decideGrokBridge(config: GrokBridgeConfig): GrokBridgeDecision {
   return { runnable: true, mode: 'REMOTE_SANDBOX', productionAuthority: false, reason: 'Grok available for bounded planning/review/coding tasks' };
 }
 
-export const GROK_BRIDGE_GUARDRAILS = {
+export const GROK_BRIDGE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   credentialsFromEnvironmentOnly: true,
   commitSecrets: false,
   autonomousProductionDeploy: false,
   autonomousProductionDatabaseMutation: false,
   fallbackToOfflineTeam: true,
-} as const;
+} as const );

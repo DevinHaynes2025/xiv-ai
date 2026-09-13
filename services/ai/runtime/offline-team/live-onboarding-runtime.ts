@@ -16,9 +16,10 @@ export function canBootstrapAvatarBrain(r: EnrollmentReceipt): boolean {
   return r.state === 'ENROLLED' && r.identityVerified && r.mfaVerified && r.contractsAccepted && r.privacyConfigured && r.deviceTrusted && r.consentRefs.length > 0;
 }
 
-export const LIVE_ONBOARDING_GUARDRAILS = {
+export const LIVE_ONBOARDING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   explicitConsentRequired: true,
   enrollmentCannotBypassSecurity: true,
   topSecretValuesInClientStateAllowed: false,
   revokeAndSuspendSupported: true,
-};
+} );

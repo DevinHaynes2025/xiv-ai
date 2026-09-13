@@ -31,7 +31,8 @@ export interface OfflineTeamStatus {
   lastCheckpointAt: string | null;
 }
 
-export const OFFLINE_TEAM_GUARDRAILS = {
+export const OFFLINE_TEAM_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   offlineFirst: true,
   resumeAfterRestart: true,
   pretendRunsDuringPowerOff: false,
@@ -43,4 +44,4 @@ export const OFFLINE_TEAM_GUARDRAILS = {
   learningMayRecordLessons: true,
   learningMayMutateModelWeights: false,
   learningMayRewriteAgentCode: false,
-} as const;
+} as const );

@@ -1,9 +1,10 @@
-export const OPENAI_LOCAL_GUARDRAILS = {
+export const OPENAI_LOCAL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   chatgptProductOfflineClaimAllowed: false,
   openWeightLocalInferenceAllowed: true,
   productionMutationAllowed: false,
   networkRequired: false,
-} as const;
+} as const );
 
 export interface OpenAiLocalConfig {
   endpoint: string;

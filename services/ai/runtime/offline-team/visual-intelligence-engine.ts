@@ -12,4 +12,4 @@ export function buildVisualStoryCard(input: VisualStoryCard): VisualStoryCard {
   return { ...input, points: input.points.map(p => ({ ...p, evidenceRefs: [...new Set(p.evidenceRefs)] })), evidenceRefs: [...new Set(input.evidenceRefs)] };
 }
 
-export const VISUAL_INTELLIGENCE_GUARDRAILS = { storyBeforeDashboard: true, evidenceRequiredForEveryMetric: true, decorationMayNotImplyCausality: true, uncertaintyMustBeVisible: true, syntheticDemoDataMustBeLabeled: true, crossTenantMixingAllowed: false, topSecretClientExposureAllowed: false };
+export const VISUAL_INTELLIGENCE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,  storyBeforeDashboard: true, evidenceRequiredForEveryMetric: true, decorationMayNotImplyCausality: true, uncertaintyMustBeVisible: true, syntheticDemoDataMustBeLabeled: true, crossTenantMixingAllowed: false, topSecretClientExposureAllowed: false } );

@@ -2,12 +2,13 @@ import { mkdir, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import type { SupervisorSnapshot } from './live-supervisor';
 
-export const SUPERVISOR_STATUS_GUARDRAILS = {
+export const SUPERVISOR_STATUS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localOnly: true,
   secretsAllowed: false,
   productionMutationAllowed: false,
   defaultRelativePath: '.xiv-runtime/offline-supervisor-status.json',
-} as const;
+} as const );
 
 export async function writeSupervisorSnapshot(rootDir: string, snapshot: SupervisorSnapshot): Promise<string> {
   const target = join(rootDir, SUPERVISOR_STATUS_GUARDRAILS.defaultRelativePath);

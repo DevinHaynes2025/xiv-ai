@@ -1,7 +1,7 @@
 export interface CouncilArtifact { artifactId:string; authorAgent:string; content:string; evidenceRefs:readonly string[]; }
 export interface ReviewFinding { reviewer:string; severity:'INFO'|'WARN'|'BLOCK'; message:string; evidenceRefs:readonly string[]; }
 export interface CouncilReview { artifactId:string; accepted:boolean; findings:readonly ReviewFinding[]; lessons:readonly string[]; requiresHumanReview:boolean; }
-export const REVIEW_LEARNING_GUARDRAILS={offlineFirst:true,productionMutationAllowed:false,selfApprovalAllowed:false,modelWeightMutationAllowed:false,agentCodeMutationAllowed:false,blockWithoutEvidence:true} as const;
+export const REVIEW_LEARNING_GUARDRAILS= Object.freeze({ humanDecision: 'REQUIRED' as const, offlineFirst:true,productionMutationAllowed:false,selfApprovalAllowed:false,modelWeightMutationAllowed:false,agentCodeMutationAllowed:false,blockWithoutEvidence:true} as const );
 export function reviewArtifact(input:{artifact:CouncilArtifact; findings:readonly ReviewFinding[]}):CouncilReview{
   const blockers=input.findings.filter(f=>f.severity==='BLOCK');
   const evidenceMissing=input.artifact.evidenceRefs.length===0;

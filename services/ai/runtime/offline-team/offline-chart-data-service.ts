@@ -25,9 +25,10 @@ export class OfflineChartDataService {
   }
 }
 
-export const OFFLINE_CHART_GUARDRAILS = {
+export const OFFLINE_CHART_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   tenantScopedCache: true,
   encryptedDiskAdapterRequiredForPersistentUse: true,
   topSecretCacheAllowed: false,
   staleDataMustBeLabeled: true,
-};
+} );

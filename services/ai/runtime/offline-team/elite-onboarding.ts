@@ -22,11 +22,12 @@ export function validateEnrollment(receipt: EnrollmentReceipt): boolean {
   return REQUIRED_ENROLLMENT_STEPS.every(step => receipt.completedSteps.includes(step));
 }
 
-export const ELITE_ONBOARDING_GUARDRAILS = {
+export const ELITE_ONBOARDING_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   explicitConsentRequired: true,
   preEnrollmentSecurityRequired: true,
   contractsAndWaiversVersioned: true,
   privacyChoicesBeforePersonalization: true,
   revocableAppSync: true,
   secretsInSourceAllowed: false,
-};
+} );

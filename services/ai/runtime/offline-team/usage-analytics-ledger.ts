@@ -36,9 +36,10 @@ export class UsageAnalyticsLedger {
   }
 }
 
-export const USAGE_ANALYTICS_GUARDRAILS = {
+export const USAGE_ANALYTICS_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   rawSecretsInTelemetryAllowed: false,
   crossTenantAggregationAllowedWithoutPolicy: false,
   pseudonymousActorIdsPreferred: true,
   userCountRequiresMeasuredEvents: true,
-};
+} );

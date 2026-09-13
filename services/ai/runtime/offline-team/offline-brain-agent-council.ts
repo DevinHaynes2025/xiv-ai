@@ -61,7 +61,8 @@ export interface OfflineBrainLearningCandidate {
   humanApproved: boolean;
 }
 
-export const OFFLINE_BRAIN_COUNCIL_GUARDRAILS = {
+export const OFFLINE_BRAIN_COUNCIL_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   localFirst: true,
   offlineCapable: true,
   maxConcurrentAgents: 8,
@@ -71,7 +72,7 @@ export const OFFLINE_BRAIN_COUNCIL_GUARDRAILS = {
   externalReviewerPrivateDataAllowed: false,
   topSecretExternalReviewAllowed: false,
   learningPromotionThreshold: 0.9,
-} as const;
+} as const );
 
 function externalReviewerSeat(
   role: 'ILM_REVIEWER' | 'CLAUDE_REVIEWER',

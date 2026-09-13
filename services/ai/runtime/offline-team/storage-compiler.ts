@@ -18,7 +18,8 @@ export interface StorageReplica {
   status: 'PLANNED' | 'LOCAL_PRESENT' | 'CLOUD_CONFIRMED';
 }
 
-export const STORAGE_COMPILER_GUARDRAILS = {
+export const STORAGE_COMPILER_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   literalAtomSizedDatabaseClaim: false,
   logicalAtomicDataCells: true,
   crossTenantReplicationAllowed: false,
@@ -26,7 +27,7 @@ export const STORAGE_COMPILER_GUARDRAILS = {
   autonomousCloudCreation: false,
   autonomousProductionReplication: false,
   localFirst: true,
-} as const;
+} as const );
 
 export function compileStoragePlan(input: {
   cellId: string;

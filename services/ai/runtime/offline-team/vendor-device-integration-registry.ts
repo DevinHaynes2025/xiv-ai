@@ -35,9 +35,10 @@ export class VendorDeviceIntegrationRegistry {
   getDevice(deviceId: string) { return this.devices.get(deviceId); }
 }
 
-export const INTEGRATION_GUARDRAILS = {
+export const INTEGRATION_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   namedVendorDoesNotImplyPartnership: true,
   universalDeviceSupportClaimAllowedWithoutReceipts: false,
   verifiedPartnerRequiresEvidence: true,
   verifiedDeviceRequiresReceipt: true,
-};
+} );

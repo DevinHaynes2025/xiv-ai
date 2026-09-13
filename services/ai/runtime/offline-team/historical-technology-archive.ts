@@ -16,10 +16,11 @@ export function trustedHistoricalRecords(records: HistoricalTechnologyRecord[]) 
   return records.filter(r => r.reviewed && r.sourceRefs.length > 0 && r.confidence >= 0.75);
 }
 
-export const HISTORICAL_ARCHIVE_GUARDRAILS = {
+export const HISTORICAL_ARCHIVE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   sourceBackedOnly: true,
   historicalPersonaIsSourceBackedProfileNotConsciousness: true,
   provenanceRequired: true,
   externalWebIngestRequiresApproval: true,
   topSecretExternalIngestAllowed: false,
-};
+} );

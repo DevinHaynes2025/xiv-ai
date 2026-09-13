@@ -27,10 +27,11 @@ export function composeClientVisual(input: Omit<ClientVisualPayload, 'payloadId'
   return { ...input, payloadId };
 }
 
-export const VISUAL_COMPONENT_GUARDRAILS = {
+export const VISUAL_COMPONENT_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   storyFirst: true,
   evidenceRequired: true,
   topSecretClientRenderingAllowed: false,
   crossTenantRenderingAllowed: false,
   consequentialActionsRequireHumanApproval: true,
-};
+} );

@@ -27,13 +27,14 @@ export const COMMUNITY_POLICIES: readonly CommunityPolicy[] = Object.freeze([
   { surface: 'XIV_UNIVERSE', tenantScoped: false, publicReadable: false, ageGateRequired: true, offlineCapable: true },
 ]);
 
-export const XIV_UNIVERSE_GUARDRAILS = {
+export const XIV_UNIVERSE_GUARDRAILS = Object.freeze({ humanDecision: 'REQUIRED' as const,
+
   simulationOnly: true,
   physicalPortalClaimAllowed: false,
   crossTenantPrivateDataAllowed: false,
   autonomousProductionMutationAllowed: false,
   maxDimensionsPerUniverse: 100,
-} as const;
+} as const );
 
 export function createUniverseNode(input: UniverseNode): UniverseNode {
   if (!input.universeId.trim()) throw new Error('universeId required');
