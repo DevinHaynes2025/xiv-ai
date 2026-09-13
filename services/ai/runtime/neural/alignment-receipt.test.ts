@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './file-replay-store.test';
 import { generateKeyPairSync, sign } from 'node:crypto';
 import { createInMemoryAlignmentReplayStore, evaluateAuthenticatedAlignment, serializeAlignmentReceipt, type AlignmentReceiptPayload, type AlignmentTrustContext } from './alignment-receipt';
 function test(name:string, run:()=>void){ run(); console.log(`ok - ${name}`); }
