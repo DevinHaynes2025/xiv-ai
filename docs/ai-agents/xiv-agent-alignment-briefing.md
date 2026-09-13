@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 8)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 9)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -22,7 +22,16 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   the regional-cell placement CONTRACT (pure, materializes-nothing grouping of a 12D-109
   routing into ≤16 cells via deterministic shardId%cellCount; adversarially reviewed
   before commit — 9 confirmed findings incl. 3 BLOCKING paid down, construction now
-  runs 12D-109's own exported validators and self-checks its packet).
+  runs 12D-109's own exported validators and self-checks its packet); 12D-121 built the
+  agent DECISION SAFETY WORKFLOW (`agent-decision-safety-workflow.ts`): the master
+  plan's gate ladder (IDENTITY_AND_POLICY → … → MEASURE_OUTCOME) as a pure, fail-closed,
+  receipt-gated stage machine — seven high-impact action classes always require explicit
+  human authorization, the runtime emits EXECUTION_INSTRUCTIONs and materializes NO side
+  effect, and the audit trail is append-only and hash-chained; 12D-122 added the governed
+  Story Engine screen (`apps/mobile story-engine.tsx`: KPI change → causal narrative →
+  treatment options → human decision, SIGNAL→LEARNING ladder, example data only) —
+  the investor demo's GOVERNED AGENT / AUDIT CENTER / STORY ENGINE trio, backend and
+  frontend, now exist as governed contracts).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -103,7 +112,17 @@ number, fail-closed invariant detection; 7/7 tests, typecheck green, adversarial
 applied: 9 confirmed findings (3 BLOCKING — foreign-shard placement, missing
 ceiling/budget validation, skipped routing validation — all fixed before commit; 1
 refuted finding discarded and disclosed; one residual cellCount-tamper class disclosed
-in the handoff).
+in the handoff)), 12D-121 agent decision-safety workflow (`agent-decision-safety-
+workflow.ts`: the master plan's Decision Safety gate ladder as a pure fail-closed
+receipt-gated stage machine; seven high-impact classes always human-authorized;
+EXECUTION_INSTRUCTION executes nothing; hash-chained tamper-evident audit with
+genesis-bound metadata and trail-bound authorization; 11/11 tests; adversarially
+reviewed before commit: 7 confirmed findings (4 BLOCKING — caller-forged-proposal
+receipt-gate bypass, unbound metadata, mutable tool scope, plus stage-machine holes —
+all fixed before commit; 1 refuted finding discarded and disclosed)), 12D-122 governed
+Story Engine screen (`apps/mobile/src/app/business/story-engine.tsx`:
+KPI change → causal narrative → treatment options, SIGNAL→LEARNING ladder, example data
+only, registered in the business tab layout; mobile typecheck green).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already

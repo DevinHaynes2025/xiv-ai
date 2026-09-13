@@ -171,6 +171,7 @@ const hidden = [
   'intelligence-task-force',
   'research-fabric',
   'control-tower',
+  'story-engine',
 ];
 
 export default function BusinessLayout() {
