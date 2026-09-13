@@ -16,6 +16,8 @@ export type AlignmentTrustContext = {
   expectedDataPolicyDigest: string; expectedCapabilityEvidenceDigest: string;
   replayStore: AlignmentReplayStore;
   mode: 'TEST' | 'OPERATIONAL';
+  revokedKeyIds: ReadonlySet<string>; revokedApprovalRefs: ReadonlySet<string>;
+  participantConsentActive: boolean; organizationAuthorityActive: boolean;
 };
 const keys: readonly (keyof AlignmentReceiptPayload)[] = ['tenantId','universeId','target','issuerId','keyId','nonce','issuedAt','expiresAt','sourceRevision','participantOptIn','organizationAuthorized','humanApprovalRef','termsDigest','dataPolicyDigest','capabilityEvidenceDigest'];
 export function serializeAlignmentReceipt(p: AlignmentReceiptPayload): string {
@@ -28,6 +30,7 @@ export function evaluateAuthenticatedAlignment(c: AlignmentTrustContext, r: Sign
   const p = r.payload;
   if (p.tenantId !== c.tenantId || p.universeId !== c.universeId || p.target !== c.target) return deny(c.target, 'scope_mismatch');
   if (p.issuerId !== c.issuerId || p.keyId !== c.keyId) return deny(c.target, 'untrusted_issuer');
+  if (c.revokedKeyIds.has(p.keyId)) return deny(c.target, 'signing_key_revoked');
   if (p.sourceRevision !== c.expectedSourceRevision) return deny(c.target, 'source_revision_mismatch');
   try {
     if (!verify(null, Buffer.from(serializeAlignmentReceipt(p)), createPublicKey(c.publicKeyPem), Buffer.from(r.signature, 'base64'))) return deny(c.target, 'invalid_signature');
@@ -42,6 +45,9 @@ export function evaluateAuthenticatedAlignment(c: AlignmentTrustContext, r: Sign
   if (p.termsDigest !== c.expectedTermsDigest || p.dataPolicyDigest !== c.expectedDataPolicyDigest || p.capabilityEvidenceDigest !== c.expectedCapabilityEvidenceDigest) return deny(c.target, 'evidence_digest_mismatch');
   if (!p.participantOptIn) return deny(c.target, 'participant_opt_in_required');
   if (!p.organizationAuthorized) return deny(c.target, 'organization_authority_required');
+  if (!c.participantConsentActive) return deny(c.target, 'participant_consent_withdrawn');
+  if (!c.organizationAuthorityActive) return deny(c.target, 'organization_authority_revoked');
+  if (c.revokedApprovalRefs.has(p.humanApprovalRef)) return deny(c.target, 'human_approval_revoked');
   if (c.mode === 'OPERATIONAL' && c.replayStore.durability !== 'DURABLE') return deny(c.target, 'durable_replay_store_required');
   const replayKey = [p.tenantId,p.universeId,p.issuerId,p.keyId,p.nonce].join(':');
   try {
