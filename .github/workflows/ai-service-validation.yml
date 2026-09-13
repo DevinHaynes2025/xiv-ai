@@ -1,0 +1,45 @@
+name: AI service validation
+
+on:
+  pull_request:
+    paths:
+      - "services/ai/**"
+      - ".github/workflows/ai-service-validation.yml"
+  push:
+    branches:
+      - xiv-v2
+    paths:
+      - "services/ai/**"
+      - ".github/workflows/ai-service-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-service-validation-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Typecheck and runtime contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: services/ai
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: services/ai/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Runtime contracts
+        run: npm run test:runtime
