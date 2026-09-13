@@ -13,7 +13,10 @@ read-only surface for the CEO. It computes nothing new about the world and can g
 
 Fail-closed inputs: unexpected packet kinds, cross-tenant packets or device assessments,
 duplicates, and any packet whose honest flags were tampered with are rejected. Policy bounds
-(100 pathway packets, 100 device assessments per surface) prevent unbounded aggregation.
+(100 pathway packets, 100 device assessments, 100 worker receipts per surface) prevent
+unbounded aggregation. `workerReceipts` accepts 12D-108 observation receipts: only unexpired
+receipts bound to the tenant count, deduplicated by device, so the CEO surface distinguishes
+targeted, enrolled, verified, and actually observed local workers in one packet.
 
 ## Rendering rides the grammar gate
 
@@ -28,7 +31,7 @@ counts a logical target as a live worker."
 5/5 tests (`test:12d-107`): aggregation with honest flags; empty surface renders honestly as
 empty; CLEAN-mode render with zero grammar issues; cross-tenant/wrong-kind/tampered/duplicate
 inputs fail closed; policy bounds reject oversized surfaces. `typecheck:12d-107` PASS. Wired
-into `.gitlab-ci.yml`.
+into `.gitlab-ci.yml`. (Receipt integration extended the suite to 6/6.)
 
 ## Trust limits
 

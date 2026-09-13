@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { OfflineStoryQueue, type OfflineStory } from './offline-story-queue';
 import { preparePathwayCandidateFromQueue, type PathwayEvidencePacket } from './pathway-evidence-bridge';
 import { buildControlTowerEvidence, renderControlTowerReport, type DeviceAssessmentLike } from './control-tower-evidence';
+import { issueWorkerObservationReceipt } from './device-worker-receipt';
 import { enrollDevice, assessDeviceActivation } from './device-fleet-enrollment';
 import { verifyCompatibility, TARGET_MATRIX } from './universal-device-compatibility';
 
@@ -115,4 +116,26 @@ test('policy bounds reject oversized surfaces', () => {
   assert.throws(() => buildControlTowerEvidence({
     tenantId, generatedAtMs: 1, pathwayPackets: many, deviceAssessments: [],
   }), /too many/);
+});
+
+test('unexpired worker receipts count distinct observed devices; expired ones degrade off the count', () => {
+  const t = 1_800_000_000_000;
+  const receipt = () => issueWorkerObservationReceipt({
+    tenantId, userId: 'user-a', deviceId: 'phone-obs-1', observedAtMs: t, workerRunRef: 'shift:device-run:1',
+    outputHashes: ['a'.repeat(64)], health: {
+      batteryPercent: 80, thermalState: 'NOMINAL' as const, networkAvailable: false, localModelAvailable: true,
+    },
+    attestationRefs: ['attest:operator:1'],
+  });
+  const fresh = [receipt(), receipt(), issueWorkerObservationReceipt({ ...receipt(), deviceId: 'phone-obs-2' })];
+  const p1 = buildControlTowerEvidence({ tenantId, generatedAtMs: t + 1000, pathwayPackets: [], deviceAssessments: [], workerReceipts: fresh });
+  assert.equal(p1.devices.observedLocalWorkers, 2); // three receipts, two distinct devices
+  const expired = issueWorkerObservationReceipt({
+    ...receipt(), observedAtMs: t - 25 * 60 * 60 * 1000,
+  });
+  const p2 = buildControlTowerEvidence({ tenantId, generatedAtMs: t + 1000, pathwayPackets: [], deviceAssessments: [], workerReceipts: [expired] });
+  assert.equal(p2.devices.observedLocalWorkers, 0);
+  assert.throws(() => buildControlTowerEvidence({
+    tenantId: 'other-tenant', generatedAtMs: t + 1000, pathwayPackets: [], deviceAssessments: [], workerReceipts: fresh,
+  }), /cross-tenant/);
 });

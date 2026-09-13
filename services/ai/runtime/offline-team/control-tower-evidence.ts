@@ -1,5 +1,6 @@
 import type { PathwayEvidencePacket } from './pathway-evidence-bridge';
 import type { DeviceEnrollmentState } from './device-fleet-enrollment';
+import type { DeviceWorkerReceipt } from './device-worker-receipt';
 import { composeReport, type ReportInput } from './governed-report-composer';
 
 export const CONTROL_TOWER_POLICY = Object.freeze({
@@ -41,7 +42,8 @@ export interface ControlTowerEvidencePacket {
   devices: Readonly<{
     assessmentsConsidered: number;
     byState: Readonly<Record<DeviceEnrollmentState, number>>;
-    observedLocalWorkers: 0;
+    /** Distinct devices with an unexpired 12D-108 worker-observation receipt. */
+    observedLocalWorkers: number;
     workersStartedByThisSurface: 0;
   }>;
   evidenceRefs: readonly string[];
@@ -67,13 +69,16 @@ export function buildControlTowerEvidence(input: {
   generatedAtMs: number;
   pathwayPackets: readonly PathwayEvidencePacket[];
   deviceAssessments: readonly DeviceAssessmentLike[];
+  workerReceipts?: readonly DeviceWorkerReceipt[];
 }): ControlTowerEvidencePacket {
   if (!input || !id(input.tenantId)) throw new Error('tenant identity required');
   if (!Number.isSafeInteger(input.generatedAtMs) || input.generatedAtMs < 0) throw new Error('generation time required');
   const packets = input.pathwayPackets ?? [];
   const assessments = input.deviceAssessments ?? [];
+  const receipts = input.workerReceipts ?? [];
   if (packets.length > CONTROL_TOWER_POLICY.maxPathwayPackets) throw new Error('too many pathway packets for one surface');
   if (assessments.length > CONTROL_TOWER_POLICY.maxDeviceAssessments) throw new Error('too many device assessments for one surface');
+  if (receipts.length > CONTROL_TOWER_POLICY.maxDeviceAssessments) throw new Error('too many worker receipts for one surface');
 
   const seenStories = new Set<string>();
   const reasons = new Map<string, number>();
@@ -127,6 +132,16 @@ export function buildControlTowerEvidence(input: {
     ...assessments.slice(0, 2).map(d => `device-assessment:${d.tenantId}:${d.deviceId}`),
   ].slice(0, CONTROL_TOWER_POLICY.maxEvidenceRefs);
 
+  // Observed local workers: only unexpired 12D-108 receipts bound to this tenant count,
+  // deduplicated by device. An expired receipt degrades back to the ladder, never to this count.
+  const observedDeviceIds = new Set<string>();
+  for (const r of receipts) {
+    if (!r || r.kind !== 'DEVICE_WORKER_OBSERVATION_RECEIPT') throw new Error('unexpected receipt kind on control-tower surface');
+    if (r.tenantId !== input.tenantId) throw new Error('cross-tenant worker receipt');
+    if (r.humanDecision !== 'REQUIRED' || r.learningPromoted !== false) throw new Error('receipt violates control-tower guardrails');
+    if (input.generatedAtMs < r.expiresAtMs) observedDeviceIds.add(r.deviceId);
+  }
+
   return Object.freeze({
     kind: 'CONTROL_TOWER_EVIDENCE' as const,
     tenantId: input.tenantId,
@@ -142,7 +157,7 @@ export function buildControlTowerEvidence(input: {
     devices: Object.freeze({
       assessmentsConsidered: devices,
       byState: Object.freeze(byState),
-      observedLocalWorkers: 0 as const,
+      observedLocalWorkers: observedDeviceIds.size,
       workersStartedByThisSurface: 0 as const,
     }),
     evidenceRefs: Object.freeze(evidenceRefs),
