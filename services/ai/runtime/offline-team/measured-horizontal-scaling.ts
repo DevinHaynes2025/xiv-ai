@@ -343,6 +343,15 @@ export interface ScalingDecisionRecord {
   readonly decidedBy: string;
   readonly decidedAtMs: number;
   readonly operatorReceiptSha256: string;
+  /**
+   * sha256 over every recorded field — the record's own integrity value. The
+   * decision-record fields are the RECORDED human inputs (embedded verbatim), so
+   * plan-provenance re-derivation alone cannot detect a post-hoc field swap; any
+   * downstream consumer that re-derives the record and compares digests fails closed
+   * on tampering. The receipt itself is authenticated by the operator's out-of-band
+   * custody registry, as in every receipt-gated contract.
+   */
+  readonly recordDigest: string;
   readonly requiresDecisionSafetyWorkflowBeforeAnyAction: true;
   readonly executedByThisRuntime: false;
   readonly productionExecutionAllowed: false;
@@ -407,14 +416,22 @@ export function recordScalingDecision(
   const latestEvidenceMs = Math.max(...p.fleetProjection.map((f) => f.observedAtMs));
   if (input.decidedAtMs < latestEvidenceMs)
     throw new Error('decision timestamp predates the capacity evidence; fail closed');
-  return Object.freeze({
-    kind: 'SCALING_DECISION_RECORD' as const,
+  // The record binds ITSELF: recordDigest covers every recorded field (the recorded
+  // human inputs are embedded verbatim, so the digest is what makes a post-hoc field
+  // swap detectable by any consumer that re-derives and compares).
+  const recordFields = {
     planDigest: p.planDigest,
     proposedNewDatabaseCount: p.proposedNewDatabaseCount,
     decision: input.decision,
     decidedBy: input.decidedBy,
     decidedAtMs: input.decidedAtMs,
     operatorReceiptSha256: input.operatorReceiptSha256,
+  };
+  const recordDigest = sha256(JSON.stringify(recordFields));
+  return Object.freeze({
+    kind: 'SCALING_DECISION_RECORD' as const,
+    ...recordFields,
+    recordDigest,
     requiresDecisionSafetyWorkflowBeforeAnyAction: true as const,
     executedByThisRuntime: false as const,
     productionExecutionAllowed: false as const,

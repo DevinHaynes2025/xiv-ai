@@ -343,6 +343,31 @@ test('recordScalingDecision is receipt-gated, provenance-verified, and provision
     /not a frozen MEASURED_SCALING_PLAN/);
 });
 
+test('the decision record binds itself: recordDigest covers every recorded field', () => {
+  const p = eligible(plan());
+  const a = recordScalingDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW', operatorReceiptSha256: RECEIPT, decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }, mkProvenance());
+  assert.match(a.recordDigest, /^[0-9a-f]{64}$/);
+  // Each single-variable change to the recorded human input changes the digest.
+  assert.notEqual(recordScalingDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW', operatorReceiptSha256: RECEIPT, decidedBy: 'ceo', decidedAtMs: NOW + 60_001,
+  }, mkProvenance()).recordDigest, a.recordDigest);
+  assert.notEqual(recordScalingDecision(p, {
+    decision: 'DECLINED_BY_HUMAN', operatorReceiptSha256: RECEIPT, decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }, mkProvenance()).recordDigest, a.recordDigest);
+  assert.notEqual(recordScalingDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW', operatorReceiptSha256: 'c'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }, mkProvenance()).recordDigest, a.recordDigest);
+  // A post-hoc field swap that keeps the ORIGINAL digest is detectable: a consumer
+  // re-derives the record from the swapped inputs and compares digests.
+  const tampered = { ...a, decidedBy: 'other' };
+  const reDerived = recordScalingDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW', operatorReceiptSha256: RECEIPT, decidedBy: 'other', decidedAtMs: NOW + 60_000,
+  }, mkProvenance());
+  assert.notEqual(reDerived.recordDigest, tampered.recordDigest);
+});
+
 test('policy and request shapes are exactly-validated', () => {
   assert.throws(() => plan({ policy: { extraPolicyField: 1 } as unknown as PolicyOverrides }), /invalid scaling policy/);
   assert.throws(() => plan({ policy: { scaleOutTargetPercent: 0 } }), /invalid scaling policy/);

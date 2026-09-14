@@ -103,6 +103,24 @@ against a one-database fleet (correctly throwing "outside the declared fleet").
 
 ## Honest state
 
+## Sibling paydown (post-handoff, from the 12D-130 bridge review)
+
+The 12D-130 execution-instruction bridge's forged-record regression test found live
+that a decision record's human-authorization fields (decision, receipt, decider,
+timestamp) were embedded verbatim with NO digest over the record itself — a post-hoc
+field swap (spread, re-frozen) re-derived cleanly and could obtain an execution
+instruction. Closed in this module: every `ScalingDecisionRecord` now carries
+`recordDigest` = sha256 over `{planDigest, proposedNewDatabaseCount, decision,
+decidedBy, decidedAtMs, operatorReceiptSha256}`; the bridge's exact-match
+re-derivation comparison includes it, so any field tampering fails closed before any
+workflow is opened. Regression tests: single-variable recordDigest isolation over
+every recorded field (12/12 re-run green). Residual disclosed there: a forger who
+recomputes the digest produces a self-consistent record — the receipt is
+authenticated out-of-band by the operator's custody registry, the standing trust
+anchor of every receipt-gated contract.
+
+## Honest state
+
 No database has ever been counted by this runtime — all evidence is declared. No
 database has ever been provisioned by this runtime — `databasesProvisioned: 0` and
 `providerInvocationAuthorized: false` are structural on every path, and every record
