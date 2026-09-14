@@ -1,4 +1,5 @@
-// 12D-132 — focused tests for the DECLARED-EVIDENCE COLLECTOR.
+// 12D-221 — focused tests for the OBSERVED-EVIDENCE COLLECTOR (renumbered from
+// 12D-132 by CEO directive; only the story number changed).
 // Coverage per the story spec: valid evidence, no execution, failure, rollback,
 // replay, tampering, scope mismatch, stale evidence, secret redaction — plus the
 // honest-flag and guardrail surface.
@@ -14,8 +15,8 @@ import { deriveScalingRecordDigest } from './measured-horizontal-scaling';
 import { deriveFailoverRecordDigest } from './measured-regional-failover';
 
 const sha256 = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');
-const RECEIPT = sha256('operator:xiv:12d-132');
-const OTHER_RECEIPT = sha256('operator:xiv:12d-132:other');
+const RECEIPT = sha256('operator:xiv:12d-221');
+const OTHER_RECEIPT = sha256('operator:xiv:12d-221:other');
 const COMMIT = 'a'.repeat(40);
 const NOW = 1_800_000_000_000;
 const TENANT = 'tenant-alpha';
@@ -100,7 +101,7 @@ const mkOutcomeInput = (over: Record<string, unknown> = {}) => ({
   tenantId: TENANT,
   universeId: UNIVERSE,
   scope: 'SCALING' as const,
-  runId: 'run-12d-132',
+  runId: 'run-12d-221',
   sourceCommit: COMMIT,
   decisionId: 'decision-1',
   decisionRecord: mkScalingRecord(),
@@ -127,7 +128,7 @@ const assertReceiptBindings = (
 ): void => {
   assert.equal(r.tenantId, TENANT);
   assert.equal(r.universeId, UNIVERSE);
-  assert.equal(r.runId, 'run-12d-132');
+  assert.equal(r.runId, 'run-12d-221');
   assert.equal(r.sourceCommit, COMMIT);
   assert.equal(r.decisionId, expect.decisionId ?? 'decision-1');
   assert.match(r.decisionRecordDigest, /^[0-9a-f]{64}$/);
@@ -150,14 +151,14 @@ const assertReceiptBindings = (
   })), r.evidenceDigest);
 };
 
-test('12d-132 valid scaling evidence binds every declared field and self-derives', () => {
+test('12d-221 valid scaling evidence binds every declared field and self-derives', () => {
   const c = mkCollector();
   const r = c.recordOutcomeEvidence(mkOutcomeInput({ status: 'PROPOSED' }));
   assertReceiptBindings(r, { status: 'PROPOSED' });
   assert.equal(c.collectedReceipts().length, 1);
 });
 
-test('12d-132 valid failover evidence binds a failover decision record', () => {
+test('12d-221 valid failover evidence binds a failover decision record', () => {
   const c = mkCollector();
   const r = c.recordOutcomeEvidence(mkOutcomeInput({
     scope: 'FAILOVER', decisionRecord: mkFailoverRecord(), status: 'EXECUTED',
@@ -167,7 +168,7 @@ test('12d-132 valid failover evidence binds a failover decision record', () => {
   assert.ok(r.observedAfter.observedAtMs > r.observedBefore.observedAtMs);
 });
 
-test('12d-132 no execution: statuses are declared, never inferred from decisions or instructions', () => {
+test('12d-221 no execution: statuses are declared, never inferred from decisions or instructions', () => {
   const c = mkCollector();
   // PROPOSED and NOT_EXECUTED are accepted as declared, and the collector never
   // promotes them.
@@ -197,13 +198,13 @@ test('12d-132 no execution: statuses are declared, never inferred from decisions
   assert.throws(() => c.recordOutcomeEvidence(mkOutcomeInput({ status: 'ROLLED_BACK' })), /recordRollbackEvidence/);
 });
 
-test('12d-132 failure evidence binds an accepted record', () => {
+test('12d-221 failure evidence binds an accepted record', () => {
   const c = mkCollector();
   const r = c.recordOutcomeEvidence(mkOutcomeInput({ status: 'FAILED', decisionId: 'd-failed' }));
   assertReceiptBindings(r, { status: 'FAILED', decisionId: 'd-failed' });
 });
 
-test('12d-132 rollback: separate evidence against a separately presented EXECUTED receipt', () => {
+test('12d-221 rollback: separate evidence against a separately presented EXECUTED receipt', () => {
   const c = mkCollector();
   const executed = c.recordOutcomeEvidence(mkOutcomeInput({
     status: 'EXECUTED', decisionId: 'd-exec',
@@ -229,7 +230,7 @@ test('12d-132 rollback: separate evidence against a separately presented EXECUTE
   assert.notEqual(rb.operatorReceiptSha256, executed.operatorReceiptSha256);
 });
 
-test('12d-132 rollback refused against a non-executed or tampered receipt', () => {
+test('12d-221 rollback refused against a non-executed or tampered receipt', () => {
   const c = mkCollector();
   const proposed = c.recordOutcomeEvidence(mkOutcomeInput({ status: 'PROPOSED', decisionId: 'd-p' }));
   assert.throws(() => c.recordRollbackEvidence({
@@ -262,7 +263,7 @@ test('12d-132 rollback refused against a non-executed or tampered receipt', () =
   }), /impossible ordering/);
 });
 
-test('12d-132 replay: duplicate receipt digests and reused observation ids refused', () => {
+test('12d-221 replay: duplicate receipt digests and reused observation ids refused', () => {
   const c = mkCollector();
   const first = mkOutcomeInput({ status: 'PROPOSED', decisionId: 'd-1' });
   c.recordOutcomeEvidence(first);
@@ -292,7 +293,7 @@ test('12d-132 replay: duplicate receipt digests and reused observation ids refus
   }), /already recorded/);
 });
 
-test('12d-132 tampering: presented decision records must re-derive their recordDigest', () => {
+test('12d-221 tampering: presented decision records must re-derive their recordDigest', () => {
   const c = mkCollector();
   // A field swapped after recording (original digest retained) fails re-derivation.
   const swaps = [
@@ -319,7 +320,7 @@ test('12d-132 tampering: presented decision records must re-derive their recordD
   })), /frozen decision record/);
 });
 
-test('12d-132 scope mismatch: cross-tenant, cross-universe, and record-kind mismatches refused', () => {
+test('12d-221 scope mismatch: cross-tenant, cross-universe, and record-kind mismatches refused', () => {
   const c = mkCollector();
   // Cross-tenant and cross-universe claims are refused at the collector boundary.
   assert.throws(() => c.recordOutcomeEvidence(mkOutcomeInput({ tenantId: 'tenant-beta' })), /outside this collector/);
@@ -348,7 +349,7 @@ test('12d-132 scope mismatch: cross-tenant, cross-universe, and record-kind mism
   }), /outside this collector scope/);
 });
 
-test('12d-132 stale, future-dated, and temporally impossible evidence refused', () => {
+test('12d-221 stale, future-dated, and temporally impossible evidence refused', () => {
   const c = mkCollector();
   // Older than the policy bound relative to the recording time.
   assert.throws(() => c.recordOutcomeEvidence(mkOutcomeInput({
@@ -387,7 +388,7 @@ test('12d-132 stale, future-dated, and temporally impossible evidence refused', 
   }), /before the execution evidence/);
 });
 
-test('12d-132 secret redaction: notes are scrubbed before they enter a receipt', () => {
+test('12d-221 secret redaction: notes are scrubbed before they enter a receipt', () => {
   // Key=value credentials.
   assert.equal(redactDeclaredNote('api_key=sk-live-abcdef123456 deployment note').redacted,
     `${DECLARED_EVIDENCE_POLICY.redactedMarker} deployment note`);
@@ -416,7 +417,7 @@ test('12d-132 secret redaction: notes are scrubbed before they enter a receipt',
   assert.ok(r.note!.includes(DECLARED_EVIDENCE_POLICY.redactedMarker));
 });
 
-test('12d-132 honest flags and guardrails: the collector permits nothing', () => {
+test('12d-221 honest flags and guardrails: the collector permits nothing', () => {
   const c = mkCollector();
   const r = c.recordOutcomeEvidence(mkOutcomeInput({ status: 'PROPOSED' }));
   assert.equal(r.providerInvocationAuthorized, false);

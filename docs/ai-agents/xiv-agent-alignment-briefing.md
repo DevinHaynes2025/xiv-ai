@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 21)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 22)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -243,7 +243,9 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   over every recorded field, and a post-hoc receipt/decider field swap fails closed
   (9/9 bridge + 17/17 sibling tests + typecheck green; the same recomputed-digest
   residual disclosed — receipts authenticate out-of-band via the operator custody
-  registry)); 12D-132 built the DECLARED-EVIDENCE COLLECTOR
+  registry)); 12D-221 (RENUMBERED from 12D-132 by CEO directive: 12D-132 already
+  belongs to Draft MR !59 — the historical 12D-132 files and Draft MR !59 were not
+  altered) built the DECLARED-EVIDENCE COLLECTOR
   (`declared-evidence-collector.ts`): the first rung of MEASURED EVIDENCE
   production for failover/scaling — a fail-closed collector bound to one
   tenant/universe that converts locally observed outcomes into bounded, redacted,
@@ -259,8 +261,8 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   findings paid down — a digest-scheme split in the receipt sealer, and non-independent
   before/after observations sharing one observation id; CI NOT claimed passed —
   GitLab CI remains quota-blocked)); 12D-134 built the INSTRUCTION-EVIDENCE BRIDGE
-  (`instruction-evidence-bridge.ts`), paying down 12D-132's disclosed residual:
-  `DeclaredEvidenceIntake` issues a 12D-132 evidence receipt ONLY against a presented
+  (`instruction-evidence-bridge.ts`), paying down 12D-221's disclosed residual:
+  `DeclaredEvidenceIntake` issues a 12D-221 evidence receipt ONLY against a presented
   12D-121 EXECUTION_INSTRUCTION whose whole provenance re-derives — no presented
   proposal is trusted (the candidate proposal is derived from the instruction plus the
   12D-130/131 canonical tool/risk constants and its digest must appear in the
@@ -269,7 +271,7 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   trail; the instruction's actionId must re-derive cross-contract from the decision
   record's planDigest; EXECUTED/FAILED claims are bounded by the instruction's
   validity window; one declared outcome per instruction (rollback redirects to the
-  12D-132 collector); and the intake is TRAIL FIRST — it measures the outcome on the
+  12D-221 collector); and the intake is TRAIL FIRST — it measures the outcome on the
   workflow's own trail (MEASURE_OUTCOME → AUDIT_AND_MONITOR, the ladder completed)
   with only REDACTED notes before issuing the receipt, so trail and receipt carry the
   same declared outcome bound to the same proposal digest (10/10 + sibling suites +

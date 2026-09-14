@@ -93,8 +93,8 @@ offline-brain-contracts:
     - npm run test:12d-130
     - npm run typecheck:12d-131
     - npm run test:12d-131
-    - npm run typecheck:12d-132
-    - npm run test:12d-132
+    - npm run typecheck:12d-221
+    - npm run test:12d-221
     - npm run typecheck:12d-134
     - npm run test:12d-134
     - npm run typecheck:12d-133

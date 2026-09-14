@@ -98,7 +98,7 @@ export interface DeclaredMergeRequestRow {
   readonly headSha: string;
   /** The MR this one is stacked on, or null when it targets the integration branch directly. */
   readonly parentMrIid: number | null;
-  /** The story this MR implements, e.g. `12D-132`, or '' when it carries none. */
+  /** The story this MR implements, e.g. `12D-221`, or '' when it carries none. */
   readonly storyId: string;
   readonly pipelineId: number | null;
   readonly declaredCiStatus: 'NATIVE_CI_PASSED' | 'LOCAL_ONLY' | 'NOT_EXECUTED' | 'QUOTA_BLOCKED';

@@ -176,7 +176,7 @@ test('12d-134 happy path: a trail-verified instruction binds a receipt and compl
   assert.equal(stages[stages.length - 2], 'MEASURE_OUTCOME');
   assert.ok(stages[stages.length - 2]!.length > 0);
   assert.equal(r.outcomeRecorded, 'EXECUTED_BY_OPERATOR');
-  // The receipt carries the honest 12D-132 surface.
+  // The receipt carries the honest 12D-221 surface.
   assert.equal(r.receipt.status, 'EXECUTED');
   assert.equal(r.receipt.providerInvocationAuthorized, false);
   assert.equal(r.receipt.trafficMoved, false);
@@ -350,7 +350,7 @@ test('12d-134 honest flags and guardrails: the intake permits nothing', () => {
   assert.equal(EVIDENCE_INTAKE_GUARDRAILS.permitsNoMergeOrDeployment, true);
   assert.equal(EVIDENCE_INTAKE_GUARDRAILS.humanDecision, 'REQUIRED');
   assert.equal(EVIDENCE_INTAKE_GUARDRAILS.automaticRecovery, false);
-  // The receipt still carries the full 12D-132 honest surface.
+  // The receipt still carries the full 12D-221 honest surface.
   assert.equal(r.receipt.productionMutationAllowed, false);
   assert.equal(r.receipt.mergeAllowed, false);
   assert.equal(r.receipt.deployAllowed, false);

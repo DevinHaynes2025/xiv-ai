@@ -10,16 +10,16 @@ Status: BUILT AND GREEN LOCALLY on `claude/12d-99-supervised-local-worker`
 (`services/ai/runtime/offline-team/instruction-evidence-bridge.ts` +
 `instruction-evidence-bridge.test.ts`; 10/10 tests + typecheck green; siblings
 re-run green — 12D-126 17/17, 12D-129 12/12, 12D-130 9/9, 12D-131 9/9,
-12D-132 12/12, 12D-113 audit 9/9). CI IS NOT CLAIMED PASSED: GitLab CI remains
+12D-221 12/12, 12D-113 audit 9/9). CI IS NOT CLAIMED PASSED: GitLab CI remains
 quota-blocked (`ci_quota_exceeded`) — the `.gitlab-ci.yml` wiring was appended
 but no pipeline has run.
 
 ## What it is
 
 `DeclaredEvidenceIntake` is the instruction-gated evidence intake that closes
-the loop the 12D-130/131 execution bridges opened, paying down 12D-132's
+the loop the 12D-130/131 execution bridges opened, paying down 12D-221's
 disclosed residual (`decisionId`/`instructionId` were DECLARED references no
-canonical id re-derived against). The intake issues a 12D-132 evidence receipt
+canonical id re-derived against). The intake issues a 12D-221 evidence receipt
 ONLY against a presented 12D-121 `EXECUTION_INSTRUCTION` whose whole provenance
 re-derives, records the declared outcome on the workflow's own trail
 (MEASURE_OUTCOME), and completes the ten-stage ladder (AUDIT_AND_MONITOR) —
@@ -43,7 +43,7 @@ SAME proposal digest.
   already-measured workflow can never produce a second receipt); the
   presented instruction must be a frozen `EXECUTION_INSTRUCTION` owned by the
   workflow; the presented decision record must be frozen, kind-matched to the
-  scope, and its `recordDigest` re-derives inside the 12D-132 collector.
+  scope, and its `recordDigest` re-derives inside the 12D-221 collector.
 - **Trail order** — a receipt-backed HUMAN_APPROVAL event must appear BEFORE
   the EXECUTE_MINIMUM_ACTION event naming the actionId; an approval can never
   follow the act it approves.
@@ -61,7 +61,7 @@ SAME proposal digest.
 - **One declared outcome per instruction** — the intake refuses a second
   receipt for a proposal digest it has already evidenced; the operator
   declares the outcome once. Separate execution/rollback evidence stays in
-  12D-132's collector (rollback is NOT an intake status — it redirects
+  12D-221's collector (rollback is NOT an intake status — it redirects
   fail-closed to the collector).
 - **Trail and receipt carry the same declared outcome** — the intake is TRAIL
   FIRST: `recordMeasuredOutcome` + `recordAuditAndMonitor` run BEFORE the
@@ -78,7 +78,7 @@ SAME proposal digest.
   `zeroModelCalls`/`zeroRemoteCalls`, `automaticRecovery: false`,
   `humanDecision: 'REQUIRED'` structural and frozen in
   `EVIDENCE_INTAKE_GUARDRAILS`, mirrored on every returned record, with the
-  full 12D-132 honest surface still on each receipt.
+  full 12D-221 honest surface still on each receipt.
 
 ### Review findings paid down during this build
 
@@ -112,7 +112,7 @@ Residuals (disclosed, inherent):
   measures traffic itself (the honest flag the whole chain turns into
   receipts).
 - The intake accepts the five non-rollback statuses; ROLLED_BACK evidence is
-  intentionally out of scope and redirects to the 12D-132 collector, which
+  intentionally out of scope and redirects to the 12D-221 collector, which
   requires separate digest-verified EXECUTED evidence.
 
 ## Exact files
@@ -134,7 +134,7 @@ npm run test:12d-126        # 17/17 pass
 npm run test:12d-129        # 12/12 pass
 npm run test:12d-130        # 9/9 pass
 npm run test:12d-131        # 9/9 pass
-npm run test:12d-132        # 12/12 pass
+npm run test:12d-221        # 12/12 pass
 npm run test:12d-113        # 9/9 pass (guardrail audit)
 ```
 

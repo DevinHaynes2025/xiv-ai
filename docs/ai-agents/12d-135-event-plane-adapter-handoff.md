@@ -4,7 +4,7 @@ Status: BUILT AND GREEN LOCALLY on `claude/12d-99-supervised-local-worker`
 (`services/ai/runtime/offline-team/event-plane-adapter.ts` +
 `event-plane-adapter.test.ts`; 6/6 tests + typecheck green; sibling suites
 re-run green — 12D-119 8/8, 12D-123 6/6, 12D-126 17/17, 12D-129 12/12,
-12D-130 9/9, 12D-131 9/9, 12D-132 12/12, 12D-134 10/10, 12D-133 11/11,
+12D-130 9/9, 12D-131 9/9, 12D-221 12/12, 12D-134 10/10, 12D-133 11/11,
 12D-113 audit 9/9). CI IS NOT CLAIMED PASSED: GitLab CI remains
 quota-blocked (`ci_quota_exceeded`) — the `.gitlab-ci.yml` wiring was
 appended but no pipeline has run.
@@ -113,7 +113,7 @@ npm run test:12d-126        # 17/17 pass
 npm run test:12d-129        # 12/12 pass
 npm run test:12d-130        # 9/9 pass
 npm run test:12d-131        # 9/9 pass
-npm run test:12d-132        # 12/12 pass
+npm run test:12d-221        # 12/12 pass
 npm run test:12d-134        # 10/10 pass
 npm run test:12d-133        # 11/11 pass
 npm run test:12d-113        # 9/9 pass (guardrail audit)

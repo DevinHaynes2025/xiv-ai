@@ -4,7 +4,7 @@ Status: BUILT AND GREEN LOCALLY on `claude/12d-99-supervised-local-worker`
 (`services/ai/runtime/offline-team/release-lineage-ledger.ts` +
 `release-lineage-ledger.test.ts`; 11/11 tests + typecheck green; sibling
 suites re-run green — 12D-126 17/17, 12D-129 12/12, 12D-130 9/9, 12D-131 9/9,
-12D-132 12/12, 12D-134 10/10, 12D-113 audit 9/9). CI IS NOT CLAIMED PASSED:
+12D-221 12/12, 12D-134 10/10, 12D-113 audit 9/9). CI IS NOT CLAIMED PASSED:
 GitLab CI remains quota-blocked (`ci_quota_exceeded`) — the `.gitlab-ci.yml`
 wiring was appended but no pipeline has run.
 
@@ -80,7 +80,7 @@ proposes — never executes — one canonical integration path.
    the validated head is superseded by a CI-less duplicate.
 2. **Test fixture self-consistency** — the SHA-drift test originally
    recomputed the measured head from the drifted row (no mismatch possible);
-   it now pins the original measured head. Same discipline as 12D-132's
+   it now pins the original measured head. Same discipline as 12D-221's
    tamper-fixture lesson.
 
 Residuals (disclosed):
@@ -120,7 +120,7 @@ npm run test:12d-126        # 17/17 pass
 npm run test:12d-129        # 12/12 pass
 npm run test:12d-130        # 9/9 pass
 npm run test:12d-131        # 9/9 pass
-npm run test:12d-132        # 12/12 pass
+npm run test:12d-221        # 12/12 pass
 npm run test:12d-134        # 10/10 pass
 npm run test:12d-113        # 9/9 pass (guardrail audit)
 git ls-remote --heads gitlab   # 529 branch heads (measured ground truth)
@@ -130,8 +130,9 @@ CI: NOT RUN, NOT CLAIMED — `ci_quota_exceeded` persists.
 
 ## Approval status and CEO priority order
 
-Per the CEO's priority order: (1) 12D-132 results finished and captured
-(handoff `12d-132-declared-evidence-collector-handoff.md`); (2) the
+Per the CEO's priority order: (1) the observed-evidence collector results
+(renumbered 12D-221) finished and captured
+(handoff `12d-221-declared-evidence-collector-handoff.md`); (2) the
 consolidation ledger is built and green locally; (3) RESTORING GITLAB RUNNER
 CAPACITY is an operator step — this story cannot fix the quota; (4) validating
 one canonical exact-head lineage requires the real MR snapshot (see

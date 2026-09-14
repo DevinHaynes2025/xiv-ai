@@ -1,5 +1,10 @@
-// 12D-132 — Scaling & Failover DECLARED-EVIDENCE COLLECTOR (the measured-evidence rung
+// 12D-221 — Scaling & Failover OBSERVED-EVIDENCE COLLECTORS (the measured-evidence rung
 // after the 12D-130/131 execution bridges).
+//
+// RENUMBER NOTE: this story was initially built under the number 12D-132 and
+// renumbered to 12D-221 by CEO directive (12D-132 already belongs to Draft MR !59);
+// only the story number changed — no behavior, and the historical 12D-132 files and
+// Draft MR !59 were not altered.
 //
 // The bridges emit EXECUTION_INSTRUCTIONs that execute nothing; the operator acts (or
 // does not act) in a system outside this runtime. This module converts LOCALLY

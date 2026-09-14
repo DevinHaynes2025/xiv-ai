@@ -1,16 +1,16 @@
 // 12D-134 — INSTRUCTION-EVIDENCE BRIDGE (the intake that closes the loop the
-// 12D-130/131 execution bridges opened, paying down 12D-132's disclosed residual).
+// 12D-130/131 execution bridges opened, paying down 12D-221's disclosed residual).
 //
-// 12D-132's collector accepts a DECLARED instructionId as a reference — disclosed
+// 12D-221's collector accepts a DECLARED instructionId as a reference — disclosed
 // residual: nothing re-derived it, so a receipt could name an instruction that never
-// existed. This module is the instruction-gated intake: it issues a 12D-132 evidence
+// existed. This module is the instruction-gated intake: it issues a 12D-221 evidence
 // receipt ONLY against a presented 12D-121 EXECUTION_INSTRUCTION whose whole provenance
 // re-derives, and it then records the declared outcome on the workflow's own trail
 // (MEASURE_OUTCOME) and completes the ten-stage ladder (AUDIT_AND_MONITOR) — so the
 // trail and the receipt carry the SAME declared outcome, bound to the SAME proposal
 // digest.
 //
-// The trust discipline (stacked on 12D-121/130/131/132, nothing new trusted):
+// The trust discipline (stacked on 12D-121/130/131/221, nothing new trusted):
 //   * NO presented proposal is trusted — there is no proposal input at all. The intake
 //     derives the CANDIDATE proposal from the instruction and the canonical tool/risk
 //     constants of the scope's execution bridge (12D-130/131), re-derives its digest,
@@ -34,7 +34,7 @@
 //     observed after the instruction expired was never covered by it.
 //   * One declared outcome per instruction: the intake refuses a second receipt for a
 //     proposal digest it has already evidenced (the operator declares the outcome once;
-//     separate evidence for execution and rollback stays in 12D-132's collector).
+//     separate evidence for execution and rollback stays in 12D-221's collector).
 //   * The MEASURE_OUTCOME event records the REDACTED note — a secret can never ride
 //     from the receipt path into the hash-chained trail.
 //
@@ -57,7 +57,7 @@ import type { FailoverDecisionRecord } from './measured-regional-failover';
 export const EVIDENCE_INTAKE_POLICY = Object.freeze({
   /** Canonical actionId prefixes composed by the 12D-130/131 execution bridges. */
   actionIdPrefixes: Object.freeze({ SCALING: 'scaling.exec.', FAILOVER: 'failover.exec.' }),
-  /** Outcome → 12D-121 MEASURE_OUTCOME mapping. Rollback stays in 12D-132's collector. */
+  /** Outcome → 12D-121 MEASURE_OUTCOME mapping. Rollback stays in 12D-221's collector. */
   outcomeMap: Object.freeze({
     PROPOSED: 'OBSERVED_ONLY',
     NOT_EXECUTED: 'OBSERVED_ONLY',
@@ -90,7 +90,7 @@ export type IntakeStatus = Exclude<DeclaredEvidenceStatus, 'ROLLED_BACK'>;
 
 export interface EvidenceIntakeRecorded {
   readonly kind: 'INSTRUCTION_EVIDENCE_RECORDED';
-  /** The 12D-132 receipt, bound to the trail-verified instruction reference. */
+  /** The 12D-221 receipt, bound to the trail-verified instruction reference. */
   readonly receipt: Readonly<DeclaredEvidenceReceipt>;
   /** Composed from VERIFIED objects only: `${workflowId}/${actionId}`. */
   readonly instructionId: string;
@@ -113,7 +113,7 @@ const isFrozenKind = (v: unknown, kind: string): boolean =>
   !!v && typeof v === 'object' && Object.isFrozen(v) && (v as { kind?: unknown }).kind === kind;
 
 /**
- * The instruction-gated evidence intake, bound to ONE 12D-132 collector (which binds
+ * The instruction-gated evidence intake, bound to ONE 12D-221 collector (which binds
  * ONE tenant/universe). Fail-closed on unverified trails, unrecorded proposals,
  * cross-contract bindings, expired action claims, and double declarations.
  */

@@ -1,4 +1,10 @@
-# 12D-132 — Scaling & Failover declared-evidence collectors (handoff)
+# 12D-221 — Scaling & Failover observed-evidence collectors (handoff)
+
+RENUMBER NOTE: this story was initially built under the number 12D-132 and
+renumbered to 12D-221 by CEO directive (12D-132 already belongs to Draft MR
+!59 on the private project). Only the story number, documentation, test
+descriptions, and handoff references changed — no behavior changed, and the
+existing historical 12D-132 files and Draft MR !59 were not altered.
 
 Status: BUILT AND GREEN LOCALLY on `claude/12d-99-supervised-local-worker`
 (`services/ai/runtime/offline-team/declared-evidence-collector.ts` +
@@ -96,8 +102,8 @@ Residuals (disclosed, inherent — the standing discipline since 12D-119/124):
   `deriveScalingRecordDigest` — the pre-existing recordDigest made callable)
 - `services/ai/runtime/offline-team/measured-regional-failover.ts` (exported
   `deriveFailoverRecordDigest`)
-- `services/ai/package.json` (`test:12d-132`, `typecheck:12d-132`)
-- `.gitlab-ci.yml` (`typecheck:12d-132`, `test:12d-132` appended)
+- `services/ai/package.json` (`test:12d-221`, `typecheck:12d-221`)
+- `.gitlab-ci.yml` (`typecheck:12d-221`, `test:12d-221` appended)
 
 ## Exact commands and local results
 
@@ -106,7 +112,7 @@ npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler \
   --strict --skipLibCheck --types node \
   runtime/offline-team/declared-evidence-collector.ts \
   runtime/offline-team/declared-evidence-collector.test.ts   # OK
-npm run test:12d-132      # 12/12 pass
+npm run test:12d-221      # 12/12 pass
 npm run test:12d-126      # 17/17 pass
 npm run test:12d-129      # 12/12 pass
 npm run test:12d-130      # 9/9 pass
