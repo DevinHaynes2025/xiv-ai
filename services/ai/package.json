@@ -91,6 +91,8 @@
     "typecheck:12d-133": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/release-lineage-ledger.ts runtime/offline-team/release-lineage-ledger.test.ts",
     "test:12d-135": "tsx --test runtime/offline-team/event-plane-adapter.test.ts",
     "typecheck:12d-135": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/event-plane-adapter.ts runtime/offline-team/event-plane-adapter.test.ts",
+    "test:12d-136": "tsx --test runtime/offline-team/cell-placement-adapter.test.ts",
+    "typecheck:12d-136": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/cell-placement-adapter.ts runtime/offline-team/cell-placement-adapter.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",

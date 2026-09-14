@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 22)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 23)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -313,7 +313,20 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   2,000,000 rows, and reads come from the primary queue only in this slice (6/6 +
   sibling suites + typecheck + 12D-113 audit green; one build-time finding paid
   down — the adoption originally bound only counts, closed with the content-digest
-  regression test; CI NOT claimed passed — GitLab CI remains quota-blocked)).
+  regression test; CI NOT claimed passed — GitLab CI remains quota-blocked));
+  12D-136 built the CELL-PLACEMENT ADOPTION & EVENT-PLANE BINDING layer
+  (`cell-placement-adapter.ts`), the cell sibling of 12D-119/12D-135:
+  `adoptCellPlacementOperatively` receipt-gates a 12D-120 cell plan (content-bound
+  via canonical order-insensitive `planDigestSha256` from the start) and
+  `bindEventPlaneToAdoptedCells` closes the real gap — a 12D-123 event-plane plan
+  is only bindable to an ADOPTED placement, and the COMPOSING cell plan (the one
+  `planEventPlane` consumed) is a REQUIRED, digest-gated input: a plane composed
+  from a cell plan the operator never adopted cannot bind even if every placement
+  re-derives, with per-stream re-derivation kept as defense in depth and degraded
+  single-cell posture bound honestly (7/7 + sibling suites + typecheck + 12D-113
+  audit green; one build-time finding paid down — the binding originally recorded
+  the adoption digest without verifying the composing plan; CI NOT claimed passed —
+  GitLab CI remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -323,9 +336,9 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-135: populate the release ledger with the REAL
+concern. Next rungs after 12D-136: populate the release ledger with the REAL
 ~301-MR inventory (operator-side GitLab API read — see the 12D-133 handoff), the
-remaining separately-reviewed ADOPTION layers (cell/instruction adoption),
+remaining separately-reviewed ADOPTION layers (instruction adoption),
 and wiring the declared-evidence
 collector + instruction-evidence bridge into a live operator loop so failover/scaling
 rungs graduate from declarations to measurements. The CEO's consolidation priority
