@@ -169,7 +169,24 @@ HORIZONTAL SCALING (not built; each needs its own measured evidence), and the
 separately-reviewed ADOPTION layers (event-plane adoption, and cell/instruction
 adoption) if contracts ever move from advisory to operator-adopted routing.
 
-## 6. Roles
+## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
+
+The implementer lineage's `Get-XivAiBrainStatus.ps1` (in Downloads, reviewed SOUND with
+2 open advisories, NOT in the repo) was executed live on the Windows XIV AI host — the
+step its implementing workspace could not perform:
+
+- Ollama 0.34.0 up at 127.0.0.1:11434; `qwen2.5-coder:7b` installed and a generation
+  round-trip verified (9.8 s cold start, CPU-only inference, stays on the local plane);
+- the diagnostic's happy path returned `OFFLINE_LOCAL` / `LOCAL_OLLAMA_VERIFIED`, and
+  an induced-outage run returned `NO_EXECUTION` / `LOCAL_OLLAMA_UNAVAILABLE` with NO
+  cloud fallback — every external control stayed false, `humanApprovalRequired: true`;
+- Claude Code 2.1.270 detected. PowerShell 5.1 suffices (pwsh 7 not installed).
+- Still UNVERIFIED: the implementing lineage's claimed "backend routing contract +
+  35/35 regression tests" — no pushed branch carries those files; if a branch lands,
+  review it then. The script's 2 review advisories (localhost-by-name accepted;
+  HYBRID `externalReviewEligible` flag) remain open, cosmetic.
+
+## 7. Roles
 
 - Claude Code (this session): reviewer/builder on `claude/*` branches, worktree
   `xiv-build-12d-99`. Reviews implementer MRs before anything counts as validated.
