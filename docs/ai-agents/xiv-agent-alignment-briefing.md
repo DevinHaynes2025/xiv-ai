@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 19)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 20)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -275,7 +275,27 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   same declared outcome bound to the same proposal digest (10/10 + sibling suites +
   typecheck + 12D-113 audit green; one build-time finding paid down — record-identity
   gate ordering; `deriveProposalDigest` exported from 12D-121; CI NOT claimed passed —
-  GitLab CI remains quota-blocked)).
+  GitLab CI remains quota-blocked)). The CEO then REASSIGNED 12D-133 to the
+  RELEASE-LINEAGE CONSOLIDATION & VALIDATION LEDGER (the ~301-open-MR validation-debt
+  concern), and the bridge was renumbered 12D-134 in an unpushed commit before any
+  push — no published lineage ever carried two stories under the 12D-133 number.
+  12D-133 then built that ledger (`release-lineage-ledger.ts`): a READ-ONLY
+  release ledger over a DECLARED open-MR snapshot — six classifications
+  (NATIVE_CI_PASSED never trusted without declared pipeline evidence; false claims
+  downgraded), findings for missing parents, SHA drift vs measured branch heads
+  (`git ls-remote --heads gitlab` measured 529 branch heads), duplicate stories,
+  supersession, divergence, cross-lineage contamination, excessive stack depth,
+  and abandonment; lineage cycles fail closed structurally; ONE canonical
+  integration path PROPOSED from the last native-CI-validated head (refused,
+  never invented, when no head is validated); issues #98 CHANGES_REQUIRED and
+  #99 DIAGNOSTIC_ONLY recorded, never modified; machine-readable JSON plus a
+  CEO-safe Markdown report with redacted bounded titles; the ledger closes,
+  merges, rebases, retries, deploys, and modifies NOTHING (11/11 + sibling
+  suites + typecheck + 12D-113 audit green; one build-time finding paid down —
+  a superseded CI-validated canonical head now carries an explicit CAUTION;
+  residual: the real 301-MR snapshot requires an operator-side GitLab API read —
+  no token or glab CLI exists in this runtime; CI NOT claimed passed — GitLab CI
+  remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -285,11 +305,15 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-134: the remaining separately-reviewed ADOPTION layers
-(event-plane adoption beyond 12D-123's in-contract record, cell/instruction
-adoption), and wiring the declared-evidence collector + instruction-evidence bridge
-into a live operator loop so failover/scaling rungs graduate from declarations to
-measurements.
+concern. Next rungs after 12D-133/12D-134: populate the release ledger with the REAL
+~301-MR inventory (operator-side GitLab API read — see the 12D-133 handoff), the
+remaining separately-reviewed ADOPTION layers (event-plane adoption beyond 12D-123's
+in-contract record, cell/instruction adoption), and wiring the declared-evidence
+collector + instruction-evidence bridge into a live operator loop so failover/scaling
+rungs graduate from declarations to measurements. The CEO's consolidation priority
+order stands: restore GitLab runner capacity (operator), validate ONE canonical
+exact-head lineage, independent review → CTO approval → CEO approval — no new
+parallel branches, no production execution, no merges during consolidation.
 
 ## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
 
