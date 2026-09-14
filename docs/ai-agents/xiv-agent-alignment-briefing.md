@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 18)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 19)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -258,6 +258,23 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   receipt (12/12 + sibling suites + typecheck + 12D-113 audit green; two build-time
   findings paid down — a digest-scheme split in the receipt sealer, and non-independent
   before/after observations sharing one observation id; CI NOT claimed passed —
+  GitLab CI remains quota-blocked)); 12D-133 built the INSTRUCTION-EVIDENCE BRIDGE
+  (`instruction-evidence-bridge.ts`), paying down 12D-132's disclosed residual:
+  `DeclaredEvidenceIntake` issues a 12D-132 evidence receipt ONLY against a presented
+  12D-121 EXECUTION_INSTRUCTION whose whole provenance re-derives — no presented
+  proposal is trusted (the candidate proposal is derived from the instruction plus the
+  12D-130/131 canonical tool/risk constants and its digest must appear in the
+  hash-chained trail); the untrusted workflow chain is re-verified and must sit at
+  exactly EXECUTE_MINIMUM_ACTION; receipt-backed approval must precede the act in the
+  trail; the instruction's actionId must re-derive cross-contract from the decision
+  record's planDigest; EXECUTED/FAILED claims are bounded by the instruction's
+  validity window; one declared outcome per instruction (rollback redirects to the
+  12D-132 collector); and the intake is TRAIL FIRST — it measures the outcome on the
+  workflow's own trail (MEASURE_OUTCOME → AUDIT_AND_MONITOR, the ladder completed)
+  with only REDACTED notes before issuing the receipt, so trail and receipt carry the
+  same declared outcome bound to the same proposal digest (10/10 + sibling suites +
+  typecheck + 12D-113 audit green; one build-time finding paid down — record-identity
+  gate ordering; `deriveProposalDigest` exported from 12D-121; CI NOT claimed passed —
   GitLab CI remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
@@ -268,10 +285,11 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-132: the remaining separately-reviewed ADOPTION layers
+concern. Next rungs after 12D-133: the remaining separately-reviewed ADOPTION layers
 (event-plane adoption beyond 12D-123's in-contract record, cell/instruction
-adoption), and wiring the declared-evidence collector into a live operator loop so
-failover/scaling rungs graduate from declarations to measurements.
+adoption), and wiring the declared-evidence collector + instruction-evidence bridge
+into a live operator loop so failover/scaling rungs graduate from declarations to
+measurements.
 
 ## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
 

@@ -189,6 +189,15 @@ const genesisHash = (w: ChainBoundMetadata): string => sha256(
 /** The proposal digest binds an EXECUTION_INSTRUCTION to the proposal the trail recorded. */
 const proposalDigest = (p: {
   workflowId: string; actionId: string; toolId: string; riskClass: string; description: string;
+}): string => deriveProposalDigest(p);
+
+/**
+ * Re-derives a presented proposal's digest over its five bound fields — the integrity
+ * check any downstream consumer can run WITHOUT the workflow: a proposal whose digest
+ * does not appear in the workflow's hash-chained trail was never recorded there.
+ */
+export const deriveProposalDigest = (p: {
+  workflowId: string; actionId: string; toolId: string; riskClass: string; description: string;
 }): string => sha256(`${p.workflowId}|${p.actionId}|${p.toolId}|${p.riskClass}|${p.description}`);
 
 const describe = (v: unknown, max: number): v is string =>
