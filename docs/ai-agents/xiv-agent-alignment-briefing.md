@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 15)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 16)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `c6543764`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `4e024d09`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -217,7 +217,20 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   receipt is examined (the 12D-128 discipline, present from the first version);
   adversarially reviewed before commit: 2 confirmed findings paid down (future-dated
   evidence never went stale → throws; the decision temporal rule used the earliest
-  instead of the latest fleet evidence → Math.max); 11/11 tests + typecheck green).
+  instead of the latest fleet evidence → Math.max); 11/11 tests + typecheck green));
+  12D-130 built the scaling EXECUTION-INSTRUCTION bridge (`scaling-execution-bridge.ts`):
+  the adoption layer 12D-129's decision records name — a recorded ACCEPTED decision
+  drives 12D-121's gate ladder for exactly one bounded database-provisioning proposal
+  (risk class pinned to PRODUCTION_CONFIGURATION, single canonical tool, ADVISE_ONLY
+  identity), emitting an EXECUTION_INSTRUCTION that executes nothing; a presented
+  decision record is never trusted (re-composed and re-recorded before anything opens),
+  declines are final states, and the execution grant is a separate human act whose
+  receipt must differ from the plan-approval receipt; the bridge's forged-record
+  regression test found live that 12D-129 records carried no digest over themselves —
+  paid down in the sibling: `recordDigest` over every recorded field, tampering fails
+  closed (9/9 + 12/12 tests + typecheck green; residual disclosed: a recomputed digest
+  is self-consistent — receipts authenticate out-of-band via the operator custody
+  registry)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -227,11 +240,11 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-129: the separately-reviewed ADOPTION layers
-(event-plane adoption, cell/instruction adoption, and scaling-plan execution grants
-if contracts ever move from advisory to operator-adopted routing), and MEASURED
-EVIDENCE production for failover/scaling (the declared-evidence collectors that
-would let those rungs run on measurements rather than declarations).
+concern. Next rungs after 12D-130: the remaining separately-reviewed ADOPTION layers
+(event-plane adoption beyond 12D-123's in-contract record, cell/instruction
+adoption), and MEASURED EVIDENCE production for failover/scaling (the
+declared-evidence collectors that would let those rungs run on measurements rather
+than declarations).
 
 ## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
 
