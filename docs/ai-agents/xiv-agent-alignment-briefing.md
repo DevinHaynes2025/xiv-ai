@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 12)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 13)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `fa7c2877`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `501b8312`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -194,7 +194,14 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   digest did not bind the measured evidence; NaN observedAtMs silently bypassed the
   window check) — all live-reproduced against the original before paydown, all fixed
   with regression tests (15/15 + typecheck green). The implementer's claimed 26/26
-  suite and its documentation were never provided: UNVERIFIED, never fabricated).
+  suite and its documentation were never provided: UNVERIFIED, never fabricated);
+  12D-127 completed the failover decision loop (`recordFailoverDecision`, same
+  module): receipt-gated human decision records on ELIGIBLE plans only (denied and
+  classified packets are final states — approving one would manufacture
+  authorization), decision timestamps predating the capacity evidence rejected, every
+  record requires a 12D-121 workflow before any action, authorizes nothing, moves no
+  traffic (16/16 tests + typecheck green; planDigest-provenance residual disclosed in
+  the handoff — same shape as 12D-124's storyId discipline)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
