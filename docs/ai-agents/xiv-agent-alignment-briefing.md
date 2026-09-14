@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 16)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 17)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `4e024d09`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `bf6426ea`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -230,6 +230,19 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   paid down in the sibling: `recordDigest` over every recorded field, tampering fails
   closed (9/9 + 12/12 tests + typecheck green; residual disclosed: a recomputed digest
   is self-consistent — receipts authenticate out-of-band via the operator custody
+  registry)); 12D-131 built the failover EXECUTION-INSTRUCTION bridge
+  (`failover-execution-bridge.ts`): the failover sibling of 12D-130 — a recorded
+  ACCEPTED failover decision drives 12D-121's gate ladder for exactly one bounded
+  CANARY traffic-shift proposal (risk class pinned to PRODUCTION_CONFIGURATION,
+  single canonical tool, ADVISE_ONLY identity, minimumAction module-composed naming
+  the recorded bps and forbidding everything else), emitting an EXECUTION_INSTRUCTION
+  that executes nothing and moves no traffic; declines are final states, the
+  execution grant is a separate human act with a distinct receipt that cannot predate
+  the decision; the 12D-130 recordDigest finding applied verbatim to the failover
+  sibling and was paid down — `FailoverDecisionRecord` now carries `recordDigest`
+  over every recorded field, and a post-hoc receipt/decider field swap fails closed
+  (9/9 bridge + 17/17 sibling tests + typecheck green; the same recomputed-digest
+  residual disclosed — receipts authenticate out-of-band via the operator custody
   registry)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
@@ -240,7 +253,7 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-130: the remaining separately-reviewed ADOPTION layers
+concern. Next rungs after 12D-131: the remaining separately-reviewed ADOPTION layers
 (event-plane adoption beyond 12D-123's in-contract record, cell/instruction
 adoption), and MEASURED EVIDENCE production for failover/scaling (the
 declared-evidence collectors that would let those rungs run on measurements rather
