@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 10)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 11)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `7daebb44`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `80c97bc9`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -42,7 +42,18 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   envelope, not a generator; declared signals only (model-detected/inferred fail
   closed), authored narratives, the exact SIGNAL→LEARNING ladder, receipt-gated
   treatment decisions whose records REQUIRE a 12D-121 workflow before any action and
-  route nothing themselves).
+  route nothing themselves; a post-commit head-fix (`80c97bc9`) applied the 12D-125
+  review lessons to the sibling — signal exact-shape gate + sub-structure freeze,
+  5/5 re-run green); 12D-125 built the governed Business Health Score CONTRACT
+  (`business-health-score-contract.ts`): "Scores should never be arbitrary; each score
+  must trace back to measurable factors" enforced in code — the overall score is
+  DERIVED as an exact weighted points sum (integer percents summing to exactly 100),
+  never caller-supplied; every factor carries a required declared basis; explanations
+  enter only as 12D-124 story id references; attention classified by policy
+  thresholds worst-first; receipt-gated score reviews requiring a 12D-121 workflow
+  before any action. Adversarially reviewed: 6 confirmed findings (1 BLOCKING —
+  undeclared fields escaping the scoreId digest) all paid down with regression tests
+  before commit, 0 refuted.
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -154,7 +165,25 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   declared magnitude collide and transplant receipt-backed decisions, the invariants
   never re-derived the storyId so forged ids passed into decision records, and a
   past-tense routing claim was stamped even on declines; all fixed before commit;
-  0 refuted)).
+  0 refuted)), 12D-125 built the governed Business Health Score CONTRACT
+  (`business-health-score-contract.ts`): the DIAGNOSE rung behind the Story Engine —
+  "Scores should never be arbitrary; each score must trace back to measurable factors"
+  and "The Story Engine explains the score in plain language" enforced in code: the
+  overall score is DERIVED as an exact weighted points sum (integer percents summing
+  to exactly 100), never caller-supplied; every factor carries a required declared
+  basis; the six domains (finance/operations/customers/people/technology/supply
+  chain) are policy; attention classified by policy thresholds (≤50 NEEDS_ATTENTION,
+  ≤75 WATCH) worst-first with factorId tie-break; explanations enter ONLY as 12D-124
+  story id references; scoreId re-derives from every declared input plus the derived
+  points; receipt-gated score reviews requiring a 12D-121 workflow before any action,
+  authorizing and executing nothing (6/6 tests, typecheck green, adversarially
+  reviewed before commit: 6 confirmed findings — 1 BLOCKING: undeclared fields on
+  factors/story refs escaped the scoreId digest, letting two materially different
+  packets share one id, fixed via exact-shape gates + declared-key projection; 5
+  CONSERVATIVE: stringly-typed attention compare, per-factor story cap enforced only
+  in aggregate ×2, frozen shell over unfrozen sub-arrays — all fixed before commit;
+  0 refuted; the review's lessons were applied to the 12D-124 sibling as head-fix
+  `80c97bc9`, 5/5 re-run green)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -164,7 +193,7 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs on the scale ladder after 12D-124: MEASURED FAILOVER and MEASURED
+concern. Next rungs on the scale ladder after 12D-125: MEASURED FAILOVER and MEASURED
 HORIZONTAL SCALING (not built; each needs its own measured evidence), and the
 separately-reviewed ADOPTION layers (event-plane adoption, and cell/instruction
 adoption) if contracts ever move from advisory to operator-adopted routing.
