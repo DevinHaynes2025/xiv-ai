@@ -71,6 +71,8 @@
     "typecheck:12d-121": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/agent-decision-safety-workflow.ts runtime/offline-team/agent-decision-safety-workflow.test.ts",
     "test:12d-123": "tsx --test runtime/offline-team/event-plane-contract.test.ts",
     "typecheck:12d-123": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/event-plane-contract.ts runtime/offline-team/event-plane-contract.test.ts",
+    "test:12d-124": "tsx --test runtime/offline-team/story-engine-contract.test.ts",
+    "typecheck:12d-124": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/story-engine-contract.ts runtime/offline-team/story-engine-contract.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
