@@ -470,6 +470,22 @@ export interface FailoverDecisionRecord {
 
 const FAILOVER_DECISION_MAX_DECIDED_BY_CHARS = 128;
 
+/**
+ * The full provenance a presented plan claims to come from: the request, the policy,
+ * the declared reference time, and BOTH capacity evidences. The decision record
+ * boundary re-composes the plan from these inputs and refuses any plan whose identity
+ * does not re-derive — a hand-built packet with honest flags and a fabricated digest
+ * can never obtain a receipt-backed record (the 12D-124 storyId discipline, applied
+ * to failover; closes the 12D-127 residual).
+ */
+export interface FailoverPlanProvenance {
+  readonly policy: MeasuredFailoverPolicy;
+  readonly request: FailoverRequest;
+  readonly nowMs: number;
+  readonly primary: FailoverCapacityEvidence | null;
+  readonly secondary: FailoverCapacityEvidence | null;
+}
+
 export function recordFailoverDecision(
   plan: MeasuredFailoverPlan,
   input: {
@@ -478,6 +494,7 @@ export function recordFailoverDecision(
     decidedBy: string;
     decidedAtMs: number;
   },
+  provenance: FailoverPlanProvenance,
 ): Readonly<FailoverDecisionRecord> {
   const p = plan as MeasuredFailoverPlan | null;
   if (!p || p.kind !== 'MEASURED_FAILOVER_PLAN' || !Object.isFrozen(p))
@@ -491,6 +508,20 @@ export function recordFailoverDecision(
     || p.providerInvocationAuthorized !== false || p.trafficMoved !== false
     || p.automaticRecovery !== false || p.productionScaleProven !== false)
     throw new Error('plan carries dishonest governance flags; fail closed');
+  // PROVENANCE RE-DERIVATION: the plan is re-composed from the request, policy,
+  // reference time, and evidences it claims to come from. A forged or stale plan —
+  // honest flags, fabricated digest — fails here, before any receipt is examined.
+  const v = provenance as FailoverPlanProvenance | null;
+  if (!v || typeof v !== 'object')
+    throw new Error('failover plan provenance required; fail closed');
+  const recomposed = planMeasuredRegionalFailover(
+    v.policy, v.request, v.nowMs, v.primary ?? null, v.secondary ?? null,
+  );
+  if (recomposed.disposition !== 'HUMAN_APPROVAL_REQUIRED'
+    || recomposed.planDigest !== p.planDigest
+    || recomposed.candidateRegionId !== p.candidateRegionId
+    || recomposed.requestedTrafficBps !== p.requestedTrafficBps)
+    throw new Error('plan provenance does not re-derive the presented plan; fail closed');
   if (input?.decision !== 'ACCEPTED_FOR_HUMAN_REVIEW' && input?.decision !== 'DECLINED_BY_HUMAN')
     throw new Error('failover decision unknown; fail closed');
   if (!hex64(input.operatorReceiptSha256))

@@ -128,16 +128,17 @@ issued. 16/16 tests + typecheck green (one live-corrected test during the write:
 temporal boundary is strict — a decision AT the evidence timestamp is accepted, only
 strictly-earlier ones are impossible orderings).
 
-Residual (disclosed): the record binds `planDigest` verbatim and cannot re-derive it —
-the record function has no access to the request/policy/evidence inputs that produce
-the digest. A hand-built frozen plan packet with honest flags and a fabricated digest
-could obtain a decision record, exactly as 12D-124's record once trusted a foreign
-`storyId` until invariants re-derivation was added there. The mitigation is the same
-shape as the Story Engine's: the adoption layer (or a future invariant pass given the
-plan's full inputs) must verify plan provenance before treating any record as
-authoritative. Until then, `executedByThisRuntime: false` /
-`productionExecutionAllowed: false` / `authorizedTrafficBps: 0` are structural on
-every record — the record authorizes nothing even if forged.
+Residual (disclosed, then CLOSED by 12D-128): the record once bound `planDigest`
+verbatim and could not re-derive it — a hand-built frozen plan packet with honest
+flags and a fabricated digest could obtain a decision record, exactly as 12D-124's
+record once trusted a foreign `storyId`. CLOSED: `recordFailoverDecision` now takes
+the plan's full PROVENANCE (request, policy, declared reference time, both capacity
+evidences) and RE-COMPOSES the plan from those inputs before issuing any record; a
+presented plan whose digest, candidate region, or requested traffic fraction does not
+re-derive fails closed before any receipt is examined (regression-tested: fabricated
+digest, differing measured evidence, differing policy ceiling, evidence that would
+now compose to a denial, and a stale reference time all throw). The record boundary
+no longer trusts any presented identity.
 
 ## Honest state
 

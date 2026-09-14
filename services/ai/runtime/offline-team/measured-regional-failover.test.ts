@@ -83,6 +83,26 @@ const plan = (over: {
 const eligible = (p: MeasuredFailoverPlan): Extract<MeasuredFailoverPlan, { disposition: 'HUMAN_APPROVAL_REQUIRED' }> =>
   p as Extract<MeasuredFailoverPlan, { disposition: 'HUMAN_APPROVAL_REQUIRED' }>;
 
+const prov = (over: {
+  policy?: PolicyOverrides; request?: RequestOverrides; now?: number;
+  primary?: FailoverCapacityEvidence | null; secondary?: FailoverCapacityEvidence | null;
+} = {}) => ({
+  policy: mkPolicy(over.policy),
+  request: mkRequest({
+    ...over.request,
+    failoverPolicyDigest: over.request?.failoverPolicyDigest
+      ?? deriveFailoverPolicyDigest(mkPolicy(over.policy)),
+  }),
+  nowMs: over.now ?? NOW,
+  primary: over.primary === undefined ? mkPrimary() : over.primary,
+  secondary: over.secondary === undefined ? mkEvidence() : over.secondary,
+});
+
+// Every decision below is recorded through full provenance — the record boundary
+// re-derives the plan from the inputs that produced it before issuing anything.
+const decide = (p: MeasuredFailoverPlan, input: Parameters<typeof recordFailoverDecision>[1]) =>
+  recordFailoverDecision(p, input, prov());
+
 test('every plan path is honest: nothing moves, nothing is authorized, approval is required', () => {
   for (const p of [
     plan(),
@@ -321,37 +341,37 @@ test('recordFailoverDecision is receipt-gated; every record requires a 12D-121 w
   const p = eligible(plan());
   // Malformed or missing receipts fail closed.
   for (const bad of ['', 'zz', 'A'.repeat(64), 'a'.repeat(63), 'a'.repeat(65)]) {
-    assert.throws(() => recordFailoverDecision(p, {
+    assert.throws(() => decide(p, {
       decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
       operatorReceiptSha256: bad, decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
     }), /operator receipt/);
   }
   // Unknown decisions fail closed.
-  assert.throws(() => recordFailoverDecision(p, {
+  assert.throws(() => decide(p, {
     decision: 'AUTO_EXECUTED' as 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   }), /decision unknown/);
   // Invalid decider identity or timestamp fails closed.
-  assert.throws(() => recordFailoverDecision(p, {
+  assert.throws(() => decide(p, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo dev', decidedAtMs: NOW + 60_000,
   }), /decider identity/);
-  assert.throws(() => recordFailoverDecision(p, {
+  assert.throws(() => decide(p, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: 0,
   }), /decision timestamp/);
   // A decision cannot chronologically predate the capacity evidence it responds to.
-  assert.throws(() => recordFailoverDecision(p, {
+  assert.throws(() => decide(p, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW - 60_000,
   }), /predates the capacity evidence/);
-  assert.throws(() => recordFailoverDecision(p, {
+  assert.throws(() => decide(p, {
     decision: 'DECLINED_BY_HUMAN',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW - 30_001,
   }), /predates the capacity evidence/);
   // The accepted record REQUIRES a 12D-121 workflow before any action — a requirement
   // on the record, never a past-tense claim that any routing happened.
-  const accepted = recordFailoverDecision(p, {
+  const accepted = decide(p, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   });
@@ -372,7 +392,7 @@ test('recordFailoverDecision is receipt-gated; every record requires a 12D-121 w
   assert.equal(accepted.billionUsersProven, false);
   assert.equal(Object.isFrozen(accepted), true);
   // A DECLINE is recorded verbatim, same governance shape.
-  const declined = recordFailoverDecision(p, {
+  const declined = decide(p, {
     decision: 'DECLINED_BY_HUMAN',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_001,
   });
@@ -382,23 +402,64 @@ test('recordFailoverDecision is receipt-gated; every record requires a 12D-121 w
   // ONLY an eligible plan can be decided — denied packets are final states, not
   // decision points, and "approving" one would manufacture authorization.
   const denied = plan({ secondary: null });
-  assert.throws(() => recordFailoverDecision(denied, {
+  assert.throws(() => decide(denied, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
   const noFailover = plan({ primary: mkPrimary({ admissionEligible: true }) });
-  assert.throws(() => recordFailoverDecision(noFailover, {
+  assert.throws(() => decide(noFailover, {
     decision: 'DECLINED_BY_HUMAN',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
   const classified = plan({ request: { dataClass: 'TOP_SECRET' }, primary: null, secondary: null });
-  assert.throws(() => recordFailoverDecision(classified, {
+  assert.throws(() => decide(classified, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
   // A decision against a tampered (unfrozen) plan fails closed first.
-  assert.throws(() => recordFailoverDecision({ ...p } as unknown as MeasuredFailoverPlan, {
+  assert.throws(() => decide({ ...p } as unknown as MeasuredFailoverPlan, {
     decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
     operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
   }), /not a frozen MEASURED_FAILOVER_PLAN/);
+});
+
+test('plan provenance re-derivation: a forged or stale plan can never obtain a decision record', () => {
+  const p = eligible(plan());
+  const goodInput = {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW' as const,
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  };
+  // Missing provenance fails closed.
+  assert.throws(() => recordFailoverDecision(p, goodInput, undefined as never),
+    /provenance required/);
+  // A hand-built frozen plan with honest flags and a FABRICATED digest is rejected —
+  // the digest must re-compose from the presented request/policy/evidence.
+  const forged = eligible(plan({ request: { requestId: 'failover.forged' } }));
+  const forgedDigest = { ...forged, planDigest: 'f'.repeat(64) };
+  assert.throws(() => recordFailoverDecision(
+    Object.freeze(forgedDigest) as unknown as MeasuredFailoverPlan, goodInput, prov(),
+  ), /plan provenance does not re-derive/);
+  // Provenance that composes to a DIFFERENT plan (here: different measured evidence)
+  // cannot validate the presented plan.
+  assert.throws(() => recordFailoverDecision(p, goodInput, prov({
+    secondary: mkEvidence({ p95LatencyMs: 999 }),
+  })), /plan provenance does not re-derive/);
+  // Provenance under a different policy composes to a DIFFERENT digest — the
+  // presented plan was derived under the original ceiling, so it does not re-derive.
+  assert.throws(() => recordFailoverDecision(p, goodInput, prov({
+    policy: { maxCanaryTrafficBps: 2500 },
+  })), /plan provenance does not re-derive/);
+  // Provenance whose evidence would now be DENIED (ineligible secondary) cannot
+  // validate an eligible plan.
+  assert.throws(() => recordFailoverDecision(p, goodInput, prov({
+    secondary: mkEvidence({ admissionEligible: false }),
+  })), /plan provenance does not re-derive/);
+  // The honest path: provenance that exactly re-derives the plan issues the record.
+  const ok = recordFailoverDecision(p, goodInput, prov());
+  assert.equal(ok.planDigest, p.planDigest);
+  assert.equal(ok.requiresDecisionSafetyWorkflowBeforeAnyAction, true);
+  // And provenance whose composition was stale at a different reference time.
+  assert.throws(() => recordFailoverDecision(p, goodInput, prov({
+    now: NOW + 3_600_001,
+  })), /invalid failover request or policy|does not re-derive|stale/);
 });
