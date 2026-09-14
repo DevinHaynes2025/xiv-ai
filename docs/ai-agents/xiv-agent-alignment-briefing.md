@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 9)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-13, rev 10)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `52beacf1`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `7daebb44`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -37,7 +37,12 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
   shard's event stream over a validated 12D-109 routing + 12D-120 cell plan, honest
   single-cell degradation (no fabricated co-located replica), cell-plan re-derivation
   cross-checks, the re-asserted 2,000,000-per-database measured ceiling, receipt-gated
-  adoption that materializes nothing).
+  adoption that materializes nothing); 12D-124 built the governed Story Engine BACKEND
+  CONTRACT (`story-engine-contract.ts`): the trio's backend completion — a governance
+  envelope, not a generator; declared signals only (model-detected/inferred fail
+  closed), authored narratives, the exact SIGNAL→LEARNING ladder, receipt-gated
+  treatment decisions whose records REQUIRE a 12D-121 workflow before any action and
+  route nothing themselves).
 - MR !114: worker lineage 12D-99→12D-102 @ `303896c1` (team review checkpoint).
 - MR !117: `chatgpt/queue-summary-scale-index` @ `577c301e` — governed summary-index
   migration; Claude Code review verdict **SOUND** (10.15× at 2M rows, both blocking
@@ -137,7 +142,19 @@ materializes nothing; 6/6 tests, typecheck green; adversarially reviewed before
 commit: 3 confirmed findings (1 BLOCKING — trusted cellPlan.cellCount let a sparse
 topology hand replicas to cells no validated packet describes; fixed by pinning the
 cell count to the re-derived cell set; 2 CONSERVATIVE, same root cause plus a
-non-positive adoption timestamp — all fixed before commit; 0 refuted)).
+non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-124 built
+  the governed Story Engine BACKEND CONTRACT (`story-engine-contract.ts`): the
+  investor-demo trio completed backend side — a governance envelope, not a generator;
+  declared signals only (model-detected/inferred fail closed), authored narratives, the
+  exact SIGNAL→LEARNING ladder, every treatment REQUIRES_HUMAN_APPROVAL, deterministic
+  storyId binding every declared input, receipt-gated treatment decisions whose records
+  REQUIRE a 12D-121 workflow before any action and route nothing themselves
+  (5/5 tests, typecheck green, adversarially reviewed before commit: 7 confirmed
+  findings — 4 BLOCKING: a sparse storyId preimage let stories differing only in the
+  declared magnitude collide and transplant receipt-backed decisions, the invariants
+  never re-derived the storyId so forged ids passed into decision records, and a
+  past-tense routing claim was stamped even on declines; all fixed before commit;
+  0 refuted)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -147,7 +164,7 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs on the scale ladder after 12D-123: MEASURED FAILOVER and MEASURED
+concern. Next rungs on the scale ladder after 12D-124: MEASURED FAILOVER and MEASURED
 HORIZONTAL SCALING (not built; each needs its own measured evidence), and the
 separately-reviewed ADOPTION layers (event-plane adoption, and cell/instruction
 adoption) if contracts ever move from advisory to operator-adopted routing.
