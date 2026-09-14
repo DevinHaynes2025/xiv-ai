@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 17)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 18)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -243,7 +243,22 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   over every recorded field, and a post-hoc receipt/decider field swap fails closed
   (9/9 bridge + 17/17 sibling tests + typecheck green; the same recomputed-digest
   residual disclosed — receipts authenticate out-of-band via the operator custody
-  registry)).
+  registry)); 12D-132 built the DECLARED-EVIDENCE COLLECTOR
+  (`declared-evidence-collector.ts`): the first rung of MEASURED EVIDENCE
+  production for failover/scaling — a fail-closed collector bound to one
+  tenant/universe that converts locally observed outcomes into bounded, redacted,
+  hash-bound evidence receipts binding tenant, universe, run, source commit,
+  decision id, recordDigest, instruction id, operator receipt, and timestamp, with
+  mandatory independent before/after traffic observations; six declared statuses
+  (PROPOSED/NOT_EXECUTED/EXECUTED/FAILED/ROLLED_BACK/UNVERIFIED) never inferred
+  from instructions or approvals; rollback issued only against a separately
+  presented digest-verified EXECUTED receipt; stale, duplicated, unsigned,
+  mismatched, cross-tenant, and self-declared-only evidence all rejected
+  (regression-tested); notes redacted of secret-shaped content before entering a
+  receipt (12/12 + sibling suites + typecheck + 12D-113 audit green; two build-time
+  findings paid down — a digest-scheme split in the receipt sealer, and non-independent
+  before/after observations sharing one observation id; CI NOT claimed passed —
+  GitLab CI remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -253,11 +268,10 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-131: the remaining separately-reviewed ADOPTION layers
+concern. Next rungs after 12D-132: the remaining separately-reviewed ADOPTION layers
 (event-plane adoption beyond 12D-123's in-contract record, cell/instruction
-adoption), and MEASURED EVIDENCE production for failover/scaling (the
-declared-evidence collectors that would let those rungs run on measurements rather
-than declarations).
+adoption), and wiring the declared-evidence collector into a live operator loop so
+failover/scaling rungs graduate from declarations to measurements.
 
 ## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
 

@@ -495,6 +495,23 @@ export interface FailoverPlanProvenance {
   readonly secondary: FailoverCapacityEvidence | null;
 }
 
+/**
+ * Re-derives a presented record's own digest over its recorded fields — the integrity
+ * check any downstream consumer can run WITHOUT provenance: a presented record whose
+ * recordDigest does not re-derive has been tampered with after recording (the 12D-130
+ * discipline, made callable).
+ */
+export const deriveFailoverRecordDigest = (r: FailoverDecisionRecord): string =>
+  sha256(JSON.stringify({
+    planDigest: r.planDigest,
+    candidateRegionId: r.candidateRegionId,
+    requestedTrafficBps: r.requestedTrafficBps,
+    decision: r.decision,
+    decidedBy: r.decidedBy,
+    decidedAtMs: r.decidedAtMs,
+    operatorReceiptSha256: r.operatorReceiptSha256,
+  }));
+
 export function recordFailoverDecision(
   plan: MeasuredFailoverPlan,
   input: {
