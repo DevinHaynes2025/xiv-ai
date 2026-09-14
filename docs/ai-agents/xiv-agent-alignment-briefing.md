@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 14)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 15)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -7,7 +7,7 @@ agent cannot state these facts, it is not on the page — raise it, do not guess
 ## 1. Current lineage state (exact heads)
 
 - Private GitLab: `gitlab.com/xiv-ai-group/xiv-ai-project.git`
-- Integration branch `claude/12d-99-supervised-local-worker` @ `f9e99f84`
+- Integration branch `claude/12d-99-supervised-local-worker` @ `c6543764`
   (12D-99 → 12D-103 queue lineage + 12D-104..108 + 12D-109/110/111 + 12D-112 through
   12D-118 fully integrated; 12D-115's blocking review finding fixed at integration;
   12D-113 rebuilt directly after its workflow agent stalled 6×; 12D-117 paid down the
@@ -105,8 +105,8 @@ GROK_XAI PENDING — Grok has never responded; never fabricate its review.
 
 Local SQLite pilot (done, measured) → partition/shard contract (12D-109, done) →
 tenant routing → regional service cells → distributed event + storage plane →
-measured failover → measured horizontal scaling → only then billion-user readiness
-claims.
+measured failover (12D-126/127/128, done) → measured horizontal scaling (12D-129,
+done) → only then billion-user readiness claims.
 
 ## 5. Story board (what exists, what is next)
 
@@ -205,7 +205,19 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   from its full provenance (request, policy, declared reference time, both evidences)
   and refuses any plan whose identity does not re-derive — forged digests, differing
   evidence, differing policy ceilings, and stale reference times all fail closed
-  before any receipt is examined (17/17 tests + typecheck green)).
+  before any receipt is examined (17/17 tests + typecheck green)); 12D-129 built the
+  MEASURED HORIZONTAL SCALING contract (`measured-horizontal-scaling.ts`): the next
+  scale-ladder rung — declared per-database capacity evidence, sparse logical
+  projections over a declared horizon, the smallest-K fleet expansion proposed for
+  HUMAN approval; a single database projected past the 2,000,000-row measured ceiling
+  is DENIED (`PER_DATABASE_CEILING_PROJECTED`) because a new database adds aggregate
+  headroom but moves no rows — aggregate arithmetic never masks single-database
+  exhaustion; policy digest re-derives, plan digest binds every declared input,
+  receipt-gated decision records re-compose the plan from full provenance before any
+  receipt is examined (the 12D-128 discipline, present from the first version);
+  adversarially reviewed before commit: 2 confirmed findings paid down (future-dated
+  evidence never went stale → throws; the decision temporal rule used the earliest
+  instead of the latest fleet evidence → Math.max); 11/11 tests + typecheck green).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -215,11 +227,11 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs on the scale ladder after 12D-126: MEASURED HORIZONTAL SCALING
-(not built; needs its own measured evidence), and the separately-reviewed ADOPTION
-layers (failover-plan human-approval/decision records, event-plane adoption, and
-cell/instruction adoption) if contracts ever move from advisory to operator-adopted
-routing.
+concern. Next rungs after 12D-129: the separately-reviewed ADOPTION layers
+(event-plane adoption, cell/instruction adoption, and scaling-plan execution grants
+if contracts ever move from advisory to operator-adopted routing), and MEASURED
+EVIDENCE production for failover/scaling (the declared-evidence collectors that
+would let those rungs run on measurements rather than declarations).
 
 ## 6. Local brain-control verification (live, 2026-09-14, this Windows host)
 
