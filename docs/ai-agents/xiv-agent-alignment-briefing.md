@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 20)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 21)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -295,7 +295,23 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   a superseded CI-validated canonical head now carries an explicit CAUTION;
   residual: the real 301-MR snapshot requires an operator-side GitLab API read —
   no token or glab CLI exists in this runtime; CI NOT claimed passed — GitLab CI
-  remains quota-blocked)).
+  remains quota-blocked)); 12D-135 built the EVENT-PLANE ADOPTION LAYER
+  (`event-plane-adapter.ts`), the event-plane sibling of 12D-119's adoption
+  discipline: `adoptEventPlaneOperatively` makes an adopted 12D-123 plan OPERATIVE
+  over caller-provisioned local `OfflineStoryQueue` stream databases (receipt-gated
+  at adoption, the untrusted plan re-asserted through `assertEventPlaneInvariants`,
+  and the adoption binding plan CONTENT via a canonical order-insensitive
+  `planDigestSha256`); the `EventRoutedStreams` facade opens no database and derives
+  no placement — stream queues are caller-provisioned, every activation is
+  receipt-gated per call, replica writes follow the adopted plan and nothing else
+  (a degraded plane refuses replica queues and honestly writes one copy; a
+  multi-cell plane requires distinct replica queues and appends to both), cross-queue
+  writes are never silently atomic (a replica failure after a primary commit reports
+  exactly what landed), per-database ceiling enforcement stays at the measured
+  2,000,000 rows, and reads come from the primary queue only in this slice (6/6 +
+  sibling suites + typecheck + 12D-113 audit green; one build-time finding paid
+  down — the adoption originally bound only counts, closed with the content-digest
+  regression test; CI NOT claimed passed — GitLab CI remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -305,10 +321,10 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-133/12D-134: populate the release ledger with the REAL
+concern. Next rungs after 12D-135: populate the release ledger with the REAL
 ~301-MR inventory (operator-side GitLab API read — see the 12D-133 handoff), the
-remaining separately-reviewed ADOPTION layers (event-plane adoption beyond 12D-123's
-in-contract record, cell/instruction adoption), and wiring the declared-evidence
+remaining separately-reviewed ADOPTION layers (cell/instruction adoption),
+and wiring the declared-evidence
 collector + instruction-evidence bridge into a live operator loop so failover/scaling
 rungs graduate from declarations to measurements. The CEO's consolidation priority
 order stands: restore GitLab runner capacity (operator), validate ONE canonical
