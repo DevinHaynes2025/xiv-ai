@@ -391,6 +391,27 @@ test('recordFailoverDecision is receipt-gated; every record requires a 12D-121 w
   assert.equal(accepted.automaticRecovery, false);
   assert.equal(accepted.billionUsersProven, false);
   assert.equal(Object.isFrozen(accepted), true);
+  // The record binds ITSELF (the 12D-130 discipline): recordDigest covers every
+  // recorded field, so a post-hoc field swap that keeps the ORIGINAL digest is
+  // detectable by any consumer that re-derives the record and compares digests.
+  assert.match(accepted.recordDigest, /^[0-9a-f]{64}$/);
+  assert.notEqual(decide(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_001,
+  }).recordDigest, accepted.recordDigest);
+  assert.notEqual(decide(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'c'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }).recordDigest, accepted.recordDigest);
+  assert.notEqual(decide(p, {
+    decision: 'DECLINED_BY_HUMAN',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }).recordDigest, accepted.recordDigest);
+  const reDerivedSwapped = recordFailoverDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'other', decidedAtMs: NOW + 60_000,
+  }, prov());
+  assert.notEqual(reDerivedSwapped.recordDigest, { ...accepted, decidedBy: 'other' }.recordDigest);
   // A DECLINE is recorded verbatim, same governance shape.
   const declined = decide(p, {
     decision: 'DECLINED_BY_HUMAN',

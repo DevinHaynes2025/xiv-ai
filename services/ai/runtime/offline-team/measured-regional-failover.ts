@@ -452,6 +452,15 @@ export interface FailoverDecisionRecord {
   readonly decidedBy: string;
   readonly decidedAtMs: number;
   readonly operatorReceiptSha256: string;
+  /**
+   * sha256 over every recorded field — the record's own integrity value (the 12D-130
+   * discipline). The recorded human-authorization fields are embedded verbatim, so
+   * plan-provenance re-derivation alone cannot detect a post-hoc field swap; any
+   * downstream consumer that re-derives the record and compares digests fails closed
+   * on tampering. The receipt itself is authenticated out-of-band by the operator's
+   * custody registry.
+   */
+  readonly recordDigest: string;
   /** A REQUIREMENT, never a claim that routing happened: this runtime opens no
    *  workflow. Any resulting action MUST pass a 12D-121 decision-safety workflow
    *  FIRST, in a system outside this runtime, before any instruction can exist. */
@@ -537,8 +546,10 @@ export function recordFailoverDecision(
   // (the 12D-121 rule, applied to failover).
   if (input.decidedAtMs < Math.max(p.primaryEvidenceObservedAtMs, p.measuredSecondary.observedAtMs))
     throw new Error('decision timestamp predates the capacity evidence; fail closed');
-  return Object.freeze({
-    kind: 'FAILOVER_DECISION_RECORD' as const,
+  // The record binds ITSELF (the 12D-130 discipline): recordDigest covers every
+  // recorded field, making a post-hoc field swap detectable by any consumer that
+  // re-derives the record and compares digests.
+  const recordFields = {
     planDigest: p.planDigest,
     candidateRegionId: p.candidateRegionId,
     requestedTrafficBps: p.requestedTrafficBps,
@@ -546,6 +557,11 @@ export function recordFailoverDecision(
     decidedBy: input.decidedBy,
     decidedAtMs: input.decidedAtMs,
     operatorReceiptSha256: input.operatorReceiptSha256,
+  };
+  return Object.freeze({
+    kind: 'FAILOVER_DECISION_RECORD' as const,
+    ...recordFields,
+    recordDigest: sha256(JSON.stringify(recordFields)),
     requiresDecisionSafetyWorkflowBeforeAnyAction: true as const,
     executedByThisRuntime: false as const,
     productionExecutionAllowed: false as const,
