@@ -129,6 +129,16 @@ const sha256 = (s: string): string => createHash('sha256').update(s, 'utf8').dig
 const boundedText = (v: unknown, max: number): v is string =>
   typeof v === 'string' && v.trim().length >= 1 && v.length <= max;
 
+// The EXACT declared signal shape: an undeclared extra field would ride into the
+// governed packet unvalidated and escape the storyId digest — two materially different
+// stories would share one identity (the 12D-124/12D-125 adversarial-review lesson).
+const SIGNAL_KEYS = Object.freeze([
+  'metricId', 'direction', 'magnitude', 'declaredBy', 'declaredAtMs', 'source',
+]);
+const hasExactKeys = (obj: unknown, keys: readonly string[]): boolean =>
+  typeof obj === 'object' && obj !== null
+  && JSON.stringify(Object.keys(obj).sort()) === JSON.stringify([...keys].sort());
+
 /**
  * The story identity, RE-DERIVED, never trusted (the 12D-121 genesis/proposal-digest
  * discipline): a canonical serialization of EVERY declared input — the full signal
@@ -157,6 +167,10 @@ const deriveStoryId = (
 
 function assertSignal(signal: unknown): asserts signal is MetricSignal {
   const s = signal as MetricSignal | null;
+  // The exact declared shape, checked FIRST — an undeclared extra field or a missing
+  // declared key fails the shape gate before any field validation.
+  if (!hasExactKeys(s, SIGNAL_KEYS))
+    throw new Error('signal carries undeclared fields; fail closed');
   if (!s || !id(s.metricId, STORY_ENGINE_POLICY.maxMetricIdChars))
     throw new Error('story metric id invalid; fail closed');
   if (!STORY_ENGINE_POLICY.knownDirections.includes(s.direction))
@@ -208,7 +222,15 @@ export function composeGovernedStory(input: {
   const packet = Object.freeze({
     kind: 'GOVERNED_STORY' as const,
     storyId,
-    signal: Object.freeze({ ...input.signal }),
+    // Projected to the DECLARED keys only — nothing outside the digest can ever ship.
+    signal: Object.freeze({
+      metricId: input.signal.metricId,
+      direction: input.signal.direction,
+      magnitude: input.signal.magnitude,
+      declaredBy: input.signal.declaredBy,
+      declaredAtMs: input.signal.declaredAtMs,
+      source: input.signal.source,
+    }),
     context: Object.freeze([...input.context]),
     narrative: input.narrative,
     treatments: Object.freeze(input.treatments.map((t) => Object.freeze({
@@ -241,6 +263,14 @@ export function composeGovernedStory(input: {
 export function assertStoryInvariants(story: Readonly<GovernedStory>): void {
   if (!story || story.kind !== 'GOVERNED_STORY' || !Object.isFrozen(story))
     throw new Error('not a frozen GOVERNED_STORY; fail closed');
+  // Structural freeze: the packet's sub-structures AND their elements must be frozen —
+  // a frozen shell over an unfrozen context or treatments array once passed (the
+  // 12D-125 adversarial-review lesson, applied to the 12D-124 sibling).
+  for (const sub of [story.signal, story.context, story.treatments]) {
+    if (!sub || !Object.isFrozen(sub)
+      || (Array.isArray(sub) && !sub.every((el) => el === null || typeof el !== 'object' || Object.isFrozen(el))))
+      throw new Error('governed story sub-structure not frozen; fail closed');
+  }
   if (story.guardrails !== STORY_ENGINE_GUARDRAILS || !Object.isFrozen(story.guardrails))
     throw new Error('guardrails must be the frozen STORY_ENGINE_GUARDRAILS; fabricated guardrails fail closed');
   assertSignal(story.signal);

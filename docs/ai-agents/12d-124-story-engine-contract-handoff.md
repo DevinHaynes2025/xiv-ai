@@ -128,3 +128,23 @@ Binding a real `decisionSafetyWorkflowId` into the record would require coupling
 pure envelope to the 12D-121 module (or an adoption layer that links them); that is
 future work, and until then the record's honesty rests on the requirement wording
 plus `executedByThisRuntime: false` / `productionExecutionAllowed: false`.
+
+## Sibling paydown (post-handoff, from the 12D-125 adversarial review)
+
+The 12D-125 review confirmed the same defect family in THIS contract's sibling and
+was paid down here as a head-fix, with regression tests, suite re-run 5/5 green:
+
+1. **Undeclared signal fields escaped the storyId digest.** Extra properties on the
+   input signal rode into the governed packet unvalidated and never entered
+   `deriveStoryId`'s preimage — two materially different stories could share one
+   storyId. Fixed: `hasExactKeys` shape gate FIRST in `assertSignal`
+   (`/signal carries undeclared fields/`), and the packet's signal projected to the
+   declared keys only (no spread). Tests: smuggled `scoreFromLiveDatabase` on compose
+   and on invariant re-check both throw.
+2. **Sub-structure freeze gate.** `assertStoryInvariants` once freeze-checked only the
+   top-level packet; a frozen shell over an unfrozen `context`/`treatments` array —
+   or frozen arrays over unfrozen treatment elements — passed and a receipt-backed
+   decision record could be issued on it. Added a gate on `story.signal`,
+   `story.context`, `story.treatments` AND their object elements (primitives
+   exempt — `context` is a `string[]`). Tests: unfrozen context, unfrozen treatments,
+   frozen-array-unfrozen-element — all throw.

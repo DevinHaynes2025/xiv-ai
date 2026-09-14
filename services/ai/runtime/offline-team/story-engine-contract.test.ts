@@ -208,6 +208,27 @@ test('assertStoryInvariants is tamper-evident: forged decisions, ladder, flags a
   // A story that is not frozen.
   const unfrozen = { ...story } as unknown as GovernedStory;
   assert.throws(() => assertStoryInvariants(unfrozen), /frozen GOVERNED_STORY/);
+  // Sub-structures must be frozen too, elements included (the 12D-125 review lesson):
+  assert.throws(() => assertStoryInvariants(Object.freeze({
+    ...story, context: [...story.context],
+  }) as unknown as GovernedStory), /sub-structure not frozen/);
+  assert.throws(() => assertStoryInvariants(Object.freeze({
+    ...story, treatments: [...story.treatments],
+  }) as unknown as GovernedStory), /sub-structure not frozen/);
+  assert.throws(() => assertStoryInvariants(Object.freeze({
+    ...story,
+    treatments: Object.freeze(story.treatments.map((t) => ({ ...t }))),
+  }) as unknown as GovernedStory), /sub-structure not frozen/);
+  // An undeclared extra field on the signal fails the exact-shape gate — a smuggled
+  // field would ride into the packet unvalidated and escape the storyId digest
+  // (the 12D-125 adversarial-review BLOCKING family, fixed in the sibling too).
+  const smuggledInput = mkInput();
+  (smuggledInput.signal as { scoreFromLiveDatabase?: string }).scoreFromLiveDatabase = 'prod-primary';
+  assert.throws(() => composeGovernedStory(smuggledInput), /signal carries undeclared fields/);
+  assert.throws(() => assertStoryInvariants(Object.freeze({
+    ...story,
+    signal: Object.freeze({ ...story.signal, basisSource: 'smuggled' }),
+  }) as unknown as GovernedStory), /signal carries undeclared fields/);
   // A forged storyId — non-hex, or a FOREIGN story's id stamped onto different
   // content — fails closed (adversarial-review finding: the invariant check once
   // never read story.storyId at all, and recordTreatmentDecision copied it verbatim).
