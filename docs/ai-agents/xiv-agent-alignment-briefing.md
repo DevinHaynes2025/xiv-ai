@@ -1,4 +1,4 @@
-# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 23)
+# XIV Agent Alignment Briefing — the page every XIV agent is on (2026-09-14, rev 24)
 
 Single source of truth for every agent working on XIV AI OS (Claude Code lineage,
 chatgpt/* implementer branches, grok/* branches, and any future taskforce member). If an
@@ -326,7 +326,26 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   single-cell posture bound honestly (7/7 + sibling suites + typecheck + 12D-113
   audit green; one build-time finding paid down — the binding originally recorded
   the adoption digest without verifying the composing plan; CI NOT claimed passed —
-  GitLab CI remains quota-blocked)).
+  GitLab CI remains quota-blocked)); 12D-222 built INSTRUCTION-SIDE ADOPTION &
+  LINEAGE RECONCILIATION (`instruction-adoption-gate.ts`), per direct CEO directive:
+  `InstructionAdoptionGate.adoptInstruction` recomposes and revalidates the COMPLETE
+  chain — source instruction → instruction plan → cell-placement plan → operator
+  adoption → event-plane plan → event-plane binding → bounded instruction adoption —
+  treating every presented packet as untrusted, re-deriving the record digest AND the
+  plan from full provenance, re-checking tenant/universe/sourceRevision across every
+  carrier, mirroring the 12D-134 instruction chain, binding the HUMAN_APPROVAL event
+  to its canonical detail and the presented execution grant's approver (the raw
+  grant receipt stays out-of-band by the 12D-121 design — disclosed), matching trail
+  evidence by EXACT canonical details (no substring probes), re-deriving the event
+  plane binding and requiring a field-explicit match, refusing replay per
+  instruction lineage (PROCESS-LOCAL, NOT durable — disclosed), deriving instructionId
+  itself, honestly marking storyId as an unverified caller assertion, and issuing a
+  frozen advisory `INSTRUCTION_ADOPTION_RECORD` bound to the full digest chain, the
+  per-call operator receipt, the policy version, and an expiration bounded by the
+  instruction's own validity window — executing nothing and granting no production
+  authority (9/9 + all 11 sibling suites + typecheck + 12D-113 audit 9/9 green;
+  the CEO's 8-point risk list paid down with regression tests; CI NOT claimed
+  passed — GitLab CI remains quota-blocked)).
 
 Queued next: nothing outstanding — the "120s queue-lease cap on long generations" item
 was closed by verification, not by new code: `supervised-local-worker.ts` already
@@ -336,12 +355,12 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-136: populate the release ledger with the REAL
-~301-MR inventory (operator-side GitLab API read — see the 12D-133 handoff), the
-remaining separately-reviewed ADOPTION layers (instruction adoption),
-and wiring the declared-evidence
-collector + instruction-evidence bridge into a live operator loop so failover/scaling
-rungs graduate from declarations to measurements. The CEO's consolidation priority
+concern. Next rungs after 12D-222: populate the release ledger with the REAL
+~301-MR inventory (operator-side GitLab API read — see the 12D-133 handoff), wire the
+declared-evidence collector + instruction-evidence bridge into a live operator loop so
+failover/scaling rungs graduate from declarations to measurements, and reconcile Draft
+MR !114's oversized 265-file cumulative review surface (its title/description still
+describe only 12D-99→102) before approval. The CEO's consolidation priority
 order stands: restore GitLab runner capacity (operator), validate ONE canonical
 exact-head lineage, independent review → CTO approval → CEO approval — no new
 parallel branches, no production execution, no merges during consolidation.

@@ -128,7 +128,10 @@ const safeInt = (v: unknown): v is number => typeof v === 'number' && Number.isS
 // stream-order-insensitive sha256 over everything the plan object carries. A facade
 // later refuses any presented plan whose digest differs from the adopted one — even
 // a structurally valid sibling plan with identical counts.
-const planDigestOf = (plan: Readonly<DistributedEventPlanePlan>): string =>
+// EXPORTED (12D-222): the event-plane content digest, so the instruction-side
+// adoption gate re-derives against the EXACT same canonical preimage instead of a
+// divergent copy.
+export const eventPlanePlanDigestOf = (plan: Readonly<DistributedEventPlanePlan>): string =>
   createHash('sha256').update(JSON.stringify({
     kind: plan.kind,
     epoch: plan.epoch,
@@ -171,7 +174,7 @@ export function adoptEventPlaneOperatively(
     throw new Error('adoption timestamp invalid; fail closed');
   return Object.freeze({
     kind: 'EVENT_PLANE_OPERATIVE_ADOPTION' as const,
-    planDigestSha256: planDigestOf(plan),
+    planDigestSha256: eventPlanePlanDigestOf(plan),
     planEpoch: plan.epoch,
     cellCount: plan.cellCount,
     shardCount: plan.shardCount,
@@ -236,7 +239,7 @@ export class EventRoutedStreams {
     // The content digest is the binding gate (a structurally valid plan with identical
     // counts but different placements or projections still differs); the field match is
     // defense in depth.
-    if (planDigestOf(plan) !== adoption.planDigestSha256
+    if (eventPlanePlanDigestOf(plan) !== adoption.planDigestSha256
       || plan.epoch !== adoption.planEpoch || plan.shardCount !== adoption.shardCount
       || plan.cellCount !== adoption.cellCount || plan.streams.length !== adoption.streamCount
       || plan.replicationDegraded !== adoption.replicationDegraded)

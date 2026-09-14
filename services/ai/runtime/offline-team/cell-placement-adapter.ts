@@ -103,7 +103,9 @@ const safeInt = (v: unknown): v is number => typeof v === 'number' && Number.isS
 // shard-order-insensitive sha256 over everything the plan object carries. A later
 // gate refuses any plan whose digest differs from the adopted one — even a
 // structurally valid sibling plan with identical counts.
-const cellPlanDigestOf = (plan: Readonly<RegionalCellPlacementPlan>): string =>
+// EXPORTED (12D-222): the instruction-side adoption gate re-derives against this EXACT
+// canonical preimage instead of a divergent copy.
+export const cellPlanDigestOf = (plan: Readonly<RegionalCellPlacementPlan>): string =>
   createHash('sha256').update(JSON.stringify({
     kind: plan.kind,
     epoch: plan.epoch,
