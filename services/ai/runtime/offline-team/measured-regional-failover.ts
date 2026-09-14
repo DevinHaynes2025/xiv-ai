@@ -430,3 +430,101 @@ export function planMeasuredRegionalFailover(
     primaryEvidenceObservedAtMs: primary.observedAtMs,
   });
 }
+
+/**
+ * A HUMAN decision on a proposed failover plan, receipt-gated (64-hex sha256 operator
+ * receipt, the 12D-119/12D-121 discipline). Only an ELIGIBLE plan — one whose
+ * disposition is HUMAN_APPROVAL_REQUIRED — can be decided; denied, local-required, and
+ * no-failover packets are not decisions, they are already-final states. The record
+ * binds the planDigest VERBATIM (the identity an approver actually saw), the candidate
+ * region, and the requested traffic fraction, and states that any resulting action
+ * MUST pass a 12D-121 decision-safety workflow FIRST, in a system outside this
+ * runtime. This record AUTHORIZES NOTHING, EXECUTES NOTHING, and MOVES NO TRAFFIC:
+ * `authorizedTrafficBps` remains 0 on every record. Declining is recorded verbatim.
+ * Learning is never promoted from either decision.
+ */
+export interface FailoverDecisionRecord {
+  readonly kind: 'FAILOVER_DECISION_RECORD';
+  readonly planDigest: string;
+  readonly candidateRegionId: string;
+  readonly requestedTrafficBps: number;
+  readonly decision: 'ACCEPTED_FOR_HUMAN_REVIEW' | 'DECLINED_BY_HUMAN';
+  readonly decidedBy: string;
+  readonly decidedAtMs: number;
+  readonly operatorReceiptSha256: string;
+  /** A REQUIREMENT, never a claim that routing happened: this runtime opens no
+   *  workflow. Any resulting action MUST pass a 12D-121 decision-safety workflow
+   *  FIRST, in a system outside this runtime, before any instruction can exist. */
+  readonly requiresDecisionSafetyWorkflowBeforeAnyAction: true;
+  readonly executedByThisRuntime: false;
+  readonly productionExecutionAllowed: false;
+  readonly authorizedTrafficBps: 0;
+  readonly trafficMoved: false;
+  readonly humanDecision: 'REQUIRED';
+  readonly learningPromoted: false;
+  readonly modelCalls: 0;
+  readonly remoteCalls: 0;
+  readonly billionUsersProven: false;
+  readonly automaticRecovery: false;
+}
+
+const FAILOVER_DECISION_MAX_DECIDED_BY_CHARS = 128;
+
+export function recordFailoverDecision(
+  plan: MeasuredFailoverPlan,
+  input: {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW' | 'DECLINED_BY_HUMAN';
+    operatorReceiptSha256: string;
+    decidedBy: string;
+    decidedAtMs: number;
+  },
+): Readonly<FailoverDecisionRecord> {
+  const p = plan as MeasuredFailoverPlan | null;
+  if (!p || p.kind !== 'MEASURED_FAILOVER_PLAN' || !Object.isFrozen(p))
+    throw new Error('not a frozen MEASURED_FAILOVER_PLAN; fail closed');
+  // ONLY an eligible plan (a live proposal) can be decided. A denied packet is not a
+  // decision point — recording an "approval" on it would manufacture an authorization
+  // that no plan ever proposed.
+  if (p.disposition !== 'HUMAN_APPROVAL_REQUIRED' || p.reason !== 'MEASURED_SECONDARY_CANDIDATE')
+    throw new Error('only an eligible HUMAN_APPROVAL_REQUIRED plan can receive a decision; fail closed');
+  if (p.humanApprovalRequired !== true || p.authorizedTrafficBps !== 0
+    || p.providerInvocationAuthorized !== false || p.trafficMoved !== false
+    || p.automaticRecovery !== false || p.productionScaleProven !== false)
+    throw new Error('plan carries dishonest governance flags; fail closed');
+  if (input?.decision !== 'ACCEPTED_FOR_HUMAN_REVIEW' && input?.decision !== 'DECLINED_BY_HUMAN')
+    throw new Error('failover decision unknown; fail closed');
+  if (!hex64(input.operatorReceiptSha256))
+    throw new Error('a failover decision requires a 64-hex sha256 operator receipt; fail closed');
+  if (typeof input.decidedBy !== 'string' || input.decidedBy.length < 1
+    || input.decidedBy.length > FAILOVER_DECISION_MAX_DECIDED_BY_CHARS
+    || !/^[A-Za-z0-9_.:@-]+$/.test(input.decidedBy))
+    throw new Error('decider identity invalid; fail closed');
+  if (!Number.isSafeInteger(input.decidedAtMs) || input.decidedAtMs <= 0)
+    throw new Error('decision timestamp invalid; fail closed');
+  // A decision chronologically CANNOT predate the evidence it responds to — a decision
+  // timestamp before BOTH evidence observation times is an impossible ordering, rejected
+  // (the 12D-121 rule, applied to failover).
+  if (input.decidedAtMs < Math.max(p.primaryEvidenceObservedAtMs, p.measuredSecondary.observedAtMs))
+    throw new Error('decision timestamp predates the capacity evidence; fail closed');
+  return Object.freeze({
+    kind: 'FAILOVER_DECISION_RECORD' as const,
+    planDigest: p.planDigest,
+    candidateRegionId: p.candidateRegionId,
+    requestedTrafficBps: p.requestedTrafficBps,
+    decision: input.decision,
+    decidedBy: input.decidedBy,
+    decidedAtMs: input.decidedAtMs,
+    operatorReceiptSha256: input.operatorReceiptSha256,
+    requiresDecisionSafetyWorkflowBeforeAnyAction: true as const,
+    executedByThisRuntime: false as const,
+    productionExecutionAllowed: false as const,
+    authorizedTrafficBps: 0 as const,
+    trafficMoved: false as const,
+    humanDecision: 'REQUIRED' as const,
+    learningPromoted: false as const,
+    modelCalls: 0 as const,
+    remoteCalls: 0 as const,
+    billionUsersProven: false as const,
+    automaticRecovery: false as const,
+  });
+}

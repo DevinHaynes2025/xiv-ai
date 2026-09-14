@@ -1,7 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
 import {
-  planMeasuredRegionalFailover, deriveFailoverPolicyDigest,
+  planMeasuredRegionalFailover, deriveFailoverPolicyDigest, recordFailoverDecision,
   type FailoverCapacityEvidence, type FailoverRequest,
   type MeasuredFailoverPolicy, type MeasuredFailoverPlan,
 } from './measured-regional-failover';
@@ -315,4 +315,90 @@ test('policy and request shapes are exactly-validated; pairs are validated too',
   // maxEvidenceAgeMs is bounded.
   assert.throws(() => plan({ policy: { maxEvidenceAgeMs: 0 } }), /invalid failover policy/);
   assert.throws(() => plan({ policy: { maxEvidenceAgeMs: 86_400_001 } }), /invalid failover policy/);
+});
+
+test('recordFailoverDecision is receipt-gated; every record requires a 12D-121 workflow before ANY action and moves nothing', () => {
+  const p = eligible(plan());
+  // Malformed or missing receipts fail closed.
+  for (const bad of ['', 'zz', 'A'.repeat(64), 'a'.repeat(63), 'a'.repeat(65)]) {
+    assert.throws(() => recordFailoverDecision(p, {
+      decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+      operatorReceiptSha256: bad, decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+    }), /operator receipt/);
+  }
+  // Unknown decisions fail closed.
+  assert.throws(() => recordFailoverDecision(p, {
+    decision: 'AUTO_EXECUTED' as 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }), /decision unknown/);
+  // Invalid decider identity or timestamp fails closed.
+  assert.throws(() => recordFailoverDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo dev', decidedAtMs: NOW + 60_000,
+  }), /decider identity/);
+  assert.throws(() => recordFailoverDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: 0,
+  }), /decision timestamp/);
+  // A decision cannot chronologically predate the capacity evidence it responds to.
+  assert.throws(() => recordFailoverDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW - 60_000,
+  }), /predates the capacity evidence/);
+  assert.throws(() => recordFailoverDecision(p, {
+    decision: 'DECLINED_BY_HUMAN',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW - 30_001,
+  }), /predates the capacity evidence/);
+  // The accepted record REQUIRES a 12D-121 workflow before any action — a requirement
+  // on the record, never a past-tense claim that any routing happened.
+  const accepted = recordFailoverDecision(p, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  });
+  assert.equal(accepted.kind, 'FAILOVER_DECISION_RECORD');
+  assert.equal(accepted.planDigest, p.planDigest);
+  assert.equal(accepted.candidateRegionId, 'aws-us-west-2');
+  assert.equal(accepted.requestedTrafficBps, 300);
+  assert.equal(accepted.requiresDecisionSafetyWorkflowBeforeAnyAction, true);
+  assert.equal(accepted.executedByThisRuntime, false);
+  assert.equal(accepted.productionExecutionAllowed, false);
+  assert.equal(accepted.authorizedTrafficBps, 0);
+  assert.equal(accepted.trafficMoved, false);
+  assert.equal(accepted.humanDecision, 'REQUIRED');
+  assert.equal(accepted.learningPromoted, false);
+  assert.equal(accepted.modelCalls, 0);
+  assert.equal(accepted.remoteCalls, 0);
+  assert.equal(accepted.automaticRecovery, false);
+  assert.equal(accepted.billionUsersProven, false);
+  assert.equal(Object.isFrozen(accepted), true);
+  // A DECLINE is recorded verbatim, same governance shape.
+  const declined = recordFailoverDecision(p, {
+    decision: 'DECLINED_BY_HUMAN',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_001,
+  });
+  assert.equal(declined.decision, 'DECLINED_BY_HUMAN');
+  assert.equal(declined.requiresDecisionSafetyWorkflowBeforeAnyAction, true);
+  assert.equal(declined.authorizedTrafficBps, 0);
+  // ONLY an eligible plan can be decided — denied packets are final states, not
+  // decision points, and "approving" one would manufacture authorization.
+  const denied = plan({ secondary: null });
+  assert.throws(() => recordFailoverDecision(denied, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
+  const noFailover = plan({ primary: mkPrimary({ admissionEligible: true }) });
+  assert.throws(() => recordFailoverDecision(noFailover, {
+    decision: 'DECLINED_BY_HUMAN',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
+  const classified = plan({ request: { dataClass: 'TOP_SECRET' }, primary: null, secondary: null });
+  assert.throws(() => recordFailoverDecision(classified, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }), /only an eligible HUMAN_APPROVAL_REQUIRED plan/);
+  // A decision against a tampered (unfrozen) plan fails closed first.
+  assert.throws(() => recordFailoverDecision({ ...p } as unknown as MeasuredFailoverPlan, {
+    decision: 'ACCEPTED_FOR_HUMAN_REVIEW',
+    operatorReceiptSha256: 'a'.repeat(64), decidedBy: 'ceo', decidedAtMs: NOW + 60_000,
+  }), /not a frozen MEASURED_FAILOVER_PLAN/);
 });

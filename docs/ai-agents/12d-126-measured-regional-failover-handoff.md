@@ -109,6 +109,36 @@ never infers or measures health itself. Reviewer receipts: CLAUDE_CODE. GROK_XAI
 PENDING — never fabricated. The implementer's 26/26 claim and its documentation:
 UNVERIFIED (not provided).
 
+## 12D-127 (follow-on story) — receipt-gated human decision records for failover plans
+
+`recordFailoverDecision` (same module) completes the failover decision loop the way
+12D-124's `recordTreatmentDecision` completed the Story Engine's: ONLY an eligible
+plan (`HUMAN_APPROVAL_REQUIRED` / `MEASURED_SECONDARY_CANDIDATE`) can receive a
+decision — denied, `OFFLINE_LOCAL_REQUIRED`, and `NO_FAILOVER_REQUIRED` packets are
+final states, and "approving" one would manufacture authorization no plan proposed.
+The record binds the `planDigest` VERBATIM, the candidate region, and the requested
+traffic fraction; it is receipt-gated (64-hex sha256 operator receipt), validates the
+decider identity and timestamp, and REJECTS a decision timestamp predating the
+capacity evidence (max of both observation times — the 12D-121 ordering rule). Every
+record carries `requiresDecisionSafetyWorkflowBeforeAnyAction: true` (a requirement,
+never a past-tense routing claim), `authorizedTrafficBps: 0`, `trafficMoved: false`,
+`executedByThisRuntime: false`, `productionExecutionAllowed: false`, and the full
+honest flag set. The plan's governance flags are re-verified before any record is
+issued. 16/16 tests + typecheck green (one live-corrected test during the write: the
+temporal boundary is strict — a decision AT the evidence timestamp is accepted, only
+strictly-earlier ones are impossible orderings).
+
+Residual (disclosed): the record binds `planDigest` verbatim and cannot re-derive it —
+the record function has no access to the request/policy/evidence inputs that produce
+the digest. A hand-built frozen plan packet with honest flags and a fabricated digest
+could obtain a decision record, exactly as 12D-124's record once trusted a foreign
+`storyId` until invariants re-derivation was added there. The mitigation is the same
+shape as the Story Engine's: the adoption layer (or a future invariant pass given the
+plan's full inputs) must verify plan provenance before treating any record as
+authoritative. Until then, `executedByThisRuntime: false` /
+`productionExecutionAllowed: false` / `authorizedTrafficBps: 0` are structural on
+every record — the record authorizes nothing even if forged.
+
 ## Honest state
 
 No region has ever been probed by this runtime — all evidence is declared. No traffic
