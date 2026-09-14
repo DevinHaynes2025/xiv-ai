@@ -1,4 +1,4 @@
-// 12D-133 — focused tests for the INSTRUCTION-EVIDENCE BRIDGE.
+// 12D-134 — focused tests for the INSTRUCTION-EVIDENCE BRIDGE.
 // Coverage: the full loop (instruction → trail-verified evidence → completed ladder),
 // unrecorded proposals, tampered chains, instruction mismatch, cross-contract binding,
 // expired action claims, one-outcome-per-instruction, redacted trail notes, honest flags.
@@ -146,7 +146,7 @@ const scalingOutcomeInput = (
   tenantId: over.tenantId ?? TENANT,
   universeId: over.universeId ?? UNIVERSE,
   scope: 'SCALING' as const,
-  runId: 'run-12d-133',
+  runId: 'run-12d-134',
   sourceCommit: 'a'.repeat(40),
   decisionId: 'decision-1',
   decisionRecord: issued.verifiedDecisionRecord,
@@ -160,7 +160,7 @@ const scalingOutcomeInput = (
   ...over,
 });
 
-test('12d-133 happy path: a trail-verified instruction binds a receipt and completes the ladder', () => {
+test('12d-134 happy path: a trail-verified instruction binds a receipt and completes the ladder', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   const r = intake.recordInstructionOutcome(scalingOutcomeInput(issued, { status: 'EXECUTED' }));
@@ -184,12 +184,12 @@ test('12d-133 happy path: a trail-verified instruction binds a receipt and compl
   assert.equal(Object.isFrozen(r.workflow), true);
 });
 
-test('12d-133 failover happy path: a failover instruction binds a failover receipt', () => {
+test('12d-134 failover happy path: a failover instruction binds a failover receipt', () => {
   const issued = mkFailoverIssued();
   const intake = mkIntake();
   const r = intake.recordInstructionOutcome({
     tenantId: TENANT, universeId: UNIVERSE, scope: 'FAILOVER',
-    runId: 'run-12d-133', sourceCommit: 'a'.repeat(40), decisionId: 'decision-failover-1',
+    runId: 'run-12d-134', sourceCommit: 'a'.repeat(40), decisionId: 'decision-failover-1',
     decisionRecord: issued.verifiedDecisionRecord,
     instruction: issued.instruction, workflow: issued.workflow,
     operatorReceiptSha256: GRANT, status: 'NOT_EXECUTED',
@@ -203,7 +203,7 @@ test('12d-133 failover happy path: a failover instruction binds a failover recei
   assert.equal(r.workflow.stage, 'AUDIT_AND_MONITOR');
 });
 
-test('12d-133 an instruction the trail never recorded cannot bind evidence', () => {
+test('12d-134 an instruction the trail never recorded cannot bind evidence', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   // A forged minimumAction changes the candidate proposal digest → not in the trail.
@@ -226,7 +226,7 @@ test('12d-133 an instruction the trail never recorded cannot bind evidence', () 
   })), /does not belong to this workflow/);
 });
 
-test('12d-133 a tampered workflow chain fails closed before any evidence', () => {
+test('12d-134 a tampered workflow chain fails closed before any evidence', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   // Tamper with a mid-chain event: the hash chain must break.
@@ -240,7 +240,7 @@ test('12d-133 a tampered workflow chain fails closed before any evidence', () =>
   })), /tamper|chain|fail closed|re-derive/);
 });
 
-test('12d-133 cross-contract binding: an actionId must re-derive from the decision record', () => {
+test('12d-134 cross-contract binding: an actionId must re-derive from the decision record', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   // A failover-shaped instruction (composed over the same workflow) fails the prefix check.
@@ -257,7 +257,7 @@ test('12d-133 cross-contract binding: an actionId must re-derive from the decisi
   }), /cannot bind a non-failover decision record/);
 });
 
-test('12d-133 an action claim observed after the instruction expired is refused', () => {
+test('12d-134 an action claim observed after the instruction expired is refused', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   assert.ok(issued.instruction.validUntilMs > NOW + 150_000); // fixture sanity
@@ -274,7 +274,7 @@ test('12d-133 an action claim observed after the instruction expired is refused'
   assert.equal(r.outcomeRecorded, 'OBSERVED_ONLY');
 });
 
-test('12d-133 one declared outcome per instruction', () => {
+test('12d-134 one declared outcome per instruction', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   intake.recordInstructionOutcome(scalingOutcomeInput(issued, { status: 'PROPOSED' }));
@@ -291,7 +291,7 @@ test('12d-133 one declared outcome per instruction', () => {
   assert.equal(r2.receipt.status, 'EXECUTED');
 });
 
-test('12d-133 trail notes carry only redacted text', () => {
+test('12d-134 trail notes carry only redacted text', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   const secret = 'api_key=sk-live-abcdef123456 rotated keys on shard 42';
@@ -304,7 +304,7 @@ test('12d-133 trail notes carry only redacted text', () => {
   assert.ok(!measuredEvent.detail.includes('sk-live-abcdef123456'));
 });
 
-test('12d-133 scope, stage, and freeze gates fail closed', () => {
+test('12d-134 scope, stage, and freeze gates fail closed', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   // Cross-tenant and cross-universe claims refused at the intake boundary.
@@ -331,7 +331,7 @@ test('12d-133 scope, stage, and freeze gates fail closed', () => {
   })), /status unknown/);
 });
 
-test('12d-133 honest flags and guardrails: the intake permits nothing', () => {
+test('12d-134 honest flags and guardrails: the intake permits nothing', () => {
   const issued = mkScalingIssued();
   const intake = mkIntake();
   const r = intake.recordInstructionOutcome(scalingOutcomeInput(issued, { status: 'PROPOSED' }));

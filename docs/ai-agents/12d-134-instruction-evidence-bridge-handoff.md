@@ -1,4 +1,10 @@
-# 12D-133 — Instruction-evidence bridge (handoff)
+# 12D-134 — Instruction-evidence bridge (handoff)
+
+NOTE: this story was initially built under the number 12D-133 and renumbered
+to 12D-134 before push: the CEO reassigned 12D-133 to the Release-Lineage
+Consolidation & Validation Ledger, and the bridge existed only in an unpushed
+local commit at renumber time. No published lineage ever carried the
+12D-133 number for the bridge.
 
 Status: BUILT AND GREEN LOCALLY on `claude/12d-99-supervised-local-worker`
 (`services/ai/runtime/offline-team/instruction-evidence-bridge.ts` +
@@ -116,14 +122,14 @@ Residuals (disclosed, inherent):
 - `services/ai/runtime/offline-team/agent-decision-safety-workflow.ts`
   (exported `deriveProposalDigest` — the pre-existing internal
   `proposalDigest` scheme made callable; internal call now delegates to it)
-- `services/ai/package.json` (`test:12d-133`, `typecheck:12d-133`)
-- `.gitlab-ci.yml` (`typecheck:12d-133`, `test:12d-133` appended)
+- `services/ai/package.json` (`test:12d-134`, `typecheck:12d-134`)
+- `.gitlab-ci.yml` (`typecheck:12d-134`, `test:12d-134` appended)
 
 ## Exact commands and local results
 
 ```
-npm run typecheck:12d-133   # OK
-npm run test:12d-133        # 10/10 pass
+npm run typecheck:12d-134   # OK
+npm run test:12d-134        # 10/10 pass
 npm run test:12d-126        # 17/17 pass
 npm run test:12d-129        # 12/12 pass
 npm run test:12d-130        # 9/9 pass

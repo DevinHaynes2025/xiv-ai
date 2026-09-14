@@ -258,7 +258,7 @@ non-positive adoption timestamp — all fixed before commit; 0 refuted)); 12D-12
   receipt (12/12 + sibling suites + typecheck + 12D-113 audit green; two build-time
   findings paid down — a digest-scheme split in the receipt sealer, and non-independent
   before/after observations sharing one observation id; CI NOT claimed passed —
-  GitLab CI remains quota-blocked)); 12D-133 built the INSTRUCTION-EVIDENCE BRIDGE
+  GitLab CI remains quota-blocked)); 12D-134 built the INSTRUCTION-EVIDENCE BRIDGE
   (`instruction-evidence-bridge.ts`), paying down 12D-132's disclosed residual:
   `DeclaredEvidenceIntake` issues a 12D-132 evidence receipt ONLY against a presented
   12D-121 EXECUTION_INSTRUCTION whose whole provenance re-derives — no presented
@@ -285,7 +285,7 @@ SUPERVISED_WORKER_POLICY.queueRenewalExtendMs)`, extend = 60_000), bounded by 12
 total-life cap, and the run packet honestly
 reports `queueLeaseExtensions` / `queueLeaseExtensionExhausted`. No duplicate was built;
 the item is resolved as already-implemented. Reviewer key custody stays an operator
-concern. Next rungs after 12D-133: the remaining separately-reviewed ADOPTION layers
+concern. Next rungs after 12D-134: the remaining separately-reviewed ADOPTION layers
 (event-plane adoption beyond 12D-123's in-contract record, cell/instruction
 adoption), and wiring the declared-evidence collector + instruction-evidence bridge
 into a live operator loop so failover/scaling rungs graduate from declarations to
