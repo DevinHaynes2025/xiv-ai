@@ -31,6 +31,13 @@
 // is invoked. The emitted instruction is the operator's work order in a system outside
 // this runtime; outcome recording (EXECUTED_BY_OPERATOR etc.) stays DECLARED in
 // 12D-121's MEASURE_OUTCOME stage.
+//
+// Receipt custody (12D-235): both receipts MUST be registered in a 12D-233
+// OperatorCustodyRegistry and are CONSUMED exactly once at issue time — the
+// plan-approval receipt under `xiv.scaling.decision`, the execution grant under the
+// execution tool id. The receipt-separation residual ("one receipt authorizing two
+// gates") is now ENFORCED, not disclosed. The 12D-233 process-local/not-durable and
+// registration-is-not-issuance-proof disclosures stand verbatim.
 
 import {
   DECISION_SAFETY_POLICY, authorizeMinimumAction, openDecisionWorkflow,
@@ -41,10 +48,14 @@ import {
   planMeasuredHorizontalScaling, recordScalingDecision,
   type MeasuredScalingPlan, type ScalingDecisionRecord, type ScalingPlanProvenance,
 } from './measured-horizontal-scaling';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 export const SCALING_EXECUTION_POLICY = Object.freeze({
+  policyVersion: '12d-235-v1',
   /** The ONLY tool a scaling-execution workflow identity may carry. */
   executionToolId: 'xiv.database.provision',
+  /** The custody purpose the plan-approval receipt is registered under. */
+  planApprovalPurpose: 'xiv.scaling.decision',
   /** Provisioning databases is production configuration — always human-authorized. */
   requiredRiskClass: 'PRODUCTION_CONFIGURATION',
   /** This runtime advises; the workflow identity must be an ADVISE_ONLY agent. */
@@ -58,6 +69,7 @@ export const SCALING_EXECUTION_GUARDRAILS = Object.freeze({
   riskClassPinnedToProductionConfiguration: true,
   singlePurposeWorkflowIdentity: true,
   executionGrantIsASeparateHumanAct: true,
+  custodyEnforced: true, // 12D-235: both receipts consumed exactly once via 12D-233
   executesNothing: true,
   movesNoRows: true,
   zeroModelCalls: true,
@@ -77,6 +89,8 @@ export interface ScalingExecutionIssued {
   readonly workflow: Readonly<DecisionSafetyWorkflow>;
   readonly verifiedDecisionRecord: Readonly<ScalingDecisionRecord>;
   readonly guardrails: Readonly<typeof SCALING_EXECUTION_GUARDRAILS>;
+  /** 12D-235: both receipts were custody-authenticated and consumed exactly once. */
+  readonly custodyEnforced: true;
   readonly humanDecision: 'REQUIRED';
   readonly learningPromoted: false;
   readonly modelCalls: 0;
@@ -102,6 +116,8 @@ export function issueScalingExecutionInstruction(input: {
   decisionRecord: Readonly<ScalingDecisionRecord>;
   decisionProvenance: ScalingPlanProvenance;
   executionGrant: { operatorReceiptSha256: string; approvedBy: string };
+  /** 12D-233 custody registry — REQUIRED (12D-235): both receipts are consumed exactly once here. */
+  custody: OperatorCustodyRegistry;
   identity: AgentIdentity;
   nowMs: number;
   timeLimitMs: number;
@@ -154,8 +170,30 @@ export function issueScalingExecutionInstruction(input: {
   // The execution grant is a SEPARATE human act: its receipt cannot reuse the
   // plan-approval receipt — one receipt authorizing two gates collapses the separation
   // the decision-safety ladder exists to keep.
+  if (typeof input.executionGrant?.operatorReceiptSha256 !== 'string'
+    || !/^[0-9a-f]{64}$/.test(input.executionGrant.operatorReceiptSha256))
+    throw new Error('the execution grant operator receipt must be 64-hex sha256; fail closed');
   if (input.executionGrant?.operatorReceiptSha256 === presented.operatorReceiptSha256)
     throw new Error('the execution grant receipt must differ from the plan-approval receipt; execution is a separate human authorization; fail closed');
+
+  // Custody enforcement (12D-233 via 12D-235): the registry is REQUIRED and BOTH
+  // receipts are CONSUMED exactly once — a replayed, cross-purpose, or
+  // already-consumed receipt refuses here. Consumption happens only AFTER every
+  // validation gate above has passed, so a refused instruction burns neither
+  // receipt; a FAILED INSTRUCTION after this point does burn them (fail-closed:
+  // fresh receipts for every attempt).
+  if (!(input.custody instanceof OperatorCustodyRegistry))
+    throw new Error('the operator custody registry (12D-233) is required; fail closed');
+  input.custody.authenticate({
+    receiptSha256: presented.operatorReceiptSha256,
+    purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose,
+    nowMs: input.nowMs,
+  });
+  input.custody.authenticate({
+    receiptSha256: input.executionGrant.operatorReceiptSha256,
+    purpose: SCALING_EXECUTION_POLICY.executionToolId,
+    nowMs: input.nowMs,
+  });
 
   const count = presented.proposedNewDatabaseCount;
   const planDigest = presented.planDigest;
@@ -197,6 +235,7 @@ export function issueScalingExecutionInstruction(input: {
     workflow,
     verifiedDecisionRecord: reDerived,
     guardrails: SCALING_EXECUTION_GUARDRAILS,
+    custodyEnforced: true as const,
     humanDecision: 'REQUIRED' as const,
     learningPromoted: false as const,
     modelCalls: 0 as const,

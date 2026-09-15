@@ -12,10 +12,19 @@ import {
   DECISION_SAFETY_GUARDRAILS, DECISION_SAFETY_POLICY, recordAuditAndMonitor,
   recordMeasuredOutcome, auditTrail, verifyAuditChain, type AgentIdentity,
 } from './agent-decision-safety-workflow';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 const NOW = 1757700000000;
 const RECEIPT = 'a'.repeat(64);
 const GRANT = 'b'.repeat(64);
+
+/** 12D-235: a fresh custody registry with both fixture receipts registered for their purposes. */
+const mkCustody = (): OperatorCustodyRegistry => {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  c.register({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  return c;
+};
 
 const mkEvidence = (over: {
   databaseId?: string; observedAtMs?: number; rowCount?: number; growthRowsPerDay?: number;
@@ -79,7 +88,8 @@ const mkDecision = (over: {
 const issue = (over: {
   record?: Readonly<ScalingDecisionRecord>; provenance?: ScalingPlanProvenance;
   decidedAtMs?: number; decision?: 'ACCEPTED_FOR_HUMAN_REVIEW' | 'DECLINED_BY_HUMAN';
-  grant?: { operatorReceiptSha256: string; approvedBy: string }; identity?: AgentIdentity;
+  grant?: { operatorReceiptSha256: string; approvedBy: string }; custody?: OperatorCustodyRegistry;
+  identity?: AgentIdentity;
   now?: number; timeLimitMs?: number;
 } = {}): Readonly<ScalingExecutionIssued> => {
   const provenance = over.provenance ?? mkProvenance();
@@ -87,6 +97,7 @@ const issue = (over: {
     decisionRecord: over.record ?? mkDecision({ provenance, decidedAtMs: over.decidedAtMs, decision: over.decision }).record,
     decisionProvenance: provenance,
     executionGrant: over.grant ?? { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: over.custody ?? mkCustody(),
     identity: over.identity ?? mkIdentity(),
     nowMs: over.now ?? NOW + 120_000,
     timeLimitMs: over.timeLimitMs ?? 300_000,
@@ -155,6 +166,7 @@ test('a forged or altered decision record never re-derives — no instruction is
     assert.throws(() => issueScalingExecutionInstruction({
       decisionRecord: Object.freeze(forged), decisionProvenance: provenance,
       executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+      custody: mkCustody(),
       identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
     }), /does not re-derive|decline is final|only an ACCEPTED/);
   }
@@ -164,6 +176,7 @@ test('a forged or altered decision record never re-derives — no instruction is
     decisionRecord: record,
     decisionProvenance: mkProvenance({ evidence: [mkEvidence({ rowCount: 100 }), mkEvidence({ databaseId: 'db.alpha-02' })] }),
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
   }), /does not re-derive|only an eligible/);
 });
@@ -173,6 +186,7 @@ test('a DECLINED decision is a final state — no instruction can be manufacture
   assert.throws(() => issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
   }), /a decline is final/);
 });
@@ -204,6 +218,7 @@ test('ordering: the execution grant cannot predate the human decision it execute
   issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 60_000, timeLimitMs: 300_000,
   });
 });
@@ -214,21 +229,25 @@ test('malformed inputs fail closed before anything is opened', () => {
   assert.throws(() => issueScalingExecutionInstruction({
     decisionRecord: { ...record } as never, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
   }), /not a frozen SCALING_DECISION_RECORD/);
   assert.throws(() => issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: null as never,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
   }), /provenance required/);
   assert.throws(() => issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: Number.NaN, timeLimitMs: 300_000,
   }), /reference time invalid/);
   assert.throws(() => issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkCustody(),
     identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: Number.NaN,
   }), /time limit invalid/);
 });
@@ -241,4 +260,67 @@ test('policy and guardrails are frozen and pin the honest action class', () => {
   assert.equal(SCALING_EXECUTION_GUARDRAILS.executesNothing, true);
   assert.equal(SCALING_EXECUTION_GUARDRAILS.movesNoRows, true);
   assert.equal(SCALING_EXECUTION_GUARDRAILS.declinedPlansAreFinalStates, true);
+});
+// --- 12D-235: custody enforcement (12D-233 wired into the scaling bridge) ---
+
+test('12D-235 a missing custody registry refuses before anything is issued', () => {
+  const { record, provenance } = mkDecision();
+  assert.throws(() => issueScalingExecutionInstruction({
+    decisionRecord: record, decisionProvenance: provenance,
+    executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: undefined as never,
+    identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
+  }), /custody registry \(12D-233\) is required/);
+});
+
+test('12D-235 both receipts must be custody-registered for their purposes', () => {
+  const { record, provenance } = mkDecision();
+  const c = mkCustody();
+  // Plan-approval receipt not in the registry.
+  assert.throws(() => issueScalingExecutionInstruction({
+    decisionRecord: record, decisionProvenance: provenance,
+    executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: new OperatorCustodyRegistry('empty-seed-123456789'),
+    identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
+  }), /not in the custody registry/);
+  // Execution grant registered under the WRONG purpose.
+  const wrong = new OperatorCustodyRegistry('custody-seed-123456789');
+  wrong.register({ receiptSha256: RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  wrong.register({ receiptSha256: GRANT, purpose: 'xiv.scaling.decision', registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  assert.throws(() => issueScalingExecutionInstruction({
+    decisionRecord: record, decisionProvenance: provenance,
+    executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: wrong,
+    identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
+  }), /registered for purpose xiv.scaling.decision/);
+  // The refused calls burned nothing.
+  assert.equal(c.verify({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId }).consumed, false);
+});
+
+test('12D-235 a second execution instruction from the same receipts refuses: custody-enforced single use', () => {
+  const { record, provenance } = mkDecision();
+  const c = mkCustody();
+  const input = {
+    decisionRecord: record, decisionProvenance: provenance,
+    executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: c, identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
+  } as const;
+  const issued = issueScalingExecutionInstruction(input);
+  assert.equal(issued.custodyEnforced, true);
+  assert.equal(c.verify({ receiptSha256: RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose }).consumed, true);
+  assert.equal(c.verify({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId }).consumed, true);
+  assert.throws(() => issueScalingExecutionInstruction(input), /already consumed.*single-use refused/);
+});
+
+test('12D-235 a refused instruction burns neither custody receipt', () => {
+  const { record, provenance } = mkDecision({ decision: 'DECLINED_BY_HUMAN' });
+  const c = mkCustody();
+  assert.throws(() => issueScalingExecutionInstruction({
+    decisionRecord: record, decisionProvenance: provenance,
+    executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: c,
+    identity: mkIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
+  }), /a decline is final/);
+  assert.equal(c.verify({ receiptSha256: RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose }).consumed, false);
+  assert.equal(c.verify({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId }).consumed, false);
 });

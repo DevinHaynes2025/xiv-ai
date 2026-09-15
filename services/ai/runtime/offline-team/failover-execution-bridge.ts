@@ -40,10 +40,14 @@ import {
   type FailoverDecisionRecord, type FailoverPlanProvenance,
   type MeasuredFailoverPlan,
 } from './measured-regional-failover';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 export const FAILOVER_EXECUTION_POLICY = Object.freeze({
+  policyVersion: '12d-235-v1',
   /** The ONLY tool a failover-execution workflow identity may carry. */
   executionToolId: 'xiv.traffic.failover',
+  /** The custody purpose the plan-approval receipt is registered under. */
+  planApprovalPurpose: 'xiv.failover.decision',
   /** Traffic shifting is production configuration — always human-authorized. */
   requiredRiskClass: 'PRODUCTION_CONFIGURATION',
   /** This runtime advises; the workflow identity must be an ADVISE_ONLY agent. */
@@ -58,6 +62,7 @@ export const FAILOVER_EXECUTION_GUARDRAILS = Object.freeze({
   singlePurposeWorkflowIdentity: true,
   canaryShiftOnly: true, // the instruction names the recorded canary bps and nothing else
   executionGrantIsASeparateHumanAct: true,
+  custodyEnforced: true, // 12D-235: both receipts consumed exactly once via 12D-233
   executesNothing: true,
   movesNoTraffic: true,
   zeroModelCalls: true,
@@ -78,6 +83,8 @@ export interface FailoverExecutionIssued {
   readonly workflow: Readonly<DecisionSafetyWorkflow>;
   readonly verifiedDecisionRecord: Readonly<FailoverDecisionRecord>;
   readonly guardrails: Readonly<typeof FAILOVER_EXECUTION_GUARDRAILS>;
+  /** 12D-235: both receipts were custody-authenticated and consumed exactly once. */
+  readonly custodyEnforced: true;
   readonly humanDecision: 'REQUIRED';
   readonly learningPromoted: false;
   readonly modelCalls: 0;
@@ -104,6 +111,8 @@ export function issueFailoverExecutionInstruction(input: {
   decisionRecord: Readonly<FailoverDecisionRecord>;
   decisionProvenance: FailoverPlanProvenance;
   executionGrant: { operatorReceiptSha256: string; approvedBy: string };
+  /** 12D-233 custody registry — REQUIRED (12D-235): both receipts are consumed exactly once here. */
+  custody: OperatorCustodyRegistry;
   identity: AgentIdentity;
   nowMs: number;
   timeLimitMs: number;
@@ -159,8 +168,30 @@ export function issueFailoverExecutionInstruction(input: {
   // The execution grant is a SEPARATE human act: its receipt cannot reuse the
   // plan-approval receipt — one receipt authorizing two gates collapses the separation
   // the decision-safety ladder exists to keep.
+  if (typeof input.executionGrant?.operatorReceiptSha256 !== 'string'
+    || !/^[0-9a-f]{64}$/.test(input.executionGrant.operatorReceiptSha256))
+    throw new Error('the execution grant operator receipt must be 64-hex sha256; fail closed');
   if (input.executionGrant?.operatorReceiptSha256 === presented.operatorReceiptSha256)
     throw new Error('the execution grant receipt must differ from the plan-approval receipt; execution is a separate human authorization; fail closed');
+
+  // Custody enforcement (12D-233 via 12D-235): the registry is REQUIRED and BOTH
+  // receipts are CONSUMED exactly once — a replayed, cross-purpose, or
+  // already-consumed receipt refuses here. Consumption happens only AFTER every
+  // validation gate above has passed, so a refused instruction burns neither
+  // receipt; a FAILED INSTRUCTION after this point does burn them (fail-closed:
+  // fresh receipts for every attempt).
+  if (!(input.custody instanceof OperatorCustodyRegistry))
+    throw new Error('the operator custody registry (12D-233) is required; fail closed');
+  input.custody.authenticate({
+    receiptSha256: presented.operatorReceiptSha256,
+    purpose: FAILOVER_EXECUTION_POLICY.planApprovalPurpose,
+    nowMs: input.nowMs,
+  });
+  input.custody.authenticate({
+    receiptSha256: input.executionGrant.operatorReceiptSha256,
+    purpose: FAILOVER_EXECUTION_POLICY.executionToolId,
+    nowMs: input.nowMs,
+  });
 
   const planDigest = presented.planDigest;
   const region = presented.candidateRegionId;
@@ -204,6 +235,7 @@ export function issueFailoverExecutionInstruction(input: {
     workflow,
     verifiedDecisionRecord: reDerived,
     guardrails: FAILOVER_EXECUTION_GUARDRAILS,
+    custodyEnforced: true as const,
     humanDecision: 'REQUIRED' as const,
     learningPromoted: false as const,
     modelCalls: 0 as const,
