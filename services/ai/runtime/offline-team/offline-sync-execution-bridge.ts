@@ -33,10 +33,13 @@
 //     runtime is offline-only and the instruction forbids classified transport.
 //
 // It MATERIALIZES NOTHING and MOVES NO BYTES: `bytesMovedByThisRuntime: false` and
-// `remoteCalls: 0` remain structural. Disclosed residual (the 12D-130/131
-// discipline): receipts authenticate OUT-OF-BAND via the operator custody registry —
-// this module binds the declared receipt strings for separation and ordering only;
-// a recomputed digest is self-consistent and authenticates nothing by itself.
+// `remoteCalls: 0` remain structural. Receipt custody (12D-234): both declared
+// receipts MUST be registered in a 12D-233 OperatorCustodyRegistry and are
+// CONSUMED exactly once at issue time — "one instruction per reconciled batch" and
+// the receipt-separation residuals are now ENFORCED, not disclosed. The registry
+// itself remains local-first (registration is not issuance proof; the operator
+// still holds the receipt material out-of-band), so the out-of-band custody
+// disclosure stands; what is gone is the unenforced-reuse residual.
 
 import {
   authorizeMinimumAction, openDecisionWorkflow, proposeGovernedAction,
@@ -45,11 +48,14 @@ import {
 import {
   OfflineAgentRuntime, OFFLINE_RUNTIME_POLICY, type OfflineRuntimeEvent,
 } from './offline-agent-runtime';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 export const OFFLINE_SYNC_EXECUTION_POLICY = Object.freeze({
-  policyVersion: '12d-232-v1',
+  policyVersion: '12d-234-v1',
   /** The ONLY tool a sync-execution workflow identity may carry. */
   executionToolId: 'xiv.sync.transport',
+  /** The custody purpose the 12D-231 sync-authorization receipt is registered under. */
+  syncGrantPurpose: 'xiv.sync.propose',
   /** Data transport out of the local plane is production configuration — always human-authorized. */
   requiredRiskClass: 'PRODUCTION_CONFIGURATION',
   /** This runtime advises; the workflow identity must be an ADVISE_ONLY agent. */
@@ -64,7 +70,7 @@ export const OFFLINE_SYNC_EXECUTION_GUARDRAILS = Object.freeze({
   singlePurposeWorkflowIdentity: true,
   classifiedNeverLeavesTheLocalPlane: true,
   executionGrantIsASeparateHumanAct: true,
-  oneInstructionPerReconciledBatch: true, // binding disclosed below: out-of-band custody
+  oneInstructionPerReconciledBatch: true, // enforced via 12D-233 custody consumption (12D-234)
   executesNothing: true,
   movesNoBytes: true,
   zeroModelCalls: true,
@@ -83,6 +89,8 @@ export interface SyncExecutionIssued {
   readonly instruction: Readonly<ExecutionInstruction>;
   readonly workflow: Readonly<DecisionSafetyWorkflow>;
   readonly guardrails: Readonly<typeof OFFLINE_SYNC_EXECUTION_GUARDRAILS>;
+  /** 12D-234: both receipts were custody-authenticated and consumed exactly once. */
+  readonly custodyEnforced: true;
   readonly humanDecision: 'REQUIRED';
   readonly learningPromoted: false;
   readonly modelCalls: 0;
@@ -145,10 +153,12 @@ export function issueSyncExecutionInstruction(input: {
   syncUniverseId: string;
   /** The sync proposal's timestamp (the nowMs the 12D-231 runtime recorded it at). */
   syncAtMs: number;
-  /** Declared receipt of the sync authorization — authenticated out-of-band (disclosed). */
+  /** Declared receipt of the sync authorization — MUST be custody-registered for `xiv.sync.propose`. */
   syncGrantReceiptSha256: string;
   taskIds: readonly string[];
   executionGrant: { operatorReceiptSha256: string; approvedBy: string };
+  /** 12D-233 custody registry — REQUIRED (12D-234): both receipts are consumed exactly once here. */
+  custody: OperatorCustodyRegistry;
   identity: AgentIdentity;
   nowMs: number;
   timeLimitMs: number;
@@ -247,6 +257,27 @@ export function issueSyncExecutionInstruction(input: {
   if (input.executionGrant.operatorReceiptSha256 === input.syncGrantReceiptSha256)
     throw new Error('the execution grant receipt must differ from the sync-authorization receipt; execution is a separate human authorization; fail closed');
 
+  // Custody enforcement (12D-233 via 12D-234): the registry is REQUIRED and BOTH
+  // receipts are CONSUMED exactly once — a replayed, cross-purpose, or
+  // already-consumed receipt refuses here, turning "one instruction per
+  // reconciled batch" from a disclosure into an enforced contract. Consumption
+  // happens only AFTER every validation gate below has passed, so a refused
+  // instruction burns neither receipt; a FAILED INSTRUCTION after this point does
+  // burn them (fail-closed: fresh receipts for every attempt — the 12D-231
+  // proposal-time discipline, applied to transport).
+  if (!(input.custody instanceof OperatorCustodyRegistry))
+    throw new Error('the operator custody registry (12D-233) is required; fail closed');
+  input.custody.authenticate({
+    receiptSha256: input.syncGrantReceiptSha256,
+    purpose: OFFLINE_SYNC_EXECUTION_POLICY.syncGrantPurpose,
+    nowMs: input.nowMs,
+  });
+  input.custody.authenticate({
+    receiptSha256: input.executionGrant.operatorReceiptSha256,
+    purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId,
+    nowMs: input.nowMs,
+  });
+
   const universe = input.syncUniverseId;
   const ids = [...input.taskIds].sort();
   // The minimum action is composed by THIS module from re-derived values only — a
@@ -288,6 +319,7 @@ export function issueSyncExecutionInstruction(input: {
     instruction: authorized.instruction,
     workflow,
     guardrails: OFFLINE_SYNC_EXECUTION_GUARDRAILS,
+    custodyEnforced: true as const,
     humanDecision: 'REQUIRED' as const,
     learningPromoted: false as const,
     modelCalls: 0 as const,

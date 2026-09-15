@@ -17,6 +17,7 @@ import {
   issueSyncExecutionInstruction,
   type SyncExecutionIssued,
 } from './offline-sync-execution-bridge';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 const T0 = 1_000_000_000;
 const sha = (s: string): string => createHash('sha256').update(s).digest('hex');
@@ -29,6 +30,18 @@ const IDENTITY = Object.freeze({
   dataBoundaries: ['universe-1'],
   actionPolicy: 'ADVISE_ONLY' as const,
 });
+
+/**
+ * The custody registry the bridge requires (12D-234): the sync receipt is
+ * registered for `xiv.sync.propose`, the execution receipt for
+ * `xiv.sync.transport` (the execution tool id).
+ */
+function freshCustody(): OperatorCustodyRegistry {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: SYNC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.syncGrantPurpose, registeredBy: 'devin-xavier-haynes', issuedAtMs: T0, registeredAtMs: T0 });
+  c.register({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId, registeredBy: 'devin-xavier-haynes', issuedAtMs: T0, registeredAtMs: T0 });
+  return c;
+}
 
 /** A runtime holding ONE completed task reconciled by a successful sync at SYNC_AT. */
 function syncedRuntime(): { rt: OfflineAgentRuntime; syncAtMs: number } {
@@ -58,6 +71,7 @@ function issue(rt: OfflineAgentRuntime, syncAtMs: number, overrides: Record<stri
     syncGrantReceiptSha256: SYNC_RECIPT,
     taskIds: ['task-1'],
     executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+    custody: freshCustody(),
     identity: IDENTITY,
     nowMs: syncAtMs + 100,
     timeLimitMs: 60_000,
@@ -66,7 +80,8 @@ function issue(rt: OfflineAgentRuntime, syncAtMs: number, overrides: Record<stri
 }
 
 test('12D-232 policy and guardrails match the charter and are frozen', () => {
-  assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.policyVersion, '12d-232-v1');
+  assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.policyVersion, '12d-234-v1');
+  assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.syncGrantPurpose, 'xiv.sync.propose');
   assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.executionToolId, 'xiv.sync.transport');
   assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.requiredRiskClass, 'PRODUCTION_CONFIGURATION');
   assert.equal(OFFLINE_SYNC_EXECUTION_POLICY.requiredActionPolicy, 'ADVISE_ONLY');
@@ -104,6 +119,7 @@ test('12D-232 happy path: a verified reconciled batch issues ONE bounded transpo
   assert.equal(issued.workflow.stage, 'EXECUTE_MINIMUM_ACTION');
   assert.equal(issued.workflow.humanDecision, 'REQUIRED');
   assert.equal(issued.guardrails, OFFLINE_SYNC_EXECUTION_GUARDRAILS);
+  assert.equal(issued.custodyEnforced, true);
   // 12D-231 ceiling is not silently widened by this bridge.
   assert.ok(OFFLINE_SYNC_EXECUTION_POLICY.maxIdChars > 0);
   assert.equal(OFFLINE_RUNTIME_POLICY.maxAdmittedTasksPerAgent, 1000);
@@ -127,6 +143,7 @@ test('12D-232 a forged outcome has no trail: inflated applied count refused', ()
       syncUniverseId: 'universe-1', syncAtMs,
       syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
       executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+      custody: freshCustody(),
       identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
     }),
     /applied count does not match|trail reconciled count/,
@@ -165,6 +182,7 @@ test('12D-232 a conflicting sync batch is never transportable', () => {
     syncUniverseId: 'universe-1', syncAtMs,
     syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
     executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin' },
+    custody: freshCustody(),
     identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
   }), /quarantined for human review; nothing from it is transportable/);
   // Even with the status gate bypassed, re-derivation refuses: the trail says
@@ -181,6 +199,7 @@ test('12D-232 the execution grant is a separate human act: same receipt refused'
       syncUniverseId: 'universe-1', syncAtMs,
       syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
       executionGrant: { operatorReceiptSha256: SYNC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+      custody: freshCustody(),
       identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
     }),
     /must differ from the sync-authorization receipt/,
@@ -231,6 +250,7 @@ test('12D-232 cross-universe and quarantined tasks in the transport set fail clo
       syncUniverseId: 'universe-1', syncAtMs,
       syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1', 'task-2'],
       executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin' },
+      custody: freshCustody(),
       identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
     }),
     /trail batch size does not match|belongs to universe/,
@@ -248,4 +268,123 @@ test('12D-232 malformed inputs fail closed without partial state', () => {
   assert.throws(() => issue(rt, syncAtMs, { syncAtMs: syncAtMs + 10_000_000 }), /predates|SYNC_PROPOSED trail entry/);
   // Nothing was mutated on the runtime by any refusal.
   assert.equal(rt.verifyLedger().ok, true);
+});
+
+// --- 12D-234: custody enforcement (12D-233 wired into the bridge) ----------
+
+test('12D-234 a missing custody registry refuses before anything is issued', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  assert.throws(() => issue(rt, syncAtMs, { custody: null }), /custody registry \(12D-233\) is required/);
+  assert.throws(() => issue(rt, syncAtMs, { custody: {} }), /custody registry \(12D-233\) is required/);
+});
+
+test('12D-234 the sync receipt must be custody-registered for xiv.sync.propose', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  const c = freshCustody();
+  // Unregistered sync receipt.
+  assert.throws(() => issue(rt, syncAtMs, { custody: c, syncGrantReceiptSha256: 'c'.repeat(64) }), /not in the custody registry/);
+  // Registered but under the wrong purpose: EXEC_RECIPT is registered as the
+  // transport receipt, so presenting it as the SYNC receipt is cross-purpose reuse.
+  const c2 = new OperatorCustodyRegistry('custody-seed-123456789');
+  c2.register({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId, registeredBy: 'devin-xavier-haynes', issuedAtMs: T0, registeredAtMs: T0 });
+  c2.register({ receiptSha256: 'd'.repeat(64), purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId, registeredBy: 'devin-xavier-haynes', issuedAtMs: T0, registeredAtMs: T0 });
+  assert.throws(
+    () => issueSyncExecutionInstruction({
+      runtime: rt,
+      syncOutcome: { status: 'SYNC_PROPOSED', conflicts: [], applied: 1 },
+      syncUniverseId: 'universe-1', syncAtMs,
+      syncGrantReceiptSha256: EXEC_RECIPT, taskIds: ['task-1'],
+      executionGrant: { operatorReceiptSha256: 'd'.repeat(64), approvedBy: 'devin-xavier-haynes' },
+      custody: c2,
+      identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
+    }),
+    /registered for purpose xiv.sync.transport/,
+  );
+  // The refusals burned nothing.
+  assert.equal(c.verify({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId }).consumed, false);
+});
+
+test('12D-234 the execution receipt must be custody-registered for the transport tool', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  const c = freshCustody();
+  assert.throws(
+    () => issueSyncExecutionInstruction({
+      runtime: rt,
+      syncOutcome: { status: 'SYNC_PROPOSED', conflicts: [], applied: 1 },
+      syncUniverseId: 'universe-1', syncAtMs,
+      syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
+      executionGrant: { operatorReceiptSha256: 'd'.repeat(64), approvedBy: 'devin-xavier-haynes' },
+      custody: c,
+      identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
+    }),
+    /not in the custody registry/,
+  );
+});
+
+test('12D-234 the second transport instruction for the same receipts refuses: one instruction per reconciled batch, ENFORCED', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  const c = freshCustody();
+  issueSyncExecutionInstruction({
+    runtime: rt,
+    syncOutcome: { status: 'SYNC_PROPOSED', conflicts: [], applied: 1 },
+    syncUniverseId: 'universe-1', syncAtMs,
+    syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
+    executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+    custody: c,
+    identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 60_000,
+  });
+  // The first issue consumed BOTH receipts.
+  assert.equal(c.verify({ receiptSha256: SYNC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.syncGrantPurpose }).consumed, true);
+  assert.equal(c.verify({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId }).consumed, true);
+  // A second attempt with the SAME receipts is refused by custody, not merely disclosed.
+  assert.throws(
+    () => issueSyncExecutionInstruction({
+      runtime: rt,
+      syncOutcome: { status: 'SYNC_PROPOSED', conflicts: [], applied: 1 },
+      syncUniverseId: 'universe-1', syncAtMs,
+      syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
+      executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+      custody: c,
+      identity: IDENTITY, nowMs: syncAtMs + 200, timeLimitMs: 60_000,
+    }),
+    /already consumed.*single-use refused/,
+  );
+});
+
+test('12D-234 a refused instruction burns neither receipt', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  const c = freshCustody();
+  // Tamper the runtime ledger so the trail gate refuses.
+  (rt.ledgerEntries() as unknown as { push: (e: unknown) => void }).push({
+    seq: 9999, atMs: T0, agentId: 'xiv-forge', taskId: 'task-1', tenantId: 'tenant-alpha',
+    kind: 'SYNC_APPLIED', detail: 'forged', hash: 'f'.repeat(64),
+  });
+  assert.throws(() => issue(rt, syncAtMs, { custody: c }), /ledger failed verification/);
+  assert.equal(c.verify({ receiptSha256: SYNC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.syncGrantPurpose }).consumed, false);
+  assert.equal(c.verify({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId }).consumed, false);
+  // A refused instruction left the receipts usable for a CLEAN retry.
+  const rt2 = syncedRuntime().rt;
+  const issued = issue(rt2, syncAtMs, { custody: c });
+  assert.equal(issued.custodyEnforced, true);
+});
+
+test('12D-234 custody consumption ordering: a failed instruction after consumption burns the receipts', () => {
+  const { rt, syncAtMs } = syncedRuntime();
+  const c = freshCustody();
+  // A time limit below the 12D-121 ladder's own policy minimum (1000ms) passes
+  // the bridge's >0 check and makes openDecisionWorkflow throw AFTER the
+  // custody consumption — the receipts are burned (fail-closed, disclosed).
+  assert.throws(
+    () => issueSyncExecutionInstruction({
+      runtime: rt,
+      syncOutcome: { status: 'SYNC_PROPOSED', conflicts: [], applied: 1 },
+      syncUniverseId: 'universe-1', syncAtMs,
+      syncGrantReceiptSha256: SYNC_RECIPT, taskIds: ['task-1'],
+      executionGrant: { operatorReceiptSha256: EXEC_RECIPT, approvedBy: 'devin-xavier-haynes' },
+      custody: c,
+      identity: IDENTITY, nowMs: syncAtMs + 100, timeLimitMs: 1,
+    }),
+    /time limit outside policy/,
+  );
+  assert.equal(c.verify({ receiptSha256: EXEC_RECIPT, purpose: OFFLINE_SYNC_EXECUTION_POLICY.executionToolId }).consumed, true);
 });
