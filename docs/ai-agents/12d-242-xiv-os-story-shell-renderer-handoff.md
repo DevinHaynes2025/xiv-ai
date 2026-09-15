@@ -1,16 +1,19 @@
 # 12D-242 — XIV OS Story Shell Renderer (handoff)
 
-Status: AUTHORED AND SELF-REVIEWED on `claude/12d-99-supervised-local-worker`
-(`services/ai/runtime/offline-team/xiv-story-shell.ts` + 14 focused tests
-authored; **TEST RUN PENDING** — the safety-classifier outage intermittently
-blocks Bash/npm this session, so `test:12d-242`/`typecheck:12d-242` have NOT
-executed yet; they will run and be disclosed BEFORE any 12D-242 commit —
-never committed on unrun tests). CI IS NOT CLAIMED PASSED: GitLab CI remains
-quota-blocked (`ci_quota_exceeded`); no pipeline has executed on this story's
-wiring (which lands AFTER the pending 12D-239/240/241 commit chain — see
-"Exact files"). Reviewers: CLAUDE_CODE (self-review; two test-side defects and
-one spelling drift caught pre-run — see "Defects"). GROK_XAI PENDING — never
-fabricated.
+Status: COMMITTED on `claude/12d-99-supervised-local-worker`
+(`services/ai/runtime/offline-team/xiv-story-shell.ts` + 14 focused tests).
+**TEST RUN DISCLOSED**: on first run (classifier outage lifted this session)
+esbuild refused the test file — an unescaped `/` inside a regex literal
+(`</header>` terminated the pattern) — then a missing `renderAvatarCard`
+import surfaced; both fixed, after which **`npm run test:12d-242` = 14/14
+pass and `npm run typecheck:12d-242` (strict) exit 0**, and siblings
+`test:12d-239` 13/13, `test:12d-240` 13/13, `test:12d-241` 12/12 stayed
+green. Wiring (`test:12d-242`/`typecheck:12d-242` + `.gitlab-ci.yml` steps)
+lands in the 12D-242 commit, held until now behind the 12D-239/240/241
+commit chain per plan. CI IS NOT CLAIMED PASSED: GitLab CI remains
+quota-blocked (`ci_quota_exceeded`). Reviewers: CLAUDE_CODE (self-review;
+three run-time test-side defects caught — see "Defects"). GROK_XAI PENDING
+— never fabricated.
 
 ## What it is
 
@@ -104,6 +107,12 @@ The FRONT-END trust boundary of the Master Plan web blueprint, contract-first
   the `verdict` unused-variable shape were cleaned in the same pass as the
   write (strict tsc shape audited by inspection while Bash/npm was outage-
   blocked; the test run below confirms when the classifier recovers).
+- **(caught by the first real run, disclosed):** (a) an unescaped `/` inside
+  the honest-flags regex literal — `/verified packet [0-9a-f]{64}</header>/`
+  — was a hard esbuild TransformError; fixed to `<\/header>`. (b) The test
+  file referenced `renderAvatarCard` without importing it; fixed by adding
+  the import from `./xiv-avatar`. Both were TEST-side only — the renderer
+  module itself needed no change.
 
 ## Exact files
 
@@ -121,15 +130,12 @@ The FRONT-END trust boundary of the Master Plan web blueprint, contract-first
 ## Exact commands and local results
 
 ```
-npm run test:12d-242      # PENDING RUN — blocked behind the classifier
-                          # outage on Bash; will run + disclose before the
-                          # 12D-242 commit (never committed on unrun tests)
-npm run typecheck:12d-242 # PENDING RUN (strict)
+npm run test:12d-242      # RAN: 14/14 pass (after the two test-side fixes)
+npm run typecheck:12d-242 # RAN: strict, exit 0
 ```
 
-Carried-over local results for the staged stories: `test:12d-241` 12/12,
-`test:12d-239` 13/13, `test:12d-240` 13/13, strict tsc exit 0 each — run
-pre-compaction, disclosed in their handoffs.
+Sibling regressions run this cycle: `test:12d-241` 12/12, `test:12d-239`
+13/13, `test:12d-240` 13/13 — all green after 12D-242's changes.
 
 CI: NOT RUN, NOT CLAIMED — `ci_quota_exceeded` persists.
 
