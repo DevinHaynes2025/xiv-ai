@@ -70,6 +70,67 @@ evidence of compatibility).
 (Tracking/query parameters from the pasted URLs were trimmed when recorded;
 the pages themselves were NOT fetched or scanned.)
 
+## Fourth drop, same day (archives, OS/libc, social, game engines, industrial Ethernet, sacred texts)
+
+From: Devin Xavier Haynes, CEO (mid-build message, 2026-09-15)
+Status: **RECORDED AS CANDIDATE REFERENCES ONLY — NOTHING FETCHED, NOTHING
+CLONED.** Same rules as above.
+
+- https://fraser.stlouisfed.org/
+- https://github.com/Libaration/CRUDspace
+- https://github.com/superswan/anyspace
+- https://github.com/AvaloniaUI/Avalonia
+- https://github.com/framework7io/framework7/
+- https://github.com/ionic-team
+- https://genometools.org/
+- https://github.com/geoserver/geoserver
+- https://github.com/ripienaar/free-for-dev
+- https://github.com/FreeRADIUS
+- https://github.com/exajobs/opensource-collection
+- https://github.com/inovector/mixpost
+- https://github.com/opensource-socialnetwork/opensource-socialnetwork/
+- https://github.com/mastodon
+- https://github.com/exajobs/os-collection
+- https://www.gnu.org/software/libc/
+- https://musl.libc.org/
+- https://github.com/FreeRTOS
+- https://github.com/tumic0/GPXSee
+- https://arcade.makecode.com/
+- https://api.arcade.academy/en/stable/
+- https://gtaforums.com/topic/742038-relsavciii-gtatools-open-source-enginelibraries-for-gta/
+- https://github.com/in0finite/SanAndreasUnity
+- https://www.opensourceforu.com/2026/07/real-time-portals-link-classic-gta-worlds/
+- https://github.com/rwengine/openrw
+- https://extensions.blender.org/add-ons/inu-tools-gta-sa/
+- https://github.com/topics/sims
+- https://github.com/francot514/FreeSims
+- https://faith.tools/open-source
+- https://commons.ptsem.edu/
+- https://www.ccel.org/
+- https://libguides.thedtl.org/oadtl/databases
+- https://sacred-texts.com/
+- https://www.bdrc.io/
+- https://github.com/alexforencich/verilog-ethernet
+- https://github.com/EIPStackGroup/OpENer
+- https://github.com/libplctag
+- https://www.ethernut.de/en/
+- https://github.com/ssilverman/QNEthernet
+- https://github.com/Networking-for-Arduino/EthernetENC
+- https://github.com/CVCUDA/CV-CUDA (repeat from third drop)
+- https://cupy.dev/ (repeat), https://github.com/evidentlyai/evidently (repeat),
+  https://github.com/mlflow/mlflow (repeat), https://github.com/metabase/metabase (repeat),
+  https://github.com/facebookresearch/ (repeat), https://github.com/Chocobozzz/PeerTube,
+  https://github.com/liveupx/TikTok-Clone-App-Free, https://github.com/GorvGoyl/Clone-Wars
+
+**The pasted installer `C:\Users\Devin\Downloads\cuda_13.4.1_windows_x86_64.exe`
+was NOT executed, NOT installed, and NEVER will be by this agent** — the
+standing rule is that pasted .exe/.lnk installers are never executed; a CUDA
+toolkit install is additionally a system-level mutation, and GPU/cloud work
+requires explicit per-use CEO authorization. Recorded here as direction
+(the CEO wants CUDA-era GPU capability in the ecosystem's future) — encoded
+honestly via the 12D-240 declared-not-proven hardware registry pattern; a
+real CUDA toolchain story is a separate, authorized, reviewed effort.
+
 ## Honest usage note
 
 These are pointers for FUTURE, separately reviewed stories (e.g. citation

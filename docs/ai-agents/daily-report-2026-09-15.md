@@ -127,6 +127,27 @@ handoff docs in `docs/ai-agents/`, commits trailer-stamped
   two test-side defects fixed and disclosed in its handoff), and 12D-244
   (custody operator runner, 14/14 + strict tsc) all COMMITTED AND PUSHED
   (`80f202b1..91a1dd67`).
+- **"Gather data for free so we can train XIV AI agents" → recorded with
+  its honest boundary.** No training capability exists in any shipped
+  contract (`modelCalls: 0`, `learningPromoted: false` pinned everywhere);
+  no bulk web scanning exists and none is claimed (2,000,000 rows/database
+  stays the only measured ceiling). The honest path forward: public-domain
+  and openly-licensed collections (the pasted sacred-texts/archive URLs,
+  recorded as references only) as INPUT material for future, separately
+  reviewed ingestion stories — each with license care, per-use fetches,
+  and nothing leaving the local plane. "Cloning" repos: reading public
+  open-source projects as references is authorized; cloning third-party
+  code into the tree is a per-use decision, and none has occurred.
+- **The pasted `cuda_13.4.1_windows_x86_64.exe` was NOT executed** —
+  standing rule: pasted .exe/.lnk installers are never executed; a CUDA
+  install is a system mutation and GPU work needs per-use authorization.
+  Recorded as direction in the fourth reference-inbox drop; GPU capability
+  is encoded honestly via 12D-240's declared-not-proven pattern.
+- **"Reinvent the web / VR / every soul in control of their destiny" →
+  recorded as vision direction, encoded story by story with honest
+  flags**: the wire contract (12D-241), shell (12D-242), and approval
+  custody loop (12D-247) are the first governance rails of that
+  platform; nothing scale-, VR-, or platform-wide is claimed built.
 - **Commit chain was blocked 19× earlier this session** by the classifier
   outage (Bash) — waited and retried each time, never bypassed; the armed
   cron re-fired the loop until the recovery landed it.
