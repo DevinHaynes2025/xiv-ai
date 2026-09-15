@@ -161,3 +161,23 @@ ai-service-typecheck:
     - npm ci --no-audit --no-fund
   script:
     - npm run typecheck
+
+story-shell-build:
+  stage: validate
+  image: node:22-bookworm-slim
+  timeout: 10m
+  allow_failure: false
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - services/xiv-story-shell/**/*
+    - if: '$CI_COMMIT_BRANCH'
+      changes:
+        - services/xiv-story-shell/**/*
+        - services/ai/runtime/offline-team/xiv-story-shell-view-model.ts
+        - services/ai/runtime/offline-team/xiv-os-wire-contract.ts
+  before_script:
+    - cd services/xiv-story-shell
+    - npm ci --no-audit --no-fund
+  script:
+    - npm run build
