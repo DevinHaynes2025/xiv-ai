@@ -507,6 +507,21 @@ export class AgentPolicyGateway {
     return { approvalStatus: 'pending', learningPromoted: false, proposalDigest };
   }
 
+  /**
+   * 12D-225 executor-boundary probe: is this agent operational for an EXECUTION
+   * at `nowMs`? STRICTER than the gate's liveness check — it also enforces the
+   * agent's declared time budget (the gate checks the time budget only against
+   * the call's own timestamp). Read-only; appends nothing.
+   */
+  isOperational(agentId: string, nowMs: number): boolean {
+    if (!isNonNegInt(nowMs)) return false;
+    if (this.#livenessRefusal(agentId, nowMs) !== null) return false;
+    const identity = this.#agents.get(agentId);
+    if (!identity) return false;
+    if (nowMs >= identity.registeredAtMs + identity.budgets.timeLimitMs) return false;
+    return true;
+  }
+
   /** Tamper-evident check over the whole append-only trail. */
   verifyAuditTrail(): { ok: boolean; entries: number } {
     let prev = this.#genesis;

@@ -390,3 +390,33 @@ test('12D-224 time budget and registration identity are enforced', () => {
     }),
   );
 });
+
+test('12D-224 isOperational is the strict executor-boundary probe (liveness AND time budget)', () => {
+  const gw = new AgentPolicyGateway(T0, 'genesis-seed-1234567890');
+  gw.declareTools(TOOLS);
+  gw.registerAgent({
+    agentId: 'xiv-probed', parentId: null,
+    permissions: ['CALL_RETRIEVE_DOCUMENTS'],
+    budgets: { maxToolCalls: 10, maxTokens: 10_000, maxCostUnits: 100, timeLimitMs: 5_000 },
+    isTemporary: false, nowMs: T0,
+  });
+  assert.equal(gw.isOperational('xiv-probed', T0 + 1), true);
+  // Past the DECLARED TIME BUDGET even though not temporary/expired/stopped.
+  assert.equal(gw.isOperational('xiv-probed', T0 + 5_000), false);
+  // Unknown agent and malformed timestamps fail closed.
+  assert.equal(gw.isOperational('xiv-ghost-agent', T0 + 1), false);
+  assert.equal(gw.isOperational('xiv-probed', -1), false);
+  // Emergency stop is caught at any timestamp (stateful).
+  const gw2 = new AgentPolicyGateway(T0, 'genesis-seed-1234567890');
+  gw2.declareTools(TOOLS);
+  gw2.registerAgent({
+    agentId: 'xiv-halted', parentId: null,
+    permissions: ['CALL_RETRIEVE_DOCUMENTS'],
+    budgets: { maxToolCalls: 10, maxTokens: 10_000, maxCostUnits: 100, timeLimitMs: 3_600_000 },
+    isTemporary: false, nowMs: T0,
+  });
+  gw2.emergencyStop('xiv-halted', T0 + 1, 'halt');
+  assert.equal(gw2.isOperational('xiv-halted', T0), false);
+  // Probe is read-only: it appends nothing to the trail.
+  assert.equal(gw2.verifyAuditTrail().ok, true);
+});

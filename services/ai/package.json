@@ -96,6 +96,8 @@
     "test:12d-222": "tsx --test runtime/offline-team/instruction-adoption-gate.test.ts",
     "typecheck:12d-222": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/instruction-adoption-gate.ts runtime/offline-team/instruction-adoption-gate.test.ts runtime/offline-team/cell-placement-adapter.ts runtime/offline-team/event-plane-adapter.ts",
     "test:12d-224": "tsx --test runtime/offline-team/agent-policy-gateway.test.ts",
+    "test:12d-225": "tsx --test runtime/offline-team/gateway-executor.test.ts",
+    "typecheck:12d-225": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/agent-policy-gateway.ts runtime/offline-team/agent-policy-gateway.test.ts runtime/offline-team/gateway-executor.ts runtime/offline-team/gateway-executor.test.ts",
     "typecheck:12d-224": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/agent-policy-gateway.ts runtime/offline-team/agent-policy-gateway.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
