@@ -131,6 +131,29 @@ requires explicit per-use CEO authorization. Recorded here as direction
 honestly via the 12D-240 declared-not-proven hardware registry pattern; a
 real CUDA toolchain story is a separate, authorized, reviewed effort.
 
+## Fifth drop, same day (local-LLM ecosystem + simulation platforms, dropped with the 12D-253 Arena directive)
+
+From: Devin Xavier Haynes, CEO (mid-build message, 2026-09-15, alongside
+the 4-Agent Consensus Arena directive)
+Status: **RECORDED AS CANDIDATE REFERENCES ONLY — NOTHING FETCHED,
+NOTHING CLONED, NO MODEL DOWNLOADED, NO API KEY CREATED.** Same rules as
+above; the local-LLM URLs relate to the FUTURE arena model-wiring story
+(which requires explicit per-use authorization and runs on the local
+plane only); the simulation URLs are direction for far-future
+embodiment/sandbox stories and are not evidence of any capability.
+
+Recorded exactly as pasted (bare names — full URLs were NOT provided, so
+none are invented; only `openai/gpt-oss` carried an explicit owner/repo):
+
+- IsaacSim (NVIDIA Isaac Sim — robotics simulation)
+- webots (robot simulator)
+- openvrlab (VR/RL environments)
+- https://github.com/openai/gpt-oss (open-weight model release — REFERENCE
+  ONLY; third-party SaaS APIs need per-use authorization; no keys exist)
+- awesome-local-llm (curated local-LLM list)
+- Free-LLM (free LLM resource list)
+- open-llms (open-LLM listing)
+
 ## Honest usage note
 
 These are pointers for FUTURE, separately reviewed stories (e.g. citation
