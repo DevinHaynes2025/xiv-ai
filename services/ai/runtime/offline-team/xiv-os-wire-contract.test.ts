@@ -136,6 +136,37 @@ test('12D-241 an added field (a smuggled secret) refuses the exact-shape gate', 
   );
 });
 
+test('12D-246 a field smuggled INSIDE decisionSurface refuses verify (residual paid down)', () => {
+  const packet = build();
+  // The smuggled field is NOT digest-covered (the digest covers decidingOver
+  // only), so the forged packet keeps the ORIGINAL packetId — a digest-consistent
+  // forgery. The exact-keys audit on the decision surface is what catches it.
+  const smuggled = {
+    ...packet,
+    decisionSurface: { ...packet.decisionSurface, autoApprove: true },
+  } as never;
+  assert.throws(
+    () => verifyStoryShellPacket(smuggled),
+    /decisionSurface shape mismatch — a field was smuggled inside the decision surface/,
+  );
+  // Prove the digest was unchanged (this is precisely why the shape gate is
+  // load-bearing): the packetId matches the honest packet's id.
+  assert.equal(
+    (smuggled as unknown as typeof packet).packetId,
+    packet.packetId,
+  );
+  // Smuggling a credential-shaped FIELD inside the surface refuses too.
+  assert.throws(
+    () => verifyStoryShellPacket({
+      ...packet,
+      decisionSurface: { ...packet.decisionSurface, apiKey: 'sk-abcdefghijklmnopqrstuvwxyz012345' },
+    } as never),
+    /decisionSurface shape mismatch/,
+  );
+  // The honest packet still verifies — the hardening refuses only smuggles.
+  assert.equal(verifyStoryShellPacket(packet).ok, true);
+});
+
 test('12D-241 credential-shaped keys and content refuse (before validation, at build)', () => {
   assert.throws(
     () => buildStoryShellPacket({ ...INPUT, userPassword: 'x' } as never),

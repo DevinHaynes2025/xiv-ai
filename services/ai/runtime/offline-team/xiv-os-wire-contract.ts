@@ -107,6 +107,11 @@ const VERIFIED_PACKET_KEYS = [
   'schemaVersion', 'policyVersion', 'packetId', 'storyId', 'headline',
   'bodyText', 'generatedAtMs', 'avatar', 'decisionSurface', 'guardrails',
 ] as const;
+// 12D-246 hardening (residual disclosed in the 12D-242 handoff): the packet
+// digest covers `decidingOver` only — a field smuggled INSIDE decisionSurface
+// was neither digest-covered nor shape-audited at verify. The surface is now
+// exact-keyed at the receiving side: no smuggled field survives verify.
+const DECISION_SURFACE_KEYS = ['kind', 'humanDecision', 'decidingOver'] as const;
 
 /** The packet digest covers EVERY declared input, in a fixed key order. */
 const derivePacketDigest = (input: Readonly<{
@@ -201,6 +206,8 @@ export function verifyStoryShellPacket(
 ): Readonly<{ ok: boolean; packetId: string }> {
   if (!hasExactKeys(packet, VERIFIED_PACKET_KEYS))
     throw new Error('story-shell packet shape mismatch; fail closed');
+  if (!hasExactKeys(packet.decisionSurface, DECISION_SURFACE_KEYS))
+    throw new Error('story-shell packet decisionSurface shape mismatch — a field was smuggled inside the decision surface; fail closed');
   if (packet.schemaVersion !== 1 || packet.policyVersion !== XIV_OS_WIRE_POLICY.policyVersion)
     throw new Error('unknown story-shell wire version; fail closed');
   // Guardrails are compared BY VALUE, not reference: a packet arriving over a
