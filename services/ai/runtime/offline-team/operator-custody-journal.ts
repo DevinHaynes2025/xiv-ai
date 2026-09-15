@@ -112,7 +112,12 @@ export function appendCustodyOp(
   journalGenesis: string,
   op: CustodyJournalOp,
   input: CustodyJournalEntry['input'],
-): Readonly<{ entry: CustodyJournalEntry; record: Readonly<CustodyRecord> }> {
+): Readonly<{
+  entry: CustodyJournalEntry;
+  record: Readonly<CustodyRecord>;
+  /** Present only when the op consumed a receipt (op === 'authenticate'). */
+  consumed?: Readonly<{ receiptSha256: string; purpose: string; consumedAtMs: number }>;
+}> {
   if (!(registry instanceof OperatorCustodyRegistry))
     throw new Error('a live 12D-233 OperatorCustodyRegistry is required; fail closed');
   if (op !== 'register' && op !== 'authenticate')
@@ -122,6 +127,7 @@ export function appendCustodyOp(
 
   // Apply through the registry FIRST — refused ops never reach the journal.
   let record: Readonly<CustodyRecord>;
+  let consumedResult: CustodyConsumption | undefined;
   if (op === 'register') {
     record = registry.register({
       receiptSha256: input.receiptSha256, purpose: input.purpose,
@@ -133,7 +139,9 @@ export function appendCustodyOp(
       receiptSha256: input.receiptSha256, purpose: input.purpose, nowMs: input.nowMs ?? -1,
     });
     record = registry.recordFor(input.receiptSha256)!;
-    void consumed;
+    consumedResult = {
+      receiptSha256: input.receiptSha256, purpose: input.purpose, consumedAtMs: consumed.consumedAtMs,
+    };
   }
 
   // Journal the op with its own independent hash chain — walk the existing
@@ -156,7 +164,16 @@ export function appendCustodyOp(
   if (line.length > OPERATOR_CUSTODY_JOURNAL_POLICY.maxLineChars)
     throw new Error(`custody journal line exceeds ${OPERATOR_CUSTODY_JOURNAL_POLICY.maxLineChars} chars; fail closed`);
   store.save([...(existing ?? []), line]);
-  return Object.freeze({ entry, record });
+  return Object.freeze(consumedResult
+    ? { entry, record, consumed: Object.freeze(consumedResult) }
+    : { entry, record });
+}
+
+/** The receipt-consumption proof returned by an authenticate op. */
+export interface CustodyConsumption {
+  readonly receiptSha256: string;
+  readonly purpose: string;
+  readonly consumedAtMs: number;
 }
 
 /** Parse and validate one journal line against the independent chain. */
