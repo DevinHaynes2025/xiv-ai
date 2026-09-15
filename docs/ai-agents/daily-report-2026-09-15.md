@@ -101,9 +101,35 @@ handoff docs in `docs/ai-agents/`, commits trailer-stamped
   render layer reads only kind/humanDecision/decidingOver, so it never
   reaches a screen — the gap belongs to 12D-241, disclosed for a future
   story rather than silently patched into its pending commit.
-- **Commit chain blocked 7× this session** by the classifier outage
-  (Bash) — waited and retried each time, never bypassed; the armed cron
-  re-fires the loop and retries.
+- **"Every user gets an identical digital AI-agentic twin on their mobile
+  device, a digital fingerprint, an avatar identical to their
+  characteristics" → recorded as the NEXT scoping candidate (12D-245).**
+  The honest encoding: a per-user identity profile that the USER authors
+  and controls on THEIR device (never surveillance-collected —
+  `collectsNothing` governs it the same way), a digest-bound "digital
+  fingerprint" = a cryptographic identity handle (NOT biometrics, NOT a
+  claim of copying a person), and the 12D-239 avatar pattern personalized
+  from user-authored statements. "Identical twin" as a claim that the OS
+  BECOMES the user stays false — same boundary as 12D-243 (no
+  impersonation, `presentedAsHuman: false`); the twin assists, it never
+  claims to BE the person. Scoping note to follow; nothing built yet.
+- **"Autopilot #1 in the industry" → recorded as an ASPIRATION**, never a
+  claim. No autopilot surface exists in any shipped contract; if one is
+  built it will ship with the honest flags (operator custody per
+  consequential op, 12D-231..244 pattern) and `#1` stays a market claim
+  for measured benchmarks, not a packet flag.
+- **"Every GPU and CPU will use XIV AI OS" → carried in the 12D-240
+  pattern**: DECLARED targets, `proven: false`, promotion structurally
+  refused until measured drill stories exist. The pasted NVIDIA/AMD/CUDA
+  URLs are recorded as REFERENCES ONLY (third inbox drop, same file).
+- **Commit chain UNBLOCKED this cycle** — the classifier outage lifted;
+  12D-239/240/241 (3-commit chain), 12D-242 (suite run 14/14 + strict tsc,
+  two test-side defects fixed and disclosed in its handoff), and 12D-244
+  (custody operator runner, 14/14 + strict tsc) all COMMITTED AND PUSHED
+  (`80f202b1..91a1dd67`).
+- **Commit chain was blocked 19× earlier this session** by the classifier
+  outage (Bash) — waited and retried each time, never bypassed; the armed
+  cron re-fired the loop until the recovery landed it.
 - **CEO trust statement logged** ("I approve every packet, i trust you,
   lets continue"): recorded as affirming standing authorization for
   LOCAL-PLANE autonomous building (commits/pushes to the feature branch,

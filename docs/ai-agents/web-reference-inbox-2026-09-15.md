@@ -42,6 +42,34 @@ Prior-cycle candidates (carried for completeness): huridocs/pdf-document-layout-
 Stirling-Tools/Stirling-PDF, orchestra-research/AI-research-SKILLs, facebookresearch/,
 internetarchive/, openlibhums.org, hcommons.org, archive.org.
 
+## Third drop, same day (enterprise AI / open-source AI tooling)
+
+From: Devin Xavier Haynes, CEO (mid-build message, 2026-09-15)
+Status: **RECORDED AS CANDIDATE REFERENCES ONLY — NOTHING FETCHED.** Same
+rules as above; the GPU/CPU/quantum URLs relate to the 12D-240 declared-
+not-proven hardware registry (a reference for FUTURE drill stories, never
+evidence of compatibility).
+
+- https://www.amd.com/en/solutions/ai/ai-ready-enterprise.html
+- https://en.wikipedia.org/wiki/Lists_of_open-source_artificial_intelligence_software
+- https://github.com/metabase/metabase
+- https://github.com/mlflow/mlflow
+- https://github.com/evidentlyai/evidently
+- https://pytorch.org/
+- https://opensource.nvidia.com/en-us/
+- https://www.cognigy.com/lps/ai-agents-for-enterprise-cx
+- https://github.com/features/copilot
+- https://cupy.dev/
+- https://github.com/CVCUDA/CV-CUDA
+- https://developer.nvidia.com/cuda/cuda-x-libraries
+- https://github.com/lvgl/lvgl
+- https://openai.com/index/triton/
+- https://developer.nvidia.com/open-source
+- https://blog.kubesimplify.com/nvcf-is-now-open-source-inside-nvidia-s-gpu-function-platform
+
+(Tracking/query parameters from the pasted URLs were trimmed when recorded;
+the pages themselves were NOT fetched or scanned.)
+
 ## Honest usage note
 
 These are pointers for FUTURE, separately reviewed stories (e.g. citation
