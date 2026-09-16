@@ -247,6 +247,14 @@ export class OfflineStoryQueue {
     if(!row) return null;
     return { state:String(row.state) as QueueState, role:String(row.role), outputHash:row.output_hash===null?null:String(row.output_hash) };
   }
+  /** 12D-287: read-only objective lookup — the reading cycle's continuation proof reads the docRef a story was admitted with. Grants nothing. */
+  inspectStoryObjective(tenantId:string,storyId:string): string|null {
+    if(!id(tenantId)||!id(storyId)) throw new Error('story identity required');
+    const row=this.#db.prepare('SELECT body FROM stories WHERE tenant=? AND id=?').get(tenantId,storyId);
+    if (!row || typeof row.body !== 'string') return null;
+    const story=JSON.parse(row.body) as { objective?: unknown };
+    return typeof story.objective==='string'?story.objective:null;
+  }
   /**
    * 12D-101: apply a reviewer's decision atomically, ONLY for a story in AWAITING_REVIEW whose
    * stored output hash still matches the hash the reviewer signed. APPROVED→DONE,

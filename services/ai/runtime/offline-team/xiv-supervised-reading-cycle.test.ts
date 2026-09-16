@@ -4,7 +4,8 @@
 //      settles exactly one draft AWAITING_REVIEW; the remaining chunks
 //      stay READY; review/269/264 never run here.
 //   2. THE REAL CONTRACTS DO THE WORK: an unregistered source refuses
-//      (NO REGISTER NO BINDING); a duplicate document refuses; the
+//      (NO REGISTER NO BINDING); a duplicate admission CONTINUES only
+//      on the admitted bytes (12D-287) — changed bytes refuse; the
 //      queue head is the truth (a non-head story is never jumped).
 //   3. THE DOOR NEVER THROWS: every refusal is an honest REFUSED packet
 //      with MEASURED queue-truth state (FAILED ⇒ the provider call
@@ -116,16 +117,49 @@ test('12d-283: an unregistered source refuses — NO REGISTER NO BINDING, measur
   });
 });
 
-test('12d-283: a duplicate document refuses — a document is read once', async () => {
+test('12d-283 (as corrected by 12D-287): a duplicate admission continues on the admitted bytes and refuses changed bytes', async () => {
   await withQueue(async (dir, q) => {
     const store = registeredRegister();
     const first = await runSupervisedReadingCycle(q, store, GENESIS, submission(), goodCaller);
     assert.equal(first.kind, 'SUPERVISED_READING_CYCLE');
+    // SAME bytes re-submitted: the operator's loop CONTINUES — chunk-2
+    // is read (the 12D-283 "read once" gate would have made chunks
+    // 2..N unreachable; the defect the 12D-287 rung paid down).
     const second = await runSupervisedReadingCycle(q, store, GENESIS, submission(), goodCaller);
-    assert.equal(second.kind, 'SUPERVISED_READING_CYCLE_REFUSED');
-    if (second.kind !== 'SUPERVISED_READING_CYCLE_REFUSED') return;
-    assert.ok(second.reason.includes('already admitted'));
-    assert.equal(second.modelCalls, 0, 'the duplicate refusal happens before any provider call');
+    assert.equal(second.kind, 'SUPERVISED_READING_CYCLE');
+    if (second.kind !== 'SUPERVISED_READING_CYCLE') return;
+    assert.equal(second.storyId, 'doc-cycle-doc-1-chunk-2');
+    assert.equal(second.continuation, true);
+    assert.deepEqual(second.chunks, { prepared: 3, inserted: 0, duplicates: 3 });
+    assert.equal(second.remainingReady, 1);
+    assert.equal(second.modelCalls, 1);
+    // CHANGED bytes under the same documentId refuse — a document is
+    // read as the bytes it was admitted as. MEASURED TRUTH: the QUEUE'S
+    // OWN fingerprint invariant refuses them (a layer deeper than the
+    // cycle's continuation gate), and the refusal is pre-call.
+    const changed = submission({ bodyText: DOC + '\n\nA changed paragraph.' });
+    const third = await runSupervisedReadingCycle(q, store, GENESIS, changed, goodCaller);
+    assert.equal(third.kind, 'SUPERVISED_READING_CYCLE_REFUSED');
+    if (third.kind !== 'SUPERVISED_READING_CYCLE_REFUSED') return;
+    assert.ok(third.reason.includes('content conflict'), `measured reason: ${third.reason}`);
+    assert.equal(third.modelCalls, 0, 'the changed-bytes refusal happens before any provider call');
+    // A changed TITLE also changes the re-derived digest — and the
+    // digest lives INSIDE the stored objective the queue's fingerprint
+    // covers, so the queue door refuses it too.
+    const retitled = submission({ title: 'A different title under the same document id' });
+    const fourth = await runSupervisedReadingCycle(q, store, GENESIS, retitled, goodCaller);
+    assert.equal(fourth.kind, 'SUPERVISED_READING_CYCLE_REFUSED');
+    if (fourth.kind !== 'SUPERVISED_READING_CYCLE_REFUSED') return;
+    assert.ok(fourth.reason.includes('content conflict'), `measured reason: ${fourth.reason}`);
+    assert.equal(fourth.modelCalls, 0);
+    // A SHORTENED document (fewer chunks — the chunk framing is inside
+    // the fingerprinted objective too) is refused the same way.
+    const shortened = submission({ bodyText: DOC.split('\n\n').slice(0, 2).join('\n\n') });
+    const fifth = await runSupervisedReadingCycle(q, store, GENESIS, shortened, goodCaller);
+    assert.equal(fifth.kind, 'SUPERVISED_READING_CYCLE_REFUSED');
+    if (fifth.kind !== 'SUPERVISED_READING_CYCLE_REFUSED') return;
+    assert.ok(fifth.reason.includes('content conflict'), `measured reason: ${fifth.reason}`);
+    assert.equal(fifth.modelCalls, 0);
   });
 });
 
@@ -225,8 +259,13 @@ test('12d-283: determinism and pinned policy/guardrails', async () => {
     const store = registeredRegister();
     const a = await runSupervisedReadingCycle(q, store, GENESIS, submission(), goodCaller);
     const b = await runSupervisedReadingCycle(q, store, GENESIS, submission(), goodCaller);
-    assert.equal(b.kind, 'SUPERVISED_READING_CYCLE_REFUSED', 'the second invocation hits the duplicate gate');
-    if (a.kind !== 'SUPERVISED_READING_CYCLE') return;
+    assert.equal(a.kind, 'SUPERVISED_READING_CYCLE');
+    assert.equal(b.kind, 'SUPERVISED_READING_CYCLE', 'the second invocation continues on the admitted bytes (12D-287)');
+    if (b.kind === 'SUPERVISED_READING_CYCLE') assert.equal(b.continuation, true);
+    // A refusal is deterministic too (measured reason, no randomness).
+    const refused = await runSupervisedReadingCycle(q, store, GENESIS, submission({ bodyText: DOC + ' tampered' }), goodCaller);
+    const refused2 = await runSupervisedReadingCycle(q, store, GENESIS, submission({ bodyText: DOC + ' tampered' }), goodCaller);
+    assert.equal(JSON.stringify(refused), JSON.stringify(refused2));
     assert.equal(SUPERVISED_READING_CYCLE_POLICY.policyVersion, '12d-283-v1');
     assert.equal(SUPERVISED_READING_CYCLE_POLICY.chunksPerCycle, 1);
     assert.equal(SUPERVISED_READING_CYCLE_POLICY.documentsPerCycle, 1);
@@ -234,7 +273,7 @@ test('12d-283: determinism and pinned policy/guardrails', async () => {
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.stopsBeforeReview, true);
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.realContractsOnly, true);
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.bindsToRegisteredSourcesOnly, true);
-    assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.duplicateAdmissionRefuses, true);
+    assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.continuationRequiresAdmittedBytes, true);
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.queueHeadIsTheTruth, true);
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.neverThrowsReturnsRefused, true);
     assert.equal(SUPERVISED_READING_CYCLE_GUARDRAILS.refusedCarriesZeroDocumentText, true);

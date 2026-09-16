@@ -28,8 +28,12 @@
 // WHAT ONE INVOCATION NEVER DOES:
 //   - never reads a second chunk (chunksPerCycle: 1 — the remaining
 //     READY chunks stay READY for the operator's next invocation);
-//   - never re-ingests a document whose stories were already admitted
-//     (a duplicate admission refuses — a document is read once);
+//   - never reads a document as bytes OTHER than the bytes it was
+//     admitted as (12D-287: a duplicate admission CONTINUES the
+//     document's reading — the operator's loop re-invoking the door —
+//     ONLY when the re-submitted bytes re-derive the SAME document
+//     digest the queue's own stored objective was admitted with;
+//     changed bytes or a changed title refuse);
 //   - never registers a source, never writes a register, never opens a
 //     database of its own (the queue and register stores are injected);
 //   - never activates anything, never promotes learning, never reviews
@@ -71,7 +75,7 @@ export const SUPERVISED_READING_CYCLE_GUARDRAILS = Object.freeze({
   stopsBeforeReview: true,
   realContractsOnly: true, // 12D-274 + 12D-277/278 + 12D-275 + 12D-280
   bindsToRegisteredSourcesOnly: true, // this door never registers a source
-  duplicateAdmissionRefuses: true,
+  continuationRequiresAdmittedBytes: true, // 12D-287: changed bytes refuse
   queueHeadIsTheTruth: true,
   neverThrowsReturnsRefused: true,
   refusedCarriesZeroDocumentText: true,
@@ -101,6 +105,8 @@ export type SupervisedReadingCyclePacket = Readonly<{
   documentDigestSha256: string;
   storyId: string;
   storyState: string;
+  /** 12D-287: true when this invocation CONTINUED an already-admitted document (same bytes re-proven). */
+  continuation: boolean;
   chunks: Readonly<{ prepared: number; inserted: number; duplicates: number }>;
   remainingReady: number;
   model: string;
@@ -184,16 +190,36 @@ export async function runSupervisedReadingCycle(
 
     // (2) THE REAL 12D-277/278 BOUND ADMISSION — to an ALREADY-REGISTERED
     // source (an unregistered sourceId refuses here: NO REGISTER NO
-    // BINDING); a duplicate admission (duplicates > 0) refuses — a
-    // document is read once.
+    // BINDING). A duplicate admission is the operator's CONTINUATION
+    // (12D-287): the loop is the operator re-invoking this door for the
+    // SAME document, allowed ONLY when the re-submitted bytes re-derive
+    // the SAME document digest the queue's own stored objective was
+    // admitted with — a document is read as the bytes it was admitted
+    // as; changed bytes refuse.
     const bound = admitBoundReading(queue, registerStore as ReadingSourceStore, registerGenesis, prepared, {
       tenantId, sourceId, documentId, documentDigestSha256: prepared.documentDigestSha256,
     });
     const admission = bound.admission as Readonly<Record<string, unknown>>;
     if (typeof admission.duplicates !== 'number' || Number.isNaN(admission.duplicates))
       throw new Error('the bound admission carries a malformed duplicates count; fail closed');
-    if (admission.duplicates !== 0)
-      throw new Error(`the document ${documentId} was already admitted (${admission.duplicates} duplicate stories); a document is read once; fail closed`);
+    if (admission.duplicates !== 0) {
+      // 12D-287 CONTINUATION GATE (defense-in-depth): the digest was
+      // RE-DERIVED from the re-submitted bytes by the real ingest
+      // contract; the queue's own stored objective for this document's
+      // first chunk is the record of the digest it was admitted with.
+      // MEASURED: the 12D-275 queue door's own fingerprint invariant
+      // refuses any tampered re-submission (the digest lives inside the
+      // objective the fingerprint covers) BEFORE this gate — the gate
+      // stays so the cycle itself never trusts changed bytes even if
+      // the door's invariant were ever relaxed.
+      const firstChunkId = `doc-${documentId}-chunk-1`.slice(0, 128);
+      const storedObjective = queue.inspectStoryObjective(tenantId, firstChunkId);
+      if (storedObjective === null)
+        throw new Error(`the document ${documentId} was admitted (${admission.duplicates} duplicate stories) but its first chunk is not inspectable in this queue; fail closed`);
+      const docRef = `doc:${documentId}:${prepared.documentDigestSha256.slice(0, 16)}`;
+      if (!storedObjective.includes(docRef))
+        throw new Error(`the document ${documentId} was admitted with different bytes; a document is read as the bytes it was admitted as; fail closed`);
+    }
 
     // (3) THE QUEUE IS THE TRUTH ABOUT WHAT TO READ — the first READY
     // story among THIS document's admitted stories; none is an honest
@@ -232,6 +258,7 @@ export async function runSupervisedReadingCycle(
       documentDigestSha256: read.documentDigestSha256,
       storyId: read.storyId,
       storyState: read.storyState,
+      continuation: admission.duplicates !== 0,
       chunks: Object.freeze({
         prepared: Number(admission.prepared),
         inserted: Number(admission.inserted),
