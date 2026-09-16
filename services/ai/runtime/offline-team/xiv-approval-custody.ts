@@ -210,6 +210,12 @@ export function verifyApprovalCustodyPlan(
     throw new Error("a decision record decision must be exactly 'APPROVED' or 'REJECTED'; fail closed");
   if (typeof r.decidedBy !== 'string' || !DECIDED_BY_RE.test(r.decidedBy))
     throw new Error('a decision record decidedBy must match the operator id pattern; fail closed');
+  // The 12D-267 paydown: the secret re-gate lived only on the build path,
+  // so a FORGED plan could carry a credential-shaped decidedBy and still
+  // verify. The invariant lives inside the validator now (the 12D-263
+  // lesson), on both paths.
+  if (SECRET_CONTENT_RE.test(r.decidedBy))
+    throw new Error('a decision record decidedBy carries credential-shaped content; fail closed');
   if (typeof r.decidedAtMs !== 'number' || !Number.isSafeInteger(r.decidedAtMs) || r.decidedAtMs < 0)
     throw new Error('a decision record decidedAtMs must be a safe non-negative integer; fail closed');
   if (typeof r.packetId !== 'string' || !/^[0-9a-f]{64}$/.test(r.packetId))

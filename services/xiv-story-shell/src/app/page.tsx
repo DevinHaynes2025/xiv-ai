@@ -20,6 +20,7 @@ import {
 import PacketPanel from "./packet-panel";
 import IngestPanel from "./ingest-panel";
 import VerdictPanel from "./verdict-panel";
+import CustodyDecisionPanel from "./custody-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -72,6 +73,7 @@ export default function StoryShellPage() {
 
       <div className="mt-8 space-y-6">
         <VerdictPanel />
+        <CustodyDecisionPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />

@@ -168,6 +168,8 @@
     "typecheck:pathway-evidence-bridge": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/pathway-evidence-bridge.ts runtime/offline-team/pathway-evidence-bridge.test.ts",
     "typecheck:device-fleet-enrollment": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/device-fleet-enrollment.ts runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-92": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/local-model-collaboration-bus.ts runtime/offline-team/neural-pathway-growth-engine.ts runtime/offline-team/agent-tool-heartbeat-fabric.ts runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts runtime/offline-team/agent-tool-heartbeat-fabric.test.ts runtime/offline-team/local-model-collaboration-bus.test.ts",
+    "test:12d-267": "tsx --test runtime/offline-team/xiv-custody-decision-view.test.ts",
+    "typecheck:12d-267": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-custody-decision-view.ts runtime/offline-team/xiv-custody-decision-view.test.ts",
     "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },
   "dependencies": {
