@@ -182,6 +182,30 @@ export function registerReadingSource(
 }
 
 /**
+ * Read-only, chain-validating iteration over the register's entries
+ * (12D-277's binding contract walks this; the census counts it). Every
+ * line's digest re-derives against its predecessor; tampering refuses.
+ * This never writes and never fetches.
+ */
+export function readSourceRegisterEntries(
+  store: ReadingSourceStore,
+  registerGenesis: string,
+): readonly ReadingSourceEntry[] {
+  if (typeof registerGenesis !== 'string' || registerGenesis.length < 8)
+    throw new Error('the register genesis must be a string of at least 8 chars; fail closed');
+  const lines = store.load();
+  if (lines === null) return Object.freeze([]);
+  const entries: ReadingSourceEntry[] = [];
+  let prev = registerGenesis;
+  for (const line of lines) {
+    const e = parseSourceLine(line, registerGenesis, prev);
+    prev = e.entryDigest;
+    entries.push(e);
+  }
+  return Object.freeze(entries);
+}
+
+/**
  * Replay the register chain and render a MEASURED census. Validates
  * every line's digest against its predecessor; any tampering with a
  * middle entry refuses. DISCLOSED RESIDUAL (the 12D-272 lesson): a
@@ -193,10 +217,10 @@ export function replaySourceRegisterCensus(
   store: ReadingSourceStore,
   registerGenesis: string,
 ): ReadingSourceCensus {
-  if (typeof registerGenesis !== 'string' || registerGenesis.length < 8)
-    throw new Error('the register genesis must be a string of at least 8 chars; fail closed');
-  const lines = store.load();
-  if (lines === null) {
+  const entries = readSourceRegisterEntries(store, registerGenesis);
+  if (entries.length === 0) {
+    // An EMPTY store and an EMPTY REGISTER are the same zero here — but
+    // load() === null vs [] is still observable through the store itself.
     return Object.freeze({
       entries: 0,
       capacity: READING_SOURCE_REGISTER_POLICY.maxEntriesPerRegister,
@@ -210,18 +234,15 @@ export function replaySourceRegisterCensus(
   const byClass: Record<string, number> = Object.fromEntries(
     READING_SOURCE_REGISTER_POLICY.sourceClasses.map((c) => [c, 0]),
   );
-  let prev = registerGenesis;
-  for (const line of lines) {
-    const e = parseSourceLine(line, registerGenesis, prev);
-    prev = e.entryDigest;
+  for (const e of entries) {
     const count = byClass[e.sourceClass];
     if (count === undefined) throw new Error('unknown source class in the register; fail closed');
     byClass[e.sourceClass] = count + 1;
   }
   return Object.freeze({
-    entries: lines.length,
+    entries: entries.length,
     capacity: READING_SOURCE_REGISTER_POLICY.maxEntriesPerRegister,
-    remainingCapacity: READING_SOURCE_REGISTER_POLICY.maxEntriesPerRegister - lines.length,
+    remainingCapacity: READING_SOURCE_REGISTER_POLICY.maxEntriesPerRegister - entries.length,
     byClass: Object.freeze(byClass),
     sourcesRead: 0 as const,
     learningPromoted: false as const,
