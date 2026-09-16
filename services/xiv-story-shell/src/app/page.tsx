@@ -19,6 +19,7 @@ import {
 } from "../../../ai/runtime/offline-team/xiv-os-wire-contract";
 import PacketPanel from "./packet-panel";
 import IngestPanel from "./ingest-panel";
+import VerdictPanel from "./verdict-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -70,6 +71,7 @@ export default function StoryShellPage() {
       </header>
 
       <div className="mt-8 space-y-6">
+        <VerdictPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />

@@ -147,6 +147,8 @@
     "typecheck:12d-259": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-story-shell-ingest.ts runtime/offline-team/xiv-story-shell-ingest.test.ts",
     "test:12d-260": "python -m unittest discover -s ../xiv-backend -p \"test_xiv_local_llm_bridge.py\"",
     "typecheck:12d-260": "python -m py_compile ../xiv-backend/xiv_local_llm_bridge.py ../xiv-backend/test_xiv_local_llm_bridge.py",
+    "test:12d-262": "tsx --test runtime/offline-team/xiv-arena-verdict-view.test.ts",
+    "typecheck:12d-262": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-arena-verdict-view.ts runtime/offline-team/xiv-arena-verdict-view.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
