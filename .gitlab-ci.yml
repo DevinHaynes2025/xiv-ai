@@ -149,6 +149,8 @@ offline-brain-contracts:
     - npm run test:12d-254
     - npm run typecheck:12d-256
     - npm run test:12d-256
+    - npm run typecheck:12d-257
+    - npm run test:12d-257
 
 ai-service-typecheck:
   stage: validate
@@ -183,3 +185,19 @@ story-shell-build:
     - npm ci --no-audit --no-fund
   script:
     - npm run build
+
+xiv-backend-contracts:
+  stage: validate
+  image: python:3.12-slim
+  timeout: 5m
+  allow_failure: false
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - services/xiv-backend/**/*
+    - if: '$CI_COMMIT_BRANCH'
+      changes:
+        - services/xiv-backend/**/*
+  script:
+    - python -m py_compile services/xiv-backend/xiv_os_contracts.py services/xiv-backend/test_xiv_os_contracts.py
+    - python -m unittest discover -s services/xiv-backend -p "test_*.py"
