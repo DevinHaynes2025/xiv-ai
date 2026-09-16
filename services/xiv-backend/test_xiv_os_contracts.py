@@ -29,6 +29,19 @@ GOLDEN_FIELDS = {
 }
 GOLDEN_DIGEST = "e22e2e7def4afbccc5d7c97fb56eec7c70827bd06e6f7941b535c97e314e44e8"
 
+# NON-ASCII GOLDEN VECTOR — the follow-up promised in the 12D-257 handoff:
+# TS JSON.stringify does not escape non-ASCII; the Python canonical
+# serialization must match (ensure_ascii=False). Generated from the TS side.
+NON_ASCII_FIELDS = {
+    "storyId": "12d-257-nonascii-golden-vector-x",
+    "headline": "Non-ASCII golden digest vector ✓",
+    "bodyText": "The Python contract must match TS bytes for non-ASCII too — ünïcødé, 中文, emoji \U0001f525.",
+    "generatedAtMs": 1000000,
+    "avatarId": None,
+    "decidingOver": "whether non-ascii content digests identically across languages",
+}
+NON_ASCII_DIGEST = "32bb7eb762fd6c82c78f6f192dd6477e6184d35f16614f305add46d3fb895c58"
+
 
 def make_packet(digest_fields=None, **overrides):
     """A minimal packet that passes verify_story_shell_packet, built over the
@@ -70,6 +83,9 @@ class TestGoldenVector(unittest.TestCase):
         changed = dict(GOLDEN_FIELDS)
         changed["bodyText"] = changed["bodyText"] + " One byte different."
         self.assertNotEqual(derive_packet_digest(changed), GOLDEN_DIGEST)
+
+    def test_non_ascii_digest_matches_the_typescript_byte_for_byte(self):
+        self.assertEqual(derive_packet_digest(dict(NON_ASCII_FIELDS)), NON_ASCII_DIGEST)
 
 
 class TestVerifyStoryShellPacket(unittest.TestCase):
