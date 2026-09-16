@@ -190,6 +190,8 @@
     "typecheck:12d-276": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-reading-source-register.ts runtime/offline-team/xiv-reading-source-register.test.ts",
     "test:12d-277": "tsx --test runtime/offline-team/xiv-reading-binding.test.ts",
     "typecheck:12d-277": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-reading-binding.ts runtime/offline-team/xiv-reading-binding.test.ts runtime/offline-team/xiv-reading-source-register.ts runtime/offline-team/xiv-document-ingest.ts runtime/offline-team/offline-story-queue.ts",
+    "test:12d-278": "tsx --test runtime/offline-team/xiv-bound-admission.test.ts",
+    "typecheck:12d-278": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-bound-admission.ts runtime/offline-team/xiv-bound-admission.test.ts runtime/offline-team/xiv-reading-admission.ts runtime/offline-team/xiv-reading-binding.ts runtime/offline-team/xiv-reading-source-register.ts runtime/offline-team/xiv-document-ingest.ts runtime/offline-team/offline-story-queue.ts",
     "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },
   "dependencies": {
