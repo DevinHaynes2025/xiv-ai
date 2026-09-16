@@ -242,3 +242,30 @@ export function replayPathwayCensus(
     activated: 0 as const,
   });
 }
+
+/**
+ * Additively exported for 12D-281: the reading provenance VIEW replays
+ * THIS verified chain (the same parseLedgerLine links the census walks)
+ * and receives the ENTRIES themselves. A tampered ledger refuses here
+ * exactly as it does for the census. Read-only — the store is only
+ * ever loaded.
+ */
+export function replayPathwayLedgerEntries(
+  store: PathwayLedgerStore,
+  ledgerGenesis: string,
+): readonly PathwayLedgerEntry[] {
+  if (typeof ledgerGenesis !== 'string' || ledgerGenesis.length < 8)
+    throw new Error('the ledger genesis must be a string of at least 8 chars; fail closed');
+  if (typeof store !== 'object' || store === null || typeof (store as PathwayLedgerStore).load !== 'function')
+    throw new Error('a trusted pathway ledger store is required; fail closed');
+  const lines = store.load();
+  if (!lines) throw new Error('no pathway ledger found; fail closed');
+  let prev = ledgerGenesis;
+  const entries: PathwayLedgerEntry[] = [];
+  for (const line of lines) {
+    const e = parseLedgerLine(line, ledgerGenesis, prev);
+    prev = e.entryDigest;
+    entries.push(e);
+  }
+  return Object.freeze(entries);
+}
