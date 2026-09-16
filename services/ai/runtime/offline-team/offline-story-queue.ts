@@ -216,6 +216,35 @@ export class OfflineStoryQueue {
       this.#now();
     });
   }
+  /**
+   * 12D-288 OPERATOR recovery door for a SETTLED FAILED story. Recovery
+   * is NEVER automatic (automaticRecovery false): it is an explicit
+   * operator action that re-queues exactly one FAILED story for a fresh
+   * read and clears the failed settlement's output hash so the next
+   * settlement writes a fresh one. A HELD lease covering THIS story
+   * refuses — the lease doors (settle / 12D-100 voidLease) own held
+   * leases; a lease held on a DIFFERENT story does not block recovery.
+   * The operator ref is echoed to the caller, never stored as a review
+   * or settlement record.
+   */
+  recoverFailedStory(input: { tenantId: string; storyId: string; operatorRef: string }): 'READY' {
+    if (!input || !id(input.tenantId) || !id(input.storyId)
+      || !bounded(input.operatorRef, 256)) throw new Error('operator recovery request invalid');
+    this.#now();
+    return this.#transaction(() => {
+      const held = this.#db.prepare('SELECT tenant,story_id FROM lease WHERE singleton=1').get();
+      if (held && String(held.tenant) === input.tenantId && String(held.story_id) === input.storyId)
+        throw new Error('a held lease covers this story; settle it or use the operator voidLease door; fail closed');
+      const row = this.#db.prepare('SELECT state FROM stories WHERE tenant=? AND id=?').get(input.tenantId, input.storyId);
+      if (!row) throw new Error('story not found in this queue; fail closed');
+      if (String(row.state) !== 'FAILED')
+        throw new Error(`recovery is a FAILED-only door; the story is ${String(row.state)}; fail closed`);
+      const changes = this.#db.prepare("UPDATE stories SET state='READY',output_hash=NULL WHERE tenant=? AND id=? AND state='FAILED'")
+        .run(input.tenantId, input.storyId).changes;
+      if (changes !== 1) throw new Error('the recovery update did not apply; fail closed');
+      return 'READY' as const;
+    });
+  }
   /** Called by the trusted controller only AFTER its provider call has actually settled. */
   settle(lease:StoryLease,result:{outcome:'DRAFT'|'FAILED';outputHash?:string;providerSettled:true}):void {
     if(!lease||![lease.token,lease.tenantId,lease.storyId,lease.ownerId,lease.roleId].every(id)

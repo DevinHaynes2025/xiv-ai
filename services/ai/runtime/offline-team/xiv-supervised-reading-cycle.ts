@@ -288,15 +288,22 @@ export async function runSupervisedReadingCycle(
       && submission !== null && typeof submission === 'object' && !Array.isArray(submission)) {
       const s = submission as Readonly<Record<string, unknown>>;
       if (typeof s.tenantId === 'string' && typeof s.documentId === 'string') {
-        // The story id is only derivable from a successful prepare; on a
-        // pre-prepare refusal there is no story to inspect (state null).
+        // The story ids are only derivable from a successful prepare; on
+        // a pre-prepare refusal there is no story to inspect (state
+        // null). 12D-288 paydown: the MEASURED state must not mask a
+        // durable failure behind an earlier chunk's settled state — a
+        // FAILED story anywhere in this document's stories IS reported
+        // (modelCalls 1), because the provider call happened and the
+        // failure is durable; otherwise the first inspectable state is
+        // reported.
+        const states: string[] = [];
         for (const st of storyIdsFor(queue, s.tenantId, s.documentId)) {
           const story = queue.inspectStory(s.tenantId, st);
-          if (story !== null) {
-            storyState = String(story.state);
-            if (storyState === 'FAILED') modelCalls = 1;
-            break;
-          }
+          if (story !== null) states.push(String(story.state));
+        }
+        if (states.length > 0) {
+          storyState = states.find((state) => state === 'FAILED') ?? states[0]!;
+          if (storyState === 'FAILED') modelCalls = 1;
         }
       }
     }
