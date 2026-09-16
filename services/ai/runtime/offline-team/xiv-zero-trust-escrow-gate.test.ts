@@ -195,6 +195,9 @@ test('12d-266: forged states refuse the validator — honest flags and money fac
     { ...base, policyVersion: '12d-999-v1' },
     { ...base, guardrails: { ...ESCROW_GATE_GUARDRAILS } }, // the frozen guardrails, by identity
     { ...base, phase: 'RELEASED', approvalsRecorded: 0 }, // a release without a recorded approval
+    { ...base, phase: 'RELEASED', auditsPassed: 0 }, // the 12D-268 paydown: an exit with zero passed audits
+    { ...base, phase: 'REFUNDED', auditsPassed: 0 }, // — the refund half of the same gate
+    { ...base, phase: 'AUDITED', auditsPassed: 0 }, // — and the audit-passed phase itself
     { ...base, phase: 'EMPTY', track: 'USDC' }, // money facts before a lock are impossible
     { ...base, phase: 'LOCKED', track: null },
     { ...base, phase: 'LOCKED', amountMinorUnits: 1.5 },

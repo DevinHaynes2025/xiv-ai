@@ -170,6 +170,8 @@
     "typecheck:12d-92": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/local-model-collaboration-bus.ts runtime/offline-team/neural-pathway-growth-engine.ts runtime/offline-team/agent-tool-heartbeat-fabric.ts runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts runtime/offline-team/agent-tool-heartbeat-fabric.test.ts runtime/offline-team/local-model-collaboration-bus.test.ts",
     "test:12d-267": "tsx --test runtime/offline-team/xiv-custody-decision-view.test.ts",
     "typecheck:12d-267": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-custody-decision-view.ts runtime/offline-team/xiv-custody-decision-view.test.ts",
+    "test:12d-268": "tsx --test runtime/offline-team/xiv-escrow-verdict-view.test.ts",
+    "typecheck:12d-268": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-escrow-verdict-view.ts runtime/offline-team/xiv-escrow-verdict-view.test.ts runtime/offline-team/xiv-zero-trust-escrow-gate.ts runtime/offline-team/xiv-zero-trust-escrow-gate.test.ts",
     "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },
   "dependencies": {

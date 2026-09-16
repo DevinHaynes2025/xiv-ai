@@ -141,6 +141,12 @@ export function isEscrowGateState(v: unknown): v is EscrowGateState {
   // is an impossible state, not an invariant checked elsewhere (the
   // 12D-263 lesson — forged states refuse at the validator, not after it).
   if ((s.phase === 'RELEASED' || s.phase === 'REFUNDED') && s.approvalsRecorded < 1) return false;
+  // The 12D-268 paydown: a passed audit is the only door to AUDITED and to
+  // every exit — stepEscrowGate can never produce AUDITED/RELEASED/REFUNDED
+  // with zero passed audits, so a state claiming either is forged, not an
+  // invariant checked elsewhere (the same 12D-263 lesson, applied to the
+  // audit half of the gate the 12D-266 paydown covered the approval half of).
+  if ((s.phase === 'AUDITED' || s.phase === 'RELEASED' || s.phase === 'REFUNDED') && s.auditsPassed < 1) return false;
   return true;
 }
 
