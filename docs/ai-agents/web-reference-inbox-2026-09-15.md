@@ -154,6 +154,42 @@ none are invented; only `openai/gpt-oss` carried an explicit owner/repo):
 - Free-LLM (free LLM resource list)
 - open-llms (open-LLM listing)
 
+## Sixth drop, same day (self-hosted apps, open-source clients, search, NN/AGI references)
+
+From: Devin Xavier Haynes, CEO (mid-build message, 2026-09-15, with the
+"reinvent agentic / bring AGI to life" directive)
+Status: **RECORDED AS CANDIDATE REFERENCES ONLY — NOTHING FETCHED, NOTHING
+CLONED, NOTHING INGESTED.** The CEO's message asked to "clone data from
+resources"; per the standing authorization these remain REFERENCES cited
+per future story — bulk cloning third-party repositories into XIV AI OS
+is a licensing/provenance action (several are copyleft) that requires
+separate, explicit, per-repo authorization and review. Universal
+hardware compatibility ("every gpu,cpu,npu in the world") is encoded —
+if ever — via the 12D-240 declared-not-proven registry pattern; it is
+NOT claimed. AGI is NOT claimed anywhere; `billionUsersProven: false`
+and honest flags stay pinned.
+
+- https://github.com/quantumbadger/redreader (open-source Reddit client)
+- https://gist.github.com/zpangwin/8be46c8314d3288504f13863d9fbae1b (gist)
+- https://alternativeto.net/software/reddit/?license=opensource (aggregator page; tracking-free link as pasted minus query noise)
+- https://github.com/dyad-sh/dyad (local AI app builder)
+- https://selfh.st/apps/ (self-hosted app directory)
+- https://github.com/typesense (search engine)
+- https://github.com/topics/yelp-clone (topic listing)
+- https://yelp.github.io/ (Yelp open source)
+- https://github.com/tryghost/ghost (publishing platform)
+- https://github.com/CDataSoftware (vendor org)
+- https://github.com/sourcegraph (code search — tracking parameters stripped before recording)
+- https://github.com/cleancoders/agent-plugins
+- https://github.com/future-agi/future-agi
+- https://github.com/topics/agi (topic listing)
+- https://codeberg.org/AGI-Framework/AGI-Framework (on Codeberg, not GitHub)
+- https://github.com/openai (org listing — reference only; SaaS APIs need per-use authorization)
+- https://github.com/codeplea/genann (minimal neural network library, C)
+- https://github.com/Artelnics/OpenNN (neural networks, C++)
+- https://github.com/NVIDIA/cudnn-frontend (cuDNN frontend — declared-not-proven hardware direction)
+- https://github.com/onnx/onnx (open neural network exchange format — candidate interop reference for FUTURE local-model stories; no model downloaded, no key created)
+
 ## Honest usage note
 
 These are pointers for FUTURE, separately reviewed stories (e.g. citation
