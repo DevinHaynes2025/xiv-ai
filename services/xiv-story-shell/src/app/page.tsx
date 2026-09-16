@@ -17,6 +17,8 @@ import {
   buildStoryShellPacket,
   type StoryShellPacket,
 } from "../../../ai/runtime/offline-team/xiv-os-wire-contract";
+import PacketPanel from "./packet-panel";
+import IngestPanel from "./ingest-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -46,63 +48,6 @@ const refusedVm = buildStoryShellViewModel(
   JSON.parse(JSON.stringify(tamperedPacket)),
 );
 
-function PacketPanel(props: {
-  readonly label: string;
-  readonly vm: ReturnType<typeof buildStoryShellViewModel>;
-}) {
-  const { label, vm } = props;
-  if (vm.kind === "REFUSED") {
-    return (
-      <section className="rounded-lg border border-amber-500/40 bg-amber-500/5 p-5">
-        <p className="text-xs font-semibold tracking-wider text-amber-600 uppercase dark:text-amber-400">
-          {label} · REFUSED
-        </p>
-        <h2 className="mt-2 text-lg font-semibold text-amber-800 dark:text-amber-200">
-          {vm.display.headline}
-        </h2>
-        <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">
-          {vm.display.bodyText}
-        </p>
-        <p className="mt-3 font-mono text-xs break-words text-neutral-600 dark:text-neutral-400">
-          {vm.display.operatorNote}
-        </p>
-        <p className="mt-2 font-mono text-xs break-all text-neutral-500 dark:text-neutral-500">
-          reason: {vm.reason}
-        </p>
-      </section>
-    );
-  }
-  return (
-    <section className="rounded-lg border border-neutral-300 bg-neutral-100 p-5 dark:border-neutral-700 dark:bg-neutral-900">
-      <p className="text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-400">
-        {label} · VERIFIED
-      </p>
-      <h2 className="mt-2 text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-        {vm.display.headline}
-      </h2>
-      <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">
-        {vm.display.bodyText}
-      </p>
-      <dl className="mt-4 space-y-1 font-mono text-xs text-neutral-600 dark:text-neutral-400">
-        <div>
-          storyId: <span className="break-all">{vm.display.storyId}</span>
-        </div>
-        <div>
-          packetId: <span className="break-all">{vm.packet.packetId}</span>
-        </div>
-        <div>decision: {vm.display.decisionKind}</div>
-        <div>humanDecision: {vm.display.humanDecision}</div>
-      </dl>
-      <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">
-        Deciding over: {vm.display.decidingOver}
-      </p>
-      <p className="mt-3 font-mono text-xs break-words text-neutral-600 dark:text-neutral-400">
-        {vm.display.operatorNote}
-      </p>
-    </section>
-  );
-}
-
 export default function StoryShellPage() {
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
@@ -116,13 +61,16 @@ export default function StoryShellPage() {
         <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">
           Every packet on this page passed (or failed) full wire verification
           before rendering: digest re-derivation, exact keys, pinned
-          guardrails. A tampered packet renders a refusal — never a partial
-          render. There is no approve control on this page by construction:
+          guardrails. Ingest your own packet below, or study the deterministic
+          examples. A tampered packet renders a refusal — never a partial
+          render, and a refusal's content never leaves the verifying process.
+          There is no approve control on this page by construction:
           decisions happen in the custody stack, never through the shell.
         </p>
       </header>
 
       <div className="mt-8 space-y-6">
+        <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />
       </div>
