@@ -104,7 +104,10 @@ export const DOCUMENT_INGEST_GUARDRAILS = Object.freeze({
 
 const INPUT_KEYS = ['tenantId', 'documentId', 'title', 'bodyText'] as const;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$/;
-const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16})/;
+// Additively exported for 12D-280: the first reader re-applies THIS
+// regex to the model's draft (a model must never launder secrets into
+// queue material either).
+export const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16})/;
 const OBJECTIVE_BUDGET = 3000;
 const ROLE_ID = 'memory_curator';
 
@@ -199,7 +202,10 @@ export function prepareDocumentStories(raw: unknown): DocumentIngestResult {
  * the budget refuses — the source must be re-chunked deliberately, never
  * silently truncated.
  */
-function chunkDocument(bodyText: string): readonly string[] {
+// Additively exported for 12D-280: the first reader re-derives the chunk
+// text with THIS exact function so the prompt carries precisely the
+// re-derived chunk — never a separately-sliced copy.
+export function chunkDocument(bodyText: string): readonly string[] {
   const paragraphs = bodyText.split(/\n\s*\n/).map((p) => p.trim()).filter((p) => p.length > 0);
   if (paragraphs.length === 0) throw new Error('the document has no paragraph content; fail closed');
   for (const p of paragraphs) {
