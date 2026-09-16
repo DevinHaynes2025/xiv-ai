@@ -25,6 +25,7 @@ import EscrowPanel from "./escrow-panel";
 import PathwayApprovalPanel from "./pathway-panel";
 import PathwayCensusPanel from "./census-panel";
 import CustodyJournalCensusPanel from "./journal-census-panel";
+import QueueCensusPanel from "./queue-census-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -82,6 +83,7 @@ export default function StoryShellPage() {
         <PathwayApprovalPanel />
         <PathwayCensusPanel />
         <CustodyJournalCensusPanel />
+        <QueueCensusPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />
