@@ -184,6 +184,8 @@
     "typecheck:12d-273": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-queue-census-view.ts runtime/offline-team/xiv-queue-census-view.test.ts runtime/offline-team/offline-story-queue.ts",
     "test:12d-274": "tsx --test runtime/offline-team/xiv-document-ingest.test.ts",
     "typecheck:12d-274": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-document-ingest.ts runtime/offline-team/xiv-document-ingest.test.ts runtime/offline-team/offline-story-queue.ts",
+    "test:12d-275": "tsx --test runtime/offline-team/xiv-reading-admission.test.ts",
+    "typecheck:12d-275": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-reading-admission.ts runtime/offline-team/xiv-reading-admission.test.ts runtime/offline-team/offline-story-queue.ts runtime/offline-team/xiv-document-ingest.ts",
     "brain:meeting": "tsx runtime/offline-team/agent-tool-heartbeat-fabric.cli.ts"
   },
   "dependencies": {
