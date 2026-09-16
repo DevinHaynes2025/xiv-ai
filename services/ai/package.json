@@ -153,6 +153,8 @@
     "typecheck:12d-263": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-iris-unlock-gate.ts runtime/offline-team/xiv-iris-unlock-gate.test.ts",
     "test:12d-264": "tsx --test runtime/offline-team/xiv-pathway-ledger.test.ts",
     "typecheck:12d-264": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-pathway-ledger.ts runtime/offline-team/xiv-pathway-ledger.test.ts",
+    "test:12d-266": "tsx --test runtime/offline-team/xiv-zero-trust-escrow-gate.test.ts",
+    "typecheck:12d-266": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-zero-trust-escrow-gate.ts runtime/offline-team/xiv-zero-trust-escrow-gate.test.ts",
     "test:pathway-evidence-bridge": "tsx --test runtime/offline-team/pathway-evidence-bridge.test.ts",
     "test:device-fleet-enrollment": "tsx --test runtime/offline-team/device-fleet-enrollment.test.ts",
     "typecheck:12d-99": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/supervised-local-worker.ts runtime/offline-team/supervised-local-worker.cli.ts runtime/offline-team/supervised-local-worker.test.ts",
