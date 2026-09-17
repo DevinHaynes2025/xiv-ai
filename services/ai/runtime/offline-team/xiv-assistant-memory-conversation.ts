@@ -85,6 +85,44 @@ export const ASSISTANT_MEMORY_CONVERSATION_GUARDRAILS = Object.freeze({
 const INPUT_KEYS = ['tenantId', 'conversationId', 'userMessage', 'priorTurns', 'memoryPacket'] as const;
 const PAIR_KEYS = ['userMessage', 'assistantReply'] as const;
 
+// 12D-311 (additive export, the established discipline): the history
+// validation is EXTRACTED verbatim from this module's prepare so the
+// cited conversation contract reuses the REAL 12D-302/308 history
+// discipline — never a reimplementation. The 12D-308 behavior is
+// unchanged (the refusal messages are byte-identical; the suite
+// re-verifies).
+export type PriorTurnPairsResult =
+  | Readonly<{ ok: true; pairs: readonly { userMessage: string; assistantReply: string }[] }>
+  | Readonly<{ ok: false; reason: string }>;
+
+/**
+ * The 12D-302 history discipline: at most MAX_PRIOR_TURNS pairs, each
+ * exactly {userMessage, assistantReply}, bounded, and a secret-shaped
+ * string ANYWHERE refuses. PURE; never throws.
+ */
+export function validatePriorTurnPairs(value: unknown): PriorTurnPairsResult {
+  if (!Array.isArray(value) || value.length > MAX_PRIOR_TURNS)
+    return { ok: false, reason: `priorTurns must be an array of at most ${MAX_PRIOR_TURNS} pairs; fail closed` };
+  const pairs: { userMessage: string; assistantReply: string }[] = [];
+  for (const t of value) {
+    if (t === null || typeof t !== 'object' || Array.isArray(t))
+      return { ok: false, reason: 'every prior turn must be an object; fail closed' };
+    const tk = Object.keys(t as Record<string, unknown>);
+    if (tk.length !== PAIR_KEYS.length || !PAIR_KEYS.every((k, i) => tk[i] === k))
+      return { ok: false, reason: 'every prior turn must have exactly the keys [userMessage, assistantReply] in order; fail closed' };
+    const tp = t as Readonly<Record<string, unknown>>;
+    if (typeof tp.userMessage !== 'string' || tp.userMessage.length < 1 || tp.userMessage.length > MAX_USER_MESSAGE_CHARS)
+      return { ok: false, reason: `every prior userMessage must be a bounded string (1..${MAX_USER_MESSAGE_CHARS.toLocaleString('en-US')} chars); fail closed` };
+    if (typeof tp.assistantReply !== 'string' || tp.assistantReply.length < 1 || tp.assistantReply.length > MAX_ASSISTANT_REPLY_CHARS)
+      return { ok: false, reason: `every prior assistantReply must be a bounded string (1..${MAX_ASSISTANT_REPLY_CHARS.toLocaleString('en-US')} chars); fail closed` };
+    // HISTORY RESCREEN — a secret-shaped string ANYWHERE refuses pre-call.
+    if (SECRET_CONTENT_RE.test(tp.userMessage) || SECRET_CONTENT_RE.test(tp.assistantReply))
+      return { ok: false, reason: 'a prior turn is secret-shaped (credential/key pattern); secrets never go to ANY model; fail closed' };
+    pairs.push({ userMessage: tp.userMessage, assistantReply: tp.assistantReply });
+  }
+  return { ok: true, pairs };
+}
+
 /**
  * The composed-prompt ceiling, DERIVED from the REAL exported constants
  * (never guessed): the 12D-302 conversation ceiling (persona + 6 ×
@@ -177,25 +215,9 @@ export function prepareAssistantMemoryConversationTurn(
       return refuse(`conversationId must be a bounded string (1..${MAX_CONVERSATION_ID_CHARS} chars); fail closed`);
     if (typeof p.userMessage !== 'string' || p.userMessage.length < 1 || p.userMessage.length > MAX_USER_MESSAGE_CHARS)
       return refuse(`userMessage must be a bounded string (1..${MAX_USER_MESSAGE_CHARS.toLocaleString('en-US')} chars); fail closed`);
-    if (!Array.isArray(p.priorTurns) || p.priorTurns.length > MAX_PRIOR_TURNS)
-      return refuse(`priorTurns must be an array of at most ${MAX_PRIOR_TURNS} pairs; fail closed`);
-    const pairs: { userMessage: string; assistantReply: string }[] = [];
-    for (const t of p.priorTurns) {
-      if (t === null || typeof t !== 'object' || Array.isArray(t))
-        return refuse('every prior turn must be an object; fail closed');
-      const tk = Object.keys(t as Record<string, unknown>);
-      if (tk.length !== PAIR_KEYS.length || !PAIR_KEYS.every((k, i) => tk[i] === k))
-        return refuse('every prior turn must have exactly the keys [userMessage, assistantReply] in order; fail closed');
-      const tp = t as Readonly<Record<string, unknown>>;
-      if (typeof tp.userMessage !== 'string' || tp.userMessage.length < 1 || tp.userMessage.length > MAX_USER_MESSAGE_CHARS)
-        return refuse(`every prior userMessage must be a bounded string (1..${MAX_USER_MESSAGE_CHARS.toLocaleString('en-US')} chars); fail closed`);
-      if (typeof tp.assistantReply !== 'string' || tp.assistantReply.length < 1 || tp.assistantReply.length > MAX_ASSISTANT_REPLY_CHARS)
-        return refuse(`every prior assistantReply must be a bounded string (1..${MAX_ASSISTANT_REPLY_CHARS.toLocaleString('en-US')} chars); fail closed`);
-      // HISTORY RESCREEN — a secret-shaped string ANYWHERE refuses pre-call.
-      if (SECRET_CONTENT_RE.test(tp.userMessage) || SECRET_CONTENT_RE.test(tp.assistantReply))
-        return refuse('a prior turn is secret-shaped (credential/key pattern); secrets never go to ANY model; fail closed');
-      pairs.push({ userMessage: tp.userMessage, assistantReply: tp.assistantReply });
-    }
+    const pairsResult = validatePriorTurnPairs(p.priorTurns);
+    if (!pairsResult.ok) return refuse(pairsResult.reason);
+    const pairs = pairsResult.pairs;
     // SECRET SCREENING — the user message must be secret-free before ANY model call.
     if (SECRET_CONTENT_RE.test(p.userMessage))
       return refuse('the user message is secret-shaped (credential/key pattern); secrets never go to ANY model; fail closed');
