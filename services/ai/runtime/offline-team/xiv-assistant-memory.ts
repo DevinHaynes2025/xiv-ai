@@ -30,7 +30,6 @@
 //
 // PURE of wall-clock and randomness: the packet carries no timestamp and
 // two reads over the same queue state are byte-identical. remoteCalls 0.
-import { createHash } from 'node:crypto';
 import { OfflineStoryQueue } from './offline-story-queue';
 import { SECRET_CONTENT_RE } from './xiv-document-ingest';
 
@@ -69,13 +68,6 @@ const REQUEST_KEYS = ['tenantId'] as const;
 const SHA_RE = /^[a-f0-9]{64}$/;
 const TENANT_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$/;
 
-export interface AssistantMemoryEntry extends Readonly<{
-  storyId: string;
-  outputHash: string;
-  objective: string;
-  objectiveTruncated: boolean;
-}> {}
-
 export interface AssistantMemoryPacket extends Readonly<{
   kind: 'ASSISTANT_MEMORY_READ';
   policyVersion: string;
@@ -93,13 +85,12 @@ export interface AssistantMemoryPacket extends Readonly<{
   humanDecision: 'REQUIRED';
 }> {}
 
-/** sha256 over the canonical JSON of the entries — the caller re-derives this
- *  before trusting the memory (the 12D-301 discipline: digests are never trusted). */
-export function deriveAssistantMemoryDigest(entries: readonly AssistantMemoryEntry[]): string {
-  return createHash('sha256').update(JSON.stringify(entries.map((e) => ({
-    storyId: e.storyId, outputHash: e.outputHash, objective: e.objective, objectiveTruncated: e.objectiveTruncated,
-  })))).digest('hex');
-}
+// 12D-306: the entry shape and the digest live in the PURE digest core
+// (no queue import) so the story shell's view model can re-derive the
+// digest without value-importing this queue-touching door. Both names
+// are re-exported here — the 12D-305 public surface is unchanged.
+import { deriveAssistantMemoryDigest, type AssistantMemoryEntry } from './xiv-assistant-memory-digest';
+export { deriveAssistantMemoryDigest, type AssistantMemoryEntry } from './xiv-assistant-memory-digest';
 
 /**
  * The only door from a trusted queue to the assistant's semantic memory.

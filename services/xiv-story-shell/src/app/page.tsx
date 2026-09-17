@@ -29,6 +29,7 @@ import QueueCensusPanel from "./queue-census-panel";
 import DocumentIngestPanel from "./document-ingest-panel";
 import ProvenancePanel from "./provenance-panel";
 import PathwayEvidencePanel from "./pathway-evidence-panel";
+import AssistantMemoryPanel from "./assistant-memory-panel";
 import RegisterCensusPanel from "./register-census-panel";
 import DatasetMetadataPanel from "./dataset-metadata-panel";
 import DatasetCsvPanel from "./dataset-csv-panel";
@@ -96,6 +97,7 @@ export default function StoryShellPage() {
         <DocumentIngestPanel />
         <ProvenancePanel />
         <PathwayEvidencePanel />
+        <AssistantMemoryPanel />
         <RegisterCensusPanel />
         <DatasetMetadataPanel />
         <DatasetCsvPanel />
