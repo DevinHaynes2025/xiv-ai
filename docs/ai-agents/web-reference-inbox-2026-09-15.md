@@ -198,3 +198,32 @@ legacy-archive directive note). Browsing/fetching any of them is a per-use
 action I have not taken; when a story needs one, it is cited in that story's
 handoff. Nothing here was scanned, ingested, or "trained on" — no such
 capability is claimed.
+
+## Fourth drop (2026-09-17, CEO mid-turn message) — search/agentic-search references
+
+Recorded as REFERENCES ONLY (per-use supervised reading is a separate,
+CEO-gated action; the standing directive-#4 pattern applies — each source
+goes through the REAL register→ingest→admission→review doors):
+
+- https://github.com/typesense (open-source search engine)
+- https://github.com/manticoresoftware/manticoresearch (open-source search)
+- https://github.com/mem0ai/mem0 (memory layer — already read in directive #4)
+- https://github.com/volcengine/OpenViking (already read in directive #4)
+- https://github.com/microsoftedge/msedge (org)
+- https://github.com/MicrosoftDocs/edge-developer (docs)
+- https://github.com/AlexLinov/Edge-Dumper (browser-session artifact dumper — reference only)
+- https://github.com/microsoft/opensource.microsoft.com (Microsoft open-source portal repo)
+- https://github.com/mem-memov/bing (mem-memov/bing README)
+- https://github.com/perplexityai (org — reference only; SaaS APIs need per-use authorization)
+- https://github.com/webkit/webkit (WebKit browser engine)
+
+CEO vision named with this batch (recorded in session memory as
+VISION — honest-scope boundaries apply): combine search engines into an
+AI-agentic search capability — "no search engine will be in xiv ai os
+just intelligence and gathering"; the digital twin gathers and returns
+text/email/presentations/videos/PDFs; privacy-first (local vault,
+nothing kept, human-vs-AI-agent distinction); in-house offline "VPM";
+billions of users / trillions of agents; quantum chip. Nothing built;
+the privacy pillar stays DATA-HANDLING (local vault, collectsNothing) —
+never detection evasion; network-layer anonymization tooling is outside
+the local plane and needs per-use authorization.
