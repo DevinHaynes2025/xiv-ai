@@ -68,6 +68,7 @@ export const AUTHORIZED_NETWORK_SURFACES: readonly { file: string; reason: strin
   { file: 'ollama-meeting-runner.ts', reason: 'loopback-only Ollama meeting runner (127.0.0.1:11434)' },
   { file: 'supervised-local-worker.ts', reason: 'loopback-only Ollama runtime bridge (127.0.0.1:11434)' },
   { file: 'supervisor-cli.ts', reason: 'operator-invoked CLI feeding the loopback-bound model discovery surface', viaLoopbackModules: ['model-discovery.ts'] },
+  { file: 'xiv-reading-loopback-caller.ts', reason: 'the reading chain loopback-only Ollama caller builder (pinned 127.0.0.1:11434, moved out of the 12D-284 CLI in 12D-289 to satisfy guardrails-no-network)' },
 ]);
 
 /** The audit module itself carries network-pattern TEXT (regex literals, authorized-list entries), not calls. */

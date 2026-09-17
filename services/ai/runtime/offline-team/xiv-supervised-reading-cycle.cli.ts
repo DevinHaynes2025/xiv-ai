@@ -33,6 +33,12 @@ import {
   runSupervisedReadingCycle,
   SUPERVISED_READING_CYCLE_POLICY,
 } from './xiv-supervised-reading-cycle';
+// 12D-289: the loopback caller lives in its OWN module (authorized in
+// the 12D-113 audit's AUTHORIZED_NETWORK_SURFACES) — this guardrails
+// module carries NO network primitive (guardrails-no-network).
+import { buildLoopbackCaller } from './xiv-reading-loopback-caller';
+
+export { buildLoopbackCaller, READING_LOOPBACK_CALLER_POLICY } from './xiv-reading-loopback-caller';
 
 export const SUPERVISED_READING_CYCLE_CLI_GUARDRAILS = Object.freeze({
   localIoOnly: true, // the body file, the register file, the queue file
@@ -130,25 +136,11 @@ export class FileReadingRegisterStore {
 }
 
 /**
- * The loopback caller: the ONLY network-adjacent code in the whole
- * rung, pinned to the 12D-280 policy's loopback endpoint and model
- * name. remoteCalls stay 0 — loopback is not remote.
+ * The loopback caller: moved to its own module in 12D-289 (the 12D-113
+ * audit's guardrails-no-network invariant) — re-exported here for the
+ * operator's import stability. Pinned to the 12D-280 policy's loopback
+ * endpoint and model name; remoteCalls stay 0 — loopback is not remote.
  */
-export function buildLoopbackCaller(): (prompt: string) => Promise<{ model: string; response: string }> {
-  return async (prompt: string) => {
-    const res = await fetch(`http://${OLLAMA_LOOPBACK}/api/generate`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ model: OLLAMA_MODEL, prompt, stream: false, options: { temperature: 0 } }),
-    });
-    if (!res.ok) throw new Error(`ollama returned HTTP ${res.status}`);
-    const data = JSON.parse(await res.text()) as { response?: string };
-    return { model: OLLAMA_MODEL, response: String(data.response ?? '') };
-  };
-}
-
-const OLLAMA_LOOPBACK = '127.0.0.1:11434';
-const OLLAMA_MODEL = 'qwen2.5-coder:7b';
 
 /** The command body: parse → local read → REAL cycle → verbatim packet. */
 export async function runSupervisedCycleCommand(argv: readonly string[]): Promise<{ refused: boolean }> {
