@@ -32,6 +32,7 @@ import RegisterCensusPanel from "./register-census-panel";
 import DatasetMetadataPanel from "./dataset-metadata-panel";
 import DatasetCsvPanel from "./dataset-csv-panel";
 import DraftReceiptPanel from "./draft-receipt-panel";
+import AssistantTurnPanel from "./assistant-turn-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -96,6 +97,7 @@ export default function StoryShellPage() {
         <DatasetMetadataPanel />
         <DatasetCsvPanel />
         <DraftReceiptPanel />
+        <AssistantTurnPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />
