@@ -30,6 +30,7 @@ import DocumentIngestPanel from "./document-ingest-panel";
 import ProvenancePanel from "./provenance-panel";
 import RegisterCensusPanel from "./register-census-panel";
 import DatasetMetadataPanel from "./dataset-metadata-panel";
+import DatasetCsvPanel from "./dataset-csv-panel";
 import DraftReceiptPanel from "./draft-receipt-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
@@ -93,6 +94,7 @@ export default function StoryShellPage() {
         <ProvenancePanel />
         <RegisterCensusPanel />
         <DatasetMetadataPanel />
+        <DatasetCsvPanel />
         <DraftReceiptPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
