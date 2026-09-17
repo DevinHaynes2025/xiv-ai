@@ -28,6 +28,7 @@ import CustodyJournalCensusPanel from "./journal-census-panel";
 import QueueCensusPanel from "./queue-census-panel";
 import DocumentIngestPanel from "./document-ingest-panel";
 import ProvenancePanel from "./provenance-panel";
+import RegisterCensusPanel from "./register-census-panel";
 import DraftReceiptPanel from "./draft-receipt-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
@@ -89,6 +90,7 @@ export default function StoryShellPage() {
         <QueueCensusPanel />
         <DocumentIngestPanel />
         <ProvenancePanel />
+        <RegisterCensusPanel />
         <DraftReceiptPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
