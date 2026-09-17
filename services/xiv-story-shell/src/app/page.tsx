@@ -40,6 +40,7 @@ import AssistantMemoryConversationPanel from "./assistant-memory-conversation-pa
 import AssistantMemoryCitedTurnPanel from "./assistant-memory-cited-turn-panel";
 import AssistantMemoryCitedConversationPanel from "./assistant-memory-cited-conversation-panel";
 import CitationVerifyPanel from "./citation-verify-panel";
+import ConversationSummaryPanel from "./conversation-summary-panel";
 import SourceStalenessPanel from "./source-staleness-panel";
 import StaleReingestPanel from "./stale-reingest-panel";
 
@@ -114,6 +115,7 @@ export default function StoryShellPage() {
         <AssistantMemoryCitedTurnPanel />
         <AssistantMemoryCitedConversationPanel />
         <CitationVerifyPanel />
+        <ConversationSummaryPanel />
         <SourceStalenessPanel />
         <StaleReingestPanel />
         <IngestPanel />
