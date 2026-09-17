@@ -37,6 +37,8 @@ import DraftReceiptPanel from "./draft-receipt-panel";
 import AssistantTurnPanel from "./assistant-turn-panel";
 import AssistantConversationPanel from "./assistant-conversation-panel";
 import AssistantMemoryConversationPanel from "./assistant-memory-conversation-panel";
+import AssistantMemoryCitedTurnPanel from "./assistant-memory-cited-turn-panel";
+import AssistantMemoryCitedConversationPanel from "./assistant-memory-cited-conversation-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -106,6 +108,8 @@ export default function StoryShellPage() {
         <AssistantTurnPanel />
         <AssistantConversationPanel />
         <AssistantMemoryConversationPanel />
+        <AssistantMemoryCitedTurnPanel />
+        <AssistantMemoryCitedConversationPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />
