@@ -255,7 +255,9 @@
     "test:12d-305": "tsx --test runtime/offline-team/xiv-assistant-memory.test.ts",
     "typecheck:12d-305": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory.ts runtime/offline-team/xiv-assistant-memory.test.ts",
     "test:12d-306": "tsx --test runtime/offline-team/xiv-assistant-memory-view-model.test.ts",
-    "typecheck:12d-306": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory-view-model.ts runtime/offline-team/xiv-assistant-memory-view-model.test.ts"
+    "typecheck:12d-306": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory-view-model.ts runtime/offline-team/xiv-assistant-memory-view-model.test.ts",
+    "test:12d-307": "tsx --test runtime/offline-team/xiv-assistant-memory-turn.test.ts",
+    "typecheck:12d-307": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory-turn.ts runtime/offline-team/xiv-assistant-memory-turn.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
