@@ -239,7 +239,9 @@
     "test:12d-297": "tsx --test runtime/offline-team/xiv-dataset-metadata-view-model.test.ts",
     "typecheck:12d-297": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-dataset-metadata-view-model.ts runtime/offline-team/xiv-dataset-metadata-view-model.test.ts",
     "test:12d-298": "tsx --test runtime/offline-team/xiv-dataset-csv-view-model.test.ts",
-    "typecheck:12d-298": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-dataset-csv-view-model.ts runtime/offline-team/xiv-dataset-csv-view-model.test.ts"
+    "typecheck:12d-298": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-dataset-csv-view-model.ts runtime/offline-team/xiv-dataset-csv-view-model.test.ts",
+    "test:12d-299": "tsx --test runtime/offline-team/xiv-dataset-census-reading.test.ts",
+    "typecheck:12d-299": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-dataset-census-reading.ts runtime/offline-team/xiv-dataset-census-reading.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
