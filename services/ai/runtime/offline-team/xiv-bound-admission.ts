@@ -136,8 +136,17 @@ export function admitBoundReading(
   );
   if (binding.kind !== 'READING_BOUND_TO_SOURCE' || binding.policyVersion !== READING_BINDING_POLICY.policyVersion)
     throw new Error('the binding receipt is not 12d-277 material; fail closed');
-  // THE REAL QUEUE'S OWN CONTRACT does the admission.
-  const admission = admitReadingStories(queue, prepared);
+  // THE REAL QUEUE'S OWN CONTRACT does the admission — and since the
+  // 12D-295 ADOPTION (the CEO's 2026-09-16 decision) the underlying
+  // 12D-275 door itself REQUIRES provenance; this bridge supplies its
+  // re-derived binding context. The binding here was already re-derived
+  // from the register chain above; the door re-derives it again (pure,
+  // deterministic, chain-walk only) — defense-in-depth, one truth.
+  const admission = admitReadingStories(queue, prepared, {
+    registerStore,
+    registerGenesis,
+    sourceId: b.sourceId,
+  });
   return Object.freeze({
     kind: 'BOUND_READING_ADMITTED' as const,
     policyVersion: BOUND_ADMISSION_POLICY.policyVersion,

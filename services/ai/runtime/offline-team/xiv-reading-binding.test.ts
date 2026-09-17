@@ -152,12 +152,21 @@ test('12d-277: END-TO-END — register → bind → ingest → REAL admission, p
   const dir = mkdtempSync(join(tmpdir(), 'xiv-reading-binding-'));
   const q = new OfflineStoryQueue(join(dir, 'q.sqlite'));
   try {
-    const admission = admitReadingStories(q, prepared);
+    // 12D-295 ADOPTION: the door now REQUIRES the provenance — the same
+    // register store the binding was derived from travels with the call,
+    // and the door re-derives its own receipt from the chain.
+    const admission = admitReadingStories(q, prepared, {
+      registerStore: store,
+      registerGenesis: GENESIS,
+      sourceId: 'psychopy-repo',
+    });
     assert.equal(admission.admission.inserted, prepared.chunkCount);
     assert.equal(admission.census.liveAgentCount, null);
     // The binding receipt is the provenance record the operator keeps
     // alongside the admission — together they trace the reading from a
-    // registered public source to claimable queue rows.
+    // registered public source to claimable queue rows. The receipt the
+    // DOOR re-derived is byte-identical to the one derived above.
+    assert.deepEqual(admission.binding, binding);
     assert.equal(binding.sourceEntryDigestSha256.length, 64);
     assert.equal(admission.admission.prepared, prepared.chunkCount);
   } finally {
