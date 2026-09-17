@@ -267,6 +267,8 @@ offline-brain-contracts:
     - npm run test:12d-321
     - npm run typecheck:12d-322
     - npm run test:12d-322
+    - npm run typecheck:12d-323
+    - npm run test:12d-323
 
 ai-service-typecheck:
   stage: validate
