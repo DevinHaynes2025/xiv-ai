@@ -40,6 +40,7 @@ import AssistantMemoryConversationPanel from "./assistant-memory-conversation-pa
 import AssistantMemoryCitedTurnPanel from "./assistant-memory-cited-turn-panel";
 import AssistantMemoryCitedConversationPanel from "./assistant-memory-cited-conversation-panel";
 import CitationVerifyPanel from "./citation-verify-panel";
+import SourceStalenessPanel from "./source-staleness-panel";
 
 // Deterministic example fixtures — fixed generatedAtMs, no Date.now(), no
 // randomness. These are PROTOTYPE examples, never real decisions.
@@ -112,6 +113,7 @@ export default function StoryShellPage() {
         <AssistantMemoryCitedTurnPanel />
         <AssistantMemoryCitedConversationPanel />
         <CitationVerifyPanel />
+        <SourceStalenessPanel />
         <IngestPanel />
         <PacketPanel label="Example A — intact packet" vm={verifiedVm} />
         <PacketPanel label="Example B — tampered packet" vm={refusedVm} />

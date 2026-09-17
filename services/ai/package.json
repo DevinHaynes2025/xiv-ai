@@ -265,7 +265,9 @@
     "test:12d-311": "tsx --test runtime/offline-team/xiv-assistant-memory-cited-conversation.test.ts runtime/offline-team/xiv-assistant-memory-cited-conversation-view-model.test.ts",
     "typecheck:12d-311": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory-cited-conversation.ts runtime/offline-team/xiv-assistant-memory-cited-conversation.test.ts runtime/offline-team/xiv-assistant-memory-cited-conversation-view-model.ts runtime/offline-team/xiv-assistant-memory-cited-conversation-view-model.test.ts",
     "test:12d-314": "tsx --test runtime/offline-team/xiv-citation-verify-card.test.ts runtime/offline-team/xiv-citation-verify-card-view-model.test.ts",
-    "typecheck:12d-314": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-citation-verify-card.ts runtime/offline-team/xiv-citation-verify-card.test.ts runtime/offline-team/xiv-citation-verify-card-view-model.ts runtime/offline-team/xiv-citation-verify-card-view-model.test.ts"
+    "typecheck:12d-314": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-citation-verify-card.ts runtime/offline-team/xiv-citation-verify-card.test.ts runtime/offline-team/xiv-citation-verify-card-view-model.ts runtime/offline-team/xiv-citation-verify-card-view-model.test.ts",
+    "test:12d-315": "tsx --test runtime/offline-team/xiv-source-staleness-card.test.ts runtime/offline-team/xiv-source-staleness-card-view-model.test.ts",
+    "typecheck:12d-315": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-source-staleness-card.ts runtime/offline-team/xiv-source-staleness-card.test.ts runtime/offline-team/xiv-source-staleness-card-view-model.ts runtime/offline-team/xiv-source-staleness-card-view-model.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
