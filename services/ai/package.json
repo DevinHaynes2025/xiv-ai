@@ -275,7 +275,9 @@
     "test:12d-320": "tsx --test runtime/offline-team/xiv-conversation-summary-card.test.ts runtime/offline-team/xiv-conversation-summary-card-view-model.test.ts",
     "typecheck:12d-320": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-conversation-summary-card.ts runtime/offline-team/xiv-conversation-summary-card.test.ts runtime/offline-team/xiv-conversation-summary-card-view-model.ts runtime/offline-team/xiv-conversation-summary-card-view-model.test.ts",
     "test:12d-321": "tsx --test runtime/offline-team/xiv-stale-reingest-flow.cli.test.ts",
-    "typecheck:12d-321": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-stale-reingest-flow.cli.ts runtime/offline-team/xiv-stale-reingest-flow.cli.test.ts"
+    "typecheck:12d-321": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-stale-reingest-flow.cli.ts runtime/offline-team/xiv-stale-reingest-flow.cli.test.ts",
+    "test:12d-322": "tsx --test runtime/offline-team/xiv-review-slate.cli.test.ts",
+    "typecheck:12d-322": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-review-slate.cli.ts runtime/offline-team/xiv-review-slate.cli.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
