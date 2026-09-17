@@ -35,6 +35,7 @@ import {
   adoptCellPlacementOperatively, bindEventPlaneToAdoptedCells,
   cellPlanDigestOf, CELL_PLACEMENT_ADAPTER_GUARDRAILS,
 } from './cell-placement-adapter';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 import { eventPlanePlanDigestOf } from './event-plane-adapter';
 
 // ── execution-bridge fixtures (12D-130/131 templates) ────────────────────────────
@@ -47,6 +48,22 @@ const ADOPT_RECEIPT = 'd'.repeat(64);
 const INSTR_RECEIPT = 'e'.repeat(64);
 const REVISION = 'a'.repeat(40);
 const EPOCH_PLACE = 'local-sqlite-pilot-2026-09';
+
+/** 12D-290 paydown: a FRESH custody registry per fixture, both receipts
+ * registered for their REAL purposes (the 12D-235 discipline) — the
+ * bridges consume both receipts exactly once at issue time. */
+const mkScalingCustody = (): OperatorCustodyRegistry => {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: PLAN_RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  c.register({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  return c;
+};
+const mkFailoverCustody = (): OperatorCustodyRegistry => {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: PLAN_RECEIPT, purpose: FAILOVER_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  c.register({ receiptSha256: FAIL_GRANT, purpose: FAILOVER_EXECUTION_POLICY.executionToolId, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  return c;
+};
 
 const mkScalingEvidence = (over: {
   databaseId?: string; observedAtMs?: number; rowCount?: number; growthRowsPerDay?: number;
@@ -233,12 +250,14 @@ const mkChain = (
       decisionRecord: record as ScalingDecisionRecord,
       decisionProvenance: provenance as ScalingPlanProvenance,
       executionGrant: grant,
+      custody: mkScalingCustody(),
       identity: scalingIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
     })
     : issueFailoverExecutionInstruction({
       decisionRecord: record as FailoverDecisionRecord,
       decisionProvenance: provenance as FailoverPlanProvenance,
       executionGrant: grant,
+      custody: mkFailoverCustody(),
       identity: failoverIdentity(), nowMs: NOW + 120_000, timeLimitMs: 300_000,
     });
   const cellPlan = multiCellPlan();

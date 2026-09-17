@@ -19,6 +19,7 @@ import {
   type FailoverPlanProvenance,
 } from './measured-regional-failover';
 import { auditTrail, type AgentIdentity, type DecisionSafetyWorkflow } from './agent-decision-safety-workflow';
+import { OperatorCustodyRegistry } from './operator-custody-registry';
 
 const sha256 = (s: string): string => createHash('sha256').update(s, 'utf8').digest('hex');
 const NOW = 1_757_700_000_000;
@@ -26,6 +27,22 @@ const RECEIPT = sha256('plan-approval');
 const GRANT = sha256('execution-grant');
 const TENANT = 'tenant.alpha';
 const UNIVERSE = 'universe.alpha-main';
+
+/** 12D-290 paydown: a FRESH custody registry per fixture, both receipts
+ * registered for their REAL purposes (the 12D-235 discipline) — the
+ * bridges consume both receipts exactly once at issue time. */
+const mkScalingCustody = (): OperatorCustodyRegistry => {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: RECEIPT, purpose: SCALING_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  c.register({ receiptSha256: GRANT, purpose: SCALING_EXECUTION_POLICY.executionToolId, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  return c;
+};
+const mkFailoverCustody = (): OperatorCustodyRegistry => {
+  const c = new OperatorCustodyRegistry('custody-seed-123456789');
+  c.register({ receiptSha256: RECEIPT, purpose: FAILOVER_EXECUTION_POLICY.planApprovalPurpose, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  c.register({ receiptSha256: GRANT, purpose: FAILOVER_EXECUTION_POLICY.executionToolId, registeredBy: 'ceo', issuedAtMs: NOW, registeredAtMs: NOW });
+  return c;
+};
 
 // ---- scaling fixtures (the 12D-130 test's discipline) ----
 
@@ -56,6 +73,7 @@ const mkScalingIssued = (issuedNowMs: number = NOW + 120_000) => {
   return issueScalingExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkScalingCustody(),
     identity: {
       identityId: 'agent.scaling-executor',
       approvedTools: [SCALING_EXECUTION_POLICY.executionToolId],
@@ -105,6 +123,7 @@ const mkFailoverIssued = () => {
   return issueFailoverExecutionInstruction({
     decisionRecord: record, decisionProvenance: provenance,
     executionGrant: { operatorReceiptSha256: GRANT, approvedBy: 'ceo' },
+    custody: mkFailoverCustody(),
     identity: {
       identityId: 'agent.failover-executor',
       approvedTools: [FAILOVER_EXECUTION_POLICY.executionToolId],
