@@ -98,6 +98,41 @@ export const COMPOSED_MEMORY_TURN_PROMPT_CHARS =
   + MEMORY_MAX_ENTRIES * (ENTRY_OVERHEAD + MEMORY_OBJECTIVE_CAP)
   + OPERATOR_LABEL.length + MAX_USER_MESSAGE_CHARS;
 
+// 12D-308 (additive exports, the established discipline): the memory
+// block composer and its derived bounds are exported so the memory
+// CONVERSATION contract composes the SAME block through the SAME real
+// helper — never a reimplementation. The 12D-307 behavior is unchanged.
+export const ASSISTANT_MEMORY_BLOCK_LABEL = MEMORY_LABEL;
+export const ASSISTANT_MEMORY_MAX_ENTRIES = MEMORY_MAX_ENTRIES;
+export const ASSISTANT_MEMORY_OBJECTIVE_CAP = MEMORY_OBJECTIVE_CAP;
+export const ASSISTANT_MEMORY_ENTRY_OVERHEAD = ENTRY_OVERHEAD;
+
+/**
+ * Compose the reviewed-memory block from VERIFIED entries (12D-306 view
+ * model output): the label + one line per entry with its disclosed
+ * truncation. Throws on a secret-shaped objective (the caller renders
+ * honest refusals — 12D-307 screens the block here, 12D-308 reuses this
+ * exact composer). PURE; no fs, no network, no clock, no randomness.
+ */
+export function composeMemoryBlock(
+  entries: readonly Readonly<{
+    storyId: string;
+    outputHashHead: string;
+    objective: string;
+    objectiveTruncated: boolean;
+  }>[],
+): string {
+  let block = MEMORY_LABEL;
+  for (const entry of entries) {
+    // Defense in depth — the 12D-306 gate already screened; re-screen here.
+    if (SECRET_CONTENT_RE.test(entry.objective))
+      throw new Error('a memory entry objective is secret-shaped; the memory block never composes into a prompt; fail closed');
+    block += `- [${entry.storyId} | ${entry.outputHashHead}] ${entry.objective}`
+      + (entry.objectiveTruncated ? ' (objective truncated)' : '') + '\n';
+  }
+  return block;
+}
+
 export type AssistantMemoryTurnPacket = Readonly<
   | {
       status: 'DRAFTED';
@@ -183,15 +218,9 @@ export function prepareAssistantMemoryTurn(raw: unknown): AssistantMemoryTurnPre
       return refuse(`the memory packet failed verification (${vm.reason}); the turn refuses pre-call; fail closed`);
     if (vm.display.tenantId !== p.tenantId)
       return refuse('the memory packet tenant does not match the turn tenant; one tenant\'s memory never drafts another tenant\'s reply; fail closed');
-    let prompt = ASSISTANT_PERSONA_PREAMBLE + MEMORY_LABEL;
-    for (const entry of vm.display.entries) {
-      // Defense in depth — the 12D-306 gate already screened; re-screen here.
-      if (SECRET_CONTENT_RE.test(entry.objective))
-        return refuse('a memory entry objective is secret-shaped; the memory block never composes into a prompt; fail closed');
-      prompt += `- [${entry.storyId} | ${entry.outputHashHead}] ${entry.objective}`
-        + (entry.objectiveTruncated ? ' (objective truncated)' : '') + '\n';
-    }
-    prompt += OPERATOR_LABEL + p.userMessage;
+    const prompt = ASSISTANT_PERSONA_PREAMBLE
+      + composeMemoryBlock(vm.display.entries)
+      + OPERATOR_LABEL + p.userMessage;
     if (prompt.length > COMPOSED_MEMORY_TURN_PROMPT_CHARS)
       return refuse(`the composed prompt exceeds the composed-prompt bound (${COMPOSED_MEMORY_TURN_PROMPT_CHARS.toLocaleString('en-US')} chars); fail closed`);
     return Object.freeze({

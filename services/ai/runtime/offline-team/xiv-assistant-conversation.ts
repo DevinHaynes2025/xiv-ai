@@ -70,6 +70,14 @@ const USER_MESSAGE_LABEL = '\nOperator said:\n';
 const REPLY_LABEL = '\nAssistant drafted:\n';
 const TURN_LABEL = '\nNext operator message:\n';
 
+// 12D-308 (additive exports, the established discipline): the REAL
+// conversation labels are exported so the memory-conversation contract
+// composes the SAME prompt shape through the SAME labels — never a
+// reimplementation. The 12D-302 behavior is unchanged.
+export const ASSISTANT_CONVERSATION_USER_LABEL = USER_MESSAGE_LABEL;
+export const ASSISTANT_CONVERSATION_REPLY_LABEL = REPLY_LABEL;
+export const ASSISTANT_CONVERSATION_TURN_LABEL = TURN_LABEL;
+
 const INPUT_KEYS = ['tenantId', 'conversationId', 'userMessage', 'priorTurns'] as const;
 const PAIR_KEYS = ['userMessage', 'assistantReply'] as const;
 
