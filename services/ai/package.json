@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@xiv/ai",
   "version": "0.0.1",
   "private": true,
@@ -251,7 +251,9 @@
     "test:12d-303": "tsx --test runtime/offline-team/xiv-assistant-conversation-view-model.test.ts",
     "typecheck:12d-303": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-conversation-view-model.ts runtime/offline-team/xiv-assistant-conversation-view-model.test.ts",
     "test:12d-304": "tsx --test runtime/offline-team/xiv-bound-reading-evidence-view-model.test.ts",
-    "typecheck:12d-304": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-bound-reading-evidence-view-model.ts runtime/offline-team/xiv-bound-reading-evidence-view-model.test.ts"
+    "typecheck:12d-304": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-bound-reading-evidence-view-model.ts runtime/offline-team/xiv-bound-reading-evidence-view-model.test.ts",
+    "test:12d-305": "tsx --test runtime/offline-team/xiv-assistant-memory.test.ts",
+    "typecheck:12d-305": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory.ts runtime/offline-team/xiv-assistant-memory.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
