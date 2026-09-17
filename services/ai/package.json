@@ -269,7 +269,9 @@
     "test:12d-315": "tsx --test runtime/offline-team/xiv-source-staleness-card.test.ts runtime/offline-team/xiv-source-staleness-card-view-model.test.ts",
     "typecheck:12d-315": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-source-staleness-card.ts runtime/offline-team/xiv-source-staleness-card.test.ts runtime/offline-team/xiv-source-staleness-card-view-model.ts runtime/offline-team/xiv-source-staleness-card-view-model.test.ts",
     "test:12d-316": "tsx --test runtime/offline-team/xiv-stale-reingest-plan.test.ts runtime/offline-team/xiv-stale-reingest-plan-view-model.test.ts",
-    "typecheck:12d-316": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-stale-reingest-plan.ts runtime/offline-team/xiv-stale-reingest-plan.test.ts runtime/offline-team/xiv-stale-reingest-plan-view-model.ts runtime/offline-team/xiv-stale-reingest-plan-view-model.test.ts"
+    "typecheck:12d-316": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-stale-reingest-plan.ts runtime/offline-team/xiv-stale-reingest-plan.test.ts runtime/offline-team/xiv-stale-reingest-plan-view-model.ts runtime/offline-team/xiv-stale-reingest-plan-view-model.test.ts",
+    "test:12d-319": "tsx --test runtime/offline-team/xiv-secret-screen.test.ts",
+    "typecheck:12d-319": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-secret-screen.test.ts runtime/offline-team/xiv-document-ingest.ts runtime/offline-team/xiv-approval-custody.ts runtime/offline-team/xiv-avatar.ts runtime/offline-team/xiv-os-wire-contract.ts runtime/offline-team/xiv-pathway-approval-link.ts runtime/offline-team/xiv-reading-source-register.ts runtime/offline-team/xiv-story-shell.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

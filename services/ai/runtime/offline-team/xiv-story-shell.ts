@@ -73,7 +73,7 @@ export const XIV_STORY_SHELL_GUARDRAILS = Object.freeze({
 });
 
 /** Credential-shaped content is refused at RENDER time (defense in depth). */
-const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16})/;
+const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|(?:sk|pk)_(?:test|live)_[A-Za-z0-9]{10,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{22,}|glpat-[A-Za-z0-9_-]{20,}|npm_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[A-Za-z0-9-]{10,}|[?&](?:[A-Za-z]+-)?token=[A-Za-z0-9]{20,}|[Bb]earer [A-Za-z0-9_.=+/-]{30,})/;
 
 /**
  * The escape boundary: EVERY packet-sourced string passes through this before

@@ -76,7 +76,7 @@ export const READING_SOURCE_REGISTER_GUARDRAILS = Object.freeze({
 const ENTRY_KEYS = ['tenantId', 'sourceId', 'title', 'sourceUrl', 'sourceClass', 'licenseNote'] as const;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$/;
 const URL_RE = /^https:\/\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%-]+$/;
-const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16})/;
+const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|(?:sk|pk)_(?:test|live)_[A-Za-z0-9]{10,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{22,}|glpat-[A-Za-z0-9_-]{20,}|npm_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[A-Za-z0-9-]{10,}|[?&](?:[A-Za-z]+-)?token=[A-Za-z0-9]{20,}|[Bb]earer [A-Za-z0-9_.=+/-]{30,})/;
 
 /** The injected register store contract — a LOCAL book, never a network sink. */
 export interface ReadingSourceStore {

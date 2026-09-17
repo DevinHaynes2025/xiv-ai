@@ -107,7 +107,15 @@ const ID_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$/;
 // Additively exported for 12D-280: the first reader re-applies THIS
 // regex to the model's draft (a model must never launder secrets into
 // queue material either).
-export const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16})/;
+// 12D-319 paydown: the screen is BROADENED — the 12D-318 defensive
+// observation measured a live CircleCI badge token sailing past the old
+// shapes in a public README. New conservative shapes: Stripe keys,
+// GitHub fine-grained PATs, GitLab PATs, npm tokens, Google API keys,
+// Slack tokens, URL query tokens (`?token=`/`&x-token=` with 20+ chars),
+// and Bearer-authorization values. A credential-shaped string refuses
+// the door outright; a false positive discloses itself in the refusal —
+// content is never silently truncated to pass.
+export const SECRET_CONTENT_RE = /(-----BEGIN [A-Z ]+PRIVATE KEY-----|sk-[A-Za-z0-9]{20,}|(?:sk|pk)_(?:test|live)_[A-Za-z0-9]{10,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{22,}|glpat-[A-Za-z0-9_-]{20,}|npm_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-[A-Za-z0-9-]{10,}|[?&](?:[A-Za-z]+-)?token=[A-Za-z0-9]{20,}|[Bb]earer [A-Za-z0-9_.=+/-]{30,})/;
 const OBJECTIVE_BUDGET = 3000;
 const ROLE_ID = 'memory_curator';
 
