@@ -17,6 +17,7 @@ import { join } from 'node:path';
 import {
   parseSupervisedCycleArgs, FileReadingRegisterStore,
   SUPERVISED_READING_CYCLE_CLI_GUARDRAILS, runSupervisedCycleCommand,
+  selectCycleCaller,
 } from './xiv-supervised-reading-cycle.cli';
 import {
   registerReadingSource,
@@ -134,6 +135,29 @@ test('12d-284: the command runs one honest cycle against a LOCAL body file and a
     console.log = originalLog;
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test('12d-400: the caller-selection adapter keeps the reader-expected result shape exactly', async () => {
+  // The 12D-386 declared caller reports {model, response, candidateIndex};
+  // the 12D-280 reader verifies EXACTLY [model, response] in order. The
+  // adapter (12D-397, live-measured) drops candidateIndex — pinned here
+  // with an injected stub, no live service, no network.
+  let prompts = 0;
+  const fakeDeclared = async (prompt: string) => {
+    prompts += 1;
+    assert.equal(prompt, 'the reading prompt');
+    return { model: 'qwen2.5:3b', response: 'the fallback draft', candidateIndex: 1 };
+  };
+  const adapted = selectCycleCaller(true, fakeDeclared);
+  const out = await adapted('the reading prompt');
+  assert.deepEqual(Object.keys(out), ['model', 'response'], 'the adapted result has EXACTLY [model, response] in order');
+  assert.equal(out.model, 'qwen2.5:3b', 'the SETTLED model name survives the adapter — the packet reports the model that actually served');
+  assert.equal(out.response, 'the fallback draft', 'the draft text passes through untouched');
+  assert.equal(prompts, 1, 'exactly one request reached the declared caller');
+  // The default (failover off) is the single pinned primary — a real
+  // loopback caller function, not the adapter, and NOT a live call.
+  const plain = selectCycleCaller(false);
+  assert.equal(typeof plain, 'function', 'the default selection returns a callable loopback caller');
 });
 
 test('12d-284: pinned CLI guardrails', () => {

@@ -162,6 +162,28 @@ export class FileReadingRegisterStore {
  * endpoint and model name; remoteCalls stay 0 — loopback is not remote.
  */
 
+/**
+ * 12D-400: the caller selection is its OWN exported function so the
+ * adapter contract is pin-able in the suite, not only live-proven.
+ * When failover is on, the declared multi-model caller's result is
+ * adapted to EXACTLY the keys [model, response] in order — the shape
+ * the 12D-280 reader verifies — dropping candidateIndex (the 12D-386
+ * provenance detail). The reader's fail-closed shape gate is never
+ * loosened here. `declared` may be injected for tests; production
+ * always builds the REAL declared caller.
+ */
+export function selectCycleCaller(
+  declaredFailover: boolean,
+  declared?: (prompt: string) => Promise<{ model: string; response: string; candidateIndex: number }>,
+): (prompt: string) => Promise<{ model: string; response: string }> {
+  if (!declaredFailover) return buildLoopbackCaller();
+  const declaredCaller = declared ?? buildMultiModelCallerDeclared();
+  return async (prompt: string) => {
+    const r = await declaredCaller(prompt);
+    return { model: r.model, response: r.response };
+  };
+}
+
 /** The command body: parse → local read → REAL cycle → verbatim packet. */
 export async function runSupervisedCycleCommand(argv: readonly string[]): Promise<{ refused: boolean }> {
   const args = parseSupervisedCycleArgs(argv);
@@ -169,23 +191,13 @@ export async function runSupervisedCycleCommand(argv: readonly string[]): Promis
   const register = new FileReadingRegisterStore(args.registerPath) as unknown as ReadingSourceStore;
   const queue = new OfflineStoryQueue(args.queuePath);
   try {
-    // 12D-397: the DECLARED caller (pinned primary first, then the
+    // 12D-397/400: the DECLARED caller (pinned primary first, then the
     // declared local fallback once) when the operator passes
-    // --declaredFailover true; otherwise the single pinned primary —
-    // today's behavior. Both are loopback-only; remoteCalls stay 0.
-    // LIVE-MEASURED (12D-397): the 12D-280 reader verifies the caller
-    // result has EXACTLY the keys [model, response] in order, while the
-    // 12D-386 declared caller adds candidateIndex for its own provenance
-    // tests — so a thin adapter drops candidateIndex. The settled model
-    // name still flows in .model (what the packet reports), and the
-    // reader's fail-closed shape gate is NOT loosened.
-    const declared = args.declaredFailover ? buildMultiModelCallerDeclared() : null;
-    const caller = declared
-      ? async (prompt: string) => {
-          const r = await declared(prompt);
-          return { model: r.model, response: r.response };
-        }
-      : buildLoopbackCaller();
+    // --declaredFailover true, adapted to the reader's exact
+    // [model, response] result shape by the exported, suite-pinned
+    // selectCycleCaller; otherwise the single pinned primary — today's
+    // behavior. Both are loopback-only; remoteCalls stay 0.
+    const caller = selectCycleCaller(args.declaredFailover);
     const packet = await runSupervisedReadingCycle(queue, register, args.registerGenesis, {
       tenantId: args.tenantId, sourceId: args.sourceId, documentId: args.documentId,
       title: args.title, bodyText,
