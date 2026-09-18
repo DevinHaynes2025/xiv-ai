@@ -41,6 +41,7 @@ handoffs.
 | 389 | CFPB CCDB facet census (LIVE, size=0) | Counts only, ZERO records fetched: facets product/issue/company_response/submitted_via measured (buckets enumerated top-50 with a DISCLOSED cap after the draft-budget refusal); totalHits unchanged |
 | 391 | World Bank Open Data (LIVE, bounded) | CC BY 4.0 re-verified VERBATIM from the publisher's Summary Terms of Use page by the driver BEFORE any read ("Unless indicated otherwise… Creative Commons Attribution 4.0 International License…"); binding mediation/arbitration addition noted; attribution duty recorded: reuse must attribute "World Bank Open Data, CC BY 4.0"; bounded sample SP.POP.TOTL USA × 5 years (envelope total 66, lastupdated 2026-07-13) |
 | 392 | World Bank Open Data (LIVE, bounded multi-country) | THE LICENSE GATE IS NEVER INHERITED, ALWAYS RE-MEASURED — the 392 driver re-fetched the terms page fresh and refused unless CC BY 4.0 verbatim (license discipline is a property of each read, not of the rung that first did it); bounded sample NY.GDP.MKTP.CD × {USA, ECU, MEX} × 3 years = 9 rows |
+| 394 | data.gov per-dataset record (SSA Annual Statistical Supplement series) + SSA index | CC0 1.0 + public verified VERBATIM from the record itself (the record displays the license as its canonical URL — a grep for the literal "CC0" misses it); CKAN APIs 404 across three paths (drift from the 369-era surface, disclosed); SSA landing 403 honored first (license ≠ access), then the driver REFUSED when SSA became accessible mid-run and re-planned EXPLICITLY (index page only, 40 edition links, no crawl/PDFs/downloads) |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -77,8 +78,11 @@ handoffs.
 
 ## D. Measured campaign totals
 
-- 277 review decisions applied all-time (144 in the 12D-340 run;
-  76 in the 12D-382 run for 12D-366..381; the rest across the
+- 296 review decisions applied all-time (144 in the 12D-340 run;
+  76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
+  12D-388/389/391/394 under the CEO's recorded blanket approval
+  "you dont have to keep asking for my approval, i trust my team",
+  2026-09-19c, quoted verbatim in every reviewRef; the rest across the
   12D-326..363 queues), all through the REAL worksheet → decisions →
   12D-324 apply chain, every decision hash-bound and ref-verified.
 - Model calls: 1 per settled chunk, loopback only (127.0.0.1:11434,
