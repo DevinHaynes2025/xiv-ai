@@ -94,7 +94,7 @@ describe('12D-280 — Ollama first reader', () => {
       const captured: string[] = [];
       const packet = await runOllamaFirstReader(q, s.bound, requestFor(s, s.storyIds[0]!), goodCaller(captured));
       assert.equal(packet.kind, 'OLLAMA_FIRST_READER_DRAFT');
-      assert.equal(packet.policyVersion, '12d-280-v2');
+      assert.equal(packet.policyVersion, '12d-280-v3');
       assert.equal(packet.model, MODEL);
       assert.equal(packet.loopbackEndpoint, '127.0.0.1:11434');
       assert.equal(packet.modelCalls, 1);
@@ -125,6 +125,34 @@ describe('12D-280 — Ollama first reader', () => {
       assert.ok(prompt.includes('First paragraph'));
       assert.ok(!prompt.includes('Second paragraph'));
       assert.ok(prompt.includes(`doc:${DOC_ID}`));
+    });
+  });
+
+  it('12d-386: a DECLARED fallback model (qwen2.5:3b) settles a draft under its OWN name', async () => {
+    const s = setup();
+    await withQueue(s, async (q) => {
+      const FALLBACK = OLLAMA_FIRST_READER_POLICY.declaredFallbackModels[0]!;
+      assert.equal(FALLBACK, 'qwen2.5:3b');
+      const packet = await runOllamaFirstReader(q, s.bound, requestFor(s, s.storyIds[0]!),
+        async () => ({ model: FALLBACK, response: DRAFT }));
+      assert.equal(packet.model, FALLBACK, 'the packet names the model that ACTUALLY settled this draft');
+      assert.equal(packet.policyVersion, '12d-280-v3');
+      assert.equal(packet.storyState, 'AWAITING_REVIEW');
+      assert.equal(packet.remoteCalls, 0);
+      assert.equal(packet.humanDecision, 'REQUIRED');
+      const story = q.inspectStory(TENANT, s.storyIds[0]!);
+      assert.equal(story?.state, 'AWAITING_REVIEW');
+      assert.equal(story?.outputHash, sha256(DRAFT));
+    });
+  });
+
+  it('12d-386: an UNDECLARED model still refuses — declaring one fallback opens no undeclared door', async () => {
+    const s = setup();
+    await withQueue(s, async (q) => {
+      await assert.rejects(
+        () => runOllamaFirstReader(q, s.bound, requestFor(s, s.storyIds[0]!), async () => ({ model: 'another-model:7b', response: DRAFT })),
+        /declared fallback may settle a reading draft/,
+      );
     });
   });
 

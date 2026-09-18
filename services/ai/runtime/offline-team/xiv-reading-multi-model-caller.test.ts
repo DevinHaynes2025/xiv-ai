@@ -24,7 +24,7 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  buildMultiModelCaller, buildMultiModelCallerDefault,
+  buildMultiModelCaller, buildMultiModelCallerDefault, buildMultiModelCallerDeclared,
   MULTI_MODEL_READING_CALLER_POLICY,
 } from './xiv-reading-multi-model-caller';
 import { buildLoopbackCallerForEndpointAndModel } from './xiv-reading-loopback-caller';
@@ -55,10 +55,12 @@ async function withResponder(
   }
 }
 
-test('12d-385: the policy is pinned honest — empty declared fallbacks by default', () => {
-  assert.equal(MULTI_MODEL_READING_CALLER_POLICY.policyVersion, '12d-385-v1');
+test('12d-385: the policy is pinned honest — 12D-386 declares the first installed fallback', () => {
+  assert.equal(MULTI_MODEL_READING_CALLER_POLICY.policyVersion, '12d-386-v1');
   assert.equal(MULTI_MODEL_READING_CALLER_POLICY.primaryModel, 'qwen2.5-coder:7b');
-  assert.deepEqual(MULTI_MODEL_READING_CALLER_POLICY.declaredFallbackModels, []);
+  // 12D-386: the FIRST fallback is declared — a model that ACTUALLY
+  // exists locally (census `ollama list` before declaring).
+  assert.deepEqual(MULTI_MODEL_READING_CALLER_POLICY.declaredFallbackModels, ['qwen2.5:3b']);
   assert.deepEqual(MULTI_MODEL_READING_CALLER_POLICY.defaultEndpoints, ['127.0.0.1:11434']);
   assert.equal(MULTI_MODEL_READING_CALLER_POLICY.loopbackOnly, true);
   assert.equal(MULTI_MODEL_READING_CALLER_POLICY.remoteCalls, 0);
@@ -76,8 +78,25 @@ test('12d-385: the policy is pinned honest — empty declared fallbacks by defau
   assert.equal(MULTI_MODEL_READING_CALLER_POLICY.humanDecision, 'REQUIRED');
   assert.equal(MULTI_MODEL_READING_CALLER_POLICY.maxCandidates, 8);
   // The 12D-280 reader's fallback list mirrors the caller policy's.
-  assert.deepEqual(OLLAMA_FIRST_READER_POLICY.declaredFallbackModels, []);
+  assert.deepEqual(OLLAMA_FIRST_READER_POLICY.declaredFallbackModels, ['qwen2.5:3b']);
   assert.equal(OLLAMA_FIRST_READER_POLICY.modelName, 'qwen2.5-coder:7b');
+  assert.equal(OLLAMA_FIRST_READER_POLICY.policyVersion, '12d-280-v3');
+});
+
+test('12d-386: the DECLARED caller is primary-first, then every declared fallback, at the pinned endpoint', () => {
+  // Build-time validity: the declared list builds without refusal —
+  // meaning the declared fallbacks are distinct from the primary and
+  // loopback well-named.
+  const declared = buildMultiModelCallerDeclared();
+  assert.equal(typeof declared, 'function');
+  // Its pre-request gate still refuses an empty prompt.
+  assert.rejects(() => declared(''), /non-empty prompt/);
+  // Structural pin: declared order is [primary, ...fallbacks] — the
+  // primary MUST settle first whenever it is healthy.
+  assert.deepEqual(
+    [MULTI_MODEL_READING_CALLER_POLICY.primaryModel, ...MULTI_MODEL_READING_CALLER_POLICY.declaredFallbackModels],
+    ['qwen2.5-coder:7b', 'qwen2.5:3b'],
+  );
 });
 
 test('12d-385: the candidate list is declared, distinct, capped, loopback, well-named — all at build time', () => {

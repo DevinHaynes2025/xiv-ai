@@ -60,15 +60,15 @@ import {
 } from './xiv-document-ingest';
 
 export const OLLAMA_FIRST_READER_POLICY = Object.freeze({
-  policyVersion: '12d-280-v2',
+  policyVersion: '12d-280-v3',
   domain: 'XIV_OS_OLLAMA_FIRST_READER',
   /** The first reader's model — pinned; anything undeclared refuses.
-   *  12D-385: a DECLARED fallback model (installed locally, CEO-gated,
-   *  mirror of the 12D-385 caller policy's declaredFallbackModels)
-   *  may also settle a draft; the list is EMPTY by default, so the
-   *  default gate is unchanged. */
+   *  12D-385: a DECLARED fallback model may also settle a draft.
+   *  12D-386: the FIRST fallback is declared — qwen2.5:3b, installed
+   *  locally (census 1.93 GB), CEO directive #2 verbatim: "lets have
+   *  multiple llms". The list names models that actually exist here. */
   modelName: 'qwen2.5-coder:7b',
-  declaredFallbackModels: [] as readonly string[],
+  declaredFallbackModels: ['qwen2.5:3b'] as readonly string[],
   /** Loopback ONLY. remoteCalls stays 0; loopback is not remote. */
   loopbackEndpoint: '127.0.0.1:11434',
   ownerId: 'ollama-first-reader',

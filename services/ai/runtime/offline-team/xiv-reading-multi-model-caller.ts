@@ -42,14 +42,22 @@ import {
 } from './xiv-reading-loopback-caller';
 
 export const MULTI_MODEL_READING_CALLER_POLICY = Object.freeze({
-  policyVersion: '12d-385-v1',
+  /** 12D-386: the FIRST fallback is DECLARED — qwen2.5:3b, installed
+   *  locally (census: 1.93 GB, `ollama pull` under CEO directive #2).
+   *  Recorded CEO basis, directive #2 verbatim (2026-09-19): "if ollama
+   *  go down we need to find alternatives to keep the brain running
+   *  lets have multiple llms". Loopback-only; the declared list names
+   *  a model that ACTUALLY EXISTS on this machine — never an invented
+   *  availability. */
+  policyVersion: '12d-386-v1',
   domain: 'XIV_OS_READING_MULTI_MODEL_CALLER',
   /** The pinned primary — 12D-280/289 verbatim. Always declared first. */
   primaryModel: READING_LOOPBACK_CALLER_POLICY.model,
-  /** EMPTY by default: single-model pin unchanged until the operator
-   *  declares installed fallbacks (CEO-gated; census `ollama list`
-   *  first). Declaring here does NOT install anything. */
-  declaredFallbackModels: [] as readonly string[],
+  /** 12D-386 DECLARED (was EMPTY in 12d-385-v1): the installed local
+   *  fallback model. Declaring does NOT install anything — the model
+   *  was installed first (census `ollama list`), the declaration
+   *  follows the reality. */
+  declaredFallbackModels: ['qwen2.5:3b'] as readonly string[],
   defaultEndpoints: ['127.0.0.1:11434'],
   maxCandidates: 8,
   loopbackOnly: true,
@@ -116,5 +124,20 @@ export function buildMultiModelCaller(candidates: readonly MultiModelCandidate[]
 export function buildMultiModelCallerDefault(): (prompt: string) => Promise<MultiModelCallResult> {
   return buildMultiModelCaller([
     { endpoint: MULTI_MODEL_READING_CALLER_POLICY.defaultEndpoints[0]!, model: MULTI_MODEL_READING_CALLER_POLICY.primaryModel },
+  ]);
+}
+
+/**
+ * 12D-386 — the DECLARED caller: the pinned primary FIRST, then every
+ * declared fallback model at the pinned default endpoint, in declared
+ * order. This is the failover-ready shape the CEO's directive #2 asks
+ * for: if the primary model cannot serve, the declared local fallback
+ * is tried ONCE — no retry churn, never a remote model.
+ */
+export function buildMultiModelCallerDeclared(): (prompt: string) => Promise<MultiModelCallResult> {
+  const endpoint = MULTI_MODEL_READING_CALLER_POLICY.defaultEndpoints[0]!;
+  return buildMultiModelCaller([
+    { endpoint, model: MULTI_MODEL_READING_CALLER_POLICY.primaryModel },
+    ...MULTI_MODEL_READING_CALLER_POLICY.declaredFallbackModels.map((model) => ({ endpoint, model })),
   ]);
 }
