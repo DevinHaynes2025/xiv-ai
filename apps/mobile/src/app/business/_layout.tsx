@@ -174,6 +174,7 @@ const hidden = [
   'story-engine',
   'os-status',
   'verified-sources',
+  'brain-health',
 ];
 
 export default function BusinessLayout() {
