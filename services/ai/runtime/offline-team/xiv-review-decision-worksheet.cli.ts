@@ -66,8 +66,10 @@ export const REVIEW_DECISION_WORKSHEET_CLI_GUARDRAILS = Object.freeze({
 
 // The REAL review door's OWN vocabulary and state effects
 // (offline-story-queue applyReviewDecision) — disclosed verbatim, the
-// worksheet fills in neither.
-const DOOR_DECISION_VOCABULARY = Object.freeze([
+// worksheet fills in neither. Exported so the 12D-354 prep CLI can
+// re-derive the worksheet digest exactly (tamper evidence) rather
+// than re-typing the vocabulary.
+export const DOOR_DECISION_VOCABULARY = Object.freeze([
   Object.freeze({ decision: 'APPROVED', queueStateEffect: 'DONE' }),
   Object.freeze({ decision: 'CHANGES_REQUESTED', queueStateEffect: 'READY' }),
   Object.freeze({ decision: 'REJECTED', queueStateEffect: 'FAILED' }),
