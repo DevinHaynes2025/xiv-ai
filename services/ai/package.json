@@ -279,7 +279,11 @@
     "test:12d-322": "tsx --test runtime/offline-team/xiv-review-slate.cli.test.ts",
     "typecheck:12d-322": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-review-slate.cli.ts runtime/offline-team/xiv-review-slate.cli.test.ts",
     "test:12d-323": "tsx --test runtime/offline-team/xiv-review-decision-worksheet.cli.test.ts",
-    "typecheck:12d-323": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-review-decision-worksheet.cli.ts runtime/offline-team/xiv-review-decision-worksheet.cli.test.ts"
+    "typecheck:12d-323": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-review-decision-worksheet.cli.ts runtime/offline-team/xiv-review-decision-worksheet.cli.test.ts",
+    "test:12d-324": "tsx --test runtime/offline-team/xiv-review-decision-apply.cli.test.ts",
+    "typecheck:12d-324": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-review-decision-apply.cli.ts runtime/offline-team/xiv-review-decision-apply.cli.test.ts",
+    "test:12d-329": "tsx --test runtime/offline-team/xiv-assistant-memory-turn-view-model.test.ts",
+    "typecheck:12d-329": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --types node runtime/offline-team/xiv-assistant-memory-turn-view-model.ts runtime/offline-team/xiv-assistant-memory-turn-view-model.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
