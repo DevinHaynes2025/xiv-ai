@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388/389
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..401
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -9,7 +9,7 @@ Every row below is sourced from committed handoffs and the drivers'
 measured outputs. Review provenance: 76 decisions applied through the
 REAL 12D-324 apply door under the CEO's recorded approval "go ahead
 and run the apply driver for the new drafts" (2026-09-19; 12D-382);
-campaign all-time 277 applied decisions. Every source was
+campaign all-time 296 applied decisions (see Section D). Every source was
 license-verified BEFORE read, through the REAL 12D-276 register +
 12D-283 supervised cycle, loopback qwen2.5-coder:7b only
 (remoteCalls 0 everywhere), drafts stopped before review until the
@@ -21,11 +21,13 @@ CFPB publisher surface (25-record structured-field sample; size=0
 facet census) — their 14 drafts settle AWAITING_REVIEW and are
 CEO-gated: NO review decision is applied without the CEO's recorded
 approval. **12D-391/392 status:** the same governance for the World
-Bank bounded reads — 2 more drafts AWAITING_REVIEW (16 total,
-CEO-gated). The 12D-385/386 multi-MODEL failover rungs (declared local
-fallback qwen2.5:3b beside the pinned primary qwen2.5-coder:7b) are
-brain-infrastructure, not reading sources — recorded in their own
-handoffs.
+Bank bounded reads. The 12D-385/386 multi-MODEL failover rungs
+(declared local fallback qwen2.5:3b beside the pinned primary
+qwen2.5-coder:7b) are brain-infrastructure, not reading sources —
+recorded in their own handoffs. **12D-397..401 status:** the declared
+failover became OPERATIONAL (CLI flag --declaredFailover, suite-pinned
+adapter) and ran its first REAL campaign read through the CLI door
+(12D-401) — 3 drafts now AWAITING_REVIEW (398: 1, 401: 2), CEO-gated.
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -42,6 +44,8 @@ handoffs.
 | 391 | World Bank Open Data (LIVE, bounded) | CC BY 4.0 re-verified VERBATIM from the publisher's Summary Terms of Use page by the driver BEFORE any read ("Unless indicated otherwise… Creative Commons Attribution 4.0 International License…"); binding mediation/arbitration addition noted; attribution duty recorded: reuse must attribute "World Bank Open Data, CC BY 4.0"; bounded sample SP.POP.TOTL USA × 5 years (envelope total 66, lastupdated 2026-07-13) |
 | 392 | World Bank Open Data (LIVE, bounded multi-country) | THE LICENSE GATE IS NEVER INHERITED, ALWAYS RE-MEASURED — the 392 driver re-fetched the terms page fresh and refused unless CC BY 4.0 verbatim (license discipline is a property of each read, not of the rung that first did it); bounded sample NY.GDP.MKTP.CD × {USA, ECU, MEX} × 3 years = 9 rows |
 | 394 | data.gov per-dataset record (SSA Annual Statistical Supplement series) + SSA index | CC0 1.0 + public verified VERBATIM from the record itself (the record displays the license as its canonical URL — a grep for the literal "CC0" misses it); CKAN APIs 404 across three paths (drift from the 369-era surface, disclosed); SSA landing 403 honored first (license ≠ access), then the driver REFUSED when SSA became accessible mid-run and re-planned EXPLICITLY (index page only, 40 edition links, no crawl/PDFs/downloads) |
+| 398 | World Bank Open Data (LIVE, bounded life-expectancy) | License gate NEVER INHERITED, ALWAYS RE-MEASURED (4th fresh verbatim measure); SP.DYN.LE00.IN (life expectancy at birth) × {NGA, ZAF, ETH, KEN, EGY} × mrv=1 = 5 rows; SSA probed FIRST and still 403 (edition index AND the index that served in 394) — publisher boundary honored, rung pivoted honestly |
+| 401 | World Bank Open Data (LIVE, bounded internet-use, through the CLI DOOR) | FIRST campaign read through the operator CLI door with --declaredFailover true (12D-397/400 machinery exercised in a campaign); IT.NET.USER.ZS (individuals using the internet, % of population) × the same 5 countries × mrv=1 = 5 rows; license gate re-measured fresh (5th); standing loop measured honestly — one CLI invocation reads ONE chunk, the command re-runs until census READY 0; drafts settled by the pinned primary (declared fallback ordered, never preferred) |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
