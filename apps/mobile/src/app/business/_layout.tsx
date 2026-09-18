@@ -172,6 +172,7 @@ const hidden = [
   'research-fabric',
   'control-tower',
   'story-engine',
+  'os-status',
 ];
 
 export default function BusinessLayout() {

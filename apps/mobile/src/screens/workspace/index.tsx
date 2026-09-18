@@ -1220,6 +1220,21 @@ export function WorkspacePocketBrainV2() {
   );
 }
 
+export function WorkspaceOsStatus() {
+  return (
+    <PremiumDesk title="OS Status" subtitle="Backend-measured queue status. This screen renders the discipline, never invented counts.">
+      <XivStatusIndicator state="NOT_CONFIGURED" />
+      <XivListRow title="Source of truth" body="The xiv-os-status CLI reads the REAL OfflineStoryQueue and emits OS_STATUS_PACKET. The app never fabricates live counts." />
+      <XivListRow title="Review path" body="Drafts AWAITING_REVIEW → 12D-323 worksheet → 12D-354 prep → 12D-355 verify → the human's decision at the REAL hash-bound 12D-324 door." />
+      <XivStatusPill label="humanDecision REQUIRED · learningPromoted false · activated 0" tone="warning" />
+      <XivListRow title="Measured ceiling" body="2,000,000 rows/database is the ONLY measured ceiling. Trillion/billion/infinite scale is VISION, never packet truth." />
+      <XivText variant="micro" dim>
+        collectsNothing: true · automaticRecovery: false · billionUsersProven: false · modelCalls 0 · remoteCalls 0. The apply door is the human's; receipts are never fabricated and blanket approvals stay disclosed as blanket.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceOsDataFabric() {
   return (
     <PremiumDesk title="OS Data Fabric V2" subtitle="Federated adapters by purpose. Security Roots V4 stay bound.">
