@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..401
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..405
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -24,10 +24,15 @@ approval. **12D-391/392 status:** the same governance for the World
 Bank bounded reads. The 12D-385/386 multi-MODEL failover rungs
 (declared local fallback qwen2.5:3b beside the pinned primary
 qwen2.5-coder:7b) are brain-infrastructure, not reading sources —
-recorded in their own handoffs. **12D-397..401 status:** the declared
+recorded in their own handoffs. **12D-397..405 status:** the declared
 failover became OPERATIONAL (CLI flag --declaredFailover, suite-pinned
-adapter) and ran its first REAL campaign read through the CLI door
-(12D-401) — 3 drafts now AWAITING_REVIEW (398: 1, 401: 2), CEO-gated.
+adapter) and ran its first REAL campaign reads through the CLI door
+(12D-401, 403, 404) — the FTA's National Transit Database joined the
+verified surfaces (CEO mobility direction). All 12 drafts from
+398/401/403/404 were applied under the CEO's recorded blanket-trust
+approval (12D-405, verbatim ref); the apply door then REFUSED a second
+invocation ("the decisions file is empty — there is nothing the human
+decided") — idempotency measured.
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -46,6 +51,8 @@ adapter) and ran its first REAL campaign read through the CLI door
 | 394 | data.gov per-dataset record (SSA Annual Statistical Supplement series) + SSA index | CC0 1.0 + public verified VERBATIM from the record itself (the record displays the license as its canonical URL — a grep for the literal "CC0" misses it); CKAN APIs 404 across three paths (drift from the 369-era surface, disclosed); SSA landing 403 honored first (license ≠ access), then the driver REFUSED when SSA became accessible mid-run and re-planned EXPLICITLY (index page only, 40 edition links, no crawl/PDFs/downloads) |
 | 398 | World Bank Open Data (LIVE, bounded life-expectancy) | License gate NEVER INHERITED, ALWAYS RE-MEASURED (4th fresh verbatim measure); SP.DYN.LE00.IN (life expectancy at birth) × {NGA, ZAF, ETH, KEN, EGY} × mrv=1 = 5 rows; SSA probed FIRST and still 403 (edition index AND the index that served in 394) — publisher boundary honored, rung pivoted honestly |
 | 401 | World Bank Open Data (LIVE, bounded internet-use, through the CLI DOOR) | FIRST campaign read through the operator CLI door with --declaredFailover true (12D-397/400 machinery exercised in a campaign); IT.NET.USER.ZS (individuals using the internet, % of population) × the same 5 countries × mrv=1 = 5 rows; license gate re-measured fresh (5th); standing loop measured honestly — one CLI invocation reads ONE chunk, the command re-runs until census READY 0; drafts settled by the pinned primary (declared fallback ordered, never preferred) |
+| 403 | FTA National Transit Database — Facility Inventory (LIVE, Socrata) | License verified VERBATIM from the dataset's OWN Socrata metadata BEFORE any read ("Public Domain U.S. Government", termsLink usa.gov/government-works, attribution "Federal Transit Administration") — the 12D-394 per-dataset discipline on a new publisher; DISCLOSED: the linked usa.gov page is a JS shell (no operative sentence server-rendered; stage-2 verbatim impossible; the driver REFUSED on that gate before the disclosure was written; posture verified at 369); data.gov search pages are JS shells (CKAN APIs 404 from 394); bounded 10 rows |
+| 404 | FTA NTD — Complete Monthly Ridership (LIVE, bounded) | Second rung on the surface — gates never inherited: the per-dataset metadata license re-measured verbatim BEFORE read; the usa.gov stage-2 JS-shell limitation re-measured + disclosed again; bounded 10 MOST-RECENT agency/month rows ($order=date desc; latest measured month 2026-07-01); UPT/VOMS/VRH/VRM glossary recorded |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -82,9 +89,10 @@ adapter) and ran its first REAL campaign read through the CLI door
 
 ## D. Measured campaign totals
 
-- 296 review decisions applied all-time (144 in the 12D-340 run;
+- 308 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
-  12D-388/389/391/394 under the CEO's recorded blanket approval
+  12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404
+  under the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
   12D-326..363 queues), all through the REAL worksheet → decisions →
