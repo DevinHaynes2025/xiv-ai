@@ -60,10 +60,15 @@ import {
 } from './xiv-document-ingest';
 
 export const OLLAMA_FIRST_READER_POLICY = Object.freeze({
-  policyVersion: '12d-280-v1',
+  policyVersion: '12d-280-v2',
   domain: 'XIV_OS_OLLAMA_FIRST_READER',
-  /** The first reader's model — pinned; anything else refuses. */
+  /** The first reader's model — pinned; anything undeclared refuses.
+   *  12D-385: a DECLARED fallback model (installed locally, CEO-gated,
+   *  mirror of the 12D-385 caller policy's declaredFallbackModels)
+   *  may also settle a draft; the list is EMPTY by default, so the
+   *  default gate is unchanged. */
   modelName: 'qwen2.5-coder:7b',
+  declaredFallbackModels: [] as readonly string[],
   /** Loopback ONLY. remoteCalls stays 0; loopback is not remote. */
   loopbackEndpoint: '127.0.0.1:11434',
   ownerId: 'ollama-first-reader',
@@ -261,8 +266,8 @@ export async function runOllamaFirstReader(
     if (cKeys.length !== CALLER_RESULT_KEYS.length || !CALLER_RESULT_KEYS.every((k, i) => cKeys[i] === k))
       throw new Error('the caller result must have exactly the keys [model, response] in order; fail closed');
     const c = raw as Readonly<Record<string, unknown>>;
-    if (c.model !== OLLAMA_FIRST_READER_POLICY.modelName)
-      throw new Error(`the caller reported model ${String(c.model)}; only the policy model ${OLLAMA_FIRST_READER_POLICY.modelName} may settle a reading draft; fail closed`);
+    if (c.model !== OLLAMA_FIRST_READER_POLICY.modelName && !OLLAMA_FIRST_READER_POLICY.declaredFallbackModels.includes(String(c.model)))
+      throw new Error(`the caller reported model ${String(c.model)}; only the policy model ${OLLAMA_FIRST_READER_POLICY.modelName} or a declared fallback may settle a reading draft; fail closed`);
     if (typeof c.response !== 'string' || c.response.trim().length === 0)
       throw new Error('an empty model draft is not a settlement; fail closed');
     const draft: string = c.response;
@@ -284,7 +289,9 @@ export async function runOllamaFirstReader(
       documentId: boundDocumentId,
       documentDigestSha256: boundDigest,
       promptSha256,
-      model: OLLAMA_FIRST_READER_POLICY.modelName,
+      // 12D-385 honesty: the packet names the model that ACTUALLY
+      // settled this draft (the pinned primary or a declared fallback).
+      model: String(c.model),
       loopbackEndpoint: OLLAMA_FIRST_READER_POLICY.loopbackEndpoint,
       modelCalls: 1 as const,
       remoteCalls: 0 as const,

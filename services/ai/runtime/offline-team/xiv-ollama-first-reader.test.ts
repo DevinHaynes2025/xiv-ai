@@ -94,7 +94,7 @@ describe('12D-280 — Ollama first reader', () => {
       const captured: string[] = [];
       const packet = await runOllamaFirstReader(q, s.bound, requestFor(s, s.storyIds[0]!), goodCaller(captured));
       assert.equal(packet.kind, 'OLLAMA_FIRST_READER_DRAFT');
-      assert.equal(packet.policyVersion, '12d-280-v1');
+      assert.equal(packet.policyVersion, '12d-280-v2');
       assert.equal(packet.model, MODEL);
       assert.equal(packet.loopbackEndpoint, '127.0.0.1:11434');
       assert.equal(packet.modelCalls, 1);
