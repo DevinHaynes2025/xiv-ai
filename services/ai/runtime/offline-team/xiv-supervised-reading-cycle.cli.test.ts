@@ -45,6 +45,20 @@ test('12d-284: the exact-flags parser accepts a full valid argv', () => {
     assert.equal(args.sourceId, 'quantumlib-cirq');
     assert.equal(args.documentId, 'cli-doc-1');
     assert.equal(args.title, 'CLI cycle reading');
+    assert.equal(args.declaredFailover, false, 'the default is the single pinned primary — today\'s behavior');
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('12d-397: the optional --declaredFailover flag parses strictly', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'xiv-cycle-cli-397-'));
+  try {
+    const args = parseSupervisedCycleArgs([...goodArgs(dir), '--declaredFailover', 'true']);
+    assert.equal(args.declaredFailover, true, 'the declared caller runs primary-first, then the declared local fallback once');
+    assert.equal(parseSupervisedCycleArgs([...goodArgs(dir), '--declaredFailover', 'false']).declaredFailover, false);
+    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--declaredFailover', 'yes']), /accepts exactly true or false/, 'a non-boolean value refuses');
+    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--declaredFailover']), /exactly 8 flags/, 'a flag without a value is not the optional pair');
+    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--extra', 'x', '--declaredFailover', 'true']), /exactly 8 flags/, 'an unknown flag still refuses even with the optional flag present');
+    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--declaredFailover', 'true', '--declaredFailover', 'true']), /exactly 8 flags/, 'the optional flag may appear at most once');
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
@@ -52,7 +66,10 @@ test('12d-284: malformed argv refuses — unknown, duplicate, missing, short gen
   const dir = mkdtempSync(join(tmpdir(), 'xiv-cycle-cli-'));
   try {
     assert.throws(() => parseSupervisedCycleArgs([]), /exactly 8 flags/);
-    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--extra', 'x']), /exactly 8 flags/);
+    // 12d-397: an 18-item argv with an unknown flag now passes the
+    // length check (the optional pair's slot) and refuses as UNKNOWN —
+    // still fail-closed, still zero side effects.
+    assert.throws(() => parseSupervisedCycleArgs([...goodArgs(dir), '--extra', 'x']), /unknown flag --extra/);
     assert.throws(() => parseSupervisedCycleArgs(goodArgs(dir).slice(2)), /exactly 8 flags/);
     assert.throws(
       () => parseSupervisedCycleArgs(['--register', 'a', '--queue', 'q', '--register', 'dup', '--genesis', GENESIS, '--tenant', tenantId, '--source', 's', '--document', 'd', '--title', 't']),

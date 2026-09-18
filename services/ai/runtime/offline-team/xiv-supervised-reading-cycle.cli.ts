@@ -37,6 +37,7 @@ import {
 // the 12D-113 audit's AUTHORIZED_NETWORK_SURFACES) — this guardrails
 // module carries NO network primitive (guardrails-no-network).
 import { buildLoopbackCaller } from './xiv-reading-loopback-caller';
+import { buildMultiModelCallerDeclared } from './xiv-reading-multi-model-caller';
 
 export { buildLoopbackCaller, READING_LOOPBACK_CALLER_POLICY } from './xiv-reading-loopback-caller';
 
@@ -64,12 +65,20 @@ export type SupervisedCycleArgs = Readonly<{
   documentId: string;
   title: string;
   bodyPath: string;
+  /** 12D-397: optional operator declaration — run the reading cycle
+   *  through the DECLARED multi-model caller (12D-386: pinned primary
+   *  qwen2.5-coder:7b FIRST, then the declared local fallback
+   *  qwen2.5:3b once; loopback only, never a remote fallback). Default
+   *  false: the single pinned primary — today's behavior. */
+  declaredFailover: boolean;
 }>;
 
 const FLAG_ORDER = [
   '--register', '--queue', '--genesis', '--tenant',
   '--source', '--document', '--title', '--body',
 ] as const;
+/** The ONE optional operator flag (12D-397): value must be true|false. */
+const OPTIONAL_FAILOVER_FLAG = '--declaredFailover' as const;
 
 /**
  * The exact-flags parser: every flag required, in any order, each
@@ -77,19 +86,29 @@ const FLAG_ORDER = [
  * values, and a short genesis refuse.
  */
 export function parseSupervisedCycleArgs(argv: readonly string[]): SupervisedCycleArgs {
-  if (argv.length !== FLAG_ORDER.length * 2)
-    throw new Error(`the cycle command takes exactly ${FLAG_ORDER.length} flags with values (${FLAG_ORDER.join(' ')}); fail closed`);
+  const optionalPair = argv.length === FLAG_ORDER.length * 2 + 2
+    && argv[argv.length - 2] === OPTIONAL_FAILOVER_FLAG;
+  if (argv.length !== FLAG_ORDER.length * 2 && argv.length !== FLAG_ORDER.length * 2 + 2)
+    throw new Error(`the cycle command takes exactly ${FLAG_ORDER.length} flags with values (plus optionally ${OPTIONAL_FAILOVER_FLAG} true|false); fail closed`);
   const values = new Map<string, string>();
-  for (let i = 0; i < argv.length; i += 2) {
+  const pairs = optionalPair ? argv.slice(0, argv.length - 2) : argv;
+  let declaredFailover = false;
+  for (let i = 0; i < pairs.length; i += 2) {
     const flag = argv[i]!;
     const value = argv[i + 1]!;
     if (!(FLAG_ORDER as readonly string[]).includes(flag))
-      throw new Error(`unknown flag ${flag}; the cycle command takes exactly ${FLAG_ORDER.join(' ')}; fail closed`);
+      throw new Error(`unknown flag ${flag}; the cycle command takes exactly ${FLAG_ORDER.join(' ')} (plus optionally ${OPTIONAL_FAILOVER_FLAG} true|false); fail closed`);
     if (values.has(flag))
       throw new Error(`the flag ${flag} appears more than once; fail closed`);
     if (value.length === 0 || value.startsWith('--'))
       throw new Error(`the flag ${flag} requires a value; fail closed`);
     values.set(flag, value);
+  }
+  if (optionalPair) {
+    const v = argv[argv.length - 1]!;
+    if (v !== 'true' && v !== 'false')
+      throw new Error(`the ${OPTIONAL_FAILOVER_FLAG} flag accepts exactly true or false; fail closed`);
+    declaredFailover = v === 'true';
   }
   const registerGenesis = values.get('--genesis')!;
   if (registerGenesis.length < 8)
@@ -106,6 +125,7 @@ export function parseSupervisedCycleArgs(argv: readonly string[]): SupervisedCyc
     documentId: values.get('--document')!,
     title,
     bodyPath: values.get('--body')!,
+    declaredFailover,
   });
   return args;
 }
@@ -149,10 +169,27 @@ export async function runSupervisedCycleCommand(argv: readonly string[]): Promis
   const register = new FileReadingRegisterStore(args.registerPath) as unknown as ReadingSourceStore;
   const queue = new OfflineStoryQueue(args.queuePath);
   try {
+    // 12D-397: the DECLARED caller (pinned primary first, then the
+    // declared local fallback once) when the operator passes
+    // --declaredFailover true; otherwise the single pinned primary —
+    // today's behavior. Both are loopback-only; remoteCalls stay 0.
+    // LIVE-MEASURED (12D-397): the 12D-280 reader verifies the caller
+    // result has EXACTLY the keys [model, response] in order, while the
+    // 12D-386 declared caller adds candidateIndex for its own provenance
+    // tests — so a thin adapter drops candidateIndex. The settled model
+    // name still flows in .model (what the packet reports), and the
+    // reader's fail-closed shape gate is NOT loosened.
+    const declared = args.declaredFailover ? buildMultiModelCallerDeclared() : null;
+    const caller = declared
+      ? async (prompt: string) => {
+          const r = await declared(prompt);
+          return { model: r.model, response: r.response };
+        }
+      : buildLoopbackCaller();
     const packet = await runSupervisedReadingCycle(queue, register, args.registerGenesis, {
       tenantId: args.tenantId, sourceId: args.sourceId, documentId: args.documentId,
       title: args.title, bodyText,
-    }, buildLoopbackCaller());
+    }, caller);
     console.log(JSON.stringify(packet, null, 2));
     return { refused: packet.kind === 'SUPERVISED_READING_CYCLE_REFUSED' };
   } finally {
