@@ -20,7 +20,12 @@ rows/database is the ONLY measured ceiling.
 CFPB publisher surface (25-record structured-field sample; size=0
 facet census) — their 14 drafts settle AWAITING_REVIEW and are
 CEO-gated: NO review decision is applied without the CEO's recorded
-approval.
+approval. **12D-391/392 status:** the same governance for the World
+Bank bounded reads — 2 more drafts AWAITING_REVIEW (16 total,
+CEO-gated). The 12D-385/386 multi-MODEL failover rungs (declared local
+fallback qwen2.5:3b beside the pinned primary qwen2.5-coder:7b) are
+brain-infrastructure, not reading sources — recorded in their own
+handoffs.
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -34,6 +39,8 @@ approval.
 | 374 | License census (GitHub/HF/arXiv) | SPDX-verified class map for the whole CEO batch (see C below) |
 | 388 | CFPB CCDB structured fields (LIVE sample, 25 records) | 15 structured fields observed; forbidden fields (complaint_what_happened / consumer_disputed / consumer_consent_provided) present in NONE — 12D-370 holds against the LIVE surface; totalHits 17,842,775 unchanged. MEASURED DRIFT: `format=json` now returns HTTP 404 (the 366-verified spec allowed it); the same URL without it serves JSON by default — recorded verbatim, adapted to measured reality |
 | 389 | CFPB CCDB facet census (LIVE, size=0) | Counts only, ZERO records fetched: facets product/issue/company_response/submitted_via measured (buckets enumerated top-50 with a DISCLOSED cap after the draft-budget refusal); totalHits unchanged |
+| 391 | World Bank Open Data (LIVE, bounded) | CC BY 4.0 re-verified VERBATIM from the publisher's Summary Terms of Use page by the driver BEFORE any read ("Unless indicated otherwise… Creative Commons Attribution 4.0 International License…"); binding mediation/arbitration addition noted; attribution duty recorded: reuse must attribute "World Bank Open Data, CC BY 4.0"; bounded sample SP.POP.TOTL USA × 5 years (envelope total 66, lastupdated 2026-07-13) |
+| 392 | World Bank Open Data (LIVE, bounded multi-country) | THE LICENSE GATE IS NEVER INHERITED, ALWAYS RE-MEASURED — the 392 driver re-fetched the terms page fresh and refused unless CC BY 4.0 verbatim (license discipline is a property of each read, not of the rung that first did it); bounded sample NY.GDP.MKTP.CD × {USA, ECU, MEX} × 3 years = 9 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
