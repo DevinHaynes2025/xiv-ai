@@ -1,7 +1,8 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388/389
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
-committed as the OS's reference ledger)
+committed as the OS's reference ledger); 12D-390 (ledger touch — the
+measured `format=json` drift + the bounded 12D-388/389 rungs)
 · **Parents:** 12D-382 · **Policy footprint:** none added
 
 Every row below is sourced from committed handoffs and the drivers'
@@ -15,6 +16,12 @@ license-verified BEFORE read, through the REAL 12D-276 register +
 CEO-gated approvals landed. Honest flags pinned throughout; 2,000,000
 rows/database is the ONLY measured ceiling.
 
+**12D-388/389 status:** the two bounded follow-on rungs read the LIVE
+CFPB publisher surface (25-record structured-field sample; size=0
+facet census) — their 14 drafts settle AWAITING_REVIEW and are
+CEO-gated: NO review decision is applied without the CEO's recorded
+approval.
+
 ## A. Verified contracts (publisher-own sources)
 
 | Rung | Source | Verified facts (operative) |
@@ -25,6 +32,8 @@ rows/database is the ONLY measured ceiling.
 | 371 | CC0 1.0 + ODbL 1.0 legal texts | CC0: irrevocable worldwide waiver, trademark/patent untouched, as-is, NO share-alike. ODbL: substantial-part extraction = Derivative Database; Sec 4.4 share-alike; Sec 4.3 notice pattern; Sec 4.6 derivative-offer duty → ODbL extraction rungs stay bounded or CEO-approved with disclosure |
 | 372 | World Bank catalog | ODbL used only when required by original provider/partnership (default CC BY 4.0; most microdata RESTRICTED) — the share-alike constraint made concrete |
 | 374 | License census (GitHub/HF/arXiv) | SPDX-verified class map for the whole CEO batch (see C below) |
+| 388 | CFPB CCDB structured fields (LIVE sample, 25 records) | 15 structured fields observed; forbidden fields (complaint_what_happened / consumer_disputed / consumer_consent_provided) present in NONE — 12D-370 holds against the LIVE surface; totalHits 17,842,775 unchanged. MEASURED DRIFT: `format=json` now returns HTTP 404 (the 366-verified spec allowed it); the same URL without it serves JSON by default — recorded verbatim, adapted to measured reality |
+| 389 | CFPB CCDB facet census (LIVE, size=0) | Counts only, ZERO records fetched: facets product/issue/company_response/submitted_via measured (buckets enumerated top-50 with a DISCLOSED cap after the draft-budget refusal); totalHits unchanged |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -70,9 +79,16 @@ rows/database is the ONLY measured ceiling.
   every rung.
 - Fail-closed proofs encountered live (all bounds are real): the
   register's 200-char title bound refused an over-long title (12D-372);
-  the chunker's 2200-char paragraph bound refused two oversize blocks
-  (12D-378); the apply door's 256-char reviewRef bound refused the
-  first 12D-382 run (nothing applied until shortened).
+  the chunker's 2200-char paragraph bound refused oversize blocks
+  (12D-378; again in 12D-388 on a pretty-printed JSON record and in
+  12D-389 on a bucket list — three occurrences, the bound is real);
+  the apply door's 256-char reviewRef bound refused the first 12D-382
+  run (nothing applied until shortened); the reading cycle's draft
+  budget settled an over-budget model draft (2,222 chars) FAILED
+  durably — no silent retry — until the enumeration cap was disclosed
+  (12D-389); the publisher's own API refused a spec-allowed parameter
+  with HTTP 404 and the driver wrote nothing until the drift was
+  measured (12D-388).
 - Honest flags on every packet: humanDecision REQUIRED,
   learningPromoted false, activated 0, collectsNothing true,
   automaticRecovery false, modelWeightMutation false,
