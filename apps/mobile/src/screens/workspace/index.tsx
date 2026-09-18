@@ -1235,6 +1235,21 @@ export function WorkspaceOsStatus() {
   );
 }
 
+export function WorkspaceVerifiedSources() {
+  return (
+    <PremiumDesk title="Verified Data Sources" subtitle="License-verified before any read. Portal posture does not license hosted content.">
+      <XivStatusPill label="verify-then-read through the REAL doors — license, contract, measured rungs, CEO-gated review" tone="warning" />
+      <XivListRow title="World Bank Open Data" body="CC BY 4.0 for World Bank-produced datasets (verified from the publisher's licensing page). ODbL and Microdata Research License govern non-default datasets; per-dataset terms govern third-party data. Attribution carried." />
+      <XivListRow title="data.gov" body="Federal data free and without restriction (17 U.S.C. § 105 posture, platform policy quoted); non-federal datasets carry per-dataset Access & Use terms. Catalog count is displayed, not ingested." />
+      <XivListRow title="CFPB Consumer Complaint Database" body="Publisher grant quoted verbatim: freely available to use, analyze, and build on. API contract JS/Swagger-only — unverified; no bulk download beyond the measured ceiling." />
+      <XivListRow title="Measured ceiling" body="2,000,000 rows/database is the ONLY measured ceiling. Trillion/billion/infinite scale is VISION, never product truth." />
+      <XivText variant="micro" dim>
+        Every source is registered in the REAL reading-source register with its license note, read through the supervised cycle (loopback only, remoteCalls 0), and reviewed CEO-gated before anything enters the OS. Secrets never render and never reach any model.
+      </XivText>
+    </PremiumDesk>
+  );
+}
+
 export function WorkspaceOsDataFabric() {
   return (
     <PremiumDesk title="OS Data Fabric V2" subtitle="Federated adapters by purpose. Security Roots V4 stay bound.">

@@ -173,6 +173,7 @@ const hidden = [
   'control-tower',
   'story-engine',
   'os-status',
+  'verified-sources',
 ];
 
 export default function BusinessLayout() {
