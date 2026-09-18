@@ -37,6 +37,7 @@ import DraftReceiptPanel from "./draft-receipt-panel";
 import AssistantTurnPanel from "./assistant-turn-panel";
 import AssistantConversationPanel from "./assistant-conversation-panel";
 import AssistantMemoryConversationPanel from "./assistant-memory-conversation-panel";
+import AssistantMemoryTurnPanel from "./assistant-memory-turn-panel";
 import AssistantMemoryCitedTurnPanel from "./assistant-memory-cited-turn-panel";
 import AssistantMemoryCitedConversationPanel from "./assistant-memory-cited-conversation-panel";
 import CitationVerifyPanel from "./citation-verify-panel";
@@ -112,6 +113,7 @@ export default function StoryShellPage() {
         <AssistantTurnPanel />
         <AssistantConversationPanel />
         <AssistantMemoryConversationPanel />
+        <AssistantMemoryTurnPanel />
         <AssistantMemoryCitedTurnPanel />
         <AssistantMemoryCitedConversationPanel />
         <CitationVerifyPanel />
