@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..524 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..526 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -234,6 +234,9 @@ under the same recorded approval (523, verbatim ref).
 **12D-524..525 status:** World Bank unemployment read (524,
 SL.UEM.TOTL.ZS probed valid live in the 522 batch; 5 rows); the
 draft applied under the same recorded approval (525, verbatim ref).
+**12D-526..527 status:** World Bank rural-population read (526,
+SP.RUR.TOTL.ZS probed valid live in the 522 batch; 5 rows); the
+draft applied under the same recorded approval (527, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -323,6 +326,7 @@ draft applied under the same recorded approval (525, verbatim ref).
 | 520 | World Bank Open Data (LIVE, bounded FDI net inflows) | License gate re-measured fresh (47th terms measure); BX.KLT.DINV.CD.WD probed valid live before any read; 5 rows |
 | 522 | World Bank Open Data (LIVE, bounded GDP per capita) | License gate re-measured fresh (48th terms measure); NY.GDP.PCAP.CD probed valid live before any read (SL.UEM.TOTL.ZS + SP.RUR.TOTL.ZS also probed valid); 5 rows |
 | 524 | World Bank Open Data (LIVE, bounded unemployment) | License gate re-measured fresh (49th terms measure); SL.UEM.TOTL.ZS probed valid live before any read; 5 rows |
+| 526 | World Bank Open Data (LIVE, bounded rural population) | License gate re-measured fresh (50th terms measure); SP.RUR.TOTL.ZS probed valid live before any read; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -359,7 +363,7 @@ draft applied under the same recorded approval (525, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 471 review decisions applied all-time (144 in the 12D-340 run;
+- 472 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -377,7 +381,7 @@ draft applied under the same recorded approval (525, verbatim ref).
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
   12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
   12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482;
-  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490; 1 in the 12D-493 run for 12D-492; 1 in the 12D-495 run for 12D-494; 1 in the 12D-497 run for 12D-496; 1 in the 12D-499 run for 12D-498; 1 in the 12D-501 run for 12D-500; 1 in the 12D-503 run for 12D-502; 1 in the 12D-505 run for 12D-504; 1 in the 12D-507 run for 12D-506; 1 in the 12D-509 run for 12D-508; 1 in the 12D-511 run for 12D-510; 1 in the 12D-513 run for 12D-512; 1 in the 12D-515 run for 12D-514; 1 in the 12D-517 run for 12D-516; 1 in the 12D-519 run for 12D-518; 1 in the 12D-521 run for 12D-520; 1 in the 12D-523 run for 12D-522; 1 in the 12D-525 run for 12D-524 — all under
+  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490; 1 in the 12D-493 run for 12D-492; 1 in the 12D-495 run for 12D-494; 1 in the 12D-497 run for 12D-496; 1 in the 12D-499 run for 12D-498; 1 in the 12D-501 run for 12D-500; 1 in the 12D-503 run for 12D-502; 1 in the 12D-505 run for 12D-504; 1 in the 12D-507 run for 12D-506; 1 in the 12D-509 run for 12D-508; 1 in the 12D-511 run for 12D-510; 1 in the 12D-513 run for 12D-512; 1 in the 12D-515 run for 12D-514; 1 in the 12D-517 run for 12D-516; 1 in the 12D-519 run for 12D-518; 1 in the 12D-521 run for 12D-520; 1 in the 12D-523 run for 12D-522; 1 in the 12D-525 run for 12D-524; 1 in the 12D-527 run for 12D-526 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
