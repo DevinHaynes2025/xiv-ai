@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..461
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..464
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -116,7 +116,11 @@ under the same recorded approval (459, verbatim ref).
 chars across seventeen rungs, drift guard holding); World Bank
 import-lead-time read (461, LP.IMP.DURS.MD from the publisher
 catalog; 5 rows); all 5 drafts applied under the same recorded
-approval (462, verbatim ref).
+approval (462, verbatim ref). **12D-463..465 status:** GTFS slice 18
+read (463 — 108,000 of 140,905 chars across eighteen rungs, drift
+guard holding); World Bank export-lead-time read (464,
+LP.EXP.DURS.MD from the publisher catalog; 5 rows); all 5 drafts
+applied under the same recorded approval (465, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -171,6 +175,8 @@ approval (462, verbatim ref).
 | 458 | World Bank Open Data (LIVE, bounded LPI on-time shipments) | License gate re-measured fresh (20th terms measure); LP.LPI.TIME.XQ — the real code behind the refused misspelling LP.LPI.TIMED.XQ, chosen from the publisher's catalog; 5 rows |
 | 460 | GTFS Schedule Reference — seventeenth slice (chars 96000..102000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 102,000 of 140,905 chars across seventeen rungs |
 | 461 | World Bank Open Data (LIVE, bounded import lead time) | License gate re-measured fresh (21st terms measure); LP.IMP.DURS.MD chosen from the publisher's own catalog; 5 rows |
+| 463 | GTFS Schedule Reference — eighteenth slice (chars 102000..108000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 108,000 of 140,905 chars across eighteen rungs |
+| 464 | World Bank Open Data (LIVE, bounded export lead time) | License gate re-measured fresh (22nd terms measure); LP.EXP.DURS.MD chosen from the publisher's own catalog; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -207,7 +213,7 @@ approval (462, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 417 review decisions applied all-time (144 in the 12D-340 run;
+- 422 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -220,7 +226,8 @@ approval (462, verbatim ref).
   5 in the 12D-447 run for 12D-445/446; 5 in the 12D-450 run for
   12D-448/449; 5 in the 12D-453 run for 12D-451/452; 5 in the
   12D-456 run for 12D-454/455; 5 in the 12D-459 run for 12D-457/458;
-  5 in the 12D-462 run for 12D-460/461 — all under
+  5 in the 12D-462 run for 12D-460/461; 5 in the 12D-465 run for
+  12D-463/464 — all under
   all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
