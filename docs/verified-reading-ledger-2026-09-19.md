@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..416
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..422
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -48,6 +48,10 @@ bounds intact), and World Bank rural population (416: the first terms
 URL 404'd and the driver refused BEFORE any read; the driver's own
 envelope bug was caught by its own refusal) — all 25 drafts applied
 under the recorded blanket approval (12D-420, verbatim ref).
+**12D-421..423 status:** the FRA-regulated commuter-rail non-major
+events dataset joined the surface (421, date column measured
+start_date), GTFS slice 4 read (422, drift guard holds), and all 11
+drafts applied under the same recorded approval (423, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -74,6 +78,8 @@ under the recorded blanket approval (12D-420, verbatim ref).
 | 413 | GTFS Schedule Reference — third slice (chars 12000..18000) | Drift guard holds (140,905 identical); license gate re-measured fresh (7th); 2 drafts settled by the pinned primary |
 | 415 | FTA NTD — Major Safety and Security Events (LIVE, Socrata) | License "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read; TWO live driver-bug proofs caught by the REAL bounds: (1) the /date/i regex matched "consolidated_mode_name" — date columns now require "date" as a whole underscore segment (measured: incident_date); (2) a 3,553-char wide row refused the 1,900 packing bound — wide rows split into labeled field-line parts (longest block 1,813); PII caution disclosed; 10 most-recent rows → 22 drafts |
 | 416 | World Bank Open Data (LIVE, bounded rural population) | The FIRST terms URL 404'd — refused BEFORE any read; the proven summary-terms surface adopted, CC BY 4.0 verified verbatim fresh (8th measure); the driver's own envelope-indexing bug caught by its own "no rows" refusal; SP.RUR.TOTL.ZS × {NGA, ZAF, ETH, KEN, EGY} × mrv=1 = 5 rows |
+| 421 | FTA NTD — Non-Major Safety and Security Events, FRA Commuter Rail Only (LIVE, Socrata) | Fifth FTA rung; license "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read; the 415 whole-segment date rule held (measured start_date — proves the fix); 10 most-recent rows → 7 drafts; non-major events (lower-severity reporting) disclosed as scope |
+| 422 | GTFS Schedule Reference — fourth slice (chars 18000..24000) | Drift guard holds (140,905 identical); license gate re-measured fresh (9th); 4 drafts; 24,000 of 140,905 chars read across four rungs |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -110,12 +116,13 @@ under the recorded blanket approval (12D-420, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 341 review decisions applied all-time (144 in the 12D-340 run;
+- 352 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
   2 in the 12D-412 run for 12D-411; 25 in the 12D-420 run for
-  12D-413/415/416 — all under the CEO's recorded blanket approval
+  12D-413/415/416; 11 in the 12D-423 run for 12D-421/422 — all under
+  the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
   12D-326..363 queues), all through the REAL worksheet → decisions →
