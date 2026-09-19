@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..405
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..411
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -32,7 +32,15 @@ verified surfaces (CEO mobility direction). All 12 drafts from
 398/401/403/404 were applied under the CEO's recorded blanket-trust
 approval (12D-405, verbatim ref); the apply door then REFUSED a second
 invocation ("the decisions file is empty — there is nothing the human
-decided") — idempotency measured.
+decided") — idempotency measured. **12D-407..411 status:** the FTA
+surface gained its GTFS weblinks index (407) and the campaign opened
+the GTFS Schedule STANDARD itself at its publisher gtfs.org (409,
+chars 0..6000; 411, chars 6000..12000 — the transit-brain
+prerequisite, CC BY 3.0 content / Apache 2.0 code samples verified
+verbatim from gtfs.org/about fresh every rung, a drift guard added at
+411 against the 140,905-char strip measure). The 407/408 and 409/410
+drafts were applied under the same recorded blanket approval (verbatim
+refs; 12D-408, 12D-410).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -53,6 +61,9 @@ decided") — idempotency measured.
 | 401 | World Bank Open Data (LIVE, bounded internet-use, through the CLI DOOR) | FIRST campaign read through the operator CLI door with --declaredFailover true (12D-397/400 machinery exercised in a campaign); IT.NET.USER.ZS (individuals using the internet, % of population) × the same 5 countries × mrv=1 = 5 rows; license gate re-measured fresh (5th); standing loop measured honestly — one CLI invocation reads ONE chunk, the command re-runs until census READY 0; drafts settled by the pinned primary (declared fallback ordered, never preferred) |
 | 403 | FTA National Transit Database — Facility Inventory (LIVE, Socrata) | License verified VERBATIM from the dataset's OWN Socrata metadata BEFORE any read ("Public Domain U.S. Government", termsLink usa.gov/government-works, attribution "Federal Transit Administration") — the 12D-394 per-dataset discipline on a new publisher; DISCLOSED: the linked usa.gov page is a JS shell (no operative sentence server-rendered; stage-2 verbatim impossible; the driver REFUSED on that gate before the disclosure was written; posture verified at 369); data.gov search pages are JS shells (CKAN APIs 404 from 394); bounded 10 rows |
 | 404 | FTA NTD — Complete Monthly Ridership (LIVE, bounded) | Second rung on the surface — gates never inherited: the per-dataset metadata license re-measured verbatim BEFORE read; the usa.gov stage-2 JS-shell limitation re-measured + disclosed again; bounded 10 MOST-RECENT agency/month rows ($order=date desc; latest measured month 2026-07-01); UPT/VOMS/VRH/VRM glossary recorded |
+| 407 | FTA NTD — GTFS Weblinks (LIVE, Socrata) | Third rung — license "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read (re-measured, never inherited); usa.gov JS-shell disclosed 3rd time; NEW SCOPE BOUNDARY: the public-domain declaration covers the INDEX of agency GTFS feed URLs, not the agency feeds it links (MobilityData 12D-375 lesson re-applied — per-feed provider terms govern); bounded 10 rows |
+| 409 | GTFS Schedule Reference — gtfs.org (publisher MobilityData) | LICENSE verified VERBATIM from gtfs.org/about BEFORE any read: "Except as otherwise noted, the content of this site is licensed under the Creative Commons Attribution 3.0 License, and code samples are licensed under the Apache 2.0 License" (CC BY 3.0 content / Apache 2.0 code; attribution GTFS/MobilityData); the gtfs-spec repo URL 404'd first — the about page is the operative surface; reference strips to 140,905 chars (measured; JS-shell guard refuses < 2,000); THIS rung read chars 0..6000 (disclosed cap); source class PUBLISHED_STANDARD |
+| 411 | GTFS Schedule Reference — second slice (chars 6000..12000, file-definitions opening) | License gate RE-MEASURED FRESH (never inherited — 6th verbatim measure of a campaign surface); NEW DRIFT GUARD: the driver refuses if the strip length stops matching the 12D-409 measure (140,905) without an explicit re-plan — measured identical; bounded slice read through the CLI door with --declaredFailover true |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -89,10 +100,11 @@ decided") — idempotency measured.
 
 ## D. Measured campaign totals
 
-- 308 review decisions applied all-time (144 in the 12D-340 run;
+- 314 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
-  12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404
-  under the CEO's recorded blanket approval
+  12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
+  4 in the 12D-408 run for 12D-407 and 2 in the 12D-410 run for
+  12D-409 — all under the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
   12D-326..363 queues), all through the REAL worksheet → decisions →
