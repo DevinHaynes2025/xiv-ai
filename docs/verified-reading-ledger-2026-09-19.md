@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..490 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..492 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -167,6 +167,10 @@ approval (489, verbatim ref).
 IT.NET.BBND.P2 probed valid live in the same batch as the two prior
 IT.* codes; 5 rows); the draft applied under the same recorded
 approval (491, verbatim ref).
+**12D-492..493 status:** World Bank electricity-access read (492,
+EG.ELC.ACCS.ZS probed valid live in a fresh family batch alongside
+SP.POP.TOTL and SH.DYN.MORT; 5 rows); the draft applied under the
+same recorded approval (493, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -239,6 +243,7 @@ approval (491, verbatim ref).
 | 486 | World Bank Open Data (LIVE, bounded internet users) | License gate re-measured fresh (30th terms measure); IT.NET.USER.ZS probed valid live before any read (after IS.AIR.PSGR.P3 and IS.RRS.TRFF.PF both probed ARCHIVED); 5 rows |
 | 488 | World Bank Open Data (LIVE, bounded mobile cellular) | License gate re-measured fresh (31st terms measure); IT.CEL.SETS.P2 probed valid live before any read; 5 rows |
 | 490 | World Bank Open Data (LIVE, bounded fixed broadband) | License gate re-measured fresh (32nd terms measure); IT.NET.BBND.P2 probed valid live before any read; 5 rows |
+| 492 | World Bank Open Data (LIVE, bounded electricity access) | License gate re-measured fresh (33rd terms measure); EG.ELC.ACCS.ZS probed valid live before any read; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -275,7 +280,7 @@ approval (491, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 454 review decisions applied all-time (144 in the 12D-340 run;
+- 455 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -293,7 +298,7 @@ approval (491, verbatim ref).
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
   12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
   12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482;
-  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490 — all under
+  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490; 1 in the 12D-493 run for 12D-492 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
