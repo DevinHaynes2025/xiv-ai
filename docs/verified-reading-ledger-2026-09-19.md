@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..434
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..437
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -74,7 +74,12 @@ World Bank logistics-performance read (434, code probed valid first —
 three candidate CO₂/shipping codes EN.CO2.TRAN.ZG, EN.CO2.TRAN.MT.ZS,
 IS.SHP.GNW.P.TL all probed INVALID live before any read; valid
 LP.LPI.OVRL.XQ measured 5 rows); all 5 drafts applied under the same
-recorded approval (435, verbatim ref).
+recorded approval (435, verbatim ref). **12D-436..438 status:** GTFS
+slice 9 read (436 — 54,000 of 140,905 chars across nine rungs, drift
+guard holding); World Bank container-port read (437, probe-first
+applied — three candidate codes probed valid live before any read;
+valid IS.SHP.GOOD.TU measured 5 rows); all 5 drafts applied under the
+same recorded approval (438, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -111,6 +116,8 @@ recorded approval (435, verbatim ref).
 | 431 | World Bank Open Data (LIVE, bounded rail lines) | License gate re-measured fresh (11th terms measure); the indicator code (IS.RRS.TOTL.KM) probed valid FIRST this time — the 425/428 lesson applied; 5 rows |
 | 433 | GTFS Schedule Reference — eighth slice (chars 42000..48000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 48,000 of 140,905 chars across eight rungs |
 | 434 | World Bank Open Data (LIVE, bounded logistics performance) | License gate re-measured fresh (12th terms measure); the probe-first lesson applied BEFORE the driver was derived — three candidate codes (EN.CO2.TRAN.ZG, EN.CO2.TRAN.MT.ZS, IS.SHP.GNW.P.TL) all probed INVALID live before any read; the valid LP.LPI.OVRL.XQ (logistics performance index overall, 1=low to 5=high) measured 5 rows |
+| 436 | GTFS Schedule Reference — ninth slice (chars 48000..54000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 54,000 of 140,905 chars across nine rungs |
+| 437 | World Bank Open Data (LIVE, bounded container port traffic) | License gate re-measured fresh (13th terms measure); probe-first applied — three candidate codes (IS.SHP.GOOD.TU, LP.LPI.INFR.XQ, IS.RRS.PASG.KM) all probed valid live before any read; the distinct ports/shipping surface IS.SHP.GOOD.TU (TEU) measured 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -147,7 +154,7 @@ recorded approval (435, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 372 review decisions applied all-time (144 in the 12D-340 run;
+- 377 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -155,7 +162,7 @@ recorded approval (435, verbatim ref).
   12D-413/415/416; 11 in the 12D-423 run for 12D-421/422; 5 in the
   12D-426 run for 12D-424/425; 5 in the 12D-429 run for 12D-427/428;
   5 in the 12D-432 run for 12D-430/431; 5 in the 12D-435 run for
-  12D-433/434 — all under
+  12D-433/434; 5 in the 12D-438 run for 12D-436/437 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
