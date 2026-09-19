@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..482 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..484 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -151,6 +151,9 @@ no-rows guard, IS.RRS.DNST/IS.RRS.EMPL.TU.ZS probed ARCHIVED (id
 175), guessed IS.AIR.GOOD.MT.K6 probed INVALID (id 120), catalog
 spelling IS.AIR.GOOD.MT.K1 measured 5 rows); all 3 drafts applied
 under the same recorded approval (483, verbatim ref).
+**12D-484..485 status:** World Bank air-departures read (484,
+IS.AIR.DPRT probed valid first; 5 rows); the draft applied under the
+same recorded approval (485, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -219,6 +222,7 @@ under the same recorded approval (483, verbatim ref).
 | 479 | World Bank Open Data (LIVE, bounded rail freight) | License gate re-measured fresh (27th terms measure); IS.RRS.GOOD.MT.K6 chosen from the publisher's own catalog; 5 rows |
 | 481 | GTFS Schedule Reference — FINAL closing slice (chars 138000..140905) | DOCUMENT COMPLETE: 140,905 of 140,905 chars read across 24 slices; drift guard held on every rung; license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 2 drafts |
 | 482 | World Bank Open Data (LIVE, bounded air freight) | License gate re-measured fresh (28th terms measure); zero-total IS.RRS.ELEC.KM refused by the no-rows guard before writing; IS.RRS.DNST + IS.RRS.EMPL.TU.ZS probed ARCHIVED (id 175); guessed IS.AIR.GOOD.MT.K6 probed INVALID (id 120); catalog spelling IS.AIR.GOOD.MT.K1 measured 5 rows |
+| 484 | World Bank Open Data (LIVE, bounded air departures) | License gate re-measured fresh (29th terms measure); IS.AIR.DPRT probed valid live before any read; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -255,7 +259,7 @@ under the same recorded approval (483, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 450 review decisions applied all-time (144 in the 12D-340 run;
+- 451 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -272,8 +276,8 @@ under the same recorded approval (483, verbatim ref).
   12D-463/464; 5 in the 12D-468 run for 12D-466/467; 5 in the
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
   12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
-  12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482 —
-  all under
+  12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482;
+  1 in the 12D-485 run for 12D-484 — all under
   all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
