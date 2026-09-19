@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..464
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..467
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -121,6 +121,11 @@ read (463 — 108,000 of 140,905 chars across eighteen rungs, drift
 guard holding); World Bank export-lead-time read (464,
 LP.EXP.DURS.MD from the publisher catalog; 5 rows); all 5 drafts
 applied under the same recorded approval (465, verbatim ref).
+**12D-466..468 status:** GTFS slice 19 read (466 — 114,000 of 140,905
+chars across nineteen rungs, drift guard holding); World Bank
+road-network read (467, IS.ROD.TOTL.KM from the publisher catalog —
+completes the road/rail/air/port mobility set; 5 rows); all 5 drafts
+applied under the same recorded approval (468, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -177,6 +182,8 @@ applied under the same recorded approval (465, verbatim ref).
 | 461 | World Bank Open Data (LIVE, bounded import lead time) | License gate re-measured fresh (21st terms measure); LP.IMP.DURS.MD chosen from the publisher's own catalog; 5 rows |
 | 463 | GTFS Schedule Reference — eighteenth slice (chars 102000..108000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 108,000 of 140,905 chars across eighteen rungs |
 | 464 | World Bank Open Data (LIVE, bounded export lead time) | License gate re-measured fresh (22nd terms measure); LP.EXP.DURS.MD chosen from the publisher's own catalog; 5 rows |
+| 466 | GTFS Schedule Reference — nineteenth slice (chars 108000..114000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 114,000 of 140,905 chars across nineteen rungs |
+| 467 | World Bank Open Data (LIVE, bounded road network) | License gate re-measured fresh (23rd terms measure); IS.ROD.TOTL.KM chosen from the publisher's own catalog (completes the road/rail/air/port mobility set); 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -213,7 +220,7 @@ applied under the same recorded approval (465, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 422 review decisions applied all-time (144 in the 12D-340 run;
+- 427 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -227,7 +234,7 @@ applied under the same recorded approval (465, verbatim ref).
   12D-448/449; 5 in the 12D-453 run for 12D-451/452; 5 in the
   12D-456 run for 12D-454/455; 5 in the 12D-459 run for 12D-457/458;
   5 in the 12D-462 run for 12D-460/461; 5 in the 12D-465 run for
-  12D-463/464 — all under
+  12D-463/464; 5 in the 12D-468 run for 12D-466/467 — all under
   all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
