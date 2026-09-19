@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..411
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..416
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -40,7 +40,14 @@ prerequisite, CC BY 3.0 content / Apache 2.0 code samples verified
 verbatim from gtfs.org/about fresh every rung, a drift guard added at
 411 against the 140,905-char strip measure). The 407/408 and 409/410
 drafts were applied under the same recorded blanket approval (verbatim
-refs; 12D-408, 12D-410).
+refs; 12D-408, 12D-410). **12D-413..420 status:** the campaign drilled
+on three fronts — GTFS slice 3 (413), the NTD Major Safety and Security
+Events dataset (415: TWO live driver-bug proofs, the /date/i regex
+trap and the 3,553-char wide-row packing refusal, both fixed with the
+bounds intact), and World Bank rural population (416: the first terms
+URL 404'd and the driver refused BEFORE any read; the driver's own
+envelope bug was caught by its own refusal) — all 25 drafts applied
+under the recorded blanket approval (12D-420, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -64,6 +71,9 @@ refs; 12D-408, 12D-410).
 | 407 | FTA NTD — GTFS Weblinks (LIVE, Socrata) | Third rung — license "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read (re-measured, never inherited); usa.gov JS-shell disclosed 3rd time; NEW SCOPE BOUNDARY: the public-domain declaration covers the INDEX of agency GTFS feed URLs, not the agency feeds it links (MobilityData 12D-375 lesson re-applied — per-feed provider terms govern); bounded 10 rows |
 | 409 | GTFS Schedule Reference — gtfs.org (publisher MobilityData) | LICENSE verified VERBATIM from gtfs.org/about BEFORE any read: "Except as otherwise noted, the content of this site is licensed under the Creative Commons Attribution 3.0 License, and code samples are licensed under the Apache 2.0 License" (CC BY 3.0 content / Apache 2.0 code; attribution GTFS/MobilityData); the gtfs-spec repo URL 404'd first — the about page is the operative surface; reference strips to 140,905 chars (measured; JS-shell guard refuses < 2,000); THIS rung read chars 0..6000 (disclosed cap); source class PUBLISHED_STANDARD |
 | 411 | GTFS Schedule Reference — second slice (chars 6000..12000, file-definitions opening) | License gate RE-MEASURED FRESH (never inherited — 6th verbatim measure of a campaign surface); NEW DRIFT GUARD: the driver refuses if the strip length stops matching the 12D-409 measure (140,905) without an explicit re-plan — measured identical; bounded slice read through the CLI door with --declaredFailover true |
+| 413 | GTFS Schedule Reference — third slice (chars 12000..18000) | Drift guard holds (140,905 identical); license gate re-measured fresh (7th); 2 drafts settled by the pinned primary |
+| 415 | FTA NTD — Major Safety and Security Events (LIVE, Socrata) | License "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read; TWO live driver-bug proofs caught by the REAL bounds: (1) the /date/i regex matched "consolidated_mode_name" — date columns now require "date" as a whole underscore segment (measured: incident_date); (2) a 3,553-char wide row refused the 1,900 packing bound — wide rows split into labeled field-line parts (longest block 1,813); PII caution disclosed; 10 most-recent rows → 22 drafts |
+| 416 | World Bank Open Data (LIVE, bounded rural population) | The FIRST terms URL 404'd — refused BEFORE any read; the proven summary-terms surface adopted, CC BY 4.0 verified verbatim fresh (8th measure); the driver's own envelope-indexing bug caught by its own "no rows" refusal; SP.RUR.TOTL.ZS × {NGA, ZAF, ETH, KEN, EGY} × mrv=1 = 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -100,11 +110,12 @@ refs; 12D-408, 12D-410).
 
 ## D. Measured campaign totals
 
-- 314 review decisions applied all-time (144 in the 12D-340 run;
+- 341 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
-  4 in the 12D-408 run for 12D-407 and 2 in the 12D-410 run for
-  12D-409 — all under the CEO's recorded blanket approval
+  4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
+  2 in the 12D-412 run for 12D-411; 25 in the 12D-420 run for
+  12D-413/415/416 — all under the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
   12D-326..363 queues), all through the REAL worksheet → decisions →
