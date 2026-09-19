@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..584 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..586 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -388,6 +388,11 @@ NY.GDP.MKTP.KD.ZG and SL.TLF.CACT.FE.ZS valid spares; 5 rows);
 the draft applied under the same recorded approval (585, verbatim
 ref).
 
+**12D-586..587 status:** World Bank GDP-growth read (586,
+NY.GDP.MKTP.KD.ZG probed valid live as the 584-batch spare;
+5 rows); the draft applied under the same recorded approval (587,
+verbatim ref).
+
 ## A. Verified contracts (publisher-own sources)
 
 | Rung | Source | Verified facts (operative) |
@@ -506,6 +511,7 @@ ref).
 | 580 | World Bank Open Data (LIVE, bounded household consumption) | License gate re-measured fresh (77th terms measure); NE.CON.PRVT.CD probed valid live as the 578-batch spare before any read; 5 rows |
 | 582 | World Bank Open Data (LIVE, bounded basic water) | License gate re-measured fresh (78th terms measure); SH.H2O.BASW.ZS probed valid live as the 578-batch spare before any read; 5 rows |
 | 584 | World Bank Open Data (LIVE, bounded population growth) | License gate re-measured fresh (79th terms measure); SP.POP.GROW probed valid live in a fresh batch before any read (NY.GDP.MKTP.KD.ZG and SL.TLF.CACT.FE.ZS valid spares); 5 rows |
+| 586 | World Bank Open Data (LIVE, bounded GDP growth) | License gate re-measured fresh (80th terms measure); NY.GDP.MKTP.KD.ZG probed valid live as the 584-batch spare before any read; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -542,7 +548,7 @@ ref).
 
 ## D. Measured campaign totals
 
-- 501 review decisions applied all-time (144 in the 12D-340 run;
+- 502 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -560,7 +566,7 @@ ref).
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
   12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
   12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482;
-  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490; 1 in the 12D-493 run for 12D-492; 1 in the 12D-495 run for 12D-494; 1 in the 12D-497 run for 12D-496; 1 in the 12D-499 run for 12D-498; 1 in the 12D-501 run for 12D-500; 1 in the 12D-503 run for 12D-502; 1 in the 12D-505 run for 12D-504; 1 in the 12D-507 run for 12D-506; 1 in the 12D-509 run for 12D-508; 1 in the 12D-511 run for 12D-510; 1 in the 12D-513 run for 12D-512; 1 in the 12D-515 run for 12D-514; 1 in the 12D-517 run for 12D-516; 1 in the 12D-519 run for 12D-518; 1 in the 12D-521 run for 12D-520; 1 in the 12D-523 run for 12D-522; 1 in the 12D-525 run for 12D-524; 1 in the 12D-527 run for 12D-526; 1 in the 12D-529 run for 12D-528; 1 in the 12D-531 run for 12D-530; 1 in the 12D-533 run for 12D-532; 1 in the 12D-535 run for 12D-534; 1 in the 12D-537 run for 12D-536; 1 in the 12D-539 run for 12D-538; 1 in the 12D-541 run for 12D-540; 1 in the 12D-543 run for 12D-542; 1 in the 12D-545 run for 12D-544; 1 in the 12D-547 run for 12D-546; 1 in the 12D-549 run for 12D-548; 1 in the 12D-551 run for 12D-550; 1 in the 12D-553 run for 12D-552; 1 in the 12D-555 run for 12D-554; 1 in the 12D-557 run for 12D-556; 1 in the 12D-559 run for 12D-558; 1 in the 12D-561 run for 12D-560; 1 in the 12D-563 run for 12D-562; 1 in the 12D-565 run for 12D-564; 1 in the 12D-567 run for 12D-566; 1 in the 12D-569 run for 12D-568; 1 in the 12D-571 run for 12D-570; 1 in the 12D-573 run for 12D-572; 1 in the 12D-575 run for 12D-574; 1 in the 12D-577 run for 12D-576; 1 in the 12D-579 run for 12D-578; 1 in the 12D-581 run for 12D-580; 1 in the 12D-583 run for 12D-582; 1 in the 12D-585 run for 12D-584 — all under
+  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488; 1 in the 12D-491 run for 12D-490; 1 in the 12D-493 run for 12D-492; 1 in the 12D-495 run for 12D-494; 1 in the 12D-497 run for 12D-496; 1 in the 12D-499 run for 12D-498; 1 in the 12D-501 run for 12D-500; 1 in the 12D-503 run for 12D-502; 1 in the 12D-505 run for 12D-504; 1 in the 12D-507 run for 12D-506; 1 in the 12D-509 run for 12D-508; 1 in the 12D-511 run for 12D-510; 1 in the 12D-513 run for 12D-512; 1 in the 12D-515 run for 12D-514; 1 in the 12D-517 run for 12D-516; 1 in the 12D-519 run for 12D-518; 1 in the 12D-521 run for 12D-520; 1 in the 12D-523 run for 12D-522; 1 in the 12D-525 run for 12D-524; 1 in the 12D-527 run for 12D-526; 1 in the 12D-529 run for 12D-528; 1 in the 12D-531 run for 12D-530; 1 in the 12D-533 run for 12D-532; 1 in the 12D-535 run for 12D-534; 1 in the 12D-537 run for 12D-536; 1 in the 12D-539 run for 12D-538; 1 in the 12D-541 run for 12D-540; 1 in the 12D-543 run for 12D-542; 1 in the 12D-545 run for 12D-544; 1 in the 12D-547 run for 12D-546; 1 in the 12D-549 run for 12D-548; 1 in the 12D-551 run for 12D-550; 1 in the 12D-553 run for 12D-552; 1 in the 12D-555 run for 12D-554; 1 in the 12D-557 run for 12D-556; 1 in the 12D-559 run for 12D-558; 1 in the 12D-561 run for 12D-560; 1 in the 12D-563 run for 12D-562; 1 in the 12D-565 run for 12D-564; 1 in the 12D-567 run for 12D-566; 1 in the 12D-569 run for 12D-568; 1 in the 12D-571 run for 12D-570; 1 in the 12D-573 run for 12D-572; 1 in the 12D-575 run for 12D-574; 1 in the 12D-577 run for 12D-576; 1 in the 12D-579 run for 12D-578; 1 in the 12D-581 run for 12D-580; 1 in the 12D-583 run for 12D-582; 1 in the 12D-585 run for 12D-584; 1 in the 12D-587 run for 12D-586 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
