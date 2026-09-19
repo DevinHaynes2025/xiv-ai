@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..449
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..452
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -97,6 +97,12 @@ applied under the same recorded approval (447, verbatim ref).
 chars across thirteen rungs, drift guard holding); World Bank
 LPI-customs read (449, LP.LPI.CUST.XQ measured 5 rows); all 5 drafts
 applied under the same recorded approval (450, verbatim ref).
+**12D-451..453 status:** GTFS slice 14 read (451 — 84,000 of 140,905
+chars across fourteen rungs, drift guard holding); World Bank
+LPI-logistics-services read (452 — six guessed codes probed INVALID
+live, so the driver fetched the publisher's OWN catalog (29,544
+indicators) and chose LP.LPI.LOGS.XQ from it; 5 rows); all 5 drafts
+applied under the same recorded approval (453, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -143,6 +149,8 @@ applied under the same recorded approval (450, verbatim ref).
 | 446 | World Bank Open Data (LIVE, bounded LPI tracking and tracing) | License gate re-measured fresh (16th terms measure); fresh probe batch — LP.LPI.TIMED.XQ probed INVALID live (API "Invalid value" id 120), valid LP.LPI.TRAC.XQ measured 5 rows |
 | 448 | GTFS Schedule Reference — thirteenth slice (chars 72000..78000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 78,000 of 140,905 chars across thirteen rungs |
 | 449 | World Bank Open Data (LIVE, bounded LPI customs efficiency) | License gate re-measured fresh (17th terms measure); LP.LPI.CUST.XQ probed valid live in the 446 batch; 5 rows |
+| 451 | GTFS Schedule Reference — fourteenth slice (chars 78000..84000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 84,000 of 140,905 chars across fourteen rungs |
+| 452 | World Bank Open Data (LIVE, bounded LPI logistics services) | License gate re-measured fresh (18th terms measure); six guessed codes probed INVALID live (LP.LPI.SUIT.XQ, IS.SHP.DEC.XQ, IS.ADP.DIM.TOTL, LP.LPI.CARGO.XQ, IS.SHP.GOOD.XU, IC.BUS.NS); the publisher's OWN catalog (29,544 indicators) was fetched and LP.LPI.LOGS.XQ chosen from it; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -179,7 +187,7 @@ applied under the same recorded approval (450, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 397 review decisions applied all-time (144 in the 12D-340 run;
+- 402 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -190,7 +198,7 @@ applied under the same recorded approval (450, verbatim ref).
   12D-433/434; 5 in the 12D-438 run for 12D-436/437; 5 in the
   12D-441 run for 12D-439/440; 5 in the 12D-444 run for 12D-442/443;
   5 in the 12D-447 run for 12D-445/446; 5 in the 12D-450 run for
-  12D-448/449 — all under
+  12D-448/449; 5 in the 12D-453 run for 12D-451/452 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
