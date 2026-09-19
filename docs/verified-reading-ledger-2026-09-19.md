@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..422
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..425
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -52,6 +52,13 @@ under the recorded blanket approval (12D-420, verbatim ref).
 events dataset joined the surface (421, date column measured
 start_date), GTFS slice 4 read (422, drift guard holds), and all 11
 drafts applied under the same recorded approval (423, verbatim ref).
+**12D-424..426 status:** GTFS slice 5 read (424, drift guard holds —
+30,000 of 140,905 chars across five rungs); World Bank urban
+population read (425: the first indicator code was not a code — the
+API returned total 0 and the driver's no-rows guard refused before
+anything was written; the correct SP.URB.TOTL.IN.ZS measured 5 rows);
+all 5 drafts applied under the same recorded approval (426, verbatim
+ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -80,6 +87,8 @@ drafts applied under the same recorded approval (423, verbatim ref).
 | 416 | World Bank Open Data (LIVE, bounded rural population) | The FIRST terms URL 404'd — refused BEFORE any read; the proven summary-terms surface adopted, CC BY 4.0 verified verbatim fresh (8th measure); the driver's own envelope-indexing bug caught by its own "no rows" refusal; SP.RUR.TOTL.ZS × {NGA, ZAF, ETH, KEN, EGY} × mrv=1 = 5 rows |
 | 421 | FTA NTD — Non-Major Safety and Security Events, FRA Commuter Rail Only (LIVE, Socrata) | Fifth FTA rung; license "Public Domain U.S. Government" verbatim from the dataset's OWN metadata BEFORE read; the 415 whole-segment date rule held (measured start_date — proves the fix); 10 most-recent rows → 7 drafts; non-major events (lower-severity reporting) disclosed as scope |
 | 422 | GTFS Schedule Reference — fourth slice (chars 18000..24000) | Drift guard holds (140,905 identical); license gate re-measured fresh (9th); 4 drafts; 24,000 of 140,905 chars read across four rungs |
+| 424 | GTFS Schedule Reference — fifth slice (chars 24000..30000) | Drift guard holds (140,905 identical); license gate re-measured fresh; 4 drafts; 30,000 of 140,905 chars across five rungs |
+| 425 | World Bank Open Data (LIVE, bounded urban population) | License gate re-measured fresh (CC BY 4.0 verbatim, 9th terms measure); ONE live fail-closed proof: the first indicator code (SP.URB.TOTL.ZS) is not a code — the API returned total 0 and the driver's no-rows guard refused before anything was written; the correct SP.URB.TOTL.IN.ZS measured 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -116,12 +125,13 @@ drafts applied under the same recorded approval (423, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 352 review decisions applied all-time (144 in the 12D-340 run;
+- 357 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
   2 in the 12D-412 run for 12D-411; 25 in the 12D-420 run for
-  12D-413/415/416; 11 in the 12D-423 run for 12D-421/422 — all under
+  12D-413/415/416; 11 in the 12D-423 run for 12D-421/422; 5 in the
+  12D-426 run for 12D-424/425 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
