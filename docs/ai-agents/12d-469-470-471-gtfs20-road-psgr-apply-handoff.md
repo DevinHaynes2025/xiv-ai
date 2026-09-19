@@ -1,0 +1,23 @@
+# 12D-469/470/471 — GTFS slice 20 + World Bank road passengers + the apply run (5 decisions)
+
+Date: 2026-09-18 (24/7 build). Branch: `claude/12d-99-supervised-local-worker`.
+
+## 12D-469 — GTFS Schedule Reference, twentieth bounded slice (chars 114,000–120,000)
+
+Drift guard holds (strip 140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim from gtfs.org/about); 4 chunks → **4 drafts AWAITING_REVIEW**, remoteCalls 0. 120,000 of 140,905 chars read across twenty rungs.
+
+## 12D-470 — World Bank Roads, Passengers Carried (IS.ROD.PSGR.K6 × the five CEO-named countries)
+
+License gate re-measured fresh (CC BY 4.0 verbatim, 24th terms measure). The code was chosen from the publisher's OWN catalog (road-mobility parallel to rail passengers at 12D-440). 5 rows → **1 draft AWAITING_REVIEW**, remoteCalls 0.
+
+## 12D-471 — apply run
+
+5 drafts (469:4, 470:1) applied through the REAL worksheet → decisions → apply chain under the CEO's recorded blanket-trust approval VERBATIM; census DONE ×4 / DONE ×1. **Campaign all-time: 432 applied review decisions** (427 + 5). Zero AWAITING_REVIEW anywhere.
+
+## Honest flags (pinned everywhere)
+
+`humanDecision: 'REQUIRED'`, `learningPromoted: false`, `activated: 0`, `collectsNothing: true`, `automaticRecovery: false`, `billionUsersProven: false`. remoteCalls 0. 2,000,000 rows/database is the only measured ceiling.
+
+## Next candidates
+
+- GTFS slice 21+ (120,000..126,000); more World Bank indicators from the catalog; more NTD surfaces; ledger current through 471.
