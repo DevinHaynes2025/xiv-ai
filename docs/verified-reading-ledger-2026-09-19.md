@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..476
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..479
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -139,6 +139,11 @@ slice 22 read (475 — 132,000 of 140,905 chars across twenty-two
 rungs, drift guard holding); World Bank road-freight read (476,
 IS.ROD.GOOD.MT.K6 from the publisher catalog; 5 rows); all 5 drafts
 applied under the same recorded approval (477, verbatim ref).
+**12D-478..480 status:** GTFS slice 23 read (478 — 138,000 of 140,905
+chars across twenty-three rungs, drift guard holding); World Bank
+rail-freight read (479, IS.RRS.GOOD.MT.K6 from the publisher
+catalog; 5 rows); all 5 drafts applied under the same recorded
+approval (480, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -203,6 +208,8 @@ applied under the same recorded approval (477, verbatim ref).
 | 473 | World Bank Open Data (LIVE, bounded paved roads) | License gate re-measured fresh (25th terms measure); IS.ROD.PAVE.ZS chosen from the publisher's own catalog; 5 rows |
 | 475 | GTFS Schedule Reference — twenty-second slice (chars 126000..132000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 132,000 of 140,905 chars across twenty-two rungs |
 | 476 | World Bank Open Data (LIVE, bounded road freight) | License gate re-measured fresh (26th terms measure); IS.ROD.GOOD.MT.K6 chosen from the publisher's own catalog; 5 rows |
+| 478 | GTFS Schedule Reference — twenty-third slice (chars 132000..138000) | Drift guard holds (140,905 identical); license gate re-measured fresh (CC BY 3.0 + Apache 2.0 verbatim); 4 drafts; 138,000 of 140,905 chars across twenty-three rungs |
+| 479 | World Bank Open Data (LIVE, bounded rail freight) | License gate re-measured fresh (27th terms measure); IS.RRS.GOOD.MT.K6 chosen from the publisher's own catalog; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -239,7 +246,7 @@ applied under the same recorded approval (477, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 442 review decisions applied all-time (144 in the 12D-340 run;
+- 447 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -255,7 +262,8 @@ applied under the same recorded approval (477, verbatim ref).
   5 in the 12D-462 run for 12D-460/461; 5 in the 12D-465 run for
   12D-463/464; 5 in the 12D-468 run for 12D-466/467; 5 in the
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
-  12D-472/473; 5 in the 12D-477 run for 12D-475/476 — all under
+  12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
+  12D-480 run for 12D-478/479 — all under
   all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
