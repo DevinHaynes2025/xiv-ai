@@ -1,4 +1,4 @@
-# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..486 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
+# Verified Reading Ledger — XIV AI OS reading campaign 12D-366..382 (approved 2026-09-19) + bounded follow-ons 12D-388..488 (the GTFS Schedule document read IN FULL, 140,905 of 140,905 chars across 24 slices)
 
 **Story rung:** 12D-383 (knowledge-base rung — the approved campaign,
 committed as the OS's reference ledger); 12D-390 (ledger touch — the
@@ -159,6 +159,10 @@ IT.NET.USER.ZS — internet users % of population — probed valid live
 first; 5 rows, the transport family having run dry of live candidates
 with IS.AIR.PSGR.P3 and IS.RRS.TRFF.PF both probed ARCHIVED); the
 draft applied under the same recorded approval (487, verbatim ref).
+**12D-488..489 status:** World Bank mobile-cellular read (488,
+IT.CEL.SETS.P2 probed valid live in the same batch that found
+IT.NET.USER.ZS; 5 rows); the draft applied under the same recorded
+approval (489, verbatim ref).
 
 ## A. Verified contracts (publisher-own sources)
 
@@ -229,6 +233,7 @@ draft applied under the same recorded approval (487, verbatim ref).
 | 482 | World Bank Open Data (LIVE, bounded air freight) | License gate re-measured fresh (28th terms measure); zero-total IS.RRS.ELEC.KM refused by the no-rows guard before writing; IS.RRS.DNST + IS.RRS.EMPL.TU.ZS probed ARCHIVED (id 175); guessed IS.AIR.GOOD.MT.K6 probed INVALID (id 120); catalog spelling IS.AIR.GOOD.MT.K1 measured 5 rows |
 | 484 | World Bank Open Data (LIVE, bounded air departures) | License gate re-measured fresh (29th terms measure); IS.AIR.DPRT probed valid live before any read; 5 rows |
 | 486 | World Bank Open Data (LIVE, bounded internet users) | License gate re-measured fresh (30th terms measure); IT.NET.USER.ZS probed valid live before any read (after IS.AIR.PSGR.P3 and IS.RRS.TRFF.PF both probed ARCHIVED); 5 rows |
+| 488 | World Bank Open Data (LIVE, bounded mobile cellular) | License gate re-measured fresh (31st terms measure); IT.CEL.SETS.P2 probed valid live before any read; 5 rows |
 
 ## B. Reference architectures read (permissive — reference reads, no code copy)
 
@@ -265,7 +270,7 @@ draft applied under the same recorded approval (487, verbatim ref).
 
 ## D. Measured campaign totals
 
-- 452 review decisions applied all-time (144 in the 12D-340 run;
+- 453 review decisions applied all-time (144 in the 12D-340 run;
   76 in the 12D-382 run for 12D-366..381; 19 in the 12D-395 run for
   12D-388/389/391/394; 12 in the 12D-405 run for 12D-398/401/403/404;
   4 in the 12D-408 run for 12D-407; 2 in the 12D-410 run for 12D-409;
@@ -283,7 +288,7 @@ draft applied under the same recorded approval (487, verbatim ref).
   5 in the 12D-471 run for 12D-469/470; 5 in the 12D-474 run for
   12D-472/473; 5 in the 12D-477 run for 12D-475/476; 5 in the
   12D-480 run for 12D-478/479; 3 in the 12D-483 run for 12D-481/482;
-  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486 — all under
+  1 in the 12D-485 run for 12D-484; 1 in the 12D-487 run for 12D-486; 1 in the 12D-489 run for 12D-488 — all under
   the CEO's recorded blanket approval
   "you dont have to keep asking for my approval, i trust my team",
   2026-09-19c, quoted verbatim in every reviewRef; the rest across the
