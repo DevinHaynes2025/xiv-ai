@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false, "target": "ES2022" },
+  "include": [
+    "src/app/human-collaboration/page.tsx",
+    "src/app/human-collaboration/workspace.tsx",
+    "human-collaboration.test.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

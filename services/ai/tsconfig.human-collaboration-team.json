@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "runtime/offline-team/xvi-human-collaboration-team.ts",
+    "runtime/offline-team/xvi-human-collaboration-team.test.ts",
+    "runtime/offline-team/xvi-human-workspace.ts",
+    "runtime/offline-team/xvi-human-workspace.test.ts"
+  ]
+}
