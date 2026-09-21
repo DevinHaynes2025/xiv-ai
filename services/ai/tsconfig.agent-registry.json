@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "runtime/offline-team/xvi-agent-identity-registry.ts",
+    "runtime/offline-team/xvi-agent-identity-registry.test.ts"
+  ]
+}
