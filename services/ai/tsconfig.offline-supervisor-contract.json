@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "runtime/offline-team/xvi-offline-supervisor-contract.ts",
+    "runtime/offline-team/xvi-offline-supervisor-contract.test.ts"
+  ]
+}
