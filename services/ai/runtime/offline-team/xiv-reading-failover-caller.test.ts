@@ -90,7 +90,7 @@ test('12d-367: the candidate list is declared, distinct, within cap, loopback �
 
 test('12d-367: failover is ordered selection — A down, B up, exactly one request each, B settles', async () => {
   await withResponder(500, 'boom', async (downEndpoint, downSeen) => {
-    await withResponder(200, JSON.stringify({ response: 'the draft from the backup' }), async (upEndpoint, upSeen) => {
+    await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'the draft from the backup' }), async (upEndpoint, upSeen) => {
       const caller = buildFailoverLoopbackCaller([downEndpoint, upEndpoint]);
       const out = await caller('READ AND SUMMARIZE a chunk.');
       assert.equal(out.model, 'qwen2.5-coder:7b');
@@ -102,8 +102,8 @@ test('12d-367: failover is ordered selection — A down, B up, exactly one reque
 });
 
 test('12d-367: declared order wins — the FIRST healthy candidate answers, later ones are never called', async () => {
-  await withResponder(200, JSON.stringify({ response: 'primary draft' }), async (primaryEndpoint, primarySeen) => {
-    await withResponder(200, JSON.stringify({ response: 'backup draft' }), async (backupEndpoint, backupSeen) => {
+  await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'primary draft' }), async (primaryEndpoint, primarySeen) => {
+    await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'backup draft' }), async (backupEndpoint, backupSeen) => {
       const caller = buildFailoverLoopbackCaller([primaryEndpoint, backupEndpoint]);
       const out = await caller('READ AND SUMMARIZE a chunk.');
       assert.equal(out.response, 'primary draft');
@@ -133,7 +133,7 @@ test('12d-367: all-down is an honest blocker — every measured failure named, n
 
 test('12d-367: the default builder is today\'s single pinned endpoint — behavior unchanged', async () => {
   assert.deepEqual(buildFailoverLoopbackCallerDefault, buildFailoverLoopbackCallerDefault);
-  await withResponder(200, JSON.stringify({ response: 'verbatim' }), async (endpoint, seen) => {
+  await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'verbatim' }), async (endpoint, seen) => {
     const caller = buildFailoverLoopbackCaller([endpoint]);
     const out = await caller('READ AND SUMMARIZE a chunk.');
     assert.equal(out.model, 'qwen2.5-coder:7b');

@@ -127,7 +127,7 @@ test('12d-385: the candidate list is declared, distinct, capped, loopback, well-
 
 test('12d-385: failover across MODELS — primary down, declared fallback settles under the fallback model', async () => {
   await withResponder(500, 'boom', async (downEndpoint, downSeen) => {
-    await withResponder(200, JSON.stringify({ response: 'the fallback draft' }), async (upEndpoint, upSeen) => {
+    await withResponder(200, JSON.stringify({ model: 'qwen2.5:3b', response: 'the fallback draft' }), async (upEndpoint, upSeen) => {
       const caller = buildMultiModelCaller([
         { endpoint: downEndpoint, model: 'qwen2.5-coder:7b' },
         { endpoint: upEndpoint, model: 'qwen2.5:3b' },
@@ -143,8 +143,8 @@ test('12d-385: failover across MODELS — primary down, declared fallback settle
 });
 
 test('12d-385: declared order wins — the primary model answers, the fallback is never called', async () => {
-  await withResponder(200, JSON.stringify({ response: 'primary draft' }), async (primaryEndpoint, primarySeen) => {
-    await withResponder(200, JSON.stringify({ response: 'fallback draft' }), async (fallbackEndpoint, fallbackSeen) => {
+  await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'primary draft' }), async (primaryEndpoint, primarySeen) => {
+    await withResponder(200, JSON.stringify({ model: 'qwen2.5:3b', response: 'fallback draft' }), async (fallbackEndpoint, fallbackSeen) => {
       const caller = buildMultiModelCaller([
         { endpoint: primaryEndpoint, model: 'qwen2.5-coder:7b' },
         { endpoint: fallbackEndpoint, model: 'qwen2.5:3b' },
@@ -180,8 +180,24 @@ test('12d-385: all-down is an honest blocker naming every model@endpoint failure
   });
 });
 
+test('mismatched model cannot settle; a correctly identified declared fallback can', async () => {
+  await withResponder(200, JSON.stringify({ model: 'undeclared-model', response: 'misattributed draft' }), async (primary, primarySeen) => {
+    await withResponder(200, JSON.stringify({ model: 'qwen2.5:3b', response: 'verified fallback identity' }), async (fallback, fallbackSeen) => {
+      const caller = buildMultiModelCaller([
+        { endpoint: primary, model: 'qwen2.5-coder:7b' },
+        { endpoint: fallback, model: 'qwen2.5:3b' },
+      ]);
+      assert.deepEqual(await caller('summarize'), { model: 'qwen2.5:3b', response: 'verified fallback identity', candidateIndex: 1 });
+      assert.equal(primarySeen.count, 1);
+      assert.equal(fallbackSeen.count, 1);
+    });
+    const noFallback = buildMultiModelCaller([{ endpoint: primary, model: 'qwen2.5-coder:7b' }]);
+    await assert.rejects(() => noFallback('summarize'), /all 1 declared candidate.*reported model does not match/);
+  });
+});
+
 test('12d-385: the default builder is the single pinned primary — behavior unchanged', async () => {
-  await withResponder(200, JSON.stringify({ response: 'verbatim' }), async (endpoint, seen) => {
+  await withResponder(200, JSON.stringify({ model: 'qwen2.5-coder:7b', response: 'verbatim' }), async (endpoint, seen) => {
     const caller = buildMultiModelCaller([{ endpoint, model: MULTI_MODEL_READING_CALLER_POLICY.primaryModel }]);
     const out = await caller('READ AND SUMMARIZE a chunk.');
     assert.equal(out.model, 'qwen2.5-coder:7b');
