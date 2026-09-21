@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false, "target": "ES2022" },
+  "include": ["src/app/capability-contract/page.tsx", "src/app/capability-contract/preview.tsx", "capability-contract.test.tsx"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["runtime/offline-team/xvi-capability-contract.ts", "runtime/offline-team/xvi-capability-contract.test.ts"]
+}
