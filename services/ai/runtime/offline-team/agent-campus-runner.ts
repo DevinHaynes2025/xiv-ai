@@ -1,10 +1,13 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createWorkforceAgent, createCampusSpace } from './ai-workforce-campus';
 import { createAgentMeeting } from './agent-campus-meetings';
-import { evaluateMentalGym } from './innovation-mental-gym';
 
-export async function runCampusCycle(rootDir = resolve(process.cwd(), '..', '..', '..')) {
+// Resolve from this module: the launcher runs in services/ai, not the repository root.
+export const CAMPUS_REPOSITORY_ROOT = fileURLToPath(new URL('../../../../', import.meta.url));
+
+export async function runCampusCycle(rootDir = CAMPUS_REPOSITORY_ROOT) {
   const now = new Date().toISOString();
   const agents = Object.freeze([
     createWorkforceAgent({ agentId: 'devops-01', tenantId: 'xiv-local', department: 'DEVOPS', role: 'Build Engineer', skills: ['build', 'ci', 'observability'], evidenceRefs: ['ROLE_DEFINED:12D33'] }),
@@ -19,12 +22,13 @@ export async function runCampusCycle(rootDir = resolve(process.cwd(), '..', '..'
     createCampusSpace({ spaceId: 'innovation', kind: 'INNOVATION_HUB', purpose: 'Sandboxed hypothesis review', tenantId: 'xiv-local' }),
   ]);
   const meeting = createAgentMeeting({ meetingId: `xiv-campus-${Date.now()}`, tenantId: 'xiv-local', kind: 'THINK_TANK', participantAgentIds: agents.map(a => a.agentId), agenda: ['Review evidence', 'Challenge assumptions', 'Select next bounded experiment'], evidenceRefs: ['CAMPUS_CYCLE:12D33'] });
-  const gym = evaluateMentalGym({ exercise: { exerciseId: 'reasoning-01', skill: 'EVIDENCE', prompt: 'Separate claims from verified evidence.', rubric: ['names evidence', 'preserves uncertainty'], maxScore: 10 }, agentId: 'think-01', score: 8, evidenceRefs: ['RUBRIC_EVAL:LOCAL'] });
-  const receipt = Object.freeze({ generatedAt: now, agents, spaces, meeting, gym, productionMutationAllowed: false as const });
+  // Planning an exercise is not an observed answer, evaluation, or completed training.
+  const gym = Object.freeze({ exerciseId: 'reasoning-01', agentId: 'think-01', status: 'NOT_EVALUATED' as const, score: null, passed: null, evidenceRefs: Object.freeze([]) });
+  const receipt = Object.freeze({ generatedAt: now, agents, spaces, meeting, gym, simulationOnly: true as const, modelCalls: 0 as const, trainingExecuted: false as const, mutatesModelWeights: false as const, productionMutationAllowed: false as const });
   const outDir = resolve(rootDir, '.xiv-runtime');
   await mkdir(outDir, { recursive: true });
   await writeFile(resolve(outDir, 'agent-campus-status.json'), JSON.stringify(receipt, null, 2), 'utf8');
   return receipt;
 }
 
-if (import.meta.url === `file://${process.argv[1]?.replace(/\\/g, '/')}`) runCampusCycle().then(r => console.log(JSON.stringify(r, null, 2))).catch(e => { console.error(e); process.exitCode = 1; });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) runCampusCycle().then(r => console.log(JSON.stringify(r, null, 2))).catch(e => { console.error(e); process.exitCode = 1; });

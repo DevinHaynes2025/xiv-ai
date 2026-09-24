@@ -64,6 +64,7 @@ export const AUTHORIZED_NETWORK_SURFACES: readonly { file: string; reason: strin
   { file: 'background-shift.cli.ts', reason: 'operator-invoked CLI whose fetch wrapper feeds the loopback-bound meeting engine', viaLoopbackModules: ['agent-tool-heartbeat-fabric.ts'] },
   { file: 'claude-text-reviewer.ts', reason: 'spawns the local reviewer executable; no network import' },
   { file: 'control-tower-http-server.ts', reason: 'loopback-bound, token-gated control-tower HTTP server' },
+  { file: 'offline-console-ollama.ts', reason: 'explicit opt-in inventory GET to fixed http://127.0.0.1:11434/api/tags; redirects refused, response and deadline bounded, no model execution' },
   { file: 'ollama-job-cli.ts', reason: 'operator-invoked CLI feeding the loopback-bound Ollama job executor', viaLoopbackModules: ['ollama-job-executor.ts'] },
   { file: 'ollama-meeting-runner.ts', reason: 'loopback-only Ollama meeting runner (127.0.0.1:11434)' },
   { file: 'supervised-local-worker.ts', reason: 'loopback-only Ollama runtime bridge (127.0.0.1:11434)' },

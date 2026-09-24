@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "runtime/offline-team/local-model-evaluation.ts",
+    "runtime/offline-team/local-model-evaluation.cli.ts",
+    "runtime/offline-team/local-model-evaluation.test.ts",
+    "runtime/offline-team/local-draft-worker.ts",
+    "runtime/offline-team/local-draft-worker.cli.ts",
+    "runtime/offline-team/local-draft-worker.test.ts",
+    "runtime/offline-team/offline-console-ollama.ts",
+    "runtime/offline-team/offline-console-ollama.test.ts",
+    "runtime/offline-team/agent-campus-runner.ts",
+    "runtime/offline-team/agent-campus-runner.test.ts"
+  ]
+}

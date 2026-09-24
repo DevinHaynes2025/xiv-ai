@@ -25,15 +25,9 @@ if (-not $ollamaReachable) {
   }
 }
 
-$grokConfigured = -not [string]::IsNullOrWhiteSpace($env:XAI_API_KEY)
+$grokConfigured = $false
 $grokReachable = $false
-if ($grokConfigured) {
-  try {
-    $headers = @{ Authorization = "Bearer $($env:XAI_API_KEY)" }
-    Invoke-RestMethod -Uri 'https://api.x.ai/v1/models' -Headers $headers -Method Get -TimeoutSec 5 | Out-Null
-    $grokReachable = $true
-  } catch { $grokReachable = $false }
-}
+# Offline startup never inspects cloud credentials or probes a remote provider.
 
 $status = [ordered]@{
   timestamp = (Get-Date).ToUniversalTime().ToString('o')

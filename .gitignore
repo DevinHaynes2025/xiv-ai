@@ -36,6 +36,7 @@ yarn-error.log*
 Thumbs.db
 
 # Temporary/cache
+.xiv-runtime/
 .cache/
 tmp/
 temp/
@@ -47,3 +48,5 @@ coverage/
 .supabase/
 
 supabase/.temp/
+.xvi-model-evaluation.json
+.xvi-model-evaluation.stderr.txt
