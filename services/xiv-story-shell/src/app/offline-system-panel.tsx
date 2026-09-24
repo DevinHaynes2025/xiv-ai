@@ -12,7 +12,7 @@ export default function OfflineSystemPanel({ snapshot }: { snapshot: SystemSnaps
       <article><h2>Pending reviews</h2><strong>{snapshot.pendingReviews ?? 'Unknown'}</strong><p>{snapshot.pendingReviews === null ? 'Review evidence has not been supplied.' : 'Awaiting human review'}</p></article>
     </section>
     <section className="card"><h2>Installed models <span className="count">{models?.length ?? '—'}</span></h2>
-      <p>Supplied local metadata · installation and availability are not probed</p>
+      <p>Local inventory snapshot · model execution has not been verified</p>
       {models === null ? <p className="empty">No model evidence supplied. Installed models are unknown.</p> : models.length === 0 ? <p className="empty">The supplied inventory contains no installed models.</p> :
         <table><thead><tr><th scope="col">Model / reference</th><th scope="col">Size (bytes)</th></tr></thead><tbody>{models.map(model => <tr key={model.modelRef}><td>{model.label}<code>{model.modelRef}</code></td><td>{model.sizeBytes.toLocaleString('en-US')}</td></tr>)}</tbody></table>}
     </section>

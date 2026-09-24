@@ -88,7 +88,7 @@ export default function StoryShellPage() {
           before rendering: digest re-derivation, exact keys, pinned
           guardrails. Ingest your own packet below, or study the deterministic
           examples. A tampered packet renders a refusal — never a partial
-          render, and a refusal's content never leaves the verifying process.
+          render, and a refusal&apos;s content never leaves the verifying process.
           There is no approve control on this page by construction:
           decisions happen in the custody stack, never through the shell.
         </p>

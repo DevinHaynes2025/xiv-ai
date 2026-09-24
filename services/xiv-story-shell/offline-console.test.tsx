@@ -5,10 +5,30 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { buildSystemSnapshot } from '../ai/runtime/offline-team/offline-system-snapshot';
 import { createConsoleHandler, isConsoleLoopback } from '../ai/runtime/offline-team/offline-system-console-http';
 import { renderOfflineConsole, startOfflineConsole } from './offline-console';
+import { loadLocalConsoleEvidence } from './offline-console-local';
 
 const scope = { tenantId: 'tenant-a', universeId: 'universe-a', requesterId: 'operator-a' };
 const evidence = () => ({ identity: { ...scope }, installedModels: [{ name: 'qwen2.5-coder:7b', sizeBytes: 42 }], pendingReviews: 3 });
 const query = new URLSearchParams(scope).toString();
+
+test('local startup discovers inventory only with the explicit flag', async () => {
+  let calls = 0;
+  const read = async () => { calls++; return [{ name: 'qwen2.5:3b', sizeBytes: 42 }]; };
+  assert.equal((await loadLocalConsoleEvidence([], read)).installedModels, null);
+  assert.equal(calls, 0);
+  for (const args of [['--remote'], ['--ollama', '--ollama'], ['--ollama', 'http://example.com']]) {
+    await assert.rejects(loadLocalConsoleEvidence(args, read), /Usage:/);
+  }
+  assert.equal(calls, 0);
+  const input = await loadLocalConsoleEvidence(['--ollama'], read);
+  assert.equal(calls, 1);
+  assert.equal(input.pendingReviews, null);
+  const snapshot = buildSystemSnapshot(input.identity, input.identity, input);
+  assert.equal(snapshot.installedModels?.length, 1);
+  assert.equal(snapshot.readiness, 'EVIDENCE_UNAVAILABLE');
+  assert.ok(!renderOfflineConsole(snapshot).includes('qwen2.5'));
+  assert.equal((await loadLocalConsoleEvidence(['--ollama'], async () => null)).installedModels, null);
+});
 
 test('canonical SHA-256, nested freezing, detached inputs, and honest flags', () => {
   const input = evidence();
