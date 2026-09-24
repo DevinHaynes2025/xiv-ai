@@ -142,6 +142,55 @@ export class SharedHostLeaseStore {
       }
     });
   }
+  assertActiveBinding(handle: HostLeaseHandle, expected: Omit<HostLeaseBinding, 'ttlMs'>): void {
+    this.#transaction(() => {
+      const row = this.#read();
+
+      this.#checkOwner(
+        handle,
+        row.record,
+        row.ownerDigest,
+      );
+
+      const now =
+        this.#now(row.lastClock);
+
+      const current =
+        row.record;
+
+      if (
+        !current ||
+        current.state !== 'ACTIVE' ||
+        now >= current.expiresAtMs
+      ) {
+        throw new Error(
+          'active host lease required',
+        );
+      }
+
+      for (
+        const key of [
+          'tenantId',
+          'holderInstanceId',
+          'lane',
+          'workId',
+          'providerId',
+          'modelId',
+          'presenceEvidenceRef',
+          'sourceCommit',
+        ] as const
+      ) {
+        if (
+          current[key] !== expected[key]
+        ) {
+          throw new Error(
+            'host/story binding mismatch',
+          );
+        }
+      }
+    });
+  }
+
   #transition(handle: HostLeaseHandle, transform: (record: SharedHostLeaseRecord, now: number) => SharedHostLeaseRecord) {
     return this.#transaction(() => {
       const row = this.#read(), current = row.record;
