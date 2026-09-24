@@ -24,7 +24,10 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   buildLoopbackCaller, buildLoopbackCallerForEndpoint,
-  buildLoopbackCallerForEndpointAndModel, type ReadingLoopbackGenerationBounds,
+  buildLoopbackCallerForEndpointAndModel,
+  buildStructuredLoopbackCallerForEndpointAndModel,
+  type ReadingLoopbackGenerationBounds,
+  type ReadingLoopbackJsonSchema,
   READING_LOOPBACK_CALLER_POLICY,
 } from './xiv-reading-loopback-caller';
 import { auditAlignmentInvariants, AUTHORIZED_NETWORK_SURFACES } from './alignment-invariant-audit';
@@ -295,4 +298,351 @@ test('12d-289: the REAL audit over the offline-team runtime reports ZERO finding
   assert.deepEqual(packet.findings, [], `audit findings: ${packet.findings.map((f) => `${f.invariant} ${f.file}: ${f.detail}`).join('; ')}`);
   assert.equal(packet.humanDecision, 'REQUIRED');
   assert.equal(packet.learningPromoted, false);
+});
+
+const STRUCTURED_SCHEMA: ReadingLoopbackJsonSchema = {
+  type: 'object',
+  properties: {
+    state: { type: 'string', enum: ['proposal', 'applied'] },
+    verified: { type: 'boolean', enum: [false] },
+  },
+  required: ['state', 'verified'],
+  additionalProperties: false,
+};
+
+test('structured caller sends an immutable closed schema on the wire', async () => {
+  const mutable = {
+    type: 'object' as const,
+    properties: {
+      state: { type: 'string' as const, enum: ['proposal', 'applied'] },
+      verified: { type: 'boolean' as const, enum: [false] },
+    },
+    required: ['state', 'verified'],
+    additionalProperties: false as const,
+  };
+
+  await withServer(
+    200,
+    JSON.stringify({
+      model: 'test-model',
+      response: '{"state":"proposal","verified":false}',
+      done: true,
+    }),
+    async (_server, endpoint, seen) => {
+      const caller = buildStructuredLoopbackCallerForEndpointAndModel(
+        endpoint,
+        'test-model',
+        BOUNDS,
+        mutable,
+      );
+
+      mutable.properties.state.enum[0] = 'applied';
+      mutable.required.reverse();
+
+      await caller('question');
+
+      const sent = JSON.parse(seen.bodies[0]!);
+
+      assert.deepEqual(sent.format, {
+        type: 'object',
+        properties: {
+          state: { type: 'string', enum: ['proposal', 'applied'] },
+          verified: { type: 'boolean', enum: [false] },
+        },
+        required: ['state', 'verified'],
+        additionalProperties: false,
+      });
+
+      assert.equal(sent.stream, false);
+      assert.equal(sent.options.temperature, 0);
+      assert.equal(sent.options.num_predict, 32);
+      assert.equal(sent.options.num_ctx, 512);
+      assert.equal(sent.keep_alive, 0);
+    },
+  );
+});
+
+test('structured schema refuses mismatched required keys and invalid enums', () => {
+  const badSchemas = [
+    {
+      ...STRUCTURED_SCHEMA,
+      required: ['state'],
+    },
+    {
+      ...STRUCTURED_SCHEMA,
+      required: ['state', 'state'],
+    },
+    {
+      ...STRUCTURED_SCHEMA,
+      properties: {
+        state: { type: 'string', enum: [] },
+      },
+      required: ['state'],
+    },
+    {
+      ...STRUCTURED_SCHEMA,
+      properties: {
+        verified: { type: 'boolean', enum: ['false'] },
+      },
+      required: ['verified'],
+    },
+  ];
+
+  for (const schema of badSchemas) {
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        '127.0.0.1:1',
+        'test-model',
+        BOUNDS,
+        schema as ReadingLoopbackJsonSchema,
+      ),
+      /structured schema/,
+    );
+  }
+});
+
+test('structured caller remains loopback-only', () => {
+  for (const endpoint of [
+    '10.0.0.5:11434',
+    'remote.example.invalid:11434',
+    '0.0.0.0:11434',
+    'http://127.0.0.1:11434',
+  ]) {
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        endpoint,
+        'test-model',
+        BOUNDS,
+        STRUCTURED_SCHEMA,
+      ),
+      /loopback-only/,
+    );
+  }
+});
+
+test('structured schema refuses top-level accessors without invoking them', () => {
+  let invoked = 0;
+
+  const schema = {
+    properties: {
+      state: { type: 'string', enum: ['proposal', 'applied'] },
+    },
+    required: ['state'],
+    additionalProperties: false,
+  };
+
+  Object.defineProperty(schema, 'type', {
+    enumerable: true,
+    get() {
+      invoked++;
+      throw new Error('HOSTILE_GETTER_EXECUTED');
+    },
+  });
+
+  assert.throws(
+    () => buildStructuredLoopbackCallerForEndpointAndModel(
+      '127.0.0.1:1',
+      'test-model',
+      BOUNDS,
+      schema as unknown as ReadingLoopbackJsonSchema,
+    ),
+  );
+
+  assert.equal(invoked, 0);
+});
+
+test('structured schema refuses property accessors without invoking them', () => {
+  let invoked = 0;
+
+  const property: Record<string, unknown> = {
+    enum: ['proposal', 'applied'],
+  };
+
+  Object.defineProperty(property, 'type', {
+    enumerable: true,
+    get() {
+      invoked++;
+      throw new Error('HOSTILE_PROPERTY_GETTER_EXECUTED');
+    },
+  });
+
+  const schema = {
+    type: 'object',
+    properties: { state: property },
+    required: ['state'],
+    additionalProperties: false,
+  };
+
+  assert.throws(
+    () => buildStructuredLoopbackCallerForEndpointAndModel(
+      '127.0.0.1:1',
+      'test-model',
+      BOUNDS,
+      schema as unknown as ReadingLoopbackJsonSchema,
+    ),
+  );
+
+  assert.equal(invoked, 0);
+});
+
+test('structured schema refuses unexpected top-level and property keywords', () => {
+  const extraTopLevel = {
+    ...STRUCTURED_SCHEMA,
+    description: 'not allowed',
+  };
+
+  const extraPropertyKeyword = {
+    type: 'object',
+    properties: {
+      state: {
+        type: 'string',
+        enum: ['proposal', 'applied'],
+        description: 'not allowed',
+      },
+    },
+    required: ['state'],
+    additionalProperties: false,
+  };
+
+  for (const schema of [extraTopLevel, extraPropertyKeyword]) {
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        '127.0.0.1:1',
+        'test-model',
+        BOUNDS,
+        schema as ReadingLoopbackJsonSchema,
+      ),
+      /structured schema/,
+    );
+  }
+});
+
+test('structured schema refuses sparse and accessor arrays without invoking accessors', () => {
+  let invoked = 0;
+
+  const sparseRequired = new Array(1);
+
+  const accessorEnum: unknown[] = [];
+  Object.defineProperty(accessorEnum, '0', {
+    enumerable: true,
+    configurable: true,
+    get() {
+      invoked++;
+      throw new Error('HOSTILE_ARRAY_GETTER_EXECUTED');
+    },
+  });
+  accessorEnum.length = 1;
+
+  const schemas = [
+    {
+      type: 'object',
+      properties: {
+        state: { type: 'string', enum: ['proposal'] },
+      },
+      required: sparseRequired,
+      additionalProperties: false,
+    },
+    {
+      type: 'object',
+      properties: {
+        state: { type: 'string', enum: accessorEnum },
+      },
+      required: ['state'],
+      additionalProperties: false,
+    },
+  ];
+
+  for (const schema of schemas) {
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        '127.0.0.1:1',
+        'test-model',
+        BOUNDS,
+        schema as ReadingLoopbackJsonSchema,
+      ),
+      /structured schema/,
+    );
+  }
+
+  assert.equal(invoked, 0);
+});
+
+test('structured schema refuses symbol, hidden and unexpected array properties', () => {
+  const symbolSchema = {
+    type: 'object',
+    properties: {
+      state: { type: 'string', enum: ['proposal'] },
+    },
+    required: ['state'],
+    additionalProperties: false,
+  };
+
+  Object.defineProperty(symbolSchema, Symbol('hidden'), {
+    value: true,
+    enumerable: true,
+  });
+
+  const hiddenSchema = {
+    type: 'object',
+    properties: {
+      state: { type: 'string', enum: ['proposal'] },
+    },
+    required: ['state'],
+  };
+
+  Object.defineProperty(hiddenSchema, 'additionalProperties', {
+    value: false,
+    enumerable: false,
+  });
+
+  const enumWithExtra = ['proposal'];
+  Object.defineProperty(enumWithExtra, 'extra', {
+    value: 'not-allowed',
+    enumerable: true,
+  });
+
+  const extraArraySchema = {
+    type: 'object',
+    properties: {
+      state: { type: 'string', enum: enumWithExtra },
+    },
+    required: ['state'],
+    additionalProperties: false,
+  };
+
+  for (const schema of [symbolSchema, hiddenSchema, extraArraySchema]) {
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        '127.0.0.1:1',
+        'test-model',
+        BOUNDS,
+        schema as ReadingLoopbackJsonSchema,
+      ),
+      /structured schema/,
+    );
+  }
+});
+
+test('structured schema refuses prototype-pollution-shaped property names', () => {
+  for (const key of ['__proto__', 'prototype', 'constructor']) {
+    const properties = Object.create(null);
+    properties[key] = { type: 'string', enum: ['proposal'] };
+
+    const schema = {
+      type: 'object',
+      properties,
+      required: [key],
+      additionalProperties: false,
+    };
+
+    assert.throws(
+      () => buildStructuredLoopbackCallerForEndpointAndModel(
+        '127.0.0.1:1',
+        'test-model',
+        BOUNDS,
+        schema as ReadingLoopbackJsonSchema,
+      ),
+      /structured schema/,
+    );
+  }
 });
