@@ -8,7 +8,11 @@ const cards = [{
   summary: 'Lead-time variation is increasing inventory pressure.',
   confidence: 0.82,
   evidenceRefs: ['metric:lead-time-variance'],
-  action: { label: 'Review simulation', approvalRequired: true },
+  action: {
+    label: 'Review simulation',
+    actionClass: 'NAVIGATION',
+    approvalRequired: true,
+  },
 }];
 
 const executive = buildExperienceResponse({
