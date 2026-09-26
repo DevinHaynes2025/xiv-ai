@@ -476,4 +476,3 @@ export function createXviCodingResumeIntegrityReceipt(
       false as const,
   });
 }
-

@@ -1,4 +1,4 @@
-﻿import test from "node:test";
+import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
@@ -67,8 +67,27 @@ function controller() {
       "gate38:focused",
     ],
 
-    humanApprovalRequired:
-      true,
+    worktreePathForRole: {
+      BUILDER:
+        "C:\\xvi\\gate38\\builder",
+      TESTER:
+        "C:\\xvi\\gate38\\tester",
+      REVIEWER:
+        "C:\\xvi\\gate38\\reviewer",
+      SECURITY:
+        "C:\\xvi\\gate38\\security",
+    },
+
+    branchForRole: {
+      BUILDER:
+        "xvi/agent/gate38-builder",
+      TESTER:
+        "xvi/agent/gate38-tester",
+      REVIEWER:
+        "xvi/agent/gate38-reviewer",
+      SECURITY:
+        "xvi/agent/gate38-security",
+    },
   });
 }
 
