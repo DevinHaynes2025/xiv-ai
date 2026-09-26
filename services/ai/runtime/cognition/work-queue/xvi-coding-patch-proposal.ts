@@ -76,6 +76,141 @@ function validatePath(
   return path;
 }
 
+export function verifyXviCodingPatchProposal(
+  proposal:
+    Readonly<XviCodingPatchProposal>,
+): boolean {
+  if (
+    proposal === null ||
+    typeof proposal !== "object" ||
+
+    proposal.version !==
+      "xvi-coding-patch-proposal-v1" ||
+
+    typeof proposal.workId !== "string" ||
+    !proposal.workId ||
+
+    typeof proposal.missionId !== "string" ||
+    !proposal.missionId ||
+
+    !SHA256.test(
+      proposal.sourceInspectionDigest,
+    ) ||
+
+    !SHA256.test(
+      proposal.proposalDigest,
+    ) ||
+
+    !Array.isArray(
+      proposal.files,
+    ) ||
+
+    proposal.files.length < 1 ||
+    proposal.files.length > 16 ||
+
+    proposal.filesystemMutationPerformed !== false ||
+    proposal.shellExecutionPerformed !== false ||
+    proposal.testsExecuted !== false ||
+
+    proposal.automaticPushAllowed !== false ||
+    proposal.automaticMergeAllowed !== false ||
+    proposal.automaticDeployAllowed !== false ||
+
+    proposal.humanApprovalRequired !== true
+  ) {
+    return false;
+  }
+
+  const seen =
+    new Set<string>();
+
+  let totalBytes =
+    0;
+
+  for (
+    const file
+    of proposal.files
+  ) {
+    if (
+      file === null ||
+      typeof file !== "object" ||
+
+      typeof file.path !== "string" ||
+      !file.path ||
+      file.path !== file.path.trim() ||
+      file.path.length > 512 ||
+
+      file.path.startsWith("/") ||
+      file.path.includes("\\") ||
+      file.path.includes("..") ||
+      !PATH.test(file.path) ||
+
+      seen.has(file.path) ||
+
+      !SHA256.test(
+        file.expectedContentDigest,
+      ) ||
+
+      typeof file.replacementContent !==
+        "string" ||
+
+      file.replacementContent.includes(
+        "\u0000",
+      )
+    ) {
+      return false;
+    }
+
+    seen.add(
+      file.path,
+    );
+
+    const bytes =
+      Buffer.byteLength(
+        file.replacementContent,
+        "utf8",
+      );
+
+    if (
+      bytes > 256 * 1024
+    ) {
+      return false;
+    }
+
+    totalBytes +=
+      bytes;
+
+    if (
+      totalBytes >
+        512 * 1024
+    ) {
+      return false;
+    }
+  }
+
+  const canonical =
+    JSON.stringify([
+      "xvi-coding-patch-proposal-v1",
+
+      proposal.workId,
+      proposal.missionId,
+
+      proposal.sourceInspectionDigest,
+
+      proposal.files,
+    ]);
+
+  const expectedDigest =
+    createHash("sha256")
+      .update(canonical)
+      .digest("hex");
+
+  return (
+    proposal.proposalDigest ===
+    expectedDigest
+  );
+}
+
 export function createXviCodingPatchProposal(input: {
   readonly inspection:
     Readonly<XviCodingResponseInspection>;
