@@ -5,11 +5,46 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 import CoreConsole, { CoreMap } from './src/app/quantum-core/console';
-import { ENGINE_NAMES, FIXTURE_TIME, UNIVERSES, activeUniverse, agents, approvalIdentity, initialState, reviewDemo, switchUniverse, visibleApprovals, visibleReceipts, executionStatus, type ConsoleState, type Decision } from './src/app/quantum-core/model';
+import { ENGINE_NAMES, FIXTURE_TIME, UNIVERSES, activeUniverse, agents, approvalIdentity, auditView, initialState, reviewDemo, switchUniverse, visibleApprovals, visibleReceipts, executionStatus, type ConsoleState, type Decision } from './src/app/quantum-core/model';
 
 const now = Date.parse(FIXTURE_TIME) + 1000;
 const command = (state: ConsoleState, decision: Decision = 'APPROVE', index = 0) => JSON.stringify({ identity: approvalIdentity(visibleApprovals(state)[index]), decision });
 const digest = (s: string) => createHash('sha256').update(s).digest('hex');
+
+test('audit filters hide selected details together with excluded rows without changing the ledger', async () => {
+  const original = initialState();
+  const state = (await reviewDemo(original, command(original), now)).state;
+  const receipt = state.receipts[0];
+  const before = JSON.stringify(state);
+  assert.equal(auditView(state, '', 'ALL', '', receipt.id).selectedReceipt, receipt);
+  for (const [query, verification, date] of [
+    ['', 'VERIFIED', ''], ['', 'TAMPERED', ''], ['', 'INCOMPLETE', ''], ['', 'EXPIRED', ''],
+    ['no matching action', 'ALL', ''], ['', 'ALL', '2026-09-25'],
+  ]) {
+    const view = auditView(state, query, verification, date, receipt.id);
+    assert.deepEqual(view.receipts, []);
+    assert.equal(view.selectedReceipt, undefined);
+  }
+  const matching = auditView(state, 'PUBLISH EVALUATION', 'UNVERIFIED', '2026-09-26', receipt.id);
+  assert.deepEqual(matching.receipts, [receipt]);
+  assert.equal(matching.selectedReceipt, receipt);
+  assert.ok(Object.isFrozen(matching));
+  assert.ok(Object.isFrozen(matching.receipts));
+  assert.equal(JSON.stringify(state), before);
+});
+
+test('audit selection cannot reveal a foreign-universe or unknown receipt', async () => {
+  const original = initialState();
+  const state = (await reviewDemo(original, command(original), now)).state;
+  const receipt = state.receipts[0];
+  const other = switchUniverse(state, UNIVERSES[1].id);
+  const foreign = auditView(other, '', 'ALL', '', receipt.id);
+  assert.deepEqual(foreign.receipts, []);
+  assert.equal(foreign.selectedReceipt, undefined);
+  const missing = auditView(state, '', 'ALL', '', 'missing-receipt');
+  assert.deepEqual(missing.receipts, [receipt]);
+  assert.equal(missing.selectedReceipt, undefined);
+});
 
 test('fixture has twelve engine slots, zero authority and organization-scoped disabled agents', () => {
   assert.equal(ENGINE_NAMES.length, 12);

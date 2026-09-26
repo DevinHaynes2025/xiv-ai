@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { ENGINE_NAMES, FIXTURE_TIME, UNIVERSES, activeUniverse, agents, approvalIdentity, initialState, reviewDemo, switchUniverse, visibleApprovals, visibleReceipts, type ConsoleState, type Decision } from './model';
+import { ENGINE_NAMES, FIXTURE_TIME, UNIVERSES, activeUniverse, agents, approvalIdentity, auditView, initialState, reviewDemo, switchUniverse, visibleApprovals, visibleReceipts, type Decision } from './model';
 
 const sections = ['Overview', 'Agents', 'Approvals', 'Audit', 'Infrastructure', 'Security'] as const;
 type Section = typeof sections[number];
@@ -32,7 +32,7 @@ export default function CoreConsole() {
   const approvals = visibleApprovals(state);
   const receipts = visibleReceipts(state);
   const nodes = agents(state);
-  const filtered = receipts.filter(r => `${r.actor} ${r.organizationId} ${r.agentId} ${r.action} ${r.decision} ${r.risk}`.toLowerCase().includes(query.toLowerCase()) && (verification === 'ALL' || r.verification === verification) && (!date || r.timestamp.startsWith(date)));
+  const { receipts: filtered, selectedReceipt } = auditView(state, query, verification, date, selected);
   const selectUniverse = (id: string) => {
     if (inFlight.current) return;
     setState(previous => switchUniverse(previous, id)); setSelected('core'); setQuery(''); setVerification('ALL'); setDate('');
@@ -47,7 +47,6 @@ export default function CoreConsole() {
     } finally { inFlight.current = false; setBusy(false); }
   };
   const selectedAgent = nodes.find(a => a.id === selected);
-  const selectedReceipt = receipts.find(r => r.id === selected);
   return <main className="qc-console">
     <a href="#qc-main" className="qc-skip">Skip to console</a>
     <aside className="qc-sidebar">

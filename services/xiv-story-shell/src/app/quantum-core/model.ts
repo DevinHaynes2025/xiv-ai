@@ -39,6 +39,14 @@ export function visibleReceipts(state: ConsoleState) {
   const u = activeUniverse(state);
   return state.receipts.filter(r => r.organizationId === u.organizationId && r.universeId === u.id);
 }
+/** List and detail must share the same scope and filters; hidden rows have no detail. */
+export function auditView(state: ConsoleState, query: string, verification: string, date: string, selectedId: string) {
+  const normalizedQuery = query.toLowerCase();
+  const receipts = Object.freeze(visibleReceipts(state).filter(r =>
+    `${r.actor} ${r.organizationId} ${r.agentId} ${r.action} ${r.decision} ${r.risk}`.toLowerCase().includes(normalizedQuery) &&
+    (verification === 'ALL' || r.verification === verification) && (!date || r.timestamp.startsWith(date))));
+  return Object.freeze({ receipts, selectedReceipt: receipts.find(r => r.id === selectedId) });
+}
 export function switchUniverse(state: ConsoleState, id: unknown): ConsoleState {
   if (typeof id !== 'string' || !UNIVERSES.some(u => u.id === id)) return state;
   return Object.freeze({ ...state, universeId: id });
