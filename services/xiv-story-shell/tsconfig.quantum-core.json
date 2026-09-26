@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "incremental": false, "target": "ES2022" },
+  "include": ["src/app/quantum-core/**/*.ts", "src/app/quantum-core/**/*.tsx", "quantum-core.test.tsx"],
+  "exclude": ["node_modules"]
+}
