@@ -125,6 +125,10 @@ test("durable resume authorization survives restart and rejects replay", () => {
     const created =
       controller();
 
+    XviCodingMissionJournal.initialize(
+      paths.journalPath,
+    );
+
     let journal =
       new XviCodingMissionJournal(
         paths.journalPath,
