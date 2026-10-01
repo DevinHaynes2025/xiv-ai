@@ -1,0 +1,14 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueDatasetKnowledgePacketReceipt,validateDatasetKnowledgePacket} from "./xvi-global-dataset-knowledge-packet";
+const H1="a".repeat(64),H2="b".repeat(64),H3="c".repeat(64);
+const base={packetId:"packet:us-ke:1",datasetId:"dataset:world:orgs",sourceCellId:"cell:jurisdiction:us",destinationCellId:"cell:jurisdiction:ke",sourceJurisdictionId:"jurisdiction:iso3166-1:us",destinationJurisdictionId:"jurisdiction:iso3166-1:ke",scope:"CROSS_REGION",promotionStage:"CELL_READY",licenseId:"license:public",allowedUse:["knowledge-index"],schemaHash:H1,datasetContentHash:H2,shardContentHashes:[H2,H3],provenanceRootHash:H1,rowCount:2000,byteSize:2097152,createdAt:"2026-10-01T16:00:00Z",expiresAt:"2026-10-08T16:00:00Z",restrictedPersonalData:false,quarantineReasons:[],readOnlyExchange:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("fresh clean packet can exchange between country cells",()=>{const x=issueDatasetKnowledgePacketReceipt(base,"2026-10-02T00:00:00Z");assert.equal(x.canExchange,true);assert.equal(x.canPromoteToCore,false);});
+test("core-ready packet can promote only when clean",()=>{const x=issueDatasetKnowledgePacketReceipt({...base,promotionStage:"CORE_READY" as const},"2026-10-02T00:00:00Z");assert.equal(x.canPromoteToCore,true);});
+test("stale packet cannot exchange",()=>{const x=issueDatasetKnowledgePacketReceipt(base,"2026-10-10T00:00:00Z");assert.equal(x.freshnessState,"STALE");assert.equal(x.canExchange,false);});
+test("same source and destination cell refused",()=>{assert.throws(()=>validateDatasetKnowledgePacket({...base,destinationCellId:base.sourceCellId}),/PACKET_IDENTITY_INVALID/);});
+test("restricted personal data packet refused",()=>{assert.throws(()=>validateDatasetKnowledgePacket({...base,restrictedPersonalData:true as any}),/RESTRICTED_PACKET_FORBIDDEN/);});
+test("quarantined packet cannot be core ready",()=>{assert.throws(()=>validateDatasetKnowledgePacket({...base,promotionStage:"CORE_READY" as const,quarantineReasons:["LICENSE_REVIEW"]}),/QUARANTINED_PACKET_NOT_CORE_READY/);});
+test("duplicate shard hash refused",()=>{assert.throws(()=>validateDatasetKnowledgePacket({...base,shardContentHashes:[H2,H2]}),/SHARD_HASHES_DUPLICATE/);});
+test("authority escalation refused",()=>{assert.throws(()=>validateDatasetKnowledgePacket({...base,productionAuthority:true} as any),/PACKET_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"scope",{enumerable:true,get(){hits++;return "CROSS_REGION";}});assert.throws(()=>validateDatasetKnowledgePacket(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
