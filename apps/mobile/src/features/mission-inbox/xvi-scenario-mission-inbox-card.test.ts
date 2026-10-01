@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { presentScenarioMissionInboxCard } from "./xvi-scenario-mission-inbox-card_v203";
+import { presentScenarioMissionInboxCard } from "./xvi-scenario-mission-inbox-card";
 
 function navigation(overrides: Record<string, unknown> = {}) {
   return {
