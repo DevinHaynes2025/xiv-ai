@@ -1,0 +1,15 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {planPersonalDatasetAgent,validatePersonalDatasetAgentInput} from "./xvi-personal-agi-dataset-agent";
+const H="a".repeat(64);
+const src=(id:string,type:any="PUBLIC_DATASET",consented=true,licensed=true,sensitivity:any="PUBLIC",rows=1000,q:string[]=[])=>({sourceId:id,sourceType:type,consented,licensed,provenanceHash:H,sensitivity,rowEstimate:rows,freshnessAt:"2026-10-01T23:00:00Z",quarantineReasons:q});
+const base={agentId:"agent:personal:1",audience:"ENTREPRENEUR",tenantId:"tenant:alpha",userScopeId:"user-scope:1",runMode:"LOCAL_ONLY",sources:[src("s1")],requestedInsights:["ISSUE","OPPORTUNITY","PROJECTION","CHART","STORY"],maxSourceRowsPerRun:100000,maxOutputItems:10,allowProjection:true,allowPersonalization:true,observedAt:"2026-10-01T23:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("eligible data produces bounded autonomous learning plan",()=>{const x=planPersonalDatasetAgent(base);assert.equal(x.learningDisposition,"LEARN");assert.equal(x.canLearnAutonomouslyWithinPolicy,true);assert.equal(x.scaleClaim,"BOUNDED_PARTITIONS_ONLY");});
+test("projection can be disabled without blocking other insights",()=>{const x=planPersonalDatasetAgent({...base,allowProjection:false});assert.equal(x.canProject,false);assert.equal(x.insightPlan.includes("PROJECTION"),false);});
+test("unconsented personal source is deferred",()=>{const x=planPersonalDatasetAgent({...base,sources:[src("s1","MOBILE",false,true,"PERSONAL")]});assert.equal(x.deferredSourceCount,1);assert.equal(x.learningDisposition,"DEFER");});
+test("unlicensed public dataset is rejected",()=>{const x=planPersonalDatasetAgent({...base,sources:[src("s1","PUBLIC_DATASET",true,false)]});assert.equal(x.rejectedSourceCount,1);});
+test("restricted data is rejected",()=>{const x=planPersonalDatasetAgent({...base,sources:[src("s1","USER_UPLOAD",true,true,"RESTRICTED")]});assert.equal(x.learningDisposition,"REJECT");});
+test("quarantined source dominates disposition",()=>{const x=planPersonalDatasetAgent({...base,sources:[src("s1","PUBLIC_DATASET",true,true,"PUBLIC",1000,["POISONING_SUSPECTED"])]});assert.equal(x.learningDisposition,"QUARANTINE");});
+test("row processing remains bounded",()=>{const x=planPersonalDatasetAgent({...base,sources:[src("s1","PUBLIC_DATASET",true,true,"PUBLIC",999999999999)],maxSourceRowsPerRun:5000});assert.equal(x.eligibleRowEstimate,5000);});
+test("external action authority remains false",()=>{const x=planPersonalDatasetAgent(base);assert.equal(x.canTakeExternalAction,false);assert.equal(x.executionAuthority,false);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"audience",{enumerable:true,get(){hits++;return "EXECUTIVE";}});assert.throws(()=>validatePersonalDatasetAgentInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
