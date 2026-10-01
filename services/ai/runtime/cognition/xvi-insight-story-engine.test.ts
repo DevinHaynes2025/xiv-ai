@@ -1,0 +1,15 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {compileInsightStory,validateInsightStoryInput} from "./xvi-insight-story-engine";
+const H="a".repeat(64);
+const e=(id:string,root:string,licensed=true,quarantined=false)=>({sourceId:id,provenanceHash:H,datasetId:"dataset:1",independentRootId:root,freshnessAt:"2026-10-02T00:00:00Z",licensed,quarantined});
+const base={storyId:"story:1",audience:"ENTREPRENEUR",kind:"CHART",title:"Demand is accelerating",summary:"Three independent datasets show rising qualified demand.",evidence:[e("s1","r1"),e("s2","r2"),e("s3","r3")],assumptions:[],visualKind:"LINE",horizonLabel:null,uncertaintyLow:null,uncertaintyHigh:null,projectedValue:null,unitLabel:null,nextQuestion:"Which segment is driving the change?",observedAt:"2026-10-02T00:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("three clean independent roots produce high posture",()=>{const x=compileInsightStory(base);assert.equal(x.confidencePosture,"HIGH");assert.equal(x.canRenderVisual,true);});
+test("projection requires assumptions and uncertainty",()=>{assert.throws(()=>validateInsightStoryInput({...base,kind:"PROJECTION" as const,projectedValue:100,horizonLabel:"90 days"} as any),/PROJECTION_FIELDS_REQUIRED/);});
+test("bounded projection does not claim fact",()=>{const x=compileInsightStory({...base,kind:"PROJECTION" as const,visualKind:"LINE" as const,projectedValue:100,horizonLabel:"90 days",uncertaintyLow:80,uncertaintyHigh:120,unitLabel:"orders",assumptions:[{assumptionId:"a1",label:"Demand growth",value:"8%",sensitivity:"HIGH" as const}]});assert.equal(x.hasProjection,true);assert.equal(x.canClaimFact,false);});
+test("quarantine disputes the story and blocks visual",()=>{const x=compileInsightStory({...base,evidence:[e("s1","r1",true,true),e("s2","r2")]});assert.equal(x.confidencePosture,"DISPUTED");assert.equal(x.canRenderVisual,false);});
+test("two independent roots are moderate",()=>{const x=compileInsightStory({...base,evidence:[e("s1","r1"),e("s2","r2")]});assert.equal(x.confidencePosture,"MODERATE");});
+test("unlicensed clean evidence disputes the story",()=>{const x=compileInsightStory({...base,evidence:[e("s1","r1",false,false),e("s2","r2")]});assert.equal(x.confidencePosture,"DISPUTED");});
+test("external action stays disabled",()=>{const x=compileInsightStory(base);assert.equal(x.canTakeExternalAction,false);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateInsightStoryInput({...base,productionAuthority:true} as any),/INSIGHT_STORY_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"kind",{enumerable:true,get(){hits++;return "CHART";}});assert.throws(()=>validateInsightStoryInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
