@@ -1,44 +1,20 @@
-export type XviScenarioInboxRunMode =
-  | "ONLINE_GOVERNED"
-  | "OFFLINE_GOVERNED"
-  | "LOCAL_ONLY";
+import type { XviScenarioNavigationPlan } from "../universe/xvi-scenario-comparison-navigation";
 
-export type XviScenarioInboxDestination =
-  | "NEEDS_YOU_SCENARIO_ASSUMPTIONS"
-  | "NEEDS_YOU_SCENARIO_EVIDENCE";
+export type XviScenarioInboxRunMode = XviScenarioNavigationPlan["runMode"];
 
-export type XviScenarioInboxReason =
-  | "ASSUMPTION_REVIEW_REQUIRED"
-  | "EVIDENCE_REVIEW_REQUIRED";
+export type XviScenarioInboxDestination = Extract<
+  XviScenarioNavigationPlan["destination"],
+  "NEEDS_YOU_SCENARIO_ASSUMPTIONS" | "NEEDS_YOU_SCENARIO_EVIDENCE"
+>;
 
-export interface XviScenarioNavigationPlanMirror {
-  readonly schemaVersion: "xvi-scenario-navigation-v1";
-  readonly runMode: XviScenarioInboxRunMode;
-  readonly sourceSurface: "SCENARIO_COMPARISON_CARD";
-  readonly destination:
-    | "UNIVERSE_SCENARIO_DETAIL"
-    | XviScenarioInboxDestination;
-  readonly route: "UNIVERSE" | "NEEDS_YOU";
-  readonly userAction:
-    | "Explore scenarios"
-    | "Review assumptions"
-    | "Review evidence";
-  readonly secondaryAction: "Ask XVI";
-  readonly reason:
-    | "CLEAR_SCENARIO_EXPLORATION"
-    | XviScenarioInboxReason;
-  readonly safeReadOnly: true;
-  readonly requiresUserGesture: true;
-  readonly canAutoNavigate: false;
-  readonly navigationAuthority: false;
-  readonly executionAuthority: false;
-  readonly mutationAuthority: false;
-  readonly productionAuthority: false;
-}
+export type XviScenarioInboxReason = Extract<
+  XviScenarioNavigationPlan["reason"],
+  "ASSUMPTION_REVIEW_REQUIRED" | "EVIDENCE_REVIEW_REQUIRED"
+>;
 
 export interface XviScenarioMissionInboxInput {
   readonly scenarioSetId: string;
-  readonly navigation: XviScenarioNavigationPlanMirror;
+  readonly navigation: XviScenarioNavigationPlan;
   readonly safeReadOnly: true;
   readonly canAutoOpen: false;
   readonly canClaimExecution: false;
@@ -106,7 +82,7 @@ function scenarioSetId(value: string): void {
   }
 }
 
-function validateNavigation(value: unknown): Readonly<XviScenarioNavigationPlanMirror> {
+function validateNavigation(value: unknown): Readonly<XviScenarioNavigationPlan> {
   plain(value, "SCENARIO_INBOX_NAVIGATION");
   exact(
     value,
@@ -130,7 +106,7 @@ function validateNavigation(value: unknown): Readonly<XviScenarioNavigationPlanM
     "SCENARIO_INBOX_NAVIGATION"
   );
 
-  const navigation = value as unknown as XviScenarioNavigationPlanMirror;
+  const navigation = value as unknown as XviScenarioNavigationPlan;
   if (navigation.schemaVersion !== "xvi-scenario-navigation-v1") {
     throw new Error("SCENARIO_INBOX_NAVIGATION_SCHEMA_INVALID");
   }
