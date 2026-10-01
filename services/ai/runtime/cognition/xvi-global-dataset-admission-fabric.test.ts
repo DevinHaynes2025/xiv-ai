@@ -1,0 +1,15 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueDatasetAdmissionReceipt,validateGlobalDatasetDescriptor} from "./xvi-global-dataset-admission-fabric";
+const H1="a".repeat(64),H2="b".repeat(64),S="c".repeat(64),U="d".repeat(64);
+const shard=(id:string,h:string)=>({shardId:id,partitionKey:id,rowCount:1000,byteSize:1048576,contentHash:h,schemaHash:S,observedAt:"2026-10-01T15:00:00Z"});
+const base={datasetId:"dataset:world:orgs",datasetClass:"ORGANIZATION",providerId:"provider:official",sourceUrlHash:U,licenseId:"license:public",allowedUse:["knowledge-index"],jurisdictionIds:["jurisdiction:iso3166-1:us","jurisdiction:iso3166-1:ke"],languageTags:["en","sw"],schemaVersion:"1.0.0",schemaHash:S,datasetContentHash:H1,shards:[shard("shard:1",H1),shard("shard:2",H2)],retrievedAt:"2026-10-01T15:00:00Z",expiresAt:"2026-10-08T15:00:00Z",refreshPolicy:"WEEKLY",personalDataClass:"NONE",quarantineReasons:[],admissionState:"ADMITTED",promotionStage:"CELL_READY",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("clean admitted dataset can feed country cells",()=>{const x=issueDatasetAdmissionReceipt(base,"2026-10-02T00:00:00Z");assert.equal(x.canFeedCountryCell,true);assert.equal(x.canFeedCore,false);assert.equal(x.totalRows,2000);});
+test("core-ready admitted dataset can feed CORE",()=>{const x=issueDatasetAdmissionReceipt({...base,promotionStage:"CORE_READY" as const},"2026-10-02T00:00:00Z");assert.equal(x.canFeedCore,true);});
+test("stale dataset cannot feed country cell",()=>{const x=issueDatasetAdmissionReceipt(base,"2026-10-10T00:00:00Z");assert.equal(x.freshnessState,"STALE");assert.equal(x.canFeedCountryCell,false);});
+test("duplicate shard hashes block promotion",()=>{const x=issueDatasetAdmissionReceipt({...base,shards:[shard("shard:1",H1),shard("shard:2",H1)]},"2026-10-02T00:00:00Z");assert.equal(x.duplicateShardHashCount,1);assert.equal(x.canFeedCountryCell,false);});
+test("shard schema mismatch is refused",()=>{const bad={...shard("shard:1",H1),schemaHash:H2};assert.throws(()=>validateGlobalDatasetDescriptor({...base,shards:[bad]}),/SHARD_SCHEMA_MISMATCH/);});
+test("restricted dataset cannot be admitted",()=>{assert.throws(()=>validateGlobalDatasetDescriptor({...base,personalDataClass:"RESTRICTED"}),/RESTRICTED_DATASET_NOT_ADMITTED/);});
+test("quarantined dataset requires reason",()=>{assert.throws(()=>validateGlobalDatasetDescriptor({...base,admissionState:"QUARANTINED" as const}),/QUARANTINED_DATASET_REQUIRES_REASON/);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateGlobalDatasetDescriptor({...base,mutationAuthority:true} as any),/DATASET_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"datasetClass",{enumerable:true,get(){hits++;return "ORGANIZATION";}});assert.throws(()=>validateGlobalDatasetDescriptor(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
