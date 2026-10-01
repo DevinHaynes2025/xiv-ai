@@ -1,0 +1,15 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueKnowledgeCellReceipt,validateJurisdictionKnowledgeCell,validateKnowledgeBridge} from "./xvi-world-knowledge-cell-fabric";
+const H="a".repeat(64);
+const source={sourceId:"source:official",licenseId:"license:public",allowedUse:["knowledge-index"],provenanceHash:H,evidenceCount:100,quarantined:false} as const;
+const base={cellId:"cell:jurisdiction:us",jurisdictionId:"jurisdiction:iso3166-1:us",region:"AMERICAS",state:"ACTIVE",languageTags:["en"],capabilities:["ORGANIZATIONS","INFRASTRUCTURE","RELATIONSHIPS","EVIDENCE_SUMMARIES"],sourceBindings:[source],organizationCount:5000,relationshipCount:20000,evidenceSummaryCount:10000,lastCheckpointAt:"2026-10-01T14:00:00Z",localFirst:true,offlineCapable:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+const bridge={bridgeId:"bridge:us-ke",scope:"CROSS_REGION",fromCellId:"cell:jurisdiction:us",toCellId:"cell:jurisdiction:ke",allowedCapabilities:["ORGANIZATIONS","RELATIONSHIPS","EVIDENCE_SUMMARIES"],packetBudget:10000,requiresProvenance:true,requiresLicenseCompatibility:true,readOnlyExchange:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("active country cell emits zero-authority receipt",()=>{const x=issueKnowledgeCellReceipt(base);assert.equal(x.state,"ACTIVE");assert.equal(x.offlineCapable,true);assert.equal(x.requiresHumanReview,false);});
+test("active cell requires at least one source",()=>{assert.throws(()=>validateJurisdictionKnowledgeCell({...base,sourceBindings:[]}),/ACTIVE_CELL_REQUIRES_SOURCE/);});
+test("active cell refuses quarantined source",()=>{assert.throws(()=>validateJurisdictionKnowledgeCell({...base,sourceBindings:[{...source,quarantined:true}]}),/ACTIVE_CELL_CANNOT_INCLUDE_QUARANTINED_SOURCE/);});
+test("quarantined cell requires quarantined source",()=>{assert.throws(()=>validateJurisdictionKnowledgeCell({...base,state:"QUARANTINED" as const}),/QUARANTINED_CELL_REQUIRES_REASON/);});
+test("cross-region bridge requires provenance and license compatibility",()=>{const x=validateKnowledgeBridge(bridge);assert.equal(x.scope,"CROSS_REGION");assert.equal(x.readOnlyExchange,true);});
+test("self-bridge is refused",()=>{assert.throws(()=>validateKnowledgeBridge({...bridge,toCellId:bridge.fromCellId}),/KNOWLEDGE_BRIDGE_IDENTITY_INVALID/);});
+test("bridge authority escalation refused",()=>{assert.throws(()=>validateKnowledgeBridge({...bridge,mutationAuthority:true} as any),/KNOWLEDGE_BRIDGE_AUTHORITY_VIOLATION/);});
+test("accessor-bearing cell fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"region",{enumerable:true,get(){hits++;return "AMERICAS";}});assert.throws(()=>validateJurisdictionKnowledgeCell(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
