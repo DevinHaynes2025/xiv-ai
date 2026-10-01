@@ -1,0 +1,14 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueCountryCellCompletenessReceipt,validateCountryCellCompletenessInput} from "./xvi-country-cell-completeness-matrix";
+const dim=(domain:string,expected=100,covered=100,fresh=100,roots=3,licensed=100,quarantined=0,disputed=0)=>({domain,expectedUnits:expected,coveredUnits:covered,freshUnits:fresh,independentSourceRoots:roots,compatibleLicenseUnits:licensed,quarantinedUnits:quarantined,disputedUnits:disputed});
+const base={cellId:"cell:jurisdiction:ke",jurisdictionId:"jurisdiction:iso3166-1:ke",languageTagsExpected:["en","sw"],languageTagsCovered:["en","sw"],dimensions:[dim("ORGANIZATIONS"),dim("INFRASTRUCTURE"),dim("RESEARCH")],observedAt:"2026-10-01T18:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("complete multidomain cell stays decomposed and read only",()=>{const x=issueCountryCellCompletenessReceipt(base);assert.equal(x.languageCoverageRatio,1);assert.equal(x.domainsWithGaps.length,0);assert.equal(x.completenessIsTruth,false);});
+test("coverage gap is preserved by domain",()=>{const x=issueCountryCellCompletenessReceipt({...base,dimensions:[dim("ORGANIZATIONS",100,60),dim("INFRASTRUCTURE")]});assert.ok(x.domainsWithGaps.includes("ORGANIZATIONS"));});
+test("missing language is surfaced",()=>{const x=issueCountryCellCompletenessReceipt({...base,languageTagsCovered:["en"]});assert.deepEqual(x.uncoveredLanguages,["sw"]);assert.equal(x.requiresHumanReview,true);});
+test("weak source independence requires review",()=>{const x=issueCountryCellCompletenessReceipt({...base,dimensions:[dim("ORGANIZATIONS",100,100,100,1)]});assert.ok(x.domainsNeedingReview.includes("ORGANIZATIONS"));});
+test("stale coverage requires review",()=>{const x=issueCountryCellCompletenessReceipt({...base,dimensions:[dim("RESEARCH",100,100,50,3)]});assert.ok(x.domainsNeedingReview.includes("RESEARCH"));});
+test("license incompatibility requires review",()=>{const x=issueCountryCellCompletenessReceipt({...base,dimensions:[dim("INFRASTRUCTURE",100,100,100,3,80)]});assert.ok(x.domainsNeedingReview.includes("INFRASTRUCTURE"));});
+test("dimension bounds are enforced",()=>{assert.throws(()=>validateCountryCellCompletenessInput({...base,dimensions:[dim("RESEARCH",100,120)]}),/DIMENSION_BOUNDS_INVALID/);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateCountryCellCompletenessInput({...base,productionAuthority:true} as any),/COMPLETENESS_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"jurisdictionId",{enumerable:true,get(){hits++;return "jurisdiction:evil";}});assert.throws(()=>validateCountryCellCompletenessInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
