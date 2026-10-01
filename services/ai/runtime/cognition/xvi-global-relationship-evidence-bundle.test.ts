@@ -1,0 +1,14 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {resolveRelationshipEvidenceBundle,validateRelationshipEvidenceBundle} from "./xvi-global-relationship-evidence-bundle";
+const e=(id:string,root:string,polarity:"SUPPORT"|"CONTRADICT"|"UNKNOWN",from:string|null=null,to:string|null=null,q=false)=>({evidenceId:id,provenanceRootId:root,datasetId:"dataset:global:1",polarity,confidence:0.9,observedAt:"2026-10-01T21:00:00Z",validFrom:from,validTo:to,quarantined:q});
+const base={bundleId:"bundle:edge:1",edgeId:"edge:global:1",evidence:[e("evidence:1","root:1","SUPPORT"),e("evidence:2","root:2","SUPPORT")],supersedesBundleId:null,observedAt:"2026-10-01T21:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("two independent support roots can resolve relationship",()=>{const x=resolveRelationshipEvidenceBundle(base);assert.equal(x.resolutionState,"SUPPORTED");assert.equal(x.canClaimResolvedRelationship,true);assert.equal(x.truthScore,null);});
+test("support and contradiction become disputed",()=>{const x=resolveRelationshipEvidenceBundle({...base,evidence:[e("evidence:1","root:1","SUPPORT"),e("evidence:2","root:2","CONTRADICT")]});assert.equal(x.resolutionState,"DISPUTED");assert.equal(x.requiresHumanReview,true);});
+test("contradiction only becomes contradicted",()=>{const x=resolveRelationshipEvidenceBundle({...base,evidence:[e("evidence:2","root:2","CONTRADICT")]});assert.equal(x.resolutionState,"CONTRADICTED");});
+test("single support root is insufficient",()=>{const x=resolveRelationshipEvidenceBundle({...base,evidence:[e("evidence:1","root:1","SUPPORT")]});assert.equal(x.resolutionState,"INSUFFICIENT");});
+test("quarantined evidence forces review",()=>{const x=resolveRelationshipEvidenceBundle({...base,evidence:[e("evidence:1","root:1","SUPPORT"),e("evidence:2","root:2","SUPPORT",null,null,true)]});assert.equal(x.requiresHumanReview,true);});
+test("overlapping temporal disagreement is counted",()=>{const x=resolveRelationshipEvidenceBundle({...base,evidence:[e("evidence:1","root:1","SUPPORT","2026-01-01T00:00:00Z","2026-12-31T00:00:00Z"),e("evidence:2","root:2","CONTRADICT","2026-06-01T00:00:00Z","2026-07-01T00:00:00Z")]});assert.equal(x.temporalConflictCount,1);});
+test("self supersession is refused",()=>{assert.throws(()=>validateRelationshipEvidenceBundle({...base,supersedesBundleId:"bundle:edge:1"}),/SUPERSESSION_INVALID/);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateRelationshipEvidenceBundle({...base,mutationAuthority:true} as any),/EVIDENCE_BUNDLE_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"edgeId",{enumerable:true,get(){hits++;return "edge:evil";}});assert.throws(()=>validateRelationshipEvidenceBundle(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
