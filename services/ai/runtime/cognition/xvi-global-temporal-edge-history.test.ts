@@ -1,0 +1,17 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueTemporalEdgeHistoryReceipt,validateTemporalEdgeHistory} from "./xvi-global-temporal-edge-history";
+const v=(id:string,version:number,state:"CURRENT"|"HISTORICAL"|"SUPERSEDED"|"EXPIRED"|"REVOKED",from:string,to:string|null,sup:string|null=null,reason:string|null=null)=>({edgeVersionId:id,edgeId:"edge:global:1",version,evidenceBundleId:`bundle:${version}`,effectiveFrom:from,effectiveTo:to,observedAt:"2026-10-01T22:00:00Z",state,supersedesEdgeVersionId:sup,revokedReason:reason,safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false});
+const base={edgeId:"edge:global:1",versions:[
+  v("edge-version:1",1,"HISTORICAL","2025-01-01T00:00:00Z","2026-01-01T00:00:00Z"),
+  v("edge-version:2",2,"CURRENT","2026-01-01T00:00:00Z",null,"edge-version:1")
+],observedAt:"2026-10-01T22:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("clean history identifies one current version",()=>{const x=issueTemporalEdgeHistoryReceipt(base);assert.equal(x.currentVersionId,"edge-version:2");assert.equal(x.temporalConflictState,"CLEAR");assert.equal(x.route,"UNIVERSE");});
+test("multiple current versions become version conflict",()=>{const x=issueTemporalEdgeHistoryReceipt({...base,versions:[v("edge-version:1",1,"CURRENT","2025-01-01T00:00:00Z",null),v("edge-version:2",2,"CURRENT","2026-01-01T00:00:00Z",null)]});assert.equal(x.temporalConflictState,"VERSION_CONFLICT");assert.equal(x.route,"NEEDS_YOU");});
+test("overlapping historical windows are preserved",()=>{const x=issueTemporalEdgeHistoryReceipt({...base,versions:[v("edge-version:1",1,"HISTORICAL","2025-01-01T00:00:00Z","2026-06-01T00:00:00Z"),v("edge-version:2",2,"HISTORICAL","2026-01-01T00:00:00Z","2027-01-01T00:00:00Z")]});assert.equal(x.temporalConflictState,"OVERLAP");assert.equal(x.overlappingVersionPairs.length,1);});
+test("gaps remain explicit",()=>{const x=issueTemporalEdgeHistoryReceipt({...base,versions:[v("edge-version:1",1,"HISTORICAL","2025-01-01T00:00:00Z","2025-06-01T00:00:00Z"),v("edge-version:2",2,"HISTORICAL","2026-01-01T00:00:00Z","2026-06-01T00:00:00Z")]});assert.equal(x.temporalConflictState,"GAP");assert.equal(x.gaps.length,1);});
+test("revoked version requires reason",()=>{assert.throws(()=>validateTemporalEdgeHistory({...base,versions:[v("edge-version:1",1,"REVOKED","2025-01-01T00:00:00Z","2026-01-01T00:00:00Z")]}),/REVOKED_REASON_REQUIRED/);});
+test("unknown superseded version is refused",()=>{assert.throws(()=>validateTemporalEdgeHistory({...base,versions:[v("edge-version:1",1,"CURRENT","2025-01-01T00:00:00Z",null,"edge-version:missing")]}),/UNKNOWN_SUPERSEDED_VERSION/);});
+test("duplicate version number is refused",()=>{assert.throws(()=>validateTemporalEdgeHistory({...base,versions:[v("edge-version:1",1,"HISTORICAL","2025-01-01T00:00:00Z","2026-01-01T00:00:00Z"),v("edge-version:2",1,"CURRENT","2026-01-01T00:00:00Z",null)]}),/EDGE_VERSION_NUMBER_DUPLICATE/);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateTemporalEdgeHistory({...base,productionAuthority:true} as any),/TEMPORAL_HISTORY_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"edgeId",{enumerable:true,get(){hits++;return "edge:evil";}});assert.throws(()=>validateTemporalEdgeHistory(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
