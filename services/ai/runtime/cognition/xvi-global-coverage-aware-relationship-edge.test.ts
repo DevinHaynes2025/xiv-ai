@@ -1,0 +1,13 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {assessCoverageAwareEdge,validateCoverageAwareEdgeInput} from "./xvi-global-coverage-aware-relationship-edge";
+const base={edgeId:"edge:org:us-ke:1",edgeType:"OPERATES_IN",fromEntityId:"org:global:example",toEntityId:"jurisdiction:iso3166-1:ke",fromIdentityResolved:true,toIdentityResolved:true,sourceJurisdictionId:"jurisdiction:iso3166-1:us",targetJurisdictionId:"jurisdiction:iso3166-1:ke",datasetId:"dataset:world:orgs",datasetAdmitted:true,datasetLineageSafe:true,datasetFresh:true,licenseCompatible:true,independentSourceRoots:3,relevantDomainCoverageRatio:1,relevantDomainFreshnessRatio:1,quarantinedEvidenceCount:0,supportingEvidenceCount:3,contradictingEvidenceCount:0,disputeState:"UNDISPUTED",observedAt:"2026-10-01T20:00:00Z",validFrom:null,validTo:null,safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("clean worldwide edge can be admitted",()=>{const x=assessCoverageAwareEdge(base);assert.equal(x.admissible,true);assert.equal(x.route,"UNIVERSE");assert.equal(x.canClaimRelationship,true);});
+test("zero domain coverage blocks edge",()=>{const x=assessCoverageAwareEdge({...base,relevantDomainCoverageRatio:0});assert.equal(x.admissible,false);assert.ok(x.reasons.some(r=>/zero coverage/i.test(r)));});
+test("unsafe lineage blocks edge",()=>{const x=assessCoverageAwareEdge({...base,datasetLineageSafe:false});assert.equal(x.route,"NEEDS_YOU");});
+test("weak source independence blocks edge",()=>{const x=assessCoverageAwareEdge({...base,independentSourceRoots:1});assert.equal(x.admissible,false);});
+test("quarantined evidence blocks edge",()=>{const x=assessCoverageAwareEdge({...base,quarantinedEvidenceCount:1});assert.equal(x.route,"NEEDS_YOU");});
+test("contradiction cannot hide as undisputed",()=>{assert.throws(()=>validateCoverageAwareEdgeInput({...base,contradictingEvidenceCount:1}),/UNDISPUTED_CANNOT_HIDE_CONTRADICTION/);});
+test("disputed edge remains review-routed",()=>{const x=assessCoverageAwareEdge({...base,disputeState:"DISPUTED" as const});assert.equal(x.admissible,false);assert.equal(x.route,"NEEDS_YOU");});
+test("authority escalation is refused",()=>{assert.throws(()=>validateCoverageAwareEdgeInput({...base,productionAuthority:true} as any),/GLOBAL_EDGE_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"edgeType",{enumerable:true,get(){hits++;return "OPERATES_IN";}});assert.throws(()=>validateCoverageAwareEdgeInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
