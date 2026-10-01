@@ -1,0 +1,16 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {issueRecallTombstoneReceipt,validateRecallTombstone,issueRecoveryJournalReceipt,validateRecoveryJournal} from "./xvi-mobile-data-fabric-recovery-journal";
+const F="a".repeat(64);
+const tomb={tombstoneId:"tombstone:1",tenantId:"tenant:alpha",deviceId:"device:iphone:1",replayKey:"rk-1",eventFingerprint:F,targetState:"RECALLED",priorState:"ACTIVE",expectedVersion:3,observedVersion:3,reasonCode:"USER_RECALL",createdAt:"2026-10-01T11:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+const journal={journalId:"journal:1",transactionId:"tx:1",tenantId:"tenant:alpha",deviceId:"device:iphone:1",checkpointId:"checkpoint:1",priorJournalIds:[],journalState:"APPLIED",queueDepthBefore:10,queueDepthAfter:10,replayKeyConsumed:true,fingerprintReserved:true,tombstoneId:"tombstone:1",propagationTargets:["REPLAY_LEDGER","CHECKPOINT","COMPACTION","EVIDENCE_SUMMARY"],attempt:1,maxAttempts:3,createdAt:"2026-10-01T11:00:00Z",updatedAt:"2026-10-01T11:01:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("matching version tombstone satisfies compare and set",()=>{const x=issueRecallTombstoneReceipt(tomb);assert.equal(x.compareAndSetSatisfied,true);assert.equal(x.propagationTargets.length,4);});
+test("version mismatch is surfaced without authority",()=>{const x=issueRecallTombstoneReceipt({...tomb,observedVersion:4});assert.equal(x.compareAndSetSatisfied,false);assert.equal(x.executionAuthority,false);});
+test("noop recall transition is refused",()=>{assert.throws(()=>validateRecallTombstone({...tomb,priorState:"RECALLED" as const}),/TOMBSTONE_NOOP_STATE_FORBIDDEN/);});
+test("recovery receipt carries propagation and recall observability",()=>{const x=issueRecoveryJournalReceipt(journal);assert.equal(x.requiresFurtherRecovery,true);assert.equal(x.observability.recallCount,1);});
+test("recovered journal no longer requires recovery",()=>{const x=issueRecoveryJournalReceipt({...journal,journalState:"RECOVERED" as const,propagationTargets:[]});assert.equal(x.requiresFurtherRecovery,false);assert.equal(x.observability.recoveryCount,1);});
+test("idempotent journal replay is detected",()=>{const x=issueRecoveryJournalReceipt({...journal,priorJournalIds:["journal:1"]});assert.equal(x.idempotentReplay,true);assert.equal(x.observability.replayCount,1);});
+test("queue delta larger than one is refused",()=>{assert.throws(()=>validateRecoveryJournal({...journal,queueDepthAfter:12}),/RECOVERY_QUEUE_DELTA_INVALID/);});
+test("attempt budget is enforced",()=>{assert.throws(()=>validateRecoveryJournal({...journal,attempt:4,maxAttempts:3}),/RECOVERY_ATTEMPT_EXCEEDS_MAX/);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateRecoveryJournal({...journal,productionAuthority:true} as any),/RECOVERY_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...journal};Object.defineProperty(x,"journalState",{enumerable:true,get(){hits++;return "APPLIED";}});assert.throws(()=>validateRecoveryJournal(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
