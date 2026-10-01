@@ -1,0 +1,14 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {assessProjectionVisualization,validateProjectionVisualizationInput} from "./xvi-projection-visualization-contract";
+const H1="a".repeat(64),H2="b".repeat(64),A="c".repeat(64);
+const base={visualizationId:"viz:1",chartKind:"LINE",title:"Revenue outlook",series:[{seriesId:"revenue",label:"Revenue",unitLabel:"USD",points:[{x:"Q1",y:100,lower:null,upper:null,kind:"HISTORICAL"},{x:"Q2",y:110,lower:null,upper:null,kind:"HISTORICAL"},{x:"Q3",y:125,lower:115,upper:140,kind:"PROJECTED"}]}],sourceStoryId:"story:1",scenarioLabel:"Base case",assumptionsHash:A,provenanceRootHashes:[H1,H2],backtest:{backtestId:"backtest:1",sampleCount:20,meanAbsoluteError:8,meanAbsolutePercentageError:12,intervalCoverageRatio:0.8,evaluatedAt:"2026-10-02T01:00:00Z"},observedAt:"2026-10-02T01:00:00Z",safeReadOnly:true,executionAuthority:false,mutationAuthority:false,productionAuthority:false} as const;
+test("historical and projected points remain distinct",()=>{const x=assessProjectionVisualization(base);assert.equal(x.historicalPointCount,2);assert.equal(x.projectedPointCount,1);assert.equal(x.historicalAndProjectedSeparated,true);});
+test("healthy backtest calibrates projection",()=>{const x=assessProjectionVisualization(base);assert.equal(x.calibrationState,"CALIBRATED");assert.equal(x.canRender,true);});
+test("projected interval is mandatory",()=>{const bad=structuredClone(base) as any;bad.series[0].points[2].lower=null;assert.throws(()=>validateProjectionVisualizationInput(bad),/PROJECTED_INTERVAL_REQUIRED/);});
+test("historical points cannot carry forecast interval",()=>{const bad=structuredClone(base) as any;bad.series[0].points[0].lower=90;bad.series[0].points[0].upper=110;assert.throws(()=>validateProjectionVisualizationInput(bad),/HISTORICAL_INTERVAL_FORBIDDEN/);});
+test("weak backtest is underperforming",()=>{const x=assessProjectionVisualization({...base,backtest:{...base.backtest,meanAbsolutePercentageError:75}});assert.equal(x.calibrationState,"UNDERPERFORMING");assert.equal(x.requiresHumanReview,true);});
+test("single provenance root disputes visualization",()=>{const x=assessProjectionVisualization({...base,provenanceRootHashes:[H1]});assert.equal(x.calibrationState,"DISPUTED");assert.equal(x.canRender,false);});
+test("duplicate provenance root refused",()=>{assert.throws(()=>validateProjectionVisualizationInput({...base,provenanceRootHashes:[H1,H1]}),/PROVENANCE_ROOT_DUPLICATE/);});
+test("authority escalation refused",()=>{assert.throws(()=>validateProjectionVisualizationInput({...base,mutationAuthority:true} as any),/PROJECTION_VIZ_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"chartKind",{enumerable:true,get(){hits++;return "LINE";}});assert.throws(()=>validateProjectionVisualizationInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
