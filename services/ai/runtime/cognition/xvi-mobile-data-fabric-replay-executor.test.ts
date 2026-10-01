@@ -1,0 +1,14 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {executeReplayDecision,validateReplayExecutorInput} from "./xvi-mobile-data-fabric-replay-executor";
+const F="a".repeat(64);
+const base={tenantId:"tenant:alpha",deviceId:"device:iphone:1",checkpointId:"checkpoint:device:2",replayKey:"rk-1",eventFingerprint:F,decision:"ACCEPT",currentQueueDepth:10,queueCapacity:100,replayKeyAlreadyConsumed:false,fingerprintReserved:false,recallState:"ACTIVE",transactionId:"tx:1",priorTransactionIds:[],observedAt:"2026-10-01T10:30:00Z",safeReadOnlyDecision:true,executionAuthority:false,productionAuthority:false} as const;
+test("accept atomically consumes replay state and increments queue",()=>{const x=executeReplayDecision(base);assert.equal(x.mutation,"ENQUEUE");assert.equal(x.replayKeyConsumed,true);assert.equal(x.fingerprintReserved,true);assert.equal(x.queueDepthAfter,11);});
+test("same transaction becomes idempotent noop",()=>{const x=executeReplayDecision({...base,priorTransactionIds:["tx:1"]});assert.equal(x.mutation,"NOOP");assert.equal(x.idempotentReplay,true);});
+test("accept fails if replay key already consumed",()=>{assert.throws(()=>executeReplayDecision({...base,replayKeyAlreadyConsumed:true}),/ACCEPT_REPLAY_STATE_CONFLICT/);});
+test("accept fails when queue is full",()=>{assert.throws(()=>executeReplayDecision({...base,currentQueueDepth:100}),/ACCEPT_QUEUE_CAPACITY_EXCEEDED/);});
+test("quarantine consumes replay state without queue increment",()=>{const x=executeReplayDecision({...base,decision:"QUARANTINE" as const});assert.equal(x.mutation,"QUARANTINED");assert.equal(x.queueDepthAfter,10);assert.equal(x.replayKeyConsumed,true);});
+test("drop consumes replay state without queue increment",()=>{const x=executeReplayDecision({...base,decision:"DROP" as const});assert.equal(x.mutation,"DROPPED");assert.equal(x.queueDepthAfter,10);});
+test("recalled event becomes noop and requests propagation",()=>{const x=executeReplayDecision({...base,recallState:"RECALLED" as const});assert.equal(x.mutation,"NOOP");assert.equal(x.requiresPropagation,true);});
+test("authority escalation is refused",()=>{assert.throws(()=>validateReplayExecutorInput({...base,productionAuthority:true} as any),/EXECUTOR_AUTHORITY_VIOLATION/);});
+test("accessor-bearing input fails closed without getter execution",()=>{let hits=0;const x:Record<string,unknown>={...base};Object.defineProperty(x,"decision",{enumerable:true,get(){hits++;return "ACCEPT";}});assert.throws(()=>validateReplayExecutorInput(x),/ACCESSOR_FORBIDDEN/);assert.equal(hits,0);});
