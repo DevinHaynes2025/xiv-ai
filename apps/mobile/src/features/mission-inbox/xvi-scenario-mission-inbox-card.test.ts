@@ -151,3 +151,55 @@ test("accessor-bearing navigation fails without executing getter", () => {
 test("exact schema rejects hidden extra fields", () => {
   assert.throws(() => presentScenarioMissionInboxCard({ ...input(), hiddenAuthority: true }), /SCHEMA_MISMATCH/);
 });
+
+test("review-kind and governed-mode matrix preserves exact user-controlled routing", () => {
+  const cases = [
+    {
+      destination: "NEEDS_YOU_SCENARIO_ASSUMPTIONS",
+      userAction: "Review assumptions",
+      reason: "ASSUMPTION_REVIEW_REQUIRED",
+      reviewKind: "ASSUMPTIONS",
+      primaryAction: "Review assumptions",
+    },
+    {
+      destination: "NEEDS_YOU_SCENARIO_EVIDENCE",
+      userAction: "Review evidence",
+      reason: "EVIDENCE_REVIEW_REQUIRED",
+      reviewKind: "EVIDENCE",
+      primaryAction: "Review evidence",
+    },
+  ] as const;
+
+  const modes = [
+    "ONLINE_GOVERNED",
+    "OFFLINE_GOVERNED",
+    "LOCAL_ONLY",
+  ] as const;
+
+  for (const runMode of modes) {
+    for (const expected of cases) {
+      const card = presentScenarioMissionInboxCard(input({
+        navigation: navigation({
+          runMode,
+          destination: expected.destination,
+          userAction: expected.userAction,
+          reason: expected.reason,
+        }),
+      }));
+
+      assert.equal(card.runMode, runMode);
+      assert.equal(card.destination, expected.destination);
+      assert.equal(card.reason, expected.reason);
+      assert.equal(card.reviewKind, expected.reviewKind);
+      assert.equal(card.primaryAction, expected.primaryAction);
+      assert.equal(card.secondaryAction, "Ask XVI");
+      assert.equal(card.requiresUserGesture, true);
+      assert.equal(card.canAutoOpen, false);
+      assert.equal(card.canAutoNavigate, false);
+      assert.equal(card.navigationAuthority, false);
+      assert.equal(card.executionAuthority, false);
+      assert.equal(card.mutationAuthority, false);
+      assert.equal(card.productionAuthority, false);
+    }
+  }
+});
